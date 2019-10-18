@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
+       default-autowire="byName" default-lazy-init="true">
+
+    <!--消息中心 消息推送生产者配置-->
+    <!--<bean id="cometProducer" class="com.alibaba.rocketmq.client.producer.DefaultMQProducer">
+        <property name="namesrvAddr" value="${rocketMQ.namesrvAddr}"/>
+        <property name="producerGroup" value="pgn_comet"/>
+        <property name="instanceName" value="pin_comet"/>
+        <property name="maxMessageSize" value="${rocketMQ.maxMessageSize}"/>
+    </bean>
+    &lt;!&ndash;消息中心 消息通知生产者配置&ndash;&gt;
+    <bean id="noticeProducer" class="com.alibaba.rocketmq.client.producer.DefaultMQProducer">
+        <property name="namesrvAddr" value="${rocketMQ.namesrvAddr}"/>
+        <property name="producerGroup" value="pgn_notice"/>
+        <property name="instanceName" value="pin_notice"/>
+        <property name="maxMessageSize" value="${rocketMQ.maxMessageSize}"/>
+    </bean>
+    &lt;!&ndash;用户下线后通知 生产者配置&ndash;&gt;
+    <bean id="onlineSessionOffLineProducer" class="com.alibaba.rocketmq.client.producer.DefaultMQProducer">
+        <property name="namesrvAddr" value="${rocketMQ.namesrvAddr}"/>
+        <property name="producerGroup" value="pgn_offLine"/>
+        <property name="instanceName" value="pin_offLine"/>
+        <property name="maxMessageSize" value="${rocketMQ.maxMessageSize}"/>
+    </bean>
+    &lt;!&ndash;审计日志 生产者配置&ndash;&gt;
+    <bean id="auditLogProducer" class="com.alibaba.rocketmq.client.producer.DefaultMQProducer">
+        <property name="namesrvAddr" value="${rocketMQ.namesrvAddr}"/>
+        <property name="producerGroup" value="pgn_auditLog"/>
+        <property name="instanceName" value="pin_auditLog"/>
+        <property name="maxMessageSize" value="${rocketMQ.maxMessageSize}"/>
+    </bean>
+
+    <bean id="merchantProducer" class="com.alibaba.rocketmq.client.producer.DefaultMQProducer">
+        <property name="namesrvAddr" value="${rocketMQ.namesrvAddr}"/>
+        <property name="producerGroup" value="pgn_mcenter"/>
+        <property name="instanceName" value="pin_mcenter"/>
+        <property name="maxMessageSize" value="${rocketMQ.maxMessageSize}"/>
+    </bean>
+    &lt;!&ndash;监控中心 消息生产者配置&ndash;&gt;
+    <bean id="monitorProducer" class="com.alibaba.rocketmq.client.producer.DefaultMQProducer">
+        <property name="namesrvAddr" value="${rocketMQ.namesrvAddr}"/>
+        <property name="producerGroup" value="pgn_monitor"/>
+        <property name="instanceName" value="pin_monitor"/>
+        <property name="maxMessageSize" value="${rocketMQ.maxMessageSize}"/>
+    </bean>
+    &lt;!&ndash;上分 消息生产者配置&ndash;&gt;
+    &lt;!&ndash;<bean id="acbProducer" class="com.alibaba.rocketmq.client.producer.DefaultMQProducer">
+        <property name="namesrvAddr" value="${rocketMQ.namesrvAddr}"/>
+        <property name="producerGroup" value="pgn_acbOrder"/>
+        <property name="instanceName" value="pgn_acbOrder"/>
+        <property name="maxMessageSize" value="${rocketMQ.maxMessageSize}"/>
+    </bean>&ndash;&gt;
+    &lt;!&ndash;游戏api 消息生产者配置&ndash;&gt;
+    <bean id="apiProducer" class="com.alibaba.rocketmq.client.producer.DefaultMQProducer">
+        <property name="namesrvAddr" value="${rocketMQ.namesrvAddr}"/>
+        <property name="producerGroup" value="pgn_gameApiRes"/>
+        <property name="instanceName" value="pin_gameApiRes"/>
+        <property name="maxMessageSize" value="${rocketMQ.maxMessageSize}"/>
+    </bean>-->
+
+    <!--<bean id="mqProducerConf" class="org.soul.commons.mq.conf.MQConf">
+        <property name="itemConfs">
+            <map>
+                &lt;!&ndash;<entry key-ref="apiProducer">
+                    <list>
+                        &lt;!&ndash;API异步请求生产者信息&ndash;&gt;
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="${gameboxApi.asyncResultTopic}"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.gameapi.mq.ApiResultMqProducer"/>
+                            <property name="methodName" value="produceAsync"/>
+                            <property name="argType" value="org.soul.model.gameapi.result.GameApiResult"/>
+                            <property name="tags" value="${gameboxApi.mq.tag}"/>
+                            <property name="bizKeys" value="key"/>
+                            <property name="dubboVersionApp" value="api-service"/>
+                            <property name="tagAttributeName" value="siteCode"/>
+                        </bean>
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="${gameboxApi.asyncResultTopic}"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.gameapi.mq.ApiResultMqProducer"/>
+                            <property name="methodName" value="produceAsyncExtendResult"/>
+                            <property name="argType" value="org.soul.model.gameapi.result.ExtendResult"/>
+                            <property name="tags" value="gameExtendResult"/>
+                            <property name="dubboVersionApp" value="api-service"/>
+                            <property name="isReDo" value="false"/>
+                        </bean>
+                    </list>
+                </entry>
+
+                <entry key-ref="monitorProducer">
+                    <list>
+                        &lt;!&ndash;监控数据收集，通过消息发出&ndash;&gt;
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MONITOR_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.monitor.CollectorService"/>
+                            <property name="methodName" value="send"/>
+                            <property name="argType" value="so.wwb.gamebox.model.monitor.po.MonitorVo"/>
+                            <property name="tags" value="monitorMessage"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+                    </list>
+                </entry>&ndash;&gt;
+
+                <entry key-ref="cometProducer">
+                    <list>
+                        &lt;!&ndash;向站长站前台（包括游戏中心）的在线用户发送消息&ndash;&gt;
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="COMET_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="methodName" value="sendToMsiteMsg"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="msiteMessage"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+                        &lt;!&ndash;向站长中心（后台）的在线用户发送消息&ndash;&gt;
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="COMET_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="methodName" value="sendToMerchantMsg"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="mcenterMessage"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+                        &lt;!&ndash;向运营商（后台）的在线用户发送消息&ndash;&gt;
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="COMET_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="methodName" value="sendToCcenterMsg"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="ccenterMessage"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+                        &lt;!&ndash;向Boss（后台）的在线用户发送消息&ndash;&gt;
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="COMET_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="methodName" value="sendToBossMsg"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="bossMessage"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+                    </list>
+                </entry>
+                <entry key-ref="noticeProducer">
+                    <list>
+                        &lt;!&ndash;发送邮件&ndash;&gt;
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="NOTICE_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="methodName" value="sendEmail"/>
+                            <property name="argType" value="org.soul.model.msg.notice.vo.EmailMsgVo"/>
+                            <property name="tags" value="sendEmail"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+                        &lt;!&ndash;发送短信&ndash;&gt;
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="NOTICE_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="methodName" value="sendSmsMessage"/>
+                            <property name="argType" value="org.soul.model.sms.SmsMessageVo"/>
+                            <property name="tags" value="sendSmsMessage"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+                        &lt;!&ndash; 时效性要求一般的通知 &ndash;&gt;
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="NOTICE_TOPIC"/>
+                            <property name="classFullName" value="org.soul.service.msg.notice.core.service.impl.NoticeMqProducerService"/>
+                            <property name="methodName" value="produceNormalNotice"/>
+                            <property name="argType" value="org.soul.model.msg.notice.vo.NoticeMsg"/>
+                            <property name="tags" value="normalNotice"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+                        &lt;!&ndash; 实时性要求很高的通知 &ndash;&gt;
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="NOTICE_TOPIC"/>
+                            <property name="classFullName" value="org.soul.service.msg.notice.core.service.impl.NoticeMqProducerService"/>
+                            <property name="methodName" value="produceRealTimeNotice"/>
+                            <property name="argType" value="org.soul.model.msg.notice.vo.NoticeMsg"/>
+                            <property name="tags" value="realTimeNotice"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+                    </list>
+                </entry>
+
+                <entry key-ref="merchantProducer">
+                    <list>
+                        &lt;!&ndash;域名管理设置&ndash;&gt;
+                        &lt;!&ndash;<bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.master.content.CttDomainRankService"/>
+                            <property name="methodName" value="changeSort"/>
+                            <property name="argType" value="so.wwb.gamebox.model.company.sys.vo.SysDomainVo"/>
+                            <property name="tags" value="sysDomainListVoSetting"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>&ndash;&gt;
+
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.manager.sys.SysDomainService"/>
+                            <property name="methodName" value="insert"/>
+                            <property name="argType" value="so.wwb.lotterybox.model.manager.sys.vo.SysDomainVo"/>
+                            <property name="tags" value="sysDomainVoInsert"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.manager.sys.SysDomainService"/>
+                            <property name="methodName" value="batchSaveDomain"/>
+                            <property name="argType" value="so.wwb.lotterybox.model.manager.sys.vo.SysDomainVo"/>
+                            <property name="tags" value="batchSaveSysDomain"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.manager.sys.SysDomainService"/>
+                            <property name="methodName" value="updateSysDomain"/>
+                            <property name="argType" value="so.wwb.lotterybox.model.manager.sys.vo.SysDomainVo"/>
+                            <property name="tags" value="updateSysDomain"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.manager.sys.SysDomainService"/>
+                            <property name="methodName" value="changeDeleteStatus"/>
+                            <property name="argType" value="so.wwb.lotterybox.model.manager.sys.vo.SysDomainListVo"/>
+                            <property name="tags" value="sysDomainVoDelete"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+
+                        &lt;!&ndash;更新是否是全部层级&ndash;&gt;
+                        &lt;!&ndash;<bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.master.content.CttDomainRankService"/>
+                            <property name="methodName" value="saveRanks"/>
+                            <property name="argType" value="so.wwb.gamebox.model.master.content.vo.CttDomainRankVo"/>
+                            <property name="tags" value="sysDomainVoIds"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>&ndash;&gt;
+
+                        &lt;!&ndash;更新站点转账订单(转账任务、再试一次)，总控异常转账&ndash;&gt;
+                        &lt;!&ndash;<bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.master.fund.PlayerTransferService"/>
+                            <property name="methodName" value="checkTransferByPlayerTransfer"/>
+                            <property name="argType" value="so.wwb.gamebox.model.master.fund.vo.PlayerTransferVo"/>
+                            <property name="tags" value="updateTransfer"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>&ndash;&gt;
+
+                        &lt;!&ndash; 记录api登陆日志&ndash;&gt;
+                        &lt;!&ndash;<bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.master.player.PlayerApiAccountService"/>
+                            <property name="methodName" value="loginApi"/>
+                            <property name="argType" value="so.wwb.gamebox.model.master.player.vo.PlayerApiAccountVo"/>
+                            <property name="tags" value="apiLoginLog"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>&ndash;&gt;
+
+                        &lt;!&ndash;<bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.company.setting.ExceptionTransferService"/>
+                            <property name="methodName" value="batchUpdateCheckResult"/>
+                            <property name="argType" value="so.wwb.gamebox.model.company.setting.vo.ExceptionTransferListVo"/>
+                            <property name="tags" value="updateCheckResult"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>&ndash;&gt;
+
+                        &lt;!&ndash;<bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.company.setting.ExceptionTransferService"/>
+                            <property name="methodName" value="updateCheckResult"/>
+                            <property name="argType" value="so.wwb.gamebox.model.master.fund.po.PlayerTransfer"/>
+                            <property name="tags" value="updateOneCheckResult"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>&ndash;&gt;
+
+                        &lt;!&ndash;处理买分额度充值结果&ndash;&gt;
+                        &lt;!&ndash;<bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.company.credit.CreditRecordService"/>
+                            <property name="methodName" value="handleCreditResult"/>
+                            <property name="argType" value="so.wwb.gamebox.model.company.credit.vo.CreditRecordVo"/>
+                            <property name="tags" value="handleCreditResult"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>&ndash;&gt;
+
+                        &lt;!&ndash;统计站点转账金额&ndash;&gt;
+                        &lt;!&ndash;<bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.master.fund.PlayerTransferService"/>
+                            <property name="methodName" value="transferSuccess"/>
+                            <property name="argType" value="so.wwb.gamebox.model.master.fund.vo.PlayerTransferVo"/>
+                            <property name="tags" value="transferSum"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>&ndash;&gt;
+
+                        &lt;!&ndash;人工存入监控大额&ndash;&gt;
+                        &lt;!&ndash;<bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.master.fund.PlayerRechargeService"/>
+                            <property name="methodName" value="manualRecharge"/>
+                            <property name="argType" value="so.wwb.gamebox.model.master.fund.vo.PlayerRechargeVo"/>
+                            <property name="tags" value="manualLargeRecharge"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+
+                        &lt;!&ndash;线上支付监控大额&ndash;&gt;
+                        <bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.master.fund.PlayerRechargeService"/>
+                            <property name="methodName" value="handleOnlineRechargeResult"/>
+                            <property name="argType" value="so.wwb.gamebox.model.master.fund.vo.PlayerRechargeVo"/>
+                            <property name="tags" value="onlineLargeRecharge"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+
+                        &lt;!&ndash;公司入监控大额&ndash;&gt;
+                        <bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.master.fund.PlayerRechargeService"/>
+                            <property name="methodName" value="handleRechargeResult"/>
+                            <property name="argType" value="so.wwb.gamebox.model.master.fund.vo.PlayerRechargeVo"/>
+                            <property name="tags" value="companyLargeRecharge"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>&ndash;&gt;
+                    </list>
+                </entry>
+            </map>
+        </property>
+    </bean>-->
+    <!--消息中心 消息推送生产者配置-->
+    <bean id="cometProducer" class="com.alibaba.rocketmq.client.producer.DefaultMQProducer">
+        <property name="namesrvAddr" value="${rocketMQ.namesrvAddr}"/>
+        <property name="producerGroup" value="pgn_comet"/>
+        <property name="instanceName" value="pin_comet"/>
+        <property name="maxMessageSize" value="${rocketMQ.maxMessageSize}"/>
+    </bean>
+    <!--消息生产者与消息的关系配置-->
+    <bean class="org.soul.commons.mq.conf.MQProducerConf">
+        <property name="itemConfs">
+            <map>
+                <entry key-ref="cometProducer">
+                    <list>
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="LOTTERYBOX_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="methodName" value="sendToBossMsg"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="bossMessage"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="LOTTERYBOX_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="methodName" value="sendToShareholderMsg"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="shareHolderMessage"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="LOTTERYBOX_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="methodName" value="sendToMerchantMsg"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="merchantMessage"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="LOTTERYBOX_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="methodName" value="sendToMerchantApiMsg"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="merchantApiMessage"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="LOTTERYBOX_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="methodName" value="sendToDistributorMsg"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="distributorMessage"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="LOTTERYBOX_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="methodName" value="sendToDistributorApiMsg"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="distributorApiMessage"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="LOTTERYBOX_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="methodName" value="sendToHallMsg"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="hallMessage"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+
+                        <!--向api的在线用户发送消息-->
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="LOTTERYBOX_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="methodName" value="sendToApiMsg"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="apiMessage"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+                    </list>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!-- 消息生产拦截配置 -->
+    <import resource="classpath*:conf/producer-bean-aop.xml"/>
+</beans>

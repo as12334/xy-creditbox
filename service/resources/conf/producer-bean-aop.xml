@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="
+	   	    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+	<aop:config>
+		<aop:aspect id="producerAop" ref="producerInterceptor">
+			<aop:pointcut id="producerPointcut" expression="@annotation(org.soul.commons.mq.MqProducer)"/>
+			<aop:after-returning method="after" pointcut-ref="producerPointcut"/>
+		</aop:aspect>
+	</aop:config>
+
+	<bean id="producerInterceptor" class="org.soul.service.mq.ProducerInterceptor" depends-on="localStoreService">
+		<property name="localStoreService" ref="localStoreService"/>
+	</bean>
+
+	<bean lazy-init="true" id="localStoreService" class="org.soul.service.store.LocalStoreService">
+		<property name="dbHome" value="${local.store.db.home}"/>
+	</bean>
+
+</beans>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://code.alibabatech.com/schema/dubbo	http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--//region your codes 1-->
+
+        <!-- 用户管理/详细视图 - Fei  jeremydubbo服务 -->
+    <dubbo:service ref="vUserDetailService" interface="so.wwb.lotterybox.iservice.company.user.IVUserDetailService"/>
+    
+
+    <!--//endregion your codes 1-->
+
+</beans>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
+       default-autowire="byName">
+
+    <!--站长中心 消息消费者配置-->
+    <!--<bean lazy-init="true" id="mcenterConsumer" class="com.alibaba.rocketmq.client.consumer.DefaultMQPushConsumer">
+        <property name="namesrvAddr" value="${rocketMQ.namesrvAddr}"/>
+        <property name="consumerGroup" value="cgn_mcenter"/>
+        <property name="instanceName" value="cin_mcenter"/>
+        <property name="consumeMessageBatchMaxSize" value="32"/>
+    </bean>
+    &lt;!&ndash;api转账check请求 消息消费者配置&ndash;&gt;
+    <bean id="apiCheckConsumer" class="com.alibaba.rocketmq.client.consumer.DefaultMQPushConsumer">
+        <property name="namesrvAddr" value="${rocketMQ.namesrvAddr}"/>
+        <property name="consumerGroup" value="cgn_apiCheck"/>
+        <property name="instanceName" value="cin_apiCheck"/>
+        <property name="consumeMessageBatchMaxSize" value="32"/>
+    </bean>
+    &lt;!&ndash;监控 消息消费者配置&ndash;&gt;
+    <bean lazy-init="true" id="monitorConsumer" class="com.alibaba.rocketmq.client.consumer.DefaultMQPushConsumer">
+        <property name="namesrvAddr" value="${rocketMQ.namesrvAddr}"/>
+        <property name="consumerGroup" value="cgn_monitor"/>
+        <property name="instanceName" value="cin_monitor"/>
+        <property name="consumeMessageBatchMaxSize" value="32"/>
+    </bean>
+    &lt;!&ndash;免转接口 消息消费者配置&ndash;&gt;
+    <bean id="autoTransConsumer" class="com.alibaba.rocketmq.client.consumer.DefaultMQPushConsumer">
+        <property name="namesrvAddr" value="${rocketMQ.namesrvAddr}"/>
+        <property name="consumerGroup" value="cgn_freeTrans"/>
+        <property name="instanceName" value="cin_freeTrans"/>
+        <property name="consumeMessageBatchMaxSize" value="32"/>
+    </bean>
+    &lt;!&ndash;api扩展记录请求 消息消费者配置&ndash;&gt;
+    <bean id="apiExtend" class="com.alibaba.rocketmq.client.consumer.DefaultMQPushConsumer">
+        <property name="namesrvAddr" value="${rocketMQ.namesrvAddr}"/>
+        <property name="consumerGroup" value="cgn_apiExtend"/>
+        <property name="instanceName" value="cin_apiExtend"/>
+        <property name="consumeMessageBatchMaxSize" value="32"/>
+    </bean>-->
+    <!--消息消费者与service中处理消息的回调映射配置-->
+    <!--<bean lazy-init="true" id="mqConsumerConf" class="org.soul.commons.mq.conf.MQConf">
+        <property name="itemConfs">
+            <map>
+                <entry key-ref="monitorConsumer">
+                    <list>
+                        <bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MONITOR_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.monitor.CollectorMqListenerService"/>
+                            <property name="methodName" value="saveMessage"/>
+                            <property name="argType" value="so.wwb.gamebox.model.monitor.po.MonitorVo"/>
+                            <property name="tags" value="monitorMessage"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+                        <bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MONITOR_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.monitor.MonitorMqListenerService"/>
+                            <property name="methodName" value="saveMessage"/>
+                            <property name="argType" value="so.wwb.gamebox.model.monitor.vo.MonitorPushVo"/>
+                            <property name="tags" value="monitorPush"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+                    </list>
+                </entry>
+                <entry key-ref="mcenterConsumer">
+                    <list>
+                        &lt;!&ndash;域名管理设置&ndash;&gt;
+                        <bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.company.sys.SysDomainService"/>
+                            <property name="methodName" value="reset"/>
+                            <property name="argType" value="so.wwb.gamebox.model.company.sys.vo.SysDomainVo"/>
+                            <property name="tags" value="sysDomainListVoSetting"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+
+                        <bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.master.content.CttDomainRankService"/>
+                            <property name="methodName" value="saveBySysDomain"/>
+                            <property name="argType" value="so.wwb.gamebox.model.company.sys.vo.SysDomainVo"/>
+                            <property name="tags" value="sysDomainVoInsert || updateSysDomain"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+
+                        <bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.master.content.CttDomainRankService"/>
+                            <property name="methodName" value="saveBySysDomain"/>
+                            <property name="argType" value="so.wwb.gamebox.model.company.sys.vo.SysDomainVo"/>
+                            <property name="tags" value="batchSaveSysDomain"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+
+                        &lt;!&ndash;客服删除后，要更新ctt_float_pic_item&ndash;&gt;
+                        <bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.master.content.CttFloatPicItemService"/>
+                            <property name="methodName" value="delSiteCustomerService"/>
+                            <property name="argType" value="so.wwb.gamebox.model.company.site.vo.SiteCustomerServiceVo"/>
+                            <property name="tags" value="delSiteCustomerService"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+
+                        &lt;!&ndash;更新站点转账订单，总控异常转账&ndash;&gt;
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.company.setting.ExceptionTransferService"/>
+                            <property name="methodName" value="updateTransferResult"/>
+                            <property name="argType" value="so.wwb.gamebox.model.master.fund.vo.PlayerTransferVo"/>
+                            <property name="tags" value="updateTransfer"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+
+                        &lt;!&ndash;记录api登陆日志&ndash;&gt;
+                        <bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.company.setting.ApiLoginLogService"/>
+                            <property name="methodName" value="apiLoginLog"/>
+                            <property name="argType" value="so.wwb.gamebox.model.master.player.vo.PlayerApiAccountVo"/>
+                            <property name="tags" value="apiLoginLog"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+
+                        <bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.company.setting.ExceptionTransferService"/>
+                            <property name="methodName" value="updateCheckResult"/>
+                            <property name="argType" value="so.wwb.gamebox.model.company.setting.vo.ExceptionTransferListVo"/>
+                            <property name="tags" value="updateCheckResult"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+                        <bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.company.setting.ExceptionTransferService"/>
+                            <property name="methodName" value="updateCheckExceptionTransfer"/>
+                            <property name="argType" value="so.wwb.gamebox.model.master.fund.po.PlayerTransfer"/>
+                            <property name="tags" value="updateOneCheckResult"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+                        &lt;!&ndash;处理买分额度充值结果&ndash;&gt;
+                        <bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.master.setting.SiteSysParamService"/>
+                            <property name="methodName" value="handleCreditResult"/>
+                            <property name="argType" value="so.wwb.gamebox.model.company.credit.vo.CreditRecordVo"/>
+                            <property name="tags" value="handleCreditResult"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+
+                        &lt;!&ndash;统计站点转账金额&ndash;&gt;
+                        <bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.company.sys.SysSiteService"/>
+                            <property name="methodName" value="transferSum"/>
+                            <property name="argType" value="so.wwb.gamebox.model.master.fund.vo.PlayerTransferVo"/>
+                            <property name="tags" value="transferSum"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+
+                        &lt;!&ndash;人工存入监控大额&ndash;&gt;
+                        <bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.company.credit.LargeTransactionMonitorService"/>
+                            <property name="methodName" value="manualLargeRecharge"/>
+                            <property name="argType" value="so.wwb.gamebox.model.master.fund.vo.PlayerRechargeVo"/>
+                            <property name="tags" value="manualLargeRecharge"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+
+                        &lt;!&ndash;线上支付监控大额&ndash;&gt;
+                        <bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.company.credit.LargeTransactionMonitorService"/>
+                            <property name="methodName" value="manualLargeRecharge"/>
+                            <property name="argType" value="so.wwb.gamebox.model.master.fund.vo.PlayerRechargeVo"/>
+                            <property name="tags" value="onlineLargeRecharge"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+
+                        &lt;!&ndash;公司入监控大额&ndash;&gt;
+                        <bean lazy-init="true" class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="MCENTER_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.service.company.credit.LargeTransactionMonitorService"/>
+                            <property name="methodName" value="manualLargeRecharge"/>
+                            <property name="argType" value="so.wwb.gamebox.model.master.fund.vo.PlayerRechargeVo"/>
+                            <property name="tags" value="companyLargeRecharge"/>
+                            <property name="dubboVersionApp" value="lottery-service"/>
+                        </bean>
+                        &lt;!&ndash; add end&ndash;&gt;
+                    </list>
+                </entry>
+            </map>
+        </property>
+    </bean>-->
+</beans>

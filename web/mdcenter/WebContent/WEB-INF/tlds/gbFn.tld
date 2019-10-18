@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+
+    <description>SOUL functions library</description>
+    <display-name>SOUL FN JSTL</display-name>
+    <tlib-version>1.0</tlib-version>
+    <short-name>gbFn</short-name>
+    <uri>http://gb/fnTag</uri>
+
+    <function>
+        <description>
+            /**
+            * 站点Api名称缓存
+            * @param apiId
+            * @return
+            */
+        </description>
+        <name>getApiName</name>
+        <function-class>so.wwb.gamebox.model.CacheBase</function-class>
+        <function-signature>java.lang.String getApiName(java.lang.String)</function-signature>
+    </function>
+    <function>
+        <description>
+            /**
+            * 站点Game名称缓存
+            * @param gameId
+            * @return
+            */
+        </description>
+        <name>getGameName</name>
+        <function-class>so.wwb.gamebox.model.CacheBase</function-class>
+        <function-signature>java.lang.String getGameName(java.lang.String)</function-signature>
+    </function>
+    <function>
+        <description>
+            /**
+            * Company站点Api名称缓存
+            * @param apiId
+            * @return
+            */
+        </description>
+        <name>getSiteApiName</name>
+        <function-class>so.wwb.gamebox.model.CacheBase</function-class>
+        <function-signature>java.lang.String getSiteApiName(java.lang.String)</function-signature>
+    </function>
+    <function>
+        <description>
+            /**
+            * Company站点Game名称缓存
+            * @param gameId
+            * @return
+            */
+        </description>
+        <name>getSiteGameName</name>
+        <function-class>so.wwb.gamebox.model.CacheBase</function-class>
+        <function-signature>java.lang.String getSiteGameName(java.lang.String)</function-signature>
+    </function>
+    <function>
+        <description>
+            /**
+            * 将IpRegionCode转换成国际化的字符
+            * @param ipRegionCode
+            * @return 将IpRegionCode转换成国际化的字符
+            */
+        </description>
+        <name>getIpRegion</name>
+        <function-class>so.wwb.gamebox.web.IpRegionTool</function-class>
+        <function-signature>java.lang.String getIpRegion(java.lang.String)</function-signature>
+    </function>
+    <function>
+        <description>
+            /**
+            * 将IpRegionCode转换成国际化的字符
+            * @param ipRegionCode
+            * @return 将IpRegionCode转换成国际化的字符
+            */
+        </description>
+        <name>getGameTypeName</name>
+        <function-class>so.wwb.gamebox.model.CacheBase</function-class>
+        <function-signature>java.lang.String getGameTypeName(java.lang.String)</function-signature>
+    </function>
+    <function>
+        <description>
+            /**
+            * 获取时区
+            */
+        </description>
+        <name>getTimezoneByGmt</name>
+        <function-class>so.wwb.gamebox.model.CacheBase</function-class>
+        <function-signature>java.util.TimeZone getTimezoneByGmt(java.lang.String)</function-signature>
+    </function>
+</taglib>

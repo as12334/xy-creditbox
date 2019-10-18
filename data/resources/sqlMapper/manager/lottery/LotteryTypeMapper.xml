@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.manager.lottery.LotteryTypeMapper">
+
+    <resultMap id="TABLE:lottery_type" type="so.wwb.lotterybox.model.manager.lottery.po.LotteryType">
+        <id column="id" property="id"/>
+        <result column="type_name" property="typeName"/>
+        <result column="order_num" property="orderNum"/>
+        <result column="type_status" property="typeStatus"/>
+        <result column="type_code" property="typeCode"/>
+        <result column="lottery_num" property="lotteryNum"/>
+        <result column="frequency" property="frequency"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+
+    <!--//endregion your codes 1-->
+
+</mapper>

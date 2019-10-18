@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context-4.1.xsd
+	   http://www.springframework.org/schema/mvc
+	   http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<context:property-placeholder location="classpath*:conf/*-conf.properties" ignore-unresolvable="true"/>
+
+	<import resource="classpath*:conf/dubbo-name-bean.xml"/>
+	<import resource="classpath*:conf/web-common.xml"/>
+	<import resource="classpath*:conf/shiro-app-main.xml"/>
+	<import resource="classpath*:conf/dubbo-consumer.xml"/>
+	<import resource="classpath*:conf/cache-bean.xml"/>
+	<import resource="classpath*:conf/soul-monitor-bean.xml"/>
+	<import resource="classpath*:conf/notify-bean-aop.xml"/>
+	<import resource="classpath*:conf/notify-bean-mvc.xml"/>
+	<import resource="classpath*:conf/service-notify-consumer.xml"/>
+
+	<!-- driver @autowire -->
+	<context:annotation-config />
+
+	<!-- drive @controller -->
+	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager" />
+	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="favorPathExtension" value="false" />
+		<property name="favorParameter" value="false" />
+		<property name="ignoreAcceptHeader" value="false" />
+		<property name="mediaTypes">
+			<value>
+				atom=application/atom+xml
+				html=text/html
+				json=application/json
+				*=*/*
+			</value>
+		</property>
+	</bean>
+
+	<!-- driver scan package -->
+	<context:component-scan base-package="so.wwb.lotterybox.company">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<!--过滤器审计日志实现-->
+	<bean id="filterAuditLog" class="so.wwb.lotterybox.web.interceptor.FilterAuditLog"/>
+
+	<!--非法字符-->
+	<bean id="illegalCharacterFilter" class="org.soul.web.filter.IllegalCharacterFilter">
+		<!-- form表单提交数据不需要转义 -->
+		<property name="filterAllTypeRequest" value="false"></property>
+	</bean>
+</beans>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.manager.message.SystemAnnouncementI18nMapper">
+
+    <resultMap id="TABLE:system_announcement_i18n" type="so.wwb.lotterybox.model.message.po.SystemAnnouncementI18n">
+        <id column="id" property="id"/>
+        <result column="system_announcement_id" property="sysAnnouncementId"/>
+        <result column="language" property="language"/>
+        <result column="content" property="content"/>
+    </resultMap>
+    <delete id="deleteI18nMsgByAnnouncementId" parameterType="so.wwb.lotterybox.model.message.vo.SystemAnnouncementVo">
+      DELETE FROM system_announcement_i18n WHERE system_announcement_id=#{result.id}
+    </delete>
+    <select id="querySysI18nByAnnouncementIdAndLanguage" parameterType="so.wwb.lotterybox.model.message.vo.SystemAnnouncementI18nVo" resultType="so.wwb.lotterybox.model.message.po.SystemAnnouncementI18n">
+      SELECT * FROM system_announcement_i18n WHERE system_announcement_id=#{result.sysAnnouncementId} AND language=#{result.language}
+    </select>
+</mapper>

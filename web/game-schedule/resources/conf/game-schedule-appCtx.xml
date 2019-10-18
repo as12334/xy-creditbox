@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context-4.1.xsd"
+       default-autowire="byName">
+
+    <context:property-placeholder location="classpath*:conf/*-conf.properties" ignore-unresolvable="true"/>
+
+    <import resource="classpath*:conf/dubbo-name-bean.xml"/>
+    <import resource="classpath*:conf/data-appCtx.xml" />
+    <import resource="classpath*:conf/dubbo-consumer.xml" />
+    <import resource="classpath*:conf/soul-dubbo-provider-base.xml"/>
+    <import resource="classpath*:conf/game-schedule-bean.xml" />
+    <import resource="classpath*:conf/game-schedule-dubbo-provider.xml"/>
+    <import resource="classpath*:conf/game-schedule-thread-pool.xml"/>
+    <import resource="classpath*:conf/game-schedule-quartz-appCtx.xml"/>
+    <import resource="classpath*:conf/game-schedule-mq-producer.xml"/>
+
+    <import resource="classpath*:conf/cache-bean.xml"/>
+    <import resource="classpath*:conf/soul-monitor-bean.xml"/>
+    <import resource="classpath*:conf/service-notify-consumer.xml"/>
+
+    <bean lazy-init="true" class="so.wwb.lotterybox.schedule.init.ConfigManager">
+        <constructor-arg index="0" value="${dubbo.application.name}"></constructor-arg>
+        <constructor-arg index="1" value="${dubbo.version}"></constructor-arg>
+    </bean>
+    <bean id="healthCheckFilter" class="org.soul.web.filter.HealthCheckFilter"/>
+
+</beans>

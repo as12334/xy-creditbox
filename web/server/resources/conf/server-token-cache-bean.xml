@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-4.1.xsd"
+       default-lazy-init="true">
+
+    <bean id="apiPoolConfig" class="org.apache.commons.pool2.impl.GenericObjectPoolConfig">
+        <property name="maxIdle" value="${api.token.maxIdle}"/>
+        <property name="maxTotal" value="${api.token.maxTotal}"/>
+        <property name="maxWaitMillis" value="${api.token.maxWaitMillis}"/>
+        <property name="testOnBorrow" value="${api.token.testOnBorrow}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${api.token.timeBetweenEvictionRunsMillis}"/>
+    </bean>
+
+    <bean id="apiJedisPool" class="redis.clients.jedis.JedisPool">
+        <constructor-arg index="0" ref="apiPoolConfig"/>
+        <constructor-arg index="1" value="${api.token.host}" name="host"/>
+        <constructor-arg index="2" value="${api.token.port}" name="port" type="int"/>
+        <constructor-arg index="3" value="${api.token.timeout}" name="timeout" type="int"/>
+    </bean>
+
+    <bean id="jedisClusterApi"  class="org.soul.commons.cache.jedis.proxy.JedisClusterFactory">
+        <property name="address" value="${api.token.hosts}" />
+        <property name="timeout" value="${api.token.timeout}" />
+        <property name="maxRedirections" value="${api.token.maxRedirections}" />
+        <property name="genericObjectPoolConfig" ref="poolConfig" />
+    </bean>
+
+    <bean id="apiJedisProxy" class="org.soul.commons.cache.jedis.proxy.JedisClientProxy">
+        <property name="jedisCluster" ref="jedisClusterApi"/>
+        <property name="database" value="${api.token.database}"/>
+        <property name="pool" ref="apiJedisPool" />
+        <property name="useLocalProxy" value="false" />
+    </bean>
+
+    <bean id="tokenCache" class="so.wwb.lotterybox.cache.TokenCache">
+        <property name="jedisClientProxy" ref="apiJedisProxy"/>
+        <property name="expire" value="${api.token.expire}"/>
+        <property name="keyPrefix" value="${api.token.keyPrefix}"/>
+    </bean>
+
+</beans>

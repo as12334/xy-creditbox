@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.manager.sys.VSysSiteUserMapper">
+
+    <resultMap id="TABLE:v_sys_site_user" type="so.wwb.lotterybox.model.manager.sys.po.VSysSiteUser">
+        <id column="id" property="id"/>
+        <result column="site_name" property="siteName"/>
+        <result column="sys_user_id" property="sysUserId"/>
+        <result column="status" property="status"/>
+        <result column="username" property="username"/>
+        <result column="subsys_code" property="subsysCode"/>
+        <result column="center_id" property="centerId"/>
+        <result column="site_parent_id" property="siteParentId"/>
+        <result column="site_locale" property="siteLocale"/>
+        <result column="timezone" property="timezone"/>
+        <result column="idc" property="idc"/>
+        <result column="code" property="code"/>
+        <result column="opening_time" property="openingTime"/>
+        <result column="merchant_code" property="merchantCode"/>
+        <result column="template_code" property="templateCode"/>
+        <result column="theme" property="theme"/>
+        <result column="title" property="title"/>
+        <result column="maintain_start_time" property="maintainStartTime"/>
+        <result column="maintain_end_time" property="maintainEndTime"/>
+        <result column="remark" property="remark"/>
+        <result column="owner_id" property="ownerId"/>
+        <result column="mode" property="mode"/>
+        <result column="servers" property="servers"/>
+        <result column="app_servers" property="appServers"/>
+        <result column="main_currency" property="mainCurrency"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+
+    <!--实时查询站长用户名-->
+    <select id="queryMaster"  resultType="so.wwb.lotterybox.model.manager.sys.po.VSysSiteUser">
+       SELECT	u.username FROM v_sys_site_user u  WHERE   "id" > 0  GROUP BY u.username
+    </select>
+    <!--//endregion your codes 1-->
+
+</mapper>

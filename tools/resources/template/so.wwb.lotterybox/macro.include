@@ -1,0 +1,42 @@
+<#-- 本文件包含一些公共的函数,本文件会被其它模板自动include -->
+
+
+<#-- 类说明 -->
+<#macro generateClassComment comment tableAuthor="">
+/**
+ * ${comment}
+ *
+ * @author ${author}
+<#if tableAuthor != "">
+ * @tableAuthor ${tableAuthor}
+</#if>
+ * @time ${.now}
+ */
+</#macro>
+
+<#-- 将value变成jsp el表达式,主要由于FreeMarker生成表达式不方便 -->
+<#macro jspEl value>${r"${"}${value}}</#macro>
+
+<#-- 生成java构造函数 -->
+<#macro generateConstructor constructor>
+	public ${constructor}(){
+	}
+
+	public ${constructor}(<#list table.compositeIdColumns as column>${column.javaType} ${column.columnNameLower}<#if column_has_next>,</#if></#list>){
+	<#list table.compositeIdColumns as column>
+		<#if column.pk>
+		this.${column.columnNameLower} = ${column.columnNameLower};
+		</#if>
+	</#list>	
+	}
+</#macro>
+
+<#macro generateGetterSetters column indent="">
+	${indent}public ${column.javaType} get${column.columnName}() {
+		${indent}return this.${column.columnNameLower};
+	${indent}}
+
+	${indent}public void set${column.columnName}(${column.javaType} value) {
+		${indent}this.${column.columnNameLower} = value;
+	${indent}}
+</#macro>

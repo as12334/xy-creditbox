@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	   http://www.springframework.org/schema/aop
+	   http://www.springframework.org/schema/aop/spring-aop.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+	<context:property-placeholder location="classpath*:conf/*-conf.properties" ignore-unresolvable="true"/>
+
+	<import resource="classpath*:conf/dubbo-name-bean.xml"/>
+	<import resource="classpath*:conf/web-common.xml"/>
+	<import resource="classpath*:conf/cache-bean.xml"/>
+	<import resource="classpath*:conf/shiro-app-main.xml"/>
+	<!--<import resource="classpath*:conf/dubbo-consumer.xml"/>-->
+	<import resource="classpath*:conf/hall-dubbo-consumer.xml"/>
+	<import resource="classpath*:conf/soul-monitor-bean.xml"/>
+	<import resource="classpath*:conf/service-notify-consumer.xml"/>
+
+	<context:annotation-config />
+	<aop:aspectj-autoproxy/>
+
+	<context:component-scan base-package="so.wwb.lotterybox.hall">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<bean id="illegalCharacterFilter" class="org.soul.web.filter.IllegalCharacterFilter"/>
+
+</beans>

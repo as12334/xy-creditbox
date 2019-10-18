@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>web</artifactId>
+        <groupId>so.wwb.lotterybox</groupId>
+        <version>1.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>webcommon</artifactId>
+    <packaging>jar</packaging>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.soul</groupId>
+            <artifactId>soul-commons</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.soul</groupId>
+            <artifactId>soul-cache</artifactId>
+            <version>${soul.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.soul</groupId>
+            <artifactId>soul-dubbo-base</artifactId>
+            <version>${soul.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.soul</groupId>
+            <artifactId>soul-dubbo-consumer</artifactId>
+            <version>${soul.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.soul</groupId>
+            <artifactId>soul-web</artifactId>
+            <version>${soul.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>so.wwb.lotterybox</groupId>
+            <artifactId>model</artifactId>
+            <version>${lotterybox.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>so.wwb.lotterybox</groupId>
+            <artifactId>iservice</artifactId>
+            <version>${lotterybox.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>so.wwb.lotterybox</groupId>
+            <artifactId>service</artifactId>
+            <version>${lotterybox.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>so.wwb.lotterybox</groupId>
+            <artifactId>api-iservice</artifactId>
+            <version>${lotterybox.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>so.wwb.lotterybox</groupId>
+            <artifactId>api-service</artifactId>
+            <version>${lotterybox.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>so.wwb.lotterybox</groupId>
+            <artifactId>common</artifactId>
+            <version>${lotterybox.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <version>${powermock.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito</artifactId>
+            <version>${powermock.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--<dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-servlet_3.0_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.build.name}</finalName>
+        <sourceDirectory>java</sourceDirectory>
+        <testSourceDirectory>test/java</testSourceDirectory>
+        <testResources>
+            <testResource>
+                <directory>test/resources</directory>
+            </testResource>
+        </testResources>
+        <resources>
+            <resource>
+                <directory>resources</directory>
+            </resource>
+        </resources>
+    </build>
+</project>

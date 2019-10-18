@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.manager.taskschedule.TaskScheduleMapper">
+
+    <resultMap id="TABLE:task_schedule" type="org.soul.model.taskschedule.po.TaskSchedule">
+        <id column="id" property="id"/>
+        <result column="job_name" property="jobName"/>
+        <result column="job_code" property="jobCode"/>
+        <result column="alias_name" property="aliasName"/>
+        <result column="job_group" property="jobGroup"/>
+        <result column="job_class" property="jobClass"/>
+        <result column="job_method" property="jobMethod"/>
+        <result column="job_method_arg" property="jobMethodArg"/>
+        <result column="job_method_arg_class" property="jobMethodArgClass"/>
+        <result column="is_local" property="isLocal"/>
+        <result column="status" property="status"/>
+        <result column="cronexpression" property="cronexpression"/>
+        <result column="is_sync" property="isSync"/>
+        <result column="is_system" property="isSystem"/>
+        <result column="is_dynamic" property="isDynamic"/>
+        <result column="description" property="description"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="belong_to_idc" property="belongToIdc"/>
+        <result column="scheduler" property="scheduler"/>
+    </resultMap>
+
+</mapper>

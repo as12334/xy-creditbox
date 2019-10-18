@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.merchant.setting.UserParamMapper">
+
+    <resultMap id="TABLE:user_param" type="so.wwb.lotterybox.model.company.setting.po.UserParam">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="param_type" property="paramType"/>
+        <result column="param_code" property="paramCode"/>
+        <result column="param_value" property="paramValue"/>
+        <result column="active" property="active"/>
+        <result column="order_num" property="orderNum"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+    <update id="updateUserParam" parameterType="so.wwb.lotterybox.model.company.setting.so.UserParamSo">
+       update  user_param set param_value =#{paramValue} where user_id =#{userId} and param_type=#{paramType} and param_code=#{paramCode}
+    </update>
+</mapper>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.merchant.lottery.LotteryResultNumberMapper">
+
+    <resultMap id="TABLE:lottery_result_number" type="so.wwb.lotterybox.model.company.lottery.po.LotteryResultNumber">
+        <id column="id" property="id"/>
+        <result column="expect" property="expect"/>
+        <result column="code" property="code"/>
+        <result column="type" property="type"/>
+        <result column="open_code" property="openCode"/>
+        <result column="open_time" property="openTime"/>
+        <result column="close_time" property="closeTime"/>
+        <result column="opening_time" property="openingTime"/>
+        <result column="ascription_time" property="ascriptionTime"/>
+        <result column="gather_origin" property="gatherOrigin"/>
+        <result column="gather_time" property="gatherTime" javaType="java.util.Date"/>
+        <result column="gather" property="gather"/>
+        <result column="open_code_memo" property="openCodeMemo"/>
+    </resultMap>
+
+    <insert id="batchInsertNotExist" parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryResultNumber">
+        insert into lottery_result_number ("type", "code", "expect", "open_code", "open_code_memo", "open_time", "close_time", "opening_time", "ascription_time", "gather_origin", "gather_time", "gather")
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.type},
+            #{item.code},
+            #{item.expect},
+            #{item.openCode},
+            #{item.openCodeMemo},
+            #{item.openTime},
+            #{item.closeTime},
+            #{item.openingTime},
+            #{item.ascriptionTime},
+            #{item.gatherOrigin},
+            #{item.gatherTime},
+            #{item.gather})
+        </foreach>
+        ON conflict (code, expect) do nothing;
+    </insert>
+
+    <update id="batchUpdateExist" parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryResultNumber">
+        UPDATE lottery_result_number lrn SET ("open_code", "open_code_memo", "gather", "gather_origin", "gather_time") =
+        ( SELECT rm.open_code, rm.open_code_memo, rm.gather, rm.gather_origin, rm.gather_time FROM ( VALUES
+            <foreach collection="list" item="item" index="index" separator=",">
+                (#{item.code},
+                #{item.expect},
+                #{item.openCode},
+                #{item.openCodeMemo},
+                #{item.gather},
+                #{item.gatherOrigin},
+                #{item.gatherTime}::TIMESTAMP)
+            </foreach>
+        ) AS rm(code, expect, open_code, open_code_memo, gather, gather_origin, gather_time) WHERE lrn.code = rm.code AND lrn.expect = rm.expect)
+        WHERE code in ( <foreach collection="list" item="item1" index="index" separator=","> #{item1.code} </foreach> )
+        AND expect in ( <foreach collection="list" item="item2" index="index" separator=","> #{item2.expect} </foreach> )
+    </update>
+
+    <!-- 查询所有彩种最近一期开奖结果 -->
+    <select id="queryAllLastOpened" resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryResultNumber">
+        SELECT "type", code, expect, open_time, open_code,open_code_memo FROM (
+            SELECT "type", code, expect, open_time,open_code_memo, open_code, "row_number"() OVER (PARTITION BY code ORDER BY close_time DESC)
+            FROM Lottery_result_number
+            WHERE close_time &lt; clock_timestamp() AND open_code is NOT null
+        ) t WHERE row_number = 1
+    </select>
+
+    <select id="doPayout" parameterType="Map" resultType="java.lang.String">
+        select * from f_lottery_payout(#{code},#{type},#{expect},#{winrecordjson});
+    </select>
+
+    <select id="doRecalculate" parameterType="Map" resultType="java.lang.String">
+        select * from f_lottery_recalculate(#{code},#{type},#{expect},#{winrecordjson});
+    </select>
+
+    <select id="doRevoke" parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryResultNumber" resultType="java.lang.String">
+        select * from f_lottery_revoke(#{code},#{expect});
+    </select>
+
+    <select id="doRevocation" parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryResultNumber" resultType="java.lang.String">
+        select * from f_lottery_revocation(#{code},#{expect});
+    </select>
+
+    <!--批量调盘-->
+    <update id="batchUpdateAdjust" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryResultNumberSo">
+        UPDATE Lottery_result_number lrn SET
+        <if test="openTimeInterval != null">
+            open_time = (open_time + (${openTimeInterval}||'s')::INTERVAL)
+            <if test="closeTimeInterval != null || openingTimeInterval != null">,</if>
+        </if>
+        <if test="closeTimeInterval != null">
+            close_time = (close_time + (${closeTimeInterval}||'s')::INTERVAL)
+            <if test="openingTimeInterval != null">,</if>
+        </if>
+        <if test="openingTimeInterval != null">
+            opening_time = (opening_time + (${openingTimeInterval}||'s')::INTERVAL)
+        </if>
+        WHERE EXISTS (SELECT 1 FROM Lottery_result_number WHERE code = #{code} AND expect &gt;= #{expectStart} AND expect &lt;= #{expectEnd} AND open_code IS NULL AND lrn.id = id);
+    </update>
+
+    <select id="doInitLotteryResultNumber" parameterType="Map" resultType="java.lang.String">
+        select * from f_init_lottery_result_number_main(#{codesStr},#{initDate});
+    </select>
+
+    <update id="updateOpenResultNum" parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryResultNumber">
+        UPDATE lottery_result_number SET
+        "open_code" = #{openCode},
+        "open_code_memo" = #{openCodeMemo},
+        "gather" = #{gather},
+        "gather_origin" = #{gatherOrigin},
+        "gather_time" = #{gatherTime}
+        WHERE code = #{code} AND expect = #{expect} AND open_code IS NULL and open_time &lt;= (now() + interval '1 sec');
+    </update>
+</mapper>

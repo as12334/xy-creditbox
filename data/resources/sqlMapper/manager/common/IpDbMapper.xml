@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.manager.common.IpDbMapper">
+
+    <resultMap id="TABLE:ip_db" type="so.wwb.lotterybox.model.manager.sys.ip.po.IpDb">
+        <id column="id" property="id"/>
+        <result column="ip_start" property="ipStart"/>
+        <result column="ip_end" property="ipEnd"/>
+        <result column="addr_type" property="addrType"/>
+        <result column="land" property="land"/>
+        <result column="country" property="country"/>
+        <result column="stateprov" property="stateprov"/>
+        <result column="city" property="city"/>
+        <result column="code" property="code"/>
+        <result column="latitude" property="latitude"/>
+        <result column="longitude" property="longitude"/>
+        <result column="timezone_offset" property="timezoneOffset"/>
+        <result column="timezone_name" property="timezoneName"/>
+        <result column="isp_name" property="ispName"/>
+        <result column="connection_type" property="connectionType"/>
+        <result column="organization_name" property="organizationName"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="amend_ip" property="amendIp"/>
+        <result column="ip_start_str" property="ipStartStr"/>
+        <result column="ip_end_str" property="ipEndStr"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+
+    <!--//endregion your codes 1-->
+
+</mapper>

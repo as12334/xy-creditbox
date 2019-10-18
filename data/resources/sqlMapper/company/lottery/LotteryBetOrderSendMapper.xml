@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.merchant.lottery.LotteryBetOrderSendMapper">
+
+    <resultMap id="TABLE:lottery_bet_order_send" type="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrderSend">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="expect" property="expect"/>
+        <result column="username" property="username"/>
+        <result column="user_id" property="userId"/>
+        <result column="bet_time" property="betTime"/>
+        <result column="bet_amount" property="betAmount"/>
+        <result column="send_status" property="sendStatus"/>
+    </resultMap>
+
+
+
+</mapper>

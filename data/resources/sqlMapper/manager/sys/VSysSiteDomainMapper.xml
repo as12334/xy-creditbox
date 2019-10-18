@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.manager.sys.VSysSiteDomainMapper">
+
+    <resultMap id="TABLE:v_sys_site_domain" type="so.wwb.lotterybox.model.manager.sys.po.VSysSiteDomain">
+        <id column="id" property="id"/>
+        <result column="dom_name" property="domName"/>
+        <result column="site_id" property="siteId"/>
+        <result column="name" property="name"/>
+        <result column="site_user_id" property="siteUserId"/>
+        <result column="site_user_name" property="siteUserName"/>
+        <result column="site_user_code" property="siteUserCode"/>
+        <result column="site_user_owner_code" property="siteUserOwnerCode"/>
+        <result column="site_user_type" property="siteUserType"/>
+        <result column="domain_id" property="domainId"/>
+        <result column="domain" property="domain"/>
+        <result column="site_subsys_code" property="siteSubsysCode"/>
+        <result column="domain_subsys_code" property="domainSubsysCode"/>
+        <result column="domain_user_id" property="domainUserId"/>
+        <result column="domain_user_type" property="domainUserType"/>
+        <result column="domain_user_name" property="domainUserName"/>
+        <result column="domain_user_code" property="domainUserCode"/>
+        <result column="time_zone" property="timeZone"/>
+        <result column="site_locale" property="siteLocale"/>
+        <result column="site_code" property="siteCode"/>
+        <result column="platform_category" property="platformCategory"/>
+        <result column="logo_path" property="logoPath"/>
+        <result column="site_parent_id" property="siteParentId"/>
+        <result column="site_status" property="siteStatus"/>
+        <result column="maintain_start_time" property="maintainStartTime"/>
+        <result column="maintain_end_time" property="maintainEndTime"/>
+        <result column="maintain_reason" property="maintainReason"/>
+        <result column="title" property="title"/>
+        <result column="mode" property="mode"/>
+        <result column="page_url" property="pageUrl"/>
+        <result column="is_default" property="isDefault"/>
+        <result column="is_enable" property="isEnable"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="resolve_status" property="resolveStatus"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+
+    <!--//endregion your codes 1-->
+
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://code.alibabatech.com/schema/dubbo	http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
+        >
+
+    <description>Dubbo consumer common config</description>
+
+    <!--already in web.xml -->
+    <import resource="classpath*:conf/soul-dubbo-base.xml" />
+
+    <dubbo:consumer id="dubboConsumer"
+                    timeout="${dubbo.consumer.timeout}"
+                    loadbalance="datasource"
+                    check="false" scope="remote"
+                    registry="zookeeperClient"
+                    application="dubboApplication"
+                    version="#{commonConf.getIdc()}${dubbo.split}${dubbo.version}"
+                    filter="dubboConsumerFilter">
+        <dubbo:parameter key="shutdown.timeout" value="60000"/>
+    </dubbo:consumer>
+
+    <!-- 到这里调用 -->
+    <dubbo:registry protocol="zookeeper" wait="60000" address="${zookeeper.url}" id="zookeeperClient" file="${dubbo.application.name}.dubbo"/>
+
+    <!--用户站点缓存解决方法-->
+    <bean id="userSitesCacheResolver" class="so.wwb.lotterybox.common.filter.UserSitesCacheResolver"/>
+
+</beans>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context-4.1.xsd"
+       default-autowire="byType">
+
+    <context:property-placeholder location="classpath*:conf/*-conf.properties" ignore-unresolvable="true"/>
+
+    <import resource="classpath*:conf/dubbo-name-bean.xml"/>
+    <import resource="classpath*:/conf/soul-commons.xml" />
+    <import resource="classpath*:/conf/soul-cache.xml" />
+    <import resource="classpath*:/conf/cache-bean.xml"/>
+    <import resource="classpath*:/conf/mdcenter-comet.xml"/>
+    <import resource="classpath*:/conf/mdcenter-mq-consumer.xml"/>
+    <import resource="classpath*:/conf/dubbo-consumer.xml"/>
+
+    <import resource="classpath*:conf/soul-monitor-bean.xml"/>
+    <import resource="classpath*:conf/notify-bean-aop.xml"/>
+    <import resource="classpath*:conf/service-notify-consumer.xml"/>
+
+    <context:component-scan base-package="so.wwb.lotterybox.mdcenter">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <bean id="baseWebConf" class="org.soul.web.support.BaseWebConf"/>
+
+    <!--非法词汇-->
+    <bean id="illegalWordFilter" class="org.soul.web.filter.IllegalWordFilter"/>
+
+    <bean id="healthCheckFilter" class="org.soul.web.filter.HealthCheckFilter"/>
+
+    <bean id="supportLocale" class="so.wwb.lotterybox.web.session.SupportLocale"/>
+
+    <bean id="poolConfigShrio" class="org.apache.commons.pool2.impl.GenericObjectPoolConfig">
+        <property name="maxIdle" value="${shiro.session.maxIdle}"/>
+        <property name="maxTotal" value="${shiro.session.maxTotal}"/>
+        <property name="maxWaitMillis" value="${shiro.session.maxWaitMillis}"/>
+        <property name="testOnBorrow" value="${shiro.session.testOnBorrow}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${shiro.session.timeBetweenEvictionRunsMillis}"/>
+    </bean>
+    <bean id = "jedisPoolShrio" class="redis.clients.jedis.JedisPool">
+        <constructor-arg index="0" ref="poolConfigShrio"/>
+        <constructor-arg index="1" value="${shiro.auth.host}" name="host"/>
+        <constructor-arg index="2" value="${shiro.auth.port}" name="port" type="int"/>
+        <constructor-arg index="3" value="${shiro.auth.timeout}" name="timeout" type="int"/>
+    </bean>
+
+    <bean id="jedisTemplateShrio" class="org.soul.commons.cache.jedis.proxy.JedisClientProxy">
+        <property name="jedisCluster" ref="jedisClusterSession"/>
+        <property name="database" value="${shiro.session.database}"></property>
+        <property name="pool" ref="jedisPoolShrio"></property>
+    </bean>
+
+    <!--注: SessionID加解密 -->
+    <bean id="cipherKeyResolver" class="so.wwb.lotterybox.web.session.CipherKeyResolver">
+        <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('bT3ovvD7RfGDc0BXO5ORyA==')}"></property>
+    </bean>
+
+    <!--文件后缀保护-->
+    <bean id="fileSuffixFilter" class="so.wwb.lotterybox.web.filter.FileSuffixFilter"/>
+
+    <bean id="msgMqConsume" class="so.wwb.lotterybox.mdcenter.notice.service.MsgMqConsume"></bean>
+    <!-- 通知消息队列消费者服务 -->
+    <bean id="noticeMqConsumerService" class="org.soul.web.msg.notice.service.impl.NoticeMqConsumerService"/>
+
+    <!-- 队列comet通知消息消费服务 -->
+    <bean id="cometMqConsumeService" class="so.wwb.lotterybox.mdcenter.notice.service.CometMqConsumeService">
+        <property name="msgMqConsume" ref="msgMqConsume"></property>
+        <property name="serviceApp" value="${service.dubbo.application.name}"></property>
+    </bean>
+
+    <!-- 队列email通知消息消费服务 -->
+    <bean id="emailMqConsumeService" class="so.wwb.lotterybox.mdcenter.notice.service.EmailMqConsumeService">
+        <property name="serviceApp" value="${service.dubbo.application.name}"></property>
+    </bean>
+
+    <!-- 队列站内信通知消息消费服务 -->
+    <bean id="siteMsgMqConsumeService" class="so.wwb.lotterybox.mdcenter.notice.service.SiteMsgMqConsumeService">
+        <property name="msgMqConsume" ref="msgMqConsume"></property>
+        <property name="serviceApp" value="${service.dubbo.application.name}"></property>
+    </bean>
+
+    <!-- 队列手机短信通知消息消费服务 -->
+    <bean id="smsMqConsumeService" class="so.wwb.lotterybox.mdcenter.notice.service.SmsMqConsumeService">
+        <property name="serviceApp" value="${service.dubbo.application.name}"></property>
+    </bean>
+
+    <!-- 邮件发送服务 -->
+    <bean id="emailSendService" class="org.soul.web.msg.notice.service.impl.EmailSendService">
+        <property name="emailSendExecutor" ref="emailSendExecutor"/>
+    </bean>
+
+    <!-- 邮件发送线程池 -->
+    <bean id="emailSendExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor" autowire="no">
+        <property name="threadNamePrefix" value="email-pool"/>
+        <property name="corePoolSize" value="3"/>
+        <property name="maxPoolSize" value="10"/>
+        <property name="keepAliveSeconds" value="900" />
+        <property name="queueCapacity" value="100" />
+        <property name="rejectedExecutionHandler">
+            <!-- AbortPolicy:直接抛出java.util.concurrent.RejectedExecution Exception异常 -->
+            <!-- CallerRunsPolicy:主线程直接执行该任务，执行完之后尝试添加下一个任务到线程池中，可以有效降低向线程池内添加任务的速度 -->
+            <!-- DiscardOldestPolicy:抛弃旧的任务、暂不支持；会导致被丢弃的任务无法再次被执行 -->
+            <!-- DiscardPolicy:抛弃当前任务、暂不支持；会导致被丢弃的任务无法再次被执行 -->
+            <bean class="java.util.concurrent.ThreadPoolExecutor$AbortPolicy" />
+        </property>
+    </bean>
+    <!--用户站点缓存解决方法-->
+    <bean id="sessionExpiredListener" class="org.soul.comet.redis.notification.SessionExpiredListener" depends-on="springTool">
+        <property name="serviceApp" value="${service.dubbo.application.name}"/>
+    </bean>
+</beans>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="gb2312"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context-4.1.xsd
+	   http://www.springframework.org/schema/mvc
+	   http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:property-placeholder location="classpath*:conf/*-conf.properties" ignore-unresolvable="true"/>
+    <context:component-scan base-package="org.soul.web.controller,so.wwb.lotterybox.web.**.controller,so.wwb.lotterybox.hall.controller" />
+    <import resource="classpath*:conf/mvc-ctx.xml" />
+
+    <!-- same url interceptor -->
+    <mvc:interceptors>
+       <!-- <mvc:interceptor>
+                &lt;!&ndash; 拦截所有请求，判断是否多次请求 &ndash;&gt;
+                <mvc:mapping path="/**"/>
+                <bean class="so.wwb.lotterybox.hall.init.RequestManageInterceptor" />
+        </mvc:interceptor>-->
+
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="so.wwb.lotterybox.web.interceptor.SameUrlDataInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="so.wwb.lotterybox.hall.common.oauth.AccessTokenInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <!--审计日志拦截器-->
+            <bean class="so.wwb.lotterybox.web.interceptor.AuditLogInterceptor" />
+        </mvc:interceptor>
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--<bean class="so.wwb.lotterybox.web.tools.token.TokenInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="so.wwb.lotterybox.web.tools.token.TokenValidInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
+    <mvc:resources mapping="/**" location="/hall/" order="2147483646" />
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/"/>
+        <property name="suffix" value=".html"/>
+    </bean>
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="maxUploadSize" value="2000000"/>
+    </bean>
+
+</beans>

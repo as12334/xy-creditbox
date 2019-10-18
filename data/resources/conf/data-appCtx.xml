@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.1.xsd"
+       default-autowire="byName">
+
+    <import resource="classpath*:conf/soul-mybatis.xml" />
+    <import resource="classpath*:conf/soul-data-appCtx.xml"/>
+
+    <bean id="bossDataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+        <property name="name" value="${bossDataSource.name}"/>
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="${bossDataSource.url}"/>
+        <property name="username" value="${bossDataSource.username}"/>
+        <property name="password" value="${bossDataSource.password}"/>
+        <property name="initialSize" value="${bossDataSource.initialSize}"/>
+        <property name="maxActive" value="${bossDataSource.maxActive}"/>
+        <property name="minIdle" value="${bossDataSource.minIdle}"/>
+        <property name="maxWait" value="${bossDataSource.maxWait}"/>
+        <property name="validationQuery" value="SELECT 1"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="filters" value="config,stat" />
+        <property name="connectionProperties" value="config.decrypt=${password.decrypt}" />
+    </bean>
+
+    <bean id="multipleDataSource" class="org.soul.data.datasource.MultipleDataSource">
+        <property name="defaultTargetDataSource" ref="bossDataSource"/>
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry key="bossDataSource" value-ref="bossDataSource" />
+            </map>
+        </property>
+    </bean>
+
+    <bean id="dubboDatasourceResolver" class="so.wwb.lotterybox.data.datasource.DubboDatasourceResolver"/>
+
+</beans>

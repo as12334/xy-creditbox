@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd"
+       default-autowire="byName" default-lazy-init="true">
+
+    <!--//region your codes 1-->
+
+    <import resource="classpath*:conf/service-common-bean.xml"/>
+    <import resource="classpath*:conf/api-service-common-bean.xml"/>
+
+    <!-- 审计日志配置 -->
+    <bean lazy-init="true" id="auditService" class="org.soul.service.log.audit.AuditService"/>
+    <bean lazy-init="true" id="sysAuditLogService" class="org.soul.service.sys.SysAuditLogService"/>
+
+    <bean lazy-init="true" id="auditLogServiceInterceptor" class="so.wwb.lotterybox.interceptor.AuditLogServiceInterceptor">
+        <property name="auditService" ref="auditService"/>
+        <property name="sysAuditLogService" ref="sysAuditLogService"/>
+    </bean>
+
+    <!-- 数据库校验服务 -->
+    <bean lazy-init="true" id="dbValidService" class="so.wwb.lotterybox.service.common.DbValidService" autowire="byName"/>
+
+
+
+    <bean id="commonFacade" class="so.wwb.lotterybox.service.common.CommonFacade"/>
+    <!--//endregion your codes 1-->
+
+</beans>

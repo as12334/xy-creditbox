@@ -1,0 +1,19 @@
+<#assign className = "${table.className}">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="${basepackage}.data.${module}.${className}Mapper">
+
+    <resultMap id="TABLE:${table.sqlName}" type="${basepackage}.model.${module}.po.${className}">
+        <id column="${table.pkColumn.sqlName}" property="id"/>
+        <#list table.columns as column>
+        <#if column.columnNameLower != "id">
+        <result column="${column.sqlName}" property="${column.columnNameLower}"/>
+        </#if>
+        </#list>
+    </resultMap>
+
+    <!--//region your codes 1-->
+
+    <!--//endregion your codes 1-->
+
+</mapper>

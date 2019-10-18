@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.merchant.lottery.LotteryQuotaSetMapper">
+
+    <resultMap id="TABLE:lottery_quota_set" type="so.wwb.lotterybox.model.company.lottery.po.LotteryQuotaSet">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="model" property="model"/>
+        <result column="play_code" property="playCode"/>
+        <result column="num_high_quota" property="numHighQuota"/>
+        <result column="bet_low_quota" property="betLowQuota"/>
+        <result column="bet_high_quota" property="betHighQuota"/>
+        <result column="play_high_quota" property="playHighQuota"/>
+    </resultMap>
+
+</mapper>

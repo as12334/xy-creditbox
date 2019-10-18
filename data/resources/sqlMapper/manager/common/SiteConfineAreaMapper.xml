@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.manager.common.SiteConfineAreaMapper">
+
+    <resultMap id="TABLE:site_confine_area" type="so.wwb.lotterybox.model.manager.site.po.SiteConfineArea">
+        <id column="id" property="id"/>
+        <result column="site_id" property="siteId"/>
+        <result column="time_type" property="timeType"/>
+        <result column="create_time" property="createTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="nation" property="nation"/>
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="delta" property="delta"/>
+        <result column="remark" property="remark"/>
+        <result column="built_in" property="builtIn"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+
+    <!--//endregion your codes 1-->
+
+</mapper>

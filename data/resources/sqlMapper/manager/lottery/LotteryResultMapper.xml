@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.manager.lottery.LotteryResultMapper">
+
+    <resultMap id="TABLE:lottery_result" type="so.wwb.lotterybox.model.manager.lottery.po.LotteryResult">
+        <id column="id" property="id"/>
+        <result column="expect" property="expect"/>
+        <result column="code" property="code"/>
+        <result column="type" property="type"/>
+        <result column="open_code" property="openCode"/>
+        <result column="open_code_memo" property="openCodeMemo"/>
+        <result column="open_time" property="openTime"/>
+        <result column="close_time" property="closeTime"/>
+        <result column="opening_time" property="openingTime"/>
+        <result column="gather_time" property="gatherTime"/>
+        <result column="gather_origin" property="gatherOrigin"/>
+        <result column="ascription_time" property="ascriptionTime"/>
+        <result column="gather_open_time" property="gatherOpenTime"/>
+        <result column="gather" property="gather"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+    <!--批量更新开奖号码-->
+    <update id="batchUpdateOpenCode" parameterType="java.util.List">
+        <foreach collection="list" item="item" open="" close="" separator="">
+            UPDATE lottery_result
+            SET open_code = #{item.openCode},open_code_memo = #{item.openCodeMemo},gather = #{item.gather},
+            gather_origin = #{item.gatherOrigin},gather_time = #{item.gatherTime},gather_open_time = #{item.gatherOpenTime}
+            WHERE
+            code = #{item.code}
+            AND expect = #{item.expect}
+            AND open_code IS NULL;
+        </foreach>
+    </update>
+
+    <!-- 分隔符 -->
+
+
+
+    <!--查询所有彩种的最近一期开奖结果-->
+    <select id="queryRecentResult" resultMap="TABLE:lottery_result">
+        SELECT t1.* FROM lottery_result t1,
+        (SELECT code,MAX(close_time) close_time
+        FROM lottery_result WHERE clock_timestamp() >= close_time GROUP BY code) t2
+        where
+        t1.code=t2.code AND t1.close_time=t2.close_time
+    </select>
+    <!--查询所有彩种的未开奖数据-->
+    <select id="queryOpeningData" resultMap="TABLE:lottery_result">
+        SELECT t1.* FROM lottery_result t1,
+        (SELECT code,MAX(close_time) close_time
+        FROM lottery_result WHERE clock_timestamp() &lt;= close_time GROUP BY code) t2
+        where
+        t1.code=t2.code AND t1.close_time=t2.close_time
+    </select>
+    <!-- 查询最后一期已开奖，且有开奖号码的结果 -->
+    <select id="queryLastOpenCodeByCode" parameterType="string" resultType="so.wwb.lotterybox.model.manager.lottery.po.LotteryResult">
+        SELECT * FROM  lottery_result where clock_timestamp() > close_time and  open_code is not NULL  and code =#{code} ORDER by close_time desc limit 1
+    </select>
+
+    <!--查询最近已开奖的彩票结果-->
+    <select id="queryRecentOpenResult" parameterType="so.wwb.lotterybox.model.manager.lottery.vo.LotteryResultListVo" resultType="so.wwb.lotterybox.model.manager.lottery.po.LotteryResult">
+        SELECT t1.*
+        FROM
+        lottery_result t1,
+        (SELECT code,MAX(close_time) close_time FROM lottery_result
+        WHERE open_code is not NULL
+        AND  clock_timestamp() > close_time
+        <if test="search.codes!=null">
+            and code in
+            <foreach collection="search.codes" item="item" open="(" close=")" index="index" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        GROUP BY code) t2
+        WHERE
+        t1.code = t2.code and t1.close_time = t2.close_time
+        ORDER BY t1.close_time DESC
+        <if test="paging.pageSize>0">
+            LIMIT #{paging.pageSize}
+            OFFSET (#{paging.pageNumber} - 1) * #{paging.pageSize}
+        </if>
+    </select>
+
+    <select id="queryRecentExpect" parameterType="so.wwb.lotterybox.model.manager.lottery.so.LotteryResultSo" resultType="String">
+        select expect from lottery_result  where code=#{code} order by open_time desc limit 1
+    </select>
+
+    <!--查询已开奖的彩票结果-->
+    <select id="queryOpenLottery" resultType="so.wwb.lotterybox.model.manager.lottery.po.LotteryResult">
+        SELECT * FROM lottery_result WHERE
+        <foreach collection="list" item="item" index="index" separator="or">
+            (code = #{item.code} and expect=#{item.expect})
+        </foreach>
+    </select>
+
+    <!--查询未开奖-->
+    <select id="queryNoresult" resultType="so.wwb.lotterybox.model.manager.lottery.po.LotteryResult" parameterType="so.wwb.lotterybox.model.manager.lottery.so.LotteryResultSo">
+        SELECT * FROM lottery_result WHERE (open_code IS NULL or open_code='' ) AND clock_timestamp()>=open_time
+        <if test="code !=null and code !=''">
+          AND code=#{code}
+        </if>
+    </select>
+
+    <!--查询最近记录-->
+    <select id="queryRecentOneResult" resultType="so.wwb.lotterybox.model.manager.lottery.po.LotteryResult" parameterType="string">
+        select * from lottery_result
+        where code=#{code} AND expect is not null
+        and clock_timestamp() &lt; close_time
+        order by open_time desc limit 1
+    </select>
+
+    <!--查询当前要开奖记录-->
+    <select id="searchByCurTime" parameterType="so.wwb.lotterybox.model.manager.lottery.so.LotteryResultSo" resultMap="TABLE:lottery_result">
+        SELECT * FROM lottery_result WHERE (clock_timestamp() BETWEEN close_time AND (open_time +
+        <choose>
+            <when test="code=='ffssc' or code=='efssc' or code=='sfssc' or code=='wfssc' or code=='jspk10' ">
+                interval '30 sec'
+            </when>
+            <otherwise>
+                interval '2 min'
+            </otherwise>
+        </choose>
+
+        )) AND code = #{code} and open_code is null ORDER BY open_time  limit 1;
+    </select>
+
+    <!--查询当前盘口-->
+    <select id="queryHandicapByCurrentTime" parameterType="so.wwb.lotterybox.model.manager.lottery.so.LotteryResultSo" resultType="so.wwb.lotterybox.model.manager.lottery.po.LotteryResult">
+        SELECT *,extract(epoch FROM (close_time - clock_timestamp())) leftTime,extract(epoch FROM (opening_time - clock_timestamp())) leftOpenTime  FROM lottery_result WHERE clock_timestamp() &lt; close_time AND  code = #{code} ORDER BY close_time LIMIT 1
+    </select>
+
+    <!--查询所有彩种当前盘口-->
+    <select id="queryAllHandicapByCurrentTime" parameterType="so.wwb.lotterybox.model.manager.lottery.so.LotteryResultSo" resultType="so.wwb.lotterybox.model.manager.lottery.po.LotteryResult">
+         select code,expect,
+        extract(epoch FROM (close_time - clock_timestamp())) leftTime,
+        extract(epoch FROM (opening_time - clock_timestamp())) leftOpenTime
+        FROM lottery_result
+        WHERE clock_timestamp() &lt; close_time AND code IN
+        <foreach collection="codes" item="item" index="index" open="(" close=")" separator=",">
+           #{item}
+        </foreach>
+        ORDER BY close_time LIMIT 1;
+    </select>
+    <!--查询当前时间所有彩种盘口-->
+    <select id="queryCurHandicap" resultType="so.wwb.lotterybox.model.manager.lottery.po.LotteryResult">
+        SELECT t1.*, extract(epoch FROM (t1.close_time - clock_timestamp())) leftTime
+          FROM lottery_result t1,
+               (
+                SELECT code, min(close_time) close_time
+                  FROM lottery_result
+                 WHERE clock_timestamp() &lt; close_time AND expect is not null  GROUP BY code
+               ) as t2
+        WHERE t1.code = t2.code and t1.close_time = t2.close_time
+          AND t1.expect is not null
+    </select>
+
+    <select id="searchOpenCode" parameterType="so.wwb.lotterybox.model.manager.lottery.po.LotteryResult" resultType="string">
+        SELECT open_code FROM lottery_result WHERE expect=#{expect} and code = #{code};
+    </select>
+    <!--//endregion your codes 1-->
+
+
+    <select id="findRecentLotteryResult" parameterType="so.wwb.lotterybox.model.manager.lottery.so.LotteryResultSo" resultType="so.wwb.lotterybox.model.manager.lottery.po.LotteryResult">
+        SELECT * FROM ((SELECT * FROM lottery_result WHERE code = #{code} and close_time &gt;= now() order by expect::INT8 limit 2)
+        UNION (select * from lottery_result WHERE close_time &lt; now() AND code = #{code} ORDER BY expect::INT8 DESC LIMIT 1)) lbo
+        ORDER BY code DESC ,expect::INT8 ASC
+    </select>
+
+    <!--查询当前要开奖记录-->
+    <select id="searchCurLotteryResult" resultType="so.wwb.lotterybox.model.manager.lottery.po.LotteryResult">
+        SELECT * FROM lottery_result WHERE (clock_timestamp() BETWEEN (open_time - interval '40 sec') AND (open_time + interval '40 sec'))  and open_code is null ORDER BY open_time ;
+    </select>
+
+    <!--根據code查询当前要开奖记录-->
+    <select id="searchCurLotteryResultByCode" parameterType="so.wwb.lotterybox.model.manager.lottery.so.LotteryResultSo" resultType="so.wwb.lotterybox.model.manager.lottery.po.LotteryResult">
+        SELECT * FROM lottery_result WHERE (clock_timestamp() BETWEEN (open_time - interval '40 sec') AND (open_time + interval '40 sec'))  and code = #{code} and open_code is null ORDER BY open_time ;
+    </select>
+
+    <!--批量调盘-->
+    <update id="batchUpdateAdjust" parameterType="so.wwb.lotterybox.model.manager.lottery.so.LotteryResultSo">
+        UPDATE lottery_result lrn SET
+        <if test="openTimeInterval != null">
+             open_time = (open_time + (${openTimeInterval}||'s')::INTERVAL)
+            <if test="closeTimeInterval != null || openingTimeInterval != null">,</if>
+        </if>
+        <if test="closeTimeInterval != null">
+             close_time = (close_time + (${closeTimeInterval}||'s')::INTERVAL)
+            <if test="openingTimeInterval != null">,</if>
+        </if>
+        <if test="openingTimeInterval != null">
+            opening_time = (opening_time + (${openingTimeInterval}||'s')::INTERVAL)
+        </if>
+        WHERE EXISTS (SELECT 1 FROM lottery_result WHERE code = #{code} AND expect &gt;= #{expectStart} AND expect &lt;= #{expectEnd} AND open_code IS NULL AND lrn.id = id);
+    </update>
+
+    <!--查询六合彩初始化开奖结果-->
+    <select id="queryHklhcResult" parameterType="so.wwb.lotterybox.model.manager.lottery.so.LotteryResultSo" resultType="so.wwb.lotterybox.model.manager.lottery.po.LotteryResult">
+        SELECT * FROM lottery_result WHERE code = 'hklhc' AND ascription_time >= #{queryStartDate} ORDER BY ascription_time DESC LIMIT 4;
+    </select>
+
+    <!--查询已开奖的开奖结果,返回LotteryResultNumber-->
+    <select id="querySyncLotteryResult" parameterType="so.wwb.lotterybox.model.manager.lottery.so.LotteryResultSo" resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryResultNumber">
+        SELECT * FROM lottery_result WHERE
+        code IN
+        <foreach collection="codes" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="doInitLotteryResult" parameterType="Map" resultType="java.lang.String">
+        select * from f_init_lottery_result_main(#{codesStr},#{initDate});
+    </select>
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.manager.lottery.LotteryHandicapMapper">
+
+    <resultMap id="TABLE:lottery_handicap" type="so.wwb.lotterybox.model.manager.lottery.po.LotteryHandicap">
+        <id column="id" property="id"/>
+        <result column="type" property="type"/>
+        <result column="code" property="code"/>
+        <result column="start_expect" property="startExpect"/>
+        <result column="amount" property="amount"/>
+        <result column="lottery_start_time" property="lotteryStartTime"/>
+        <result column="lottery_interval" property="lotteryInterval"/>
+        <result column="close_lottery_interval" property="closeLotteryInterval"/>
+        <result column="open_close_interval" property="openCloseInterval"/>
+        <result column="order_num" property="orderNum"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+
+    <!--//endregion your codes 1-->
+
+</mapper>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.manager.sys.SysSiteMapper">
+
+    <resultMap id="TABLE:sys_site" type="so.wwb.lotterybox.model.manager.sys.po.SysSite">
+        <id column="id" property="id"/>
+        <result column="sys_user_id" property="sysUserId"/>
+        <result column="name" property="name"/>
+        <result column="theme" property="theme"/>
+        <result column="sso_theme" property="ssoTheme"/>
+        <result column="status" property="status"/>
+        <result column="is_buildin" property="isBuildin"/>
+        <result column="postfix" property="postfix"/>
+        <result column="short_name" property="shortName"/>
+        <result column="main_currency" property="mainCurrency"/>
+        <result column="main_language" property="mainLanguage"/>
+        <result column="web_site" property="webSite"/>
+        <result column="opening_time" property="openingTime"/>
+        <result column="timezone" property="timezone"/>
+        <result column="traffic_statistics" property="trafficStatistics"/>
+        <result column="code" property="code"/>
+        <result column="logo_path" property="logoPath"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="site_classify_key" property="siteClassifyKey"/>
+        <result column="site_net_scheme_id" property="siteNetSchemeId"/>
+        <result column="max_profit" property="maxProfit"/>
+        <result column="deposit" property="deposit"/>
+        <result column="template_code" property="templateCode"/>
+        <result column="maintain_start_time" property="maintainStartTime"/>
+        <result column="maintain_end_time" property="maintainEndTime"/>
+        <result column="maintain_reason" property="maintainReason"/>
+        <result column="maintain_operate_id" property="maintainOperateId"/>
+        <result column="maintain_operate_time" property="maintainOperateTime"/>
+        <result column="import_players_time" property="importPlayersTime"/>
+        <result column="remark" property="remark"/>
+        <result column="servers" property="servers"/>
+        <result column="app_servers" property="appServers"/>
+        <result column="belong_to_idc" property="belongToIdc"/>
+        <result column="mobile_theme" property="mobileTheme"/>
+        <result column="platform_category" property="platformCategory"/>
+        <result column="pc_theme" property="pcTheme"/>
+        <result column="mode" property="mode"/>
+        <result column="title" property="title"/>
+    </resultMap>
+
+    <select id="queryLang" resultType="so.wwb.lotterybox.model.manager.sys.po.SysSite">
+      SELECT
+	    site. ID,
+	    site.sys_user_id,
+        site.status,
+        site.main_language
+      FROM
+	    sys_site site
+      LEFT JOIN sys_user u
+      ON site.sys_user_id=u.id
+      WHERE
+	    site.parent_id =#{search.parentId}
+    </select>
+
+    <select id="searchCodeToid" resultType="so.wwb.lotterybox.model.manager.sys.po.SysSite">
+        SELECT * from sys_site where upper(code)=#{code}
+    </select>
+
+    <select id="searchUserCode" resultType="String" parameterType="so.wwb.lotterybox.model.manager.sys.po.SysSite">
+        select (SELECT u.subsys_code from sys_user u where u.id = s.sys_user_id) as subsysCode  from sys_site s
+            where s.id=#{id}
+    </select>
+
+    <!--判断是否为股东站点-->
+    <select id="isShardholderSite" parameterType="so.wwb.lotterybox.model.manager.sys.vo.SysSiteVo" resultType="java.lang.Integer">
+       SELECT count(*) from sys_site WHERE parent_id = ${search.parentId} and id= #{search.id}
+    </select>
+    <!--//endregion your codes 1-->
+
+</mapper>

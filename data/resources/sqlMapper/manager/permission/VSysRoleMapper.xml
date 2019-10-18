@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.manager.permission.VSysRoleMapper">
+
+    <resultMap id="TABLE:v_sys_role" type="so.wwb.lotterybox.model.manager.sys.po.VSysRole">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="site_id" property="siteId"/>
+        <result column="subsys_code" property="subsysCode"/>
+        <result column="built_in" property="builtIn"/>
+        <result column="user_count" property="userCount"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+
+    <!--//endregion your codes 1-->
+
+</mapper>

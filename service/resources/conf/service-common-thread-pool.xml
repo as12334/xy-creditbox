@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.1.xsd"
+       default-autowire="byName" default-lazy-init="true">
+
+    <!-- 彩票同步,派彩,撤单,撤销,重结线程池 -->
+    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryResultInitTask" id="lotteryResultSyncTask" scope="prototype"/>
+    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryResultPayoutTask" id="lotteryResultPayoutTask" scope="prototype"/>
+    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryRevoTask" id="lotteryRevoTask" scope="prototype"/>
+    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryRecalculateTask" id="lotteryRecalculateTask" scope="prototype"/>
+    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryResultOwnPayoutTask" id="lotteryResultOwnPayoutTask" scope="prototype"/>
+
+    <!-- 游戏相关线程池 -->
+    <bean class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean" id="lotteryExecutor">
+        <property name="corePoolSize" value="200"/>
+        <property name="maxPoolSize" value="500"/>
+        <property name="keepAliveSeconds" value="120"/>
+        <property name="queueCapacity" value="1"/>
+        <!-- 线程组名 -->
+        <property name="threadGroupName" value="lottery"/>
+        <!-- 线程名称前缀 -->
+        <property name="threadNamePrefix" value="batch-"/>
+        <!-- 容器停止时是否等待job执行完，默认为false -->
+        <property name="waitForTasksToCompleteOnShutdown" value="false"/>
+        <property name="rejectedExecutionHandler">
+            <bean class="java.util.concurrent.ThreadPoolExecutor.AbortPolicy"/>
+        </property>
+    </bean>
+
+
+    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryResultDeleteTask" id="LotteryResultDeleteTask" scope="prototype"/>
+    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryResultOpenNumberTask" id="LotteryResultOpenNumberTask" scope="prototype"/>
+    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryResultAdjustTask" id="LotteryResultAdjustTask" scope="prototype"/>
+    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryResultBatchAdjustTask" id="LotteryResultBatchAdjustTask" scope="prototype"/>
+    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryMakeUpTask" id="LotteryMakeUpTask" scope="prototype"/>
+
+    <!-- 需同步所有商户操作的线程池，例如调盘,开号 -->
+    <bean class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean" id="operateExecutor">
+        <property name="corePoolSize" value="50"/>
+        <property name="maxPoolSize" value="150"/>
+        <property name="keepAliveSeconds" value="120"/>
+        <property name="queueCapacity" value="500"/>
+        <!-- 线程组名 -->
+        <property name="threadGroupName" value="lottery"/>
+        <!-- 线程名称前缀 -->
+        <property name="threadNamePrefix" value="operate-"/>
+        <!-- 容器停止时是否等待job执行完，默认为false -->
+        <property name="waitForTasksToCompleteOnShutdown" value="false"/>
+        <property name="rejectedExecutionHandler">
+            <bean class="java.util.concurrent.ThreadPoolExecutor.AbortPolicy"/>
+        </property>
+    </bean>
+</beans>

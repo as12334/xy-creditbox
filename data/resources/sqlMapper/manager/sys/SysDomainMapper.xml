@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.manager.sys.SysDomainMapper">
+
+    <resultMap id="TABLE:sys_domain" type="so.wwb.lotterybox.model.manager.sys.po.SysDomain">
+        <id column="id" property="id"/>
+        <result column="sys_user_id" property="sysUserId"/>
+        <result column="domain" property="domain"/>
+        <result column="is_default" property="isDefault"/>
+        <result column="is_enable" property="isEnable"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="sort" property="sort"/>
+        <result column="site_id" property="siteId"/>
+        <result column="subsys_code" property="subsysCode"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="page_url" property="pageUrl"/>
+        <result column="name" property="name"/>
+        <result column="resolve_status" property="resolveStatus"/>
+        <result column="build_in" property="buildIn"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+    <update id="changeStatusDelete" >
+        update sys_domain set is_delete = true where id
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+          #{id}
+        </foreach>
+    </update>
+
+    <select id="getDomainByIds" resultMap="TABLE:sys_domain">
+        SELECT
+         *
+        from
+          sys_domain
+        where
+          site_id = #{search.siteId} and is_deleted = false and is_enable=true and resolve_status='5'
+        and id in
+            <foreach collection="domainRanks" index="index" item="domainRank" open="(" close=")" separator=",">
+              #{domainRank.domainId}
+            </foreach>
+        /*排序根据ctt_domain_rank 表排序*/
+        <foreach collection="domainRanks" index="index" item="domainRank" open="order by case" close="else 0 end asc">
+          WHEN id = #{domainRank.domainId} then #{index}
+        </foreach>
+    </select>
+
+    <!--根据用户id查询域名-->
+    <select id="queryDomainByUserId" parameterType="Integer" resultType="string">
+        SELECT "domain" FROM sys_domain WHERE is_default='t' AND sys_user_id=#{sysUserId} limit 1;
+    </select>
+
+    <select id="querySiteDomain" parameterType="so.wwb.lotterybox.model.manager.sys.so.SysDomainSo" resultType="string">
+        SELECT "domain"
+          FROM sys_domain
+         WHERE is_enable = TRUE
+           AND is_deleted = FALSE
+           AND subsys_code = #{subsysCode}
+           AND page_url = #{pageUrl}
+           AND resolve_status = #{resolveStatus}
+           AND site_id = #{siteId}
+    </select>
+    <!--//endregion your codes 1-->
+
+</mapper>

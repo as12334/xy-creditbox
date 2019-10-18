@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.1.xsd"
+       default-autowire="byName" default-lazy-init="true">
+
+    <!-- 框架相关懒加载 -->
+    <bean lazy-init="true" id="auditLogService" class="so.wwb.lotterybox.service.manager.sys.AuditLogService"/>
+    <bean lazy-init="true" id="messageService" class="so.wwb.lotterybox.service.common.MessageService" />
+    <bean lazy-init="true" id="sysUserExtendService" class="so.wwb.lotterybox.service.manager.user.SysUserExtendService"/>
+    <bean lazy-init="true" id="sysDatasourceService" class="org.soul.service.sys.SysDatasourceService" />
+    <bean lazy-init="true" id="smsInterfaceService" class="org.soul.service.smsinterface.SmsInterfaceService"/>
+    <!--<bean lazy-init="true" id="passportService" class="so.wwb.lotterybox.service.manager.user.PassportService"/>-->
+
+    <bean id="sysDomainService" class="so.wwb.lotterybox.service.manager.sys.SysDomainService"/>
+
+    <bean id="sysSiteService" class="so.wwb.lotterybox.service.manager.sys.SysSiteService" />
+    <bean id="vSysSiteManagerService" class="so.wwb.lotterybox.service.company.site.VSysSiteManageService"/>
+
+    <bean id="vSysSiteDomainService" class="so.wwb.lotterybox.service.manager.sys.VSysSiteDomainService"/>
+    <bean id="vSysSiteUserService" class="so.wwb.lotterybox.service.manager.sys.VSysSiteUserService" />
+    <bean id="vSysDomainService" class="so.wwb.lotterybox.service.manager.sys.VSysDomainService"/>
+    <bean id="ipDbService" class="so.wwb.lotterybox.service.manager.common.IpDbService"/>
+    <bean id="siteConfineAreaService" class="so.wwb.lotterybox.service.manager.common.SiteConfineAreaService"/>
+    <bean id="siteConfineIpService" class="so.wwb.lotterybox.service.manager.common.SiteConfineIpService"/>
+    <bean id="siteI18nService" class="so.wwb.lotterybox.service.manager.common.SiteI18nService"/>
+    <bean id="siteOperateAreaService" class="so.wwb.lotterybox.service.manager.common.SiteOperateAreaService"/>
+
+    <bean id="defenseRecordService" class="so.wwb.lotterybox.service.manager.common.DefenseRecordService"/>
+
+
+    <bean id="vUserDetailService" class="so.wwb.lotterybox.service.company.user.VUserDetailService"/>
+
+    <bean id="vUserManagerService" class="so.wwb.lotterybox.service.manager.user.VUserManagerService"/>
+
+
+</beans>

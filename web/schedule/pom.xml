@@ -1,0 +1,143 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>web</artifactId>
+        <groupId>so.wwb.lotterybox</groupId>
+        <version>1.0.1-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>schedule</artifactId>
+    <packaging>war</packaging>
+
+    <properties>
+        <qrcode.version>1.0</qrcode.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>so.wwb.lotterybox</groupId>
+            <artifactId>service</artifactId>
+            <version>${lotterybox.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.soul</groupId>
+            <artifactId>soul-commons</artifactId>
+            <version>${soul.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.soul</groupId>
+            <artifactId>soul-dubbo-provider</artifactId>
+            <version>${soul.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.jxls</groupId>
+            <artifactId>jxls-core</artifactId>
+            <version>${jxls.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>commons-digester</groupId>
+                    <artifactId>commons-digester</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-servlet_3.0_spec</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+
+        <!--支付第三方组件-->
+        <!--智付加密组件-->
+        <dependency>
+            <groupId>dinpay</groupId>
+            <artifactId>dinpayRsaSignAPI</artifactId>
+            <version>2.7.10</version>
+        </dependency>
+        <!--智付二维码图片-->
+        <dependency>
+            <groupId>com.swetake</groupId>
+            <artifactId>qrcode</artifactId>
+            <version>${qrcode.version}</version>
+        </dependency>
+        <!--支付第三方组件-->
+
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>${quartz.version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+
+        <finalName>${project.build.name}</finalName>
+        <sourceDirectory>java</sourceDirectory>
+
+        <testResources>
+            <testResource>
+                <directory>test/resources</directory>
+            </testResource>
+        </testResources>
+
+        <resources>
+            <resource>
+                <directory>resources</directory>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <warSourceDirectory>WebContent</warSourceDirectory>
+                    <webResources>
+                        <resource>
+                            <directory>${basedir}/../../config/common/</directory>
+                            <filtering>true</filtering>
+                            <targetPath>/WEB-INF/classes/conf/</targetPath>
+                        </resource>
+
+                        <resource>
+                            <directory>${basedir}/../../config/mq/</directory>
+                            <filtering>true</filtering>
+                            <targetPath>/WEB-INF/classes/conf/</targetPath>
+                        </resource>
+                        <resource>
+                            <directory>${basedir}/../../config/db/</directory>
+                            <filtering>true</filtering>
+                            <targetPath>/WEB-INF/classes/conf/</targetPath>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

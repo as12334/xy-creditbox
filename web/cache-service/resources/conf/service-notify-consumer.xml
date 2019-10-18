@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
+       default-autowire="byName">
+    <import resource="classpath*:conf/common-notify-consumer.xml"/>
+    <!--消息通知消费者定义列表-->
+    <bean id="notifyConsumerConf" parent="notifyConsumerConfBase">
+        <property name="itemConfs">
+            <list merge="true">
+            </list>
+        </property>
+    </bean>
+</beans>

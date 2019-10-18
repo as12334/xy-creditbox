@@ -1,0 +1,999 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.merchant.lottery.LotteryBetOrderMapper">
+
+    <resultMap id="TABLE:lottery_bet_order" type="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+        <id column="id" property="id"/>
+        <result column="expect" property="expect"/>
+        <result column="username" property="username"/>
+        <result column="bet_time" property="betTime"/>
+        <result column="code" property="code"/>
+        <result column="play_code" property="playCode"/>
+        <result column="bet_code" property="betCode"/>
+        <result column="bet_num" property="betNum"/>
+        <result column="odd" property="odd"/>
+        <result column="bet_amount" property="betAmount"/>
+        <result column="payout" property="payout"/>
+        <result column="payout_time" property="payoutTime"/>
+        <result column="status" property="status"/>
+        <result column="terminal" property="terminal"/>
+        <result column="memo" property="memo"/>
+        <result column="user_id" property="userId"/>
+        <result column="effective_trade_amount" property="effectiveTradeAmount"/>
+        <result column="odd2" property="odd2"/>
+        <result column="odd3" property="odd3"/>
+        <result column="bill_no" property="billNo"/>
+        <result column="odds" property="odds" jdbcType="ARRAY"
+                javaType="java.lang.Double" typeHandler="org.soul.data.rdb.mybatis.type.ArrayTypeHandler"/>
+        <result column="play_model" property="playModel"/>
+        <result column="bet_count" property="betCount"/>
+        <result column="rebate" property="rebate"/>
+        <result column="multiple" property="multiple"/>
+        <result column="bonus_model" property="bonusModel"/>
+        <result column="open_time" property="openTime"/>
+        <result column="open_code" property="openCode"/>
+        <result column="parent_agenter_id" property="parentAgenterId"/>
+        <result column="parent_agenter_name" property="parentAgenterName"/>
+        <result column="freez_amount" property="freezAmount"/>
+    </resultMap>
+
+    <resultMap id="betOrderWin" type="so.wwb.lotterybox.model.company.lottery.po.BetOrderWin">
+        <result column="bet_code" property="betCode"/>
+        <result column="bet_num" property="betNum"/>
+        <result column="bet_amount" property="betAmount"/>
+        <result column="canwinmoney" property="canWinMoney"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+    <!--根据玩法、下注选项获取累加下注金额-->
+    <select id="sumBetAmountQuota" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+        SELECT play_code, bet_code, bet_num, SUM(bet_amount) bet_amount
+        FROM lottery_bet_order
+        WHERE expect = #{expect}
+        AND user_id = #{userId}
+        AND code = #{code}
+        <if test="playCodes != null">
+            AND play_code IN
+            <foreach collection="playCodes" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="betCodes != null">
+            AND bet_code IN
+            <foreach collection="betCodes" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        GROUP BY play_code, bet_code, bet_num
+    </select>
+
+    <select id="executeBetting" parameterType="map" resultType="integer">
+        SELECT lottery_betting(
+            #{userId}::INT, #{username}::VARCHAR, #{betTime}::TIMESTAMP, #{terminal}::VARCHAR,
+            #{gameId}::INT, #{siteCode}::VARCHAR, #{totalAmount}::NUMERIC, #{orderJson}::VARCHAR
+        )
+    </select>
+
+    <!--betamount总投注 payoutamount总派彩 rebateamount总返点 volumeamount总下注数-->
+    <select id="queryBetOrderProfit" parameterType="map" resultType="Map">
+        SELECT
+        coalesce(SUM(bet_amount)::NUMERIC(20,3),0.000) betamount,
+        coalesce(SUM(payout)::NUMERIC(20,3),0.000) payoutamount,
+        coalesce(SUM(bet_amount * rebate)::NUMERIC(20,3),0.000) rebateamount,
+        coalesce(SUM(payout - bet_amount + bet_amount * rebate)::NUMERIC(20,3),0.000) profits,
+        COUNT (*) volumeamount
+        from lottery_bet_order
+        <if test="where == null or where == ''">
+            WHERE status IN ('wining','nowin')
+            AND EXISTS(SELECT 1 FROM user_player WHERE mode='1' AND lottery_bet_order.user_id=user_player.id)
+        </if>
+        <if test="where != null and where != ''">
+            <where>
+                ${where}
+            </where>
+            AND status IN ('wining','nowin')
+            AND EXISTS(SELECT 1 FROM user_player WHERE mode='1' AND lottery_bet_order.user_id=user_player.id)
+        </if>
+    </select>
+    <sql id="searchLowLevelPlayer">
+        bet_time &gt;= #{queryStartDate} and bet_time &lt; #{queryEndDate}
+        <if test="payoutStartDate !=null and payoutStartDate !=''">
+            AND payout_time >= #{payoutStartDate}
+        </if>
+        <if test="payoutEndDate != null and payoutEndDate !=''">
+            AND payout_time &lt;=#{payoutEndDate}
+        </if>
+        <if test="code != null and code != ''">
+            and code = #{code}
+        </if>
+        <if test="expect != null and expect != ''">
+            and expect = #{expect}
+        </if>
+        <if test="username != null and username != ''">
+            and username = #{username}
+            and user_id in (SELECT ue.id
+            FROM sys_user_extend ue, user_player up
+            WHERE ue."id" = up."id"
+            AND up."level" = (select "level" from user_player a where a.id =#{userId})::int+1
+            AND string_to_array(parent_ids, ',') @> ARRAY[#{userId}||''])
+        </if>
+        <if test="username == null or username == ''">
+            and user_id in (SELECT ue.id
+            FROM sys_user_extend ue, user_player up
+            WHERE ue."id" = up."id"
+            AND up."level" = (select "level" from user_player a where a.id =#{userId})::int+1
+            AND string_to_array(parent_ids, ',') @> ARRAY[#{userId}||''])
+        </if>
+    </sql>
+    <select id="queryBetOrderProfitByParntId"
+            parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo" resultType="Map">
+        SELECT coalesce(SUM(bet_amount)::NUMERIC(20,2),0) betamount, coalesce(SUM(payout)::NUMERIC(20,2),0) profitloss,
+        coalesce(SUM(bet_amount * rebate)::NUMERIC(20,2),0) betrebate,COUNT (*) betvolume
+        from lottery_bet_order where
+        <include refid="searchLowLevelPlayer"/>
+        AND status &lt;&gt; '3' AND status &lt;&gt; '4'
+    </select>
+
+
+    <!--账户合计(mobile)-->
+    <select id="queryBetOrderAccountTotal" parameterType="map" resultType="String">
+        SELECT (SELECT ('{"balance":"'|| (SELECT COALESCE(balance::NUMERIC(20, 3), 0) FROM user_assets WHERE id =
+        #{user_id}) ||'",'||
+        '"payout":"' || (COALESCE(SUM(payout)::NUMERIC(20, 3), 0)) ||'",'||
+        '"betAmount":"' || (COALESCE(SUM(bet_amount)::NUMERIC(20, 3), 0)) ||'",'||
+        /*盈亏另行计算*/
+        '"effective":"' || (COALESCE(SUM(effective_trade_amount)::NUMERIC (20, 3), 0)) ||'",'||
+        '"rebate":"' || (COALESCE(SUM(bet_amount * rebate)::NUMERIC(20, 3), 0))
+        )
+        FROM lottery_bet_order
+        <where>
+            ${where}
+        </where>
+        AND status in ('pending','nowin','wining')
+        ) ||'",'||
+        (SELECT '"unOpen":"' || COALESCE(SUM(bet_amount)::NUMERIC(20,3),0) FROM lottery_bet_order
+        <where>
+            ${where}
+        </where>
+        AND status='pending') ||'",'||
+        (SELECT '"revoke":"' || COALESCE(SUM(bet_amount)::NUMERIC(20,3),0) FROM lottery_bet_order
+        <where>
+            ${where}
+        </where>
+        AND status in ('revoke_sys','revoke_self')) ||'",'||
+        (SELECT '"repeal":"' || COALESCE(SUM(bet_amount)::NUMERIC(20,3),0) FROM lottery_bet_order
+        <where>
+            ${where}
+        </where>
+        AND status='revocation')||'",'||
+        (SELECT '"profit":"' || ( coalesce(SUM(payout),0)+coalesce(SUM(bet_amount * rebate),0)-
+        coalesce(SUM(bet_amount),0))::NUMERIC(20,3) FROM lottery_bet_order
+        where user_id = #{user_id}
+        <if test="queryStartDate != null and queryStartDate != ''">
+            and payout_time &gt;= #{queryStartDate}::TIMESTAMP and
+            payout_time &lt; #{queryEndDate}::TIMESTAMP
+        </if>
+        <if test="code != null and code != ''">
+            and code = #{code}
+        </if>
+        AND (status ='wining' or status ='nowin')) ||'",'||
+        (SELECT '"beforeProfit":"' || ( coalesce(SUM(payout),0)+coalesce(SUM(bet_amount * rebate),0)-
+        coalesce(SUM(bet_amount),0))::NUMERIC(20,3) FROM lottery_bet_order
+        where user_id = #{user_id}
+        <if test="queryStartDate != null and queryStartDate != ''">
+            and payout_time &gt;= (#{queryStartDate}::TIMESTAMP + '-1 day') and
+            payout_time &lt; #{queryStartDate}::TIMESTAMP
+        </if>
+        <if test="code != null and code != ''">
+            and code = #{code}
+        </if>
+        AND (status ='wining' or status ='nowin')) ||'",'||
+        (SELECT '"afterProfit":"' || ( coalesce(SUM(payout),0)+coalesce(SUM(bet_amount * rebate),0)-
+        coalesce(SUM(bet_amount),0))::NUMERIC(20,3) FROM lottery_bet_order
+        where user_id = #{userId}
+        <if test="queryEndDate != null and queryEndDate != ''">
+            and payout_time &gt;= #{queryEndDate}::TIMESTAMP and
+            payout_time &lt; (#{queryEndDate}::TIMESTAMP + '1 day')
+        </if>
+        <if test="code != null and code != ''">
+            and code = #{code}
+        </if>
+        AND (status ='wining' or status ='nowin')) ||'"}'
+    </select>
+    <select id="queryTotalByStatus" parameterType="map" resultType="map">
+        SELECT coalesce(SUM(bet_amount)::NUMERIC(20,3),0)
+        betamount,coalesce(SUM(effective_trade_amount)::NUMERIC(20,3),0) effective,
+        coalesce(SUM(payout)::NUMERIC(20,3),0) payoutamount, coalesce(SUM(bet_amount * rebate)::NUMERIC(20,3),0)
+        rabateamount, ( coalesce(SUM(payout),0)+coalesce(SUM(bet_amount * rebate),0)-
+        coalesce(SUM(bet_amount),0))::NUMERIC(20,3) profit
+        FROM lottery_bet_order
+        <where>
+            ${where}
+        </where>
+    </select>
+
+    <select id="getNumQuota" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="Double">
+        SELECT sum(bet_amount) betamount from lottery_bet_order where  expect = #{expect} and user_id = #{userId} and code = #{code} and play_code = #{playCode} and bet_code = #{betCode} ;
+    </select>
+
+    <select id="getUserNameByExpect" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="String">
+        SELECT username  from lottery_bet_order where  expect = #{expect} and code = #{code} and status = 'pending' GROUP BY username;
+    </select>
+
+    <select id="getBetAmountByBetNum" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="map">
+        SELECT bet_num AS betNum, sum(bet_amount) as betAmount,count(distinct(user_id)) as totalCount from lottery_bet_order where expect = #{expect} and code = #{code} and status = 'pending' GROUP BY bet_num;
+    </select>
+
+    <select id="getProfitByExpects" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="map">
+        SELECT username , coalesce(SUM(payout - bet_amount + bet_amount * rebate)::NUMERIC(20,3),0) AS profit from lottery_bet_order where expect = #{expect} and code = #{code} AND status in ('nowin','wining') GROUP BY username ORDER BY profit  desc LIMIT 10;
+    </select>
+
+    <select id="getProfitByExpectsAndUsername"
+            parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="double">
+        SELECT coalesce(SUM(payout - bet_amount + bet_amount * rebate)::NUMERIC(20,3),0) AS profit from lottery_bet_order where expect = #{expect} and code = #{code} AND status in ('nowin','wining') AND user_id = #{userId};
+    </select>
+
+    <select id="getPlayQuota" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="Double">
+        SELECT sum(bet_amount) betamount from lottery_bet_order where  expect = #{expect} and user_id = #{userId} and code = #{code} and play_code = #{playCode} and bet_code = #{betCode} and bet_num = #{betNum} ;
+    </select>
+    <update id="updatePlayerApiBalance" parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+        UPDATE player_api set money=(COALESCE (money,0) + (SELECT COALESCE(bet_amount,0) from lottery_bet_order where id=#{id})-(SELECT COALESCE(payout,0) from lottery_bet_order where id=#{id})) where player_id=#{userId} and api_id=22;
+    </update>
+
+    <select id="lotteryBetOrderReportPaging" parameterType="map" resultType="map">
+        SELECT
+        COUNT (*) AS id,
+        COUNT (*) AS betcount,
+        SUM (bet_amount) AS amount,
+        SUM (payout) AS payout,
+        code,
+        <if test="searchcode == 2">
+            bet_code,
+            play_code,
+        </if>
+        SUM(rebate*bet_amount) AS rebateamount
+        FROM
+        lottery_bet_order
+        <if test="where != null and where != ''">
+            <where>${where}</where>
+        </if>
+        GROUP BY
+        <if test="searchcode == 1">
+            code
+        </if>
+        <if test="searchcode == 2">
+            code,
+            play_code,
+            bet_code
+        </if>
+        ${sort} ${paging}
+    </select>
+
+
+    <select id="lotteryBetOrderReportCount" parameterType="map" resultType="long">
+        SELECT count(1) FROM(
+        SELECT
+        COUNT (*) AS id,
+        COUNT (*) AS betcount,
+        SUM (bet_amount) AS amount,
+        SUM (payout) AS payout,
+        code,
+        <if test="searchcode == 2">
+            bet_code,
+            play_code,
+        </if>
+        SUM(rebate*bet_amount) AS rebateamount
+        FROM
+        lottery_bet_order
+        <if test="where != null and where != ''">
+            <where>${where}</where>
+        </if>
+        GROUP BY
+        <if test="searchcode == 1">
+            code
+        </if>
+        <if test="searchcode == 2">
+            code,
+            play_code,
+            bet_code
+        </if>
+        ) as t2
+    </select>
+
+
+    <!-- 获取表中所有年份 -->
+    <select id="queryAllYear" resultType="Integer">
+       SELECT DISTINCT (extract(year from payout_time)) FROM lottery_bet_order WHERE payout_time IS NOT NULL  and status='2' ORDER BY extract(year from payout_time) DESC;
+    </select>
+
+    <select id="queryBetOrders" resultMap="TABLE:lottery_bet_order"
+            parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+        SELECT * FROM lottery_bet_order
+        WHERE 1 = 1
+        <if test="startDate != null">
+            AND bet_time &gt;= #{startDate}
+        </if>
+        <if test="endDate != null">
+            AND bet_time &lt; #{endDate}
+        </if>
+        <if test="code != null">
+            AND code = #{code}
+        </if>
+        ORDER BY bet_time DESC NULLS LAST
+    </select>
+    <!--//endregion your codes 1-->
+
+    <select id="queryBetOrderToUserId" parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder"
+            resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+        SELECT *  FROM lottery_bet_order  WHERE  status = #{status}
+    </select>
+
+    <!--统计金额-->
+    <select id="sumAmount" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="map">
+        SELECT coalesce(SUM(bet_amount)::NUMERIC(20,2),0) betamount, coalesce(SUM(payout)::NUMERIC(20,2),0)
+        payoutamount, coalesce(SUM(bet_amount * rebate)::NUMERIC(20,2),0) rabateamount, ( coalesce(SUM(bet_amount),0) -
+        coalesce(SUM(payout),0)- coalesce(SUM(bet_amount * rebate),0))::NUMERIC(20,2) profitloss
+        FROM lottery_bet_order
+        WHERE status in ('1','2')
+        <if test="id != null">
+            and id = #{id}
+        </if>
+        <if test="code != null and code != ''">
+            and code = #{code}
+        </if>
+        <if test="betCode != null and betCode != ''">
+            and bet_code = #{betCode}
+        </if>
+        <if test="queryStartDate != null and queryStartDate != ''">
+            and bet_time &gt;= #{queryStartDate}
+        </if>
+        <if test="queryEndDate != null and queryEndDate != ''">
+            and bet_time &lt; #{queryEndDate}
+        </if>
+        <if test="username != null and username != ''">
+            and username like concat(concat('%',#{username}),'%')
+        </if>
+        <if test="expect != null and expect != ''">
+            and expect = #{expect}
+        </if>
+        <if test="userId != null">
+            and user_id = #{userId}
+        </if>
+    </select>
+
+    <select id="queryLotteryBetOrderByTime" parameterType="map" resultType="map">
+        SELECT
+        code,
+        COALESCE(SUM(bet_amount)::NUMERIC(20,3),0) betAmount,
+        COALESCE(SUM(payout)::NUMERIC(20,3),0) payout, COALESCE(SUM(coalesce(payout,0)+coalesce((bet_amount *
+        rebate)::NUMERIC(20,4),0)-bet_amount)::NUMERIC(20,3),0) profitloss
+        FROM lottery_bet_order
+        <if test="where != null and where != ''">
+            <where>${where} AND status in ('nowin','wining')</where>
+        </if>
+        GROUP BY code ${sort} ${paging}
+    </select>
+
+    <select id="getBetOrderByParentIds" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultMap="TABLE:lottery_bet_order">
+        SELECT * FROM lottery_bet_order
+        where
+        <if test="status != null  and status != ''">
+            and status = #{status}
+        </if>
+        <include refid="searchLowLevelPlayer"/>
+        ORDER by status asc,bet_time desc,id desc,expect desc
+        limit #{searchMap.pageSize} offset (#{searchMap.pageNo}-1) * #{searchMap.pageSize}
+    </select>
+    <select id="getBetOrderByParentIdsCount"
+            parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo" resultType="long">
+        SELECT count(*) FROM lottery_bet_order
+        where
+        <if test="status != null  and status != ''">
+            and status = #{status}
+        </if>
+        <include refid="searchLowLevelPlayer"/>
+
+    </select>
+    <select id="getRecentProfit" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="map">
+        SELECT to_char((bet_time + (#{id}||' hour')::INTERVAL), 'YYYY-MM-DD') as tdate,(
+        coalesce(SUM(payout),0)+coalesce(SUM(bet_amount * rebate),0)- coalesce(SUM(bet_amount),0))::NUMERIC(20,3) profit
+        FROM lottery_bet_order
+        where
+        user_id = #{userId}
+        <if test="code != null and code != ''">
+            and code = #{code}
+        </if>
+        <if test="status != null and status != ''">
+            and status = #{status}
+        </if>
+        <if test="status == null or status == ''">
+            AND (status ='wining' or status = 'nowin')
+        </if>
+        and payout_time &gt;= #{queryStartDate} and
+        payout_time &lt; #{queryEndDate}
+        group by tdate order by tdate desc;
+    </select>
+
+    <insert id="saveBetOrder" parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+        INSERT INTO lottery_bet_order (expect,username,betTime,code,playCode,betCode,betCode,odd,betAmount,
+        status,terminal,memo,userId,effectiveTradeAmount,odd2,odd3,bonusModel,playModel,rebate,multiple,betCount,
+        odds,billNo)
+        VALUES (
+          #{expect},#{username},#{betTime},#{code},#{playCode},#{betCode},#{odd},
+          #{betAmount},#{status},#{terminal},#{memo},#{userId},#{effectiveTradeAmount},#{odd2},
+          #{odd3},#{bonusModel},#{playModel},#{rebate},#{multiple},#{betCount},#{odds,typeHandler=org.soul.data.rdb.mybatis.type.ArrayTypeHandler},#{billNo}
+        )
+    </insert>
+
+    <select id="getReportTotal" parameterType="map" resultType="map">
+        SELECT coalesce(SUM(bet_amount)::NUMERIC(20,2),0) betamount, coalesce(SUM(payout)::NUMERIC(20,2),0)
+        payoutamount, coalesce(SUM(bet_amount * rebate)::NUMERIC(20,2),0) rabateamount, ( coalesce(SUM(payout),0)-
+        coalesce(SUM(bet_amount),0)+ coalesce(SUM(bet_amount * rebate),0))::NUMERIC(20,2) profitloss,COUNT (*) betvolume
+        FROM
+        lottery_bet_order
+        <if test="where != null and where != ''">
+            <where>${where}</where>
+        </if>
+    </select>
+
+
+    <!-- 总代旗下玩家注单合计-->
+    <select id="distributorBetOrderTotal" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="map">
+        SELECT
+        COALESCE(SUM(bet_amount)::NUMERIC(20,3),0.000) betAmount,
+        COALESCE(SUM(payout)::NUMERIC(20,3),0.000) payoutamount,
+        COALESCE(SUM(bet_amount * rebate)::NUMERIC(20,3),0.000) rebateamount,
+        (COALESCE(SUM(bet_amount)::NUMERIC(20,3),0.000) - COALESCE(SUM(payout)::NUMERIC(20,3),0.000) -
+        COALESCE(SUM(bet_amount * rebate)::NUMERIC(20,3),0.000)) profitLoss,
+        COUNT (*) betvolume
+        from lottery_bet_order bc
+        LEFT JOIN sys_user_extend ue ON ue.id = bc.user_id
+        LEFT JOIN user_player up ON up.id = bc.user_id
+        WHERE
+        <include refid="distributorBetOrderSql"/>
+        AND
+        bc.status IN ('wining','nowin') AND up.mode='1'
+    </select>
+
+    <!--总代旗下玩家-->
+    <select id="billChangeListByOwnerCode" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+        SELECT bc.* FROM lottery_bet_order bc
+        LEFT JOIN sys_user_extend ue ON ue.id= bc.user_id
+        LEFT JOIN user_player up ON up.id = bc.user_id
+        WHERE
+        <include refid="distributorBetOrderSql"/>
+        AND up.mode='1'
+        ORDER BY bc.bet_time DESC
+        <if test="searchMap.pageSize != null  and searchMap.pageNo != null">
+            LIMIT #{searchMap.pageSize} OFFSET (#{searchMap.pageNo} - 1) * #{searchMap.pageSize}
+        </if>
+    </select>
+
+
+    <!--总代分页-->
+    <select id="distributorBetOrderCount" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="int">
+        SELECT COUNT (bc.*) FROM lottery_bet_order bc LEFT JOIN sys_user_extend ue ON ue.id= bc.user_id WHERE
+        <include refid="distributorBetOrderSql"/>
+    </select>
+
+    <!--待结算注单统计-->
+    <select id="getAvaliableWinOrder" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="so.wwb.lotterybox.model.company.lottery.po.BetOrderWin">
+        SELECT bet_code,bet_num,"sum"(bet_amount) as bet_amount, "sum"(bet_amount*odd) as canwinmoney FROM
+        lottery_bet_order
+        WHERE EXISTS (SELECT 1 FROM user_player u WHERE u.mode = '1' AND u.id = user_id) AND code = #{code} and status =
+        'pending' and expect = #{expect} AND play_model = 'tradition'
+        <if test="nameList != null">
+            AND username IN
+            <foreach collection="nameList" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="betAmount != null">
+            AND bet_amount &gt;= #{betAmount}
+        </if>
+        GROUP BY bet_code,bet_num
+    </select>
+
+    <!--Api 注单查询-->
+    <select id="queryBetOrderByApi" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+        SELECT * FROM lottery_bet_order WHERE 1=1
+        <if test="code != null and code != ''">
+            AND code = #{code}
+        </if>
+        <if test="username != null and username != ''">
+            AND username = #{username}
+        </if>
+        <if test="queryStartDate != null and queryStartDate != ''">
+            and bet_time &gt;= #{queryStartDate}
+        </if>
+        <if test="queryEndDate != null and queryEndDate != ''">
+            and bet_time &lt; #{queryEndDate}
+        </if>
+        order by bet_time desc
+        LIMIT #{pageSize} OFFSET (#{pageNo} - 1) * #{pageSize}
+
+    </select>
+
+    <!--Api 注单查询-->
+    <select id="searchPayoutApiOrder" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+        SELECT lbo.id,lbo.username,lbo.payout,lbo.status,lbo.code,lbo.expect,lbo.payout_time FROM lottery_bet_order lbo WHERE payout not null and payout != 0 and status != 'pending'
+        <if test="code != null and code != ''">
+            AND code = #{code}
+        </if>
+        <if test="expect != null and expect != ''">
+            AND expect = #{expect}
+        </if>
+        <if test="queryStartDate != null and queryStartDate != ''">
+            and payout_time &gt;= #{queryStartDate}
+        </if>
+        <if test="queryEndDate != null and queryEndDate != ''">
+            and payout_time &lt; #{queryEndDate}
+        </if>
+        order by payout_time desc
+    </select>
+
+
+    <sql id="distributorBetOrderSql">
+        ue.owner_code = #{distributorCode}
+        <if test="queryStartDate != null and queryStartDate !=''">
+            AND bc.bet_time &gt;= #{queryStartDate}
+        </if>
+        <if test="queryEndDate !=null and queryEndDate !=''">
+            AND bc.bet_time &lt;= #{queryEndDate}
+        </if>
+        <if test="payoutStartDate != null and payoutStartDate !=''">
+            AND bc.payout_time &gt;= #{payoutStartDate}
+        </if>
+        <if test="payoutEndDate != null and payoutEndDate != ''">
+            AND bc.payout_time &lt;= #{payoutEndDate}
+        </if>
+        <if test="code != null and code != ''">
+            AND bc.code = #{code}
+        </if>
+        <if test="expect != null and expect != ''">
+            AND bc.expect = #{expect}
+        </if>
+        <if test="username != null and username != '' and nameList == null">
+            AND bc.username = #{username}
+        </if>
+        <if test="nameList != null">
+            AND bc.username IN
+            <foreach item="item" index="index" collection="nameList" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="status != null and status != ''">
+            AND bc.status = #{status}
+        </if>
+        <if test="id != null">
+            AND bc.id = #{id}
+        </if>
+        <if test="betNum != null and betNum != '' ">
+            AND bc.bet_num = #{betNum}
+        </if>
+        <if test="codes != null ">
+            AND bc.code IN
+            <foreach collection="codes" item="code" open="(" close=")" separator=",">
+                #{code}
+            </foreach>
+        </if>
+    </sql>
+
+
+    <select id="findTeamMemberBetOrdersByPayoutTime" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo" resultType="map">
+        SELECT username,
+        COALESCE(SUM(bet_count)::NUMERIC(20,3),0.00) betCount,
+        COALESCE(SUM (bet_amount)::NUMERIC(20,3),0.00) betAmount,
+        COALESCE(SUM (bet_amount*rebate)::NUMERIC(20,3),0.00) rebateAmount,
+        COALESCE(SUM (effective_trade_amount)::NUMERIC(20,3),0.00)  effectiveBetAmount,
+        COALESCE(SUM (payout)::NUMERIC(20,3),0.00) winningAmount,
+        COALESCE((SUM(payout)::NUMERIC(20,3)-SUM(bet_amount)::NUMERIC(20,3)+SUM(bet_amount*rebate)::NUMERIC(20,3)),0.00) playerProfitLoss
+        FROM lottery_bet_order
+        WHERE payout_time >= #{queryStartDate} AND payout_time &lt;= #{queryEndDate} and payout_time is NOT NULL and status IN ('wining','nowin') and parent_agenter_id=#{parentAgenterId}
+        GROUP BY username
+        <if test="effectiveTradeAmount != null and effectiveTradeAmount == 0">
+            ORDER by effectiveBetAmount  DESC
+        </if>
+        <if test="effectiveTradeAmount != null and effectiveTradeAmount == 1">
+            ORDER by effectiveBetAmount  ASC
+        </if>
+        <if test="payout != null and payout == 0">
+            ORDER by winningAmount  DESC
+        </if>
+        <if test="payout != null and payout == 1">
+            ORDER by winningAmount  ASC
+        </if>
+        <if test="betAmount != null and betAmount == 0">
+            ORDER by playerProfitLoss  DESC
+        </if>
+        <if test="betAmount != null and betAmount == 1">
+            ORDER by playerProfitLoss  ASC
+        </if>
+        LIMIT #{pageSize} OFFSET (#{pageNo} - 1) * #{pageSize}
+    </select>
+
+    <select id="findTeamMemberBetOrdersByPayoutTimeTotalCount" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo" resultType="map">
+        SELECT username,
+         SUM (bet_count)::NUMERIC(20,3) betCount,
+         SUM (bet_amount)::NUMERIC(20,3) betAmount,
+         SUM (bet_amount*rebate)::NUMERIC(20,3) rebateAmount,
+         SUM (effective_trade_amount)::NUMERIC(20,3)  effectiveBetAmount,
+         SUM (payout) winningAmount,
+        (SUM(payout)-SUM(bet_amount)+SUM(bet_amount*rebate)::NUMERIC(20,3)) playerProfitLoss
+        FROM lottery_bet_order
+       WHERE payout_time >= #{queryStartDate} AND payout_time &lt;= #{queryEndDate} and payout_time is NOT NULL and status IN ('wining','nowin') and parent_agenter_id=#{parentAgenterId}
+       GROUP BY username
+    </select>
+
+    <select id="findTeamMemberBetOrdersTotalByPayoutTime"
+            parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo" resultType="map">
+        SELECT "count"(*)  betCountTotal,
+        COALESCE(SUM (bet_amount)::NUMERIC(20,3),0.00) betAmountTotal,
+        COALESCE(SUM (bet_amount*rebate)::NUMERIC(20,3),0.00)rebateAmountTotal,
+        COALESCE(SUM (effective_trade_amount)::NUMERIC(20,3),0.00)  effectiveBetAmountTotal,
+        COALESCE(SUM (payout)::NUMERIC(20,3),0.00) winningAmountTotal,
+        COALESCE((SUM(payout)::NUMERIC(20,3)-SUM(bet_amount)::NUMERIC(20,3)+SUM(bet_amount*rebate)::NUMERIC(20,3)),0.00) playerProfitLossTotal
+        from lottery_bet_order WHERE status in ('wining','nowin')  AND parent_agenter_id=#{parentAgenterId}
+        and payout_time >= #{queryStartDate} AND payout_time &lt;= #{queryEndDate}
+    </select>
+
+    <!--统计玩家有效时间段的有效投注额-->
+    <select id="queryEffectiveAmount" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="map">
+      SELECT (coalesce(sum(effective_trade_amount),0))::NUMERIC(20,3) effective_trade_amount
+      FROM lottery_bet_order
+      WHERE status in ('nowin','wining')
+      and payout_time &gt;= #{queryStartDate} and
+      payout_time &lt; #{queryEndDate} and user_id=#{userId}
+    </select>
+    <select id="findTeamByPayoutTimeTotal" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo" resultType="map">
+        SELECT
+        COALESCE(SUM(bet_count)::NUMERIC(20,3),0.00) betCount,
+        COALESCE(SUM (bet_amount)::NUMERIC(20,3),0.00) betAmount,
+        COALESCE(SUM (bet_amount*rebate)::NUMERIC(20,3),0.00) rebateAmount,
+        COALESCE(SUM (effective_trade_amount)::NUMERIC(20,3),0.00)  effectiveBetAmount,
+        COALESCE(SUM (payout),0.00)::NUMERIC(20,3) winningAmount,
+        COALESCE((SUM(payout)::NUMERIC(20,3)-SUM(bet_amount)::NUMERIC(20,3)+SUM(bet_amount*rebate)::NUMERIC(20,3)),0.00) playerProfitLoss
+        FROM lottery_bet_order
+        WHERE payout_time >= #{queryStartDate} AND payout_time &lt;= #{queryEndDate} and payout_time is NOT NULL and status IN ('wining','nowin') and parent_agenter_id=#{parentAgenterId}
+    </select>
+
+    <select id="queryAllStatus" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+        SELECT aa.* FROM(
+        SELECT * from lottery_bet_order WHERE payout_time &lt;= #{payoutEndDate} and payout_time >= #{payoutStartDate}
+        and status in ('wining','nowin','revocation','revoke_sys','revoke_self') and user_id = #{userId}
+        UNION
+        SELECT * from lottery_bet_order WHERE bet_time &lt;= #{payoutEndDate} and bet_time>= #{payoutStartDate} and
+        status = 'pending' and user_id = #{userId} ) aa where 1=1
+        <if test="code != null and code != ''">
+            AND code = #{code}
+        </if>
+
+        <if test="betAmount == null or betAmount == 0">
+            ORDER by bet_time DESC
+        </if>
+        <if test="betAmount != null and betAmount == 1">
+            ORDER by bet_time ASC
+        </if>
+        LIMIT #{pageSize} OFFSET (#{pageNo} - 1) * #{pageSize}
+    </select>
+    <select id="queryAllStatusCount"
+            parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+        SELECT aa.* FROM(
+        SELECT * from lottery_bet_order WHERE payout_time &lt;= #{payoutEndDate} and payout_time >= #{payoutStartDate}
+        and status in ('wining','nowin','revocation','revoke_sys','revoke_self') and user_id = #{userId}
+        UNION
+        SELECT * from lottery_bet_order WHERE bet_time &lt;= #{payoutEndDate} and bet_time>= #{payoutStartDate} and
+        status ='pending' and user_id = #{userId} ) aa where 1=1
+        <if test="code != null and code != ''">
+            AND code = #{code}
+        </if>
+
+        <if test="betAmount == null or betAmount == 0">
+            ORDER by bet_time DESC
+        </if>
+        <if test="betAmount != null and betAmount == 1">
+            ORDER by bet_time ASC
+        </if>
+    </select>
+
+
+
+    <!--今日注单列表分页-->
+    <select id="analysisListCount" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="int">
+        SELECT "count"(1)
+        FROM (
+        SELECT
+        <if test="pageType == 'order'">lbo.id</if>
+        <if test="pageType == 'player'">lbo.username</if>
+        <if test="pageType == 'lottery'">lbo.code</if>
+        FROM lottery_bet_order lbo
+        LEFT JOIN user_player up ON lbo.user_id = up."id"
+        LEFT JOIN sys_user_extend ue ON lbo.user_id = ue."id"
+        WHERE up."mode" = '1'
+        <include refid="betOrderTodayQueryWhere"/>
+        <if test="pageType == 'player'">
+            GROUP BY lbo.username
+        </if>
+        <if test="pageType == 'lottery'">
+            GROUP BY lbo.code
+        </if>
+        ) AS bet_order
+    </select>
+
+    <!--2018年11月14日-->
+    <!--
+    今日注单列表
+    1.仅统计正式账号的数据
+    2.所有统计数据按 派彩 时间，只计算已中奖和未中奖的数据
+    1）注单明细： 1.按 投注 时间、当天所有玩家投注记录 2.当前页小计只统计已中奖和未中间的数据
+    2）玩家分析： 1.按玩家分组，直属上级（包网）、总代（API）附分组
+    3）彩种分析： 1.按彩种分组
+    user_id: 玩家ID
+    username: 用户名
+    parent_agenter_id: 直属上级ID
+    parent_agenter_name: 直属上级用户名
+    player_num_total: 总投注玩家数
+    bet_num_total: 总投注笔数
+    bet_amount_total: 总投注金额
+    rebate_total: 总返点金额
+    effective_trade_amount_total: 总有效投注额
+    payout_total: 总派彩金额
+    profit_total: 总盈亏金额
+    -->
+    <select id="analysisList" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo" resultType="map">
+        SELECT
+        <if test="pageType eq 'order'">
+            lbo.id,
+            lbo.expect,
+            lbo.username,
+            lbo.bet_time,
+            lbo.code,
+            lbo.play_code,
+            lbo.bet_code,
+            lbo.bet_num,
+            lbo.odd,
+            lbo.bet_amount,
+            COALESCE (lbo.payout, 0.000) AS payout,
+            lbo.payout_time,
+            lbo.status,
+            lbo.terminal,
+            lbo.memo,
+            lbo.user_id,
+            lbo.effective_trade_amount,
+            lbo.odd2,
+            lbo.odd3,
+            lbo.bill_no,
+            lbo.odds,
+            lbo.play_model,
+            lbo.bet_count,
+            COALESCE (lbo.rebate, 0.000) AS rebate,
+            lbo.multiple,
+            lbo.bonus_model,
+            lbo.open_time,
+            lbo.open_code,
+            lbo.parent_agenter_id,
+            lbo.parent_agenter_name,
+            lbo.freez_amount,
+            up.vip,
+            ue.owner_id AS distributor_id,
+            ue.owner_name AS distributor_name
+        </if>
+        <if test="pageType eq 'player' or pageType eq 'lottery'">
+            <if test="pageType eq 'player'">
+                lbo.user_id,
+                lbo.username,
+                <if test="apiQuery eq 'true'">
+                    ue.owner_id AS distributor_id,
+                    ue.owner_name AS distributor_name,
+                </if>
+                <if test="apiQuery eq null or apiQuery eq ''">
+                    lbo.parent_agenter_id,
+                    lbo.parent_agenter_name,
+                </if>
+            </if>
+            <if test="pageType eq 'lottery'">
+                lbo.code,
+                "count"(DISTINCT(lbo.username)) AS player_num_total,
+            </if>
+            "count"(*) AS bet_num_total,
+            "sum"(lbo.bet_amount)::NUMERIC(20, 3) AS bet_amount_total,
+            "sum"(lbo.bet_amount * COALESCE(lbo.rebate, 0.000))::NUMERIC(20, 3) AS rebate_total,
+            "sum"(COALESCE(lbo.effective_trade_amount, 0.000))::NUMERIC(20, 3) AS effective_trade_amount_total,
+            "sum"(COALESCE(lbo.payout, 0.000))::NUMERIC(20, 3) AS payout_total,
+            "sum"(COALESCE(lbo.payout, 0.000) - lbo.bet_amount + lbo.bet_amount * COALESCE(lbo.rebate, 0))::NUMERIC(20, 3) AS profit_total
+        </if>
+        FROM lottery_bet_order lbo
+        LEFT JOIN user_player up ON lbo.user_id = up."id"
+        LEFT JOIN sys_user_extend ue ON lbo.user_id = ue."id"
+        WHERE up."mode" = '1'
+        <include refid="betOrderTodayQueryWhere"/>
+        <if test="pageType eq 'player'">
+            GROUP BY lbo.user_id, lbo.username,
+            <if test="apiQuery eq 'true'">
+                ue.owner_id,
+                ue.owner_name
+            </if>
+            <if test="apiQuery eq null or apiQuery eq ''">
+                lbo.parent_agenter_id,
+                lbo.parent_agenter_name
+            </if>
+        </if>
+        <if test="pageType eq 'lottery'">
+            GROUP BY lbo.code
+        </if>
+        <if test="pageType eq 'order'">
+            ORDER BY lbo.bet_time DESC
+        </if>
+        <if test="pageType eq 'player' or pageType eq 'lottery'">
+            ORDER BY profit_total DESC
+        </if>
+        LIMIT #{pageSize} OFFSET (#{pageNo} - 1) * #{pageSize}
+    </select>
+
+    <!--
+    今日注单总计数据
+
+    1.当天的派彩时间查询
+    2.计算已中奖和未中奖的数据
+    bet_num_total: 总投注笔数
+    player_num_total: 总投注人数
+    bet_amount_total: 总投注金额
+    rebate_total: 总返点金额
+    effective_trade_amount_total: 总有效投注金额
+    payout_total: 总派彩金额
+    profit_total: 总盈亏
+    -->
+    <select id="betOrderTodaySum" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo" resultType="map">
+        SELECT
+        COALESCE ("count"(*), 0) AS bet_num_total,
+        COALESCE ("count"(DISTINCT(lbo.username)), 0) AS player_num_total,
+        COALESCE ("sum"(lbo.bet_amount)::NUMERIC(20, 3), 0.000) AS bet_amount_total,
+        COALESCE ("sum"(lbo.bet_amount * COALESCE(lbo.rebate, 0.000))::NUMERIC(20, 3), 0.000) AS rebate_total,
+        COALESCE ("sum"(COALESCE(lbo.effective_trade_amount, 0.000))::NUMERIC(20, 3), 0.000) AS effective_trade_amount_total,
+        COALESCE ("sum"(COALESCE(lbo.payout, 0.000))::NUMERIC(20, 3), 0.000) AS payout_total,
+        COALESCE ("sum"(COALESCE(lbo.payout, 0.000) - lbo.bet_amount + lbo.bet_amount * COALESCE(lbo.rebate, 0))::NUMERIC(20, 3), 0.000) AS profit_total
+        FROM lottery_bet_order lbo
+        LEFT JOIN user_player up ON lbo.user_id = up."id"
+        LEFT JOIN sys_user_extend ue ON lbo.user_id = ue."id"
+        WHERE up."mode" = '1'
+        <include refid="betOrderTodayQueryWhere"/>
+    </select>
+
+    <sql id="todayPayoutTime">
+        AND payout_time &gt;= #{queryStartDate} AND payout_time &lt;= #{queryEndDate}
+    </sql>
+    <sql id="todayBetTime">
+        AND bet_time &gt;= #{queryStartDate} AND bet_time &lt;= #{queryEndDate}
+    </sql>
+
+    <!--
+        ajaxQuery = true: 统计数据，固定查询条件
+        1.注单明细列表按投注时间查；
+        2.分析列表按派彩时间查 玩家分析可根据状态查询；彩种分析固定状态
+        3.所有总计数据按派彩时间查
+    -->
+    <sql id="betOrderTodayQueryWhere">
+        <if test="pageType eq 'order' and ajaxQuery neq 'true'">
+            AND lbo.bet_time &gt;= #{queryStartDate}
+            AND lbo.bet_time &lt;= #{queryEndDate}
+            <if test="status neq null and status neq ''">
+                AND lbo.status = #{status}
+            </if>
+        </if>
+        <if test="pageType eq 'player' or pageType eq 'lottery' or ajaxQuery eq 'true'">
+            AND lbo.payout_time &gt;= #{queryStartDate}
+            AND lbo.payout_time &lt;= #{queryEndDate}
+            <choose>
+                <when test="status neq null and status neq '' and pageType eq 'player'">
+                    AND lbo.status = #{status}
+                </when>
+                <otherwise>AND lbo.status IN ('wining', 'nowin')</otherwise>
+            </choose>
+        </if>
+        <if test="id != null">
+            AND lbo.id = #{id}
+        </if>
+        <if test="username neq null and username neq ''">
+            AND lbo.username = #{username}
+        </if>
+        <if test="distributorName neq null and distributorName neq ''">
+            AND ue.owner_name = #{distributorName}
+        </if>
+        <if test="nameList neq null and nameList.size gt 0">
+            AND lbo.username IN
+            <foreach collection="nameList" open="(" close=")" separator="," item="oneName">#{oneName}</foreach>
+        </if>
+        <if test="parentAgenterName neq null and parentAgenterName neq ''">
+            AND lbo.parent_agenter_name = #{parentAgenterName}
+        </if>
+        <if test="expect neq null and expect neq ''">
+            AND lbo.expect = #{expect}
+        </if>
+        <if test="codes neq null and codes.length gt 0">
+            AND lbo.code IN
+            <foreach collection="codes" open="(" close=")" separator="," item="oneCode">#{oneCode}</foreach>
+        </if>
+    </sql>
+
+
+
+    <!-- 优化投注记录(过滤非正式玩家注单)-->
+    <select id="queryButorBetOrder" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+        SELECT * from lottery_bet_order AS bc
+        WHERE
+        <include refid="butorBetOrderSql"/>
+        ORDER by bet_time DESC
+        LIMIT #{pageSize} OFFSET (#{pageNo} - 1) * #{pageSize}
+    </select>
+
+    <select id="queryButorBetOrderCount" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="int">
+        SELECT COUNT(*) from lottery_bet_order AS bc
+        WHERE
+        <include refid="butorBetOrderSql"/>
+    </select>
+
+    <sql id="butorBetOrderSql">
+        EXISTS(SELECT 1 FROM user_player AS up WHERE mode='1' AND bc.user_id=up.id)
+        <if test="queryStartDate != null and queryStartDate !=''">
+            AND bc.bet_time &gt;= #{queryStartDate}
+        </if>
+        <if test="queryEndDate !=null and queryEndDate !=''">
+            AND bc.bet_time &lt;= #{queryEndDate}
+        </if>
+        <if test="payoutStartDate != null and payoutStartDate !=''">
+            AND bc.payout_time &gt;= #{payoutStartDate}
+        </if>
+        <if test="payoutEndDate != null and payoutEndDate != ''">
+            AND bc.payout_time &lt;= #{payoutEndDate}
+        </if>
+        <if test="expect != null and expect != ''">
+            AND bc.expect = #{expect}
+        </if>
+        <if test="id != null and id != ''">
+            AND bc.id = #{id}
+        </if>
+        <if test="username != null and username != '' and nameList == null">
+            AND bc.username = #{username}
+        </if>
+        <if test="nameList != null">
+            AND bc.username IN
+            <foreach item="item" index="index" collection="nameList" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="status != null and status != ''">
+            AND bc.status = #{status}
+        </if>
+        <if test="betNum != null and betNum != '' ">
+            AND bc.bet_num = #{betNum}
+        </if>
+        <if test="codes != null ">
+            AND bc.code IN
+            <foreach collection="codes" item="code" open="(" close=")" separator=",">
+                #{code}
+            </foreach>
+        </if>
+    </sql>
+</mapper>

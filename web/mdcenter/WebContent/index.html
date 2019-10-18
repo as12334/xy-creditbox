@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h1>md center 1</h1>
+<script type="application/javascript">
+    var ws = new WebSocket("ws://localhost:8081/mdcenter/websocket");
+
+    ws.onopen = function () {
+        ws.send("发送数据");
+    };
+
+    ws.onmessage = function (evt) {
+        var received_msg = evt.data;
+
+    };
+
+    ws.onclose = function () {
+    };
+</script>
+</body>
+</html>

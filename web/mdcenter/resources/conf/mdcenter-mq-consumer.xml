@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-autowire="byName">
+
+    <!--MQ异常消息处理-->
+    <bean id="mqMsgServiceFactoryBean" class="org.soul.comet.mq.MqMsgServiceFactoryBean">
+        <property name="serviceApp" value="${service.dubbo.application.name}"></property>
+    </bean>
+
+    <util:constant id="broadcasting"   static-field="com.alibaba.rocketmq.common.protocol.heartbeat.MessageModel.BROADCASTING"/>
+    <!--消息中心 消息推送消费者配置-->
+    <bean id="cometConsumer" class="com.alibaba.rocketmq.client.consumer.DefaultMQPushConsumer">
+        <property name="namesrvAddr" value="${rocketMQ.namesrvAddr}"/>
+        <property name="consumerGroup" value="cgn_comet"/>
+        <property name="instanceName" value="cin_comet"/>
+        <property name="messageModel" ref="broadcasting"/>
+    </bean>
+    <!--消息中心 notice消息通知消费者配置-->
+    <bean id="noticeConsumer" class="com.alibaba.rocketmq.client.consumer.DefaultMQPushConsumer">
+        <property name="namesrvAddr" value="${rocketMQ.namesrvAddr}"/>
+        <property name="consumerGroup" value="cgn_notice"/>
+        <property name="instanceName" value="cin_notice"/>
+    </bean>
+
+    <!--消息消费者与service中处理消息的回调映射配置-->
+    <bean class="org.soul.commons.mq.conf.MQConsumerConf">
+        <property name="itemConfs">
+            <map>
+                <entry key-ref="noticeConsumer">
+                    <list>
+                        <!-- 时效性要求一般的通知 -->
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="NOTICE_TOPIC"/>
+                            <property name="classFullName" value="org.soul.web.msg.notice.service.impl.NoticeMqConsumerService" />
+                            <property name="methodName" value="consumeNormalNotice"/>
+                            <property name="argType" value="org.soul.model.msg.notice.vo.NoticeMsg"/>
+                            <property name="tags" value="normalNotice"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+                        <!-- 实时性要求很高的通知 -->
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="NOTICE_TOPIC"/>
+                            <property name="classFullName" value="org.soul.web.msg.notice.service.impl.NoticeMqConsumerService" />
+                            <property name="methodName" value="consumeRealTimeNotice"/>
+                            <property name="argType" value="org.soul.model.msg.notice.vo.NoticeMsg"/>
+                            <property name="tags" value="realTimeNotice"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+                        <!-- 发送邮件 -->
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="NOTICE_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.mdcenter.notice.service.EmailMqConsumeService" />
+                            <property name="methodName" value="sendEmail"/>
+                            <property name="argType" value="org.soul.model.msg.notice.vo.EmailMsgVo"/>
+                            <property name="tags" value="sendEmail"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="NOTICE_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.gamebox.mdcenter.notice.service.SmsMqConsumeService" />
+                            <property name="methodName" value="sendSmsMessage"/>
+                            <property name="argType" value="org.soul.model.sms.SmsMessageVo"/>
+                            <property name="tags" value="sendSmsMessage"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+                    </list>
+                </entry>
+                <entry key-ref="cometConsumer">
+                    <list>
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="LOTTERYBOX_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.mdcenter.comet.websocket.BossWebSocketHandler" />
+                            <property name="methodName" value="sendMessage"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="bossMessage"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="LOTTERYBOX_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.mdcenter.comet.websocket.ShareHolderWebSocketHandler" />
+                            <property name="methodName" value="sendMessage"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="shareHolderMessage"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="LOTTERYBOX_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.mdcenter.comet.websocket.MerchantWebSocketHandler" />
+                            <property name="methodName" value="sendMessage"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="merchantMessage"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="LOTTERYBOX_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.mdcenter.comet.websocket.MerchantAPIWebSocketHandler" />
+                            <property name="methodName" value="sendMessage"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="merchantApiMessage"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="LOTTERYBOX_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.mdcenter.comet.websocket.DistributorWebSocketHandler" />
+                            <property name="methodName" value="sendMessage"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="distributorMessage"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="LOTTERYBOX_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.mdcenter.comet.websocket.DistributorAPIWebSocketHandler" />
+                            <property name="methodName" value="sendMessage"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="distributorApiMessage"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="LOTTERYBOX_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.mdcenter.comet.websocket.HallWebSocketHandler" />
+                            <property name="methodName" value="sendMessage"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="hallMessage"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+                    </list>
+                </entry>
+            </map>
+        </property>
+    </bean>
+</beans>

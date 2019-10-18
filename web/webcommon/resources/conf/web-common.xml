@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context-4.1.xsd
+	   http://www.springframework.org/schema/util
+	   http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<context:property-placeholder location="classpath:conf/web-captcha-color.properties" ignore-unresolvable="true"/>
+
+	<import resource="classpath*:conf/soul-commons.xml" />
+	<import resource="classpath*:conf/soul-web.xml"/>
+	<import resource="classpath*:conf/soul-dubbo-cache.xml"/>
+
+	<!--防御规则工厂生成器-->
+	<bean id="defenseRulesFactoryGen" class="so.wwb.lotterybox.web.defense.biz.DefenseRulesFactoryGen"/>
+
+	<!--防御记录填充器-->
+	<bean id="defenseRecordPadding" class="so.wwb.lotterybox.web.defense.core.interceptor.DefenseRecordPadding"/>
+
+	<!--防御规则引擎-->
+	<bean id="defenseRuleEngine"  class="so.wwb.lotterybox.web.defense.core.DefenseRuleEngine">
+		<property name="defenseRulesFactoryGen" ref="defenseRulesFactoryGen" />
+	</bean>
+
+	<bean id="defenseHandler" class="so.wwb.lotterybox.web.defense.core.handle.DefenseHandler">
+		<property name="defenseRuleEngine" ref="defenseRuleEngine"/>
+		<property name="defenseRecordPadding" ref="defenseRecordPadding"/>
+	</bean>
+
+	<!--防御规则引擎-->
+	<bean id="defenseAnnotationResolver" class="so.wwb.lotterybox.web.defense.biz.interceptor.DefenseAnnotationResolver"/>
+
+	<!--功能防御拦截器-->
+	<bean id="defenseInterceptor" class="so.wwb.lotterybox.web.defense.core.interceptor.DefenseInterceptor">
+		<property name="defenseHandler" ref="defenseHandler"/>
+		<property name="defenseAnnotationResolver" ref="defenseAnnotationResolver"/>
+	</bean>
+
+	<bean id="passportListener" class="so.wwb.lotterybox.web.passport.DefaultPassportListener">
+		<property name="ipOrAreaResolver" ref="ipOrAreaResolver"></property>
+	</bean>
+
+	<bean id="ipOrAreaResolver" class="so.wwb.lotterybox.web.filter.IpOrAreaResolver"/>
+
+	<!--验证码生成-->
+	<bean id="captcha" class="org.soul.web.shiro.common.filter.CaptchaFilter">
+		<property name="captchaStyleResolver" ref="captchaStyleResovler"/>
+		<property name="captchaUrlResolver" ref="captchaUrlResovler"/>
+	</bean>
+
+	<!--验证码定制-->
+	<bean id="captchaStyleResovler" class="so.wwb.lotterybox.web.passport.captcha.CaptchaStyleResovler">
+		<property name="defaultCaptchaConfig" ref="defaultCaptchaConfig"/>
+	</bean>
+
+	<!--验证码URL限制-->
+	<bean id="captchaUrlResovler" class="so.wwb.lotterybox.web.passport.captcha.CaptchaUrlResovler"/>
+
+	<!--[验证码默认]-->
+	<bean id="defaultCaptchaConfig" class="so.wwb.lotterybox.web.captcha.DefaultCaptchaConfig">
+		<property name="captchaConfigs">
+			<util:map>
+				<entry key="kaptcha.border" value="${kaptcha.border}"/>
+				<entry key="kaptcha.border.color" value="${kaptcha.border.color}"/>
+				<entry key="kaptcha.border.thickness" value="${kaptcha.border.thickness}"/>
+				<entry key="kaptcha.image.width" value="${kaptcha.image.width}"/>
+				<entry key="kaptcha.image.height" value="${kaptcha.image.height}"/>
+				<entry key="kaptcha.producer.impl" value="${kaptcha.producer.impl}"/>
+				<entry key="kaptcha.textproducer.impl" value="${kaptcha.textproducer.impl}"/>
+				<entry key="kaptcha.textproducer.char.string" value="${kaptcha.textproducer.char.string}"/>
+				<entry key="kaptcha.textproducer.char.length" value="${kaptcha.textproducer.char.length}"/>
+				<entry key="kaptcha.textproducer.font.names" value="${kaptcha.textproducer.font.names}"/>
+				<entry key="kaptcha.textproducer.font.size" value="${kaptcha.textproducer.font.size}"/>
+				<entry key="kaptcha.textproducer.font.color" value="${kaptcha.textproducer.font.color}"/>
+				<entry key="kaptcha.textproducer.char.space" value="${kaptcha.textproducer.char.space}"/>
+				<entry key="kaptcha.noise.impl" value="${kaptcha.noise.impl}"/>
+				<entry key="kaptcha.noise.color" value="${kaptcha.noise.color}"/>
+				<entry key="kaptcha.obscurificator.impl" value="${kaptcha.obscurificator.impl}"/>
+				<entry key="kaptcha.background.impl" value="${kaptcha.background.impl}"/>
+				<entry key="kaptcha.background.clear.from" value="${kaptcha.background.clear.from}"/>
+				<entry key="kaptcha.background.clear.to" value="${kaptcha.background.clear.to}"/>
+				<entry key="kaptcha.word.impl" value="${kaptcha.word.impl}"/>
+			</util:map>
+		</property>
+	</bean>
+
+	<bean id="supportLocale" class="so.wwb.lotterybox.web.tools.SupportLocale"></bean>
+
+	<!--shiro拦截器-->
+	<bean id="subjectIntercepter" class="so.wwb.lotterybox.web.filter.intercepter.SubjectIntercepter">
+		<property name="domainCacheResolver" ref="domainCacheResolver"/>
+	</bean>
+
+	<!--域名过滤器-->
+	<bean id="domainFilter" class="so.wwb.lotterybox.web.filter.DomainFilter">
+		<property name="domainCacheResolver" ref="domainCacheResolver"/>
+		<property name="filterUrl" value="${url.filter}"/>
+	</bean>
+
+	<bean id="accessFilter" class="so.wwb.lotterybox.web.filter.AccessFilter"/>
+
+	<bean id="illegalCharacterFilter" class="org.soul.web.filter.IllegalCharacterFilter"/>
+
+	<bean id="messageFilter" class="so.wwb.lotterybox.web.filter.MessageFilter"/>
+
+	<bean id="subsysCodeFilter" class="so.wwb.lotterybox.web.filter.SubsysCodeFilter">
+		<property name="subsysCode" value="${subsys.code}"/>
+	</bean>
+
+	<!--域名缓存获取者-->
+	<bean id="domainCacheResolver" class="so.wwb.lotterybox.web.filter.DomainCacheResolver"/>
+
+	<!--IP过滤器ForPlayer-->
+	<bean id="ipFilterPlayer" class="org.soul.web.filter.IpFilter">
+		<property name="ipOrAreaResolver" ref="ipOrAreaResolver"/>
+		<property name="ignoreIpChange" value="false"/>
+		<!--IP限制忽略： 	1) 站点公共错误 2）站长买分请求 3）支付回调-->
+		<property name="ignoreUrlPatten" value="(/commonPage/error.html|/creditPay/.*|/onlinePay/.*)"/>
+	</bean>
+
+	<bean id="ipFilterCenter" class="org.soul.web.filter.IpFilter">
+		<property name="ipOrAreaResolver" ref="ipOrAreaResolver"/>
+		<property name="ignoreIpChange" value="true"/>
+		<!--IP限制忽略： 	1) 站点公共错误 2）站长买分请求 3）支付回调-->
+		<property name="ignoreUrlPatten" value="(/commonPage/error.html|/creditPay/.*|/onlinePay/.*)"/>
+	</bean>
+
+	<bean id="cipherKeyResolver" class="so.wwb.lotterybox.web.session.CipherKeyResolver">
+		<property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('bT3ovvD7RfGDc0BXO5ORyA==')}"></property>
+	</bean>
+
+	<!--文件后缀保护-->
+	<bean id="fileSuffixFilter" class="so.wwb.lotterybox.web.filter.FileSuffixFilter"/>
+
+	<bean id="realm" class="so.wwb.lotterybox.web.shiro.local.realm.LocalRealm">
+		<property name="baseWebConf" ref="baseWebConf"/>
+	</bean>
+
+	<!--系统配置-->
+	<bean id="commonConf" class="org.soul.commons.support.CommonConf"/>
+
+
+	<bean lazy-init="true" id="auditLogServiceInterceptor" class="so.wwb.lotterybox.interceptor.AuditLogServiceInterceptor">
+		<property name="auditService" ref="auditService"/>
+		<property name="sysAuditLogService" ref="sysAuditLogService"/>
+	</bean>
+
+	<!--审计日志服务-->
+	<bean lazy-init="true" id="auditService" class="org.soul.service.log.audit.AuditService"/>
+
+	<!--审计日志表服务-->
+	<bean lazy-init="true" id="sysAuditLogService" class="org.soul.service.sys.SysAuditLogService">
+	</bean>
+</beans>

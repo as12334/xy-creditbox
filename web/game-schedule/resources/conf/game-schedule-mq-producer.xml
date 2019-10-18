@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
+       default-autowire="byName" default-lazy-init="true">
+
+    <!--消息中心 消息推送生产者配置-->
+    <bean id="cometProducer" class="com.alibaba.rocketmq.client.producer.DefaultMQProducer">
+        <property name="namesrvAddr" value="${rocketMQ.namesrvAddr}"/>
+        <property name="producerGroup" value="pgn_comet"/>
+        <property name="instanceName" value="pin_comet"/>
+        <property name="maxMessageSize" value="${rocketMQ.maxMessageSize}"/>
+    </bean>
+    <!--消息生产者与消息的关系配置-->
+    <bean class="org.soul.commons.mq.conf.MQProducerConf">
+        <property name="itemConfs">
+            <map>
+                <entry key-ref="cometProducer">
+                    <list>
+                        <!--向Boss（后台）的在线用户发送消息-->
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="LOTTERYBOX_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="methodName" value="sendToBossMsg"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="bossMessage"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+
+                        <!--向api的在线用户发送消息-->
+                        <bean class="org.soul.commons.mq.conf.MQItemConf">
+                            <property name="topic" value="LOTTERYBOX_TOPIC"/>
+                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="methodName" value="sendToApiMsg"/>
+                            <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
+                            <property name="tags" value="apiMessage"/>
+                            <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+                        </bean>
+                    </list>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!-- 消息生产拦截配置 -->
+    <import resource="classpath*:conf/producer-bean-aop.xml"/>
+</beans>

@@ -1,0 +1,2340 @@
+[33mcommit fbb8785614be95ef89be5d8f61c9357941624c95[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: tony <tony@wwb.so>
+Date:   Tue Apr 10 11:10:08 2018 +0800
+
+    调整监听顺序
+
+[33mcommit 35ea5b73c9bdb946307bfe0d189d0067b73377ce[m
+Merge: 656c3e98a 2a3f86d63
+Author: tony <tony@wwb.so>
+Date:   Tue Apr 10 11:08:45 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 656c3e98acb33e78323eb12702e7ce4cd3335baf[m
+Author: tony <tony@wwb.so>
+Date:   Tue Apr 10 11:08:33 2018 +0800
+
+    调整监听顺序
+
+[33mcommit 2a3f86d6340b93488bc5ae53499d106c2f8ee32c[m
+Merge: 5f82a8187 0846172b3
+Author: Dick <dick@dawoo.com>
+Date:   Tue Apr 10 10:51:09 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 5f82a8187792bb83614600ffb2226669392746a9[m
+Author: Dick <dick@dawoo.com>
+Date:   Tue Apr 10 10:51:02 2018 +0800
+
+    优惠活动
+
+[33mcommit 0846172b3fbfffc73128adf090658e782710e379[m
+Author: jeremy <test@123.com>
+Date:   Tue Apr 10 09:23:53 2018 +0800
+
+    manager--玩家账号-修复玩家详细页404问题
+
+[33mcommit ae860f353a982aa0616f95cb909797c2d1be8daa[m
+Merge: f42de8a1e f71b3e92f
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 9 21:47:05 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit f42de8a1eff283fc4985072031449e3bfbb83539[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 9 21:46:56 2018 +0800
+
+    页面状态
+
+[33mcommit f71b3e92f19ae802bd365fd63f6bf8b3fb6f4869[m
+Merge: 74c120965 1c9a41039
+Author: Dick <dick@dawoo.com>
+Date:   Mon Apr 9 21:34:20 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 74c12096525b4a9c2e4960be7da371431aa6f135[m
+Author: Dick <dick@dawoo.com>
+Date:   Mon Apr 9 21:34:11 2018 +0800
+
+    优惠活动
+
+[33mcommit 1c9a41039b67f16c436731c07de456edf02195df[m
+Merge: c425c32fc 165bb3353
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 9 21:32:01 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit c425c32fc05ce4a97525600f0255e42b6f7784ae[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 9 21:31:50 2018 +0800
+
+    审核失败参数
+
+[33mcommit 165bb3353ef180650a2ba4643b0091d8c4c6b9de[m
+Merge: 2113bd849 f34e9a380
+Author: Dick <dick@dawoo.com>
+Date:   Mon Apr 9 20:49:49 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 2113bd849ee2a202ccc615dfe0f3f31b1056f91e[m
+Author: Dick <dick@dawoo.com>
+Date:   Mon Apr 9 20:49:41 2018 +0800
+
+    优惠活动
+
+[33mcommit f34e9a380b4057f0e84df59d59207b2cc17dcd70[m
+Merge: 8d40951f1 94e697421
+Author: jeremy <test@123.com>
+Date:   Mon Apr 9 20:36:39 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 8d40951f1db8fa7615f40d65828d9c6b8b525744[m
+Author: jeremy <test@123.com>
+Date:   Mon Apr 9 20:36:31 2018 +0800
+
+    manager--玩家账号-模糊搜索点击某个玩家详细后，新增记忆返回，仅支持按名字
+
+[33mcommit 94e69742116afd1d239995ef03a15926453e1143[m
+Merge: 93505100a 01ea19470
+Author: Dick <dick@dawoo.com>
+Date:   Mon Apr 9 20:12:09 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 93505100aa796f4e660fcb2a22e1278cbfdd0f6c[m
+Author: Dick <dick@dawoo.com>
+Date:   Mon Apr 9 20:12:00 2018 +0800
+
+    优惠活动
+
+[33mcommit 01ea194700e887359ae096fb9b74fa490b72f39e[m
+Merge: 55aa5b09e 35ab0f836
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 9 19:50:15 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 55aa5b09e66bbb99a3c512a04d7da3a03e2ec944[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 9 19:50:04 2018 +0800
+
+    账号单笔存款验证
+
+[33mcommit 35ab0f836d70bd1d228bc113709c3cf42fcfa617[m
+Merge: fd4bcf968 3c3cf2e92
+Author: fei <fei@dawoo.com>
+Date:   Mon Apr 9 19:45:33 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit fd4bcf968e5fe16448ec81100efe06468a77e2ad[m
+Author: fei <fei@dawoo.com>
+Date:   Mon Apr 9 19:45:26 2018 +0800
+
+    ==调整接口登录
+
+[33mcommit 3c3cf2e92d698e4e17c56e616992b2773db24ee4[m
+Merge: 2d36c1255 429556d54
+Author: jeremy <test@123.com>
+Date:   Mon Apr 9 19:42:46 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 2d36c12551751cbbbf2fc562550524e2d271c4aa[m
+Author: jeremy <test@123.com>
+Date:   Mon Apr 9 19:42:39 2018 +0800
+
+    manager--玩家账号--修改新增银行卡可选择其他银行，且开户行必填
+
+[33mcommit 429556d54dbad0fa999320a9467994ea823e0233[m
+Merge: c566fb60d 79af691b3
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 9 17:36:48 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit c566fb60dc41fe4bc4720cfceb2e0818034ac32c[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 9 17:36:25 2018 +0800
+
+    层级单笔取款限制
+
+[33mcommit 79af691b36de950761fde71828881e1999d0ab96[m
+Merge: e6ea75c40 bb99ffc31
+Author: fei <fei@dawoo.com>
+Date:   Mon Apr 9 17:31:51 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit e6ea75c40de92e50a157f162e9eca0c7af38f7b9[m
+Author: fei <fei@dawoo.com>
+Date:   Mon Apr 9 17:31:40 2018 +0800
+
+    ==登录时不校验密码强度
+
+[33mcommit bb99ffc31883a330e3e44bb5bd023536417c7a55[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 9 17:14:01 2018 +0800
+
+    回滚username
+
+[33mcommit fd544efb25aab2999d88e556c4349b43acb32e8b[m
+Merge: c176eb1f1 e417c79cc
+Author: marz <zhuzhidu784>
+Date:   Mon Apr 9 17:11:53 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit c176eb1f10d54fe979029007a5837107630b0b9f[m
+Author: marz <zhuzhidu784>
+Date:   Mon Apr 9 17:11:38 2018 +0800
+
+    回滚username属性
+
+[33mcommit e417c79cc741e2db1ee0eb685a0f42515521925b[m
+Merge: 9846251b0 6b94a97cd
+Author: Dick <dick@dawoo.com>
+Date:   Mon Apr 9 17:03:07 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 9846251b0c0a27896de7ae21e1af94ad4f31869b[m
+Author: Dick <dick@dawoo.com>
+Date:   Mon Apr 9 17:02:44 2018 +0800
+
+    优惠活动
+
+[33mcommit c3ccdf7314688b9ec59e5bc54c61e42666a0b1e6[m
+Merge: da9dc5bf7 6b94a97cd
+Author: marz <zhuzhidu784>
+Date:   Mon Apr 9 17:02:39 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit da9dc5bf7ea9f20b987f4fe5370df22dab5f6943[m
+Author: marz <zhuzhidu784>
+Date:   Mon Apr 9 17:02:32 2018 +0800
+
+    调整sessionmanager引用方式
+
+[33mcommit 6b94a97cd5b22f6fa3497c26b224aca5cc562271[m
+Merge: a5c24bccc 725d8d23c
+Author: fei <fei@dawoo.com>
+Date:   Mon Apr 9 16:33:17 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit a5c24bccc3aa439348e88e972cf9b2b23381e051[m
+Author: fei <fei@dawoo.com>
+Date:   Mon Apr 9 16:33:10 2018 +0800
+
+    ==调整PC和移动端接口模块
+
+[33mcommit 725d8d23c09075d533cc5dd55580b2b73be85226[m
+Merge: 7f9f80e01 2fbe85a9a
+Author: tony <tony@wwb.so>
+Date:   Mon Apr 9 16:29:50 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 7f9f80e01571258a884dc9556ae675b6cde62b9f[m
+Author: tony <tony@wwb.so>
+Date:   Mon Apr 9 16:29:35 2018 +0800
+
+    移除多余的代码
+
+[33mcommit 2fbe85a9a45165d8a2c58964f769308d0ae08a39[m
+Merge: cbb7651a2 e8380f902
+Author: jeremy <test@123.com>
+Date:   Mon Apr 9 16:28:32 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit cbb7651a2ab8c88b50824a9d996a4561d5d45c1e[m
+Author: jeremy <test@123.com>
+Date:   Mon Apr 9 16:28:23 2018 +0800
+
+    manager--账号--玩家账号详细内新增重置密码功能
+    2.修复账号编辑信息时提示信息不对问题
+
+[33mcommit e8380f902a7445bdf8a8d3771b08d82c217018b5[m
+Merge: 26fae53be bc4e50c2a
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 9 16:24:00 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 26fae53bee6fbfa0159a4ba51996a83d1b0ab8c0[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 9 16:23:31 2018 +0800
+
+    别名字段
+
+[33mcommit bc4e50c2ab37d96bfed85419d85904ef04ebf42c[m
+Author: stark <56465465>
+Date:   Mon Apr 9 16:22:05 2018 +0800
+
+    文案管理（新）子项删除
+
+[33mcommit 7560620a6333ec9b1901dcb566076833332da010[m
+Merge: 860b8180d febd91b10
+Author: rambo <rambo@dawoo.com>
+Date:   Mon Apr 9 15:39:50 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 860b8180d2f781de95789a91043e8511c02e5eef[m
+Author: rambo <rambo@dawoo.com>
+Date:   Mon Apr 9 15:39:35 2018 +0800
+
+    pc投注记录
+
+[33mcommit febd91b106a35132ecee0f83b9bfb0e54998198e[m
+Merge: 1800296cc cbf3619dc
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 9 15:18:42 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 1800296cc4d8755eadf2ed6090f4986d5ec7b2b6[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 9 15:18:33 2018 +0800
+
+    别名字段
+
+[33mcommit cbf3619dc8c06831e562c2f2235d9962aecb83df[m
+Merge: 0ec961279 c68c3a094
+Author: marz <zhuzhidu784>
+Date:   Mon Apr 9 15:12:05 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 0ec9612796118fd7c7c765ce777889974b80b053[m
+Author: marz <zhuzhidu784>
+Date:   Mon Apr 9 15:11:49 2018 +0800
+
+    调整开号未保存开号人员
+
+[33mcommit c68c3a09492bc5ece8edd03a08965823d93dd2a4[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 9 14:12:00 2018 +0800
+
+    账号冻结操作
+
+[33mcommit d2ab02a62e6706ab704ae2909fb7d05e44e5ed39[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 9 11:02:14 2018 +0800
+
+    详情bug
+
+[33mcommit c927c994cc8759d5b785a1404f8b6e4df482bced[m
+Merge: 2db734783 9af4732ad
+Author: rambo <rambo@dawoo.com>
+Date:   Mon Apr 9 10:50:30 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 2db73478377603a087bcb34a2c4fb1c84b1b3fad[m
+Author: rambo <rambo@dawoo.com>
+Date:   Mon Apr 9 10:50:24 2018 +0800
+
+    pc投注记录
+
+[33mcommit 9af4732ad772c236122d22951a683909d970b70f[m
+Merge: 24c9b54fb cf32baaef
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 9 10:22:14 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 24c9b54fbf910b20b559f4a2b4aa32618a44ad9c[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 9 10:21:54 2018 +0800
+
+    详情bug
+
+[33mcommit cf32baaefce2c74973a4a1a502df3a562d3a6e08[m
+Merge: a2701f3e0 06da0aeb1
+Author: marz <zhuzhidu784>
+Date:   Mon Apr 9 09:48:53 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit a2701f3e02ab7a2ef39dd2c920d9d3ff3847ca90[m
+Author: marz <zhuzhidu784>
+Date:   Mon Apr 9 09:48:40 2018 +0800
+
+    调整开号
+
+[33mcommit 06da0aeb1a58a5b7cd70a5b870d561c1e4e38061[m
+Author: fei <fei@dawoo.com>
+Date:   Mon Apr 9 09:30:17 2018 +0800
+
+    ==调整PC和移动端接口模块
+
+[33mcommit f1afe305b504d7e7c9ebc1b1fe854230c516f783[m
+Author: fei <fei@dawoo.com>
+Date:   Mon Apr 9 09:09:33 2018 +0800
+
+    ==新增pc端模块接口
+
+[33mcommit f1d23b722382f033ecbc3c94f5a0f56efa81e448[m
+Merge: 0b3cd8fb8 73f4ca8f5
+Author: jeremy <test@123.com>
+Date:   Mon Apr 9 09:00:40 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 0b3cd8fb821917e016e33718b05f453dbe5db106[m
+Author: jeremy <test@123.com>
+Date:   Mon Apr 9 09:00:31 2018 +0800
+
+    manager--财务--系统存取下拉框样式对齐
+
+[33mcommit 73f4ca8f5bf6bd5a1781066985f3a1f3410a19ac[m
+Merge: 7a979289b 9071a1bc6
+Author: marz <zhuzhidu784>
+Date:   Sun Apr 8 22:04:35 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 7a979289b07f407c140b828360a802bc5ffd60d8[m
+Author: marz <zhuzhidu784>
+Date:   Sun Apr 8 22:03:56 2018 +0800
+
+    1.调整彩种表结构,调整彩种枚举
+    2.调整派彩函数名与增加派彩更新稽核
+    3.修改六合彩生肖生成问题与样式
+
+[33mcommit 9071a1bc60ce810fac64ddb940f65bac83058d57[m
+Merge: 168ff862c 212f8988e
+Author: jeremy <test@123.com>
+Date:   Sun Apr 8 21:57:29 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 168ff862c5aee6e171ef1c03f91f0966fd042e5b[m
+Author: jeremy <test@123.com>
+Date:   Sun Apr 8 21:57:18 2018 +0800
+
+    manager--玩家账号详细--修改银行卡信息，
+    （1）即将原来的卡设为非默认，再新增一张卡为默认
+
+[33mcommit 212f8988ec5819f0c47816bdd4de78d4e7662ea4[m
+Merge: ee634c32a e86a5db7d
+Author: ronnie <ronnie@dawoo.com>
+Date:   Sun Apr 8 21:48:13 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit ee634c32a680431fff733884d38cc12dbb76c9cb[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Sun Apr 8 21:48:01 2018 +0800
+
+    账号冻结操作
+
+[33mcommit e86a5db7da1d0b92d8ae84ff28db76df71b7f116[m
+Merge: 8abaf19e5 be63d2b61
+Author: Dick <dick@dawoo.com>
+Date:   Sun Apr 8 21:28:18 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 8abaf19e580f7e3799a92a9b3985329db70b4ab9[m
+Author: Dick <dick@dawoo.com>
+Date:   Sun Apr 8 21:28:08 2018 +0800
+
+    优惠活动
+
+[33mcommit be63d2b61e5c53f59a66864916243e073b883636[m
+Merge: 7ab221123 6e3ae8f43
+Author: ronnie <ronnie@dawoo.com>
+Date:   Sun Apr 8 21:08:19 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 7ab22112393367b94eca3a8d188ee4051276b378[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Sun Apr 8 21:08:01 2018 +0800
+
+    修改回调参数类型
+
+[33mcommit 6e3ae8f43c4f5c24ac3d4a29d9f908806153a3dd[m
+Merge: e2a87504a 79764f4b9
+Author: Dick <dick@dawoo.com>
+Date:   Sun Apr 8 18:55:17 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit e2a87504af8b2bd310f4d46ead534416bed9ca0a[m
+Author: Dick <dick@dawoo.com>
+Date:   Sun Apr 8 18:55:08 2018 +0800
+
+    优惠活动
+
+[33mcommit 79764f4b954685de7eb3b127f667012d199c1f7e[m
+Author: stark <56465465>
+Date:   Sun Apr 8 18:54:18 2018 +0800
+
+    文案管理（新）修改parentId
+
+[33mcommit 44c65b7a1e24f35984bb3436bf7dc8465bc8a09d[m
+Author: jeremy <test@123.com>
+Date:   Sun Apr 8 17:36:32 2018 +0800
+
+    manager--财务，系统存取--层级下拉框样式调整
+
+[33mcommit b4046d5c500aecb8fe7f7dad1a0300536fb6a54c[m
+Author: jeremy <test@123.com>
+Date:   Sun Apr 8 17:11:19 2018 +0800
+
+    manager--玩家账号   修改限制：批量修改玩家状态时，不可更改为未审核和审核失败状态
+
+[33mcommit ab08450fe78f936384d8f85f3b009a5dcbac90ca[m
+Merge: 76fc3d118 168d38855
+Author: jeremy <test@123.com>
+Date:   Sun Apr 8 16:47:07 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 76fc3d118485174fad1483e6f9a86a7f1ab63e13[m
+Author: jeremy <test@123.com>
+Date:   Sun Apr 8 16:46:37 2018 +0800
+
+    manager--玩家账号    统一新增/修改真实姓名格式提示、修复多选操作bug
+
+[33mcommit 168d38855080e198be60def58c4aac1e5c4d6f9e[m
+Author: stark <56465465>
+Date:   Sun Apr 8 16:44:24 2018 +0800
+
+    文案管理（新）
+
+[33mcommit 1504defa5dd0281885c7d438b5216850d916405d[m
+Author: jeremy <test@123.com>
+Date:   Sun Apr 8 16:29:02 2018 +0800
+
+    manager--总代账号详细，修改错别字
+
+[33mcommit 622ba7c45c679f0c7bdd96fed782163304b6a6aa[m
+Author: jeremy <test@123.com>
+Date:   Sun Apr 8 15:52:56 2018 +0800
+
+    manager--所有可多账号搜索框的提示改为按需求的：多个账号，用半角逗号隔开2
+
+[33mcommit 53fddeb85fac805837802652e1c4dfc84bcc5b3e[m
+Author: jeremy <test@123.com>
+Date:   Sun Apr 8 15:37:38 2018 +0800
+
+    manager--所有可多账号搜索框的提示改为按需求的：多个账号，用半角逗号隔开
+
+[33mcommit 3bb24e451ca7ec1b789842308a6e735e1a84b26d[m
+Merge: 891dea813 9a884f00e
+Author: jeremy <test@123.com>
+Date:   Sun Apr 8 15:08:49 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 891dea813387490d5cb3fcbfdade214fac555a08[m
+Author: jeremy <test@123.com>
+Date:   Sun Apr 8 15:08:38 2018 +0800
+
+    manager--账号--玩家账号--玩家列表，修复下拉框选择查询，点击下一页时又回跳全部类型的bug
+
+[33mcommit 716d4aca9f9da510265c74ed18ad873065c3913c[m
+Merge: 53b624ab4 9a884f00e
+Author: marz <zhuzhidu784>
+Date:   Sun Apr 8 14:01:29 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 53b624ab46c386bca99021316869ace7ec557200[m
+Author: marz <zhuzhidu784>
+Date:   Sun Apr 8 14:01:21 2018 +0800
+
+    1.lottery增加classify类别字段
+    2.根据lottery的classify字段调整访问方式
+
+[33mcommit 9a884f00e06902ead77041db87d151390fadd7ee[m
+Merge: cdd16b3e1 3f73f3f0a
+Author: Dick <dick@dawoo.com>
+Date:   Sun Apr 8 11:38:57 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit cdd16b3e1c2ea37865e62fc6f466cfb25059257a[m
+Author: Dick <dick@dawoo.com>
+Date:   Sun Apr 8 11:38:50 2018 +0800
+
+    优惠活动
+
+[33mcommit 3f73f3f0a375f1a0ddba691f56c46203c044c772[m
+Merge: d63a23ed2 b9a68125a
+Author: ronnie <ronnie@dawoo.com>
+Date:   Sun Apr 8 11:33:09 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit d63a23ed2874e7dd6bf525bef010e84018e21b07[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Sun Apr 8 11:32:50 2018 +0800
+
+    修改名称显示jsp
+
+[33mcommit b9a68125afe3d6242cae467145cbb1eaa2f60ad5[m
+Merge: 56ff88ce8 28d1af020
+Author: jeremy <test@123.com>
+Date:   Sun Apr 8 11:19:20 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 56ff88ce810584a7f09dc96e84f264a7fd1b137c[m
+Author: jeremy <test@123.com>
+Date:   Sun Apr 8 11:19:09 2018 +0800
+
+    manager--账号--玩家账号--玩家详细--新增银行卡编辑页修改1
+
+[33mcommit 28d1af02068e28d0ebebdd0749a866584367fc5c[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Sun Apr 8 11:15:30 2018 +0800
+
+    加上特殊标识
+
+[33mcommit 15b9c721f6d0887894dbfb03c88d4ad55e6e4df1[m
+Author: stark <56465465>
+Date:   Sun Apr 8 08:39:52 2018 +0800
+
+    文案管理（新）
+
+[33mcommit 7de5170308d31ad3ac24e92f1a541a6723b75f1e[m
+Merge: 7279d2ed1 bbc15b665
+Author: marz <zhuzhidu784>
+Date:   Fri Apr 6 18:26:49 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 7279d2ed133c67094ef5b75cdae9d9b6c60b202a[m
+Author: marz <zhuzhidu784>
+Date:   Fri Apr 6 18:26:35 2018 +0800
+
+    boss开奖结果提交
+
+[33mcommit bbc15b66567116af46b92bf158db386a3de624f0[m
+Merge: 64bb179db 9a90edbc4
+Author: Dick <dick@dawoo.com>
+Date:   Fri Apr 6 17:25:30 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 64bb179dbd44c8f8eaa9dd94925118f754d44a25[m
+Author: Dick <dick@dawoo.com>
+Date:   Fri Apr 6 17:25:22 2018 +0800
+
+    优惠活动
+
+[33mcommit 2214c09ce54ad5738513a3e393f4897bce8f4d72[m
+Merge: 32b709c0c 9a90edbc4
+Author: marz <zhuzhidu784>
+Date:   Fri Apr 6 15:30:19 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 32b709c0c4716787888db14ef642ea3cd044f192[m
+Author: marz <zhuzhidu784>
+Date:   Fri Apr 6 15:30:10 2018 +0800
+
+    调整开奖结果
+
+[33mcommit 9a90edbc44701425d24954402b7ddfbc8c75c570[m
+Merge: 818324173 e4357917d
+Author: jeremy <test@123.com>
+Date:   Fri Apr 6 14:28:31 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 8183241734a31c178e74fd88dc1beb5a088d9d46[m
+Author: jeremy <test@123.com>
+Date:   Fri Apr 6 14:28:22 2018 +0800
+
+    manager--账号--玩家账号--玩家详细--显示字段优化，
+
+[33mcommit e4357917defe517d94415d18f0d4f5b6c2b09d39[m
+Merge: 4d5dfffa3 ea1dfd426
+Author: Dick <dick@dawoo.com>
+Date:   Fri Apr 6 14:22:14 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 4d5dfffa3d1910ebb7cec5878c392a8db1db76b0[m
+Author: Dick <dick@dawoo.com>
+Date:   Fri Apr 6 14:22:03 2018 +0800
+
+    优惠活动
+
+[33mcommit ea1dfd4261dd26024d0d5d8b615e4111b8b8354a[m
+Merge: 45c84c0bf a515ec34e
+Author: ronnie <ronnie@dawoo.com>
+Date:   Fri Apr 6 14:16:13 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 45c84c0bf827b82d2ce841591ecda1e92731bc6d[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Fri Apr 6 14:15:52 2018 +0800
+
+    账号加后缀
+
+[33mcommit a515ec34e18bf9443e988837d16f0ee10c23bb06[m
+Merge: 84a2144f7 9775e1977
+Author: Dick <dick@dawoo.com>
+Date:   Fri Apr 6 09:58:23 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 84a2144f7daf33ade590e65ad9a4f896a548c5ed[m
+Author: Dick <dick@dawoo.com>
+Date:   Fri Apr 6 09:58:14 2018 +0800
+
+    优惠活动
+
+[33mcommit 9775e197763388b41019538623bbe461c54640ea[m
+Author: stark <56465465>
+Date:   Fri Apr 6 08:32:23 2018 +0800
+
+    文案管理（新）
+
+[33mcommit cdb384f2ea16f2dbb961e59e0c4ca0b3aef2acd0[m
+Merge: 0e1fcb761 9cc193afa
+Author: jeremy <test@123.com>
+Date:   Thu Apr 5 21:48:15 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 0e1fcb7612980807507fc928650d1c780a8b1b0f[m
+Author: jeremy <test@123.com>
+Date:   Thu Apr 5 21:48:02 2018 +0800
+
+    manager--账号--玩家账号--玩家详细--增加修改真实姓名是，同步银行卡数据
+
+[33mcommit e2342a9181cd7888ca9bb1787d0a476256330729[m
+Merge: 78d306414 9cc193afa
+Author: marz <zhuzhidu784>
+Date:   Thu Apr 5 21:23:15 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 9cc193afa0d7000c6f2e696f02e2c4ed2cda921b[m
+Author: shook <shook@dawoo.com>
+Date:   Thu Apr 5 21:22:45 2018 +0800
+
+    修改极速pk10的开号规则
+
+[33mcommit 78d3064141cbb0d4bfe40d2fb238610fbf1b7a50[m
+Merge: 6f9f98259 c437b364c
+Author: marz <zhuzhidu784>
+Date:   Thu Apr 5 21:19:59 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 6f9f9825919b3e6de211d3ead4381129685f8f78[m
+Author: marz <zhuzhidu784>
+Date:   Thu Apr 5 21:19:49 2018 +0800
+
+    调整开奖结果页面
+
+[33mcommit c437b364c091f1e68b1b1ea63cbd9c0166b8fb8b[m
+Merge: 790a169df 3cd1bf2f2
+Author: shook <shook@dawoo.com>
+Date:   Thu Apr 5 20:50:04 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 790a169dfec02d1daff3cae2a66723d6cfb20ab5[m
+Author: shook <shook@dawoo.com>
+Date:   Thu Apr 5 20:48:46 2018 +0800
+
+    修改极速pk10的开号规则
+
+[33mcommit 3cd1bf2f23a494cedc54ab3681248b9dcb97c4b4[m
+Merge: 3ae67fb8f b6efa28e9
+Author: rambo <rambo@dawoo.com>
+Date:   Thu Apr 5 19:14:44 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 3ae67fb8fb9984f6431c260de2b351d402a382cf[m
+Author: rambo <rambo@dawoo.com>
+Date:   Thu Apr 5 19:14:37 2018 +0800
+
+    玩家取款钱包余额更新修改
+
+[33mcommit b6efa28e9171589d49f7708827b554cc2d8408b9[m
+Merge: 9a94644a1 8bbb4b4cd
+Author: Dick <dick@dawoo.com>
+Date:   Thu Apr 5 19:12:15 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 9a94644a1802b668647122df0e6d891ee6ea2911[m
+Author: Dick <dick@dawoo.com>
+Date:   Thu Apr 5 19:12:08 2018 +0800
+
+    bug修复
+
+[33mcommit 8bbb4b4cdbf35778d3782bea3cb9a4978e4e9cb5[m
+Merge: fc60e4994 d7db1c4f5
+Author: shook <shook@dawoo.com>
+Date:   Thu Apr 5 17:45:20 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit fc60e49943d1ecf00018952e3934189bb4a5c6c4[m
+Author: shook <shook@dawoo.com>
+Date:   Thu Apr 5 17:42:13 2018 +0800
+
+    去掉message_send和message_text
+
+[33mcommit d7db1c4f5e05b77da627fdfb0f5f522607fd61e9[m
+Author: stark <56465465>
+Date:   Thu Apr 5 17:09:40 2018 +0800
+
+    文案管理（新）
+
+[33mcommit 57f890e210db47fc66f0c82b555de88951283edb[m
+Author: Dick <dick@dawoo.com>
+Date:   Thu Apr 5 17:04:14 2018 +0800
+
+    bug修复
+
+[33mcommit fc460be2529f22620ffcbc6e4dd1a6f9c37eb2f1[m
+Merge: 86801785e 4ef49ccc5
+Author: Dick <dick@dawoo.com>
+Date:   Thu Apr 5 16:55:12 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 86801785e1939687a66f2e28e5e58e1974b1c3c5[m
+Author: Dick <dick@dawoo.com>
+Date:   Thu Apr 5 16:55:02 2018 +0800
+
+    bug修复
+
+[33mcommit 4ef49ccc58ce5d7e29b66221b1abc03f4b82e4ea[m
+Author: shook <shook@dawoo.com>
+Date:   Thu Apr 5 16:43:24 2018 +0800
+
+    调整优惠活动的表结构
+
+[33mcommit bbb0f674a8cf0a6944b05020541c889662e4f362[m
+Author: shook <shook@dawoo.com>
+Date:   Thu Apr 5 16:38:51 2018 +0800
+
+    调整优惠活动的表结构
+
+[33mcommit f012b75fc116995875e1a513d7eaed86ab9f9a74[m
+Merge: 242260700 096dec39b
+Author: rambo <rambo@dawoo.com>
+Date:   Thu Apr 5 15:53:34 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 242260700c4ef3047dc7779d90e53dd40a4a9417[m
+Author: rambo <rambo@dawoo.com>
+Date:   Thu Apr 5 15:53:23 2018 +0800
+
+    团队分红
+
+[33mcommit a792f5eb4bc4cd6adad6be522f9e9dc68d72ac01[m
+Merge: 4708bb6cf 096dec39b
+Author: shook <shook@dawoo.com>
+Date:   Thu Apr 5 15:53:16 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 4708bb6cfa5d2d4c904e1d0cb30f48f6e76f387c[m
+Author: shook <shook@dawoo.com>
+Date:   Thu Apr 5 15:51:38 2018 +0800
+
+    调整优惠活动的页面实现
+
+[33mcommit 096dec39bf0410e5b4fa6b88f0985ecb36d470a0[m
+Merge: 483018b4b b4b83cd57
+Author: Dick <dick@dawoo.com>
+Date:   Thu Apr 5 15:44:17 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 483018b4bbd8b5692f7a17db4f71c80239a3d426[m
+Author: Dick <dick@dawoo.com>
+Date:   Thu Apr 5 15:44:09 2018 +0800
+
+    bug修复
+
+[33mcommit b4b83cd575681ef0296030738d03a5c3e9606e01[m
+Merge: 191853ad8 a858a3fbc
+Author: ronnie <ronnie@dawoo.com>
+Date:   Thu Apr 5 15:21:38 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 191853ad8ae9373abaa1fe8b55776f3c7d8d2ee9[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Thu Apr 5 15:20:56 2018 +0800
+
+    修复验证需要的Siteid
+
+[33mcommit a858a3fbcddb51b68482cf16a39368d580154c8f[m
+Merge: b0ed7012b 8f48da19f
+Author: jeremy <test@123.com>
+Date:   Thu Apr 5 14:49:00 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit b0ed7012b36dea5279783a1aa30652ff913f17e4[m
+Author: jeremy <test@123.com>
+Date:   Thu Apr 5 14:48:51 2018 +0800
+
+    manager--账号--玩家账号--玩家详细--银行卡重复绑定bug修复
+
+[33mcommit 8f48da19f9cc3284b630c755d800ec98eaef23c0[m
+Merge: 545406b73 1046966e8
+Author: marz <zhuzhidu784>
+Date:   Thu Apr 5 14:38:10 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 545406b736bae53f4cbccd4029f7d52fca1dc8f7[m
+Author: marz <zhuzhidu784>
+Date:   Thu Apr 5 14:37:55 2018 +0800
+
+    调整初始化开奖结果方法
+
+[33mcommit 1046966e8719fc0fdc5a7d791a0bab2a58eda6fa[m
+Merge: 48ada7b44 3d0724f1b
+Author: jeremy <test@123.com>
+Date:   Thu Apr 5 14:24:59 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 48ada7b44c100a7860777214a42def497f85f12b[m
+Author: jeremy <test@123.com>
+Date:   Thu Apr 5 14:24:50 2018 +0800
+
+    manager--内容--站点公告代搜索调整1
+
+[33mcommit 3d0724f1bfcf1381525d14253645270d5f948859[m
+Author: Dick <dick@dawoo.com>
+Date:   Thu Apr 5 13:46:55 2018 +0800
+
+    bug修复
+
+[33mcommit e88f41752655edd11e83657e521782e32a003956[m
+Merge: 9fb53d77c 0d646243b
+Author: Dick <dick@dawoo.com>
+Date:   Thu Apr 5 11:26:12 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 9fb53d77cf84a20bf91ea8041cca05f674c17c3b[m
+Author: Dick <dick@dawoo.com>
+Date:   Thu Apr 5 11:26:03 2018 +0800
+
+    存款审核bug修复
+
+[33mcommit 0d646243b54785b4d2aa1a816e2dee83227979b9[m
+Merge: d595cdc60 2dd2e9836
+Author: shook <shook@dawoo.com>
+Date:   Thu Apr 5 10:35:00 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit d595cdc60340be9be1e5cc83149b8765afa54fd2[m
+Author: shook <shook@dawoo.com>
+Date:   Thu Apr 5 10:34:46 2018 +0800
+
+    调整org.soul.web.init.RequestContextListener的配置
+
+[33mcommit 2dd2e98368f372945a2e4aec2f9f46ff9df65abe[m
+Author: jeremy <test@123.com>
+Date:   Thu Apr 5 09:17:05 2018 +0800
+
+    manager--内容--站点公告代码优化1
+
+[33mcommit d4d2ae5fe9be22372b802805bd15681f91e44bb4[m
+Merge: 40057edbc 79d2b2a9f
+Author: jeremy <test@123.com>
+Date:   Thu Apr 5 08:51:23 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 40057edbcac5bc8f233bf9802e014ca85b10d3b6[m
+Author: jeremy <test@123.com>
+Date:   Thu Apr 5 08:51:12 2018 +0800
+
+    manager--内容--站点公告已改为新表 contentBulletin 实现
+
+[33mcommit 79d2b2a9f454bc8769d10560d7273e602e413d37[m
+Author: stark <56465465>
+Date:   Wed Apr 4 22:37:08 2018 +0800
+
+    文案管理（新）
+
+[33mcommit 809f2a23f119e5de5e6eb5db2dd80d9311e08185[m
+Merge: 03ec10244 5195abe1e
+Author: marz <zhuzhidu784>
+Date:   Wed Apr 4 22:02:24 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 03ec10244f4ac05ef06fa23f6ff5772f1c424afc[m
+Author: marz <zhuzhidu784>
+Date:   Wed Apr 4 22:02:09 2018 +0800
+
+    修复开奖结果调盘，派彩，开号，删除，初始化问题
+
+[33mcommit 5195abe1ef25edc96fbea1c236fdc64c9de85589[m
+Merge: ce898b493 06b27ffec
+Author: Dick <dick@dawoo.com>
+Date:   Wed Apr 4 21:55:28 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit ce898b49386c701d240453e31a3a590ab918a33d[m
+Author: Dick <dick@dawoo.com>
+Date:   Wed Apr 4 21:55:20 2018 +0800
+
+    存款审核bug修复
+
+[33mcommit 06b27ffecdf64b217c2a6a2f3753d110d60027f5[m
+Merge: b8ae2b34f 0f3a5a2de
+Author: ronnie <ronnie@dawoo.com>
+Date:   Wed Apr 4 21:46:26 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit b8ae2b34f9aaf8f83c137c5f3cd8844cbd135eb8[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Wed Apr 4 21:45:22 2018 +0800
+
+    测试线bug
+
+[33mcommit 0f3a5a2dec197e94b33f26417054c774c993b338[m
+Merge: d04a202a3 b89bf061c
+Author: Dick <dick@dawoo.com>
+Date:   Wed Apr 4 21:35:15 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit d04a202a3f88cafb46b19bebc11f875aa31174a7[m
+Author: Dick <dick@dawoo.com>
+Date:   Wed Apr 4 21:35:04 2018 +0800
+
+    投注记录导出
+
+[33mcommit c61f7d03544e883d8b09c596311e74d90a653102[m
+Merge: 3ab7fd5e8 b89bf061c
+Author: marz <zhuzhidu784>
+Date:   Wed Apr 4 21:15:01 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit b89bf061c8d8ab6557a98740efb64e96b7b4c960[m
+Merge: a162fd632 1b0598caa
+Author: shook <shook@dawoo.com>
+Date:   Wed Apr 4 21:06:19 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit a162fd632b442cffc88ea275b6831704cfae0ca0[m
+Author: shook <shook@dawoo.com>
+Date:   Wed Apr 4 21:05:24 2018 +0800
+
+    调整活动页面存放路径
+
+[33mcommit 1b0598caa1522ad51bcd85a82bbb5766e91310fc[m
+Author: Dick <dick@dawoo.com>
+Date:   Wed Apr 4 20:44:46 2018 +0800
+
+    投注记录导出
+
+[33mcommit 295a4f74b80ea411eec6546c6cd1b0e18417b04c[m
+Merge: d9f7d0701 889ace8c1
+Author: Dick <dick@dawoo.com>
+Date:   Wed Apr 4 16:05:23 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit d9f7d0701a2623595d665d566eddc191990bc967[m
+Author: Dick <dick@dawoo.com>
+Date:   Wed Apr 4 16:05:15 2018 +0800
+
+    导出历史列表页
+
+[33mcommit 889ace8c19caca99bb0cc0c9aa96ad9b97819b4c[m
+Merge: b0b8868a3 3c7d3c1d3
+Author: diego <diego@dawoo.com>
+Date:   Wed Apr 4 14:21:18 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit b0b8868a31f7a999af0c2b0d0a4fd41b9f983829[m
+Author: diego <diego@dawoo.com>
+Date:   Wed Apr 4 14:21:08 2018 +0800
+
+    h5登录密码正则表达式
+
+[33mcommit 3c7d3c1d394b08001df7c4f7fb51e12e8c9ab69a[m
+Author: Dick <dick@dawoo.com>
+Date:   Wed Apr 4 13:49:24 2018 +0800
+
+    存取款页面bug修复
+
+[33mcommit 43ccec562cf072b095b54c0443a365a582bb9b75[m
+Merge: a38518949 031013427
+Author: Dick <dick@dawoo.com>
+Date:   Wed Apr 4 11:23:38 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit a38518949a82bb9856ccafeae533905a90f6b008[m
+Author: Dick <dick@dawoo.com>
+Date:   Wed Apr 4 11:23:31 2018 +0800
+
+    导入枚举去掉没用的
+
+[33mcommit 031013427b01b8612401959f60aec67872649814[m
+Author: stark <56465465>
+Date:   Wed Apr 4 09:54:35 2018 +0800
+
+    文案管理（新）
+
+[33mcommit 3ab7fd5e8395f7357886ca921577a66c5a395e0e[m
+Author: marz <zhuzhidu784>
+Date:   Wed Apr 4 09:42:09 2018 +0800
+
+    去掉添加彩种按钮
+
+[33mcommit a43552e36dee86ecece929df0cd301712efdbe25[m
+Merge: 0d8137675 6f17abb47
+Author: ronnie <ronnie@dawoo.com>
+Date:   Wed Apr 4 09:03:53 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 0d8137675739593e086689a8bcf8157288fd0ea5[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Wed Apr 4 09:03:41 2018 +0800
+
+    删除无用Jsp
+
+[33mcommit 6f17abb47629103d991afece701e21b00fe2b337[m
+Author: Dick <dick@dawoo.com>
+Date:   Tue Apr 3 21:27:49 2018 +0800
+
+    存款审核失败 优惠变拒绝，实际到账金额变0
+
+[33mcommit 3a34cc089b14893b30499a833fe11c05491a4e1d[m
+Author: marz <zhuzhidu784>
+Date:   Tue Apr 3 21:17:18 2018 +0800
+
+    商户手动派彩
+
+[33mcommit 0cf9f123266d32293d7aacfe4be35e8fbf62cf34[m
+Merge: 7ad0a60d6 c77dc8511
+Author: Dick <dick@dawoo.com>
+Date:   Tue Apr 3 20:52:23 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 7ad0a60d6f74a44acc25306c27840b019ba9fc95[m
+Author: Dick <dick@dawoo.com>
+Date:   Tue Apr 3 20:52:15 2018 +0800
+
+    注释掉@MqProducer
+
+[33mcommit c77dc8511a5da5b3617ab5568cb6ee8e7f31ef01[m
+Merge: 6d812a9fb ef09ea217
+Author: jeremy <test@123.com>
+Date:   Tue Apr 3 20:46:45 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 6d812a9fb2f591d0361b011f650cbeb61535ec28[m
+Author: jeremy <test@123.com>
+Date:   Tue Apr 3 20:46:35 2018 +0800
+
+    boss--系统--公告新增修复验证bug1
+
+[33mcommit ef09ea217d7fb5a9a49b86b33618ad8aa3f022df[m
+Merge: 54b0f775c a810c2e28
+Author: ronnie <ronnie@dawoo.com>
+Date:   Tue Apr 3 20:44:57 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 54b0f775c0b2bce241fdbaf0fe1e797be97ad7d8[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Tue Apr 3 20:44:39 2018 +0800
+
+    维护页面/站点bug
+
+[33mcommit a810c2e2897c812f12fae922114ca9f73ed30b9d[m
+Merge: f013bf5cd dde40780f
+Author: jeremy <test@123.com>
+Date:   Tue Apr 3 19:55:41 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit f013bf5cd6ffe911409894b99de314f1b5117104[m
+Author: jeremy <test@123.com>
+Date:   Tue Apr 3 19:55:31 2018 +0800
+
+    boss--公告消息、manager公告消息   代码优化1
+
+[33mcommit dde40780f307ba11242ed815794fc0a1fbdabbb6[m
+Author: stark <56465465>
+Date:   Tue Apr 3 19:33:12 2018 +0800
+
+    优惠活动（新）
+
+[33mcommit 137272cbf9d68103e455026e01487e9d822964e8[m
+Author: marz <zhuzhidu784>
+Date:   Tue Apr 3 19:25:04 2018 +0800
+
+    派彩审计日志修改备注
+
+[33mcommit 7ec301024e3200514ff117962bf759758172536a[m
+Author: Dick <dick@dawoo.com>
+Date:   Tue Apr 3 19:02:38 2018 +0800
+
+    导出功能
+
+[33mcommit bffd42be3549c45f82cf654caad0100ab9977323[m
+Merge: 0edfd6085 fd8c28bb4
+Author: Dick <dick@dawoo.com>
+Date:   Tue Apr 3 17:29:04 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 0edfd608567f9f08cf6ad59b2078973ce60d4e13[m
+Author: Dick <dick@dawoo.com>
+Date:   Tue Apr 3 17:28:57 2018 +0800
+
+    导出功能
+
+[33mcommit fd8c28bb4d926930a947af166e43af0c2bff3c6c[m
+Merge: af9f68736 cb964d9d7
+Author: jeremy <test@123.com>
+Date:   Tue Apr 3 17:14:15 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit af9f68736bac6a506fb069b1037cecc5fcb05ab6[m
+Author: jeremy <test@123.com>
+Date:   Tue Apr 3 17:14:05 2018 +0800
+
+    manager-玩家账号转跳站内信群发 功能 修改为新路径
+
+[33mcommit cb964d9d777bc2b027ea809fbc209e50304615c1[m
+Merge: 2fa272904 dc33e194b
+Author: Dick <dick@dawoo.com>
+Date:   Tue Apr 3 17:05:40 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 2fa272904c126a9ed97103cb7e517bc22d65c6b4[m
+Author: Dick <dick@dawoo.com>
+Date:   Tue Apr 3 17:05:32 2018 +0800
+
+    导出功能
+
+[33mcommit dc33e194b5fb5f92942f8e6c5392c02a2b002da6[m
+Author: jeremy <test@123.com>
+Date:   Tue Apr 3 16:25:21 2018 +0800
+
+    manager-内容--站内信息--站内信 修复bug2
+
+[33mcommit 9e2ce29933a8a6a4b67f4cff8a0919bb11799de9[m
+Merge: c4e2e7654 2874526c1
+Author: jeremy <test@123.com>
+Date:   Tue Apr 3 16:12:47 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit c4e2e765430839c94201d665b29c087283a1090b[m
+Author: jeremy <test@123.com>
+Date:   Tue Apr 3 16:12:37 2018 +0800
+
+    manager-内容--站内信息--站内信 修复bug1
+
+[33mcommit 2874526c1c8c8a12f4a115594840368cd93c6817[m
+Merge: 6736d9f4d 21d738b61
+Author: shook <shook@dawoo.com>
+Date:   Tue Apr 3 15:16:15 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 21d738b61ebcb95ebdbb372f35c0175107cfeb39[m
+Merge: 7a86b7746 b7f860b63
+Author: ronnie <ronnie@dawoo.com>
+Date:   Tue Apr 3 15:11:13 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 7a86b7746d3beaa09317fc9eb9acaddd830b6b12[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Tue Apr 3 15:10:32 2018 +0800
+
+    页面优化
+
+[33mcommit b7f860b6311def53c8fd56d97f0bc04fbd2880cb[m
+Merge: b5b133112 ceed13c1b
+Author: Dick <dick@dawoo.com>
+Date:   Tue Apr 3 15:09:57 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 6736d9f4d736c4f2f6da9988b64801a71927ad0f[m
+Merge: 3bf2054ee ceed13c1b
+Author: shook <shook@dawoo.com>
+Date:   Tue Apr 3 15:09:42 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 3bf2054ee86aa0f9e9d1b6828c55da6bbc216249[m
+Author: shook <shook@dawoo.com>
+Date:   Tue Apr 3 14:52:30 2018 +0800
+
+    删除user_data_right表
+
+[33mcommit b5b13311283464226faff88bfd61a6ffddd16e39[m
+Author: Dick <dick@dawoo.com>
+Date:   Tue Apr 3 14:51:27 2018 +0800
+
+    导出功能
+
+[33mcommit ceed13c1b97bfc5e8bd304b1f328d89451332b06[m
+Merge: 6dea94a1a 9267f398c
+Author: jeremy <test@123.com>
+Date:   Tue Apr 3 14:41:23 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       web/manager/java/so/wwb/lotterybox/manager/tools/ManagerServiceTool.java
+
+[33mcommit 6dea94a1a9ab665cd33ec2c136403e348f6de558[m
+Author: jeremy <test@123.com>
+Date:   Tue Apr 3 14:40:05 2018 +0800
+
+    manager-内容--站内信息--新增信息列表、优化新增信息页
+
+[33mcommit 9267f398c129d4b3b83e27505b738387dc181b16[m
+Merge: 451247dec e29d7b787
+Author: fei <fei@dawoo.com>
+Date:   Tue Apr 3 14:32:12 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 451247decaaec5c015835989511d1cd511913461[m
+Author: fei <fei@dawoo.com>
+Date:   Tue Apr 3 14:32:06 2018 +0800
+
+    ==处理移动端账号状态
+
+[33mcommit 639e8ae654c7222141732437cf113cb0fa2609b9[m
+Merge: 925f8064b e29d7b787
+Author: shook <shook@dawoo.com>
+Date:   Tue Apr 3 14:27:17 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 925f8064b3d07962bc9a2dcde1069c07a993f5de[m
+Author: shook <shook@dawoo.com>
+Date:   Tue Apr 3 14:27:02 2018 +0800
+
+    删除多余的service
+
+[33mcommit e29d7b787c6395ed01bba44db38bec76ffd381e1[m
+Merge: 32c45f60d 952eed18f
+Author: rambo <rambo@dawoo.com>
+Date:   Tue Apr 3 14:09:07 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 32c45f60d881477bfaca25c7be46f5e11ca54cec[m
+Author: rambo <rambo@dawoo.com>
+Date:   Tue Apr 3 14:03:01 2018 +0800
+
+    取款手续费计算修改
+
+[33mcommit 952eed18f55ad1de806fb3ece7a2b3b409bee3a2[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Tue Apr 3 10:16:27 2018 +0800
+
+    清除session,siteId条件判断
+
+[33mcommit eec183d011277ff85f38767daf276fae1e31ed99[m
+Merge: 37512beac 69b183d61
+Author: shook <shook@dawoo.com>
+Date:   Tue Apr 3 10:12:21 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 37512beac7370c537a3525589099fccdbcb5f27f[m
+Author: shook <shook@dawoo.com>
+Date:   Tue Apr 3 09:55:02 2018 +0800
+
+    删除activity_open_period表
+
+[33mcommit 69b183d61b777f10804f98072d86ad3497933e18[m
+Merge: 82ca6e392 2aec5c3c1
+Author: marz <zhuzhidu784>
+Date:   Tue Apr 3 09:10:42 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 82ca6e3924faac1c738f24d5091df5659d91d4ae[m
+Author: marz <zhuzhidu784>
+Date:   Tue Apr 3 09:10:29 2018 +0800
+
+    生成6位流水号
+
+[33mcommit 2aec5c3c1a3783db8a8c11ef90cf431934a285bf[m
+Merge: 6a8ccae69 a1ad3f191
+Author: shook <shook@dawoo.com>
+Date:   Mon Apr 2 21:52:16 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 6a8ccae69a5121cc329c4a2c053065980c479f58[m
+Author: shook <shook@dawoo.com>
+Date:   Mon Apr 2 21:49:35 2018 +0800
+
+    按业务分类controller
+
+[33mcommit a1ad3f191d940cf1d0806f2a21b5a7de91f77bc0[m
+Merge: 88e4603fa 5fdc4fbbd
+Author: rambo <rambo@dawoo.com>
+Date:   Mon Apr 2 21:44:10 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 88e4603fa6a06acf2611dcb32053f165e1bb755b[m
+Author: rambo <rambo@dawoo.com>
+Date:   Mon Apr 2 21:44:02 2018 +0800
+
+    取款判空修改
+
+[33mcommit 5fdc4fbbd1b16db5cc1ae4e9695c04380d75324e[m
+Merge: 54ca0930a 1ef75b9a9
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 2 21:31:26 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 54ca0930ab4c717b45ce7c27927084ad19fa28f0[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 2 21:31:11 2018 +0800
+
+    账号js
+
+[33mcommit 1ef75b9a94434b99a5c4ac39d5039fc347c912cc[m
+Author: shook <shook@dawoo.com>
+Date:   Mon Apr 2 21:24:14 2018 +0800
+
+    增加站点公告表
+
+[33mcommit 3e4da997553a4c08aa0f0305ad44cda26fc4af83[m
+Author: shook <shook@dawoo.com>
+Date:   Mon Apr 2 21:22:21 2018 +0800
+
+    增加站点公告表
+
+[33mcommit 9d40a58c2b9ea188f0e38a1ec479f5d06f419d4e[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 2 20:48:30 2018 +0800
+
+    线上支付缓存
+
+[33mcommit 3f0653e92bd4f01686d270ecacc374886b2e8de5[m
+Author: stark <56465465>
+Date:   Mon Apr 2 20:41:10 2018 +0800
+
+    优惠活动（新）
+
+[33mcommit 7dbea6b9101f8fab93218691f93a30d314d2f526[m
+Author: shook <shook@dawoo.com>
+Date:   Mon Apr 2 19:56:53 2018 +0800
+
+    修改lotterybox的代码生成模板
+
+[33mcommit a92d58838fabe17aa0e32763266582985484db9f[m
+Author: shook <shook@dawoo.com>
+Date:   Mon Apr 2 19:52:47 2018 +0800
+
+    修改lotterybox的代码生成模板
+
+[33mcommit 1475beee54d3010824d3651e507a248835d4b786[m
+Merge: 63326b80c 912fd2f8b
+Author: shook <shook@dawoo.com>
+Date:   Mon Apr 2 19:19:53 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 63326b80cfdf3793bf36a26dcb6fcb373c934576[m
+Author: shook <shook@dawoo.com>
+Date:   Mon Apr 2 19:19:39 2018 +0800
+
+    添加region块
+
+[33mcommit 912fd2f8bda4fd8e85fd7ee0f6da34db8719514c[m
+Merge: 3eefd0631 0c61a1339
+Author: rambo <rambo@dawoo.com>
+Date:   Mon Apr 2 19:12:12 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 3eefd0631bb040df6ed8e3ae5a81b734710a3295[m
+Author: rambo <rambo@dawoo.com>
+Date:   Mon Apr 2 19:11:57 2018 +0800
+
+    上线支付
+
+[33mcommit 0c61a13394a8db53e5e93db47136a0212092e3d8[m
+Author: shook <shook@dawoo.com>
+Date:   Mon Apr 2 17:32:23 2018 +0800
+
+    添加lotterybox的代码生成模板
+
+[33mcommit bdd570fd25f5ccdc7c153cc84912ce6b4ce7dfbd[m
+Author: shook <shook@dawoo.com>
+Date:   Mon Apr 2 17:26:45 2018 +0800
+
+    添加lotterybox的代码生成模板
+
+[33mcommit 71093c0ed55517f6c8d2cb3f8fd64065e5120a4b[m
+Merge: 079bba419 db9d4f3ee
+Author: shook <shook@dawoo.com>
+Date:   Mon Apr 2 17:23:32 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 079bba4193255e7ae989ff27d633b781a4b7e27d[m
+Author: shook <shook@dawoo.com>
+Date:   Mon Apr 2 17:23:09 2018 +0800
+
+    添加lotterybox的代码生成模板
+
+[33mcommit db9d4f3eeb4c33792df4ea06281debbbc980b998[m
+Merge: 9a08ab84d 1248e88b6
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 2 17:11:58 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 9a08ab84d82bb92a9b2f217ddcc10a23051a2187[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 2 17:11:34 2018 +0800
+
+    账号新增
+
+[33mcommit 1248e88b6bf15d638334fb384dc1d1fb394efe82[m
+Merge: f4ae96b1a a49b4502c
+Author: Dick <dick@dawoo.com>
+Date:   Mon Apr 2 17:09:03 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit f4ae96b1ab3ab7478a0ea26818c90c20ccde6524[m
+Author: Dick <dick@dawoo.com>
+Date:   Mon Apr 2 17:08:53 2018 +0800
+
+    导出功能
+
+[33mcommit a49b4502c9c8544ae02699e002c7a7e5d92db87f[m
+Merge: 888f07409 f64052c54
+Author: fei <fei@dawoo.com>
+Date:   Mon Apr 2 16:29:18 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 888f074090fc0f1f214f8391422e4b00781e2cc9[m
+Author: fei <fei@dawoo.com>
+Date:   Mon Apr 2 16:28:55 2018 +0800
+
+    ==处理移动端账号状态
+
+[33mcommit f64052c544ab311d9e5702dff124ed9c5e14c2a9[m
+Merge: f693896cb 8acfcfb51
+Author: marz <zhuzhidu784>
+Date:   Mon Apr 2 14:33:32 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit f693896cbcc109ba34e71d3a9bba96160b995769[m
+Author: marz <zhuzhidu784>
+Date:   Mon Apr 2 14:33:17 2018 +0800
+
+    修改配置bean名称
+
+[33mcommit 8acfcfb51f8d5431d1d19fe4e7d8a8656c714ebe[m
+Author: shook <shook@dawoo.com>
+Date:   Mon Apr 2 13:45:22 2018 +0800
+
+    找回公告页面
+
+[33mcommit 5cd83d309679b8b308b106d8db702e5fbc726b4c[m
+Author: shook <shook@dawoo.com>
+Date:   Mon Apr 2 11:33:51 2018 +0800
+
+    修改优惠活动页面显示
+
+[33mcommit db97488b47228bfdfd1238bf68e409963a7301fb[m
+Merge: c95859ef2 9d444d3a6
+Author: shook <shook@dawoo.com>
+Date:   Mon Apr 2 11:29:24 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit c95859ef2697031facaf18469b48329e308bd41c[m
+Author: shook <shook@dawoo.com>
+Date:   Mon Apr 2 11:29:13 2018 +0800
+
+    修改优惠活动页面显示
+
+[33mcommit 9d444d3a6bbc8e2586b47453f4e076e7c1f00c2d[m
+Merge: ab96f7f66 185cc0bee
+Author: marz <zhuzhidu784>
+Date:   Mon Apr 2 10:55:11 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit ab96f7f66c7f490d90eec25729b26d13942154ad[m
+Author: marz <zhuzhidu784>
+Date:   Mon Apr 2 10:55:01 2018 +0800
+
+    增加日志
+
+[33mcommit eadb481b3315220314ec4178e1556bdd373965b4[m
+Merge: 6ac1c932f 185cc0bee
+Author: Dick <dick@dawoo.com>
+Date:   Mon Apr 2 10:40:32 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       web/manager/java/so/wwb/lotterybox/manager/tools/ManagerServiceTool.java
+
+[33mcommit 6ac1c932f19db116ff8b9157ad7cbab2e8eef761[m
+Author: Dick <dick@dawoo.com>
+Date:   Mon Apr 2 10:39:19 2018 +0800
+
+    导出功能
+
+[33mcommit 185cc0beea5b6cf4df8ee30cd40103c91120bf5c[m
+Merge: 557dd83ee fa188c7e8
+Author: stark <56465465>
+Date:   Mon Apr 2 10:37:54 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 557dd83eea99b235d5be5f8c62ac6f722615e454[m
+Author: stark <56465465>
+Date:   Mon Apr 2 10:37:41 2018 +0800
+
+    优惠活动（新）
+
+[33mcommit fa188c7e8a1ab836c204f5bbb7f68849f1e939b4[m
+Merge: 1261afa6d bb252f7bd
+Author: marz <zhuzhidu784>
+Date:   Mon Apr 2 10:20:08 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 1261afa6dab9a47bfd7d51bb8b7eac3e813cd477[m
+Author: marz <zhuzhidu784>
+Date:   Mon Apr 2 10:19:55 2018 +0800
+
+    商户派彩调整
+
+[33mcommit bb252f7bd9ebf8b7e86e4cbcde3f90b7fdbcde9c[m
+Merge: fcb1b33e1 3e2f2a1ef
+Author: tony <tony@wwb.so>
+Date:   Mon Apr 2 10:17:25 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit fcb1b33e1ae322321e3697c701756912d767cae1[m
+Author: tony <tony@wwb.so>
+Date:   Mon Apr 2 10:17:03 2018 +0800
+
+    代码生成器
+
+[33mcommit 3e2f2a1ef458379872725830087769b99b4cb0ed[m
+Author: stark <56465465>
+Date:   Mon Apr 2 09:54:12 2018 +0800
+
+    优惠活动（新）
+
+[33mcommit ae60cfbd83919cfca1d06805a4234bf1e05470e0[m
+Merge: 3b6efe6c5 9fa78110f
+Author: stark <56465465>
+Date:   Mon Apr 2 09:52:42 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 9fa78110f7f2f980c5a2d167724615292532236d[m
+Merge: b2bd2bc68 364e5b55b
+Author: shook <shook@dawoo.com>
+Date:   Mon Apr 2 09:50:57 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit b2bd2bc68fdf51fd5e681f33164ff5d1c140c1b7[m
+Author: shook <shook@dawoo.com>
+Date:   Mon Apr 2 09:50:33 2018 +0800
+
+    删除site_content site_content_audit site_content_check
+
+[33mcommit 364e5b55b204b521b707ad74d17b81bd8195c2b3[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 2 09:41:52 2018 +0800
+
+    删除Jsp页面
+
+[33mcommit d527a340fdd2d93b023bafb473a3af966f937d1e[m
+Merge: a5a5562a0 4e60bac57
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 2 09:10:19 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit a5a5562a0f8bfdf74f4febe7772ab8ebd895c22f[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Mon Apr 2 09:09:24 2018 +0800
+
+    商户站点
+
+[33mcommit 4e60bac57218ee31576a2a5e75f68d3453de2306[m
+Author: fei <fei@dawoo.com>
+Date:   Mon Apr 2 09:02:03 2018 +0800
+
+    ==优化token处理
+
+[33mcommit c765842dad608d55fd12de06ed72a076c36075e5[m
+Merge: d1a6e3fa9 4ce503d33
+Author: fei <fei@dawoo.com>
+Date:   Sun Apr 1 22:07:45 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit d1a6e3fa9d9ef0ba2b0c7f6597659ff8b816ecc8[m
+Author: fei <fei@dawoo.com>
+Date:   Sun Apr 1 22:07:13 2018 +0800
+
+    ==新增账号状态判断
+
+[33mcommit 4ce503d33c1b43921f91ff8f287ae4ca88558b0a[m
+Merge: 48c1db04a 563e559db
+Author: marz <zhuzhidu784>
+Date:   Sun Apr 1 22:01:06 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 48c1db04aa6d629373d7aa5e9d845b7fb205b179[m
+Author: marz <zhuzhidu784>
+Date:   Sun Apr 1 22:00:53 2018 +0800
+
+    1.修改后台账变列表用户忽略大小写查询
+    2.调整30s派彩间隔方式
+    3.调整手动派彩
+
+[33mcommit 563e559dbcc79086d48acd059fc2c89f9802e1fa[m
+Merge: 7146175b8 29f4faf74
+Author: ronnie <ronnie@dawoo.com>
+Date:   Sun Apr 1 20:36:40 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 7146175b8b9b0856f3c7274a80d6d8f13582ee11[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Sun Apr 1 20:28:15 2018 +0800
+
+    区域限制详细
+
+[33mcommit 29f4faf74c752d7119745cf4abde3c4ca037c2c7[m
+Author: jeremy <test@123.com>
+Date:   Sun Apr 1 20:10:29 2018 +0800
+
+    boss--系统--消息公告--公告与消息页面样式、文字描述优化1
+
+[33mcommit b7fc1d6c8524a6d6f1477ebf482cbfdbf659c7bb[m
+Merge: cfb9a5ce3 7a97d8369
+Author: marz <zhuzhidu784>
+Date:   Sun Apr 1 19:10:42 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit cfb9a5ce3933f8724bef75a185a2b2cbb7ba8128[m
+Author: marz <zhuzhidu784>
+Date:   Sun Apr 1 19:09:44 2018 +0800
+
+    1.调整商户派彩功能
+
+[33mcommit 7a97d8369525d0384e1c716a1fc16443db07d271[m
+Merge: 04c96a63f afa651096
+Author: fei <fei@dawoo.com>
+Date:   Sun Apr 1 17:45:51 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 04c96a63f61ac166baa1db417176826148d9f924[m
+Author: fei <fei@dawoo.com>
+Date:   Sun Apr 1 17:45:46 2018 +0800
+
+    ==新增账号状态判断
+
+[33mcommit afa6510963f883875cde1ea4041b5319690f21d0[m
+Merge: 6d476deae 8b947de92
+Author: rambo <rambo@dawoo.com>
+Date:   Sun Apr 1 17:39:46 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 6d476deaef30eb51922d800e01f612405f58074b[m
+Author: rambo <rambo@dawoo.com>
+Date:   Sun Apr 1 17:39:39 2018 +0800
+
+    取款活动判断修改
+
+[33mcommit 8b947de9227558146987e445b9c9f1cbf2cd8495[m
+Merge: 3ddf5c7f1 732ec71c0
+Author: jeremy <test@123.com>
+Date:   Sun Apr 1 17:29:32 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 3ddf5c7f1ab9c1e31b392705622c6325b0a396d0[m
+Author: jeremy <test@123.com>
+Date:   Sun Apr 1 17:29:22 2018 +0800
+
+    boss--系统--消息公告--公告与消息页面切换bug修复
+
+[33mcommit 732ec71c061360feca4761cc7467fed107067a63[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Sun Apr 1 17:29:14 2018 +0800
+
+    冲突
+
+[33mcommit 4eacfcf686068a9bbe310e57ae3e748fa4ab85c9[m
+Merge: 3aeaff3aa 501ed9949
+Author: ronnie <ronnie@dawoo.com>
+Date:   Sun Apr 1 17:18:51 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       web/manager/java/so/wwb/lotterybox/manager/tools/ManagerServiceTool.java
+
+[33mcommit 3aeaff3aa8c09d35ff9ec5bec400b32727675bc7[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Sun Apr 1 17:17:26 2018 +0800
+
+    视图修改
+
+[33mcommit 501ed9949fa87a8724ae5215278391315fcc0d64[m
+Merge: 4807e3bbb d40978a3b
+Author: diego <diego@dawoo.com>
+Date:   Sun Apr 1 17:07:00 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 4807e3bbb7d089afe584dbacc64fdcb6a278a858[m
+Author: diego <diego@dawoo.com>
+Date:   Sun Apr 1 17:06:47 2018 +0800
+
+    h5绑定银行卡相关bug修复
+
+[33mcommit d40978a3bbde61de6e7daac43fb09a03504f13a0[m
+Merge: 9d7b2530c 0bbee7cb7
+Author: rambo <rambo@dawoo.com>
+Date:   Sun Apr 1 16:09:16 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 9d7b2530cc0cb691e5ad578300286a30eeed0ba1[m
+Author: rambo <rambo@dawoo.com>
+Date:   Sun Apr 1 16:09:09 2018 +0800
+
+    取款稽核,银行卡修改
+
+[33mcommit 0bbee7cb727e71b5b74ccb68a214047abb844bfc[m
+Merge: ab32edc23 800be1fce
+Author: fei <fei@dawoo.com>
+Date:   Sun Apr 1 16:07:02 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit ab32edc235054db7f07bb0718282cc189eb6a723[m
+Author: fei <fei@dawoo.com>
+Date:   Sun Apr 1 16:06:49 2018 +0800
+
+    ==登录增加密码错误次数限制（已完成）
+
+[33mcommit 800be1fcee9675afef65824c1e9420f818ee012d[m
+Merge: b609097e6 03e23ebcf
+Author: jeremy <test@123.com>
+Date:   Sun Apr 1 16:01:58 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit b609097e62a11f3143ba0f500cc22ff7820943f3[m
+Author: jeremy <test@123.com>
+Date:   Sun Apr 1 16:01:49 2018 +0800
+
+    boss--系统--消息公告--消息 编辑也由弹窗操作改为新页面操作
+
+[33mcommit 03e23ebcfc68dc50bfa1c5e7e15ed5728d71b01d[m
+Author: shook <shook@dawoo.com>
+Date:   Sun Apr 1 15:02:02 2018 +0800
+
+    删除玩家咨询相关功能
+
+[33mcommit 0c7d66684c40d74cc46e069900999f8d01d2f90b[m
+Merge: 63b5efb30 04c087f8c
+Author: Dick <dick@dawoo.com>
+Date:   Sun Apr 1 14:39:52 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 63b5efb30057ad0ac6d97d7a4d52a34c4454e6e0[m
+Author: Dick <dick@dawoo.com>
+Date:   Sun Apr 1 14:39:46 2018 +0800
+
+    mdcenter
+
+[33mcommit 04c087f8c2c2e1c0b564918ea81b3998452c15b6[m
+Merge: d4b105d06 8616e4e77
+Author: marz <zhuzhidu784>
+Date:   Sun Apr 1 14:35:06 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit d4b105d06d8b208daad654be5757ba32bb36ff81[m
+Author: marz <zhuzhidu784>
+Date:   Sun Apr 1 14:21:54 2018 +0800
+
+    调整自动派彩
+
+[33mcommit 8616e4e7791feac3e8ae6ece0dc183d73c849e47[m
+Merge: 5995e4c47 c86eaa467
+Author: Dick <dick@dawoo.com>
+Date:   Sun Apr 1 14:15:47 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 5995e4c47c208576157a86088c53d54f07d0fdc1[m
+Author: Dick <dick@dawoo.com>
+Date:   Sun Apr 1 14:15:39 2018 +0800
+
+    线上支付添加判空
+
+[33mcommit c86eaa4674a3c4c50f38952b321e44307d5ef544[m
+Merge: f310a17af 1bc4094ef
+Author: marz <zhuzhidu784>
+Date:   Sun Apr 1 10:55:01 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit f310a17aff1859cd50605e76d9b2b35df3722cdb[m
+Author: marz <zhuzhidu784>
+Date:   Sun Apr 1 10:54:47 2018 +0800
+
+    lottery删掉nper字段
+
+[33mcommit 1bc4094efbb0c9d04ef5460c02a6528bd75e03d6[m
+Merge: 2d77889a7 c22134534
+Author: jeremy <test@123.com>
+Date:   Sun Apr 1 10:08:49 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 2d77889a7b1c76dbca237fe7bd5ecf3b4878b9bf[m
+Author: jeremy <test@123.com>
+Date:   Sun Apr 1 10:08:37 2018 +0800
+
+    boss--系统--消息公告--消息 改为使用新表 system_message 和 system_message_receive 实现
+
+[33mcommit c2213453426226e3320878f7709143c22a5f0850[m
+Merge: 8d7dfa2c0 91edb4d47
+Author: Dick <dick@dawoo.com>
+Date:   Sun Apr 1 09:56:54 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 8d7dfa2c091be64f33d1e6246f954a7fdc1aa7c7[m
+Author: Dick <dick@dawoo.com>
+Date:   Sun Apr 1 09:56:45 2018 +0800
+
+    多页面切换bug修复
+
+[33mcommit 91edb4d47d342fc4a67d1b2f67b55c9fc1023619[m
+Merge: b059da42b 99f317228
+Author: rambo <rambo@dawoo.com>
+Date:   Sun Apr 1 08:53:17 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit b059da42b81f4cadbb92556870aeb33e3b62c75c[m
+Author: rambo <rambo@dawoo.com>
+Date:   Sun Apr 1 08:52:59 2018 +0800
+
+    团队账变修改
+
+[33mcommit 5f1d8da6d711fff770da264515577df0ad741ff9[m
+Merge: fabd6cc3f 99f317228
+Author: fei <fei@dawoo.com>
+Date:   Sun Apr 1 08:42:27 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit fabd6cc3ff65dff7e58bdf940a0f7b23b8341c19[m
+Author: fei <fei@dawoo.com>
+Date:   Sun Apr 1 08:42:12 2018 +0800
+
+    ==登录增加密码错误次数限制（未完成）
+
+[33mcommit 99f317228585a46790a6e8517da7078c5ac50ced[m
+Merge: 362308b69 0cd609ffd
+Author: Dick <dick@dawoo.com>
+Date:   Sun Apr 1 08:39:56 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 362308b6981839a1341d017940a60391fa903a66[m
+Author: Dick <dick@dawoo.com>
+Date:   Sun Apr 1 08:39:46 2018 +0800
+
+    bug修复
+
+[33mcommit 0cd609ffd572a1d5331c6422e84589c5eb99f9f1[m
+Author: fei <fei@dawoo.com>
+Date:   Fri Mar 30 17:29:15 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+    
+    # Conflicts:
+    #       web/mobile/java/so/wwb/lotterybox/mobile/controller/passport/AccountController.java
+
+[33mcommit 720aa91d4e64df2364191c668b28a0546ce31ec1[m
+Merge: ba856d1c7 b529a0dab
+Author: fei <fei@dawoo.com>
+Date:   Fri Mar 30 17:28:40 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+    
+    # Conflicts:
+    #       web/mobile/java/so/wwb/lotterybox/mobile/controller/passport/AccountController.java
+
+[33mcommit ba856d1c7b633eb83c42a4ad6606eba77faed9dd[m
+Author: fei <fei@dawoo.com>
+Date:   Fri Mar 30 17:26:45 2018 +0800
+
+    ==登录增加密码错误次数限制
+
+[33mcommit b529a0dabaa05d1c548b8d91af249500c7cea56b[m
+Merge: cda907f61 68c04f684
+Author: marz <zhuzhidu784>
+Date:   Fri Mar 30 17:25:52 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit cda907f61bb29042fe7b2f008f161e7b9c827bb7[m
+Author: marz <zhuzhidu784>
+Date:   Fri Mar 30 17:25:39 2018 +0800
+
+    自动派彩调整
+
+[33mcommit 68c04f6849459fda541b32ed714f4492a8eb8692[m
+Merge: caf630093 878e829e1
+Author: diego <diego@dawoo.com>
+Date:   Fri Mar 30 17:02:33 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit caf630093818b1dcd701bf888ee939b7d8605bc5[m
+Author: diego <diego@dawoo.com>
+Date:   Fri Mar 30 17:02:22 2018 +0800
+
+    h5密码修改提示
+
+[33mcommit 878e829e10c9ddf9d5e974657d55e36df28df804[m
+Merge: 0dfc4652e 37ce90804
+Author: ronnie <ronnie@dawoo.com>
+Date:   Fri Mar 30 16:13:33 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 0dfc4652e2535e526457508bb1713400246aa18f[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Fri Mar 30 16:08:29 2018 +0800
+
+    系统站点修改
+
+[33mcommit 37ce908042a4cb745f3799db93aacf7e1cb85fd5[m
+Author: Dick <dick@dawoo.com>
+Date:   Fri Mar 30 16:07:24 2018 +0800
+
+    bug修复
+
+[33mcommit c0f09d752d10a93ce900e070b8035187bca96e4d[m
+Merge: 6a40d8343 76f04118c
+Author: Dick <dick@dawoo.com>
+Date:   Fri Mar 30 16:05:11 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 6a40d834300ef794a0ba940b4beee16e42265001[m
+Author: Dick <dick@dawoo.com>
+Date:   Fri Mar 30 16:05:02 2018 +0800
+
+    bug修复
+
+[33mcommit 76f04118c1438e6babf54dabde1c1d497e633743[m
+Merge: 2c842560c a35d70f17
+Author: rambo <rambo@dawoo.com>
+Date:   Fri Mar 30 15:12:22 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 2c842560c61e5326209bc43876ff8d49afc56cf6[m
+Author: rambo <rambo@dawoo.com>
+Date:   Fri Mar 30 15:12:15 2018 +0800
+
+    团队账变
+
+[33mcommit a35d70f17fe7f42e2e803c754d72564c03a69258[m
+Author: Dick <dick@dawoo.com>
+Date:   Fri Mar 30 15:11:22 2018 +0800
+
+    bug修复
+
+[33mcommit e05736bdaef388ecccecad64fa8839f364a2899e[m
+Author: fei <fei@dawoo.com>
+Date:   Fri Mar 30 11:32:35 2018 +0800
+
+    ==增加查询玩家余额接口
+
+[33mcommit 9c88deb5c8b71e9458ddf8216b353d87514f34e5[m
+Merge: 579517b4f 523759e0a
+Author: Dick <dick@dawoo.com>
+Date:   Fri Mar 30 11:22:00 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 579517b4fc021f3e35bf13821d0a38c374b0a3b5[m
+Author: Dick <dick@dawoo.com>
+Date:   Fri Mar 30 11:21:55 2018 +0800
+
+    系统取款余额显示小数
+
+[33mcommit c915932981b057849a01ce54cdc58a3b5dac9905[m
+Author: Dick <dick@dawoo.com>
+Date:   Fri Mar 30 11:21:17 2018 +0800
+
+    mdcenter
+
+[33mcommit 523759e0a95e6ac097c48381b03f149bf7c1bdfb[m
+Author: shook <shook@dawoo.com>
+Date:   Fri Mar 30 10:15:10 2018 +0800
+
+    去掉星座的dict，删掉多余的jsp
+
+[33mcommit 3b6efe6c5a427281fc7f765ae26e06c33579c76b[m
+Author: stark <56465465>
+Date:   Thu Mar 29 21:22:06 2018 +0800
+
+    优惠活动（新）
+
+[33mcommit d1c8dddb4aac9e932b56ff10898824f017eb5c1d[m
+Merge: 9f27d2c2d fb6f505f8
+Author: stark <56465465>
+Date:   Thu Mar 29 21:11:01 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 9f27d2c2d69a198f16bbd6e6e2464fe2467ff19f[m
+Author: stark <56465465>
+Date:   Thu Mar 29 21:10:46 2018 +0800
+
+    优惠活动（新）
+
+[33mcommit fb6f505f873f755ec1695a90168dc0caaf5d62c3[m
+Merge: 36077b671 b91d83272
+Author: Dick <dick@dawoo.com>
+Date:   Thu Mar 29 21:07:40 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 36077b6718327cdf133397682e44c3b8cb3b911e[m
+Author: Dick <dick@dawoo.com>
+Date:   Thu Mar 29 21:07:26 2018 +0800
+
+    mdcenter
+
+[33mcommit b91d8327211c019945acfefbde48309e97099650[m
+Author: ronnie <ronnie@dawoo.com>
+Date:   Thu Mar 29 21:04:50 2018 +0800
+
+    站点维护
+
+[33mcommit c12e000ad77babb5e1ad42487f5c42168dee5343[m
+Merge: 8aa7d0834 8a2cad3b1
+Author: ronnie <ronnie@dawoo.com>
+Date:   Thu Mar 29 21:03:30 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lotterybox
+
+[33mcommit 8a2cad3b113596f13bb271f576cf00878b077c97[m
+Merge: 81bc9cc3c 164ebb4c5
+Author: marz <zhuzhidu784>
+Date:   Thu Mar 29 21:02:53 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 81bc9cc3c37e13561e8990df776a6b469c1164b8[m
+Author: marz <zhuzhidu784>
+Date:   Thu Mar 29 21:02:40 2018 +0800
+
+    去掉无用的id生成方法
+
+[33mcommit 164ebb4c525f479699d0ddeeac959c24516c5d28[m
+Merge: 75430efaf fc8a936ce
+Author: rambo <rambo@dawoo.com>
+Date:   Thu Mar 29 20:29:18 2018 +0800
+
+    Merge branch 'master' of git.gbboss.com:lb/lottery-h5
+    
+    # Conflicts:
+    #       6hao/static/images/lottery/img-sfc.png
+
+[33mcommit 75430efaf86339d4b7720fcc5f49f950b7e210c4[m
+Author: rambo <rambo@dawoo.com>
+Date:   Thu Mar 29 20:27:45 2018 +0800
+
+    团队报表,稽核列表,稽核详情
+
+[33mcommit fc8a936ce0843df584a5503d37d0deaa10b19108[m
+Author: Dick <dick@dawoo.com>
+Date:   Thu Mar 29 19:06:43 2018 +0800
+
+    mdcenter
+
+[33mcommit e47a3319638e498de0d640018f03e90d05095929[m
+Author: Dick <dick@dawoo.com>
+Date:   Thu Mar 29 15:46:43 2018 +0800
+
+    资金bug修复
+
+[33mcommit 0b31e7f0114e941bbee2a827a20e7bacd2f5b324[m
+Author: Dick <dick@dawoo.com>
+Date:   Thu Mar 29 15:42:30 2018 +0800
+
+    资金bug修复
+
+[33mcommit 9c2d50505a659d58e26c39d2c006bb3af431ac38[m
+Merge: d50bdd45e 403e1e9f9
+Author: Dick <dick@dawoo.com>
+Date:   Thu Mar 29 15:33:29 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit d50bdd45ed3b7b89946cf179437e83e7ec96dbff[m
+Author: Dick <dick@dawoo.com>
+Date:   Thu Mar 29 15:33:21 2018 +0800
+
+    资金bug修复
+
+[33mcommit 403e1e9f9cec94c022d1e4f617fd826ba491364a[m
+Merge: a74430cf5 3c2f48906
+Author: jeremy <test@123.com>
+Date:   Thu Mar 29 15:32:14 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit a74430cf55da6a6f68db598f894421ee0c35e5ff[m
+Author: jeremy <test@123.com>
+Date:   Thu Mar 29 15:32:03 2018 +0800
+
+    manager--账号--玩家账号--玩家详细==修复BUG：新增或者修改银行卡资料时，添加同行同卡是否存在验证
+
+[33mcommit 3c2f489063e87ac01a5d0460afd8b2587d7eca21[m
+Author: marz <zhuzhidu784>
+Date:   Thu Mar 29 14:54:26 2018 +0800
+
+    增加操作人
+
+[33mcommit 28de9c4a0b00a4c281a78e18ee4a8f6c7cb8060a[m
+Merge: 6c956cf7c 41afa8d10
+Author: marz <zhuzhidu784>
+Date:   Thu Mar 29 14:37:49 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 6c956cf7c6dace6ad296d2b9f3917c937e1ddc1b[m
+Author: marz <zhuzhidu784>
+Date:   Thu Mar 29 14:37:38 2018 +0800
+
+    修改hash记录查询条件
+
+[33mcommit 41afa8d10c43805e42e22d247e024c543808caf3[m
+Merge: fdde93420 5d9f858d3
+Author: shook <shook@dawoo.com>
+Date:   Thu Mar 29 14:29:57 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit fdde934207297f1a39f11f5c73d870e229e0af11[m
+Author: shook <shook@dawoo.com>
+Date:   Thu Mar 29 14:29:43 2018 +0800
+
+    删除汇总记录表lottery_summary_record  lottery_order_summary
+
+[33mcommit 5d9f858d39a676f9a43d61dd4ad4d499e0e76708[m
+Merge: 69794e37f f76539b79
+Author: marz <zhuzhidu784>
+Date:   Thu Mar 29 14:23:46 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 69794e37fdeaaf6240f4835f1fba6750c6da3aa6[m
+Author: marz <zhuzhidu784>
+Date:   Thu Mar 29 14:23:28 2018 +0800
+
+    修改hash记录hashcode
+
+[33mcommit f76539b790dedf88f4d27a216e751a1300e3c156[m
+Author: Dick <dick@dawoo.com>
+Date:   Thu Mar 29 14:19:12 2018 +0800
+
+    资金bug修复
+
+[33mcommit 2364bca5b3480f7381517acd8349c4ba17735fd3[m
+Merge: 85d840b95 6890a7f68
+Author: Dick <dick@dawoo.com>
+Date:   Thu Mar 29 11:46:02 2018 +0800
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 85d840b953d71ecb56ca86f03a298c49a61c9208[m
+Author: Dick <dick@dawoo.com>
+Date:   Thu Mar 29 11:45:53 2018 +0800
+
+    bug

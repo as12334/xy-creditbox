@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.manager.message.SystemAnnouncementMapper">
+
+    <resultMap id="TABLE:system_announcement" type="so.wwb.lotterybox.model.message.po.SystemAnnouncement">
+        <id column="id" property="id"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_username" property="createUsername"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_username" property="updateUsername"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <select id="querySystemAnnouncementList" parameterType="so.wwb.lotterybox.model.message.so.SystemAnnouncementSo" resultType="so.wwb.lotterybox.model.message.po.SystemAnnouncement">
+        SELECT s1.*,s2.content,s2.language
+        FROM system_announcement s1 LEFT JOIN system_announcement_i18n s2 ON s1.id=s2.system_announcement_id
+        WHERE 1=1
+        <include refid="searchType"/>
+        ORDER BY s1.create_time DESC
+        <if test="searchPageMap.pageNo != null and searchPageMap.pageSize != null">
+            LIMIT #{searchPageMap.pageSize} OFFSET (#{searchPageMap.pageNo} - 1) * #{searchPageMap.pageSize}
+        </if>
+    </select>
+
+    <!--根据公告id和语言类型查询公告内容-->
+    <select id="querySysAnnouncementByIdAndLanguage" parameterType="so.wwb.lotterybox.model.message.so.SystemAnnouncementSo" resultType="so.wwb.lotterybox.model.message.po.SystemAnnouncement">
+       SELECT s1.*,s2.content,s2.language
+       FROM system_announcement s1 LEFT JOIN system_announcement_i18n s2 ON s1.id=s2.system_announcement_id
+       WHERE s1.id=#{id} AND s2.language=#{queryLanguage}
+    </select>
+
+    <select id="querySysAnnouncementById" parameterType="so.wwb.lotterybox.model.message.so.SystemAnnouncementSo" resultType="so.wwb.lotterybox.model.message.po.SystemAnnouncement">
+        SELECT s1.*,s2.content,s2.language
+        FROM system_announcement s1 LEFT JOIN system_announcement_i18n s2 ON s1.id=s2.system_announcement_id
+        WHERE s1.id=#{id}
+    </select>
+
+    <select id="queryAnnTotalCount" parameterType="so.wwb.lotterybox.model.message.so.SystemAnnouncementSo" resultType="int">
+        SELECT COUNT(*) FROM system_announcement s1 LEFT JOIN system_announcement_i18n s2 ON  s2.system_announcement_id = s1.id WHERE 1=1
+        <include refid="searchType"/>
+    </select>
+    <sql id="searchType">
+        <if test="keyword != null and keyword != ''">
+            AND s2.content LIKE '%${keyword}%'
+        </if>
+        <if test="queryStatus != null and queryStatus != ''">
+            AND s1.status=#{queryStatus}
+        </if>
+        <if test="queryStartDate != null">
+            AND s1.create_time &gt;= #{queryStartDate}
+        </if>
+        <if test="queryEndDate != null">
+            AND s1.create_time &lt;= #{queryEndDate}
+        </if>
+        <if test="queryLanguage != '' and queryLanguage != null">
+            AND s2.language=#{queryLanguage}
+        </if>
+    </sql>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.manager.common.SiteConfineIpMapper">
+
+    <resultMap id="TABLE:site_confine_ip" type="so.wwb.lotterybox.model.manager.site.po.SiteConfineIp">
+        <id column="id" property="id"/>
+        <result column="site_id" property="siteId"/>
+        <result column="time_type" property="timeType"/>
+        <result column="create_time" property="createTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="type" property="type"/>
+        <result column="start_ip" property="startIp"/>
+        <result column="end_ip" property="endIp"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+    <select id="ipContains" parameterType="so.wwb.lotterybox.model.manager.site.vo.SiteConfineIpVo" resultType="int">
+        SELECT
+        count(1)
+        FROM
+        site_confine_ip
+        WHERE
+        (start_ip &lt;= #{result.startIp}
+        AND end_ip >= #{result.endIp}
+        OR
+        start_ip >= #{result.startIp}
+        AND start_ip &lt;= #{result.endIp}
+        OR
+        end_ip >= #{result.startIp}
+        AND end_ip &lt;= #{result.endIp}
+        OR
+        start_ip >= #{result.startIp}
+
+        AND end_ip &lt;= #{result.endIp}
+        )
+        AND type=#{result.type}
+        AND site_id=#{result.siteId}
+        <if test="result.id !=null">
+            AND id NOT IN (#{result.id})
+        </if>
+    </select>
+    <!--//endregion your codes 1-->
+
+</mapper>

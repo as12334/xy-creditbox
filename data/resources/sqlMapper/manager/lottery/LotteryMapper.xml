@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.manager.lottery.LotteryMapper">
+
+    <resultMap id="TABLE:lottery" type="so.wwb.lotterybox.model.manager.lottery.po.Lottery">
+        <id column="id" property="id"/>
+        <result column="site_id" property="siteId"/>
+        <result column="type" property="type"/>
+        <result column="code" property="code"/>
+        <result column="status" property="status"/>
+        <result column="order_num" property="orderNum"/>
+        <result column="terminal" property="terminal"/>
+        <result column="site_id" property="siteId" />
+        <result column="model" property="model" />
+        <result column="name" property="name"/>
+        <result column="start_time" property="startTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="frequency" property="frequency"/>
+        <result column="classify" property="classify"/>
+
+        <result column="memo" property="memo"/>
+        <result column="is_hot" property="isHot"/>
+        <result column="is_new" property="isNew"/>
+    </resultMap>
+
+    <resultMap id="lotteryType" type="so.wwb.lotterybox.model.manager.lottery.po.LotteryType">
+        <result column="type_name" property="typeName"/>
+        <result column="type_code" property="typeCode"/>
+        <result column="lottery_num" property="lotteryNum"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id, type, code, status, orderNum, terminal, siteId
+    </sql>
+
+    <select id="queryLotteryCode" parameterType="String" resultMap="TABLE:lottery">
+        SELECT * FROM lottery WHERE code = #{lotteryCode}
+    </select>
+
+    <select id="queryListBySiteId" parameterType="Integer" resultMap="TABLE:lottery">
+        SELECT * FROM lottery WHERE  site_id= #{siteId}
+    </select>
+
+    <select id="queryLottery" parameterType="so.wwb.lotterybox.model.manager.lottery.po.Lottery" resultMap="TABLE:lottery">
+        SELECT * FROM lottery WHERE code = #{lotteryCode} AND site_id=0
+    </select>
+
+    <select id="queryLotteryTypeBySiteId" parameterType="so.wwb.lotterybox.model.manager.lottery.so.LotterySo" resultMap="lotteryType">
+        SELECT a.*,b.type_name from
+        (SELECT "type" as type_code,"count"(code) as lottery_num from lottery
+          WHERE site_id=#{siteId}
+          <if test="model != '' and model != null">
+              AND model&lt;&gt;#{model}
+          </if>
+          GROUP BY "type") a
+        LEFT JOIN lottery_type b on b.type_code=a.type_code ORDER BY b.order_num
+    </select>
+    <!--仅查询自主彩的彩种数-->
+    <select id="queryOwnLotteryTypeBySiteId" parameterType="so.wwb.lotterybox.model.manager.lottery.vo.LotteryListVo" resultMap="lotteryType">
+        SELECT a.*,b.type_name from
+        (SELECT "type" as type_code,"count"(code) as lottery_num from lottery
+        WHERE site_id=#{search.siteId} AND code IN <foreach collection="search.ownCodes" item="item" separator="," open="(" close=")">#{item}</foreach> GROUP BY "type") a
+        LEFT JOIN lottery_type b on b.type_code=a.type_code ORDER BY b.order_num
+    </select>
+
+    <select id="queryLotteryBysiteIdType" parameterType="so.wwb.lotterybox.model.manager.lottery.po.Lottery" resultMap="TABLE:lottery">
+        SELECT * FROM lottery WHERE type = #{type} AND site_id=#{siteId}
+    </select>
+
+</mapper>

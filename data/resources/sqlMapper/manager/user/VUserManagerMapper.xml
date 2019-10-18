@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.manager.user.VUserManagerMapper">
+
+    <resultMap id="TABLE:v_user_manager" type="so.wwb.lotterybox.model.manager.user.po.VUserManager">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="dept_id" property="deptId"/>
+        <result column="status" property="status"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="default_locale" property="defaultLocale"/>
+        <result column="default_timezone" property="defaultTimezone"/>
+        <result column="subsys_code" property="subsysCode"/>
+        <result column="user_type" property="userType"/>
+        <result column="built_in" property="builtIn"/>
+        <result column="owner_id" property="ownerId"/>
+        <result column="freeze_type" property="freezeType"/>
+        <result column="freeze_start_time" property="freezeStartTime"/>
+        <result column="freeze_end_time" property="freezeEndTime"/>
+        <result column="freeze_code" property="freezeCode"/>
+        <result column="login_time" property="loginTime"/>
+        <result column="login_ip" property="loginIp"/>
+        <result column="last_active_time" property="lastActiveTime"/>
+        <result column="use_line" property="useLine"/>
+        <result column="last_login_time" property="lastLoginTime"/>
+        <result column="last_login_ip" property="lastLoginIp"/>
+        <result column="total_online_time" property="totalOnlineTime"/>
+        <result column="nickname" property="nickname"/>
+        <result column="real_name" property="realName"/>
+        <result column="birthday" property="birthday"/>
+        <result column="sex" property="sex"/>
+        <result column="constellation" property="constellation"/>
+        <result column="country" property="country"/>
+        <result column="nation" property="nation"/>
+        <result column="register_ip" property="registerIp"/>
+        <result column="avatar_url" property="avatarUrl"/>
+        <result column="permission_pwd" property="permissionPwd"/>
+        <result column="idcard" property="idcard"/>
+        <result column="default_currency" property="defaultCurrency"/>
+        <result column="register_site" property="registerSite"/>
+        <result column="region" property="region"/>
+        <result column="city" property="city"/>
+        <result column="memo" property="memo"/>
+        <result column="password_level" property="passwordLevel"/>
+        <result column="login_ip_dict_code" property="loginIpDictCode"/>
+        <result column="last_login_ip_dict_code" property="lastLoginIpDictCode"/>
+        <result column="register_ip_dict_code" property="registerIpDictCode"/>
+        <result column="login_error_times" property="loginErrorTimes"/>
+        <result column="freeze_title" property="freezeTitle"/>
+        <result column="freeze_content" property="freezeContent"/>
+        <result column="last_logout_time" property="lastLogoutTime"/>
+        <result column="freeze_user" property="freezeUser"/>
+        <result column="disabled_user" property="disabledUser"/>
+        <result column="disabled_time" property="disabledTime"/>
+        <result column="freeze_time" property="freezeTime"/>
+        <result column="account_freeze_remark" property="accountFreezeRemark"/>
+        <result column="secpwd_freeze_start_time" property="secpwdFreezeStartTime"/>
+        <result column="secpwd_freeze_end_time" property="secpwdFreezeEndTime"/>
+        <result column="secpwd_error_times" property="secpwdErrorTimes"/>
+        <result column="session_key" property="sessionKey"/>
+        <result column="terminal" property="terminal"/>
+        <result column="authentication_key" property="authenticationKey"/>
+        <result column="site_id" property="siteId"/>
+        <result column="code" property="code"/>
+        <result column="owner_code" property="ownerCode"/>
+        <result column="parent_ids" property="parentIds"/>
+        <result column="parent_names" property="parentNames"/>
+        <result column="key" property="key"/>
+        <result column="owner_name" property="ownerName"/>
+        <result column="update_name" property="updateName"/>
+        <result column="superior_occupy" property="superiorOccupy"/>
+        <result column="stint_occupy" property="stintOccupy"/>
+        <result column="hid" property="hid"/>
+        <result column="credits" property="credits"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+    <select id="searchLevelUser" resultMap="TABLE:v_user_manager">
+        SELECT  * from  v_user_manager WHERE hid like CONCAT('',#{hid},'%')  AND length(hid)>= #{hidLength}
+    </select>
+
+    <!--//endregion your codes 1-->
+
+</mapper>

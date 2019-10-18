@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:websocket="http://www.springframework.org/schema/websocket"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+        http://www.springframework.org/schema/websocket
+        http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+    <bean id="sessionFilter" class="so.wwb.lotterybox.mdcenter.filter.SessionFilter">
+        <property name="redisSessionDao" ref="redisSessionDao"/>
+        <property name="cipherKeyResolver" ref="cipherKeyResolver"/>
+        <property name="sessionKeyPreFix" value="${shiro.session.keyPrefix}"/>
+    </bean>
+    <!-- session会话存储的实现类 -->
+    <bean id="redisSessionDao" class="org.soul.web.session.RedisSessionDao">
+        <property name="jedisClientProxy" ref="jedisTemplateShrio" />
+        <property name="sessionKeyPreFix" value="${shiro.session.keyPrefix}"/>
+        <property name="timeOut" value="${shiro.session.expire}000" />
+    </bean>
+    <websocket:handlers>
+        <websocket:mapping path="/websocket/boss" handler="bossWebSocketHandler"/>
+        <websocket:mapping path="/websocket/shareholder" handler="shareHolderWebSocketHandler"/>
+        <websocket:mapping path="/websocket/merchant" handler="merchantWebSocketHandler"/>
+        <websocket:mapping path="/websocket/merchant-api" handler="merchantApiWebSocketHandler"/>
+        <websocket:mapping path="/websocket/distributor" handler="distributorWebSocketHandler"/>
+        <websocket:mapping path="/websocket/distributor-api" handler="distributorApiWebSocketHandler"/>
+        <websocket:mapping path="/websocket/hall" handler="hallWebSocketHandler" />
+    </websocket:handlers>
+
+    <bean id="bossWebSocketHandler" class="so.wwb.lotterybox.mdcenter.comet.websocket.BossWebSocketHandler"/>
+    <bean id="shareHolderWebSocketHandler" class="so.wwb.lotterybox.mdcenter.comet.websocket.ShareHolderWebSocketHandler"/>
+    <bean id="merchantWebSocketHandler" class="so.wwb.lotterybox.mdcenter.comet.websocket.MerchantWebSocketHandler"/>
+    <bean id="merchantApiWebSocketHandler" class="so.wwb.lotterybox.mdcenter.comet.websocket.MerchantAPIWebSocketHandler"/>
+    <bean id="distributorWebSocketHandler" class="so.wwb.lotterybox.mdcenter.comet.websocket.DistributorWebSocketHandler"/>
+    <bean id="distributorApiWebSocketHandler" class="so.wwb.lotterybox.mdcenter.comet.websocket.DistributorAPIWebSocketHandler"/>
+    <bean id="hallWebSocketHandler" class="so.wwb.lotterybox.mdcenter.comet.websocket.HallWebSocketHandler"/>
+
+</beans>
