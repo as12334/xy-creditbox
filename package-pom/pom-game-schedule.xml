@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>so.wwb.lotterybox</groupId>
+    <groupId>so.wwb.creditbox</groupId>
     <artifactId>app_schedule</artifactId>
     <packaging>pom</packaging>
     <version>1.0.1-SNAPSHOT</version>
@@ -12,10 +12,8 @@
         <module>../model</module>
         <module>../data</module>
         <module>../iservice</module>
-        <module>../api-iservice</module>
         <module>../common</module>
         <module>../service</module>
-        <module>../api-service</module>
         <module>../web/webcommon</module>
         <module>../web/game-schedule</module>
     </modules>

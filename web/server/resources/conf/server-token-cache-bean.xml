@@ -34,7 +34,7 @@
         <property name="useLocalProxy" value="false" />
     </bean>
 
-    <bean id="tokenCache" class="so.wwb.lotterybox.cache.TokenCache">
+    <bean id="tokenCache" class="so.wwb.creditbox.cache.TokenCache">
         <property name="jedisClientProxy" ref="apiJedisProxy"/>
         <property name="expire" value="${api.token.expire}"/>
         <property name="keyPrefix" value="${api.token.keyPrefix}"/>

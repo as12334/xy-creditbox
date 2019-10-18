@@ -1,4 +1,4 @@
-<%@page import="so.wwb.lotterybox.web.tools.SessionManagerCommon" %>
+<%@page import="so.wwb.creditbox.web.tools.SessionManagerCommon" %>
 
 <c:set var="logo" value="<%= SessionManagerCommon.getLogo() %>"/>
 <c:set var="flashLogo" value="<%= SessionManagerCommon.getFlashLogo() %>"/>

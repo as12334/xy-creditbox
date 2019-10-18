@@ -7,7 +7,7 @@
 		    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<import resource="classpath*:conf/notify-bean.xml"/>
-	<bean class="so.wwb.lotterybox.common.watcher.zookeeper.interceptors.NotifyAopInterceptor" id="notifyAopInterceptor">
+	<bean class="so.wwb.creditbox.common.watcher.zookeeper.interceptors.NotifyAopInterceptor" id="notifyAopInterceptor">
 	</bean>
 	<aop:config>
 		<!--拦截:消息通知-->

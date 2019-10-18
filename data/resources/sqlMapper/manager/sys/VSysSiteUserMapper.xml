@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="so.wwb.lotterybox.data.manager.sys.VSysSiteUserMapper">
+<mapper namespace="so.wwb.creditbox.data.manager.sys.VSysSiteUserMapper">
 
-    <resultMap id="TABLE:v_sys_site_user" type="so.wwb.lotterybox.model.manager.sys.po.VSysSiteUser">
+    <resultMap id="TABLE:v_sys_site_user" type="so.wwb.creditbox.model.manager.sys.po.VSysSiteUser">
         <id column="id" property="id"/>
         <result column="site_name" property="siteName"/>
         <result column="sys_user_id" property="sysUserId"/>
@@ -33,7 +33,7 @@
     <!--//region your codes 1-->
 
     <!--实时查询站长用户名-->
-    <select id="queryMaster"  resultType="so.wwb.lotterybox.model.manager.sys.po.VSysSiteUser">
+    <select id="queryMaster"  resultType="so.wwb.creditbox.model.manager.sys.po.VSysSiteUser">
        SELECT	u.username FROM v_sys_site_user u  WHERE   "id" > 0  GROUP BY u.username
     </select>
     <!--//endregion your codes 1-->

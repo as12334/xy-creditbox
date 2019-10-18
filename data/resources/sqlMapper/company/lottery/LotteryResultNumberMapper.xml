@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="so.wwb.lotterybox.data.merchant.lottery.LotteryResultNumberMapper">
+<mapper namespace="so.wwb.creditbox.data.merchant.lottery.LotteryResultNumberMapper">
 
-    <resultMap id="TABLE:lottery_result_number" type="so.wwb.lotterybox.model.company.lottery.po.LotteryResultNumber">
+    <resultMap id="TABLE:lottery_result_number" type="so.wwb.creditbox.model.company.lottery.po.LotteryResultNumber">
         <id column="id" property="id"/>
         <result column="expect" property="expect"/>
         <result column="code" property="code"/>
@@ -18,7 +18,7 @@
         <result column="open_code_memo" property="openCodeMemo"/>
     </resultMap>
 
-    <insert id="batchInsertNotExist" parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryResultNumber">
+    <insert id="batchInsertNotExist" parameterType="so.wwb.creditbox.model.company.lottery.po.LotteryResultNumber">
         insert into lottery_result_number ("type", "code", "expect", "open_code", "open_code_memo", "open_time", "close_time", "opening_time", "ascription_time", "gather_origin", "gather_time", "gather")
         VALUES
         <foreach collection="list" item="item" index="index" separator=",">
@@ -38,7 +38,7 @@
         ON conflict (code, expect) do nothing;
     </insert>
 
-    <update id="batchUpdateExist" parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryResultNumber">
+    <update id="batchUpdateExist" parameterType="so.wwb.creditbox.model.company.lottery.po.LotteryResultNumber">
         UPDATE lottery_result_number lrn SET ("open_code", "open_code_memo", "gather", "gather_origin", "gather_time") =
         ( SELECT rm.open_code, rm.open_code_memo, rm.gather, rm.gather_origin, rm.gather_time FROM ( VALUES
             <foreach collection="list" item="item" index="index" separator=",">
@@ -56,7 +56,7 @@
     </update>
 
     <!-- 查询所有彩种最近一期开奖结果 -->
-    <select id="queryAllLastOpened" resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryResultNumber">
+    <select id="queryAllLastOpened" resultType="so.wwb.creditbox.model.company.lottery.po.LotteryResultNumber">
         SELECT "type", code, expect, open_time, open_code,open_code_memo FROM (
             SELECT "type", code, expect, open_time,open_code_memo, open_code, "row_number"() OVER (PARTITION BY code ORDER BY close_time DESC)
             FROM Lottery_result_number
@@ -72,16 +72,16 @@
         select * from f_lottery_recalculate(#{code},#{type},#{expect},#{winrecordjson});
     </select>
 
-    <select id="doRevoke" parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryResultNumber" resultType="java.lang.String">
+    <select id="doRevoke" parameterType="so.wwb.creditbox.model.company.lottery.po.LotteryResultNumber" resultType="java.lang.String">
         select * from f_lottery_revoke(#{code},#{expect});
     </select>
 
-    <select id="doRevocation" parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryResultNumber" resultType="java.lang.String">
+    <select id="doRevocation" parameterType="so.wwb.creditbox.model.company.lottery.po.LotteryResultNumber" resultType="java.lang.String">
         select * from f_lottery_revocation(#{code},#{expect});
     </select>
 
     <!--批量调盘-->
-    <update id="batchUpdateAdjust" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryResultNumberSo">
+    <update id="batchUpdateAdjust" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryResultNumberSo">
         UPDATE Lottery_result_number lrn SET
         <if test="openTimeInterval != null">
             open_time = (open_time + (${openTimeInterval}||'s')::INTERVAL)
@@ -101,7 +101,7 @@
         select * from f_init_lottery_result_number_main(#{codesStr},#{initDate});
     </select>
 
-    <update id="updateOpenResultNum" parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryResultNumber">
+    <update id="updateOpenResultNum" parameterType="so.wwb.creditbox.model.company.lottery.po.LotteryResultNumber">
         UPDATE lottery_result_number SET
         "open_code" = #{openCode},
         "open_code_memo" = #{openCodeMemo},

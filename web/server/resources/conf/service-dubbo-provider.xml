@@ -8,7 +8,7 @@
     <!--//region your codes 1-->
 
         <!-- 用户管理/详细视图 - Fei  jeremydubbo服务 -->
-    <dubbo:service ref="vUserDetailService" interface="so.wwb.lotterybox.iservice.company.user.IVUserDetailService"/>
+    <dubbo:service ref="vUserDetailService" interface="so.wwb.creditbox.iservice.company.user.IVUserDetailService"/>
     
 
     <!--//endregion your codes 1-->

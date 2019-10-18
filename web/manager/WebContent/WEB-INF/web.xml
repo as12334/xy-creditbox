@@ -20,7 +20,7 @@
     </listener>
 
     <listener>
-        <listener-class>so.wwb.lotterybox.manager.init.CtxLoaderListener</listener-class>
+        <listener-class>so.wwb.creditbox.manager.init.CtxLoaderListener</listener-class>
     </listener>
 
     <listener>
@@ -28,11 +28,11 @@
     </listener>
 
     <listener>
-        <listener-class>so.wwb.lotterybox.manager.listener.HttpSessionUserListener</listener-class>
+        <listener-class>so.wwb.creditbox.manager.listener.HttpSessionUserListener</listener-class>
     </listener>
 
     <listener>
-        <listener-class>so.wwb.lotterybox.web.session.SessionUserListener</listener-class>
+        <listener-class>so.wwb.creditbox.web.session.SessionUserListener</listener-class>
     </listener>
     <!-- listener end -->
 
@@ -98,75 +98,75 @@
     <!-- character encoding filter end -->
 
     <!--domain filter start -->
-    <filter>
-        <filter-name>appLineFilter</filter-name>
-        <filter-class>so.wwb.lotterybox.manager.filter.AppLineFilter</filter-class>
-        <async-supported>true</async-supported>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>appLineFilter</filter-name>
-        <url-pattern>/app/line.html</url-pattern>
-    </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>appLineFilter</filter-name>-->
+        <!--<filter-class>so.wwb.creditbox.manager.filter.AppLineFilter</filter-class>-->
+        <!--<async-supported>true</async-supported>-->
+        <!--<init-param>-->
+            <!--<param-name>encoding</param-name>-->
+            <!--<param-value>UTF-8</param-value>-->
+        <!--</init-param>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>appLineFilter</filter-name>-->
+        <!--<url-pattern>/app/line.html</url-pattern>-->
+    <!--</filter-mapping>-->
 
-    <filter>
-        <filter-name>SaveSiteServerIpFilter</filter-name>
-        <filter-class>so.wwb.lotterybox.manager.filter.SaveSiteServerIpFilter</filter-class>
-        <async-supported>true</async-supported>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>SaveSiteServerIpFilter</filter-name>
-        <url-pattern>/tool/save-site-server-ip.html</url-pattern>
-    </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>SaveSiteServerIpFilter</filter-name>-->
+        <!--<filter-class>so.wwb.creditbox.manager.filter.SaveSiteServerIpFilter</filter-class>-->
+        <!--<async-supported>true</async-supported>-->
+        <!--<init-param>-->
+            <!--<param-name>encoding</param-name>-->
+            <!--<param-value>UTF-8</param-value>-->
+        <!--</init-param>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>SaveSiteServerIpFilter</filter-name>-->
+        <!--<url-pattern>/tool/save-site-server-ip.html</url-pattern>-->
+    <!--</filter-mapping>-->
 
-    <filter>
-        <filter-name>GetDomainFilter</filter-name>
-        <filter-class>so.wwb.lotterybox.manager.filter.GetDomainFilter</filter-class>
-        <async-supported>true</async-supported>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>GetDomainFilter</filter-name>
-        <url-pattern>/tool/get-domains.html</url-pattern>
-    </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>GetDomainFilter</filter-name>-->
+        <!--<filter-class>so.wwb.creditbox.manager.filter.GetDomainFilter</filter-class>-->
+        <!--<async-supported>true</async-supported>-->
+        <!--<init-param>-->
+            <!--<param-name>encoding</param-name>-->
+            <!--<param-value>UTF-8</param-value>-->
+        <!--</init-param>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>GetDomainFilter</filter-name>-->
+        <!--<url-pattern>/tool/get-domains.html</url-pattern>-->
+    <!--</filter-mapping>-->
 
-    <filter>
-        <filter-name>GetSitesFilter</filter-name>
-        <filter-class>so.wwb.lotterybox.manager.filter.GetSitesFilter</filter-class>
-        <async-supported>true</async-supported>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>GetSitesFilter</filter-name>
-        <url-pattern>/tool/get-sites.html</url-pattern>
-    </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>GetSitesFilter</filter-name>-->
+        <!--<filter-class>so.wwb.creditbox.manager.filter.GetSitesFilter</filter-class>-->
+        <!--<async-supported>true</async-supported>-->
+        <!--<init-param>-->
+            <!--<param-name>encoding</param-name>-->
+            <!--<param-value>UTF-8</param-value>-->
+        <!--</init-param>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>GetSitesFilter</filter-name>-->
+        <!--<url-pattern>/tool/get-sites.html</url-pattern>-->
+    <!--</filter-mapping>-->
 
-    <filter>
-        <filter-name>CheckDomainIpFilter</filter-name>
-        <filter-class>so.wwb.lotterybox.manager.filter.CheckDomainIpFilter</filter-class>
-        <async-supported>true</async-supported>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>CheckDomainIpFilter</filter-name>
-        <url-pattern>/tool/check-DomainIp.html</url-pattern>
-    </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>CheckDomainIpFilter</filter-name>-->
+        <!--<filter-class>so.wwb.creditbox.manager.filter.CheckDomainIpFilter</filter-class>-->
+        <!--<async-supported>true</async-supported>-->
+        <!--<init-param>-->
+            <!--<param-name>encoding</param-name>-->
+            <!--<param-value>UTF-8</param-value>-->
+        <!--</init-param>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>CheckDomainIpFilter</filter-name>-->
+        <!--<url-pattern>/tool/check-DomainIp.html</url-pattern>-->
+    <!--</filter-mapping>-->
 
     <filter>
         <filter-name>domainFilter</filter-name>
@@ -275,7 +275,7 @@
     <!--安全密码-->
     <filter>
         <filter-name>PrivilegeFilter</filter-name>
-        <filter-class>so.wwb.lotterybox.web.filter.PrivilegeFilter</filter-class>
+        <filter-class>so.wwb.creditbox.web.filter.PrivilegeFilter</filter-class>
         <async-supported>true</async-supported>
     </filter>
     <filter-mapping>

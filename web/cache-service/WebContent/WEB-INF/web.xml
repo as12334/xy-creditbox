@@ -21,7 +21,7 @@
     </context-param>
 
     <listener>
-        <listener-class>so.wwb.lotterybox.mweb.init.ServiceCtxLoaderListener</listener-class>
+        <listener-class>so.wwb.creditbox.mweb.init.ServiceCtxLoaderListener</listener-class>
     </listener>
     <!--health check pending -->
     <filter>

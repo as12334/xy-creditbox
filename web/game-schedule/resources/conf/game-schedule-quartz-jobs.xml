@@ -5,29 +5,29 @@
        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd"
        default-autowire="byName">
 
-    <bean id="lotteryResultInitJob" class="so.wwb.lotterybox.schedule.service.manager.job.LotteryResultInitJob" />
+    <bean id="lotteryResultInitJob" class="so.wwb.creditbox.schedule.service.manager.job.LotteryResultInitJob" />
 
-    <bean id="lotteryResultMainJob" class="so.wwb.lotterybox.schedule.service.manager.job.LotteryResultMainJob" />
+    <bean id="lotteryResultMainJob" class="so.wwb.creditbox.schedule.service.manager.job.LotteryResultMainJob" />
 
-    <bean id="lotteryResultOfficeSubJob" class="so.wwb.lotterybox.schedule.service.manager.job.LotteryResultOfficeSubJob" />
+    <bean id="lotteryResultOfficeSubJob" class="so.wwb.creditbox.schedule.service.manager.job.LotteryResultOfficeSubJob" />
 
-    <bean id="lotteryResultOwnSubJob" class="so.wwb.lotterybox.schedule.service.manager.job.LotteryResultOwnSubJob" />
+    <bean id="lotteryResultOwnSubJob" class="so.wwb.creditbox.schedule.service.manager.job.LotteryResultOwnSubJob" />
 
-    <bean id="lotteryResultValidJob" class="so.wwb.lotterybox.schedule.service.manager.job.LotteryResultValidJob" />
+    <bean id="lotteryResultValidJob" class="so.wwb.creditbox.schedule.service.manager.job.LotteryResultValidJob" />
 
-    <bean id="jspk10OpenJob" class="so.wwb.lotterybox.schedule.service.manager.job.Jspk10OpenJob" />
+    <bean id="jspk10OpenJob" class="so.wwb.creditbox.schedule.service.manager.job.Jspk10OpenJob" />
 
-    <bean id="jspk10PayoutJob" class="so.wwb.lotterybox.schedule.service.manager.job.Jspk10PayoutJob" />
+    <bean id="jspk10PayoutJob" class="so.wwb.creditbox.schedule.service.manager.job.Jspk10PayoutJob" />
 
-    <bean id="jisk3OpenJob" class="so.wwb.lotterybox.schedule.service.manager.job.Jisk3OpenJob" />
+    <bean id="jisk3OpenJob" class="so.wwb.creditbox.schedule.service.manager.job.Jisk3OpenJob" />
 
-    <bean id="jisk3PayoutJob" class="so.wwb.lotterybox.schedule.service.manager.job.Jisk3PayoutJob" />
+    <bean id="jisk3PayoutJob" class="so.wwb.creditbox.schedule.service.manager.job.Jisk3PayoutJob" />
 
-    <bean id="ffsscOpenJob" class="so.wwb.lotterybox.schedule.service.manager.job.FfsscOpenJob" />
+    <bean id="ffsscOpenJob" class="so.wwb.creditbox.schedule.service.manager.job.FfsscOpenJob" />
 
-    <bean id="ffsscPayoutJob" class="so.wwb.lotterybox.schedule.service.manager.job.FfsscPayoutJob" />
+    <bean id="ffsscPayoutJob" class="so.wwb.creditbox.schedule.service.manager.job.FfsscPayoutJob" />
 
-    <bean id="jslhcOpenJob" class="so.wwb.lotterybox.schedule.service.manager.job.JslhcOpenJob" />
+    <bean id="jslhcOpenJob" class="so.wwb.creditbox.schedule.service.manager.job.JslhcOpenJob" />
 
-    <bean id="jslhcPayoutJob" class="so.wwb.lotterybox.schedule.service.manager.job.JslhcPayoutJob" />
+    <bean id="jslhcPayoutJob" class="so.wwb.creditbox.schedule.service.manager.job.JslhcPayoutJob" />
 </beans>

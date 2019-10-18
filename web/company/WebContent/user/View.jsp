@@ -1,4 +1,4 @@
-<%--@elvariable id="command" type="so.wwb.lotterybox.model.company.user.vo.VUserDetailVo"--%>
+<%--@elvariable id="command" type="so.wwb.creditbox.model.company.user.vo.VUserDetailVo"--%>
 <%@page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ include file="/include/include.inc.jsp" %>
 <!--//region your codes 1-->

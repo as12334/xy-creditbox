@@ -23,7 +23,7 @@
                                 expression="org.springframework.stereotype.Controller"></context:exclude-filter>
     </context:component-scan>
 
-    <bean class="so.wwb.lotterybox.mweb.init.ConfigManager">
+    <bean class="so.wwb.creditbox.mweb.init.ConfigManager">
         <constructor-arg index="0" value="${dubbo.application.name}"></constructor-arg>
         <constructor-arg index="1" value="${dubbo.version}"></constructor-arg>
     </bean>

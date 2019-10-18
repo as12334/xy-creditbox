@@ -25,6 +25,6 @@
     <dubbo:registry protocol="zookeeper" wait="60000" address="${zookeeper.url}" id="zookeeperClient" file="${dubbo.application.name}.dubbo"/>
 
     <!--用户站点缓存解决方法-->
-    <bean id="userSitesCacheResolver" class="so.wwb.lotterybox.common.filter.UserSitesCacheResolver"/>
+    <bean id="userSitesCacheResolver" class="so.wwb.creditbox.common.filter.UserSitesCacheResolver"/>
 
 </beans>

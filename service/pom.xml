@@ -3,8 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>lotterybox</artifactId>
-        <groupId>so.wwb.lotterybox</groupId>
+        <artifactId>creditbox</artifactId>
+        <groupId>so.wwb.creditbox</groupId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
 
@@ -40,24 +40,24 @@
             <version>${quartz.version}</version>
         </dependency>
         <dependency>
-            <groupId>so.wwb.lotterybox</groupId>
+            <groupId>so.wwb.creditbox</groupId>
             <artifactId>data</artifactId>
-            <version>${lotterybox.version}</version>
+            <version>${creditbox.version}</version>
         </dependency>
         <dependency>
-            <groupId>so.wwb.lotterybox</groupId>
+            <groupId>so.wwb.creditbox</groupId>
             <artifactId>model</artifactId>
-            <version>${lotterybox.version}</version>
+            <version>${creditbox.version}</version>
         </dependency>
         <dependency>
-            <groupId>so.wwb.lotterybox</groupId>
+            <groupId>so.wwb.creditbox</groupId>
             <artifactId>iservice</artifactId>
-            <version>${lotterybox.version}</version>
+            <version>${creditbox.version}</version>
         </dependency>
         <dependency>
-            <groupId>so.wwb.lotterybox</groupId>
+            <groupId>so.wwb.creditbox</groupId>
             <artifactId>common</artifactId>
-            <version>${lotterybox.version}</version>
+            <version>${creditbox.version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>

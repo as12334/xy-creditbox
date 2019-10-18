@@ -4,8 +4,8 @@
 <%@ page import="org.soul.commons.lang.string.StringTool" %>
 <%@ page import="org.soul.commons.spring.utils.SpringTool" %>
 <%@ page import="org.soul.web.session.RedisSessionDao" %>
-<%@ page import="so.wwb.lotterybox.model.enums.user.UserTypeEnum" %>
-<%@ page import="so.wwb.lotterybox.model.manager.sys.po.VSysSiteManage" %>
+<%@ page import="so.wwb.creditbox.model.enums.user.UserTypeEnum" %>
+<%@ page import="so.wwb.creditbox.model.manager.sys.po.VSysSiteManage" %>
 <%@ page import="java.text.MessageFormat" %>
 <%@ page import="java.util.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>

@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>web</artifactId>
-        <groupId>so.wwb.lotterybox</groupId>
+        <groupId>so.wwb.creditbox</groupId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -42,39 +42,28 @@
         </dependency>
 
         <dependency>
-            <groupId>so.wwb.lotterybox</groupId>
+            <groupId>so.wwb.creditbox</groupId>
             <artifactId>model</artifactId>
-            <version>${lotterybox.version}</version>
+            <version>${creditbox.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>so.wwb.lotterybox</groupId>
+            <groupId>so.wwb.creditbox</groupId>
             <artifactId>iservice</artifactId>
-            <version>${lotterybox.version}</version>
+            <version>${creditbox.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>so.wwb.lotterybox</groupId>
+            <groupId>so.wwb.creditbox</groupId>
             <artifactId>service</artifactId>
-            <version>${lotterybox.version}</version>
+            <version>${creditbox.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>so.wwb.lotterybox</groupId>
-            <artifactId>api-iservice</artifactId>
-            <version>${lotterybox.version}</version>
-        </dependency>
 
         <dependency>
-            <groupId>so.wwb.lotterybox</groupId>
-            <artifactId>api-service</artifactId>
-            <version>${lotterybox.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>so.wwb.lotterybox</groupId>
+            <groupId>so.wwb.creditbox</groupId>
             <artifactId>common</artifactId>
-            <version>${lotterybox.version}</version>
+            <version>${creditbox.version}</version>
         </dependency>
 
         <dependency>

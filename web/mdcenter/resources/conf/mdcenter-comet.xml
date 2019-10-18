@@ -7,7 +7,7 @@
        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
         http://www.springframework.org/schema/websocket
         http://www.springframework.org/schema/websocket/spring-websocket.xsd">
-    <bean id="sessionFilter" class="so.wwb.lotterybox.mdcenter.filter.SessionFilter">
+    <bean id="sessionFilter" class="so.wwb.creditbox.mdcenter.filter.SessionFilter">
         <property name="redisSessionDao" ref="redisSessionDao"/>
         <property name="cipherKeyResolver" ref="cipherKeyResolver"/>
         <property name="sessionKeyPreFix" value="${shiro.session.keyPrefix}"/>
@@ -28,12 +28,12 @@
         <websocket:mapping path="/websocket/hall" handler="hallWebSocketHandler" />
     </websocket:handlers>
 
-    <bean id="bossWebSocketHandler" class="so.wwb.lotterybox.mdcenter.comet.websocket.BossWebSocketHandler"/>
-    <bean id="shareHolderWebSocketHandler" class="so.wwb.lotterybox.mdcenter.comet.websocket.ShareHolderWebSocketHandler"/>
-    <bean id="merchantWebSocketHandler" class="so.wwb.lotterybox.mdcenter.comet.websocket.MerchantWebSocketHandler"/>
-    <bean id="merchantApiWebSocketHandler" class="so.wwb.lotterybox.mdcenter.comet.websocket.MerchantAPIWebSocketHandler"/>
-    <bean id="distributorWebSocketHandler" class="so.wwb.lotterybox.mdcenter.comet.websocket.DistributorWebSocketHandler"/>
-    <bean id="distributorApiWebSocketHandler" class="so.wwb.lotterybox.mdcenter.comet.websocket.DistributorAPIWebSocketHandler"/>
-    <bean id="hallWebSocketHandler" class="so.wwb.lotterybox.mdcenter.comet.websocket.HallWebSocketHandler"/>
+    <bean id="bossWebSocketHandler" class="so.wwb.creditbox.mdcenter.comet.websocket.BossWebSocketHandler"/>
+    <bean id="shareHolderWebSocketHandler" class="so.wwb.creditbox.mdcenter.comet.websocket.ShareHolderWebSocketHandler"/>
+    <bean id="merchantWebSocketHandler" class="so.wwb.creditbox.mdcenter.comet.websocket.MerchantWebSocketHandler"/>
+    <bean id="merchantApiWebSocketHandler" class="so.wwb.creditbox.mdcenter.comet.websocket.MerchantAPIWebSocketHandler"/>
+    <bean id="distributorWebSocketHandler" class="so.wwb.creditbox.mdcenter.comet.websocket.DistributorWebSocketHandler"/>
+    <bean id="distributorApiWebSocketHandler" class="so.wwb.creditbox.mdcenter.comet.websocket.DistributorAPIWebSocketHandler"/>
+    <bean id="hallWebSocketHandler" class="so.wwb.creditbox.mdcenter.comet.websocket.HallWebSocketHandler"/>
 
 </beans>

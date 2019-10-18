@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="so.wwb.lotterybox.data.merchant.lottery.LotteryResultLogMapper">
+<mapper namespace="so.wwb.creditbox.data.merchant.lottery.LotteryResultLogMapper">
 
-    <resultMap id="TABLE:lottery_result_log" type="so.wwb.lotterybox.model.company.lottery.po.LotteryResultLog">
+    <resultMap id="TABLE:lottery_result_log" type="so.wwb.creditbox.model.company.lottery.po.LotteryResultLog">
         <id column="id" property="id"/>
         <result column="code" property="code"/>
         <result column="expect" property="expect"/>
@@ -11,7 +11,7 @@
     </resultMap>
 
     <!--//region your codes 1-->
-    <insert id="insertResultLog" parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryResultLog">
+    <insert id="insertResultLog" parameterType="so.wwb.creditbox.model.company.lottery.po.LotteryResultLog">
         INSERT INTO "lottery_result_log" ("code", "expect", "result_num", "create_time")
         select #{code}, #{expect}, #{resultNum}, #{createTime}
         WHERE NOT EXISTS (select id FROM lottery_result_log WHERE code=#{code} and expect=#{expect})

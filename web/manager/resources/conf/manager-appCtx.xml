@@ -42,12 +42,12 @@
 	</bean>
 
 	<!-- driver scan package -->
-	<context:component-scan base-package="so.wwb.lotterybox.manager">
+	<context:component-scan base-package="so.wwb.creditbox.manager">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
 	<!--过滤器审计日志实现-->
-	<bean id="filterAuditLog" class="so.wwb.lotterybox.web.interceptor.FilterAuditLog"/>
+	<bean id="filterAuditLog" class="so.wwb.creditbox.web.interceptor.FilterAuditLog"/>
 
 	<!--非法字符-->
 	<bean id="illegalCharacterFilter" class="org.soul.web.filter.IllegalCharacterFilter">

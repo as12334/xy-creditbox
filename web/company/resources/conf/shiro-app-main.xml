@@ -14,9 +14,9 @@
 	<import resource="classpath*:conf/shiro-app-local.xml"/>
 
 	<!-- manager自定义subsysCode过滤 -->
-	<bean id="subsysCodeFilter" class="so.wwb.lotterybox.company.filter.ManagerSubsysCodeFilter"/>
+	<bean id="subsysCodeFilter" class="so.wwb.creditbox.company.filter.ManagerSubsysCodeFilter"/>
 
-	<bean id="passportDelegate" class="so.wwb.lotterybox.web.shiro.common.delegate.PassportDelegate">
+	<bean id="passportDelegate" class="so.wwb.creditbox.web.shiro.common.delegate.PassportDelegate">
 		<property name="passportListeners" ref="passportListeners"/>
 	</bean>
 
@@ -25,7 +25,7 @@
 		<ref bean="userInfoListener"/>
 	</util:list>
 
-	<bean id="userInfoListener" class="so.wwb.lotterybox.company.session.listener.UserInfoListener"/>
+	<bean id="userInfoListener" class="so.wwb.creditbox.company.session.listener.UserInfoListener"/>
 
 	<bean id="shiroFilter" class="org.soul.web.shiro.common.spring.CustomShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />

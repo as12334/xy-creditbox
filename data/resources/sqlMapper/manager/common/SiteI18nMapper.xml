@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="so.wwb.lotterybox.data.manager.common.SiteI18nMapper">
+<mapper namespace="so.wwb.creditbox.data.manager.common.SiteI18nMapper">
 
-    <resultMap id="TABLE:site_i18n" type="so.wwb.lotterybox.model.manager.site.po.SiteI18n">
+    <resultMap id="TABLE:site_i18n" type="so.wwb.creditbox.model.manager.site.po.SiteI18n">
         <id column="id" property="id"/>
         <result column="module" property="module"/>
         <result column="type" property="type"/>
@@ -16,7 +16,7 @@
     </resultMap>
 
     <!--//region your codes 1-->
-    <insert id="hideInsertI18n" parameterType="so.wwb.lotterybox.model.manager.site.vo.SiteI18nListVo">
+    <insert id="hideInsertI18n" parameterType="so.wwb.creditbox.model.manager.site.vo.SiteI18nListVo">
         INSERT INTO site_i18n (module,type,key ,locale ,value,site_id)
         VALUES
         <foreach collection="siteI18ns" item="site" separator=",">

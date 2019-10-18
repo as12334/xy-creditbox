@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="so.wwb.lotterybox.data.manager.taskschedule.TaskScheduleMapper">
+<mapper namespace="so.wwb.creditbox.data.manager.taskschedule.TaskScheduleMapper">
 
     <resultMap id="TABLE:task_schedule" type="org.soul.model.taskschedule.po.TaskSchedule">
         <id column="id" property="id"/>

@@ -3,13 +3,13 @@
 <%@page language="java" pageEncoding="UTF-8"%>
 <%@page import="org.soul.commons.locale.DateFormat" %>
 <%@page import="org.soul.commons.locale.DateQuickPicker" %>
-<%@page import="so.wwb.lotterybox.web.cache.Cache" %>
-<%@ page import="so.wwb.lotterybox.web.init.ConfigBase" %>
-<%@ page import="so.wwb.lotterybox.web.tools.SessionManagerCommon" %>
+<%@page import="so.wwb.creditbox.web.cache.Cache" %>
+<%@ page import="so.wwb.creditbox.web.init.ConfigBase" %>
+<%@ page import="so.wwb.creditbox.web.tools.SessionManagerCommon" %>
 <%@ page import="java.text.MessageFormat" %>
 <%@page trimDirectiveWhitespaces="true" %>
-<%@ page import="so.wwb.lotterybox.web.tools.SysParamTool" %>
-<%@ page import="so.wwb.lotterybox.web.route.ManageRoute" %>
+<%@ page import="so.wwb.creditbox.web.tools.SysParamTool" %>
+<%@ page import="so.wwb.creditbox.web.route.ManageRoute" %>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>

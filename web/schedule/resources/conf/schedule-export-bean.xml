@@ -4,8 +4,8 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
 
-    <bean name="BillSalaryExportItemConf" class="so.wwb.lotterybox.common.export.core.conf.ExportItemConf">
-        <property name="exportDataClass" value="so.wwb.lotterybox.model.company.fund.po.BillSalary"/>
+    <bean name="BillSalaryExportItemConf" class="so.wwb.creditbox.common.export.core.conf.ExportItemConf">
+        <property name="exportDataClass" value="so.wwb.creditbox.model.company.fund.po.BillSalary"/>
         <property name="fields" value="billNo,expect,agenterName,agenterLevel,projectName,effectivePlayerCount,effectiveBetMoney,lossMoney,effectiveDepositMoney,reached"/>
         <property name="titleMap">
             <map>
@@ -25,44 +25,44 @@
         </property>
     </bean>
 
-    <bean name="VBillChangeExportItemConf" class="so.wwb.lotterybox.common.export.core.conf.ExportItemConf">
-        <property name="exportDataClass" value="so.wwb.lotterybox.model.company.fund.po.VBillChange"/>
+    <bean name="VBillChangeExportItemConf" class="so.wwb.creditbox.common.export.core.conf.ExportItemConf">
+        <property name="exportDataClass" value="so.wwb.creditbox.model.company.fund.po.VBillChange"/>
         <property name="fields" value="sourceBillNo,userName,parentAgenterName,remark,type,origin,money,item"/>
         <property name="columnMap">
             <map>
                 <entry key="sourceBillNo">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="userName">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                         <property name="textColor" value="BLUE"/>
                     </bean>
                 </entry>
                 <entry key="parentAgenterName">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="remark">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="type">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="origin">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="item">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
@@ -86,8 +86,8 @@
         </property>
     </bean>
 
-    <bean name="VUserPlayerExportItemConf" class="so.wwb.lotterybox.common.export.core.conf.ExportItemConf">
-        <property name="exportDataClass" value="so.wwb.lotterybox.model.company.user.po.VUserPlayer"/>
+    <bean name="VUserPlayerExportItemConf" class="so.wwb.creditbox.common.export.core.conf.ExportItemConf">
+        <property name="exportDataClass" value="so.wwb.creditbox.model.company.user.po.VUserPlayer"/>
         <property name="fields" value="username,createTime,status,lastLoginTime,lastLoginIpAndDictCode,superiorName,realName"/>
         <property name="titleMap">
             <map>
@@ -108,7 +108,7 @@
         <property name="exportItemFieldConfMap">
             <map>
                 <entry key="status">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportItemFieldConf">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportItemFieldConf">
                         <property name="dictsMap">
                             <map>
                                 <entry key="1">
@@ -140,7 +140,7 @@
                     </bean>
                 </entry>
                 <entry key="createTime">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportItemFieldConf">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportItemFieldConf">
                         <property name="patternMap">
                             <map>
                                 <entry key="zh_CN" value="yyyy-MM-dd HH:mm:ss" />
@@ -152,7 +152,7 @@
                     </bean>
                 </entry>
                 <entry key="lastLoginTime">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportItemFieldConf">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportItemFieldConf">
                         <property name="patternMap">
                             <map>
                                 <entry key="zh_CN" value="yyyy-MM-dd HH:mm:ss" />
@@ -168,84 +168,84 @@
     </bean>
 
 
-    <bean name="LotteryBetOrderExportItemConf" class="so.wwb.lotterybox.common.export.core.conf.ExportItemConf">
-        <property name="exportDataClass" value="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder"/>
+    <bean name="LotteryBetOrderExportItemConf" class="so.wwb.creditbox.common.export.core.conf.ExportItemConf">
+        <property name="exportDataClass" value="so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder"/>
         <property name="fields" value="username,code,id,expect,betCode,betNum,multiple,bonusModel,betAmount,rebateAmount,memo,payout,betTime,payoutTime,status"/>
         <property name="columnMap">
             <map>
                 <entry key="username">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="code">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="id">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="expect">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="betCode">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="betNum">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="multiple">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
 
                 <entry key="bonusModel">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="betAmount">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="rebateAmount">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="memo">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="payout">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="betTime">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="payoutTime">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="status">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
@@ -270,7 +270,7 @@
         <property name="exportItemFieldConfMap">
             <map>
                 <entry key="bonusModel">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportItemFieldConf">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportItemFieldConf">
                         <property name="dictsMap">
                             <map>
                                 <entry key="1">
@@ -302,7 +302,7 @@
                     </bean>
                 </entry>
                 <entry key="betTime">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportItemFieldConf">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportItemFieldConf">
                         <property name="patternMap">
                             <map>
                                 <entry key="zh_CN" value="yyyy-MM-dd HH:mm:ss" />
@@ -314,7 +314,7 @@
                     </bean>
                 </entry>
                 <entry key="payoutTime">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportItemFieldConf">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportItemFieldConf">
                         <property name="patternMap">
                             <map>
                                 <entry key="zh_CN" value="yyyy-MM-dd HH:mm:ss" />
@@ -329,8 +329,8 @@
         </property>
     </bean>
 
-    <bean name="BillDepositExportItemConf" class="so.wwb.lotterybox.common.export.core.conf.ExportItemConf">
-        <property name="exportDataClass" value="so.wwb.lotterybox.model.company.bill.po.BillDeposit"/>
+    <bean name="BillDepositExportItemConf" class="so.wwb.creditbox.common.export.core.conf.ExportItemConf">
+        <property name="exportDataClass" value="so.wwb.creditbox.model.company.bill.po.BillDeposit"/>
         <property name="fields" value="billNo,playerName,superiorName,rankName,createTime,item,bankCode,account,remark,actualMoney,favorableStatus,status,checkName,checkTime,ipCode"/>
         <property name="fieldWidth">
             <map>
@@ -357,7 +357,7 @@
         <property name="exportItemFieldConfMap">
             <map>
                 <entry key="createTime">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportItemFieldConf">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportItemFieldConf">
                         <property name="patternMap">
                             <map>
                                 <entry key="zh_CN" value="yyyy-MM-dd HH:mm:ss" />
@@ -369,7 +369,7 @@
                     </bean>
                 </entry>
                 <entry key="checkTime">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportItemFieldConf">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportItemFieldConf">
                         <property name="patternMap">
                             <map>
                                 <entry key="zh_CN" value="yyyy-MM-dd HH:mm:ss" />
@@ -381,7 +381,7 @@
                     </bean>
                 </entry>
                 <entry key="favorableStatus">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportItemFieldConf">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportItemFieldConf">
                         <property name="dictsMap">
                             <map>
                                 <entry key="confirming">
@@ -409,7 +409,7 @@
                     </bean>
                 </entry>
                 <entry key="status">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportItemFieldConf">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportItemFieldConf">
                         <property name="dictsMap">
                             <map>
                                 <entry key="pending">
@@ -446,77 +446,77 @@
         <property name="columnMap">
             <map>
                 <entry key="billNo">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="playerName">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="superiorName">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="rankName">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="createTime">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="item">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="bankCode">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="account">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="remark">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="actualMoney">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="favorableStatus">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="status">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="checkName">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="checkTime">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
                 <entry key="ipCode">
-                    <bean class="so.wwb.lotterybox.common.export.core.conf.ExportStyle">
+                    <bean class="so.wwb.creditbox.common.export.core.conf.ExportStyle">
                         <property name="horizontalAlign" value="CENTER"/>
                     </bean>
                 </entry>
@@ -524,14 +524,14 @@
         </property>
     </bean>
 
-    <bean id="exportConf" class="so.wwb.lotterybox.common.export.core.conf.ExportConf">
+    <bean id="exportConf" class="so.wwb.creditbox.common.export.core.conf.ExportConf">
         <property name="exportItemConfs">
             <map>
-                <entry key="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder" value-ref="LotteryBetOrderExportItemConf" />
-                <entry key="so.wwb.lotterybox.model.company.fund.po.BillSalary" value-ref="BillSalaryExportItemConf" />
-                <entry key="so.wwb.lotterybox.model.company.fund.po.VBillChange" value-ref="VBillChangeExportItemConf" />
-                <entry key="so.wwb.lotterybox.model.company.user.po.VUserPlayer" value-ref="VUserPlayerExportItemConf"/>
-                <entry key="so.wwb.lotterybox.model.company.bill.po.BillDeposit" value-ref="BillDepositExportItemConf" />
+                <entry key="so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder" value-ref="LotteryBetOrderExportItemConf" />
+                <entry key="so.wwb.creditbox.model.company.fund.po.BillSalary" value-ref="BillSalaryExportItemConf" />
+                <entry key="so.wwb.creditbox.model.company.fund.po.VBillChange" value-ref="VBillChangeExportItemConf" />
+                <entry key="so.wwb.creditbox.model.company.user.po.VUserPlayer" value-ref="VUserPlayerExportItemConf"/>
+                <entry key="so.wwb.creditbox.model.company.bill.po.BillDeposit" value-ref="BillDepositExportItemConf" />
             </map>
         </property>
     </bean>

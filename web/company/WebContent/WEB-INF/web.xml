@@ -20,7 +20,7 @@
     </listener>
 
     <listener>
-        <listener-class>so.wwb.lotterybox.company.init.CtxLoaderListener</listener-class>
+        <listener-class>so.wwb.creditbox.company.init.CtxLoaderListener</listener-class>
     </listener>
 
     <listener>
@@ -28,11 +28,11 @@
     </listener>
 
     <listener>
-        <listener-class>so.wwb.lotterybox.company.listener.HttpSessionUserListener</listener-class>
+        <listener-class>so.wwb.creditbox.company.listener.HttpSessionUserListener</listener-class>
     </listener>
 
     <listener>
-        <listener-class>so.wwb.lotterybox.web.session.SessionUserListener</listener-class>
+        <listener-class>so.wwb.creditbox.web.session.SessionUserListener</listener-class>
     </listener>
     <!-- listener end -->
 
@@ -100,7 +100,7 @@
     <!--domain filter start -->
     <!--<filter>-->
         <!--<filter-name>appLineFilter</filter-name>-->
-        <!--<filter-class>so.wwb.lotterybox.agent.filter.AppLineFilter</filter-class>-->
+        <!--<filter-class>so.wwb.creditbox.agent.filter.AppLineFilter</filter-class>-->
         <!--<async-supported>true</async-supported>-->
         <!--<init-param>-->
             <!--<param-name>encoding</param-name>-->
@@ -114,7 +114,7 @@
 
     <!--<filter>-->
         <!--<filter-name>SaveSiteServerIpFilter</filter-name>-->
-        <!--<filter-class>so.wwb.lotterybox.agent.filter.SaveSiteServerIpFilter</filter-class>-->
+        <!--<filter-class>so.wwb.creditbox.agent.filter.SaveSiteServerIpFilter</filter-class>-->
         <!--<async-supported>true</async-supported>-->
         <!--<init-param>-->
             <!--<param-name>encoding</param-name>-->
@@ -128,7 +128,7 @@
 
     <filter>
         <filter-name>GetDomainFilter</filter-name>
-        <filter-class>so.wwb.lotterybox.company.filter.GetDomainFilter</filter-class>
+        <filter-class>so.wwb.creditbox.company.filter.GetDomainFilter</filter-class>
         <async-supported>true</async-supported>
         <init-param>
             <param-name>encoding</param-name>
@@ -142,7 +142,7 @@
 
     <!--<filter>-->
         <!--<filter-name>GetSitesFilter</filter-name>-->
-        <!--<filter-class>so.wwb.lotterybox.agent.filter.GetSitesFilter</filter-class>-->
+        <!--<filter-class>so.wwb.creditbox.agent.filter.GetSitesFilter</filter-class>-->
         <!--<async-supported>true</async-supported>-->
         <!--<init-param>-->
             <!--<param-name>encoding</param-name>-->
@@ -156,7 +156,7 @@
 
     <filter>
         <filter-name>CheckDomainIpFilter</filter-name>
-        <filter-class>so.wwb.lotterybox.company.filter.CheckDomainIpFilter</filter-class>
+        <filter-class>so.wwb.creditbox.company.filter.CheckDomainIpFilter</filter-class>
         <async-supported>true</async-supported>
         <init-param>
             <param-name>encoding</param-name>
@@ -279,7 +279,7 @@
     <!--安全密码-->
     <filter>
         <filter-name>PrivilegeFilter</filter-name>
-        <filter-class>so.wwb.lotterybox.web.filter.PrivilegeFilter</filter-class>
+        <filter-class>so.wwb.creditbox.web.filter.PrivilegeFilter</filter-class>
         <async-supported>true</async-supported>
     </filter>
     <filter-mapping>

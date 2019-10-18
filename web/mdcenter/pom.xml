@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>web</artifactId>
-        <groupId>so.wwb.lotterybox</groupId>
+        <groupId>so.wwb.creditbox</groupId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
 
@@ -15,9 +15,9 @@
     <dependencies>
 
         <dependency>
-            <groupId>so.wwb.lotterybox</groupId>
+            <groupId>so.wwb.creditbox</groupId>
             <artifactId>common</artifactId>
-            <version>${lotterybox.version}</version>
+            <version>${creditbox.version}</version>
         </dependency>
 
         <dependency>

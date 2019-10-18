@@ -22,7 +22,7 @@
     <import resource="classpath*:conf/notify-bean-aop.xml"/>
     <import resource="classpath*:conf/service-notify-consumer.xml"/>
 
-    <context:component-scan base-package="so.wwb.lotterybox.mdcenter">
+    <context:component-scan base-package="so.wwb.creditbox.mdcenter">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
@@ -33,7 +33,7 @@
 
     <bean id="healthCheckFilter" class="org.soul.web.filter.HealthCheckFilter"/>
 
-    <bean id="supportLocale" class="so.wwb.lotterybox.web.session.SupportLocale"/>
+    <bean id="supportLocale" class="so.wwb.creditbox.web.session.SupportLocale"/>
 
     <bean id="poolConfigShrio" class="org.apache.commons.pool2.impl.GenericObjectPoolConfig">
         <property name="maxIdle" value="${shiro.session.maxIdle}"/>
@@ -56,36 +56,36 @@
     </bean>
 
     <!--注: SessionID加解密 -->
-    <bean id="cipherKeyResolver" class="so.wwb.lotterybox.web.session.CipherKeyResolver">
+    <bean id="cipherKeyResolver" class="so.wwb.creditbox.web.session.CipherKeyResolver">
         <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('bT3ovvD7RfGDc0BXO5ORyA==')}"></property>
     </bean>
 
     <!--文件后缀保护-->
-    <bean id="fileSuffixFilter" class="so.wwb.lotterybox.web.filter.FileSuffixFilter"/>
+    <bean id="fileSuffixFilter" class="so.wwb.creditbox.web.filter.FileSuffixFilter"/>
 
-    <bean id="msgMqConsume" class="so.wwb.lotterybox.mdcenter.notice.service.MsgMqConsume"></bean>
+    <bean id="msgMqConsume" class="so.wwb.creditbox.mdcenter.notice.service.MsgMqConsume"></bean>
     <!-- 通知消息队列消费者服务 -->
     <bean id="noticeMqConsumerService" class="org.soul.web.msg.notice.service.impl.NoticeMqConsumerService"/>
 
     <!-- 队列comet通知消息消费服务 -->
-    <bean id="cometMqConsumeService" class="so.wwb.lotterybox.mdcenter.notice.service.CometMqConsumeService">
+    <bean id="cometMqConsumeService" class="so.wwb.creditbox.mdcenter.notice.service.CometMqConsumeService">
         <property name="msgMqConsume" ref="msgMqConsume"></property>
         <property name="serviceApp" value="${service.dubbo.application.name}"></property>
     </bean>
 
     <!-- 队列email通知消息消费服务 -->
-    <bean id="emailMqConsumeService" class="so.wwb.lotterybox.mdcenter.notice.service.EmailMqConsumeService">
+    <bean id="emailMqConsumeService" class="so.wwb.creditbox.mdcenter.notice.service.EmailMqConsumeService">
         <property name="serviceApp" value="${service.dubbo.application.name}"></property>
     </bean>
 
     <!-- 队列站内信通知消息消费服务 -->
-    <bean id="siteMsgMqConsumeService" class="so.wwb.lotterybox.mdcenter.notice.service.SiteMsgMqConsumeService">
+    <bean id="siteMsgMqConsumeService" class="so.wwb.creditbox.mdcenter.notice.service.SiteMsgMqConsumeService">
         <property name="msgMqConsume" ref="msgMqConsume"></property>
         <property name="serviceApp" value="${service.dubbo.application.name}"></property>
     </bean>
 
     <!-- 队列手机短信通知消息消费服务 -->
-    <bean id="smsMqConsumeService" class="so.wwb.lotterybox.mdcenter.notice.service.SmsMqConsumeService">
+    <bean id="smsMqConsumeService" class="so.wwb.creditbox.mdcenter.notice.service.SmsMqConsumeService">
         <property name="serviceApp" value="${service.dubbo.application.name}"></property>
     </bean>
 

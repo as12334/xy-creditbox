@@ -5,14 +5,14 @@
        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd"
        default-autowire="byName">
 
-    <bean id="exportJob" class="so.wwb.lotterybox.schedule.service.merchant.job.ExportJob" />
-    <bean id="billRakebackJob" class="so.wwb.lotterybox.schedule.service.merchant.job.BillRakebackJob" />
-    <bean id="billSalaryJob" class="so.wwb.lotterybox.schedule.service.merchant.job.BillSalaryJob" />
-    <bean id="billDividenJob" class="so.wwb.lotterybox.schedule.service.merchant.job.BillDividenJob" />
-    <bean id="reportGameJob" class="so.wwb.lotterybox.schedule.service.merchant.job.ReportGameJob" />
-    <bean id="onlinePayJob" class="so.wwb.lotterybox.schedule.service.merchant.job.OnlinePayJob" />
-    <bean id="reportOperateJob" class="so.wwb.lotterybox.schedule.service.merchant.job.ReportOperateJob" />
-    <bean id="billRetreatJob" class="so.wwb.lotterybox.schedule.service.merchant.job.BillRetreatJob"/>
-    <bean id="reportBusinessJob" class="so.wwb.lotterybox.schedule.service.merchant.job.ReportBusinessJob"/>
-    <bean id="removePlayerJob" class="so.wwb.lotterybox.schedule.service.merchant.job.RemovePlayerJob"/>
+    <bean id="exportJob" class="so.wwb.creditbox.schedule.service.merchant.job.ExportJob" />
+    <bean id="billRakebackJob" class="so.wwb.creditbox.schedule.service.merchant.job.BillRakebackJob" />
+    <bean id="billSalaryJob" class="so.wwb.creditbox.schedule.service.merchant.job.BillSalaryJob" />
+    <bean id="billDividenJob" class="so.wwb.creditbox.schedule.service.merchant.job.BillDividenJob" />
+    <bean id="reportGameJob" class="so.wwb.creditbox.schedule.service.merchant.job.ReportGameJob" />
+    <bean id="onlinePayJob" class="so.wwb.creditbox.schedule.service.merchant.job.OnlinePayJob" />
+    <bean id="reportOperateJob" class="so.wwb.creditbox.schedule.service.merchant.job.ReportOperateJob" />
+    <bean id="billRetreatJob" class="so.wwb.creditbox.schedule.service.merchant.job.BillRetreatJob"/>
+    <bean id="reportBusinessJob" class="so.wwb.creditbox.schedule.service.merchant.job.ReportBusinessJob"/>
+    <bean id="removePlayerJob" class="so.wwb.creditbox.schedule.service.merchant.job.RemovePlayerJob"/>
 </beans>

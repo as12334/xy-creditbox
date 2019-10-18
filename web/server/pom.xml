@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <artifactId>web</artifactId>
-        <groupId>so.wwb.lotterybox</groupId>
+        <groupId>so.wwb.creditbox</groupId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
 
@@ -17,16 +17,10 @@
     <dependencies>
 
         <dependency>
-            <groupId>so.wwb.lotterybox</groupId>
+            <groupId>so.wwb.creditbox</groupId>
             <artifactId>service</artifactId>
-            <version>${lotterybox.version}</version>
+            <version>${creditbox.version}</version>
         </dependency>
-        <dependency>
-            <groupId>so.wwb.lotterybox</groupId>
-            <artifactId>api-service</artifactId>
-            <version>${lotterybox.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>org.soul</groupId>
             <artifactId>soul-commons</artifactId>
@@ -62,12 +56,6 @@
             <!--<scope>test</scope>-->
         </dependency>
         <!--支付第三方组件-->
-        <!--智付加密组件-->
-        <dependency>
-            <groupId>dinpay</groupId>
-            <artifactId>dinpayRsaSignAPI</artifactId>
-            <version>2.7.10</version>
-        </dependency>
         <!--智付二维码图片-->
         <dependency>
             <groupId>com.swetake</groupId>

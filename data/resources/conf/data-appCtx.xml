@@ -33,6 +33,6 @@
         </property>
     </bean>
 
-    <bean id="dubboDatasourceResolver" class="so.wwb.lotterybox.data.datasource.DubboDatasourceResolver"/>
+    <bean id="dubboDatasourceResolver" class="so.wwb.creditbox.data.datasource.DubboDatasourceResolver"/>
 
 </beans>

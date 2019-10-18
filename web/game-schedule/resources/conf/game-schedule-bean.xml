@@ -9,6 +9,6 @@
     <import resource="classpath*:conf/soul-commons.xml"/>
     <import resource="classpath*:conf/service-common-bean.xml" />
 
-    <bean lazy-init="true" id="taskScheduleServiceExGs" class="so.wwb.lotterybox.service.manager.taskschedule.TaskScheduleServiceExGs"/>
+    <bean lazy-init="true" id="taskScheduleServiceExGs" class="so.wwb.creditbox.service.manager.taskschedule.TaskScheduleServiceExGs"/>
 
 </beans>

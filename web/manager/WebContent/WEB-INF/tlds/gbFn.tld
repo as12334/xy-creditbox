@@ -19,7 +19,7 @@
             */
         </description>
         <name>getIpRegion</name>
-        <function-class>so.wwb.lotterybox.web.tools.IpRegionTool</function-class>
+        <function-class>so.wwb.creditbox.web.tools.IpRegionTool</function-class>
         <function-signature>java.lang.String getIpRegion(java.lang.String)</function-signature>
     </function>
     <function>
@@ -31,7 +31,7 @@
             */
         </description>
         <name>getShortIpRegion</name>
-        <function-class>so.wwb.lotterybox.web.tools.IpRegionTool</function-class>
+        <function-class>so.wwb.creditbox.web.tools.IpRegionTool</function-class>
         <function-signature>java.lang.String getShortIpRegion(java.lang.String)</function-signature>
     </function>
     <function>
@@ -53,7 +53,7 @@
             */
         </description>
         <name>getTimezoneByGmt</name>
-        <function-class>so.wwb.lotterybox.model.base.CacheBase</function-class>
+        <function-class>so.wwb.creditbox.model.base.CacheBase</function-class>
         <function-signature>java.util.TimeZone getTimezoneByGmt(java.lang.String)</function-signature>
     </function>
 
@@ -81,7 +81,7 @@
             */
         </description>
         <name>getSiteName</name>
-        <function-class>so.wwb.lotterybox.model.base.CacheBase</function-class>
+        <function-class>so.wwb.creditbox.model.base.CacheBase</function-class>
         <function-signature>java.lang.String getSiteName(java.lang.Integer)</function-signature>
     </function>
     <function>
@@ -93,7 +93,7 @@
             */
         </description>
         <name>getActivityMessageInfo</name>
-        <function-class>so.wwb.lotterybox.model.base.CacheBase</function-class>
+        <function-class>so.wwb.creditbox.model.base.CacheBase</function-class>
         <function-signature>so.wwb.lotterybox.model.manager.operation.vo.PlayerActivityMessage getActivityMessageInfo(java.lang.String)</function-signature>
     </function>
 

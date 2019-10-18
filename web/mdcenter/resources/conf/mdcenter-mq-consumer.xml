@@ -71,7 +71,7 @@
                     <list>
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="LOTTERYBOX_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.mdcenter.comet.websocket.BossWebSocketHandler" />
+                            <property name="classFullName" value="so.wwb.creditbox.mdcenter.comet.websocket.BossWebSocketHandler" />
                             <property name="methodName" value="sendMessage"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="bossMessage"/>
@@ -79,7 +79,7 @@
                         </bean>
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="LOTTERYBOX_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.mdcenter.comet.websocket.ShareHolderWebSocketHandler" />
+                            <property name="classFullName" value="so.wwb.creditbox.mdcenter.comet.websocket.ShareHolderWebSocketHandler" />
                             <property name="methodName" value="sendMessage"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="shareHolderMessage"/>
@@ -87,7 +87,7 @@
                         </bean>
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="LOTTERYBOX_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.mdcenter.comet.websocket.MerchantWebSocketHandler" />
+                            <property name="classFullName" value="so.wwb.creditbox.mdcenter.comet.websocket.MerchantWebSocketHandler" />
                             <property name="methodName" value="sendMessage"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="merchantMessage"/>
@@ -95,7 +95,7 @@
                         </bean>
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="LOTTERYBOX_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.mdcenter.comet.websocket.MerchantAPIWebSocketHandler" />
+                            <property name="classFullName" value="so.wwb.creditbox.mdcenter.comet.websocket.MerchantAPIWebSocketHandler" />
                             <property name="methodName" value="sendMessage"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="merchantApiMessage"/>
@@ -103,7 +103,7 @@
                         </bean>
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="LOTTERYBOX_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.mdcenter.comet.websocket.DistributorWebSocketHandler" />
+                            <property name="classFullName" value="so.wwb.creditbox.mdcenter.comet.websocket.DistributorWebSocketHandler" />
                             <property name="methodName" value="sendMessage"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="distributorMessage"/>
@@ -111,7 +111,7 @@
                         </bean>
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="LOTTERYBOX_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.mdcenter.comet.websocket.DistributorAPIWebSocketHandler" />
+                            <property name="classFullName" value="so.wwb.creditbox.mdcenter.comet.websocket.DistributorAPIWebSocketHandler" />
                             <property name="methodName" value="sendMessage"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="distributorApiMessage"/>
@@ -119,7 +119,7 @@
                         </bean>
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="LOTTERYBOX_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.mdcenter.comet.websocket.HallWebSocketHandler" />
+                            <property name="classFullName" value="so.wwb.creditbox.mdcenter.comet.websocket.HallWebSocketHandler" />
                             <property name="methodName" value="sendMessage"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="hallMessage"/>

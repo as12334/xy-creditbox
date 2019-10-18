@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="so.wwb.lotterybox.data.merchant.lottery.LotteryOddSetMapper">
+<mapper namespace="so.wwb.creditbox.data.merchant.lottery.LotteryOddSetMapper">
 
-    <resultMap id="TABLE:lottery_odd_set" type="so.wwb.lotterybox.model.company.lottery.po.LotteryOddSet">
+    <resultMap id="TABLE:lottery_odd_set" type="so.wwb.creditbox.model.company.lottery.po.LotteryOddSet">
         <id column="id" property="id"/>
         <result column="code" property="code"/>
         <result column="model" property="model"/>
@@ -18,17 +18,17 @@
         <result column="project_id" property="projectId"/>
     </resultMap>
 
-    <insert id="initLotteryOddSet" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryOddSetSo" >
+    <insert id="initLotteryOddSet" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryOddSetSo" >
         INSERT INTO lottery_odd_set ("code", "model", "play_code", "bet_code", "bet_num", "odd", "odd_limit", "rebate", "rebate_limit", "base_num", "order_num", "project_id")
             SELECT "code", "model", "play_code", "bet_code", "bet_num", "odd", "odd_limit", "rebate", "rebate_limit", "base_num", "order_num", #{projectId} FROM lottery_odd_set
             WHERE NOT EXISTS (SELECT 1 FROM lottery_odd_set WHERE "project_id" = #{projectId}) AND "project_id" = #{defauleProjectId}
     </insert>
 
-    <select id="searchAllOdds"  resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryOddSet">
+    <select id="searchAllOdds"  resultType="so.wwb.creditbox.model.company.lottery.po.LotteryOddSet">
         SELECT * FROM lottery_odd_set WHERE project_id IS NOT NULL ORDER BY order_num ASC
     </select>
 
-    <delete id="deleteLotteryOddSetByProject" parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryOddSet">
+    <delete id="deleteLotteryOddSetByProject" parameterType="so.wwb.creditbox.model.company.lottery.po.LotteryOddSet">
         DELETE FROM lottery_odd_set WHERE project_id = #{projectId};
     </delete>
 </mapper>

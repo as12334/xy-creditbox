@@ -9,9 +9,9 @@
     <import resource="classpath*:conf/soul-commons.xml"/>
     <import resource="classpath*:conf/service-common-bean.xml" />
 
-    <bean lazy-init="true" id="taskScheduleServiceExS" class="so.wwb.lotterybox.service.manager.taskschedule.TaskScheduleServiceExS"/>
+    <bean lazy-init="true" id="taskScheduleServiceExS" class="so.wwb.creditbox.service.manager.taskschedule.TaskScheduleServiceExS"/>
 
-    <bean class="so.wwb.lotterybox.schedule.init.ConfigManager">
+    <bean class="so.wwb.creditbox.schedule.init.ConfigManager">
         <constructor-arg index="0" value="${dubbo.application.name}"></constructor-arg>
         <constructor-arg index="1" value="${dubbo.version}"></constructor-arg>
     </bean>

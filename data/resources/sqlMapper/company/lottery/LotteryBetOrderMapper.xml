@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="so.wwb.lotterybox.data.merchant.lottery.LotteryBetOrderMapper">
+<mapper namespace="so.wwb.creditbox.data.merchant.lottery.LotteryBetOrderMapper">
 
-    <resultMap id="TABLE:lottery_bet_order" type="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+    <resultMap id="TABLE:lottery_bet_order" type="so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder">
         <id column="id" property="id"/>
         <result column="expect" property="expect"/>
         <result column="username" property="username"/>
@@ -37,7 +37,7 @@
         <result column="freez_amount" property="freezAmount"/>
     </resultMap>
 
-    <resultMap id="betOrderWin" type="so.wwb.lotterybox.model.company.lottery.po.BetOrderWin">
+    <resultMap id="betOrderWin" type="so.wwb.creditbox.model.company.lottery.po.BetOrderWin">
         <result column="bet_code" property="betCode"/>
         <result column="bet_num" property="betNum"/>
         <result column="bet_amount" property="betAmount"/>
@@ -46,8 +46,8 @@
 
     <!--//region your codes 1-->
     <!--根据玩法、下注选项获取累加下注金额-->
-    <select id="sumBetAmountQuota" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
-            resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+    <select id="sumBetAmountQuota" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder">
         SELECT play_code, bet_code, bet_num, SUM(bet_amount) bet_amount
         FROM lottery_bet_order
         WHERE expect = #{expect}
@@ -127,7 +127,7 @@
         </if>
     </sql>
     <select id="queryBetOrderProfitByParntId"
-            parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo" resultType="Map">
+            parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultType="Map">
         SELECT coalesce(SUM(bet_amount)::NUMERIC(20,2),0) betamount, coalesce(SUM(payout)::NUMERIC(20,2),0) profitloss,
         coalesce(SUM(bet_amount * rebate)::NUMERIC(20,2),0) betrebate,COUNT (*) betvolume
         from lottery_bet_order where
@@ -213,37 +213,37 @@
         </where>
     </select>
 
-    <select id="getNumQuota" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+    <select id="getNumQuota" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
             resultType="Double">
         SELECT sum(bet_amount) betamount from lottery_bet_order where  expect = #{expect} and user_id = #{userId} and code = #{code} and play_code = #{playCode} and bet_code = #{betCode} ;
     </select>
 
-    <select id="getUserNameByExpect" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+    <select id="getUserNameByExpect" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
             resultType="String">
         SELECT username  from lottery_bet_order where  expect = #{expect} and code = #{code} and status = 'pending' GROUP BY username;
     </select>
 
-    <select id="getBetAmountByBetNum" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+    <select id="getBetAmountByBetNum" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
             resultType="map">
         SELECT bet_num AS betNum, sum(bet_amount) as betAmount,count(distinct(user_id)) as totalCount from lottery_bet_order where expect = #{expect} and code = #{code} and status = 'pending' GROUP BY bet_num;
     </select>
 
-    <select id="getProfitByExpects" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+    <select id="getProfitByExpects" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
             resultType="map">
         SELECT username , coalesce(SUM(payout - bet_amount + bet_amount * rebate)::NUMERIC(20,3),0) AS profit from lottery_bet_order where expect = #{expect} and code = #{code} AND status in ('nowin','wining') GROUP BY username ORDER BY profit  desc LIMIT 10;
     </select>
 
     <select id="getProfitByExpectsAndUsername"
-            parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+            parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
             resultType="double">
         SELECT coalesce(SUM(payout - bet_amount + bet_amount * rebate)::NUMERIC(20,3),0) AS profit from lottery_bet_order where expect = #{expect} and code = #{code} AND status in ('nowin','wining') AND user_id = #{userId};
     </select>
 
-    <select id="getPlayQuota" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+    <select id="getPlayQuota" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
             resultType="Double">
         SELECT sum(bet_amount) betamount from lottery_bet_order where  expect = #{expect} and user_id = #{userId} and code = #{code} and play_code = #{playCode} and bet_code = #{betCode} and bet_num = #{betNum} ;
     </select>
-    <update id="updatePlayerApiBalance" parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+    <update id="updatePlayerApiBalance" parameterType="so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder">
         UPDATE player_api set money=(COALESCE (money,0) + (SELECT COALESCE(bet_amount,0) from lottery_bet_order where id=#{id})-(SELECT COALESCE(payout,0) from lottery_bet_order where id=#{id})) where player_id=#{userId} and api_id=22;
     </update>
 
@@ -314,7 +314,7 @@
     </select>
 
     <select id="queryBetOrders" resultMap="TABLE:lottery_bet_order"
-            parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+            parameterType="so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder">
         SELECT * FROM lottery_bet_order
         WHERE 1 = 1
         <if test="startDate != null">
@@ -330,13 +330,13 @@
     </select>
     <!--//endregion your codes 1-->
 
-    <select id="queryBetOrderToUserId" parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder"
-            resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+    <select id="queryBetOrderToUserId" parameterType="so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder"
+            resultType="so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder">
         SELECT *  FROM lottery_bet_order  WHERE  status = #{status}
     </select>
 
     <!--统计金额-->
-    <select id="sumAmount" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+    <select id="sumAmount" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
             resultType="map">
         SELECT coalesce(SUM(bet_amount)::NUMERIC(20,2),0) betamount, coalesce(SUM(payout)::NUMERIC(20,2),0)
         payoutamount, coalesce(SUM(bet_amount * rebate)::NUMERIC(20,2),0) rabateamount, ( coalesce(SUM(bet_amount),0) -
@@ -382,7 +382,7 @@
         GROUP BY code ${sort} ${paging}
     </select>
 
-    <select id="getBetOrderByParentIds" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+    <select id="getBetOrderByParentIds" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
             resultMap="TABLE:lottery_bet_order">
         SELECT * FROM lottery_bet_order
         where
@@ -394,7 +394,7 @@
         limit #{searchMap.pageSize} offset (#{searchMap.pageNo}-1) * #{searchMap.pageSize}
     </select>
     <select id="getBetOrderByParentIdsCount"
-            parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo" resultType="long">
+            parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultType="long">
         SELECT count(*) FROM lottery_bet_order
         where
         <if test="status != null  and status != ''">
@@ -403,7 +403,7 @@
         <include refid="searchLowLevelPlayer"/>
 
     </select>
-    <select id="getRecentProfit" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+    <select id="getRecentProfit" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
             resultType="map">
         SELECT to_char((bet_time + (#{id}||' hour')::INTERVAL), 'YYYY-MM-DD') as tdate,(
         coalesce(SUM(payout),0)+coalesce(SUM(bet_amount * rebate),0)- coalesce(SUM(bet_amount),0))::NUMERIC(20,3) profit
@@ -424,7 +424,7 @@
         group by tdate order by tdate desc;
     </select>
 
-    <insert id="saveBetOrder" parameterType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+    <insert id="saveBetOrder" parameterType="so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder">
         INSERT INTO lottery_bet_order (expect,username,betTime,code,playCode,betCode,betCode,odd,betAmount,
         status,terminal,memo,userId,effectiveTradeAmount,odd2,odd3,bonusModel,playModel,rebate,multiple,betCount,
         odds,billNo)
@@ -448,7 +448,7 @@
 
 
     <!-- 总代旗下玩家注单合计-->
-    <select id="distributorBetOrderTotal" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+    <select id="distributorBetOrderTotal" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
             resultType="map">
         SELECT
         COALESCE(SUM(bet_amount)::NUMERIC(20,3),0.000) betAmount,
@@ -467,8 +467,8 @@
     </select>
 
     <!--总代旗下玩家-->
-    <select id="billChangeListByOwnerCode" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
-            resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+    <select id="billChangeListByOwnerCode" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder">
         SELECT bc.* FROM lottery_bet_order bc
         LEFT JOIN sys_user_extend ue ON ue.id= bc.user_id
         LEFT JOIN user_player up ON up.id = bc.user_id
@@ -483,15 +483,15 @@
 
 
     <!--总代分页-->
-    <select id="distributorBetOrderCount" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+    <select id="distributorBetOrderCount" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
             resultType="int">
         SELECT COUNT (bc.*) FROM lottery_bet_order bc LEFT JOIN sys_user_extend ue ON ue.id= bc.user_id WHERE
         <include refid="distributorBetOrderSql"/>
     </select>
 
     <!--待结算注单统计-->
-    <select id="getAvaliableWinOrder" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
-            resultType="so.wwb.lotterybox.model.company.lottery.po.BetOrderWin">
+    <select id="getAvaliableWinOrder" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="so.wwb.creditbox.model.company.lottery.po.BetOrderWin">
         SELECT bet_code,bet_num,"sum"(bet_amount) as bet_amount, "sum"(bet_amount*odd) as canwinmoney FROM
         lottery_bet_order
         WHERE EXISTS (SELECT 1 FROM user_player u WHERE u.mode = '1' AND u.id = user_id) AND code = #{code} and status =
@@ -509,8 +509,8 @@
     </select>
 
     <!--Api 注单查询-->
-    <select id="queryBetOrderByApi" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
-            resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+    <select id="queryBetOrderByApi" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder">
         SELECT * FROM lottery_bet_order WHERE 1=1
         <if test="code != null and code != ''">
             AND code = #{code}
@@ -530,8 +530,8 @@
     </select>
 
     <!--Api 注单查询-->
-    <select id="searchPayoutApiOrder" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
-            resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+    <select id="searchPayoutApiOrder" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder">
         SELECT lbo.id,lbo.username,lbo.payout,lbo.status,lbo.code,lbo.expect,lbo.payout_time FROM lottery_bet_order lbo WHERE payout not null and payout != 0 and status != 'pending'
         <if test="code != null and code != ''">
             AND code = #{code}
@@ -596,7 +596,7 @@
     </sql>
 
 
-    <select id="findTeamMemberBetOrdersByPayoutTime" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo" resultType="map">
+    <select id="findTeamMemberBetOrdersByPayoutTime" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultType="map">
         SELECT username,
         COALESCE(SUM(bet_count)::NUMERIC(20,3),0.00) betCount,
         COALESCE(SUM (bet_amount)::NUMERIC(20,3),0.00) betAmount,
@@ -628,7 +628,7 @@
         LIMIT #{pageSize} OFFSET (#{pageNo} - 1) * #{pageSize}
     </select>
 
-    <select id="findTeamMemberBetOrdersByPayoutTimeTotalCount" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo" resultType="map">
+    <select id="findTeamMemberBetOrdersByPayoutTimeTotalCount" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultType="map">
         SELECT username,
          SUM (bet_count)::NUMERIC(20,3) betCount,
          SUM (bet_amount)::NUMERIC(20,3) betAmount,
@@ -642,7 +642,7 @@
     </select>
 
     <select id="findTeamMemberBetOrdersTotalByPayoutTime"
-            parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo" resultType="map">
+            parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultType="map">
         SELECT "count"(*)  betCountTotal,
         COALESCE(SUM (bet_amount)::NUMERIC(20,3),0.00) betAmountTotal,
         COALESCE(SUM (bet_amount*rebate)::NUMERIC(20,3),0.00)rebateAmountTotal,
@@ -654,7 +654,7 @@
     </select>
 
     <!--统计玩家有效时间段的有效投注额-->
-    <select id="queryEffectiveAmount" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+    <select id="queryEffectiveAmount" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
             resultType="map">
       SELECT (coalesce(sum(effective_trade_amount),0))::NUMERIC(20,3) effective_trade_amount
       FROM lottery_bet_order
@@ -662,7 +662,7 @@
       and payout_time &gt;= #{queryStartDate} and
       payout_time &lt; #{queryEndDate} and user_id=#{userId}
     </select>
-    <select id="findTeamByPayoutTimeTotal" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo" resultType="map">
+    <select id="findTeamByPayoutTimeTotal" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultType="map">
         SELECT
         COALESCE(SUM(bet_count)::NUMERIC(20,3),0.00) betCount,
         COALESCE(SUM (bet_amount)::NUMERIC(20,3),0.00) betAmount,
@@ -674,8 +674,8 @@
         WHERE payout_time >= #{queryStartDate} AND payout_time &lt;= #{queryEndDate} and payout_time is NOT NULL and status IN ('wining','nowin') and parent_agenter_id=#{parentAgenterId}
     </select>
 
-    <select id="queryAllStatus" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
-            resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+    <select id="queryAllStatus" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder">
         SELECT aa.* FROM(
         SELECT * from lottery_bet_order WHERE payout_time &lt;= #{payoutEndDate} and payout_time >= #{payoutStartDate}
         and status in ('wining','nowin','revocation','revoke_sys','revoke_self') and user_id = #{userId}
@@ -695,8 +695,8 @@
         LIMIT #{pageSize} OFFSET (#{pageNo} - 1) * #{pageSize}
     </select>
     <select id="queryAllStatusCount"
-            parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
-            resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+            parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder">
         SELECT aa.* FROM(
         SELECT * from lottery_bet_order WHERE payout_time &lt;= #{payoutEndDate} and payout_time >= #{payoutStartDate}
         and status in ('wining','nowin','revocation','revoke_sys','revoke_self') and user_id = #{userId}
@@ -718,7 +718,7 @@
 
 
     <!--今日注单列表分页-->
-    <select id="analysisListCount" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+    <select id="analysisListCount" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
             resultType="int">
         SELECT "count"(1)
         FROM (
@@ -760,7 +760,7 @@
     payout_total: 总派彩金额
     profit_total: 总盈亏金额
     -->
-    <select id="analysisList" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo" resultType="map">
+    <select id="analysisList" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultType="map">
         SELECT
         <if test="pageType eq 'order'">
             lbo.id,
@@ -863,7 +863,7 @@
     payout_total: 总派彩金额
     profit_total: 总盈亏
     -->
-    <select id="betOrderTodaySum" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo" resultType="map">
+    <select id="betOrderTodaySum" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultType="map">
         SELECT
         COALESCE ("count"(*), 0) AS bet_num_total,
         COALESCE ("count"(DISTINCT(lbo.username)), 0) AS player_num_total,
@@ -938,8 +938,8 @@
 
 
     <!-- 优化投注记录(过滤非正式玩家注单)-->
-    <select id="queryButorBetOrder" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
-            resultType="so.wwb.lotterybox.model.company.lottery.po.LotteryBetOrder">
+    <select id="queryButorBetOrder" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
+            resultType="so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder">
         SELECT * from lottery_bet_order AS bc
         WHERE
         <include refid="butorBetOrderSql"/>
@@ -947,7 +947,7 @@
         LIMIT #{pageSize} OFFSET (#{pageNo} - 1) * #{pageSize}
     </select>
 
-    <select id="queryButorBetOrderCount" parameterType="so.wwb.lotterybox.model.company.lottery.so.LotteryBetOrderSo"
+    <select id="queryButorBetOrderCount" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo"
             resultType="int">
         SELECT COUNT(*) from lottery_bet_order AS bc
         WHERE

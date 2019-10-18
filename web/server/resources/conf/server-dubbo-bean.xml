@@ -14,17 +14,17 @@
     <bean lazy-init="true" id="auditService" class="org.soul.service.log.audit.AuditService"/>
     <bean lazy-init="true" id="sysAuditLogService" class="org.soul.service.sys.SysAuditLogService"/>
 
-    <bean lazy-init="true" id="auditLogServiceInterceptor" class="so.wwb.lotterybox.interceptor.AuditLogServiceInterceptor">
+    <bean lazy-init="true" id="auditLogServiceInterceptor" class="so.wwb.creditbox.interceptor.AuditLogServiceInterceptor">
         <property name="auditService" ref="auditService"/>
         <property name="sysAuditLogService" ref="sysAuditLogService"/>
     </bean>
 
     <!-- 数据库校验服务 -->
-    <bean lazy-init="true" id="dbValidService" class="so.wwb.lotterybox.service.common.DbValidService" autowire="byName"/>
+    <bean lazy-init="true" id="dbValidService" class="so.wwb.creditbox.service.common.DbValidService" autowire="byName"/>
 
 
 
-    <bean id="commonFacade" class="so.wwb.lotterybox.service.common.CommonFacade"/>
+    <bean id="commonFacade" class="so.wwb.creditbox.service.common.CommonFacade"/>
     <!--//endregion your codes 1-->
 
 </beans>

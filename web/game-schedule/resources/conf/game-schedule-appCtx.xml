@@ -24,7 +24,7 @@
     <import resource="classpath*:conf/soul-monitor-bean.xml"/>
     <import resource="classpath*:conf/service-notify-consumer.xml"/>
 
-    <bean lazy-init="true" class="so.wwb.lotterybox.schedule.init.ConfigManager">
+    <bean lazy-init="true" class="so.wwb.creditbox.schedule.init.ConfigManager">
         <constructor-arg index="0" value="${dubbo.application.name}"></constructor-arg>
         <constructor-arg index="1" value="${dubbo.version}"></constructor-arg>
     </bean>

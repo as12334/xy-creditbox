@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="so.wwb.lotterybox.data.manager.message.SystemMessageMapper">
-    <resultMap id="TABLE:system_message" type="so.wwb.lotterybox.model.message.po.SystemMessage">
+<mapper namespace="so.wwb.creditbox.data.manager.message.SystemMessageMapper">
+    <resultMap id="TABLE:system_message" type="so.wwb.creditbox.model.message.po.SystemMessage">
         <id column="id" property="id"/>
         <result column="title" property="title"/>
         <result column="content" property="content"/>
@@ -9,7 +9,7 @@
         <result column="create_username" property="createUsername"/>
     </resultMap>
 
-    <select id="queryMyMessageList" parameterType="so.wwb.lotterybox.model.message.so.SystemMessageSo" resultType="so.wwb.lotterybox.model.message.po.SystemMessage">
+    <select id="queryMyMessageList" parameterType="so.wwb.creditbox.model.message.so.SystemMessageSo" resultType="so.wwb.creditbox.model.message.po.SystemMessage">
         SELECT  me.*,mr.status,mr.read_status FROM  system_message me LEFT JOIN system_message_receive mr on me.id = mr.message_id
         <include refid="myMessageWhere"/>
         ORDER BY me.create_time DESC
@@ -19,7 +19,7 @@
     </select>
 
 
-    <select id="myMessageTotalCount" parameterType="so.wwb.lotterybox.model.message.so.SystemMessageSo" resultType="int">
+    <select id="myMessageTotalCount" parameterType="so.wwb.creditbox.model.message.so.SystemMessageSo" resultType="int">
         SELECT COUNT(*) FROM system_message me LEFT JOIN system_message_receive mr ON  me.id = mr.message_id
         <include refid="myMessageWhere"/>
     </select>

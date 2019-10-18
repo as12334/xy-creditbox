@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="so.wwb.lotterybox.data.manager.lottery.LotteryMapper">
+<mapper namespace="so.wwb.creditbox.data.manager.lottery.LotteryMapper">
 
-    <resultMap id="TABLE:lottery" type="so.wwb.lotterybox.model.manager.lottery.po.Lottery">
+    <resultMap id="TABLE:lottery" type="so.wwb.creditbox.model.manager.lottery.po.Lottery">
         <id column="id" property="id"/>
         <result column="site_id" property="siteId"/>
         <result column="type" property="type"/>
@@ -23,7 +23,7 @@
         <result column="is_new" property="isNew"/>
     </resultMap>
 
-    <resultMap id="lotteryType" type="so.wwb.lotterybox.model.manager.lottery.po.LotteryType">
+    <resultMap id="lotteryType" type="so.wwb.creditbox.model.manager.lottery.po.LotteryType">
         <result column="type_name" property="typeName"/>
         <result column="type_code" property="typeCode"/>
         <result column="lottery_num" property="lotteryNum"/>
@@ -42,11 +42,11 @@
         SELECT * FROM lottery WHERE  site_id= #{siteId}
     </select>
 
-    <select id="queryLottery" parameterType="so.wwb.lotterybox.model.manager.lottery.po.Lottery" resultMap="TABLE:lottery">
+    <select id="queryLottery" parameterType="so.wwb.creditbox.model.manager.lottery.po.Lottery" resultMap="TABLE:lottery">
         SELECT * FROM lottery WHERE code = #{lotteryCode} AND site_id=0
     </select>
 
-    <select id="queryLotteryTypeBySiteId" parameterType="so.wwb.lotterybox.model.manager.lottery.so.LotterySo" resultMap="lotteryType">
+    <select id="queryLotteryTypeBySiteId" parameterType="so.wwb.creditbox.model.manager.lottery.so.LotterySo" resultMap="lotteryType">
         SELECT a.*,b.type_name from
         (SELECT "type" as type_code,"count"(code) as lottery_num from lottery
           WHERE site_id=#{siteId}
@@ -57,14 +57,14 @@
         LEFT JOIN lottery_type b on b.type_code=a.type_code ORDER BY b.order_num
     </select>
     <!--仅查询自主彩的彩种数-->
-    <select id="queryOwnLotteryTypeBySiteId" parameterType="so.wwb.lotterybox.model.manager.lottery.vo.LotteryListVo" resultMap="lotteryType">
+    <select id="queryOwnLotteryTypeBySiteId" parameterType="so.wwb.creditbox.model.manager.lottery.vo.LotteryListVo" resultMap="lotteryType">
         SELECT a.*,b.type_name from
         (SELECT "type" as type_code,"count"(code) as lottery_num from lottery
         WHERE site_id=#{search.siteId} AND code IN <foreach collection="search.ownCodes" item="item" separator="," open="(" close=")">#{item}</foreach> GROUP BY "type") a
         LEFT JOIN lottery_type b on b.type_code=a.type_code ORDER BY b.order_num
     </select>
 
-    <select id="queryLotteryBysiteIdType" parameterType="so.wwb.lotterybox.model.manager.lottery.po.Lottery" resultMap="TABLE:lottery">
+    <select id="queryLotteryBysiteIdType" parameterType="so.wwb.creditbox.model.manager.lottery.po.Lottery" resultMap="TABLE:lottery">
         SELECT * FROM lottery WHERE type = #{type} AND site_id=#{siteId}
     </select>
 

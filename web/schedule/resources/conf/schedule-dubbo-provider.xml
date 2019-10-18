@@ -7,6 +7,6 @@
 		http://code.alibabatech.com/schema/dubbo
 		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <dubbo:service registry="zookeeperService" protocol="dubbo" ref="taskScheduleServiceExS" interface="so.wwb.lotterybox.iservice.manager.taskschedule.ITaskScheduleServiceExS"/>
+    <dubbo:service registry="zookeeperService" protocol="dubbo" ref="taskScheduleServiceExS" interface="so.wwb.creditbox.iservice.manager.taskschedule.ITaskScheduleServiceExS"/>
 
 </beans>

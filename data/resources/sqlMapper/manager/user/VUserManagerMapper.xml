@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="so.wwb.lotterybox.data.manager.user.VUserManagerMapper">
+<mapper namespace="so.wwb.creditbox.data.manager.user.VUserManagerMapper">
 
-    <resultMap id="TABLE:v_user_manager" type="so.wwb.lotterybox.model.manager.user.po.VUserManager">
+    <resultMap id="TABLE:v_user_manager" type="so.wwb.creditbox.model.manager.user.po.VUserManager">
         <id column="id" property="id"/>
         <result column="username" property="username"/>
         <result column="password" property="password"/>

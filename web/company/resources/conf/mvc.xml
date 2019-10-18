@@ -14,7 +14,7 @@
 	   http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <context:property-placeholder location="classpath*:conf/*-conf.properties" ignore-unresolvable="true"/>
-    <context:component-scan base-package="org.soul.**.controller,so.wwb.lotterybox.company.controller,so.wwb.lotterybox.**.controller"/>
+    <context:component-scan base-package="org.soul.**.controller,so.wwb.creditbox.company.controller,so.wwb.creditbox.**.controller"/>
     <import resource="classpath*:conf/mvc-ctx.xml"/>
 
     <aop:aspectj-autoproxy proxy-target-class="true"/>
@@ -36,22 +36,22 @@
 
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="so.wwb.lotterybox.web.interceptor.SameUrlDataInterceptor"/>
+            <bean class="so.wwb.creditbox.web.interceptor.SameUrlDataInterceptor"/>
         </mvc:interceptor>
 
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <!--Éó¼ÆÈÕÖ¾À¹½ØÆ÷-->
-            <bean class="so.wwb.lotterybox.web.interceptor.AuditLogInterceptor" />
+            <bean class="so.wwb.creditbox.web.interceptor.AuditLogInterceptor" />
         </mvc:interceptor>
 
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="so.wwb.lotterybox.web.tools.token.TokenInterceptor"/>
+            <bean class="so.wwb.creditbox.web.tools.token.TokenInterceptor"/>
         </mvc:interceptor>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="so.wwb.lotterybox.web.tools.token.TokenValidInterceptor"/>
+            <bean class="so.wwb.creditbox.web.tools.token.TokenValidInterceptor"/>
         </mvc:interceptor>
 
     </mvc:interceptors>

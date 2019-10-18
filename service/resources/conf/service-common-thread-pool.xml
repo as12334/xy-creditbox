@@ -7,11 +7,11 @@
        default-autowire="byName" default-lazy-init="true">
 
     <!-- 彩票同步,派彩,撤单,撤销,重结线程池 -->
-    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryResultInitTask" id="lotteryResultSyncTask" scope="prototype"/>
-    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryResultPayoutTask" id="lotteryResultPayoutTask" scope="prototype"/>
-    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryRevoTask" id="lotteryRevoTask" scope="prototype"/>
-    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryRecalculateTask" id="lotteryRecalculateTask" scope="prototype"/>
-    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryResultOwnPayoutTask" id="lotteryResultOwnPayoutTask" scope="prototype"/>
+    <bean class="so.wwb.creditbox.service.manager.lottery.task.LotteryResultInitTask" id="lotteryResultSyncTask" scope="prototype"/>
+    <bean class="so.wwb.creditbox.service.manager.lottery.task.LotteryResultPayoutTask" id="lotteryResultPayoutTask" scope="prototype"/>
+    <bean class="so.wwb.creditbox.service.manager.lottery.task.LotteryRevoTask" id="lotteryRevoTask" scope="prototype"/>
+    <bean class="so.wwb.creditbox.service.manager.lottery.task.LotteryRecalculateTask" id="lotteryRecalculateTask" scope="prototype"/>
+    <bean class="so.wwb.creditbox.service.manager.lottery.task.LotteryResultOwnPayoutTask" id="lotteryResultOwnPayoutTask" scope="prototype"/>
 
     <!-- 游戏相关线程池 -->
     <bean class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean" id="lotteryExecutor">
@@ -31,11 +31,11 @@
     </bean>
 
 
-    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryResultDeleteTask" id="LotteryResultDeleteTask" scope="prototype"/>
-    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryResultOpenNumberTask" id="LotteryResultOpenNumberTask" scope="prototype"/>
-    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryResultAdjustTask" id="LotteryResultAdjustTask" scope="prototype"/>
-    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryResultBatchAdjustTask" id="LotteryResultBatchAdjustTask" scope="prototype"/>
-    <bean class="so.wwb.lotterybox.service.manager.lottery.task.LotteryMakeUpTask" id="LotteryMakeUpTask" scope="prototype"/>
+    <bean class="so.wwb.creditbox.service.manager.lottery.task.LotteryResultDeleteTask" id="LotteryResultDeleteTask" scope="prototype"/>
+    <bean class="so.wwb.creditbox.service.manager.lottery.task.LotteryResultOpenNumberTask" id="LotteryResultOpenNumberTask" scope="prototype"/>
+    <bean class="so.wwb.creditbox.service.manager.lottery.task.LotteryResultAdjustTask" id="LotteryResultAdjustTask" scope="prototype"/>
+    <bean class="so.wwb.creditbox.service.manager.lottery.task.LotteryResultBatchAdjustTask" id="LotteryResultBatchAdjustTask" scope="prototype"/>
+    <bean class="so.wwb.creditbox.service.manager.lottery.task.LotteryMakeUpTask" id="LotteryMakeUpTask" scope="prototype"/>
 
     <!-- 需同步所有商户操作的线程池，例如调盘,开号 -->
     <bean class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean" id="operateExecutor">

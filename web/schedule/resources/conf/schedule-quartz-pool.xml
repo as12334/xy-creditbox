@@ -5,11 +5,11 @@
        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd"
        default-autowire="byName">
 
-    <bean id="globalJobListener" class="so.wwb.lotterybox.schedule.service.utility.GlobalJobListener" />
+    <bean id="globalJobListener" class="so.wwb.creditbox.schedule.service.utility.GlobalJobListener" />
     <bean id="schedulerConfigDefault" class="org.springframework.core.io.ClassPathResource">
         <constructor-arg value="conf/quartz.properties" type="java.lang.String"/>
     </bean>
-    <bean id="schedulerDefault" class="so.wwb.lotterybox.schedule.service.base.TaskSchedulerFactoryBean">
+    <bean id="schedulerDefault" class="so.wwb.creditbox.schedule.service.base.TaskSchedulerFactoryBean">
         <property name="dataSource" ref="bossDataSource"/>
         <property name="configLocation" ref="schedulerConfigDefault"/>
         <property name="startupDelay" value="60"/>
@@ -23,7 +23,7 @@
     <bean id="schedulerConfigMerchant" class="org.springframework.core.io.ClassPathResource">
         <constructor-arg value="conf/quartz-merchant.properties" type="java.lang.String"/>
     </bean>
-    <bean id="schedulerMerchant" class="so.wwb.lotterybox.schedule.service.base.TaskSchedulerFactoryBean">
+    <bean id="schedulerMerchant" class="so.wwb.creditbox.schedule.service.base.TaskSchedulerFactoryBean">
         <property name="dataSource" ref="bossDataSource"/>
         <property name="configLocation" ref="schedulerConfigMerchant"/>
         <property name="startupDelay" value="60"/>

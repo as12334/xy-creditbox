@@ -5,7 +5,7 @@
        default-autowire="byName">
     <import resource="classpath*:conf/common-notify-consumer.xml"/>
     <util:constant id="SITE_VERSION_UPDATE"
-                   static-field="so.wwb.lotterybox.common.watcher.zookeeper.interceptors.NotifyType.SITE_VERSION_UPDATE"/>
+                   static-field="so.wwb.creditbox.common.watcher.zookeeper.interceptors.NotifyType.SITE_VERSION_UPDATE"/>
     <!--消息通知消费者定义列表-->
     <bean id="notifyConsumerConf" parent="notifyConsumerConfBase">
         <property name="itemConfs">
@@ -14,14 +14,14 @@
                 <bean lazy-init="true" class="org.soul.watcher.zookeeper.config.NotifyConfItemConf">
                     <property name="handler" ref="notifyHandler"/>
                     <property name="notifyType" ref="SITE_VERSION_UPDATE"/>
-                    <property name="classFullName" value="so.wwb.lotterybox.mdcenter.init.CtxLoaderListener"/>
+                    <property name="classFullName" value="so.wwb.creditbox.mdcenter.init.CtxLoaderListener"/>
                     <property name="methodName" value="refreshSiteVersion"/>
                 </bean>
                 <!--更新目标应用站点版本信息-->
                 <bean lazy-init="true" class="org.soul.watcher.zookeeper.config.NotifyConfItemConf">
                     <property name="handler" ref="notifyHandler"/>
                     <property name="notifyType" ref="VERSION_UPDATE"/>
-                    <property name="classFullName" value="so.wwb.lotterybox.mdcenter.init.CtxLoaderListener"/>
+                    <property name="classFullName" value="so.wwb.creditbox.mdcenter.init.CtxLoaderListener"/>
                     <property name="methodName" value="refreshServiceVersion"/>
                     <property name="argType" value="org.soul.watcher.zookeeper.handler.NodeVersionInfo"/>
                 </bean>
@@ -29,7 +29,7 @@
                 <bean lazy-init="true" class="org.soul.watcher.zookeeper.config.NotifyConfItemConf">
                     <property name="handler" ref="notifyHandler"/>
                     <property name="notifyType" ref="SERVICE_INIT"/>
-                    <property name="classFullName" value="so.wwb.lotterybox.mdcenter.init.CtxLoaderListener"/>
+                    <property name="classFullName" value="so.wwb.creditbox.mdcenter.init.CtxLoaderListener"/>
                     <property name="methodName" value="refreshServiceVersion"/>
                     <property name="argType" value="org.soul.watcher.zookeeper.handler.NodeVersionInfo"/>
                 </bean>

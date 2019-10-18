@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="so.wwb.lotterybox.data.manager.common.SiteOperateAreaMapper">
+<mapper namespace="so.wwb.creditbox.data.manager.common.SiteOperateAreaMapper">
 
-    <resultMap id="TABLE:site_operate_area" type="so.wwb.lotterybox.model.manager.site.po.SiteOperateArea">
+    <resultMap id="TABLE:site_operate_area" type="so.wwb.creditbox.model.manager.site.po.SiteOperateArea">
         <id column="id" property="id"/>
         <result column="site_id" property="siteId"/>
         <result column="code" property="code"/>
@@ -12,7 +12,7 @@
     </resultMap>
 
     <!--//region your codes 1-->
-    <select id="queryArea" resultType="so.wwb.lotterybox.model.manager.site.po.SiteOperateArea" parameterType="int">
+    <select id="queryArea" resultType="so.wwb.creditbox.model.manager.site.po.SiteOperateArea" parameterType="int">
         SELECT * FROM site_operate_area WHERE SITE_ID=#{siteId} ORDER BY CASE status WHEN '1'  THEN 1 WHEN '2' THEN 2 WHEN '0' THEN 3 END,open_time DESC
     </select>
     <!--//endregion your codes 1-->

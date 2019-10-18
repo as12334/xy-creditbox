@@ -14,7 +14,7 @@
     </context-param>
 
     <listener>
-        <listener-class>so.wwb.lotterybox.mdcenter.init.CtxLoaderListener</listener-class>
+        <listener-class>so.wwb.creditbox.mdcenter.init.CtxLoaderListener</listener-class>
     </listener>
 
     <listener>

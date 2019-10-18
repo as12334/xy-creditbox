@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="so.wwb.lotterybox.data.manager.permission.MSysRoleMapper">
+<mapper namespace="so.wwb.creditbox.data.manager.permission.MSysRoleMapper">
 
-    <resultMap id="TABLE:sys_role" type="so.wwb.lotterybox.model.manager.sys.po.SysRole">
+    <resultMap id="TABLE:sys_role" type="so.wwb.creditbox.model.manager.sys.po.SysRole">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="status" property="status"/>

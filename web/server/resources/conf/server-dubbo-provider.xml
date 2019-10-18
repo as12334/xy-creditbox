@@ -7,9 +7,9 @@
 
     <!--//region your codes 1-->
     <!-- 功能防御 -->
-    <dubbo:service ref="defenseRecordService" interface="so.wwb.lotterybox.iservice.manager.common.IDefenseRecordService" registry="zookeeperService"/>
+    <dubbo:service ref="defenseRecordService" interface="so.wwb.creditbox.iservice.manager.common.IDefenseRecordService" registry="zookeeperService"/>
 
-    <dubbo:service ref="ipDbService" interface="so.wwb.lotterybox.iservice.manager.common.IIpDbService" registry="zookeeperService"/>
+    <dubbo:service ref="ipDbService" interface="so.wwb.creditbox.iservice.manager.common.IIpDbService" registry="zookeeperService"/>
 
     <dubbo:service ref="sysDatasourceService" interface="org.soul.iservice.sys.ISysDatasourceService" registry="zookeeperService"/>
     <!--通行证-->
@@ -20,50 +20,50 @@
 
 
     <!--站长服务-->
-    <dubbo:service ref="sysSiteService" interface="so.wwb.lotterybox.iservice.manager.sys.ISysSiteService" registry="zookeeperService"/>
+    <dubbo:service ref="sysSiteService" interface="so.wwb.creditbox.iservice.manager.sys.ISysSiteService" registry="zookeeperService"/>
 
-    <dubbo:service ref="siteI18nService" interface="so.wwb.lotterybox.iservice.manager.common.ISiteI18nService" registry="zookeeperService"/>
+    <dubbo:service ref="siteI18nService" interface="so.wwb.creditbox.iservice.manager.common.ISiteI18nService" registry="zookeeperService"/>
 
 
     <!--域名服务-->
-    <dubbo:service ref="sysDomainService" interface="so.wwb.lotterybox.iservice.manager.sys.ISysDomainService" registry="zookeeperService"/>
+    <dubbo:service ref="sysDomainService" interface="so.wwb.creditbox.iservice.manager.sys.ISysDomainService" registry="zookeeperService"/>
 
-    <dubbo:service ref="sysUserExtendService" interface="so.wwb.lotterybox.iservice.manager.user.ISysUserExtendService"/>
+    <dubbo:service ref="sysUserExtendService" interface="so.wwb.creditbox.iservice.manager.user.ISysUserExtendService"/>
 
-    <dubbo:service ref="vSysDomainService" interface="so.wwb.lotterybox.iservice.manager.sys.IVSysDomainService" registry="zookeeperService"/>
+    <dubbo:service ref="vSysDomainService" interface="so.wwb.creditbox.iservice.manager.sys.IVSysDomainService" registry="zookeeperService"/>
 
     <!-- 站点视图dubbo服务 -->
-    <dubbo:service ref="vSysSiteManagerService" interface="so.wwb.lotterybox.iservice.manager.sys.IVSysSiteManageService" registry="zookeeperService"/>
+    <dubbo:service ref="vSysSiteManagerService" interface="so.wwb.creditbox.iservice.manager.sys.IVSysSiteManageService" registry="zookeeperService"/>
 
-    <dubbo:service ref="siteOperateAreaService" interface="so.wwb.lotterybox.iservice.manager.common.ISiteOperateAreaService" registry="zookeeperService"/>
+    <dubbo:service ref="siteOperateAreaService" interface="so.wwb.creditbox.iservice.manager.common.ISiteOperateAreaService" registry="zookeeperService"/>
 
     <!-- 系统审核日志dubbo服务 -->
-    <dubbo:service ref="auditLogService" interface="so.wwb.lotterybox.iservice.manager.common.IAuditLogService" registry="zookeeperService"/>
-    <dubbo:service ref="messageService" interface="so.wwb.lotterybox.iservice.common.IMessageService" registry="zookeeperService"/>
+    <dubbo:service ref="auditLogService" interface="so.wwb.creditbox.iservice.manager.common.IAuditLogService" registry="zookeeperService"/>
+    <dubbo:service ref="messageService" interface="so.wwb.creditbox.iservice.common.IMessageService" registry="zookeeperService"/>
 
 
     <!-- Ip限制访问dubbo服务 -->
-    <dubbo:service ref="siteConfineIpService" interface="so.wwb.lotterybox.iservice.manager.common.ISiteConfineIpService" registry="zookeeperService"/>
+    <dubbo:service ref="siteConfineIpService" interface="so.wwb.creditbox.iservice.manager.common.ISiteConfineIpService" registry="zookeeperService"/>
     <!-- Ip限制访问dubbo服务 -->
-    <dubbo:service ref="siteConfineAreaService" interface="so.wwb.lotterybox.iservice.manager.common.ISiteConfineAreaService" registry="zookeeperService"/>
+    <dubbo:service ref="siteConfineAreaService" interface="so.wwb.creditbox.iservice.manager.common.ISiteConfineAreaService" registry="zookeeperService"/>
     <!--备注-->
 
 
 
     <!--任务-->
-    <!--<dubbo:service ref="taskScheduleCrudServiceEx" interface="so.wwb.lotterybox.iservice.manager.taskschedule.ITaskScheduleCrudServiceEx" registry="zookeeperService"/>-->
+    <!--<dubbo:service ref="taskScheduleCrudServiceEx" interface="so.wwb.creditbox.iservice.manager.taskschedule.ITaskScheduleCrudServiceEx" registry="zookeeperService"/>-->
 
-    <!--<dubbo:service ref="taskRunRecordService" interface="so.wwb.lotterybox.iservice.manager.taskschedule.ITaskRunRecordService" registry="zookeeperService"/>-->
+    <!--<dubbo:service ref="taskRunRecordService" interface="so.wwb.creditbox.iservice.manager.taskschedule.ITaskRunRecordService" registry="zookeeperService"/>-->
 
     <!--站点域名-->
-    <dubbo:service ref="vSysSiteDomainService" interface="so.wwb.lotterybox.iservice.manager.sys.IVSysSiteDomainService" registry="zookeeperService"/>
+    <dubbo:service ref="vSysSiteDomainService" interface="so.wwb.creditbox.iservice.manager.sys.IVSysSiteDomainService" registry="zookeeperService"/>
 
     <!--账号权限-->
     <dubbo:service ref="sysRoleService" interface="org.soul.iservice.security.privilege.ISysRoleService"/>
 
-    <dubbo:service ref="vUserDetailService" interface="so.wwb.lotterybox.iservice.company.user.IVUserDetailService"/>
+    <dubbo:service ref="vUserDetailService" interface="so.wwb.creditbox.iservice.company.user.IVUserDetailService"/>
 
-    <dubbo:service ref="vUserManagerService" interface="so.wwb.lotterybox.iservice.manager.user.IVUserManagerService"/>
+    <dubbo:service ref="vUserManagerService" interface="so.wwb.creditbox.iservice.manager.user.IVUserManagerService"/>
 
 
 </beans>

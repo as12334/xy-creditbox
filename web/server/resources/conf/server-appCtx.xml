@@ -33,10 +33,10 @@
 
     <context:annotation-config/>
 
-    <context:component-scan base-package="so.wwb.lotterybox.service"/>
+    <context:component-scan base-package="so.wwb.creditbox.service"/>
 
     <bean id="healthCheckFilter" class="org.soul.web.filter.HealthCheckFilter"/>
-    <bean class="so.wwb.lotterybox.service.init.ConfigManager">
+    <bean class="so.wwb.creditbox.service.init.ConfigManager">
         <constructor-arg index="0" value="${dubbo.application.name}"></constructor-arg>
         <constructor-arg index="1" value="${dubbo.version}"></constructor-arg>
     </bean>

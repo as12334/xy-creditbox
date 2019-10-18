@@ -3,13 +3,13 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
-	<bean class="so.wwb.lotterybox.common.dubbo.ServiceTool">
+	<bean class="so.wwb.creditbox.common.dubbo.ServiceTool">
 		<property name="dubboApplicationName" value="${service.dubbo.application.name}"/>
 	</bean>
-	<bean class="so.wwb.lotterybox.common.dubbo.ServiceScheduleTool">
+	<bean class="so.wwb.creditbox.common.dubbo.ServiceScheduleTool">
 		<property name="dubboApplicationName" value="${schedule.dubbo.application.name}"/>
 	</bean>
-	<!--<bean class="so.wwb.lotterybox.common.dubbo.ServiceApiTool">-->
+	<!--<bean class="so.wwb.creditbox.common.dubbo.ServiceApiTool">-->
 		<!--<property name="dubboApplicationName" value="${api.dubbo.application.name}"/>-->
 	<!--</bean>-->
 </beans>

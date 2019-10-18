@@ -19,7 +19,7 @@
                         <!--向Boss（后台）的在线用户发送消息-->
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="LOTTERYBOX_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.common.MessageService"/>
                             <property name="methodName" value="sendToBossMsg"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="bossMessage"/>
@@ -29,7 +29,7 @@
                         <!--向api的在线用户发送消息-->
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="LOTTERYBOX_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.common.MessageService"/>
                             <property name="methodName" value="sendToApiMsg"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="apiMessage"/>

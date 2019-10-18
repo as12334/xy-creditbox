@@ -109,7 +109,7 @@
                         &lt;!&ndash;向站长站前台（包括游戏中心）的在线用户发送消息&ndash;&gt;
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="COMET_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.common.MessageService"/>
                             <property name="methodName" value="sendToMsiteMsg"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="msiteMessage"/>
@@ -118,7 +118,7 @@
                         &lt;!&ndash;向站长中心（后台）的在线用户发送消息&ndash;&gt;
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="COMET_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.common.MessageService"/>
                             <property name="methodName" value="sendToMerchantMsg"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="mcenterMessage"/>
@@ -127,7 +127,7 @@
                         &lt;!&ndash;向运营商（后台）的在线用户发送消息&ndash;&gt;
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="COMET_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.common.MessageService"/>
                             <property name="methodName" value="sendToCcenterMsg"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="ccenterMessage"/>
@@ -136,7 +136,7 @@
                         &lt;!&ndash;向Boss（后台）的在线用户发送消息&ndash;&gt;
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="COMET_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.common.MessageService"/>
                             <property name="methodName" value="sendToBossMsg"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="bossMessage"/>
@@ -149,7 +149,7 @@
                         &lt;!&ndash;发送邮件&ndash;&gt;
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="NOTICE_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.common.MessageService"/>
                             <property name="methodName" value="sendEmail"/>
                             <property name="argType" value="org.soul.model.msg.notice.vo.EmailMsgVo"/>
                             <property name="tags" value="sendEmail"/>
@@ -158,7 +158,7 @@
                         &lt;!&ndash;发送短信&ndash;&gt;
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="NOTICE_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.common.MessageService"/>
                             <property name="methodName" value="sendSmsMessage"/>
                             <property name="argType" value="org.soul.model.sms.SmsMessageVo"/>
                             <property name="tags" value="sendSmsMessage"/>
@@ -199,36 +199,36 @@
 
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="MCENTER_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.manager.sys.SysDomainService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.manager.sys.SysDomainService"/>
                             <property name="methodName" value="insert"/>
-                            <property name="argType" value="so.wwb.lotterybox.model.manager.sys.vo.SysDomainVo"/>
+                            <property name="argType" value="so.wwb.creditbox.model.manager.sys.vo.SysDomainVo"/>
                             <property name="tags" value="sysDomainVoInsert"/>
                             <property name="dubboVersionApp" value="lottery-service"/>
                         </bean>
 
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="MCENTER_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.manager.sys.SysDomainService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.manager.sys.SysDomainService"/>
                             <property name="methodName" value="batchSaveDomain"/>
-                            <property name="argType" value="so.wwb.lotterybox.model.manager.sys.vo.SysDomainVo"/>
+                            <property name="argType" value="so.wwb.creditbox.model.manager.sys.vo.SysDomainVo"/>
                             <property name="tags" value="batchSaveSysDomain"/>
                             <property name="dubboVersionApp" value="lottery-service"/>
                         </bean>
 
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="MCENTER_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.manager.sys.SysDomainService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.manager.sys.SysDomainService"/>
                             <property name="methodName" value="updateSysDomain"/>
-                            <property name="argType" value="so.wwb.lotterybox.model.manager.sys.vo.SysDomainVo"/>
+                            <property name="argType" value="so.wwb.creditbox.model.manager.sys.vo.SysDomainVo"/>
                             <property name="tags" value="updateSysDomain"/>
                             <property name="dubboVersionApp" value="lottery-service"/>
                         </bean>
 
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="MCENTER_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.manager.sys.SysDomainService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.manager.sys.SysDomainService"/>
                             <property name="methodName" value="changeDeleteStatus"/>
-                            <property name="argType" value="so.wwb.lotterybox.model.manager.sys.vo.SysDomainListVo"/>
+                            <property name="argType" value="so.wwb.creditbox.model.manager.sys.vo.SysDomainListVo"/>
                             <property name="tags" value="sysDomainVoDelete"/>
                             <property name="dubboVersionApp" value="lottery-service"/>
                         </bean>
@@ -350,7 +350,7 @@
                     <list>
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="LOTTERYBOX_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.common.MessageService"/>
                             <property name="methodName" value="sendToBossMsg"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="bossMessage"/>
@@ -358,7 +358,7 @@
                         </bean>
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="LOTTERYBOX_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.common.MessageService"/>
                             <property name="methodName" value="sendToShareholderMsg"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="shareHolderMessage"/>
@@ -366,7 +366,7 @@
                         </bean>
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="LOTTERYBOX_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.common.MessageService"/>
                             <property name="methodName" value="sendToMerchantMsg"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="merchantMessage"/>
@@ -374,7 +374,7 @@
                         </bean>
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="LOTTERYBOX_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.common.MessageService"/>
                             <property name="methodName" value="sendToMerchantApiMsg"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="merchantApiMessage"/>
@@ -382,7 +382,7 @@
                         </bean>
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="LOTTERYBOX_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.common.MessageService"/>
                             <property name="methodName" value="sendToDistributorMsg"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="distributorMessage"/>
@@ -391,7 +391,7 @@
 
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="LOTTERYBOX_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.common.MessageService"/>
                             <property name="methodName" value="sendToDistributorApiMsg"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="distributorApiMessage"/>
@@ -400,7 +400,7 @@
 
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="LOTTERYBOX_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.common.MessageService"/>
                             <property name="methodName" value="sendToHallMsg"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="hallMessage"/>
@@ -410,7 +410,7 @@
                         <!--向api的在线用户发送消息-->
                         <bean class="org.soul.commons.mq.conf.MQItemConf">
                             <property name="topic" value="LOTTERYBOX_TOPIC"/>
-                            <property name="classFullName" value="so.wwb.lotterybox.service.common.MessageService"/>
+                            <property name="classFullName" value="so.wwb.creditbox.service.common.MessageService"/>
                             <property name="methodName" value="sendToApiMsg"/>
                             <property name="argType" value="org.soul.model.comet.vo.MessageVo"/>
                             <property name="tags" value="apiMessage"/>

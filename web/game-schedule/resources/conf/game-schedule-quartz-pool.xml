@@ -5,11 +5,11 @@
        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd"
        default-autowire="byName">
 
-    <bean id="globalJobListener" class="so.wwb.lotterybox.schedule.service.utility.GlobalJobListener" />
+    <bean id="globalJobListener" class="so.wwb.creditbox.schedule.service.utility.GlobalJobListener" />
     <bean id="schedulerGameConfig" class="org.springframework.core.io.ClassPathResource">
         <constructor-arg value="conf/quartz.properties" type="java.lang.String"/>
     </bean>
-    <bean id="schedulerGame" class="so.wwb.lotterybox.schedule.service.base.TaskSchedulerFactoryBean">
+    <bean id="schedulerGame" class="so.wwb.creditbox.schedule.service.base.TaskSchedulerFactoryBean">
         <property name="dataSource" ref="bossDataSource"/>
         <property name="configLocation" ref="schedulerGameConfig"/>
         <property name="startupDelay" value="60"/>
