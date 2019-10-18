@@ -17,7 +17,6 @@
         <module>manager</module>
         <module>company</module>
         <module>server</module>
-        <module>hall</module>
         <module>schedule</module>
         <module>game-schedule</module>
         <module>cache-service</module>
