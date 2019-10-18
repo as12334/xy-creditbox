@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.lotterybox.data.manager.user.VSubAccountMapper">
+
+    <resultMap id="TABLE:v_sub_account" type="so.wwb.creditbox.model.manager.user.po.VSubAccount">
+        <id column="id" property="id"/>
+        <result column="user_type" property="userType"/>
+        <result column="username" property="username"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="real_name" property="realName"/>
+        <result column="nickname" property="nickname"/>
+        <result column="roles" property="roles"/>
+        <result column="role_ids" property="roleIds"/>
+        <result column="built_in" property="builtIn"/>
+        <result column="owner_id" property="ownerId"/>
+        <result column="site_id" property="siteId"/>
+        <result column="login_time" property="loginTime"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+    <select id="getRoles" resultType="map">
+        SELECT sl.id,
+               sl.name,
+               COALESCE (sur.user_count, 0) COUNT
+          FROM sys_role sl
+          LEFT JOIN (
+                SELECT role_id, COUNT(1) user_count
+                  FROM sys_user_role
+                 WHERE user_id IN
+                <foreach item="id" collection="search.sysUserIds" open="(" close=")" separator=",">
+                 ${id}
+                </foreach>
+                 GROUP BY role_id
+          ) sur ON sl.id = sur.role_id
+         WHERE sl.subsys_code = #{search.subSysCode}
+        <if test="search.siteId != null">
+           AND sl.site_id = #{search.siteId}
+        </if>
+    </select>
+
+    <insert id="insertRoleNotExist">
+        INSERT INTO sys_user_role (user_id,role_id)
+        SELECT
+          sys_user.id user_id,
+          sys_role.id role_id
+        FROM
+        (
+            SELECT
+             ID
+            FROM
+              sys_user
+            WHERE
+              ID IN (<foreach collection="sysUserIds" separator="," item="id">#{id}</foreach>)
+        ) sys_user
+        FULL JOIN (
+            SELECT
+              ID
+            FROM
+              sys_role
+            WHERE
+              ID IN (<foreach collection="sysRoleIds" separator="," item="id">#{id}</foreach>)
+        ) sys_role on true
+        <![CDATA[ where (SELECT count(1) from sys_user_role where role_id = sys_role.id and user_id = sys_user.id) < 1 ]]>
+    </insert>
+
+    <update id="changeStatusByIds">
+      UPDATE sys_user set status = #{search.status} where id in
+        <foreach item="id" collection="search.sysUserIds" open="(" close=")" separator=",">
+            ${id}
+        </foreach>
+    </update>
+
+    <select id="roleNameIsExist" parameterType="org.soul.model.security.privilege.so.SysRoleSo" resultType="integer">
+        SELECT * FROM sys_role
+        WHERE "name" = #{name}
+        AND subsys_code = #{subsysCode}
+        AND ((built_in = FALSE AND site_id = #{siteId}) OR built_in = TRUE)
+    </select>
+    <!--//endregion your codes 1-->
+
+</mapper>

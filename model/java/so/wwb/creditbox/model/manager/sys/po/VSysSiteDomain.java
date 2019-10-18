@@ -12,7 +12,7 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-10-11 16:32:34
+ * @time 2019-10-18 23:23:34
  */
 //region your codes 1
 public class VSysSiteDomain implements IEntity<Integer> {
@@ -29,8 +29,6 @@ public class VSysSiteDomain implements IEntity<Integer> {
 	public static final String PROP_NAME = "name";
 	public static final String PROP_SITE_USER_ID = "siteUserId";
 	public static final String PROP_SITE_USER_NAME = "siteUserName";
-	public static final String PROP_SITE_USER_CODE = "siteUserCode";
-	public static final String PROP_SITE_USER_OWNER_CODE = "siteUserOwnerCode";
 	public static final String PROP_SITE_USER_TYPE = "siteUserType";
 	public static final String PROP_DOMAIN_ID = "domainId";
 	public static final String PROP_DOMAIN = "domain";
@@ -39,7 +37,6 @@ public class VSysSiteDomain implements IEntity<Integer> {
 	public static final String PROP_DOMAIN_USER_ID = "domainUserId";
 	public static final String PROP_DOMAIN_USER_TYPE = "domainUserType";
 	public static final String PROP_DOMAIN_USER_NAME = "domainUserName";
-	public static final String PROP_DOMAIN_USER_CODE = "domainUserCode";
 	public static final String PROP_TIME_ZONE = "timeZone";
 	public static final String PROP_SITE_LOCALE = "siteLocale";
 	public static final String PROP_SITE_CODE = "siteCode";
@@ -75,10 +72,6 @@ public class VSysSiteDomain implements IEntity<Integer> {
 	/**  */
 	private String siteUserName;
 	/**  */
-	private String siteUserCode;
-	/**  */
-	private String siteUserOwnerCode;
-	/**  */
 	private String siteUserType;
 	/**  */
 	private Integer domainId;
@@ -94,8 +87,6 @@ public class VSysSiteDomain implements IEntity<Integer> {
 	private String domainUserType;
 	/**  */
 	private String domainUserName;
-	/**  */
-	private String domainUserCode;
 	/**  */
 	private String timeZone;
 	/**  */
@@ -191,20 +182,6 @@ public class VSysSiteDomain implements IEntity<Integer> {
 	public void setSiteUserName(String value) {
 		this.siteUserName = value;
 	}
-	public String getSiteUserCode() {
-		return this.siteUserCode;
-	}
-
-	public void setSiteUserCode(String value) {
-		this.siteUserCode = value;
-	}
-	public String getSiteUserOwnerCode() {
-		return this.siteUserOwnerCode;
-	}
-
-	public void setSiteUserOwnerCode(String value) {
-		this.siteUserOwnerCode = value;
-	}
 	public String getSiteUserType() {
 		return this.siteUserType;
 	}
@@ -260,13 +237,6 @@ public class VSysSiteDomain implements IEntity<Integer> {
 
 	public void setDomainUserName(String value) {
 		this.domainUserName = value;
-	}
-	public String getDomainUserCode() {
-		return this.domainUserCode;
-	}
-
-	public void setDomainUserCode(String value) {
-		this.domainUserCode = value;
 	}
 	public String getTimeZone() {
 		return this.timeZone;

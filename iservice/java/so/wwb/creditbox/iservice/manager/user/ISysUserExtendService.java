@@ -9,22 +9,24 @@ import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendListVo;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public interface ISysUserExtendService extends IBaseService<SysUserExtendListVo, SysUserExtendVo, SysUserExtend, Integer> {
 
-//    /**
-//     * 根据用户名查找其权限
-//     * @return 权限表达式列表
-//     */
-//    Set<String> findPermissions(PassportVo passportVo);
-//
-//    /**
-//     * 根据用户名查找url和权限对象
-//     *
-//     * @return Map<url, 权限表达式>
-//     */
-//    Map<String, Pair<String, Boolean>> findPermissionMapping(PassportVo passportVo);
+    /**
+     * 根据用户名查找其权限
+     * @return 权限表达式列表
+     */
+    Set<String> findPermissions(PassportVo passportVo);
+
+    /**
+     * 根据用户名查找url和权限对象
+     *
+     * @return Map<url, 权限表达式>
+     */
+    Map<String, Pair<String, Boolean>> findPermissionMapping(PassportVo passportVo);
 //
 //    /**
 //     * 查询用户的状态,此状态是级联的状态,如上级非正常状态,刚使用上级的状态
@@ -33,7 +35,7 @@ public interface ISysUserExtendService extends IBaseService<SysUserExtendListVo,
 //     * 3.商户主账号状态链： 商户子账号、总代主账号、总代子账号
 //     *
 //     */
-//    SysUserStatusVo getStatus(PassportVo passportVo);
+    SysUserStatusVo getStatus(PassportVo passportVo);
 //
 ////    WebJson checkStatus(SysUserExtendVo extendVo, WebJson webJson);
 //
@@ -41,18 +43,18 @@ public interface ISysUserExtendService extends IBaseService<SysUserExtendListVo,
      * 加载所有用户作缓存.
      */
     Map<String, SysUserExtend> load();
-//
-//    /**
-//     * 保存用户账号
-//     */
-//    SysUserExtendVo saveSysUser(SysUserExtendVo vo);
-//
-//    /**
-//     * 更新用户账号
-//     */
-//    SysUserExtendVo updateSysUser(SysUserExtendVo userExtendVo, SysUserExtend operator);
-//
-//    String getHid(String Thid);
+
+    /**
+     * 保存用户账号
+     */
+    SysUserExtendVo saveSysUser(SysUserExtendVo vo);
+
+    /**
+     * 更新用户账号
+     */
+    SysUserExtendVo updateSysUser(SysUserExtendVo userExtendVo, SysUserExtend operator);
+
+    String getHid(String Thid);
 //
 //    /**
 //     * 系统账号同名数
@@ -68,21 +70,21 @@ public interface ISysUserExtendService extends IBaseService<SysUserExtendListVo,
 //     */
 //    long countPlayerName(SysUserExtendVo vo);
 //
-//    /**
-//     * 删除用户,同时删除用户所拥有的角色,联系方式
-//     */
-//    SysUserExtendVo deleteSysUser(SysUserExtendVo sysUserExtendVo);
-//
-//    /**
-//     * 详细查询
-//     */
-//     SysUserExtendVo viewSysUser(SysUserExtendVo sysUserExtendVo);
-//
-//    /**
-//     * 编辑
-//     */
-//     SysUserExtendVo editAccount(SysUserExtendVo sysUserExtendVo);
-//
+    /**
+     * 删除用户,同时删除用户所拥有的角色,联系方式
+     */
+    SysUserExtendVo deleteSysUser(SysUserExtendVo sysUserExtendVo);
+
+    /**
+     * 详细查询
+     */
+     SysUserExtendVo viewSysUser(SysUserExtendVo sysUserExtendVo);
+
+    /**
+     * 编辑
+     */
+     SysUserExtendVo editAccount(SysUserExtendVo sysUserExtendVo);
+
     /**
      * 根据用户名查找用户
      */
@@ -126,7 +128,7 @@ public interface ISysUserExtendService extends IBaseService<SysUserExtendListVo,
 //
 ////    List<SysUserExtend> findByUserplayListVo(UserPlayerListVo userPlayerListVo);
 //
-//    List<Map<String,Object>> queryOwnerIdList(Integer[] array, List<String> subsysCodes);
+    List<Map<String,Object>> queryOwnerIdList(Integer[] array, List<String> subsysCodes);
 //
 //
     SysUserExtend getSysUserExtend(Integer id);

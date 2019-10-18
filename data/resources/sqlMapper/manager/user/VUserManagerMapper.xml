@@ -83,6 +83,20 @@
         SELECT  * from  v_user_manager WHERE hid like CONCAT('',#{hid},'%')  AND length(hid)>= #{hidLength}
     </select>
 
+    <!--查询用户所有菜单-->
+    <select id="getAllMenus" resultMap="childMenu">
+        SELECT id,name,url,dialog FROM sys_resource WHERE parent_id is null AND subsys_code = #{subsysCode} ORDER BY sort_num ASC ;
+    </select>
+
+
+    <resultMap id="childMenu"  type="so.wwb.creditbox.model.manager.sys.po.Nav">
+        <id column="pid" property="id"/>
+        <collection property="ut" ofType="so.wwb.creditbox.model.manager.sys.po.Nav" select="getChildMenu" column="id" fetchType="eager" />
+    </resultMap>
+
+    <select id="getChildMenu" resultType="so.wwb.creditbox.model.manager.sys.po.Nav" parameterType="integer">
+        SELECT id,name,url,dialog from sys_resource where parent_id = #{pid} ORDER BY sort_num ASC
+    </select>
     <!--//endregion your codes 1-->
 
 </mapper>

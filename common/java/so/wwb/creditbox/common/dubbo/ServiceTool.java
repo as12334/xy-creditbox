@@ -27,6 +27,7 @@ import so.wwb.creditbox.iservice.manager.lottery.ILotteryTypeService;
 import so.wwb.creditbox.iservice.manager.message.ISystemAnnouncementService;
 import so.wwb.creditbox.iservice.manager.sys.*;
 import so.wwb.creditbox.iservice.manager.user.ISysUserExtendService;
+import so.wwb.creditbox.iservice.manager.user.IVSubAccountService;
 import so.wwb.creditbox.iservice.manager.user.IVUserManagerService;
 
 public class ServiceTool {
@@ -41,6 +42,9 @@ public class ServiceTool {
 
     public static ISiteSysParamService siteSysParamService() {
         return getService(ISiteSysParamService.class);
+    }
+    public static ISysRoleService sysRoleService(){
+        return getService(ISysRoleService.class);
     }
 
 
@@ -83,7 +87,19 @@ public class ServiceTool {
 //    public static ILotteryProjectService lotteryProjectService () {
 //        return getService(ILotteryProjectService.class);
 //    }
+public static ISysUserRoleService sysUserRoleService() {
+    return getService(ISysUserRoleService.class);
+}
 
+
+    /**
+     * 返回子账户视图远程服务实例
+     *
+     * @return 子账户视图远程服务实例
+     */
+    public static IVSubAccountService vSubAccountService() {
+        return getService(IVSubAccountService.class);
+    }
 
     public static ILotteryService lotteryService() {
         return getService(ILotteryService.class);

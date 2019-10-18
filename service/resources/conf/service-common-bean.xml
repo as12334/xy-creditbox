@@ -12,7 +12,7 @@
     <bean lazy-init="true" id="sysUserExtendService" class="so.wwb.creditbox.service.manager.user.SysUserExtendService"/>
     <bean lazy-init="true" id="sysDatasourceService" class="org.soul.service.sys.SysDatasourceService" />
     <bean lazy-init="true" id="smsInterfaceService" class="org.soul.service.smsinterface.SmsInterfaceService"/>
-    <!--<bean lazy-init="true" id="passportService" class="so.wwb.creditbox.service.manager.user.PassportService"/>-->
+    <bean lazy-init="true" id="passportService" class="so.wwb.creditbox.service.manager.user.PassportService"/>
 
     <bean id="sysDomainService" class="so.wwb.creditbox.service.manager.sys.SysDomainService"/>
 

@@ -14,10 +14,6 @@ public class SysUserExtend extends SysUser {
     private static final long serialVersionUID = 4212061721572381108L;
 
     public static final String PROP_CODE = "code";
-    public static final String PROP_OWNER_CODE = "ownerCode";
-    public static final String PROP_OWNER_NAME = "ownerName";
-    public static final String PROP_PARENT_IDS = "parentIds";
-    public static final String PROP_PARENT_NAMES = "parentNames";
     public static final String PROP_KEY = "key";
     public static final String PROP_UPDATE_NAME="updateName";
 

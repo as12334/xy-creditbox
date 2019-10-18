@@ -13,7 +13,7 @@
 
     <dubbo:service ref="sysDatasourceService" interface="org.soul.iservice.sys.ISysDatasourceService" registry="zookeeperService"/>
     <!--通行证-->
-    <!--<dubbo:service ref="passportService" interface="org.soul.iservice.passport.IPassportService" registry="zookeeperService"/>-->
+    <dubbo:service ref="passportService" interface="org.soul.iservice.passport.IPassportService" registry="zookeeperService"/>
 
     <dubbo:service ref="sysParamService" interface="org.soul.iservice.sys.ISysParamService" registry="zookeeperService"/>
 

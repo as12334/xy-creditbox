@@ -1,11 +1,15 @@
 package so.wwb.creditbox.service.manager.user;
 
+import org.soul.model.security.privilege.vo.SysResourceVo;
 import org.soul.service.support.BaseService;
 import so.wwb.creditbox.data.manager.user.VUserManagerMapper;
 import so.wwb.creditbox.iservice.manager.user.IVUserManagerService;
+import so.wwb.creditbox.model.manager.sys.po.Nav;
 import so.wwb.creditbox.model.manager.user.po.VUserManager;
 import so.wwb.creditbox.model.manager.user.vo.VUserManagerListVo;
 import so.wwb.creditbox.model.manager.user.vo.VUserManagerVo;
+
+import java.util.List;
 
 
 /**
@@ -24,7 +28,10 @@ public class VUserManagerService extends BaseService<VUserManagerMapper, VUserMa
         objectVo.setSuperUserList(mapper.searchLevelUser(objectVo.getSearch()));
         return objectVo;
     }
-
+    @Override
+    public List<Nav> getAllMenus(SysResourceVo o) {
+        return mapper.getAllMenus(o.getSearch());
+    }
     //endregion your codes 2
 
 }

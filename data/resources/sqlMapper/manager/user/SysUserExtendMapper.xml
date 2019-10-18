@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.creditbox.data.manager.user.SysUserExtendMapper">
+
+    <resultMap id="TABLE:sys_user_extend" type="so.wwb.creditbox.model.manager.user.po.SysUserExtend" extends="TABLE:sys_user">
+        <result column="key" property="key"/>
+        <result column="update_name" property="updateName"/>
+    </resultMap>
+
+    <resultMap id="TABLE:sys_user" type="org.soul.model.security.privilege.po.SysUser">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="dept_id" property="deptId"/>
+        <result column="status" property="status"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_user" property="updateUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="default_locale" property="defaultLocale"/>
+        <result column="default_timezone" property="defaultTimezone"/>
+        <result column="subsys_code" property="subsysCode"/>
+        <result column="user_type" property="userType"/>
+        <result column="built_in" property="builtIn"/>
+        <result column="site_id" property="siteId"/>
+        <result column="owner_id" property="ownerId"/>
+        <result column="freeze_type" property="freezeType"/>
+        <result column="freeze_start_time" property="freezeStartTime"/>
+        <result column="freeze_end_time" property="freezeEndTime"/>
+        <result column="freeze_code" property="freezeCode"/>
+        <result column="login_time" property="loginTime"/>
+        <result column="login_ip" property="loginIp"/>
+        <result column="last_active_time" property="lastActiveTime"/>
+        <result column="use_line" property="useLine"/>
+        <result column="last_login_time" property="lastLoginTime"/>
+        <result column="last_login_ip" property="lastLoginIp"/>
+        <result column="total_online_time" property="totalOnlineTime"/>
+        <result column="nickname" property="nickname"/>
+        <result column="real_name" property="realName"/>
+        <result column="birthday" property="birthday"/>
+        <result column="sex" property="sex"/>
+        <result column="constellation" property="constellation"/>
+        <result column="country" property="country"/>
+        <result column="nation" property="nation"/>
+        <result column="register_ip" property="registerIp"/>
+        <result column="avatar_url" property="avatarUrl"/>
+        <result column="permission_pwd" property="permissionPwd"/>
+        <result column="idcard" property="idcard"/>
+        <result column="default_currency" property="defaultCurrency"/>
+        <result column="register_site" property="registerSite"/>
+        <result column="region" property="region"/>
+        <result column="city" property="city"/>
+        <result column="memo" property="memo"/>
+        <result column="password_level" property="passwordLevel"/>
+        <result column="login_ip_dict_code" property="loginIpDictCode"/>
+        <result column="last_login_ip_dict_code" property="lastLoginIpDictCode"/>
+        <result column="register_ip_dict_code" property="registerIpDictCode"/>
+        <result column="login_error_times" property="loginErrorTimes"/>
+        <result column="freeze_title" property="freezeTitle"/>
+        <result column="freeze_content" property="freezeContent" />
+        <result column="last_logout_time" property="lastLogoutTime"/>
+        <result column="freeze_user" property="freezeUser"/>
+        <result column="disabled_user" property="disabledUser"/>
+        <result column="disabled_time" property="disabledTime"/>
+        <result column="freeze_time" property="freezeTime"/>
+        <result column="account_freeze_remark" property="accountFreezeRemark"/>
+        <result column="secpwd_freeze_start_time" property="secpwdFreezeStartTime"/>
+        <result column="secpwd_freeze_end_time" property="secpwdFreezeEndTime"/>
+        <result column="secpwd_error_times" property="secpwdErrorTimes"/>
+        <result column="session_key" property="sessionKey"/>
+        <result column="terminal" property="terminal"/>
+        <result column="authentication_key" property="authenticationKey"/>
+        <result column="superior_occupy" property="superiorOccupy" javaType="double"/>
+        <result column="stint_occupy" property="stintOccupy" javaType="double"/>
+        <result column="hid" property="hid"/>
+        <result column="credits" property="credits" javaType="double"/>
+    </resultMap>
+    <!--//region your codes 1-->
+    <resultMap id="sysUserRM" type="org.soul.model.security.privilege.po.SysUser" extends="TABLE:sys_user">
+        <collection property="roles" ofType="org.soul.model.security.privilege.po.SysRole" column="user_id"
+                    resultMap="org.soul.data.mapper.security.privilege.SysRoleMapper.TABLE:SYS_ROLE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, username, password, dept_id, status, create_user, create_time, update_user, update_time, subsys_code, user_type,built_in,
+        default_locale, default_timezone,site_id,owner_id
+    </sql>
+
+    <!--TODO:Longer 需要验证递归查询无限级的情况-->
+    <select id="findOwner" parameterType="int" resultMap="TABLE:sys_user_extend">
+        WITH RECURSIVE r AS (
+        SELECT * FROM sys_user_extend WHERE id = #{id}
+        union   ALL
+        SELECT cur.* FROM sys_user_extend cur, r WHERE cur.id = r.owner_id and cur.user_type!=r.user_type
+        )
+        SELECT * FROM r ORDER BY id;
+    </select>
+
+    <select id="queryOwnerList" parameterType="int" resultMap="TABLE:sys_user">
+        SELECT * FROM sys_user_extend WHERE owner_id = #{id}
+    </select>
+
+    <select id="queryOnlinePlayer" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultMap="TABLE:sys_user_extend">
+        SELECT su.*,uw.balance  FROM sys_user_extend su left JOIN user_assets uw on su.id=uw.id WHERE online_status = '1'
+        <if test="username != null">
+            and username =#{username}
+        </if>
+    </select>
+
+    <select id="queryAllPlayer" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultMap="TABLE:sys_user_extend">
+        SELECT su.*,uw.balance  FROM sys_user_extend su left JOIN user_assets uw on su.id=uw.id WHERE 1=1
+        <if test="username != null">
+            and username =#{username}
+        </if>
+        <if test="createTimeBegin != null">
+            AND create_time &gt;= #{createTimeBegin}
+        </if>
+        <if test="createTimeEnd != null">
+            AND create_time &lt; #{createTimeEnd}
+        </if>
+    </select>
+
+    <update id="incLoginErrorTimes">
+        update sys_user_extend set login_error_times = coalesce(login_error_times,0) + 1 where id = #{id};
+    </update>
+
+    <insert id="batchInsertUserRole" parameterType="org.soul.model.security.privilege.po.SysUserRole">
+        INSERT INTO "sys_user_role" ("user_id", "role_id")
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.userId,jdbcType=INTEGER},#{item.roleId,jdbcType=INTEGER})
+        </foreach>
+        on conflict(user_id,role_id) do nothing
+    </insert>
+
+    <delete id="deleteSysUserRole" parameterType="integer">
+        DELETE from sys_user_role where user_id=#{userId};
+    </delete>
+
+    <!--系统账号-->
+    <select id="countUserName" parameterType="string" resultType="long">
+      SELECT COUNT(1)::bigint FROM sys_user_extend WHERE username = #{username}
+    </select>
+    <!--玩家账号-->
+    <select id="countPlayerName" parameterType="so.wwb.creditbox.model.manager.user.so.SysUserExtendSo" resultType="long">
+        SELECT COUNT(1)::bigint FROM sys_user_extend WHERE username = #{username}
+    </select>
+
+    <select id="userSubsysCode" parameterType="integer" resultType="string">
+        SELECT subsys_code from sys_user_extend where id=#{userId};
+    </select>
+
+    <select id="queryPlayerByRecharge" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultMap="TABLE:sys_user_extend">
+        SELECT su.*,uw.balance  FROM sys_user_extend su left JOIN user_assets uw on su.id=uw.id WHERE su.id = #{id}
+    </select>
+
+    <!--根据玩家账号查询玩家信息(忽略大小写) PS:只查询正式账号 -->
+    <select id="queryIgnoreCaseUserNamesExists" resultType="so.wwb.creditbox.model.manager.user.po.SysUserExtend" parameterType="string">
+        SELECT * FROM sys_user_extend u LEFT JOIN user_player p ON u.id = p.id
+        WHERE u.user_type= '23'
+        AND p.mode='1'
+        AND LOWER(u.username) in
+        <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+            LOWER(#{item})
+        </foreach>
+    </select>
+
+    <!--检查用户是否是已存在的正式账号-->
+    <select id="checkUsernameByMode" parameterType="so.wwb.creditbox.model.manager.user.so.SysUserExtendSo" resultType="int">
+        SELECT COUNT (*) FROM sys_user_extend WHERE username=#{username} AND id IN (SELECT id FROM user_player WHERE mode='1')
+    </select>
+
+    <!--仅查询正式账号-->
+    <select id="queryUserByRankId" parameterType="so.wwb.creditbox.model.manager.user.so.SysUserExtendSo" resultMap="TABLE:sys_user_extend">
+        SELECT ue.id, ue.username
+          FROM sys_user_extend ue, user_player up
+         WHERE ue."id" = up."id"
+           AND ue.status = '1'
+           AND up.mode = '1'
+           AND up.rank_id = #{rankId}
+    </select>
+
+    <!--<select id="findByUserplayListVo" parameterType="so.wwb.creditbox.model.company.user.so.UserPlayerSo" resultMap="TABLE:sys_user_extend">-->
+        <!--SELECT *-->
+        <!--FROM sys_user_extend-->
+        <!--WHERE id IN-->
+        <!--<foreach collection="ids" item="item" index="index" open="(" separator="," close=")" >-->
+            <!--#{item}-->
+        <!--</foreach>-->
+    <!--</select>-->
+
+    <!--<select id="queryAddPlayer" parameterType="so.wwb.creditbox.model.company.user.so.UserPlayerSo" resultType="map">-->
+        <!--SELECT COUNT(*)::bigint, to_char((create_time + (#{id}||' hour')::INTERVAL), 'YYYY-MM-DD') as tdate from sys_user_extend-->
+        <!--where  create_time &gt;= #{createTimeBegin} and-->
+        <!--create_time &lt; #{createTimeEnd}-->
+        <!--group by tdate order by tdate desc;-->
+    <!--</select>-->
+
+    <!--<select id="queryAddPlayerAndDeposit" parameterType="so.wwb.creditbox.model.company.user.so.UserPlayerSo" resultType="map">-->
+        <!--SELECT COUNT(1)::bigint, to_char((su.create_time + (#{id}||' hour')::INTERVAL), 'YYYY-MM-DD') as tdate-->
+        <!--from sys_user_extend su-->
+        <!--LEFT JOIN user_assets ua on su.id = ua.id-->
+        <!--where ua.deposit_count > 0 and su.create_time &gt;= #{createTimeBegin} and-->
+        <!--su.create_time &lt; #{createTimeEnd}-->
+        <!--group by tdate order by tdate desc;-->
+    <!--</select>-->
+
+
+    <select id="queryOwnerIdList" parameterType="so.wwb.creditbox.model.manager.user.so.SysUserExtendSo" resultType="map">
+       SELECT    count(*), owner_id FROM sys_user_extend
+       WHERE  owner_id in <foreach collection="owner_ids" item="owner_id" index="index" open="(" separator="," close=")" > #{owner_id} </foreach>
+       and subsys_code = #{subsysCode}  GROUP BY   owner_id
+    </select>
+
+</mapper>

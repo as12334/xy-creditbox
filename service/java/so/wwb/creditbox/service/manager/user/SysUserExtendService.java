@@ -43,6 +43,7 @@ import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
 import so.wwb.creditbox.model.company.setting.po.UserParam;
 import so.wwb.creditbox.utility.UserTool;
 
+import javax.sql.DataSource;
 import java.util.*;
 
 public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUserExtendListVo, SysUserExtendVo, SysUserExtend, Integer> implements ISysUserExtendService {
@@ -62,75 +63,75 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
 //    @Autowired
 //    private IUserParamService userParamService;
 
-//    @Override
-//    public Set<String> findPermissions(PassportVo sysUserVo) {
-//        throwException(sysUserVo);
-//        Map<String, Object> map = new HashMap<>(3);
-//        map.put(VSysUserResource.PROP_SUBSYS_CODE, sysUserVo.getSearch().getSubsysCode());
-//        map.put(VSysUserResource.PROP_USERNAME, sysUserVo.getSearch().getUsername());
-//        map.put(VSysUserRole.PROP_SITE_ID, sysUserVo.getSearch().getSiteId());
-//        List<String> permissions = vSysUserResourceMapper.andSearchProperty(map, VSysUserResource.PROP_PERMISSION);
-//        trimList(permissions);
-//        return new HashSet<>(permissions);
-//    }
-//
-//    private void throwException(PassportVo sysUserVo) {
-//        if (StringTool.isBlank(sysUserVo.getSearch().getSubsysCode())) {
-//            throw new IllegalArgumentException("子系统编号不能为空！");
-//        }
-//        if (StringTool.isBlank(sysUserVo.getSearch().getUsername())) {
-//            throw new IllegalArgumentException("用户名不能为空！");
-//        }
-//    }
-//
-//    @Override
-//    public Map<String, Pair<String, Boolean>> findPermissionMapping(PassportVo sysUserVo) {
-//        throwException(sysUserVo);
-//
-//        Map<String, Object> map = new HashMap<>(3);
-//        map.put(VSysUserResource.PROP_SUBSYS_CODE, sysUserVo.getSearch().getSubsysCode());
-//        map.put(VSysUserResource.PROP_USERNAME, sysUserVo.getSearch().getUsername());
-//        map.put(VSysUserResource.PROP_STATUS, YesNot.YES.getBool());
-//        List<VSysUserResource> resList = vSysUserResourceMapper.andSearch(map);
-//        Map<String, Pair<String, Boolean>> resultMap = new HashMap<>(resList.size());
-//        for (VSysUserResource res : resList) {
-//            if (StringTool.isBlank(res.getResourceUrl()))
-//                continue;
-//            resultMap.put(res.getResourceUrl(), new Pair<>(res.getPermission(), res.getPrivilege()));
-//        }
-//        return resultMap;
-//    }
-//
-//    /**
-//     * 排除字符串为空的列表元素
-//     */
-//    public static void trimList(List<String> list) {
-//        list.removeIf(StringTool::isBlank);
-//    }
-//
-//    @Override
-//    public SysUserStatusVo getStatus(PassportVo passportVo) {
-//        Integer masterId = passportVo._getSiteUserId();
-//        DataSource currentDataSource = DataContext.getDataSource();
-//        if (masterId != null && masterId > 0) {
-//            //获取父级别状态
-//            String parentStatus;
-//            SysUserStatus parentStatusEnum;
-//            DataContext.setDataSource(DatasourceTool.getBaseDatasource());
-//            try {
-//                SysUser parentUser = mapper.get(masterId);
-//                parentStatus = parentUser.getStatus();
-//                parentStatusEnum = getSysUserStatus(parentStatus);
-//            } finally {
-//                DataContext.setDataSource(currentDataSource);
-//            }
-//
-//            if (!isNormal(parentStatus)) {
-//                return new SysUserStatusVo(parentStatusEnum);
-//            }
-//        }
-//        return getRecursiveUserStatus(passportVo);
-//    }
+    @Override
+    public Set<String> findPermissions(PassportVo sysUserVo) {
+        throwException(sysUserVo);
+        Map<String, Object> map = new HashMap<>(3);
+        map.put(VSysUserResource.PROP_SUBSYS_CODE, sysUserVo.getSearch().getSubsysCode());
+        map.put(VSysUserResource.PROP_USERNAME, sysUserVo.getSearch().getUsername());
+        map.put(VSysUserRole.PROP_SITE_ID, sysUserVo.getSearch().getSiteId());
+        List<String> permissions = vSysUserResourceMapper.andSearchProperty(map, VSysUserResource.PROP_PERMISSION);
+        trimList(permissions);
+        return new HashSet<>(permissions);
+    }
+
+    private void throwException(PassportVo sysUserVo) {
+        if (StringTool.isBlank(sysUserVo.getSearch().getSubsysCode())) {
+            throw new IllegalArgumentException("子系统编号不能为空！");
+        }
+        if (StringTool.isBlank(sysUserVo.getSearch().getUsername())) {
+            throw new IllegalArgumentException("用户名不能为空！");
+        }
+    }
+
+    @Override
+    public Map<String, Pair<String, Boolean>> findPermissionMapping(PassportVo sysUserVo) {
+        throwException(sysUserVo);
+
+        Map<String, Object> map = new HashMap<>(3);
+        map.put(VSysUserResource.PROP_SUBSYS_CODE, sysUserVo.getSearch().getSubsysCode());
+        map.put(VSysUserResource.PROP_USERNAME, sysUserVo.getSearch().getUsername());
+        map.put(VSysUserResource.PROP_STATUS, YesNot.YES.getBool());
+        List<VSysUserResource> resList = vSysUserResourceMapper.andSearch(map);
+        Map<String, Pair<String, Boolean>> resultMap = new HashMap<>(resList.size());
+        for (VSysUserResource res : resList) {
+            if (StringTool.isBlank(res.getResourceUrl()))
+                continue;
+            resultMap.put(res.getResourceUrl(), new Pair<>(res.getPermission(), res.getPrivilege()));
+        }
+        return resultMap;
+    }
+
+    /**
+     * 排除字符串为空的列表元素
+     */
+    public static void trimList(List<String> list) {
+        list.removeIf(StringTool::isBlank);
+    }
+
+    @Override
+    public SysUserStatusVo getStatus(PassportVo passportVo) {
+        Integer masterId = passportVo._getSiteUserId();
+        DataSource currentDataSource = DataContext.getDataSource();
+        if (masterId != null && masterId > 0) {
+            //获取父级别状态
+            String parentStatus;
+            SysUserStatus parentStatusEnum;
+            DataContext.setDataSource(DatasourceTool.getBaseDatasource());
+            try {
+                SysUser parentUser = mapper.get(masterId);
+                parentStatus = parentUser.getStatus();
+                parentStatusEnum = getSysUserStatus(parentStatus);
+            } finally {
+                DataContext.setDataSource(currentDataSource);
+            }
+
+            if (!isNormal(parentStatus)) {
+                return new SysUserStatusVo(parentStatusEnum);
+            }
+        }
+        return getRecursiveUserStatus(passportVo);
+    }
 //
 //    @Override
 //    public WebJson checkStatus(SysUserExtendVo extendVo, WebJson webJson) {
@@ -159,59 +160,59 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
 //        return webJson;
 //    }
 //
-//    private SysUserStatus getSysUserStatus(String parentStatus) {
-//        return SysUserStatus.enumOf(parentStatus);
-//    }
-//
-//    /**
-//     * 获取递归用户状态
-//     */
-//    private SysUserStatusVo getRecursiveUserStatus(PassportVo sysUserVo) {
-//
-//        SysUserExtend loginUser = mapper.get(sysUserVo.getSearch().getId());
-//        boolean isBoss = StringTool.equals(UserTypeEnum.BOSS.getCode(), loginUser.getUserType());
-//        boolean isMerchant = StringTool.equals(UserTypeEnum.COMPANY.getCode(), loginUser.getUserType());
-//        boolean isShareholder = StringTool.equals(UserTypeEnum.SHAREHOLDER.getCode(), loginUser.getUserType());
-//        boolean isDistributor = StringTool.equals(UserTypeEnum.DISTRIBUTOR.getCode(), loginUser.getUserType());
-//        boolean isShareholderSub = StringTool.equals(UserTypeEnum.SHAREHOLDER_SUB.getCode(), loginUser.getUserType());
-//        boolean isMerchantSub = StringTool.equals(UserTypeEnum.COMPANY_SUB.getCode(), loginUser.getUserType());
-//        boolean isDistributorSub = StringTool.equals(UserTypeEnum.DISTRIBUTOR_SUB.getCode(), loginUser.getUserType());
-//        if (isBoss) {
-//            if (isFreeze(loginUser)) {
-//                return new SysUserStatusVo(SysUserStatus.LOCKED, loginUser.getFreezeCode());
-//            }
-//            return new SysUserStatusVo(getSysUserStatus(loginUser.getStatus()));
-//        }
-//        List<SysUserExtend> users = mapper.findOwner(sysUserVo.getSearch().getId());
-//        for (SysUser user : users) {
-//            //1.股东账号、子账号 不会查询boss的状态
-//            //2.商户账号、商户子账号、总代账号、总代子账号 不会查询boss、股东的状态
-//            if ((isShareholder || isShareholderSub) &&
-//                    (StringTool.equals(UserTypeEnum.BOSS.getCode(), user.getUserType())
-//                            || StringTool.equals(UserTypeEnum.BOSS_SUB.getCode(), user.getUserType()))) {
-//                continue;
-//            }else if ((isMerchant || isMerchantSub || isDistributor || isDistributorSub
-//            )&&(StringTool.equals(UserTypeEnum.BOSS.getCode(), user.getUserType())
-//                            || StringTool.equals(UserTypeEnum.BOSS_SUB.getCode(), user.getUserType())
-//                            || StringTool.equals(UserTypeEnum.SHAREHOLDER.getCode(), user.getUserType())
-//                            || StringTool.equals(UserTypeEnum.SHAREHOLDER_SUB.getCode(), user.getUserType()))) {
-//                continue;
-//            }
-//            if (isFreeze(user)) return new SysUserStatusVo(SysUserStatus.LOCKED, user.getFreezeCode());
-//            if (!isNormal(user.getStatus())) return new SysUserStatusVo(getSysUserStatus(user.getStatus()));
-//        }
-//        return new SysUserStatusVo(SysUserStatus.NORMAL);
-//    }
-//
-//    private boolean isFreeze(SysUser user) {
-//        Date now = new Date();
-//        return user.getFreezeEndTime() != null && now.getTime() < user.getFreezeEndTime().getTime();
-//    }
-//
-//    private boolean isNormal(String status) {
-//        return SysUserStatus.NORMAL.getCode().equals(status);
-//    }
-//
+    private SysUserStatus getSysUserStatus(String parentStatus) {
+        return SysUserStatus.enumOf(parentStatus);
+    }
+
+    /**
+     * 获取递归用户状态
+     */
+    private SysUserStatusVo getRecursiveUserStatus(PassportVo sysUserVo) {
+
+        SysUserExtend loginUser = mapper.get(sysUserVo.getSearch().getId());
+        boolean isBoss = StringTool.equals(UserTypeEnum.BOSS.getCode(), loginUser.getUserType());
+        boolean isMerchant = StringTool.equals(UserTypeEnum.COMPANY.getCode(), loginUser.getUserType());
+        boolean isShareholder = StringTool.equals(UserTypeEnum.SHAREHOLDER.getCode(), loginUser.getUserType());
+        boolean isDistributor = StringTool.equals(UserTypeEnum.DISTRIBUTOR.getCode(), loginUser.getUserType());
+        boolean isShareholderSub = StringTool.equals(UserTypeEnum.SHAREHOLDER_SUB.getCode(), loginUser.getUserType());
+        boolean isMerchantSub = StringTool.equals(UserTypeEnum.COMPANY_SUB.getCode(), loginUser.getUserType());
+        boolean isDistributorSub = StringTool.equals(UserTypeEnum.DISTRIBUTOR_SUB.getCode(), loginUser.getUserType());
+        if (isBoss) {
+            if (isFreeze(loginUser)) {
+                return new SysUserStatusVo(SysUserStatus.LOCKED, loginUser.getFreezeCode());
+            }
+            return new SysUserStatusVo(getSysUserStatus(loginUser.getStatus()));
+        }
+        List<SysUserExtend> users = mapper.findOwner(sysUserVo.getSearch().getId());
+        for (SysUser user : users) {
+            //1.股东账号、子账号 不会查询boss的状态
+            //2.商户账号、商户子账号、总代账号、总代子账号 不会查询boss、股东的状态
+            if ((isShareholder || isShareholderSub) &&
+                    (StringTool.equals(UserTypeEnum.BOSS.getCode(), user.getUserType())
+                            || StringTool.equals(UserTypeEnum.BOSS_SUB.getCode(), user.getUserType()))) {
+                continue;
+            }else if ((isMerchant || isMerchantSub || isDistributor || isDistributorSub
+            )&&(StringTool.equals(UserTypeEnum.BOSS.getCode(), user.getUserType())
+                            || StringTool.equals(UserTypeEnum.BOSS_SUB.getCode(), user.getUserType())
+                            || StringTool.equals(UserTypeEnum.SHAREHOLDER.getCode(), user.getUserType())
+                            || StringTool.equals(UserTypeEnum.SHAREHOLDER_SUB.getCode(), user.getUserType()))) {
+                continue;
+            }
+            if (isFreeze(user)) return new SysUserStatusVo(SysUserStatus.LOCKED, user.getFreezeCode());
+            if (!isNormal(user.getStatus())) return new SysUserStatusVo(getSysUserStatus(user.getStatus()));
+        }
+        return new SysUserStatusVo(SysUserStatus.NORMAL);
+    }
+
+    private boolean isFreeze(SysUser user) {
+        Date now = new Date();
+        return user.getFreezeEndTime() != null && now.getTime() < user.getFreezeEndTime().getTime();
+    }
+
+    private boolean isNormal(String status) {
+        return SysUserStatus.NORMAL.getCode().equals(status);
+    }
+
     @Override
     public Map<String, SysUserExtend> load() {
         List<SysUserExtend> list = mapper.search(Criteria.add(SysUserExtend.PROP_STATUS, Operator.EQ, SysUserStatus.NORMAL.getCode()),
@@ -219,37 +220,37 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
         return CollectionTool.toEntityMap(list, SysUserExtend.PROP_CODE_OWNER, String.class);
     }
 
-//    @Override
-//    @Transactional
-//    public SysUserExtendVo saveSysUser(SysUserExtendVo vo) {
-//        SysUserExtend user = vo.getResult();
-//        user.setCreateTime(new Date());
-////        if(user.getCode()==null)
-////            user.setCode(getCode(user));
-//        if (UserTypeEnum.COMPANY.getCode().equals(user.getUserType())) {
-//            user.setKey(getKey());
-//        }
-//        user.setPassword(AuthTool.md5SysUserPassword(user.getPassword(), user.getUsername())); //账户密码加密
-//        user.setPermissionPwd(AuthTool.md5SysUserPermission(user.getPermissionPwd(), user.getUsername()));//安全密码加密
-//        boolean isSuccess = this.mapper.insert(user);
-//        if (!isSuccess) {
-//            vo.setSuccess(false);
-//            return vo;
-//        }
-//
-//        //分配角色
-//        String userType = user.getUserType();
-//        if (UserTypeEnum.BOSS_SUB.getCode().equals(userType)
-//                || UserTypeEnum.SHAREHOLDER_SUB.getCode().equals(userType)
-//                || UserTypeEnum.COMPANY_SUB.getCode().equals(userType)
-//                || UserTypeEnum.DISTRIBUTOR_SUB.getCode().equals(userType)
-//        ) {
-//            saveUserRoles(user.getId(), vo.getRoleIds());
-//        }
-//        vo.setResult(user);
-//        return vo;
-//    }
-//
+    @Override
+    @Transactional
+    public SysUserExtendVo saveSysUser(SysUserExtendVo vo) {
+        SysUserExtend user = vo.getResult();
+        user.setCreateTime(new Date());
+//        if(user.getCode()==null)
+//            user.setCode(getCode(user));
+        if (UserTypeEnum.COMPANY.getCode().equals(user.getUserType())) {
+            user.setKey(getKey());
+        }
+        user.setPassword(AuthTool.md5SysUserPassword(user.getPassword(), user.getUsername())); //账户密码加密
+        user.setPermissionPwd(AuthTool.md5SysUserPermission(user.getPermissionPwd(), user.getUsername()));//安全密码加密
+        boolean isSuccess = this.mapper.insert(user);
+        if (!isSuccess) {
+            vo.setSuccess(false);
+            return vo;
+        }
+
+        //分配角色
+        String userType = user.getUserType();
+        if (UserTypeEnum.BOSS_SUB.getCode().equals(userType)
+                || UserTypeEnum.SHAREHOLDER_SUB.getCode().equals(userType)
+                || UserTypeEnum.COMPANY_SUB.getCode().equals(userType)
+                || UserTypeEnum.DISTRIBUTOR_SUB.getCode().equals(userType)
+        ) {
+            saveUserRoles(user.getId(), vo.getRoleIds());
+        }
+        vo.setResult(user);
+        return vo;
+    }
+
 //    private String getCode(SysUserExtend user){
 //        String userType = user.getUserType();
 //        UserTypeEnum typeEnum = EnumTool.enumOf(UserTypeEnum.class,userType);
@@ -277,61 +278,61 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
 //        return code;
 //    }
 //
-//    /**
-//     * 生成用户的唯一标示
-//     * @param Thid 上级的
-//     * @return
-//     */
-//    @Override
-//    public String getHid(String Thid) {
-//        String hid = null;
-//        boolean flag = true;
-//        while (flag) {
-//            hid = StringTool.upperCase(RandomStringTool.random(8, true, true));
-//            long count = mapper.count(Criteria.add(SysUserExtend.PROP_CODE, Operator.EQ, Thid + hid));
-//            if (count == 0) {
-//                flag = false;
-//            }
-//        }
-//        return Thid + hid;
-//    }
-//
-//    private String getKey() {
-//        String key = null;
-//        boolean flag = true;
-//        while (flag) {
-//            key = StringTool.upperCase(RandomStringTool.random(15, true, true));
-//            long count = mapper.count(Criteria.add(SysUserExtend.PROP_KEY, Operator.EQ, key));
-//            if (count == 0) {
-//                flag = false;
-//            }
-//        }
-//        return key;
-//    }
-//
-//    /**
-//     * 删除旧的角色
-//     */
-//    private void deleteOldRoles(Integer userId, Integer[] roles) {
-//        if (userId == null || roles == null || roles.length == 0) {
-//            LOG.info("删除用户角色的用户id为空！");
-//            return;
-//        }
-//        //删除用户角色
-//        Criteria criteria = Criteria.add(SysUserRole.PROP_USER_ID, Operator.EQ, userId)
-//                .addAnd(SysUserRole.PROP_ROLE_ID, Operator.NOT_IN, roles);
-//        this.sysUserRoleMapper.batchDeleteCriteria(criteria);
-//    }
-//
-//    /**
-//     * 保存角色
-//     */
-//    private void saveUserRoles(Integer userId, Integer[] roles) {
-//        List<SysUserRole> userRoles = UserTool.initUserRole(userId, roles);
-//        if (CollectionTool.isNotEmpty(userRoles)) {
-//            this.mapper.batchInsertUserRole(userRoles);
-//        }
-//    }
+    /**
+     * 生成用户的唯一标示
+     * @param Thid 上级的
+     * @return
+     */
+    @Override
+    public String getHid(String Thid) {
+        String hid = null;
+        boolean flag = true;
+        while (flag) {
+            hid = StringTool.upperCase(RandomStringTool.random(8, true, true));
+            long count = mapper.count(Criteria.add(SysUserExtend.PROP_CODE, Operator.EQ, Thid + hid));
+            if (count == 0) {
+                flag = false;
+            }
+        }
+        return Thid + hid;
+    }
+
+    private String getKey() {
+        String key = null;
+        boolean flag = true;
+        while (flag) {
+            key = StringTool.upperCase(RandomStringTool.random(15, true, true));
+            long count = mapper.count(Criteria.add(SysUserExtend.PROP_KEY, Operator.EQ, key));
+            if (count == 0) {
+                flag = false;
+            }
+        }
+        return key;
+    }
+
+    /**
+     * 删除旧的角色
+     */
+    private void deleteOldRoles(Integer userId, Integer[] roles) {
+        if (userId == null || roles == null || roles.length == 0) {
+            LOG.info("删除用户角色的用户id为空！");
+            return;
+        }
+        //删除用户角色
+        Criteria criteria = Criteria.add(SysUserRole.PROP_USER_ID, Operator.EQ, userId)
+                .addAnd(SysUserRole.PROP_ROLE_ID, Operator.NOT_IN, roles);
+        this.sysUserRoleMapper.batchDeleteCriteria(criteria);
+    }
+
+    /**
+     * 保存角色
+     */
+    private void saveUserRoles(Integer userId, Integer[] roles) {
+        List<SysUserRole> userRoles = UserTool.initUserRole(userId, roles);
+        if (CollectionTool.isNotEmpty(userRoles)) {
+            this.mapper.batchInsertUserRole(userRoles);
+        }
+    }
 //
 //    private LotteryContextParam contextParam() {
 //        return LotteryCommonContext.get();
@@ -346,93 +347,93 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
 //    public long countPlayerName(SysUserExtendVo vo) {
 //        return mapper.countPlayerName(vo.getSearch());
 //    }
-//
-//    @Override
-//    @Transactional
-//    public SysUserExtendVo deleteSysUser(SysUserExtendVo sysUserExtendVo) {
-//        Integer userId = sysUserExtendVo.getSearch().getId();
-//        //根据useId删除sys_user_role 相对应的数据
-//        this.mapper.deleteSysUserRole(userId);
-//
-//        //删除联系方式--邮箱
-//        Criteria criteria = Criteria.add(NoticeContactWay.PROP_USER_ID, Operator.EQ, userId)
-//                .addAnd(NoticeContactWay.PROP_CONTACT_TYPE, Operator.EQ, ContactWayType.EMAIL.getCode());
-//        noticeContactWayMapper.batchDeleteCriteria(criteria);
-//
-//        boolean success = mapper.delete(userId);
-//        sysUserExtendVo.setSuccess(success);
-//        return sysUserExtendVo;
-//    }
-//
-//    @Override
-//    public SysUserExtendVo viewSysUser(SysUserExtendVo sysUserExtendVo) {
-//        //账户信息
-//        Integer userId = sysUserExtendVo.getSearch().getId();
-//        String username = sysUserExtendVo.getSearch().getUsername();
-//        SysUserExtend sysUserExtend = new SysUserExtend();
-//        if (userId != null){
-//            sysUserExtend = mapper.get(sysUserExtendVo.getSearch().getId());
-//        }else if (StringTool.isNotBlank(username)){
-//            Criteria criteria = new Criteria();
-//            criteria.addAnd(SysUserExtend.PROP_USERNAME, Operator.EQ, username);
-//            List<SysUserExtend> search = mapper.search(criteria);
-//            if (CollectionTool.isNotEmpty(search) && search.size() == 1){
-//                sysUserExtend = search.get(0);
-//            }
-//        }
-//        sysUserExtendVo.setResult(sysUserExtend);
-//        return sysUserExtendVo;
-//    }
-//
-//    @Override
-//    public SysUserExtendVo editAccount(SysUserExtendVo sysUserExtendVo) {
-//        SysUserExtend sysUserExtend = mapper.get(sysUserExtendVo.getSearch().getId());
-//        sysUserExtendVo.setResult(sysUserExtend);
-//        return sysUserExtendVo;
-//    }
-//
-//    @Override
-//    @Transactional
-//    public SysUserExtendVo updateSysUser(SysUserExtendVo userExtendVo, SysUserExtend operator) {
-//        Integer userId = userExtendVo.getResult().getId();
-//        userExtendVo.setSuccess(false);
-//        if (userId == null || operator == null){
-//            userExtendVo.setErrMsg("参数错误，保存失败");
-//            return userExtendVo;
-//        }
-//        SysUserExtend user = this.mapper.get(userId);
-//        if (user == null){
-//            userExtendVo.setErrMsg("账号不存在，保存失败");
-//            return userExtendVo;
-//        }
-//        user.setUpdateUser(operator.getId());
-//        user.setUpdateName(operator.getUsername());
-//        user.setUpdateTime(new Date());
-//        user.setNickname(userExtendVo.getResult().getNickname());
-//        user.setRealName(userExtendVo.getResult().getRealName());
-//        user.setSex(userExtendVo.getResult().getSex());
-//        user.setBirthday(userExtendVo.getResult().getBirthday());
-//        boolean isSuccess = this.mapper.updateOnly(user, SysUserExtend.PROP_REAL_NAME,
-//                SysUserExtend.PROP_NICKNAME, SysUserExtend.PROP_BIRTHDAY, SysUserExtend.PROP_SEX,
-//                SysUserExtend.PROP_UPDATE_TIME, SysUserExtend.PROP_UPDATE_USER, SysUserExtend.PROP_UPDATE_NAME);
-//        if (isSuccess) {
-//            //子账号删除旧的角色，再保存角色
-//            user = this.mapper.get(user.getId());
-//            String userType = user.getUserType();
-//            if (UserTypeEnum.BOSS_SUB.getCode().equals(userType)
-//                    || UserTypeEnum.SHAREHOLDER_SUB.getCode().equals(userType)
-//                    || UserTypeEnum.COMPANY_SUB.getCode().equals(userType)
-//                    || UserTypeEnum.DISTRIBUTOR_SUB.getCode().equals(userType)
-//            ) {
-//                deleteOldRoles(user.getId(), userExtendVo.getRoleIds());
-//                saveUserRoles(user.getId(), userExtendVo.getRoleIds());
-//            }
-//            userExtendVo.setSuccess(true);
-//            userExtendVo.setOkMsg("保存成功");
-//        }
-//        userExtendVo.setResult(user);
-//        return userExtendVo;
-//    }
+
+    @Override
+    @Transactional
+    public SysUserExtendVo deleteSysUser(SysUserExtendVo sysUserExtendVo) {
+        Integer userId = sysUserExtendVo.getSearch().getId();
+        //根据useId删除sys_user_role 相对应的数据
+        this.mapper.deleteSysUserRole(userId);
+
+        //删除联系方式--邮箱
+        Criteria criteria = Criteria.add(NoticeContactWay.PROP_USER_ID, Operator.EQ, userId)
+                .addAnd(NoticeContactWay.PROP_CONTACT_TYPE, Operator.EQ, ContactWayType.EMAIL.getCode());
+        noticeContactWayMapper.batchDeleteCriteria(criteria);
+
+        boolean success = mapper.delete(userId);
+        sysUserExtendVo.setSuccess(success);
+        return sysUserExtendVo;
+    }
+
+    @Override
+    public SysUserExtendVo viewSysUser(SysUserExtendVo sysUserExtendVo) {
+        //账户信息
+        Integer userId = sysUserExtendVo.getSearch().getId();
+        String username = sysUserExtendVo.getSearch().getUsername();
+        SysUserExtend sysUserExtend = new SysUserExtend();
+        if (userId != null){
+            sysUserExtend = mapper.get(sysUserExtendVo.getSearch().getId());
+        }else if (StringTool.isNotBlank(username)){
+            Criteria criteria = new Criteria();
+            criteria.addAnd(SysUserExtend.PROP_USERNAME, Operator.EQ, username);
+            List<SysUserExtend> search = mapper.search(criteria);
+            if (CollectionTool.isNotEmpty(search) && search.size() == 1){
+                sysUserExtend = search.get(0);
+            }
+        }
+        sysUserExtendVo.setResult(sysUserExtend);
+        return sysUserExtendVo;
+    }
+
+    @Override
+    public SysUserExtendVo editAccount(SysUserExtendVo sysUserExtendVo) {
+        SysUserExtend sysUserExtend = mapper.get(sysUserExtendVo.getSearch().getId());
+        sysUserExtendVo.setResult(sysUserExtend);
+        return sysUserExtendVo;
+    }
+
+    @Override
+    @Transactional
+    public SysUserExtendVo updateSysUser(SysUserExtendVo userExtendVo, SysUserExtend operator) {
+        Integer userId = userExtendVo.getResult().getId();
+        userExtendVo.setSuccess(false);
+        if (userId == null || operator == null){
+            userExtendVo.setErrMsg("参数错误，保存失败");
+            return userExtendVo;
+        }
+        SysUserExtend user = this.mapper.get(userId);
+        if (user == null){
+            userExtendVo.setErrMsg("账号不存在，保存失败");
+            return userExtendVo;
+        }
+        user.setUpdateUser(operator.getId());
+        user.setUpdateName(operator.getUsername());
+        user.setUpdateTime(new Date());
+        user.setNickname(userExtendVo.getResult().getNickname());
+        user.setRealName(userExtendVo.getResult().getRealName());
+        user.setSex(userExtendVo.getResult().getSex());
+        user.setBirthday(userExtendVo.getResult().getBirthday());
+        boolean isSuccess = this.mapper.updateOnly(user, SysUserExtend.PROP_REAL_NAME,
+                SysUserExtend.PROP_NICKNAME, SysUserExtend.PROP_BIRTHDAY, SysUserExtend.PROP_SEX,
+                SysUserExtend.PROP_UPDATE_TIME, SysUserExtend.PROP_UPDATE_USER, SysUserExtend.PROP_UPDATE_NAME);
+        if (isSuccess) {
+            //子账号删除旧的角色，再保存角色
+            user = this.mapper.get(user.getId());
+            String userType = user.getUserType();
+            if (UserTypeEnum.BOSS_SUB.getCode().equals(userType)
+                    || UserTypeEnum.SHAREHOLDER_SUB.getCode().equals(userType)
+                    || UserTypeEnum.COMPANY_SUB.getCode().equals(userType)
+                    || UserTypeEnum.DISTRIBUTOR_SUB.getCode().equals(userType)
+            ) {
+                deleteOldRoles(user.getId(), userExtendVo.getRoleIds());
+                saveUserRoles(user.getId(), userExtendVo.getRoleIds());
+            }
+            userExtendVo.setSuccess(true);
+            userExtendVo.setOkMsg("保存成功");
+        }
+        userExtendVo.setResult(user);
+        return userExtendVo;
+    }
 //
     @Override
     public SysUserExtend findByUsername(SysUserExtendVo user) {
@@ -625,16 +626,16 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
 //    public List<SysUserExtend> findByUserplayListVo(UserPlayerListVo userPlayerListVo) {
 //        return this.mapper.findByUserplayListVo(userPlayerListVo.getSearch());
 //    }
-//
-//    @Override
-//    public List<Map<String, Object>> queryOwnerIdList(Integer[] array,List<String> subsysCodes) {
-//        SysUserExtendSo so = new SysUserExtendSo();
-//        so.setOwner_ids(array);
-//        so.setSubSysCodes(subsysCodes);
-//        return this.mapper.queryOwnerIdList(so);
-//    }
-//
-//
+
+    @Override
+    public List<Map<String, Object>> queryOwnerIdList(Integer[] array,List<String> subsysCodes) {
+        SysUserExtendSo so = new SysUserExtendSo();
+        so.setOwner_ids(array);
+        so.setSubSysCodes(subsysCodes);
+        return this.mapper.queryOwnerIdList(so);
+    }
+
+
 
     @Override
     public SysUserExtend getSysUserExtend(Integer id){

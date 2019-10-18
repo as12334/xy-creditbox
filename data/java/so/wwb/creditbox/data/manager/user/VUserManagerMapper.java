@@ -1,7 +1,9 @@
 package so.wwb.creditbox.data.manager.user;
 
 import org.soul.data.rdb.mybatis.IBaseQueryMapper;
+import org.soul.model.security.privilege.so.SysResourceSo;
 import so.wwb.creditbox.model.company.user.po.VUserDetail;
+import so.wwb.creditbox.model.manager.sys.po.Nav;
 import so.wwb.creditbox.model.manager.user.po.VUserManager;
 import so.wwb.creditbox.model.manager.user.so.VUserManagerSo;
 
@@ -20,6 +22,8 @@ public interface VUserManagerMapper extends IBaseQueryMapper<VUserManager, Integ
 
     //region your codes 2
     List<VUserDetail> searchLevelUser(VUserManagerSo search);
+
+    List<Nav> getAllMenus(SysResourceSo search);
 
     //endregion your codes 2
 

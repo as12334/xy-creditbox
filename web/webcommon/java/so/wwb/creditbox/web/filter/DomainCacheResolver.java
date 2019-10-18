@@ -56,13 +56,10 @@ public class DomainCacheResolver implements IDomainCacheResolver {
             contextParam.setSiteTimeZone(contextParam.getTimeZone());
 
             contextParam.setUserIp(ServletTool.getIpAddr(request));
-            contextParam.setSiteUserCode(domain.getSiteUserCode());
-            contextParam.setSiteUserOwnerCode(domain.getSiteUserOwnerCode());
             contextParam.setMerchantName(domain.getSiteUserName());
 
             contextParam.setDomain(domain.getDomain());
             contextParam.setDomainUserId(domain.getDomainUserId());
-            contextParam.setDomainUserCode(domain.getDomainUserCode());
             contextParam.setDomainUserName(domain.getDomainUserName());
             contextParam.setDomainSubsysCode(domain.getDomainSubsysCode());
 
