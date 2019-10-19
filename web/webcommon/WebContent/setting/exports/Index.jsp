@@ -8,7 +8,7 @@
 <form:form action="${root}/exports/exportHistoryList.html" method="post">
 <div class="position-wrap clearfix">
     <span>${views.sysResource['系统设置']}</span><span>/</span><span>导出任务列表</span>
-    <span id="returnBtn"><soul:button target="goToLastPage" refresh="true" cssClass="m-l-sm btn btn-outline btn-default btn-xs co-gray6 return-btn" text="" opType="function"><em class="fa fa-caret-left"></em>${views.common['return']}</soul:button></span>
+    <span id="returnBtn"><soul:button target="goToLastPage" refresh="true" cssClass="m-l-sm btn btn-outline btn-default btn-xs co-gray6 return-btn" text="" opType="function"><em class="fa fa-caret-left"></em>返回</soul:button></span>
 
 </div>
 

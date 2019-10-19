@@ -8,7 +8,7 @@
             <span>账户</span><span>/</span><span>账户管理</span>
             <soul:button target="goToLastPage" cssClass="returnSuperior m-l-sm btn btn-outline btn-default btn-xs co-gray6 return-btn" text="" opType="function">
                     <input hidden name="lastTimeSearch" value="${command.lastTimeSearch}">
-                <em class="fa fa-caret-left"></em>${views.common['return']}
+                <em class="fa fa-caret-left"></em>返回
             </soul:button>
         </div>
         <div class="col-lg-12">
@@ -103,18 +103,18 @@
                                              text="${views.role['Player.detail.freezeAccount']}" callback="queryView"
                                              opType="dialog" cssClass="btn btn-link co-blue save-status-btn freeze-account-btn hide"
                                              permission="role:player_freezeaccout">
-                                    ${views.common['save']}
+                                    保存
                                 </soul:button>
                                 <soul:button
                                         target="${root}/account/account/disabledAccount.html?result.id=${r.id}"
                                         text="${messages['playerTag']['accountDisabled']}"
                                         opType="dialog" cssClass="btn btn-link co-blue save-status-btn disable-account-btn hide"
                                         callback="queryView">
-                                    ${views.common['save']}
+                                    保存
                                 </soul:button>
 --%>
-                                <soul:button target="updateStatus" callback=""  text="${views.common['save']}" opType="function" cssClass="btn btn-link co-blue save-status-btn save-normal-btn" permission="account:updateStatus"></soul:button>
-                                <soul:button target="cancelEditStatus" text="${views.common['cancel']}" opType="function" cssClass="btn btn-link co-blue"></soul:button>
+                                <soul:button target="updateStatus" callback=""  text="保存" opType="function" cssClass="btn btn-link co-blue save-status-btn save-normal-btn" permission="account:updateStatus"></soul:button>
+                                <soul:button target="cancelEditStatus" text="取消" opType="function" cssClass="btn btn-link co-blue"></soul:button>
                         </li>
 
                         <li class="detail-list-cow" id="personal-data-view">

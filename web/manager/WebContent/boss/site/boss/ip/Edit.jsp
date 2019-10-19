@@ -117,7 +117,7 @@
         <soul:button cssClass="btn btn-filter" text="${views.common['OK']}" dataType="json" opType="ajax"
                      target="${root}/siteConfineIp/persist.html?" precall="saveValid" post="getCurrentFormData"
                      callback="saveCallbak"/>
-        <soul:button cssClass="btn btn-outline btn-filter" returnValue="false"  text="${views.common['cancel']}" opType="function"
+        <soul:button cssClass="btn btn-outline btn-filter" returnValue="false"  text="取消" opType="function"
                      target="closePage"/>
     </div>
 </form:form>

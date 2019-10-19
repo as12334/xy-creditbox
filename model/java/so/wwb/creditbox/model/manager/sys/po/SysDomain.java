@@ -2,14 +2,14 @@ package so.wwb.creditbox.model.manager.sys.po;
 
 
 import org.soul.commons.bean.IEntity;
-
+import org.soul.model.common.Sortable;
 
 
 /**
  * 域名表实体
  *
  * @author block
- * @time 2019-10-11 22:27:02
+ * @time 2019-10-19 21:39:45
  */
 //region your codes 1
 public class SysDomain implements IEntity<Integer> {
@@ -37,6 +37,8 @@ public class SysDomain implements IEntity<Integer> {
 	public static final String PROP_NAME = "name";
 	public static final String PROP_RESOLVE_STATUS = "resolveStatus";
 	public static final String PROP_BUILD_IN = "buildIn";
+	public static final String PROP_TEMPLATE_CODE = "templateCode";
+	public static final String PROP_THEME = "theme";
 	//endregion
 	
 	
@@ -75,6 +77,10 @@ public class SysDomain implements IEntity<Integer> {
 	private String resolveStatus;
 	/** 是否内置:开发使用 */
 	private Boolean buildIn;
+	/**  */
+	private String templateCode;
+	/**  */
+	private String theme;
 	//endregion
 
 	
@@ -213,6 +219,20 @@ public class SysDomain implements IEntity<Integer> {
 
 	public void setBuildIn(Boolean value) {
 		this.buildIn = value;
+	}
+	public String getTemplateCode() {
+		return this.templateCode;
+	}
+
+	public void setTemplateCode(String value) {
+		this.templateCode = value;
+	}
+	public String getTheme() {
+		return this.theme;
+	}
+
+	public void setTheme(String value) {
+		this.theme = value;
 	}
 	//endregion
 

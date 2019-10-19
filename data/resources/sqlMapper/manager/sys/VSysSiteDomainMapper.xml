@@ -9,8 +9,6 @@
         <result column="name" property="name"/>
         <result column="site_user_id" property="siteUserId"/>
         <result column="site_user_name" property="siteUserName"/>
-        <result column="site_user_code" property="siteUserCode"/>
-        <result column="site_user_owner_code" property="siteUserOwnerCode"/>
         <result column="site_user_type" property="siteUserType"/>
         <result column="domain_id" property="domainId"/>
         <result column="domain" property="domain"/>
@@ -19,7 +17,6 @@
         <result column="domain_user_id" property="domainUserId"/>
         <result column="domain_user_type" property="domainUserType"/>
         <result column="domain_user_name" property="domainUserName"/>
-        <result column="domain_user_code" property="domainUserCode"/>
         <result column="time_zone" property="timeZone"/>
         <result column="site_locale" property="siteLocale"/>
         <result column="site_code" property="siteCode"/>
@@ -30,6 +27,8 @@
         <result column="maintain_start_time" property="maintainStartTime"/>
         <result column="maintain_end_time" property="maintainEndTime"/>
         <result column="maintain_reason" property="maintainReason"/>
+        <result column="template_code" property="templateCode"/>
+        <result column="theme" property="theme"/>
         <result column="title" property="title"/>
         <result column="mode" property="mode"/>
         <result column="page_url" property="pageUrl"/>

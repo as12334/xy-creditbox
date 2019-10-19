@@ -641,10 +641,10 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
     public SysUserExtend getSysUserExtend(Integer id){
         return this.mapper.get(id);
     }
-//
-//    public boolean updateUserInfoOnly(SysUserExtend userExtend, String... var2){
-//        return this.mapper.updateOnly(userExtend,var2);
-//    }
+
+    public boolean updateUserInfoOnly(SysUserExtend userExtend, String... var2){
+        return this.mapper.updateOnly(userExtend,var2);
+    }
 //
 //    @Override
 //    public boolean insertSysUserExtend(SysUserExtend userExtend) {

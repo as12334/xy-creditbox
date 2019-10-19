@@ -9,7 +9,7 @@
             <soul:button tag="a" target="goToLastPage" text="" opType="function"
                          cssClass="returnSuperior m-l-sm btn btn-outline btn-default btn-xs co-gray6 return-btn">
                 <input hidden name="lastTimeSearch" value="${command.lastTimeSearch}">
-                <em class="fa fa-caret-left"></em>${views.common['return']}
+                <em class="fa fa-caret-left"></em>返回
             </soul:button>
         </div>
 
@@ -18,11 +18,11 @@
                 <div class="form-group clearfix m-b-sm">
                     <label class="col-sm-3 al-right line-hi34 ft-bold">
                         <c:choose>
-                            <c:when test="${subSysCode eq 'merchant'}">
-                                商户账号：
+                            <c:when test="${subSysCode eq 'company'}">
+                                公司账号：
                             </c:when>
                             <c:otherwise>
-                                股东账号：
+                                运营商账号：
                             </c:otherwise>
                         </c:choose>
                     </label>
@@ -160,17 +160,17 @@
                     <input type="hidden" value="${command.search.parentId}" name="result.parentId"/>
                        <c:choose>
                            <c:when test="${subSysCode eq 'shareholder'}">
-                               <soul:button  cssClass="btn btn-filter btn-lg" text="${views.common['save']}" opType="ajax" dataType="json"
+                               <soul:button  cssClass="btn btn-filter btn-lg" text="保存" opType="ajax" dataType="json"
                                              target="${root}/vSysSiteManage/submit.html" post="getCurrentFormData" callback="saveCallbak"/>
                                <a href="" id="editTest" nav-target="mainFrame" style="display: none"></a>
                            </c:when>
                            <c:otherwise>
-                               <soul:button  cssClass="btn btn-filter btn-lg" text="${views.common['save']}" opType="ajax" dataType="json"
+                               <soul:button  cssClass="btn btn-filter btn-lg" text="保存" opType="ajax" dataType="json"
                                              target="${root}/vSysSiteManage/submit.html" post="getCurrentFormData" callback="saveCallbakMch" precall="uploadFile"/>
                                <a href="" id="editTestMch" nav-target="mainFrame" style="display: none"></a>
                            </c:otherwise>
                        </c:choose>
-                       <soul:button cssClass="btn btn-outline btn-lg m-l-sm" opType="function" target="goToLastPage" text="${views.common['cancel']}"/>
+                       <soul:button cssClass="btn btn-outline btn-lg m-l-sm" opType="function" target="goToLastPage" text="取消"/>
                 </div>
             </div>
         </div>

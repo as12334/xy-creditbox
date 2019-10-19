@@ -22,10 +22,10 @@
     </div>
     <div class="modal-footer">
         <soul:button precall="validateForm" cssClass="btn btn-filter"
-                     callback="saveCallbak" text="${views.common['save']}"
+                     callback="saveCallbak" text="保存"
                      opType="ajax" dataType="json" target="${root}/site/siteBoss/updateSiteBoss.html"
                      post="getCurrentFormData"/>
-        <soul:button target="closePage" text="${views.common['cancel']}" returnValue="false"  cssClass="btn btn-outline btn-filter" opType="function"/>
+        <soul:button target="closePage" text="取消" returnValue="false"  cssClass="btn btn-outline btn-filter" opType="function"/>
     </div>
 </form:form>
 </body>

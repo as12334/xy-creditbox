@@ -13,6 +13,7 @@ import so.wwb.creditbox.iservice.manager.sys.ISysSiteService;
 import so.wwb.creditbox.iservice.manager.sys.IVSysSiteManageService;
 import so.wwb.creditbox.iservice.manager.user.ISysUserExtendService;
 import so.wwb.creditbox.model.base.ParamTool;
+import so.wwb.creditbox.model.common.ModeEnum;
 import so.wwb.creditbox.model.constants.cache.CacheKey;
 import so.wwb.creditbox.model.enums.base.BossParamEnum;
 import so.wwb.creditbox.model.enums.base.StatusEnum;
@@ -139,7 +140,7 @@ public class VSysSiteManageService extends BaseService<VSysSiteManageMapper, VSy
         sysSite.setCode(siteBasic.getResult().getCode());
         //新增站点默认开启测试模式
         sysSite.setId(siteBasic.getResult().getId());
-//        sysSite.setMode(ModeEnum.DEMO.getCode());
+        sysSite.setMode(ModeEnum.DEMO.getCode());
         sysSiteService.insertSysSite(sysSite);
         return sysSite;
     }
@@ -150,13 +151,13 @@ public class VSysSiteManageService extends BaseService<VSysSiteManageMapper, VSy
     private void fillSiteIdToSysUserExtend(Integer masterSiteId, Integer userId,String code) {
         SysUserExtend sysUserExtend = new SysUserExtend();
         sysUserExtend.setId(userId);
-//        SysUserExtend user = sysUserExtendService.getSysUserExtend(userId);
-//        String userName = user.getUsername();
-//        String subUserName = StringTool.substringBefore(userName,"@");
-//        String userNames= subUserName+"@"+code;
-//        sysUserExtend.setUsername(userNames);
+        SysUserExtend user = sysUserExtendService.getSysUserExtend(userId);
+        String userName = user.getUsername();
+        String subUserName = StringTool.substringBefore(userName,"@");
+        String userNames= subUserName+"@"+code;
+        sysUserExtend.setUsername(userNames);
         sysUserExtend.setSiteId(masterSiteId);
-//        sysUserExtendService.updateUserInfoOnly(sysUserExtend, SysUserExtend.PROP_SITE_ID, SysUserExtend.PROP_USERNAME);
+        sysUserExtendService.updateUserInfoOnly(sysUserExtend, SysUserExtend.PROP_SITE_ID, SysUserExtend.PROP_USERNAME);
     }
 
     /**

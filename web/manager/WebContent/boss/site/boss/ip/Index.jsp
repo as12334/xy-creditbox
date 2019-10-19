@@ -67,7 +67,7 @@
                 </div>
                 <div class="modal-footer">
                     <soul:button cssClass="btn btn-primary-hide" callback="closeModal" target="${root}/siteConfineIp/getSettingParam.html?type=${command.type}" text="${views.common['setting']}" opType="dialog"><i class="fa fa-gear"></i><span class="hd">${views.setting['siteConfine.ip.to.open']}</span></soul:button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">${views.common['cancel']}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 </div>
             </div>
         </div>

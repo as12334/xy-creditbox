@@ -20,6 +20,8 @@
         <result column="name" property="name"/>
         <result column="resolve_status" property="resolveStatus"/>
         <result column="build_in" property="buildIn"/>
+        <result column="template_code" property="templateCode"/>
+        <result column="theme" property="theme"/>
     </resultMap>
 
     <!--//region your codes 1-->

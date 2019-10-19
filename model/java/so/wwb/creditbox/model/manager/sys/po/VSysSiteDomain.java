@@ -12,7 +12,7 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-10-18 23:23:34
+ * @time 2019-10-19 21:44:13
  */
 //region your codes 1
 public class VSysSiteDomain implements IEntity<Integer> {
@@ -47,6 +47,8 @@ public class VSysSiteDomain implements IEntity<Integer> {
 	public static final String PROP_MAINTAIN_START_TIME = "maintainStartTime";
 	public static final String PROP_MAINTAIN_END_TIME = "maintainEndTime";
 	public static final String PROP_MAINTAIN_REASON = "maintainReason";
+	public static final String PROP_TEMPLATE_CODE = "templateCode";
+	public static final String PROP_THEME = "theme";
 	public static final String PROP_TITLE = "title";
 	public static final String PROP_MODE = "mode";
 	public static final String PROP_PAGE_URL = "pageUrl";
@@ -107,6 +109,10 @@ public class VSysSiteDomain implements IEntity<Integer> {
 	private java.util.Date maintainEndTime;
 	/**  */
 	private String maintainReason;
+	/**  */
+	private String templateCode;
+	/**  */
+	private String theme;
 	/**  */
 	private String title;
 	/**  */
@@ -307,6 +313,20 @@ public class VSysSiteDomain implements IEntity<Integer> {
 
 	public void setMaintainReason(String value) {
 		this.maintainReason = value;
+	}
+	public String getTemplateCode() {
+		return this.templateCode;
+	}
+
+	public void setTemplateCode(String value) {
+		this.templateCode = value;
+	}
+	public String getTheme() {
+		return this.theme;
+	}
+
+	public void setTheme(String value) {
+		this.theme = value;
 	}
 	public String getTitle() {
 		return this.title;

@@ -8,7 +8,7 @@
             <soul:button tag="a" target="goToLastPage" text="" opType="function"
                          cssClass="returnSuperior m-l-sm btn btn-outline btn-default btn-xs co-gray6 return-btn">
                 <input hidden name="lastTimeSearch" value="${lastTimeSearch}">
-                <em class="fa fa-caret-left"></em>${views.common['return']}
+                <em class="fa fa-caret-left"></em>返回
             </soul:button>
         </div>
         <div class="col-lg-12">

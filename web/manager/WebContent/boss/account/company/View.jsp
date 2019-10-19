@@ -95,8 +95,8 @@
                                 <lb:select name="result.status" value="${status}" cssClass="result-playerStatus"
                                            list="${userStatus}" notUseDefaultPrompt="true"/>
 
-                                <soul:button target="updateStatus" callback=""  text="${views.common['save']}" opType="function" cssClass="btn btn-link co-blue save-status-btn save-normal-btn" permission="account:updateStatus"></soul:button>
-                                <soul:button target="cancelEditStatus" text="${views.common['cancel']}" opType="function" cssClass="btn btn-link co-blue"></soul:button>
+                                <soul:button target="updateStatus" callback=""  text="保存" opType="function" cssClass="btn btn-link co-blue save-status-btn save-normal-btn" permission="account:updateStatus"></soul:button>
+                                <soul:button target="cancelEditStatus" text="取消" opType="function" cssClass="btn btn-link co-blue"></soul:button>
                         </li>
 
                         <li class="detail-list-cow" id="personal-data-view">
