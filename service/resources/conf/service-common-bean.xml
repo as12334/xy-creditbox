@@ -18,6 +18,8 @@
 
     <bean id="sysSiteService" class="so.wwb.creditbox.service.manager.sys.SysSiteService" />
     <bean id="vSysSiteManagerService" class="so.wwb.creditbox.service.company.site.VSysSiteManageService"/>
+    <bean id="siteMasterManageService" class="so.wwb.creditbox.service.company.site.VSiteMasterManageService"/>
+
 
     <bean id="vSysSiteDomainService" class="so.wwb.creditbox.service.manager.sys.VSysSiteDomainService"/>
     <bean id="vSysSiteUserService" class="so.wwb.creditbox.service.manager.sys.VSysSiteUserService" />

@@ -48,6 +48,10 @@ public class ServiceTool {
     }
 
 
+    public static IVSiteMasterManageService vSiteMasterManageService() {
+        return getService(IVSiteMasterManageService.class);
+    }
+
     /**
      * 返回用户管理/详细视图 - Fei  jeremy远程服务实例
      *

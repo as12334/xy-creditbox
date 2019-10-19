@@ -19,6 +19,13 @@
 
 
 
+    <dubbo:service ref="vSysSiteUserService" interface="so.wwb.creditbox.iservice.manager.sys.IVSysSiteUserService"/>
+
+
+    <!-- 站点视图dubbo服务 -->
+    <dubbo:service ref="siteMasterManageService" interface="so.wwb.creditbox.iservice.manager.sys.IVSiteMasterManageService" registry="zookeeperService"/>
+
+
     <!--站长服务-->
     <dubbo:service ref="sysSiteService" interface="so.wwb.creditbox.iservice.manager.sys.ISysSiteService" registry="zookeeperService"/>
 
