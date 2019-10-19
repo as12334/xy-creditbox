@@ -289,7 +289,7 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
         boolean flag = true;
         while (flag) {
             hid = StringTool.upperCase(RandomStringTool.random(8, true, true));
-            long count = mapper.count(Criteria.add(SysUserExtend.PROP_CODE, Operator.EQ, Thid + hid));
+            long count = mapper.count(Criteria.add(SysUserExtend.PROP_HID, Operator.EQ, Thid + hid));
             if (count == 0) {
                 flag = false;
             }
@@ -337,11 +337,11 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
 //    private LotteryContextParam contextParam() {
 //        return LotteryCommonContext.get();
 //    }
-//
-//    @Override
-//    public long countUserName(String username) {
-//        return mapper.countUserName(username);
-//    }
+
+    @Override
+    public long countUserName(String username) {
+        return mapper.countUserName(username);
+    }
 //
 //    @Override
 //    public long countPlayerName(SysUserExtendVo vo) {

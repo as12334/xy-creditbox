@@ -55,13 +55,13 @@ public interface ISysUserExtendService extends IBaseService<SysUserExtendListVo,
     SysUserExtendVo updateSysUser(SysUserExtendVo userExtendVo, SysUserExtend operator);
 
     String getHid(String Thid);
-//
-//    /**
-//     * 系统账号同名数
-//     * @param username
-//     * @return
-//     */
-//    long countUserName(String username);
+
+    /**
+     * 系统账号同名数
+     * @param username
+     * @return
+     */
+    long countUserName(String username);
 //
 //    /**
 //     * 玩家账号同名数
