@@ -131,10 +131,10 @@
             <div class="modal-footer">
                 <c:choose>
                     <c:when test="${empty r.id}">
-                        <soul:button target="${root}/boss/account/company/addAccount.html" post="getCurrentFormData" precall="validateForm" text="${views.common['confirm']}" opType="ajax" dataType="json" cssClass="btn btn-filter" callback="saveCallbak" tag="button"/>
+                        <soul:button target="${root}/boss/account/company/addAccount.html" post="getCurrentFormData" precall="validateForm" text="确认" opType="ajax" dataType="json" cssClass="btn btn-filter" callback="saveCallbak" tag="button"/>
                     </c:when>
                     <c:otherwise>
-                        <soul:button target="${root}/boss/account/company/updateAccount.html" post="getCurrentFormData" precall="validateForm" text="${views.common['confirm']}" opType="ajax" dataType="json" cssClass="btn btn-filter" callback="saveCallbak" tag="button"/>
+                        <soul:button target="${root}/boss/account/company/updateAccount.html" post="getCurrentFormData" precall="validateForm" text="确认" opType="ajax" dataType="json" cssClass="btn btn-filter" callback="saveCallbak" tag="button"/>
                     </c:otherwise>
                 </c:choose>
                 <soul:button cssClass="btn btn-outline btn-filter" target="closePage" text="取消" opType="function"/>

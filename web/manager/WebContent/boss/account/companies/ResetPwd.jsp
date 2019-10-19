@@ -33,7 +33,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <soul:button target="${root}/boss/account/companies/updateShPwd.html" post="getCurrentFormData" precall="validateForm" text="${views.common['confirm']}" opType="ajax" dataType="json" cssClass="btn btn-filter" callback="saveCallbak" tag="button"/>
+        <soul:button target="${root}/boss/account/companies/updateShPwd.html" post="getCurrentFormData" precall="validateForm" text="确认" opType="ajax" dataType="json" cssClass="btn btn-filter" callback="saveCallbak" tag="button"/>
         <soul:button cssClass="btn btn-outline btn-filter" target="closePage" text="取消" opType="function"/>
     </div>
 </form>
