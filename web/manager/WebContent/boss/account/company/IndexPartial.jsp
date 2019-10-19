@@ -93,7 +93,8 @@
 
                     </c:if>&nbsp&nbsp
 
-                    <c:if test="${i.userType eq '2' or i.userType eq '1'}">
+                    <%--运营商或者公司才有新增站点--%>
+                    <c:if test="${i.userType eq '2' or i.userType eq '3'}">
                         <c:choose>
                             <c:when test="${not empty i.siteId}">
                                 <%--使用商户站点-站点名称的权限--%>

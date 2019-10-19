@@ -5,8 +5,8 @@
 
 <!--//endregion your codes 1-->
 <div class="row">
-    <form:form id="companyForm" name="companyForm" action="${root}/boss/account/company/companyList.html" method="post">
-        <c:if test="${sessionSysUser.userType ne '0' && sessionSysUser.userType ne '01'}">
+    <form:form id="companyForm" name="companyForm" action="${root}/boss/account/company/companyList.html" method="get">
+        <c:if test="${sessionSysUser.userType ne '1' && sessionSysUser.userType ne '11'}">
             <form:hidden path="search.ownerId" value="${sessionSysUser.id}"/>
         </c:if>
         <lb:validateRule/>

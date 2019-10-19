@@ -6,7 +6,8 @@
 <!--//endregion your codes 1-->
 <div class="row">
     <form:form id="shareholderForm" name="shareholderForm" action="${root}/boss/account/companies/companiesList.html" method="post">
-        <c:if test="${sessionSysUser.userType ne '0' && sessionSysUser.userType ne '01'}">
+        <%--如果登录的用户是boss--%>
+        <c:if test="${sessionSysUser.userType ne '1' && sessionSysUser.userType ne '11'}">
             <form:hidden path="search.ownerId" value="${sessionSysUser.id}"/>
         </c:if>
         <lb:validateRule/>
