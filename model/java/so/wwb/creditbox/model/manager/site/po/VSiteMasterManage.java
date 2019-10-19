@@ -1,13 +1,14 @@
 package so.wwb.creditbox.model.manager.site.po;
 
+
 import org.soul.commons.bean.IEntity;
 
 
 /**
- * 实体
+ * 商戶主账号管理视图实体
  *
- * @author jerry
- * @time 2017-4-7 9:42:27
+ * @author block
+ * @time 2019-10-19 16:38:04
  */
 //region your codes 1
 public class VSiteMasterManage implements IEntity<Integer> {
@@ -32,7 +33,6 @@ public class VSiteMasterManage implements IEntity<Integer> {
 	public static final String PROP_SUBSYS_CODE = "subsysCode";
 	public static final String PROP_USER_TYPE = "userType";
 	public static final String PROP_BUILT_IN = "builtIn";
-	public static final String PROP_MERCHANT_ID = "merchantId";
 	public static final String PROP_OWNER_ID = "ownerId";
 	public static final String PROP_FREEZE_TYPE = "freezeType";
 	public static final String PROP_FREEZE_START_TIME = "freezeStartTime";
@@ -82,7 +82,6 @@ public class VSiteMasterManage implements IEntity<Integer> {
 	public static final String PROP_AUTHENTICATION_KEY = "authenticationKey";
 	public static final String PROP_SITE_ID = "siteId";
 	public static final String PROP_SITE_NUM = "siteNum";
-	public static final String PROP_CODE = "code";
 	//endregion
 	
 	
@@ -115,8 +114,6 @@ public class VSiteMasterManage implements IEntity<Integer> {
 	private String userType;
 	/**  */
 	private Boolean builtIn;
-	/**  */
-	private Integer merchantId;
 	/**  */
 	private Integer ownerId;
 	/**  */
@@ -215,7 +212,6 @@ public class VSiteMasterManage implements IEntity<Integer> {
 	private Integer siteId;
 	/**  */
 	private Long siteNum;
-	private String code;
 	//endregion
 
 	
@@ -327,13 +323,6 @@ public class VSiteMasterManage implements IEntity<Integer> {
 
 	public void setBuiltIn(Boolean value) {
 		this.builtIn = value;
-	}
-	public Integer getMerchantId() {
-		return this.merchantId;
-	}
-
-	public void setMerchantId(Integer value) {
-		this.merchantId = value;
 	}
 	public Integer getOwnerId() {
 		return this.ownerId;
@@ -678,15 +667,6 @@ public class VSiteMasterManage implements IEntity<Integer> {
 	public void setSiteNum(Long value) {
 		this.siteNum = value;
 	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
 	//endregion
 
 	//region your codes 2

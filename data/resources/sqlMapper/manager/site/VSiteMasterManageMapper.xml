@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="so.wwb.creditbox.data.manager.sys.VSiteMasterManageMapper">
+<mapper namespace="so.wwb.creditbox.data.manager.site.VSiteMasterManageMapper">
 
     <resultMap id="TABLE:v_site_master_manage" type="so.wwb.creditbox.model.manager.site.po.VSiteMasterManage">
         <id column="id" property="id"/>
@@ -17,7 +17,6 @@
         <result column="subsys_code" property="subsysCode"/>
         <result column="user_type" property="userType"/>
         <result column="built_in" property="builtIn"/>
-        <result column="merchant_id" property="merchantId"/>
         <result column="owner_id" property="ownerId"/>
         <result column="freeze_type" property="freezeType"/>
         <result column="freeze_start_time" property="freezeStartTime"/>
@@ -67,7 +66,6 @@
         <result column="authentication_key" property="authenticationKey"/>
         <result column="site_id" property="siteId"/>
         <result column="site_num" property="siteNum"/>
-        <result column="code" property="code"/>
     </resultMap>
 
     <!--//region your codes 1-->

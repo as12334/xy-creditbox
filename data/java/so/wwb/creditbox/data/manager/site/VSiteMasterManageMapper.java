@@ -1,14 +1,14 @@
-package so.wwb.creditbox.data.manager.sys;
+package so.wwb.creditbox.data.manager.site;
 
-import org.soul.data.rdb.mybatis.IBaseQueryMapper;
 import so.wwb.creditbox.model.manager.site.po.VSiteMasterManage;
+import org.soul.data.rdb.mybatis.IBaseQueryMapper;
 
 
 /**
- * 数据访问对象
+ * 商戶主账号管理视图数据访问对象
  *
- * @author jerry
- * @time 2017-4-7 9:42:27
+ * @author block
+ * @time 2019-10-19 16:38:04
  */
 //region your codes 1
 public interface VSiteMasterManageMapper extends IBaseQueryMapper<VSiteMasterManage, Integer> {
