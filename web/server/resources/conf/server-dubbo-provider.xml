@@ -55,6 +55,11 @@
     <dubbo:service ref="siteConfineAreaService" interface="so.wwb.creditbox.iservice.manager.common.ISiteConfineAreaService" registry="zookeeperService"/>
     <!--备注-->
 
+    <!-- 彩种表dubbo服务 -->
+    <dubbo:service ref="lotteryService" interface="so.wwb.creditbox.iservice.manager.lottery.ILotteryService"/>
+    <dubbo:service ref="siteLotteryService" interface="so.wwb.creditbox.iservice.manager.lottery.ISiteLotteryService"/>
+    <dubbo:service ref="lotteryHandicapService" interface="so.wwb.creditbox.iservice.manager.lottery.ILotteryHandicapService"/>
+
 
 
     <!--任务-->

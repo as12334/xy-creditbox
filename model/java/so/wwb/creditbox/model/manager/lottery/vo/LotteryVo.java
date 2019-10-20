@@ -46,15 +46,16 @@ public class LotteryVo extends BaseObjectVo<Lottery, LotterySo, LotteryVo.Lotter
         //endregion your codes 3
 
     }
-    private Sort[] orderList;
+    private GameManageOrderVo[] orderList;
 
-    public Sort[] getOrderList() {
+    public GameManageOrderVo[] getOrderList() {
         return orderList;
     }
 
-    public void setOrderList(Sort[] orderList) {
+    public void setOrderList(GameManageOrderVo[] orderList) {
         this.orderList = orderList;
     }
+
     //region your codes 4
 
     //endregion your codes 4

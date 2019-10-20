@@ -1,16 +1,18 @@
 package so.wwb.creditbox.model.manager.lottery.vo;
 
+
 import org.soul.commons.query.Criteria;
 import org.soul.model.common.AbstractQuery;
 import org.soul.model.common.BaseObjectVo;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryHandicap;
 import so.wwb.creditbox.model.manager.lottery.so.LotteryHandicapSo;
 
+
 /**
  * 彩种盘口值对象
  *
- * @author admin
- * @time 2017-4-11 20:35:57
+ * @author block
+ * @time 2019-10-21 0:00:14
  */
 //region your codes 1
 public class LotteryHandicapVo extends BaseObjectVo<LotteryHandicap, LotteryHandicapSo, LotteryHandicapVo.LotteryHandicapQuery> {
@@ -31,6 +33,7 @@ public class LotteryHandicapVo extends BaseObjectVo<LotteryHandicap, LotteryHand
 
         @Override
         public Criteria getCriteria() {
+            //region your codes 2
             return null;
             //endregion your codes 2
         }

@@ -50,6 +50,17 @@ public class Cache extends CacheBase {
         return rcVersion;
     }
 
+
+    /**
+     * 刷新站点彩票
+     *
+     * @param siteId
+     */
+    public static void refreshSiteLottery(Integer siteId) {
+        CacheTool.refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_LOTTERY, String.valueOf(siteId)));
+    }
+
+
     /** 站点域名基本信息缓存 */
     public static VSysSiteDomain getSiteDomain(String domain) {
         if (StringTool.isBlank(domain)) {
@@ -61,29 +72,6 @@ public class Cache extends CacheBase {
             return map.get(domain);
         }
         return null;
-    }
-
-    /**
-     * 当前站点页面缓存
-     */
-    public static void refreshCurrentSitePageCache() {
-        SessionManagerBase.getSiteId();
-        refreshCurrentSitePageCache(SessionManagerBase.getSiteId());
-    }
-    /**
-     * 刷新指定站点页面缓存,如果为空，刷新当前站点页面缓存
-     *
-     * @param siteId
-     */
-    public static void refreshCurrentSitePageCache(Integer siteId) {
-        if (siteId == null) {
-            siteId = SessionManagerBase.getSiteId();
-        }
-        String key = ConfigBase.get().getPageKeyPrefix() + siteId.toString() + ":*";
-        Long success = jedisTemplate.refresh(key);
-         /*刷新外围站点缓存*/
-        purgeOutPageCache(siteId);
-        log.debug("清除站点页面缓存,siteId:{0},key:{1},成功:{2}", SessionManagerBase.getSiteId(), key, success);
     }
     /**
      * 清理外围页面缓存
@@ -161,331 +149,341 @@ public class Cache extends CacheBase {
         return map;
     }
 
-    public static void refreshIpDb() {
-        getProxy().refresh(CacheKey.CACHE_KEY_IP_DB);
-    }
+//    public static void refreshIpDb() {
+//        getProxy().refresh(CacheKey.CACHE_KEY_IP_DB);
+//    }
+
 
     /**
-     * 站点彩票
+     * 刷新所有站点彩票
+     *
+     * @param
      */
-    public static Map<String, Lottery> getLottery(Integer siteId) {
-        Map<String, Lottery> map = getLotteryMap(siteId);
-        if (map == null) {
-            log.error("缺少Lottery的缓存数据！");
-        }
-        return map;
+    public static void refreshAllSiteLottery() {
+        CacheTool.refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_LOTTERY));
     }
-    /**
-     * 获取站点彩票类型
-     */
-    public static List<LotteryType> getSiteLotteryType (Integer siteId) {
-        Map<String,LotteryType> map = getLotteryType();
-        Map<String, List<Lottery>> map1 = getLotteryByType(siteId);
-        List<LotteryType> list = new ArrayList<>();
-        map.forEach((k,v)->initSiteLotteryType (k,v,map1,list));
-        return list;
-    }
-
-    private static void initSiteLotteryType (String key, LotteryType v, Map<String, List<Lottery>> map1, List<LotteryType> list) {
-        List<Lottery> list1 = map1.get(key);
-        if (CollectionTool.isNotEmpty(list1)) {
-            LotteryType value = new LotteryType();
-            value.setLotteryNum(String.valueOf(list1.size()));
-            value.setTypeName(v.getTypeName());
-            value.setTypeCode(key);
-            list.add(value);
-        }
-
-
-    }
-
-    /**
-     * 获取站点彩种类型对应的彩票
-     */
-    public static Map<String, List<Lottery>> getLotteryByType (Integer siteId) {
-        Map<String, List<Lottery>> typeMap = new HashMap<>();
-        Map<String, Lottery> map = getLottery(siteId);
-        map.forEach((k,v)-> initLotteryByType(v,typeMap));
-        return typeMap;
-    }
-
-    /**
-     * 根据站点id,类型获取彩种
-     */
-    public static List<Lottery> getLotteryByType (Integer siteId, String type) {
-        Map<String, List<Lottery>> map = getLotteryByType(siteId);
-        return map.get(type);
-    }
-
-    /**
-     * 根据站点id,类型获取彩种
-     */
-    public static List<Lottery> getLotteryByCalssify (Integer siteId, String classify) {
-        if (siteId == null) {
-            siteId = 0;
-        }
-        List<Lottery> result = new ArrayList<>();
-        Map<String, Lottery> map = getLottery(siteId);
-        map.forEach((k,v)->initLotteryByClassify(v,classify,result));
-        return result;
-    }
-
-    private static void initLotteryByType (Lottery lottery, Map<String, List<Lottery>> typeMap) {
-        if (CollectionTool.isEmpty(typeMap.get(lottery.getType()))) {
-            List<Lottery> list = new ArrayList<>();
-            list.add(lottery);
-            typeMap.put(lottery.getType(),list);
-        } else {
-            typeMap.get(lottery.getType()).add(lottery);
-        }
-    }
-
-    private static void initLotteryByClassify (Lottery lottery, String classify, List<Lottery> result) {
-        if (classify.equals(lottery.getClassify())) {
-            result.add(lottery);
-        }
-    }
-
-    /**
-     * 根据Code获取彩种
-     */
-    public static Lottery getLotteryByCode(String code) {
-        if (StringTool.isBlank(code)) return null;
-        Map<String, Lottery> map = getLotteryMap();
-        if (map == null) return null;
-        return map.get(code);
-    }
-
-    /**
-     * 获取Boss彩种
-     */
-    public static Lottery getBossLotteryByCode(String code) {
-        if (StringTool.isBlank(code)) return null;
-        Map<String, Lottery> map = getLotteryMap(BOSS_SITE_ID);
-        if (map == null) return null;
-        return map.get(code);
-    }
-
-    public static Map<String,List<Lottery>> getHighAndLowCodeMap(){
-        Map<String,Lottery> lotteryMap = getLotteryMap();
-        return installHighAndLowCodeMap(lotteryMap);
-    }
-
-    public static Map<String,List<Lottery>> getHighAndLowCodeMap(Integer siteId){
-        Map<String,Lottery> lotteryMap= getLotteryMap(siteId);
-        return installHighAndLowCodeMap(lotteryMap);
-    }
-
-    public static Map<String,List<Lottery>> installHighAndLowCodeMap(Map<String,Lottery> lotteryMap){
-        Map<String,List<Lottery>> map = new HashedMap();
-        List<Lottery> highCode = new ArrayList<>();
-        List<Lottery> lowCode = new ArrayList<>();
-        if (CollectionTool.isNotEmpty(lotteryMap.values())){
-            for(Lottery lottery :lotteryMap.values()){
-                if(FrequencyEnum.HIGH.getCode().equals(lottery.getFrequency())){
-                    highCode.add(lottery);
-                }else if (FrequencyEnum.LOW.getCode().equals(lottery.getFrequency())) {
-                    lowCode.add(lottery);
-                }
-            }
-        }
-        map.put("high",highCode);
-        map.put("low",lowCode);
-        return map;
-    }
-
-    /**
-     * 刷新站点彩票
-     */
-    public static void refreshLottery() {
-        getProxy().refresh(CacheKey.CACHE_KEY_LOTTERY);
-    }
-
-    /**
-     * @param  siteId 站点id
-     * 刷新站点彩票
-     */
-    public static void refreshSiteLottery(Integer siteId) {
-        getProxy().refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_LOTTERY,String.valueOf(siteId)));
-    }
-
-    /**
-     * 获取站点可用彩种
-     */
-    public static Map<String, Lottery> getNormalLottery() {
-        Map<String, Lottery> map = Cache.getLotteryMap();
-        if (MapTool.isEmpty(map)) return new HashMap<>(0);
-
-        Map<String, Lottery> normalMap = new HashMap<>();
-        String status = LotteryStatusEnum.NORMAL.getCode();
-        for (Lottery lottery : map.values()) {
-            if (status.equals(lottery.getStatus())) {
-                normalMap.put(lottery.getCode(), lottery);
-            }
-        }
-        return normalMap;
-    }
-    /**
-     * 获取站点可用彩种
-     */
-    public static List<Lottery> getNormalLotteryList() {
-        Map<String, Lottery> map = Cache.getLotteryMap();
-        if (MapTool.isEmpty(map)) return new ArrayList<>(0);
-        List<Lottery> lotteries = new ArrayList<>();
-        String status = LotteryStatusEnum.NORMAL.getCode();
-        for (Lottery lottery : map.values()) {
-            if (status.equals(lottery.getStatus())) {
-                lotteries.add(lottery);
-            }
-        }
-        return CollectionQueryTool.sort(lotteries, Order.asc(Lottery.PROP_ORDER_NUM));
-    }
+//
 //    /**
-//     * 获取站点token
+//     * 站点彩票
 //     */
-//    public static Map<String,OauthToken> getOauthToken() {
-//        Integer siteId = SessionManagerBase.getSiteId();
-//        Map<String, OauthToken> map = CacheTool.get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_OAUTH_TOKEN, String.valueOf(siteId)));
+//    public static Map<String, Lottery> getLottery(Integer siteId) {
+//        Map<String, Lottery> map = getLotteryMap(siteId);
 //        if (map == null) {
-//            log.error("缺少oauth token的缓存数据！");
+//            log.error("缺少Lottery的缓存数据！");
 //        }
 //        return map;
 //    }
-
-//    public static OauthToken getOauthToken(String token) {
-//        Map<String, OauthToken> map = getOauthToken();
-//        if (map != null) {
-//            OauthToken oauthToken = map.get(token);
-//            if (oauthToken != null) {
-//                return oauthToken;
-//            } else {
-//                log.error("缺少{0} token的缓存数据", token);
+//    /**
+//     * 获取站点彩票类型
+//     */
+//    public static List<LotteryType> getSiteLotteryType (Integer siteId) {
+//        Map<String,LotteryType> map = getLotteryType();
+//        Map<String, List<Lottery>> map1 = getLotteryByType(siteId);
+//        List<LotteryType> list = new ArrayList<>();
+//        map.forEach((k,v)->initSiteLotteryType (k,v,map1,list));
+//        return list;
+//    }
+//
+//    private static void initSiteLotteryType (String key, LotteryType v, Map<String, List<Lottery>> map1, List<LotteryType> list) {
+//        List<Lottery> list1 = map1.get(key);
+//        if (CollectionTool.isNotEmpty(list1)) {
+//            LotteryType value = new LotteryType();
+//            value.setLotteryNum(String.valueOf(list1.size()));
+//            value.setTypeName(v.getTypeName());
+//            value.setTypeCode(key);
+//            list.add(value);
+//        }
+//
+//
+//    }
+//
+//    /**
+//     * 获取站点彩种类型对应的彩票
+//     */
+//    public static Map<String, List<Lottery>> getLotteryByType (Integer siteId) {
+//        Map<String, List<Lottery>> typeMap = new HashMap<>();
+//        Map<String, Lottery> map = getLottery(siteId);
+//        map.forEach((k,v)-> initLotteryByType(v,typeMap));
+//        return typeMap;
+//    }
+//
+//    /**
+//     * 根据站点id,类型获取彩种
+//     */
+//    public static List<Lottery> getLotteryByType (Integer siteId, String type) {
+//        Map<String, List<Lottery>> map = getLotteryByType(siteId);
+//        return map.get(type);
+//    }
+//
+//    /**
+//     * 根据站点id,类型获取彩种
+//     */
+//    public static List<Lottery> getLotteryByCalssify (Integer siteId, String classify) {
+//        if (siteId == null) {
+//            siteId = 0;
+//        }
+//        List<Lottery> result = new ArrayList<>();
+//        Map<String, Lottery> map = getLottery(siteId);
+//        map.forEach((k,v)->initLotteryByClassify(v,classify,result));
+//        return result;
+//    }
+//
+//    private static void initLotteryByType (Lottery lottery, Map<String, List<Lottery>> typeMap) {
+//        if (CollectionTool.isEmpty(typeMap.get(lottery.getType()))) {
+//            List<Lottery> list = new ArrayList<>();
+//            list.add(lottery);
+//            typeMap.put(lottery.getType(),list);
+//        } else {
+//            typeMap.get(lottery.getType()).add(lottery);
+//        }
+//    }
+//
+//    private static void initLotteryByClassify (Lottery lottery, String classify, List<Lottery> result) {
+//        if (classify.equals(lottery.getClassify())) {
+//            result.add(lottery);
+//        }
+//    }
+//
+//    /**
+//     * 根据Code获取彩种
+//     */
+//    public static Lottery getLotteryByCode(String code) {
+//        if (StringTool.isBlank(code)) return null;
+//        Map<String, Lottery> map = getLotteryMap();
+//        if (map == null) return null;
+//        return map.get(code);
+//    }
+//
+//    /**
+//     * 获取Boss彩种
+//     */
+//    public static Lottery getBossLotteryByCode(String code) {
+//        if (StringTool.isBlank(code)) return null;
+//        Map<String, Lottery> map = getLotteryMap(BOSS_SITE_ID);
+//        if (map == null) return null;
+//        return map.get(code);
+//    }
+//
+//    public static Map<String,List<Lottery>> getHighAndLowCodeMap(){
+//        Map<String,Lottery> lotteryMap = getLotteryMap();
+//        return installHighAndLowCodeMap(lotteryMap);
+//    }
+//
+//    public static Map<String,List<Lottery>> getHighAndLowCodeMap(Integer siteId){
+//        Map<String,Lottery> lotteryMap= getLotteryMap(siteId);
+//        return installHighAndLowCodeMap(lotteryMap);
+//    }
+//
+//    public static Map<String,List<Lottery>> installHighAndLowCodeMap(Map<String,Lottery> lotteryMap){
+//        Map<String,List<Lottery>> map = new HashedMap();
+//        List<Lottery> highCode = new ArrayList<>();
+//        List<Lottery> lowCode = new ArrayList<>();
+//        if (CollectionTool.isNotEmpty(lotteryMap.values())){
+//            for(Lottery lottery :lotteryMap.values()){
+//                if(FrequencyEnum.HIGH.getCode().equals(lottery.getFrequency())){
+//                    highCode.add(lottery);
+//                }else if (FrequencyEnum.LOW.getCode().equals(lottery.getFrequency())) {
+//                    lowCode.add(lottery);
+//                }
 //            }
 //        }
-//        return null;
+//        map.put("high",highCode);
+//        map.put("low",lowCode);
+//        return map;
 //    }
-
-    /**
-     * 根据账号查找token
-     */
-//    public static OauthToken getOauthTokenByUsername(String username) {
-//         Map<String, OauthToken> map = getOauthToken();
-//         for (Map.Entry<String, OauthToken> entry : map.entrySet()) {
-//             OauthToken token = entry.getValue();
-//             if (username.equals(token.getUsername())) {
-//                 return token;
-//             }
-//         }
-//         return null;
-//    }
-
-    /**
-     * 刷新站点token
-     */
-    public static void refreshOauthToken() {
-        Integer siteId = SessionManagerBase.getSiteId();
-        getProxy().refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_OAUTH_TOKEN, String.valueOf(siteId)));
-    }
-
-    /**
-     * 根据终端获取站点可用彩种
-     */
-    public static List<Lottery> getNormalLottery(String terminal) {
-        Map<String, Lottery> lotteryMap = Cache.getLotteryMap();
-        if (MapTool.isEmpty(lotteryMap)) {
-            return null;
-        }
-        List<Lottery> lotteries = new ArrayList<>();
-        String normal = GameStatusEnum.NORMAL.getCode();
-        String allSupport = TerminalEnum.ALL.getCode();
-        for (Map.Entry<String, Lottery> entry : lotteryMap.entrySet()) {
-            Lottery lottery = entry.getValue();
-            if (lottery == null) continue;
-            if (normal.equals(lottery.getStatus()) && (allSupport.equals(lottery.getTerminal()) || terminal.equals(lottery.getTerminal()))) {
-                lotteries.add(lottery);
-            }
-        }
-        return CollectionQueryTool.sort(lotteries, Order.asc(Lottery.PROP_ORDER_NUM));
-    }
-
-    /** 获取站点彩票赔率缓存 */
-    public static Map<String,LotteryOddSet> getLotteryOdds(Integer projectId, String code) {
-        Map<String, LotteryOddSet> map = getOddSet(projectId,code);
-        if (map == null) {
-            log.error("缺少LotteryOdd的缓存数据！");
-        }
-        return map;
-    }
-
-    public static void refreshLotteryOdd() {
-        Integer siteId = SessionManagerBase.getSiteId();
-        CacheTool.refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_LOTTERY_ODD_SET, siteId.toString()));
-    }
-
-    public static void refreshLotteryOddSet(Integer projectId) {
-        Integer siteId = SessionManagerBase.getSiteId();
-        refreshLotteryOddSet(siteId,projectId);
-    }
-
-    public static void refreshLotteryOddSet(Integer siteId,Integer projectId) {
-        CacheTool.refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_LOTTERY_ODD_SET, String.valueOf(siteId), String.valueOf(projectId)));
-    }
-
-    public static void refreshLotteryQuotas(Integer siteId) {
-        if (siteId == null) {
-            siteId = SessionManagerBase.getSiteId();
-        }
-        CacheTool.refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_LOTTERY_QUOTA_SET, siteId.toString()));
-    }
-
-    public static void refreshPayProvider() {
-        CacheTool.refresh(CacheKey.CACHE_KEY_PAYPROVIDER);
-    }
-    public static void refreshBank() {
-        CacheTool.refresh(CacheKey.CACHE_KEY_BANK);
-    }
-
-    public static void refreshBanner() {
-        getProxy().refresh(CacheKey.CACHE_KEY_BANNER + CacheKey.CACHE_KEY_SEPERATOR + SessionManagerBase.getSiteIdString());
-    }
 //
-//    /** 从缓存中获取站点公告 */
-//    public static Map<String, ContentBulletin> getContentBulletin() {
-//        return getProxy().get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_CONTENT_BULLETIN, SessionManagerBase.getSiteIdString()));
-//    }
-
 //    /**
-//     * 获取要展示的公告
+//     * 刷新站点彩票
 //     */
-//    public static List<ContentBulletin> getNormalContentBulletin() {
-//        Map<String, ContentBulletin> map = Cache.getContentBulletin();
-//        if (MapTool.isEmpty(map)) {
+//    public static void refreshLottery() {
+//        getProxy().refresh(CacheKey.CACHE_KEY_LOTTERY);
+//    }
+//
+//    /**
+//     * @param  siteId 站点id
+//     * 刷新站点彩票
+//     */
+//    public static void refreshSiteLottery(Integer siteId) {
+//        getProxy().refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_LOTTERY,String.valueOf(siteId)));
+//    }
+//
+//    /**
+//     * 获取站点可用彩种
+//     */
+//    public static Map<String, Lottery> getNormalLottery() {
+//        Map<String, Lottery> map = Cache.getLotteryMap();
+//        if (MapTool.isEmpty(map)) return new HashMap<>(0);
+//
+//        Map<String, Lottery> normalMap = new HashMap<>();
+//        String status = LotteryStatusEnum.NORMAL.getCode();
+//        for (Lottery lottery : map.values()) {
+//            if (status.equals(lottery.getStatus())) {
+//                normalMap.put(lottery.getCode(), lottery);
+//            }
+//        }
+//        return normalMap;
+//    }
+//    /**
+//     * 获取站点可用彩种
+//     */
+//    public static List<Lottery> getNormalLotteryList() {
+//        Map<String, Lottery> map = Cache.getLotteryMap();
+//        if (MapTool.isEmpty(map)) return new ArrayList<>(0);
+//        List<Lottery> lotteries = new ArrayList<>();
+//        String status = LotteryStatusEnum.NORMAL.getCode();
+//        for (Lottery lottery : map.values()) {
+//            if (status.equals(lottery.getStatus())) {
+//                lotteries.add(lottery);
+//            }
+//        }
+//        return CollectionQueryTool.sort(lotteries, Order.asc(Lottery.PROP_ORDER_NUM));
+//    }
+////    /**
+////     * 获取站点token
+////     */
+////    public static Map<String,OauthToken> getOauthToken() {
+////        Integer siteId = SessionManagerBase.getSiteId();
+////        Map<String, OauthToken> map = CacheTool.get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_OAUTH_TOKEN, String.valueOf(siteId)));
+////        if (map == null) {
+////            log.error("缺少oauth token的缓存数据！");
+////        }
+////        return map;
+////    }
+//
+////    public static OauthToken getOauthToken(String token) {
+////        Map<String, OauthToken> map = getOauthToken();
+////        if (map != null) {
+////            OauthToken oauthToken = map.get(token);
+////            if (oauthToken != null) {
+////                return oauthToken;
+////            } else {
+////                log.error("缺少{0} token的缓存数据", token);
+////            }
+////        }
+////        return null;
+////    }
+//
+//    /**
+//     * 根据账号查找token
+//     */
+////    public static OauthToken getOauthTokenByUsername(String username) {
+////         Map<String, OauthToken> map = getOauthToken();
+////         for (Map.Entry<String, OauthToken> entry : map.entrySet()) {
+////             OauthToken token = entry.getValue();
+////             if (username.equals(token.getUsername())) {
+////                 return token;
+////             }
+////         }
+////         return null;
+////    }
+//
+//    /**
+//     * 刷新站点token
+//     */
+//    public static void refreshOauthToken() {
+//        Integer siteId = SessionManagerBase.getSiteId();
+//        getProxy().refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_OAUTH_TOKEN, String.valueOf(siteId)));
+//    }
+//
+//    /**
+//     * 根据终端获取站点可用彩种
+//     */
+//    public static List<Lottery> getNormalLottery(String terminal) {
+//        Map<String, Lottery> lotteryMap = Cache.getLotteryMap();
+//        if (MapTool.isEmpty(lotteryMap)) {
 //            return null;
 //        }
-//        List<ContentBulletin> bulletins = new ArrayList<>();
-//        String normal = "0";
-//        Date date = new Date();
-//        date = DateTool.addHours(date, 8);
-//        for (Map.Entry<String, ContentBulletin> entry : map.entrySet()) {
-//            ContentBulletin bulletin = entry.getValue();
-//            if (bulletin == null) continue;
-//            if (bulletin.getDisplay() && normal.equals(bulletin.getStatus()) && date.getTime() > bulletin.getCreateTime().getTime()) {
-//                bulletins.add(bulletin);
+//        List<Lottery> lotteries = new ArrayList<>();
+//        String normal = GameStatusEnum.NORMAL.getCode();
+//        String allSupport = TerminalEnum.ALL.getCode();
+//        for (Map.Entry<String, Lottery> entry : lotteryMap.entrySet()) {
+//            Lottery lottery = entry.getValue();
+//            if (lottery == null) continue;
+//            if (normal.equals(lottery.getStatus()) && (allSupport.equals(lottery.getTerminal()) || terminal.equals(lottery.getTerminal()))) {
+//                lotteries.add(lottery);
 //            }
 //        }
-//        return CollectionQueryTool.sort(bulletins, Order.asc(ContentBulletin.PROP_ORDER_NUM));
+//        return CollectionQueryTool.sort(lotteries, Order.asc(Lottery.PROP_ORDER_NUM));
 //    }
-    public static void refreshContentBulletin() {
-        getProxy().refresh(CacheKey.CACHE_KEY_CONTENT_BULLETIN + CacheKey.CACHE_KEY_SEPERATOR + SessionManagerBase.getSiteIdString());
-    }
-
-    /**从缓存中获取平台公告*/
-    public static Map<String ,SystemAnnouncement> getSysAnnouncement(){
-        return getProxy().get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SYS_ANNOUNCEMENT, SessionManagerBase.getSiteIdString()));
-    }
-
-    public static void refreshSysAnnouncement(){
-        getProxy().refresh(CacheKey.CACHE_KEY_SYS_ANNOUNCEMENT + CacheKey.CACHE_KEY_SEPERATOR + SessionManagerBase.getSiteIdString());
-    }
+//
+//    /** 获取站点彩票赔率缓存 */
+//    public static Map<String,LotteryOddSet> getLotteryOdds(Integer projectId, String code) {
+//        Map<String, LotteryOddSet> map = getOddSet(projectId,code);
+//        if (map == null) {
+//            log.error("缺少LotteryOdd的缓存数据！");
+//        }
+//        return map;
+//    }
+//
+//    public static void refreshLotteryOdd() {
+//        Integer siteId = SessionManagerBase.getSiteId();
+//        CacheTool.refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_LOTTERY_ODD_SET, siteId.toString()));
+//    }
+//
+//    public static void refreshLotteryOddSet(Integer projectId) {
+//        Integer siteId = SessionManagerBase.getSiteId();
+//        refreshLotteryOddSet(siteId,projectId);
+//    }
+//
+//    public static void refreshLotteryOddSet(Integer siteId,Integer projectId) {
+//        CacheTool.refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_LOTTERY_ODD_SET, String.valueOf(siteId), String.valueOf(projectId)));
+//    }
+//
+//    public static void refreshLotteryQuotas(Integer siteId) {
+//        if (siteId == null) {
+//            siteId = SessionManagerBase.getSiteId();
+//        }
+//        CacheTool.refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_LOTTERY_QUOTA_SET, siteId.toString()));
+//    }
+//
+//    public static void refreshPayProvider() {
+//        CacheTool.refresh(CacheKey.CACHE_KEY_PAYPROVIDER);
+//    }
+//    public static void refreshBank() {
+//        CacheTool.refresh(CacheKey.CACHE_KEY_BANK);
+//    }
+//
+//    public static void refreshBanner() {
+//        getProxy().refresh(CacheKey.CACHE_KEY_BANNER + CacheKey.CACHE_KEY_SEPERATOR + SessionManagerBase.getSiteIdString());
+//    }
+////
+////    /** 从缓存中获取站点公告 */
+////    public static Map<String, ContentBulletin> getContentBulletin() {
+////        return getProxy().get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_CONTENT_BULLETIN, SessionManagerBase.getSiteIdString()));
+////    }
+//
+////    /**
+////     * 获取要展示的公告
+////     */
+////    public static List<ContentBulletin> getNormalContentBulletin() {
+////        Map<String, ContentBulletin> map = Cache.getContentBulletin();
+////        if (MapTool.isEmpty(map)) {
+////            return null;
+////        }
+////        List<ContentBulletin> bulletins = new ArrayList<>();
+////        String normal = "0";
+////        Date date = new Date();
+////        date = DateTool.addHours(date, 8);
+////        for (Map.Entry<String, ContentBulletin> entry : map.entrySet()) {
+////            ContentBulletin bulletin = entry.getValue();
+////            if (bulletin == null) continue;
+////            if (bulletin.getDisplay() && normal.equals(bulletin.getStatus()) && date.getTime() > bulletin.getCreateTime().getTime()) {
+////                bulletins.add(bulletin);
+////            }
+////        }
+////        return CollectionQueryTool.sort(bulletins, Order.asc(ContentBulletin.PROP_ORDER_NUM));
+////    }
+//    public static void refreshContentBulletin() {
+//        getProxy().refresh(CacheKey.CACHE_KEY_CONTENT_BULLETIN + CacheKey.CACHE_KEY_SEPERATOR + SessionManagerBase.getSiteIdString());
+//    }
+//
+//    /**从缓存中获取平台公告*/
+//    public static Map<String ,SystemAnnouncement> getSysAnnouncement(){
+//        return getProxy().get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SYS_ANNOUNCEMENT, SessionManagerBase.getSiteIdString()));
+//    }
+//
+//    public static void refreshSysAnnouncement(){
+//        getProxy().refresh(CacheKey.CACHE_KEY_SYS_ANNOUNCEMENT + CacheKey.CACHE_KEY_SEPERATOR + SessionManagerBase.getSiteIdString());
+//    }
 
 }

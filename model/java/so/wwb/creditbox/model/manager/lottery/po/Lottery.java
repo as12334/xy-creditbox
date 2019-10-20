@@ -1,79 +1,69 @@
 package so.wwb.creditbox.model.manager.lottery.po;
 
-import org.soul.commons.bean.IEntity;
-
 import java.util.Date;
+
+import org.soul.commons.bean.IEntity;
+import org.soul.model.common.Sortable;
+
 
 /**
  * 彩种表实体
  *
- * @author Administrator
- * @time 2017-4-25 19:32:21
+ * @author block
+ * @time 2019-10-20 23:40:18
  */
+//region your codes 1
 public class Lottery implements IEntity<Integer> {
+//endregion your codes 1
 
-	private static final long serialVersionUID = 338401217561430367L;
+	//region your codes 3
+	private static final long serialVersionUID = -8185970038395576616L;
+	//endregion your codes 3
 
+	//region property name constants
 	public static final String PROP_ID = "id";
-	public static final String PROP_SITE_ID = "siteId";
 	public static final String PROP_TYPE = "type";
 	public static final String PROP_CODE = "code";
+	public static final String PROP_NAME = "name";
 	public static final String PROP_STATUS = "status";
 	public static final String PROP_ORDER_NUM = "orderNum";
 	public static final String PROP_TERMINAL = "terminal";
-	public static final String PROP_MODEL = "model";
-	public static final String PROP_NAME = "name";
-	public static final String PROP_START_TIME = "startTime";
-	public static final String PROP_END_TIME = "endTime";
-	public static final String PROP_CLASSIFY = "classify";
-	public static final String PROP_FREQUENCY = "frequency";
-
-	public static final String PROP_MEMO = "memo";
-	public static final String PROP_IS_HOT = "isHot";
-	public static final String PROP_IS_NEW = "isNew";
-
+	public static final String PROP_GENRE = "genre";
+	//endregion
+	
+	
+	//region properties
 	/** 主键 */
 	private Integer id;
-	/** 商户ID */
-	private Integer siteId;
-	/** 彩种类型LotteryTypeEnum */
+	/** 彩种类型 */
 	private String type;
-	/** 彩种代号LotteryEnum */
+	/** 彩种代号 */
 	private String code;
 	/** 彩种名称 */
 	private String name;
-	/** 彩种状态LotteryStatusEnum */
+	/** 彩种状态:正常,维护 */
 	private String status;
 	/** 序号 */
 	private Integer orderNum;
-	/** 支持终端TerminalEnum */
+	/** 支持终端：0-全部终端,1-PC,2-移动 */
 	private String terminal;
-	/** 玩法模式LotteryModelEnum */
-	private String model;
-	/** 开始时间 */
-	private Date startTime;
-	/** 开始时间 */
-	private Date endTime;
+	/** 类型(1.全部2.官方玩法3.双面玩法) */
+	private Integer genre;
+	//endregion
 
-	/** 描述 */
-	private String memo;
-	/** 是否热门 */
-	private Boolean isHot;
-	/** 是否新彩种 */
-	private Boolean isNew;
-	/** 彩种彩种归属LotteryClassifyEn */
-	private String classify;
-	/** 高低频归属FrequencyEnum */
-	private String frequency;
-
-
+	
+	//region constuctors
 	public Lottery(){
 	}
 
 	public Lottery(Integer id){
 		this.id = id;
 	}
+	//endregion
 
+
+	//region getters and setters
+	@org.soul.model.common.Sortable
 	public Integer getId() {
 		return this.id;
 	}
@@ -81,7 +71,6 @@ public class Lottery implements IEntity<Integer> {
 	public void setId(Integer value) {
 		this.id = value;
 	}
-
 	@org.soul.model.common.Sortable
 	public String getType() {
 		return this.type;
@@ -90,7 +79,6 @@ public class Lottery implements IEntity<Integer> {
 	public void setType(String value) {
 		this.type = value;
 	}
-
 	@org.soul.model.common.Sortable
 	public String getCode() {
 		return this.code;
@@ -99,7 +87,13 @@ public class Lottery implements IEntity<Integer> {
 	public void setCode(String value) {
 		this.code = value;
 	}
+	public String getName() {
+		return this.name;
+	}
 
+	public void setName(String value) {
+		this.name = value;
+	}
 	@org.soul.model.common.Sortable
 	public String getStatus() {
 		return this.status;
@@ -108,7 +102,6 @@ public class Lottery implements IEntity<Integer> {
 	public void setStatus(String value) {
 		this.status = value;
 	}
-
 	@org.soul.model.common.Sortable
 	public Integer getOrderNum() {
 		return this.orderNum;
@@ -124,87 +117,18 @@ public class Lottery implements IEntity<Integer> {
 	public void setTerminal(String value) {
 		this.terminal = value;
 	}
-
-	public String getModel() {
-		return model;
-	}
-
-	public void setModel(String model) {
-		this.model = model;
-	}
-
 	@org.soul.model.common.Sortable
-	public Integer getSiteId() {
-		return siteId;
+	public Integer getGenre() {
+		return this.genre;
 	}
 
-	public void setSiteId(Integer value) {
-		this.siteId = value;
+	public void setGenre(Integer value) {
+		this.genre = value;
 	}
+	//endregion
 
-	@org.soul.model.common.Sortable
-	public String getName() {
-		return this.name;
-	}
+	//region your codes 2
 
-	public void setName(String value) {
-		this.name = value;
-	}
+	//endregion your codes 2
 
-	public Date getStartTime() {
-		return startTime;
-	}
-
-	public void setStartTime(Date startTime) {
-		this.startTime = startTime;
-	}
-
-	public Date getEndTime() {
-		return endTime;
-	}
-
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
-	}
-
-
-	public String getMemo() {
-		return memo;
-	}
-
-	public void setMemo(String memo) {
-		this.memo = memo;
-	}
-
-	public Boolean getIsHot() {
-		return isHot;
-	}
-
-	public void setIsHot(Boolean hot) {
-		isHot = hot;
-	}
-
-	public Boolean getIsNew() {
-		return isNew;
-	}
-
-	public void setIsNew(Boolean aNew) {
-		isNew = aNew;
-	}
-
-	public String getClassify() {
-		return classify;
-	}
-
-	public void setClassify(String classify) {
-		this.classify = classify;
-	}
-
-	public String getFrequency() {
-		return frequency;
-	}
-
-	public void setFrequency(String frequency) {
-		this.frequency = frequency;
-	}
 }

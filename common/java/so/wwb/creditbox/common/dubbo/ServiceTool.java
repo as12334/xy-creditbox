@@ -20,10 +20,7 @@ import so.wwb.creditbox.iservice.company.lottery.*;
 import so.wwb.creditbox.iservice.company.site.ISiteSysParamService;
 import so.wwb.creditbox.iservice.company.user.IVUserDetailService;
 import so.wwb.creditbox.iservice.manager.common.*;
-import so.wwb.creditbox.iservice.manager.lottery.ILotteryHandicapService;
-import so.wwb.creditbox.iservice.manager.lottery.ILotteryResultService;
-import so.wwb.creditbox.iservice.manager.lottery.ILotteryService;
-import so.wwb.creditbox.iservice.manager.lottery.ILotteryTypeService;
+import so.wwb.creditbox.iservice.manager.lottery.*;
 import so.wwb.creditbox.iservice.manager.message.ISystemAnnouncementService;
 import so.wwb.creditbox.iservice.manager.sys.*;
 import so.wwb.creditbox.iservice.manager.user.ISysUserExtendService;
@@ -51,6 +48,7 @@ public class ServiceTool {
     public static IVSiteMasterManageService vSiteMasterManageService() {
         return getService(IVSiteMasterManageService.class);
     }
+
 
     /**
      * 返回用户管理/详细视图 - Fei  jeremy远程服务实例
@@ -211,6 +209,10 @@ public static ISysUserRoleService sysUserRoleService() {
     public static IVSysSiteManageService vSysSiteManageService(){return getService(IVSysSiteManageService.class);}
 
     public static ISysResourceService sysResourceService(){return getService(ISysResourceService.class);}
+
+    public static ISiteLotteryService siteLotteryService() {
+        return getService(ISiteLotteryService.class);
+    }
 
 //    /**
 //     * 返回用户管理/详细视图 - Fei  jeremy远程服务实例

@@ -1,4 +1,4 @@
-package so.wwb.creditbox.manager.common.lottery.form;
+package so.wwb.creditbox.manager.boss.lottery.form;
 
 import org.soul.web.support.IForm;
 

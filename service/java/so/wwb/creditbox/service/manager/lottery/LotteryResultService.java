@@ -456,7 +456,7 @@ public class LotteryResultService extends BaseService<LotteryResultMapper, Lotte
             map.put("code",lottery.getCode());
             map.put("type",lottery.getType());
             map.put("expect",lotteryResult.getExpect());
-            map.put("model",lottery.getModel());
+//            map.put("model",lottery.getModel());
             if(lotteryResult.getCloseTime()!=null){
                 map.put("leftTime",(lotteryResult.getCloseTime().getTime() - time)/1000);
             }else{
@@ -467,8 +467,8 @@ public class LotteryResultService extends BaseService<LotteryResultMapper, Lotte
             }else{
                 map.put("leftOpenTime",null);
             }
-            map.put("frequency",lottery.getFrequency());
-            map.put("lotteryName",lottery.getName());
+//            map.put("frequency",lottery.getFrequency());
+//            map.put("lotteryName",lottery.getName());
             result.put(lottery.getCode(),map);
         }
         return result;
@@ -652,9 +652,9 @@ public class LotteryResultService extends BaseService<LotteryResultMapper, Lotte
         for(Lottery lottery : list){
             if(lottery != null){
                 LotteryResultVo result = checkUnifyPayout(resultVo,lottery);
-                LOG.info("官方彩开发派彩,站点id:{0},code:{1},expect:{2}",lottery.getSiteId(),lottery.getCode(),resultVo.getResult().getExpect());
+//                LOG.info("官方彩开发派彩,站点id:{0},code:{1},expect:{2}",lottery.getSiteId(),lottery.getCode(),resultVo.getResult().getExpect());
                 if(result.isSuccess()){
-                    resultVoList.add(addOfficialPayoutTask(resultVo,lottery.getSiteId()));
+//                    resultVoList.add(addOfficialPayoutTask(resultVo,lottery.getSiteId()));
                 }
             }
         }
@@ -777,7 +777,7 @@ public class LotteryResultService extends BaseService<LotteryResultMapper, Lotte
             if(lottery != null){
                 LotteryResultVo result = checkUnifyPayout(resultVo,lottery);
                 if(result.isSuccess()){
-                    resultVoList.add(addOwnPayoutTask(resultVo,lottery.getSiteId()));
+//                    resultVoList.add(addOwnPayoutTask(resultVo,lottery.getSiteId()));
                 }
             }
         }
@@ -1085,9 +1085,9 @@ public class LotteryResultService extends BaseService<LotteryResultMapper, Lotte
             flag = flag && LotteryStatusEnum.NORMAL.getCode().equals(lottery.getStatus());
         }
         if(!flag){
-            LOG.warn("官方彩票{0}派彩判断未通过,siteId:{1},code:{2},lotteryStatus:{3}",
-                    LotteryGatherOriginEnum.AUTO.getCode().equals(operateType)?"自动":"手动",lottery.getSiteId(),code,lottery != null?lottery.getStatus():"");
-            result.setSuccess(false);
+//            LOG.warn("官方彩票{0}派彩判断未通过,siteId:{1},code:{2},lotteryStatus:{3}",
+//                    LotteryGatherOriginEnum.AUTO.getCode().equals(operateType)?"自动":"手动",lottery.getSiteId(),code,lottery != null?lottery.getStatus():"");
+//            result.setSuccess(false);
             result.setErrMsg("彩票派彩判断未通过");
             return result;
         }
@@ -1552,10 +1552,10 @@ public class LotteryResultService extends BaseService<LotteryResultMapper, Lotte
         }
         List<Future<LotteryResultNumberVo>> resultList = new ArrayList<>();
         for(Lottery lottery : list) {
-            Future<LotteryResultNumberVo> future = addRevoTask(lottery.getSiteId(),resultVo);
-            if(future != null){
-                resultList.add(future);
-            }
+//            Future<LotteryResultNumberVo> future = addRevoTask(lottery.getSiteId(),resultVo);
+//            if(future != null){
+//                resultList.add(future);
+//            }
         }
         LotteryResultVo result = validateResultList(resultList,"商户:{0}彩票批量"+resultVo.getRevoItemText()+"失败,原因:{1}", resultVo.getOperateType());
         resultVo.setSuccess(result.isSuccess());
@@ -1787,10 +1787,10 @@ public class LotteryResultService extends BaseService<LotteryResultMapper, Lotte
         }
         List<Future<LotteryResultNumberVo>> resultList = new ArrayList<>();
         for(Lottery lottery : list) {
-            Future<LotteryResultNumberVo> future = doRecalculateTask(lottery.getSiteId(),resultVo);
-            if(future != null){
-                resultList.add(future);
-            }
+//            Future<LotteryResultNumberVo> future = doRecalculateTask(lottery.getSiteId(),resultVo);
+//            if(future != null){
+//                resultList.add(future);
+//            }
         }
         LotteryResultVo result = validateResultList(resultList,"商户:{0}彩票重结失败,原因:{1}", resultVo.getOperateType());
         resultVo.setSuccess(result.isSuccess());

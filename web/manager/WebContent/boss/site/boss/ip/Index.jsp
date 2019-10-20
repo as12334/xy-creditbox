@@ -33,10 +33,10 @@
             <div class="clearfix filter-wraper border-b-1">
                 <div class="search-wrapper btn-group pull-right m-r-n-xs">
                     <div class="input-group">
-                        <form:input class="form-control" path="search.searchIp" placeholder="${views.common['pleaseEnter']}IP"/>
+                        <form:input class="form-control" path="search.searchIp" placeholder="请输入IP"/>
                             <span class="input-group-btn">
-                                <soul:button target="query" opType="function" text="${views.common['query']}"  cssClass="btn btn-filter">
-                                    <i class="fa fa-search"></i><span class="hd">&nbsp;${views.common['query']}</span>
+                                <soul:button target="query" opType="function" text="查询"  cssClass="btn btn-filter">
+                                    <i class="fa fa-search"></i><span class="hd">&nbsp;查询</span>
                                 </soul:button>
                             </span>
                     </div>

@@ -62,6 +62,13 @@ public class CacheKey extends org.soul.commons.cache.CacheKey{
     /** 游戏接口请求信息配置缓存 Key */
     public static final String CACHE_KEY_API_ACTION_PARAM = "API_ACTION_PARAM";
 
+
+
+
+    /**
+     * 站点lottery
+     */
+    public static final String CACHE_KEY_SITE_LOTTERY = "SITE_LOTTERY";
     /** 彩种缓存 Key */
     public static final String CACHE_KEY_LOTTERY = "LOTTERY";
     /** 彩种类型 Key */

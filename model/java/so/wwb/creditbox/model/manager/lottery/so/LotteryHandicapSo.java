@@ -1,12 +1,14 @@
 package so.wwb.creditbox.model.manager.lottery.so;
 
+
 import so.wwb.creditbox.model.manager.lottery.po.LotteryHandicap;
+
 
 /**
  * 彩种盘口查询对象
  *
- * @author admin
- * @time 2017-4-11 20:35:57
+ * @author block
+ * @time 2019-10-21 0:00:14
  */
 //region your codes 1
 public class LotteryHandicapSo extends LotteryHandicap {

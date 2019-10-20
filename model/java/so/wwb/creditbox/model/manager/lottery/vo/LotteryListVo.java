@@ -41,10 +41,10 @@ public class LotteryListVo extends BaseListVo<Lottery, LotterySo, LotteryListVo.
             criteria.addAnd(Lottery.PROP_CODE,Operator.LIKE,searchObject.getCode());
             criteria.addAnd(Lottery.PROP_CODE,Operator.NOT_IN,searchObject.getNoIncludeCodeList());
             criteria.addAnd(Lottery.PROP_STATUS,Operator.EQ,searchObject.getStatus());
-            criteria.addAnd(Lottery.PROP_SITE_ID,Operator.EQ,searchObject.getSiteId());
-            criteria.addAnd(Lottery.PROP_NAME,Operator.LIKE,searchObject.getName());
-            criteria.addAnd(Lottery.PROP_CLASSIFY,Operator.EQ,searchObject.getClassify());
-            criteria.addAnd(Lottery.PROP_MODEL,Operator.EQ,searchObject.getModel());
+//            criteria.addAnd(Lottery.PROP_SITE_ID,Operator.EQ,searchObject.getSiteId());
+//            criteria.addAnd(Lottery.PROP_NAME,Operator.LIKE,searchObject.getName());
+//            criteria.addAnd(Lottery.PROP_CLASSIFY,Operator.EQ,searchObject.getClassify());
+//            criteria.addAnd(Lottery.PROP_MODEL,Operator.EQ,searchObject.getModel());
             if (CollectionTool.isNotEmpty(searchObject.getOwnCodes())){
                 criteria.addAnd(Lottery.PROP_CODE,Operator.IN,searchObject.getOwnCodes());
             }

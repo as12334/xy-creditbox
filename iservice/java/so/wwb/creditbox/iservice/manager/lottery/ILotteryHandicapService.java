@@ -1,5 +1,6 @@
 package so.wwb.creditbox.iservice.manager.lottery;
 
+
 import org.soul.iservice.support.IBaseService;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryHandicap;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryHandicapListVo;
@@ -9,8 +10,8 @@ import so.wwb.creditbox.model.manager.lottery.vo.LotteryHandicapVo;
 /**
  * 彩种盘口服务接口
  *
- * @author admin
- * @time 2017-4-11 20:35:57
+ * @author block
+ * @time 2019-10-21 0:00:14
  */
 //region your codes 1
 public interface ILotteryHandicapService extends IBaseService<LotteryHandicapListVo, LotteryHandicapVo, LotteryHandicap, Integer> {
@@ -23,7 +24,6 @@ public interface ILotteryHandicapService extends IBaseService<LotteryHandicapLis
      * @param resultVo
      * @return
      */
-    LotteryHandicapVo updateLotteryHandicap(LotteryHandicapVo resultVo);
     //endregion your codes 2
 
 }

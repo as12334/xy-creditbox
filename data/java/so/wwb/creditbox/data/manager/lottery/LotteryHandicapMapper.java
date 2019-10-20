@@ -1,13 +1,15 @@
 package so.wwb.creditbox.data.manager.lottery;
 
-import org.soul.data.rdb.mybatis.IBaseMapper;
+
 import so.wwb.creditbox.model.manager.lottery.po.LotteryHandicap;
+import org.soul.data.rdb.mybatis.IBaseMapper;
+
 
 /**
  * 彩种盘口数据访问对象
  *
- * @author admin
- * @time 2017-4-11 20:35:57
+ * @author block
+ * @time 2019-10-21 0:00:14
  */
 //region your codes 1
 public interface LotteryHandicapMapper extends IBaseMapper<LotteryHandicap, Integer> {

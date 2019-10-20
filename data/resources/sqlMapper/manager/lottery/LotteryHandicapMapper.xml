@@ -4,15 +4,11 @@
 
     <resultMap id="TABLE:lottery_handicap" type="so.wwb.creditbox.model.manager.lottery.po.LotteryHandicap">
         <id column="id" property="id"/>
-        <result column="type" property="type"/>
         <result column="code" property="code"/>
-        <result column="start_expect" property="startExpect"/>
-        <result column="amount" property="amount"/>
-        <result column="lottery_start_time" property="lotteryStartTime"/>
-        <result column="lottery_interval" property="lotteryInterval"/>
-        <result column="close_lottery_interval" property="closeLotteryInterval"/>
-        <result column="open_close_interval" property="openCloseInterval"/>
-        <result column="order_num" property="orderNum"/>
+        <result column="expect" property="expect"/>
+        <result column="open_time" property="openTime"/>
+        <result column="close_time" property="closeTime"/>
+        <result column="lottery_time" property="lotteryTime"/>
     </resultMap>
 
     <!--//region your codes 1-->

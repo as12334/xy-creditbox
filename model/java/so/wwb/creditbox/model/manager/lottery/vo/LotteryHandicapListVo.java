@@ -1,17 +1,19 @@
 package so.wwb.creditbox.model.manager.lottery.vo;
 
-import org.soul.commons.query.Criteria;
 import org.soul.commons.query.enums.Operator;
+
+import org.soul.commons.query.Criteria;
 import org.soul.model.common.AbstractQuery;
 import org.soul.model.common.BaseListVo;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryHandicap;
 import so.wwb.creditbox.model.manager.lottery.so.LotteryHandicapSo;
 
+
 /**
  * 彩种盘口列表页值对象
  *
- * @author admin
- * @time 2017-4-11 20:35:57
+ * @author block
+ * @time 2019-10-21 0:00:14
  */
 //region your codes 1
 public class LotteryHandicapListVo extends BaseListVo<LotteryHandicap, LotteryHandicapSo, LotteryHandicapListVo.LotteryHandicapQuery> {
@@ -32,9 +34,8 @@ public class LotteryHandicapListVo extends BaseListVo<LotteryHandicap, LotteryHa
 
         @Override
         public Criteria getCriteria() {
-            Criteria criteria = Criteria.add(LotteryHandicap.PROP_TYPE, Operator.EQ, searchObject.getType());
-            criteria.addAnd(LotteryHandicap.PROP_CODE, Operator.EQ, searchObject.getCode());
-            return criteria;
+            //region your codes 2
+            return null;
             //endregion your codes 2
         }
 

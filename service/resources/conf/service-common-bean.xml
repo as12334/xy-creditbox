@@ -37,5 +37,12 @@
 
     <bean id="vUserManagerService" class="so.wwb.creditbox.service.manager.user.VUserManagerService"/>
 
+    <bean id="lotteryService" class="so.wwb.creditbox.service.manager.lottery.LotteryService"/>
+
+    <bean id="siteLotteryService" class="so.wwb.creditbox.service.manager.lottery.SiteLotteryService"/>
+
+    <bean id="lotteryHandicapService" class="so.wwb.creditbox.service.manager.lottery.LotteryHandicapService"/>
+
+
 
 </beans>

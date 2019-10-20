@@ -50,26 +50,6 @@ public class CacheBase {
         return cacheTool;
     }
 
-    /** 从缓存中获取货币信息 */
-    public static Map<String, SysCurrency> getSysCurrency() {
-        return getProxy().get(CacheKey.CACHE_KEY_SYS_CURRENCY);
-    }
-
-    public static void refreshSiteConfineArea() {
-        getProxy().refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_CONFINE_AREA, SessionManagerBase.getSiteIdString()));
-    }
-
-    public static void refreshSiteConfineIp(Integer ccenterId) {
-        getProxy().refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_CONFINE_IP, String.valueOf(ccenterId != null ? ccenterId : SessionManagerBase.getSiteId())));
-    }
-
-    public static void refreshSiteI18n(SiteI18nEnum dictEnum) {
-        getProxy().refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_I18N, SessionManagerBase.getSiteIdString(), dictEnum.getModule().getCode(), dictEnum.getType()));
-    }
-
-    public static void refreshSiteAnnouncement() {
-        getProxy().refresh(CacheKey.CACHE_KEY_CONTENT_BULLETIN + CacheKey.CACHE_KEY_SEPERATOR + SessionManagerBase.getSiteIdString());
-    }
 
     public static void refreshSiteDomain() {
         siteDomainMap = null;
@@ -77,13 +57,13 @@ public class CacheBase {
         getProxy().refresh(CacheKey.CACHE_KEY_DOMAIN);
     }
 
-    public static void refreshSysParams(){
-        getProxy().refresh(CacheKey.getCacheKey(org.soul.commons.cache.CacheKey.CACHE_KEY_PARAMS,SessionManagerBase.getSiteIdString()));
+
+
+    public static void refreshLottery() {
+        CacheTool.refresh(CacheKey.CACHE_KEY_LOTTERY);
     }
 
-    public static void refreshCustomerService() {
-        getProxy().refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_CUSTOMER_SERVICE,SessionManagerBase.getSiteIdString()));
-    }
+
 
     public static void refreshSysSite() {
         getProxy().refresh(CacheKey.CACHE_KEY_SYS_SITE);
@@ -109,24 +89,6 @@ public class CacheBase {
     //取得站点系统用户
     public static Map<String, VSysSiteUser> getSysSiteUser() {
         return getProxy().get(CacheKey.CACHE_KEY_SITE_USER);
-    }
-
-    /**
-     * 根据类型刷新最新的app应用缓存
-     *
-     * @param appType
-     */
-    public static void refreshAppUpdate(String appType) {
-        getProxy().refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_APP_UPDATE, appType));
-    }
-
-    /**
-     * 根据站点刷新最新的app应用缓存
-     *
-     * @param siteId
-     */
-    public static void refreshSiteAppUpdate(String siteId) {
-        getProxy().refresh(CacheKey.CACHE_KEY_SITE_APP_UPDATE);
     }
 
     /** 取得全平台的管理用户 */
