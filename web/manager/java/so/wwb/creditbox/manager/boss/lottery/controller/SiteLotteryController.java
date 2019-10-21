@@ -21,6 +21,7 @@ import so.wwb.creditbox.common.dubbo.ServiceTool;
 import so.wwb.creditbox.iservice.manager.lottery.ISiteLotteryService;
 import so.wwb.creditbox.manager.lottery.form.SiteLotteryForm;
 import so.wwb.creditbox.manager.lottery.form.SiteLotterySearchForm;
+import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryGenreEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryTypeEnum;
 import so.wwb.creditbox.model.manager.lottery.po.Lottery;
@@ -118,6 +119,7 @@ public class SiteLotteryController extends BaseCrudController<ISiteLotteryServic
             lotteryListVo.getQuery().addOrder(Lottery.PROP_ORDER_NUM, Direction.ASC);
             model.addAttribute("command", ServiceTool.lotteryService().search(lotteryListVo));
         }
+        model.addAttribute("lotteryEnums", EnumTool.getCodeMap(LotteryEnum.class));
         model.addAttribute("status", listVo.getSearch().getStatus());
         return getViewBasePath() + "TakeOff";
     }
@@ -180,6 +182,7 @@ public class SiteLotteryController extends BaseCrudController<ISiteLotteryServic
             model.addAttribute("siteId", listVo.getSearch().getSiteId());
             model.addAttribute("siteLotteryMap", siteLotteryMap);
         }
+        model.addAttribute("lotteryEnums", EnumTool.getCodeMap(LotteryEnum.class));
         model.addAttribute("lottery", lotteryListVo);
         return getViewBasePath() + "Sync";
     }

@@ -1,6 +1,7 @@
 package so.wwb.creditbox.model.manager.lottery.vo;
 
 import org.soul.commons.query.Criteria;
+import org.soul.commons.query.enums.Operator;
 import org.soul.model.common.AbstractQuery;
 import org.soul.model.common.BaseListVo;
 import so.wwb.creditbox.model.manager.lottery.po.SiteLottery;
@@ -35,7 +36,10 @@ public class SiteLotteryListVo extends BaseListVo<SiteLottery, SiteLotterySo, Si
         @Override
         public Criteria getCriteria() {
             //region your codes 2
-            return null;
+            Criteria criteria = Criteria.add(SiteLottery.PROP_STATUS, Operator.EQ, searchObject.getStatus());
+            criteria = criteria.addAnd(Criteria.add(SiteLottery.PROP_SITE_ID, Operator.EQ, searchObject.getSiteId()));
+            return criteria;
+
             //endregion your codes 2
         }
 

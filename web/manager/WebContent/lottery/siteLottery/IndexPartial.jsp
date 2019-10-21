@@ -9,7 +9,7 @@
         <thead>
         <tr role="row" class="bg-gray">
             <th width="60">${views.column['VSiteApiType.orderNum']}</th>
-            <th>站点代号</th>
+            <th>站点ID</th>
             <th>彩种类型</th>
             <th>彩种代号</th>
             <th>彩种状态</th>
@@ -37,7 +37,7 @@
                 <td>
                     ${status.index+1}
                 </td>
-                <td>${siteCode}</td>
+                <td>${p.siteId}</td>
                 <td>${dicts.lottery.lottery_type[p.type]}(${p.type})</td>
                 <td>${dicts.lottery.lottery[p.code]}(${p.code})</td>
                 <td>

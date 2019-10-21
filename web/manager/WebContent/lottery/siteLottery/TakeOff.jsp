@@ -6,7 +6,7 @@
     <%@ include file="/include/include.head.jsp" %>
 </head>
 <body>
-<form:form>
+<form:form id="lotteryEditForm">
     <input type="hidden" name="search.siteId" value="${siteId}">
     <input type="hidden" name="search.status" value="${status}">
     <%--<div id="validateRule" style="display: none">${validateRule}</div>--%>
@@ -16,17 +16,17 @@
             <div class="input-group">
                 <c:forEach items="${command.result}" var="p" varStatus="status">
                     <label style="padding: 0 10px;">
-                        <input type="checkbox"  class="i-checks" name="siteLottery" value="${p.id}">${dicts.lottery.lottery[p.code]}
+                        <input type="checkbox"  class="i-checks" name="siteLottery" value="${p.id}">${lotteryEnums[p.code]}
                     </label>
                 </c:forEach>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <soul:button cssClass="btn btn-filter" precall="" text="${views.common.OK}" opType="ajax"
+        <soul:button cssClass="btn btn-filter" precall="" text="确认" opType="ajax"
                      target="${root}/siteLottery/saveTakeOff.html" dataType="json" post="getCurrentFormData"
                      callback="saveCallbak"/>
-        <soul:button cssClass="btn btn-outline btn-filter" opType="function" target="closePage" text="${views.common['cancel']}"/>
+        <soul:button cssClass="btn btn-outline btn-filter" opType="function" target="closePage" text="取消"/>
     </div>
 </form:form>
 </body>

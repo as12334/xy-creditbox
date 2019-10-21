@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <soul:button cssClass="btn btn-filter" text="${views.common.OK}" opType="ajax" precall="validateForm" target="${root}/privilege/setPrivilegePassword.html" dataType="json" post="getCurrentFormData" callback="saveCallbak"/>
+        <soul:button cssClass="btn btn-filter" text="确认" opType="ajax" precall="validateForm" target="${root}/privilege/setPrivilegePassword.html" dataType="json" post="getCurrentFormData" callback="saveCallbak"/>
         <soul:button cssClass="btn btn-outline btn-filter" target="closePage" opType="function" text="${views.common.cancel}"/>
     </div>
     </form:form>

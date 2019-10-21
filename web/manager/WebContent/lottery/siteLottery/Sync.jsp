@@ -19,7 +19,7 @@
                 <c:forEach items="${lottery.result}" var="p" varStatus="status">
                     <c:if test="${empty siteLotteryMap[p.code]}">
                         <label style="padding: 0 10px;">
-                            <input type="checkbox"  class="i-checks" name="siteLottery" value="${p.id}">${dicts.lottery.lottery[p.code]}
+                            <input type="checkbox"  class="i-checks" name="siteLottery" value="${p.id}">${lotteryEnums[p.code]}
                         </label>
                     </c:if>
                 </c:forEach>
@@ -27,10 +27,10 @@
         </div>
     </div>
     <div class="modal-footer">
-        <soul:button cssClass="btn btn-filter" precall="validateForm" text="${views.common.OK}" opType="ajax"
+        <soul:button cssClass="btn btn-filter" precall="validateForm" text="确认" opType="ajax"
                      target="${root}/siteLottery/saveSync.html" dataType="json" post="getCurrentFormData"
                      callback="saveCallbak"/>
-        <soul:button cssClass="btn btn-outline btn-filter" opType="function" target="closePage" text="${views.common['cancel']}"/>
+        <soul:button cssClass="btn btn-outline btn-filter" opType="function" target="closePage" text="取消"/>
     </div>
 </form:form>
 </body>

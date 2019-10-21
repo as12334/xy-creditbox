@@ -32,7 +32,7 @@
     <div class="modal-footer" >
         <soul:button cssClass="btn btn-filter confirm-btn" text="确认"
                      opType="ajax" target="${root}/lottery/manage/changeLotteryStatus.html" post="getCurrentFormData" callback="saveCallbak"/>
-        <soul:button cssClass="btn btn-outline btn-filter" opType="function" target="closePage" text="${views.common['cancel']}"/>
+        <soul:button cssClass="btn btn-outline btn-filter" opType="function" target="closePage" text="取消"/>
     </div>
 </form:form>
 <!--//endregion your codes 3-->

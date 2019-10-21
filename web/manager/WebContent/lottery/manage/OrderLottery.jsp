@@ -5,7 +5,7 @@
 <!--//endregion your codes 1-->
 
 <!--//region your codes 2-->
-<form:form action="${root}/vSiteApiTypeRelation/orderSiteApi.html?search.status=normal" method="post">
+<form:form action="${root}/vSiteApiTypeRelation/orderSiteApi.html?search.status=normal" method="post" id="orderLotteryEditForm">
 <div class="row">
 
     <div class="position-wrap clearfix">
@@ -78,8 +78,8 @@
             <div class="operate-btn" style="text-align: center">
                 <soul:button target="saveLotteryOrder" text="确认" opType="function"
                              cssClass="btn btn-filter btn-lg m-r" >确认</soul:button>
-                <soul:button target="goToLastPage" text="${views.common['cancel']}" opType="function"
-                             cssClass="btn btn-outline btn-filter btn-lg m-r" >${views.common['cancel']}</soul:button>
+                <soul:button target="goToLastPage" text="取消" opType="function"
+                             cssClass="btn btn-outline btn-filter btn-lg m-r" >取消</soul:button>
             </div>
         </div>
     </div>
