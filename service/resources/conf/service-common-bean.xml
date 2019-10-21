@@ -41,7 +41,6 @@
 
     <bean id="siteLotteryService" class="so.wwb.creditbox.service.manager.lottery.SiteLotteryService"/>
 
-    <bean id="lotteryHandicapService" class="so.wwb.creditbox.service.manager.lottery.LotteryHandicapService"/>
 
 
 

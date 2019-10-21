@@ -2,11 +2,7 @@ package so.wwb.creditbox.data.manager.lottery;
 
 import org.soul.data.rdb.mybatis.IBaseMapper;
 import so.wwb.creditbox.model.manager.lottery.po.Lottery;
-import so.wwb.creditbox.model.manager.lottery.po.LotteryType;
-import so.wwb.creditbox.model.manager.lottery.so.LotterySo;
-import so.wwb.creditbox.model.manager.lottery.vo.LotteryListVo;
 
-import java.util.List;
 
 /**
  * 彩种表数据访问对象
@@ -16,27 +12,6 @@ import java.util.List;
  */
 //region your codes 1
 public interface LotteryMapper extends IBaseMapper<Lottery, Integer> {
-    List<Lottery> queryLotteryCode(String lotteryCode);
 //endregion your codes 1
-
-    List<Lottery> queryListBySiteId(Integer siteId);
-    Lottery queryLottery(String code);
-
-    /**
-     * 通过站点id获取站点开放的彩种类型和对应的彩种数
-     * @param so siteId not null
-     * @return lotteryTYpe
-     */
-    List<LotteryType> queryLotteryTypeBySiteId(LotterySo so);
-
-    /**仅查询自主彩的彩种数*/
-    List<LotteryType> queryOwnLotteryTypeBySiteId(LotteryListVo listVo);
-
-    /**
-     * 根据站点id和彩种类型获取彩种
-     * @param lottery
-     * @return
-     */
-    List<Lottery> queryLotteryBysiteIdType(Lottery lottery);
 
 }

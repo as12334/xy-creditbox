@@ -8,8 +8,6 @@ import so.wwb.creditbox.model.manager.site.po.*;
 import so.wwb.creditbox.model.manager.sys.po.SysSite;
 import so.wwb.creditbox.model.manager.sys.po.VSysSiteManage;
 import so.wwb.creditbox.model.manager.sys.so.VSysSiteManageSo;
-import so.wwb.creditbox.model.company.lottery.po.LotteryOddSet;
-import so.wwb.creditbox.model.company.lottery.po.LotteryQuotaSet;
 
 import java.util.List;
 
@@ -34,10 +32,10 @@ public class VSysSiteManageVo extends BaseObjectVo<VSysSiteManage, VSysSiteManag
     private List<SiteCurrency> siteCurrencyList;
     //彩种
     private String[] lotteries;
-    //赔率
-    private List<LotteryOddSet> lotteryOdds;
-    //限额
-    private List<LotteryQuotaSet> lotteryQuotas;
+//    //赔率
+//    private List<LotteryOddSet> lotteryOdds;
+//    //限额
+//    private List<LotteryQuotaSet> lotteryQuotas;
     // 站点名称
     private List<SiteI18n> siteNameList;
     // 一次性费用
@@ -197,21 +195,21 @@ public class VSysSiteManageVo extends BaseObjectVo<VSysSiteManage, VSysSiteManag
         this.lotteries = lotteries;
     }
 
-    public List<LotteryOddSet> getLotteryOdds() {
-        return lotteryOdds;
-    }
-
-    public void setLotteryOdds(List<LotteryOddSet> lotteryOdds) {
-        this.lotteryOdds = lotteryOdds;
-    }
-
-    public List<LotteryQuotaSet> getLotteryQuotas() {
-        return lotteryQuotas;
-    }
-
-    public void setLotteryQuotas(List<LotteryQuotaSet> lotteryQuotas) {
-        this.lotteryQuotas = lotteryQuotas;
-    }
+//    public List<LotteryOddSet> getLotteryOdds() {
+//        return lotteryOdds;
+//    }
+//
+//    public void setLotteryOdds(List<LotteryOddSet> lotteryOdds) {
+//        this.lotteryOdds = lotteryOdds;
+//    }
+//
+//    public List<LotteryQuotaSet> getLotteryQuotas() {
+//        return lotteryQuotas;
+//    }
+//
+//    public void setLotteryQuotas(List<LotteryQuotaSet> lotteryQuotas) {
+//        this.lotteryQuotas = lotteryQuotas;
+//    }
 
     public String getSubCode() {
         return subCode;

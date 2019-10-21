@@ -100,25 +100,25 @@
         SELECT * FROM sys_user_extend WHERE owner_id = #{id}
     </select>
 
-    <select id="queryOnlinePlayer" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultMap="TABLE:sys_user_extend">
-        SELECT su.*,uw.balance  FROM sys_user_extend su left JOIN user_assets uw on su.id=uw.id WHERE online_status = '1'
-        <if test="username != null">
-            and username =#{username}
-        </if>
-    </select>
+    <!--<select id="queryOnlinePlayer" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultMap="TABLE:sys_user_extend">-->
+        <!--SELECT su.*,uw.balance  FROM sys_user_extend su left JOIN user_assets uw on su.id=uw.id WHERE online_status = '1'-->
+        <!--<if test="username != null">-->
+            <!--and username =#{username}-->
+        <!--</if>-->
+    <!--</select>-->
 
-    <select id="queryAllPlayer" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultMap="TABLE:sys_user_extend">
-        SELECT su.*,uw.balance  FROM sys_user_extend su left JOIN user_assets uw on su.id=uw.id WHERE 1=1
-        <if test="username != null">
-            and username =#{username}
-        </if>
-        <if test="createTimeBegin != null">
-            AND create_time &gt;= #{createTimeBegin}
-        </if>
-        <if test="createTimeEnd != null">
-            AND create_time &lt; #{createTimeEnd}
-        </if>
-    </select>
+    <!--<select id="queryAllPlayer" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultMap="TABLE:sys_user_extend">-->
+        <!--SELECT su.*,uw.balance  FROM sys_user_extend su left JOIN user_assets uw on su.id=uw.id WHERE 1=1-->
+        <!--<if test="username != null">-->
+            <!--and username =#{username}-->
+        <!--</if>-->
+        <!--<if test="createTimeBegin != null">-->
+            <!--AND create_time &gt;= #{createTimeBegin}-->
+        <!--</if>-->
+        <!--<if test="createTimeEnd != null">-->
+            <!--AND create_time &lt; #{createTimeEnd}-->
+        <!--</if>-->
+    <!--</select>-->
 
     <update id="incLoginErrorTimes">
         update sys_user_extend set login_error_times = coalesce(login_error_times,0) + 1 where id = #{id};
@@ -150,9 +150,9 @@
         SELECT subsys_code from sys_user_extend where id=#{userId};
     </select>
 
-    <select id="queryPlayerByRecharge" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultMap="TABLE:sys_user_extend">
-        SELECT su.*,uw.balance  FROM sys_user_extend su left JOIN user_assets uw on su.id=uw.id WHERE su.id = #{id}
-    </select>
+    <!--<select id="queryPlayerByRecharge" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultMap="TABLE:sys_user_extend">-->
+        <!--SELECT su.*,uw.balance  FROM sys_user_extend su left JOIN user_assets uw on su.id=uw.id WHERE su.id = #{id}-->
+    <!--</select>-->
 
     <!--根据玩家账号查询玩家信息(忽略大小写) PS:只查询正式账号 -->
     <select id="queryIgnoreCaseUserNamesExists" resultType="so.wwb.creditbox.model.manager.user.po.SysUserExtend" parameterType="string">

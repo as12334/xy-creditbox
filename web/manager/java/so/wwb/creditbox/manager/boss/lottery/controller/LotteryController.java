@@ -20,7 +20,6 @@ import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryGenreEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryTypeEnum;
 import so.wwb.creditbox.model.manager.lottery.po.Lottery;
-import so.wwb.creditbox.model.manager.lottery.vo.LotteryHandicapListVo;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryListVo;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryVo;
 import so.wwb.creditbox.web.cache.Cache;
@@ -77,18 +76,18 @@ public class LotteryController extends BaseCrudController<ILotteryService, Lotte
         return super.doList(listVo, form, result, model);
     }
 
-    @RequestMapping(value = "/queryLotteryHandicap")
-    public String queryLotteryHandicap(LotteryHandicapListVo listVo, Model model, HttpServletRequest request) {
-        listVo.setPaging(null);
-        //listVo.getQuery().addOrder(LotteryHandicap.PROP_EXPECT, Direction.ASC);
-        listVo = ServiceTool.lotteryHandicapService().search(listVo);
-        model.addAttribute("command", listVo);
-        if (ServletTool.isAjaxSoulRequest(request)) {
-            return "/lottery/lotteryhandicap/IndexPartial";
-        } else {
-            return "/lottery/lotteryhandicap/Index";
-        }
-    }
+//    @RequestMapping(value = "/queryLotteryHandicap")
+//    public String queryLotteryHandicap(LotteryHandicapListVo listVo, Model model, HttpServletRequest request) {
+//        listVo.setPaging(null);
+//        //listVo.getQuery().addOrder(LotteryHandicap.PROP_EXPECT, Direction.ASC);
+//        listVo = ServiceTool.lotteryHandicapService().search(listVo);
+//        model.addAttribute("command", listVo);
+//        if (ServletTool.isAjaxSoulRequest(request)) {
+//            return "/lottery/lotteryhandicap/IndexPartial";
+//        } else {
+//            return "/lottery/lotteryhandicap/Index";
+//        }
+//    }
 
     @RequestMapping(value = "/lotteryManage")
     public String lotteryManage(LotteryVo lotteryVo, Model model) {

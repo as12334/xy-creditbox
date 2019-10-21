@@ -20,16 +20,7 @@ import so.wwb.creditbox.model.base.CacheBase;
 import so.wwb.creditbox.model.base.ParamTool;
 import so.wwb.creditbox.model.constants.cache.CacheKey;
 import so.wwb.creditbox.model.enums.base.BossParamEnum;
-import so.wwb.creditbox.model.enums.common.GameStatusEnum;
-import so.wwb.creditbox.model.enums.common.TerminalEnum;
-import so.wwb.creditbox.model.enums.lottery.FrequencyEnum;
-import so.wwb.creditbox.model.enums.lottery.LotteryStatusEnum;
-import so.wwb.creditbox.model.manager.lottery.po.Lottery;
-import so.wwb.creditbox.model.manager.lottery.po.LotteryType;
 import so.wwb.creditbox.model.manager.sys.po.VSysSiteDomain;
-import so.wwb.creditbox.model.company.lottery.po.LotteryOddSet;
-import so.wwb.creditbox.model.message.po.SystemAnnouncement;
-import so.wwb.creditbox.web.init.ConfigBase;
 
 import java.io.Serializable;
 import java.text.MessageFormat;

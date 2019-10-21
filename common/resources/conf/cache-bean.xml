@@ -405,52 +405,52 @@
 		</property>
 	</bean>
 
-	<!-- 彩种类型缓存 -->
-	<util:constant id="CACHE_KEY_LOTTERY_TYPE" static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_TYPE"/>
-	<bean id="lotteryTypeCache" class="org.soul.commons.cache.core.CacheItemConf">
-		<property name="dataProviderClass" value="so.wwb.creditbox.iservice.manager.lottery.ILotteryTypeService"/>
-		<property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
-		<property name="dataProviderMethod" value="load"/>
-		<property name="cacheLoadStrategy" ref="FIRST_TIME"/>
-		<property name="cacheProviderType" ref="jedisProxy"/>
-		<property name="expire" value="3600"/>
-		<property name="methodArgs">
-			<list>
-				<bean class="so.wwb.creditbox.model.manager.lottery.vo.LotteryTypeVo"/>
-			</list>
-		</property>
-	</bean>
+	<!--&lt;!&ndash; 彩种类型缓存 &ndash;&gt;-->
+	<!--<util:constant id="CACHE_KEY_LOTTERY_TYPE" static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_TYPE"/>-->
+	<!--<bean id="lotteryTypeCache" class="org.soul.commons.cache.core.CacheItemConf">-->
+		<!--<property name="dataProviderClass" value="so.wwb.creditbox.iservice.manager.lottery.ILotteryTypeService"/>-->
+		<!--<property name="dubboVersionApp" value="${service.dubbo.application.name}"/>-->
+		<!--<property name="dataProviderMethod" value="load"/>-->
+		<!--<property name="cacheLoadStrategy" ref="FIRST_TIME"/>-->
+		<!--<property name="cacheProviderType" ref="jedisProxy"/>-->
+		<!--<property name="expire" value="3600"/>-->
+		<!--<property name="methodArgs">-->
+			<!--<list>-->
+				<!--<bean class="so.wwb.creditbox.model.manager.lottery.vo.LotteryTypeVo"/>-->
+			<!--</list>-->
+		<!--</property>-->
+	<!--</bean>-->
 
-	<!-- 彩票限额设置缓存 -->
-	<util:constant id="CACHE_KEY_LOTTERY_QUOTA_SET" static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_QUOTA_SET"/>
-	<bean id="lotteryQuotaSetCache" class="org.soul.commons.cache.core.CacheItemConf">
-		<property name="dataProviderClass" value="so.wwb.creditbox.iservice.company.lottery.ILotteryQuotaSetService"/>
-		<property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
-		<property name="dataProviderMethod" value="load"/>
-		<property name="cacheLoadStrategy" ref="FIRST_TIME"/>
-		<property name="cacheProviderType" ref="siteJedisPorxy"/>
-		<property name="expire" value="3600"/>
-		<property name="methodArgs">
-			<list>
-				<bean class="so.wwb.creditbox.model.company.lottery.vo.LotteryQuotaSetVo"/>
-			</list>
-		</property>
-	</bean>
+	<!--&lt;!&ndash; 彩票限额设置缓存 &ndash;&gt;-->
+	<!--<util:constant id="CACHE_KEY_LOTTERY_QUOTA_SET" static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_QUOTA_SET"/>-->
+	<!--<bean id="lotteryQuotaSetCache" class="org.soul.commons.cache.core.CacheItemConf">-->
+		<!--<property name="dataProviderClass" value="so.wwb.creditbox.iservice.company.lottery.ILotteryQuotaSetService"/>-->
+		<!--<property name="dubboVersionApp" value="${service.dubbo.application.name}"/>-->
+		<!--<property name="dataProviderMethod" value="load"/>-->
+		<!--<property name="cacheLoadStrategy" ref="FIRST_TIME"/>-->
+		<!--<property name="cacheProviderType" ref="siteJedisPorxy"/>-->
+		<!--<property name="expire" value="3600"/>-->
+		<!--<property name="methodArgs">-->
+			<!--<list>-->
+				<!--<bean class="so.wwb.creditbox.model.company.lottery.vo.LotteryQuotaSetVo"/>-->
+			<!--</list>-->
+		<!--</property>-->
+	<!--</bean>-->
 
 	<!-- 彩票赔率设置缓存 -->
-	<util:constant id="CACHE_KEY_LOTTERY_ODD_SET" static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_ODD_SET"/>
-	<bean id="lotteryOddSetCache" class="org.soul.commons.cache.core.CacheItemConf">
-		<property name="dataProviderClass" value="so.wwb.creditbox.iservice.company.lottery.ILotteryOddSetService"/>
-		<property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
-		<property name="dataProviderMethod" value="load"/>
-		<property name="cacheLoadStrategy" ref="FIRST_TIME"/>
-		<property name="cacheProviderType" ref="siteJedisPorxy"/>
-		<property name="methodArgs">
-			<list>
-				<bean class="so.wwb.creditbox.model.company.lottery.vo.LotteryOddSetVo"/>
-			</list>
-		</property>
-	</bean>
+	<!--<util:constant id="CACHE_KEY_LOTTERY_ODD_SET" static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_ODD_SET"/>-->
+	<!--<bean id="lotteryOddSetCache" class="org.soul.commons.cache.core.CacheItemConf">-->
+		<!--<property name="dataProviderClass" value="so.wwb.creditbox.iservice.company.lottery.ILotteryOddSetService"/>-->
+		<!--<property name="dubboVersionApp" value="${service.dubbo.application.name}"/>-->
+		<!--<property name="dataProviderMethod" value="load"/>-->
+		<!--<property name="cacheLoadStrategy" ref="FIRST_TIME"/>-->
+		<!--<property name="cacheProviderType" ref="siteJedisPorxy"/>-->
+		<!--<property name="methodArgs">-->
+			<!--<list>-->
+				<!--<bean class="so.wwb.creditbox.model.company.lottery.vo.LotteryOddSetVo"/>-->
+			<!--</list>-->
+		<!--</property>-->
+	<!--</bean>-->
 
 	<bean id="lotteryResultJedisProxy" class="org.soul.commons.cache.jedis.proxy.CustomDynamicPorxy">
 		<property name="cacheConf" ref="cacheConf"/>
@@ -481,81 +481,81 @@
 	</bean>
 
 	<!-- 开奖结果缓存 -->
-	<util:constant id="CACHE_KEY_LOTTERY_RESULT"  static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_RESULT"/>
-	<bean id="lotteryResultCache" class="org.soul.commons.cache.core.CacheItemConf">
-		<property name="dataProviderClass" value="so.wwb.creditbox.iservice.manager.lottery.ILotteryResultService"/>
-		<property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
-		<property name="dataProviderMethod" value="load"/>
-		<property name="cacheLoadStrategy" ref="FIRST_TIME"/>
-		<property name="cacheProviderType" ref="lotteryResultJedisProxy"/>
-		<property name="expire" value="60"/>
-		<property name="methodArgs">
-			<list>
-				<bean class="so.wwb.creditbox.model.manager.lottery.vo.LotteryResultVo"/>
-			</list>
-		</property>
-	</bean>
+	<!--<util:constant id="CACHE_KEY_LOTTERY_RESULT"  static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_RESULT"/>-->
+	<!--<bean id="lotteryResultCache" class="org.soul.commons.cache.core.CacheItemConf">-->
+		<!--<property name="dataProviderClass" value="so.wwb.creditbox.iservice.manager.lottery.ILotteryResultService"/>-->
+		<!--<property name="dubboVersionApp" value="${service.dubbo.application.name}"/>-->
+		<!--<property name="dataProviderMethod" value="load"/>-->
+		<!--<property name="cacheLoadStrategy" ref="FIRST_TIME"/>-->
+		<!--<property name="cacheProviderType" ref="lotteryResultJedisProxy"/>-->
+		<!--<property name="expire" value="60"/>-->
+		<!--<property name="methodArgs">-->
+			<!--<list>-->
+				<!--<bean class="so.wwb.creditbox.model.manager.lottery.vo.LotteryResultVo"/>-->
+			<!--</list>-->
+		<!--</property>-->
+	<!--</bean>-->
 
 	<!-- 投注结果缓存 -->
-	<util:constant id="CACHE_KEY_LOTTERY_BET_ORDER"  static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_BET_ORDER"/>
-	<bean id="lotteryBetOrderCache" class="org.soul.commons.cache.core.CacheItemConf">
-		<property name="dataProviderClass" value="so.wwb.creditbox.iservice.company.lottery.ILotteryBetOrderService"/>
-		<property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
-		<property name="dataProviderMethod" value="load"/>
-		<property name="cacheLoadStrategy" ref="FIRST_TIME"/>
-		<property name="cacheProviderType" ref="lotteryBetOrderJedisProxy"/>
-		<property name="expire" value="5000"/>
-		<property name="methodArgs">
-			<list>
-				<bean class="so.wwb.creditbox.model.company.lottery.vo.LotteryBetOrderListVo"/>
-			</list>
-		</property>
-	</bean>
+	<!--<util:constant id="CACHE_KEY_LOTTERY_BET_ORDER"  static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_BET_ORDER"/>-->
+	<!--<bean id="lotteryBetOrderCache" class="org.soul.commons.cache.core.CacheItemConf">-->
+		<!--<property name="dataProviderClass" value="so.wwb.creditbox.iservice.company.lottery.ILotteryBetOrderService"/>-->
+		<!--<property name="dubboVersionApp" value="${service.dubbo.application.name}"/>-->
+		<!--<property name="dataProviderMethod" value="load"/>-->
+		<!--<property name="cacheLoadStrategy" ref="FIRST_TIME"/>-->
+		<!--<property name="cacheProviderType" ref="lotteryBetOrderJedisProxy"/>-->
+		<!--<property name="expire" value="5000"/>-->
+		<!--<property name="methodArgs">-->
+			<!--<list>-->
+				<!--<bean class="so.wwb.creditbox.model.company.lottery.vo.LotteryBetOrderListVo"/>-->
+			<!--</list>-->
+		<!--</property>-->
+	<!--</bean>-->
 
 	<!-- 六合彩生肖缓存 -->
-	<util:constant id="CACHE_KEY_LOTTERY_LHC_ZODIAC" static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_LHC_ZODIAC" />
-	<bean id="lotteryLhcZodiacCache" class="org.soul.commons.cache.core.CacheItemConf">
-		<property name="dataProviderClass" value="so.wwb.creditbox.iservice.manager.lottery.ILotteryLhcZodiacService"/>
-		<property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
-		<property name="dataProviderMethod" value="load"/>
-		<property name="cacheLoadStrategy" ref="FIRST_TIME"/>
-		<property name="cacheProviderType" ref="siteJedisPorxy"/>
-		<property name="methodArgs">
-			<list>
-				<bean class="so.wwb.creditbox.model.manager.lottery.vo.LotteryLhcZodiacListVo"/>
-			</list>
-		</property>
-	</bean>
+	<!--<util:constant id="CACHE_KEY_LOTTERY_LHC_ZODIAC" static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_LHC_ZODIAC" />-->
+	<!--<bean id="lotteryLhcZodiacCache" class="org.soul.commons.cache.core.CacheItemConf">-->
+		<!--<property name="dataProviderClass" value="so.wwb.creditbox.iservice.manager.lottery.ILotteryLhcZodiacService"/>-->
+		<!--<property name="dubboVersionApp" value="${service.dubbo.application.name}"/>-->
+		<!--<property name="dataProviderMethod" value="load"/>-->
+		<!--<property name="cacheLoadStrategy" ref="FIRST_TIME"/>-->
+		<!--<property name="cacheProviderType" ref="siteJedisPorxy"/>-->
+		<!--<property name="methodArgs">-->
+			<!--<list>-->
+				<!--<bean class="so.wwb.creditbox.model.manager.lottery.vo.LotteryLhcZodiacListVo"/>-->
+			<!--</list>-->
+		<!--</property>-->
+	<!--</bean>-->
 
     <!-- 自主彩开奖规则缓存 -->
-    <util:constant id="CACHE_KEY_LOTTERY_RESULT_RULE" static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_RESULT_RULE" />
-    <bean id="lotteryResultRuleCache" class="org.soul.commons.cache.core.CacheItemConf">
-        <property name="dataProviderClass" value="so.wwb.creditbox.iservice.company.lottery.ILotteryRuleService"/>
-        <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
-        <property name="dataProviderMethod" value="load"/>
-        <property name="cacheLoadStrategy" ref="FIRST_TIME"/>
-        <property name="cacheProviderType" ref="siteJedisPorxy"/>
-        <property name="methodArgs">
-            <list>
-                <bean class="so.wwb.creditbox.model.company.lottery.vo.LotteryRuleListVo"/>
-            </list>
-        </property>
-    </bean>
+    <!--<util:constant id="CACHE_KEY_LOTTERY_RESULT_RULE" static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_RESULT_RULE" />-->
+    <!--<bean id="lotteryResultRuleCache" class="org.soul.commons.cache.core.CacheItemConf">-->
+        <!--<property name="dataProviderClass" value="so.wwb.creditbox.iservice.company.lottery.ILotteryRuleService"/>-->
+        <!--<property name="dubboVersionApp" value="${service.dubbo.application.name}"/>-->
+        <!--<property name="dataProviderMethod" value="load"/>-->
+        <!--<property name="cacheLoadStrategy" ref="FIRST_TIME"/>-->
+        <!--<property name="cacheProviderType" ref="siteJedisPorxy"/>-->
+        <!--<property name="methodArgs">-->
+            <!--<list>-->
+                <!--<bean class="so.wwb.creditbox.model.company.lottery.vo.LotteryRuleListVo"/>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
 
     <!-- 彩票采集配置缓存 -->
-    <util:constant id="CACHE_KEY_LOTTERY_GATHER_CONF" static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_GATHER_CONF"/>
-    <bean id="lotteryGatherConfCache" class="org.soul.commons.cache.core.CacheItemConf">
-        <property name="dataProviderClass" value="so.wwb.creditbox.iservice.manager.lottery.ILotteryGatherConfService"/>
-        <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
-        <property name="dataProviderMethod" value="load"/>
-        <property name="cacheLoadStrategy" ref="FIRST_TIME"/>
-        <property name="cacheProviderType" ref="jedisProxy"/>
-        <property name="methodArgs">
-            <list>
-                <bean class="so.wwb.creditbox.model.manager.lottery.vo.LotteryGatherConfListVo"/>
-            </list>
-        </property>
-    </bean>
+    <!--<util:constant id="CACHE_KEY_LOTTERY_GATHER_CONF" static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_GATHER_CONF"/>-->
+    <!--<bean id="lotteryGatherConfCache" class="org.soul.commons.cache.core.CacheItemConf">-->
+        <!--<property name="dataProviderClass" value="so.wwb.creditbox.iservice.manager.lottery.ILotteryGatherConfService"/>-->
+        <!--<property name="dubboVersionApp" value="${service.dubbo.application.name}"/>-->
+        <!--<property name="dataProviderMethod" value="load"/>-->
+        <!--<property name="cacheLoadStrategy" ref="FIRST_TIME"/>-->
+        <!--<property name="cacheProviderType" ref="jedisProxy"/>-->
+        <!--<property name="methodArgs">-->
+            <!--<list>-->
+                <!--<bean class="so.wwb.creditbox.model.manager.lottery.vo.LotteryGatherConfListVo"/>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
 
 	<bean id="baseCacheItemConfMap"
 		  class="org.springframework.beans.factory.config.MapFactoryBean">

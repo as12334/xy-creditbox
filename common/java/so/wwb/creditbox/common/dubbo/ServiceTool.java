@@ -14,9 +14,7 @@ import org.soul.iservice.sys.ISysAuditLogService;
 import org.soul.iservice.sys.ISysDatasourceService;
 import org.soul.iservice.sys.ISysParamService;
 import org.soul.iservice.test.IDbValidService;
-import so.wwb.creditbox.iservice.common.ICommonFacade;
 import so.wwb.creditbox.iservice.common.IMessageService;
-import so.wwb.creditbox.iservice.company.lottery.*;
 import so.wwb.creditbox.iservice.company.site.ISiteSysParamService;
 import so.wwb.creditbox.iservice.company.user.IVUserDetailService;
 import so.wwb.creditbox.iservice.manager.common.*;
@@ -60,9 +58,6 @@ public class ServiceTool {
     }
 
 
-    public static ILotteryBetOrderService lotteryBetOrderService() {
-        return getService(ILotteryBetOrderService.class);
-    }
 
     public  void setDubboApplicationName(String appName){
         dubboApplicationName=appName;
@@ -74,15 +69,12 @@ public class ServiceTool {
     public static ISysDatasourceService sysDatasourceService() {
         return getService(ISysDatasourceService.class);
     }
+//
+//    public static ILotteryResultService lotterResultService() {
+//        return getService(ILotteryResultService.class);
+//    }
 
-    public static ILotteryResultService lotterResultService() {
-        return getService(ILotteryResultService.class);
-    }
 
-
-    public static ILotteryResultNumberService lotteryResultNumberService(){
-        return getService(ILotteryResultNumberService.class);
-    }
 //    /**
 //     * 赔率方案服务
 //     */
@@ -139,26 +131,14 @@ public static ISysUserRoleService sysUserRoleService() {
 
     public static INoticeReceiverService noticeReceiverService() {return getService(INoticeReceiverService.class);}
 
-    public static ILotteryHandicapService lotteryHandicapService() {
-        return getService(ILotteryHandicapService.class);
-    }
-
-    public static ILotteryRuleService lotteryRuleService() {
-        return getService(ILotteryRuleService.class);
-    }
-
-    public static ILotteryQuotaSetService lotteryQuotaSetService() {
-        return getService(ILotteryQuotaSetService.class);
-    }
-
-
-    public static ILotteryOddSetService lotteryOddSetService() {
-        return getService(ILotteryOddSetService.class);
-    }
-
-    public static ILotteryTypeService lotteryTypeService() {
-        return getService(ILotteryTypeService.class);
-    }
+//    public static ILotteryHandicapService lotteryHandicapService() {
+//        return getService(ILotteryHandicapService.class);
+//    }
+//
+//
+//    public static ILotteryTypeService lotteryTypeService() {
+//        return getService(ILotteryTypeService.class);
+//    }
 
 
     /**

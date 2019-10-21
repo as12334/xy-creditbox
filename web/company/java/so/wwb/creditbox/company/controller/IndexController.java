@@ -74,7 +74,7 @@ public class IndexController extends BaseIndexController {
     @RequestMapping(value = "index")
     protected String index(HttpServletRequest request, HttpServletResponse response, Model model) {
         LotteryListVo lotteryListVo = new LotteryListVo();
-        lotteryListVo.getSearch().setSiteId(SessionManager.getSiteId());
+//        lotteryListVo.getSearch().setSiteId(SessionManager.getSiteId());
         lotteryListVo = ServiceTool.lotteryService().search(lotteryListVo);
         model.addAttribute("lotterys",lotteryListVo.getResult());
 

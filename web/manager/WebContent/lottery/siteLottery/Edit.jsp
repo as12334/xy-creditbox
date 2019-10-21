@@ -23,9 +23,9 @@
                 <form:hidden path="result.id" ></form:hidden>
                 <input type="hidden" name="result.siteId" value="${command.result.siteId}">
                 <div class="col-xs-8 p-x line-hi34">
-                    <label><input type="radio" class="i-checks status" value="normal" name="result.status" <c:if test="${command.result.status=='normal'}">checked</c:if> > ${views.common["enable"]}</label>
-                    <label><input type="radio" class="i-checks status" value="maintain" name="result.status" <c:if test="${command.result.status=='maintain'}">checked</c:if> > ${dicts.game.status["maintain"]}</label>
-                    <label><input type="radio" class="i-checks status" value="disable" name="result.status" <c:if test="${command.result.status=='disable'}">checked</c:if> > ${dicts.game.status["disable"]}</label>
+                    <label><input type="radio" class="i-checks status" value="normal" name="result.status" <c:if test="${command.result.status=='normal'}">checked</c:if> > 正常</label>
+                    <label><input type="radio" class="i-checks status" value="maintain" name="result.status" <c:if test="${command.result.status=='maintain'}">checked</c:if> > 维护</label>
+                    <label><input type="radio" class="i-checks status" value="disable" name="result.status" <c:if test="${command.result.status=='disable'}">checked</c:if> > 停用</label>
                 </div>
             </div>
         </div>
