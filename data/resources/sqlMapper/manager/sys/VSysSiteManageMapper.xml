@@ -51,13 +51,6 @@
     <select id="doInitSiteLotteryOdd" parameterType="so.wwb.creditbox.model.manager.sys.po.VSysSiteManage" resultMap="TABLE:v_sys_site_manage">
         SELECT * FROM f_init_site_lottery_odd(#{id},#{hid})
     </select>
-
-    <!--<update id="doInitSiteLotteryOdd"  statementType="CALLABLE" parameterType="so.wwb.creditbox.model.manager.sys.po.VSysSiteManage">-->
-        <!--{-->
-        <!--call f_init_site_lottery_odd(#{id},#{hid});-->
-        <!--}-->
-    <!--</update>-->
-
     <!--//endregion your codes 1-->
 
 </mapper>

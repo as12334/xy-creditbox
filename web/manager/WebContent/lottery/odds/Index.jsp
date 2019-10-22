@@ -49,7 +49,7 @@
                 <div class="form-group clearfix pull-left col-md-4 col-sm-12 m-b-sm padding-r-none-sm">
                     <div class="input-group date time-select-a">
                         <span class="input-group-addon bg-gray1">站点ID</span>
-                        <input type="number" class="form-control" placeholder="站点ID" id="search_id" name="search.siteId">
+                        <input type="number" class="form-control" placeholder="站点ID" id="search_id" VALUE="4" name="search.siteId">
                         <span class="input-group-addon time-select-btn">
                             <a href="javascript:void(0)"  class="btn btn-filter" id="comitSearch">查询</a>
                         </span>

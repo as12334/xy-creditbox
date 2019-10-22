@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.creditbox.data.manager.lottery.LotteryOddMapper">
+
+    <resultMap id="TABLE:lottery_odd" type="so.wwb.creditbox.model.manager.lottery.po.LotteryOdd">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="bet_code" property="betCode"/>
+        <result column="play_code" property="playCode"/>
+        <result column="bet_num" property="betNum"/>
+        <result column="base_num" property="baseNum"/>
+        <result column="odd_a" property="oddA"/>
+        <result column="odd_b" property="oddB"/>
+        <result column="odd_c" property="oddC"/>
+        <result column="min_odd" property="minOdd"/>
+        <result column="max_odd" property="maxOdd"/>
+        <result column="odd_close" property="oddClose"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+
+    <!--//endregion your codes 1-->
+
+</mapper>
