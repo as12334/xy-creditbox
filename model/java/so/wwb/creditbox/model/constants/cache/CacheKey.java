@@ -33,21 +33,6 @@ public class CacheKey extends org.soul.commons.cache.CacheKey{
     /** 用户站点缓存 Key */
     public static final String CACHE_KEY_SITE_USER = "SITE_USER";
     /** 银行缓存 Key */
-    public static final String CACHE_KEY_BANK = "BANK";
-
-    /**
-     * site_app应用更新接口
-     */
-    public static final String CACHE_KEY_SITE_APP_UPDATE = "SITE_APP_UPDATE";
-
-    public static final String CACHE_KEY_APP_UPDATE = "APP_UPDATE";
-
-    /** token 缓存 Key */
-    public static final String CACHE_KEY_OAUTH_TOKEN = "OAUTH_TOKEN";
-    /** 站点广告缓存 Key*/
-    public static final String CACHE_KEY_BANNER = "SITE_BANNER";
-    /** 站点公告缓存 Key */
-    public static final String CACHE_KEY_CONTENT_BULLETIN = "CONTENT_BULLETIN";
     /** 平台公告缓存*/
     public static final String CACHE_KEY_SYS_ANNOUNCEMENT = "SYS_ANNOUNCEMENT";
     /** 文案缓存 Key */
@@ -55,19 +40,16 @@ public class CacheKey extends org.soul.commons.cache.CacheKey{
     /** 文案I18N缓存 key */
     public static final String CACHE_KEY_CTT_DOCUMENT_I18N = "CTT_DOCUMENT_I18N";
 
-    /** 游戏提供商缓存 Key */
-    public static final String CACHE_KEY_API = "API";
-    /** 游戏接口配置缓存 Key */
-    public static final String CACHE_KEY_API_ACTION = "API_ACTION";
-    /** 游戏接口请求信息配置缓存 Key */
-    public static final String CACHE_KEY_API_ACTION_PARAM = "API_ACTION_PARAM";
-
 
 
 
     /**
      * 站点lottery
      */
+    /**
+     * 站点赔率缓存
+     */
+    public static final String CACHE_KEY_SITE_LOTTERY_ODD = "SITE_LOTTERY_ODD";
     public static final String CACHE_KEY_SITE_LOTTERY = "SITE_LOTTERY";
     /** 彩种缓存 Key */
     public static final String CACHE_KEY_LOTTERY = "LOTTERY";
@@ -76,14 +58,12 @@ public class CacheKey extends org.soul.commons.cache.CacheKey{
     /** 站点限额设置缓存 Key */
     public static final String CACHE_KEY_LOTTERY_QUOTA_SET = "LOTTERY_QUOTA_SET";
     /**站点赔率设置缓存 Key */
-    public static final String CACHE_KEY_LOTTERY_ODD_SET = "LOTTERY_ODD_SET";
+    public static final String CACHE_KEY_LOTTERY_ODD = "LOTTERY_ODD";
     /**开奖结果缓存 Key */
     public static final String CACHE_KEY_LOTTERY_RESULT = "LOTTERY_RESULT";
     /**投注结果缓存 Key */
     public static final String CACHE_KEY_LOTTERY_BET_ORDER = "LOTTERY_BET_ORDER";
     /** 六合彩生肖缓存 Key */
-    public static final String CACHE_KEY_LOTTERY_LHC_ZODIAC = "LOTTERY_LHC_ZODIAC";
-    /** 彩票杀率缓存 Key */
     public static final String CACHE_KEY_LOTTERY_RESULT_RULE = "LOTTERY_RESULT_RULE";
     /** 彩票采集配置 Key */
     public static final String CACHE_KEY_LOTTERY_GATHER_CONF = "LOTTERY_GATHER_CONF";

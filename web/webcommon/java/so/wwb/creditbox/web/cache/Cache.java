@@ -6,6 +6,7 @@ import org.soul.commons.cache.jedis.proxy.JedisClientProxy;
 import org.soul.commons.collections.CollectionQueryTool;
 import org.soul.commons.collections.CollectionTool;
 import org.soul.commons.collections.MapTool;
+import org.soul.commons.init.context.CommonContext;
 import org.soul.commons.lang.DateTool;
 import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.log.Log;
@@ -16,6 +17,7 @@ import org.soul.commons.spring.utils.SpringTool;
 import org.soul.model.sys.po.SysParam;
 import org.soul.web.session.SessionManagerBase;
 import org.soul.web.support.BaseWebBeanFactory;
+import so.wwb.creditbox.context.LotteryCommonContext;
 import so.wwb.creditbox.model.base.CacheBase;
 import so.wwb.creditbox.model.base.ParamTool;
 import so.wwb.creditbox.model.constants.cache.CacheKey;
@@ -39,6 +41,12 @@ public class Cache extends CacheBase {
             jedisTemplateData.setex("data:RC_VERSION",7*24*60*60, rcVersion);
         }
         return rcVersion;
+    }
+    public static void refreshSiteLotteryOdds(Integer siteId) {
+        if (siteId == null) {
+            siteId = LotteryCommonContext.get().getSiteId();
+        }
+        CacheTool.refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_LOTTERY_ODD, siteId.toString()));
     }
 
 

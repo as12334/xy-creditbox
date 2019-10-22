@@ -4,6 +4,7 @@
 
     <resultMap id="TABLE:v_sys_site_manage" type="so.wwb.creditbox.model.manager.sys.po.VSysSiteManage">
         <id column="id" property="id"/>
+        <result column="hid" property="hid"/>
         <result column="sys_user_id" property="sysUserId"/>
         <result column="name" property="name"/>
         <result column="theme" property="theme"/>
@@ -39,13 +40,24 @@
         <result column="platform_category" property="platformCategory"/>
         <result column="pc_theme" property="pcTheme"/>
         <result column="mode" property="mode"/>
-
     </resultMap>
 
     <!--//region your codes 1-->
     <select id="checkCodeUnique" parameterType="so.wwb.creditbox.model.manager.sys.po.SysSite" resultType="Integer">
         SELECT COUNT(1) FROM sys_site WHERE code=#{code}
     </select>
+
+
+    <select id="doInitSiteLotteryOdd" parameterType="so.wwb.creditbox.model.manager.sys.po.VSysSiteManage" resultMap="TABLE:v_sys_site_manage">
+        SELECT * FROM f_init_site_lottery_odd(#{id},#{hid})
+    </select>
+
+    <!--<update id="doInitSiteLotteryOdd"  statementType="CALLABLE" parameterType="so.wwb.creditbox.model.manager.sys.po.VSysSiteManage">-->
+        <!--{-->
+        <!--call f_init_site_lottery_odd(#{id},#{hid});-->
+        <!--}-->
+    <!--</update>-->
+
     <!--//endregion your codes 1-->
 
 </mapper>

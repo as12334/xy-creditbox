@@ -193,6 +193,12 @@ public static ISysUserRoleService sysUserRoleService() {
     public static ISiteLotteryService siteLotteryService() {
         return getService(ISiteLotteryService.class);
     }
+    public static ISiteLotteryOddService siteLotteryOddService() {
+        return getService(ISiteLotteryOddService.class);
+    }
+    public static ILotteryOddService lotteryOddService() {
+        return getService(ILotteryOddService.class);
+    }
 
 //    /**
 //     * 返回用户管理/详细视图 - Fei  jeremy远程服务实例

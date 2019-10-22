@@ -58,6 +58,8 @@
     <!-- 彩种表dubbo服务 -->
     <dubbo:service ref="lotteryService" interface="so.wwb.creditbox.iservice.manager.lottery.ILotteryService"/>
     <dubbo:service ref="siteLotteryService" interface="so.wwb.creditbox.iservice.manager.lottery.ISiteLotteryService"/>
+    <dubbo:service ref="lotteryOddService" interface="so.wwb.creditbox.iservice.manager.lottery.ILotteryOddService"/>
+    <dubbo:service ref="siteLotteryOddService" interface="so.wwb.creditbox.iservice.manager.lottery.ISiteLotteryOddService"/>
     <!--<dubbo:service ref="lotteryHandicapService" interface="so.wwb.creditbox.iservice.manager.lottery.ILotteryHandicapService"/>-->
 
 

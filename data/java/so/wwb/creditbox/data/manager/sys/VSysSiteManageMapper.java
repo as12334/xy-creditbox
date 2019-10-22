@@ -3,6 +3,7 @@ package so.wwb.creditbox.data.manager.sys;
 import org.soul.data.rdb.mybatis.IBaseQueryMapper;
 import so.wwb.creditbox.model.manager.sys.po.SysSite;
 import so.wwb.creditbox.model.manager.sys.po.VSysSiteManage;
+import so.wwb.creditbox.model.manager.sys.vo.VSysSiteManageVo;
 
 
 /**
@@ -21,6 +22,10 @@ public interface VSysSiteManageMapper extends IBaseQueryMapper<VSysSiteManage, I
      * 查询站点code是否唯一
      */
     Integer checkCodeUnique(SysSite sysSite);
+
+    void doInitSiteLotteryOdd(VSysSiteManage result);
+
+
     //endregion your codes 2
 
 }

@@ -44,8 +44,8 @@ public class ShiroAfterFilter implements Filter {
             contextParam.setUserType(sysUser.getUserType());
             contextParam.setSubsysCode(sysUser.getSubsysCode());
             contextParam.setOperator(AuditLogTool.getOperator(request, sysUser));
-            contextParam.setPayUri(sysUser.getPayUri());
-            contextParam.setHallUri(sysUser.getHallUri());
+//            contextParam.setPayUri(sysUser.getPayUri());
+//            contextParam.setHallUri(sysUser.getHallUri());
         }
 
         Object isIgnoreAudit = SessionManagerCommon.getAttribute(SessionKey.S_IS_IGNORE_AUDIT);

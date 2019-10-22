@@ -87,7 +87,7 @@ public class CompanyAccountController extends BaseAccountController {
     }
 
     /**
-     * 添加商户/api商户账号
+     * 添加公司
      *
      * @param objectVo
      * @param form

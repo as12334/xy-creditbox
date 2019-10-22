@@ -3,6 +3,15 @@ package so.wwb.creditbox.model.constants.lottery;
 public interface LotteryFunction {
 
 
+
+    /**
+     * 初始化站点赔率
+     * @param 站点id
+     * @param 用户唯一标识
+     */
+    String F_INIT_SITE_LOTTERY_ODD="SELECT f_init_site_lottery_odd(?,?)";
+
+
     /**
      * 初始化开奖结果
      * @param 日期

@@ -87,39 +87,6 @@ public class SysUserExtend extends SysUser {
     }
 
     // region 非表属性
-
-    public static final String PROP_CODE_OWNER = "codeOwner";
-
-    private String nameInfo;
-    private String hallUri;
-    private String payUri;
-
-    private String codeOwner;
-
-    @Nonpersistent
-    public String getNameInfo() {
-        return this.nameInfo;
-    }
-    public void setNameInfo(String nameInfo) {
-        this.nameInfo = nameInfo;
-    }
-
-    @Nonpersistent
-    public String getHallUri() {
-        return hallUri;
-    }
-    public void setHallUri(String hallUri) {
-        this.hallUri = hallUri;
-    }
-
-    @Nonpersistent
-    public String getPayUri() {
-        return payUri;
-    }
-    public void setPayUri(String payUri) {
-        this.payUri = payUri;
-    }
-
 //    public VUserPlayer getParent() {
 //        return parent;
 //    }

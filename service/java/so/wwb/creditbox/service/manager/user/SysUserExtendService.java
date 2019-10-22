@@ -217,7 +217,7 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
     public Map<String, SysUserExtend> load() {
         List<SysUserExtend> list = mapper.search(Criteria.add(SysUserExtend.PROP_STATUS, Operator.EQ, SysUserStatus.NORMAL.getCode()),
                 Order.asc(SysUserExtend.PROP_ID));
-        return CollectionTool.toEntityMap(list, SysUserExtend.PROP_CODE_OWNER, String.class);
+        return CollectionTool.toEntityMap(list, SysUserExtend.PROP_HID, String.class);
     }
 
     @Override

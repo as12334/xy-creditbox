@@ -37,9 +37,11 @@
 
     <bean id="vUserManagerService" class="so.wwb.creditbox.service.manager.user.VUserManagerService"/>
 
+    <!--彩种表dubbo服务-->
     <bean id="lotteryService" class="so.wwb.creditbox.service.manager.lottery.LotteryService"/>
-
     <bean id="siteLotteryService" class="so.wwb.creditbox.service.manager.lottery.SiteLotteryService"/>
+    <bean id="lotteryOddService" class="so.wwb.creditbox.service.manager.lottery.LotteryOddService"/>
+    <bean id="siteLotteryOddService" class="so.wwb.creditbox.service.manager.lottery.SiteLotteryOddService"/>
 
 
 

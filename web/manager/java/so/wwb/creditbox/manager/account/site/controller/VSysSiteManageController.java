@@ -79,7 +79,7 @@ public class VSysSiteManageController extends BaseCrudController<IVSysSiteManage
      * @param objectVo search 中包含 step和sysUserId
      */
     @RequestMapping("/siteBasic")
-    @Token(generate = true)
+//    @Token(generate = true)
     public String siteBasic(VSysSiteManageVo objectVo, Model model, HttpServletRequest request) {
         // 如果lastStep 传参有值，是游戏配额和状态开启上一步操作
         TimeZone tz = null;
@@ -141,7 +141,7 @@ public class VSysSiteManageController extends BaseCrudController<IVSysSiteManage
      */
     @RequestMapping("/submit")
     @ResponseBody
-    @Token(valid = true)
+//    @Token(valid = true)
     @Audit(module = Module.CUSTOMER,moduleType = ModuleType.SYS_CREATE_SITE,opType = OpType.CREATE,ignoreForm = YesNot.YES,isSystem = YesNot.NOT)
     public Map<String, Object> submit(VSysSiteManageVo objectVo, @FormModel("result") @Valid VSysSiteManageForm form, BindingResult result, HttpServletRequest request, Model model) {
         Map<String, Object> map;
@@ -164,6 +164,7 @@ public class VSysSiteManageController extends BaseCrudController<IVSysSiteManage
         sysUserExtendvo = ServiceTool.sysUserExtendService().get(sysUserExtendvo);
         if(sysUserExtendvo.getResult()!=null){
             objectVo.setSubCode(sysUserExtendvo.getResult().getSubsysCode());
+            objectVo.getResult().setHid(sysUserExtendvo.getResult().getHid());
         }
         SysSiteVo sysSiteVo = new SysSiteVo();
         SysSite sysSite = new SysSite();

@@ -20,6 +20,7 @@ public class VSysSiteManage implements IEntity<Integer> {
 	public static final String PROP_NAME = "name";
 
 	public static final String PROP_ID = "id";
+	public static final String PROP_HID = "hid";
 	public static final String PROP_SYS_USER_ID = "sysUserId";
 	public static final String PROP_USERNAME = "username";
 	public static final String PROP_THEME = "theme";
@@ -61,6 +62,9 @@ public class VSysSiteManage implements IEntity<Integer> {
 
 	/** 主键 */
 	private Integer id;
+
+	/** 用户唯一标识 */
+	private String hid;
 	/** 用户ID */
 	private Integer sysUserId;
 	/** 站长账号 */
@@ -160,6 +164,14 @@ public class VSysSiteManage implements IEntity<Integer> {
 	}
 	public String getUsername() {
 		return this.username;
+	}
+
+	public String getHid() {
+		return hid;
+	}
+
+	public void setHid(String hid) {
+		this.hid = hid;
 	}
 
 	public void setUsername(String value) {

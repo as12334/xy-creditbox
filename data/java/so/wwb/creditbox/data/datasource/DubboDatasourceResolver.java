@@ -54,14 +54,14 @@ public class DubboDatasourceResolver implements IDubboDatasourceResolver {
                     dataSource = getBossDatasource();
                 }
             }
-        } else if (typeName.startsWith("so.wwb.lotterybox.iservice.") || typeName.startsWith("so.wwb.lotterybox.service.")) {
-            boolean isManager = (typeName.startsWith("so.wwb.lotterybox.iservice.manager")
-                    || typeName.startsWith("so.wwb.lotterybox.service.manager"))
+        } else if (typeName.startsWith("so.wwb.creditbox.iservice.") || typeName.startsWith("so.wwb.creditbox.service.")) {
+            boolean isManager = (typeName.startsWith("so.wwb.creditbox.iservice.manager")
+                    || typeName.startsWith("so.wwb.creditbox.service.manager"))
                     && !typeName.endsWith("SysUserExtendService") && !typeName.endsWith("AuditLogService");
             // 管理库
             if (isManager) {
                 dataSource = getBossDatasource();
-            } else if (typeName.startsWith("so.wwb.lotterybox.iservice.company") || typeName.startsWith("so.wwb.lotterybox.service.company")) {
+            } else if (typeName.startsWith("so.wwb.creditbox.iservice.company") || typeName.startsWith("so.wwb.creditbox.service.company")) {
                 // 商户库
                 if (dataSourceId != null) {
                     dataSource = getDataSourceById(dataSourceId);

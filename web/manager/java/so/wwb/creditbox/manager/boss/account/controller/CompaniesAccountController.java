@@ -81,7 +81,7 @@ public class CompaniesAccountController extends BaseAccountController {
     }
 
     /**
-     * 添加股东账号
+     * 添加运营商账号
      *
      * @param objectVo
      * @param form
@@ -92,7 +92,7 @@ public class CompaniesAccountController extends BaseAccountController {
     @RequestMapping("/addAccount")
     @ResponseBody
 //    @Token(valid = true)
-    @Audit(module = Module.ACCOUNT, moduleType = ModuleType.USER_ACCOUNT_SH_ADD, opType = OpType.CREATE, ignoreForm = YesNot.YES, isSystem = YesNot.NOT)
+    @Audit(module = Module.ACCOUNT, moduleType = ModuleType.USER_ACCOUNT_CM_ADD, opType = OpType.CREATE, ignoreForm = YesNot.YES, isSystem = YesNot.NOT)
     public Map addAccount(SysUserExtendVo objectVo, @FormModel @Valid SysUserExtendForm form, BindingResult result, HttpServletRequest request) {
         SysUserExtend operator = SessionManager.getSysUserExtend();
         objectVo.getResult().setUserType(UserTypeEnum.COMPANIES.getCode());

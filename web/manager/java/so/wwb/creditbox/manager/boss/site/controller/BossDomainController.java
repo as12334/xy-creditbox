@@ -356,39 +356,39 @@ public class BossDomainController extends BaseDomainController {
 
 
 
-    /**
-     * 保存总代域名
-     * @param sysDomainVo
-     * @param form
-     * @param result
-     * @return
-     */
-    @RequestMapping("/addDistributorDomain")
-    @ResponseBody
-    @Audit(module = Module.DOMAIN, moduleType = ModuleType.CONTENT_SITE_DISTRIBUTOR_DOMAIN_ADD, opType = OpType.CREATE,ignoreForm = YesNot.YES, isSystem = YesNot.NOT)
-    public Map addAgentDomain(SysDomainVo sysDomainVo, @FormModel("result") @Valid SysDomainForm form, BindingResult result, HttpServletRequest request) {
-        return saveDistributor(sysDomainVo,result,request);
-    }
-
-    @RequestMapping("/addShareholderDomain")
-    @ResponseBody
-    @Audit(module = Module.DOMAIN, moduleType = ModuleType.CONTENT_SITE_SHAREHOLDER_DOMAIN_ADD, opType = OpType.CREATE,ignoreForm = YesNot.YES, isSystem = YesNot.NOT)
-    public Map addShareholderDomain(SysDomainVo sysDomainVo, @FormModel("result") @Valid SysDomainForm form, BindingResult result, HttpServletRequest request) {
-        Map map = new HashMap();
-        if (!result.hasErrors()) {
-            SysDomain sysDomain = sysDomainVo.getResult();
-            sysDomain.setSubsysCode(SubSysCodeEnum.SHAREHOLDER.getCode());
-            sysDomain.setPageUrl(DomainPageUrlEnum.COMPANY.getCode());
-            addDomain(map,sysDomainVo,result,request,CONTENT_SITE_SHAREHOLDER_DOMAIN_ADD);
-            return this.getVoMessage(sysDomainVo);
-        }
-        return map;
-    }
+//    /**
+//     * 保存总代域名
+//     * @param sysDomainVo
+//     * @param form
+//     * @param result
+//     * @return
+//     */
+//    @RequestMapping("/addDistributorDomain")
+//    @ResponseBody
+//    @Audit(module = Module.DOMAIN, moduleType = ModuleType.CONTENT_SITE_DISTRIBUTOR_DOMAIN_ADD, opType = OpType.CREATE,ignoreForm = YesNot.YES, isSystem = YesNot.NOT)
+//    public Map addAgentDomain(SysDomainVo sysDomainVo, @FormModel("result") @Valid SysDomainForm form, BindingResult result, HttpServletRequest request) {
+//        return saveDistributor(sysDomainVo,result,request);
+//    }
+//
+//    @RequestMapping("/addShareholderDomain")
+//    @ResponseBody
+//    @Audit(module = Module.DOMAIN, moduleType = ModuleType.CONTENT_SITE_SHAREHOLDER_DOMAIN_ADD, opType = OpType.CREATE,ignoreForm = YesNot.YES, isSystem = YesNot.NOT)
+//    public Map addShareholderDomain(SysDomainVo sysDomainVo, @FormModel("result") @Valid SysDomainForm form, BindingResult result, HttpServletRequest request) {
+//        Map map = new HashMap();
+//        if (!result.hasErrors()) {
+//            SysDomain sysDomain = sysDomainVo.getResult();
+//            sysDomain.setSubsysCode(SubSysCodeEnum.SHAREHOLDER.getCode());
+//            sysDomain.setPageUrl(DomainPageUrlEnum.COMPANY.getCode());
+//            addDomain(map,sysDomainVo,result,request,CONTENT_SITE_SHAREHOLDER_DOMAIN_ADD);
+//            return this.getVoMessage(sysDomainVo);
+//        }
+//        return map;
+//    }
 
 
     @RequestMapping("/addBossDomain")
     @ResponseBody
-    @Audit(module = Module.DOMAIN, moduleType = ModuleType.CONTENT_SITE_SHAREHOLDER_DOMAIN_ADD, opType = OpType.CREATE,ignoreForm = YesNot.YES, isSystem = YesNot.NOT)
+    @Audit(module = Module.DOMAIN, moduleType = ModuleType.CONTENT_SITE_COMPANIES_DOMAIN_ADD, opType = OpType.CREATE,ignoreForm = YesNot.YES, isSystem = YesNot.NOT)
     public Map addBossDomain(SysDomainVo sysDomainVo, @FormModel("result") @Valid SysDomainForm form, BindingResult result, HttpServletRequest request) {
         Map map = new HashMap();
         if (!result.hasErrors()) {

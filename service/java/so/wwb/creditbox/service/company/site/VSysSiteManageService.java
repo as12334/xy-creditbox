@@ -1,6 +1,7 @@
 package so.wwb.creditbox.service.company.site;
 
 import org.soul.commons.bean.BeanTool;
+import org.soul.commons.enums.EnumTool;
 import org.soul.commons.lang.string.StringTool;
 import org.soul.model.sys.po.SysParam;
 import org.soul.service.support.BaseService;
@@ -53,6 +54,10 @@ public class VSysSiteManageService extends BaseService<VSysSiteManageMapper, VSy
         this.saveSysDomain(siteBasic, masterSiteId, sysSite.getSysUserId(),siteBasic.getResult().getCode());
         siteBasic.getResult().setId(masterSiteId);
         siteBasic.setSysSite(sysSite);
+        //运行站点赔率函数
+        if(SubSysCodeEnum.COMPANY == EnumTool.enumOf(SubSysCodeEnum.class,siteBasic.getSubCode())) {
+            mapper.doInitSiteLotteryOdd(siteBasic.getResult());
+        }
         return siteBasic;
     }
 

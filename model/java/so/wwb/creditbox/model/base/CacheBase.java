@@ -665,13 +665,17 @@ public class CacheBase {
         return getLotteryMap(siteId).get(code);
     }
 
-//    public static Map<String, LotteryOddSet> getOddSet(Integer siteId,Integer projectId, String code) {
-//        Map<String, LotteryOddSet> map = CacheTool.get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_LOTTERY_ODD_SET, siteId.toString(),projectId.toString(), code));
-//        if (MapTool.isEmpty(map)) {
-//            log.error("缺少Lottery Odd Set的缓存数据！");
-//        }
-//        return map;
-//    }
+    public static List<LotteryOdd> getLotteryOdd(String code) {
+        Map<String, Serializable> map = CacheTool.get(CacheKey.CACHE_KEY_LOTTERY_ODD);
+        if (map != null) {
+            Serializable odds = map.get(code);
+            if (odds != null) {
+                return (List<LotteryOdd>) odds;
+            }
+        }
+        log.error("缺少LotteryOdd的缓存数据！");
+        return null;
+    }
 
     /**
      * 根据彩种获取站点赔率设置
@@ -685,14 +689,9 @@ public class CacheBase {
 //    }
 
     /** 刷新赔率缓存 */
-    public static void refreshOddSet(String code) {
-        refreshOddSet(SessionManagerBase.getSiteId(), code);
+    public static void refreshLotteryOdd() {
+        CacheTool.refresh(CacheKey.CACHE_KEY_LOTTERY_ODD);
     }
-
-    public static void refreshOddSet(Integer siteId, String code) {
-        getProxy().refresh(CacheKey.CACHE_KEY_LOTTERY_ODD_SET + CacheKey.CACHE_KEY_SEPERATOR + siteId + CacheKey.CACHE_KEY_SEPERATOR + code);
-    }
-
 //    /** 获取站点限额缓存 */
 //    public static Map<String, LotteryQuotaSet> getQuotaSet(Integer siteId, String code) {
 //        Map<String, LotteryQuotaSet> map = CacheTool.get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_LOTTERY_QUOTA_SET, siteId.toString(), code));

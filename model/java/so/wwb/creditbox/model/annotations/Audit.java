@@ -14,15 +14,42 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Audit {
 
+
+	/**
+	 * 模块名称
+	 */
 	Module module();
 
+	/**
+	 * 模块类型
+	 *
+	 * @return
+	 */
 	ModuleType moduleType();
 
+	/**
+	 * 操作描述
+	 */
 	String desc() default "";
 
+	/**
+	 * 操作类型
+	 */
 	OpType opType() default OpType.QUERY;
 
+	/**
+	 * 是否忽略表单数据
+	 * 忽略		: reuest提交表单数据将被存储
+	 * 不忽略	: reuest提交表单数据将不被存储
+	 *
+	 * @return
+	 */
 	YesNot ignoreForm() default YesNot.YES;
 
-	YesNot isSystem() default YesNot.NOT;
+	/**
+	 * 是否系统级别
+	 *
+	 * @return
+	 */
+	YesNot isSystem() default YesNot.YES;
 }

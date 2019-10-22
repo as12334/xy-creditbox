@@ -65,50 +65,50 @@ public class PassportService implements IPassportService {
     @Autowired
     private TokenCache tokenCache;
 
-    private boolean processPassportVo(PassportVo passportVo) throws LoginException {
-        if (passportVo instanceof TokenPassportVo) {
-            TokenPassportVo vo = (TokenPassportVo) passportVo;
-            if (vo.getToken() != null) {
-                log.debug("token:{0}", vo.getToken());
-                String cacheKey = TokenTool.getCacheKey();
-                SysUserExtend userExtend = CacheBase.getSysUser().get(TokenTool.getCacheKey());
-                if (userExtend == null) {
-                    log.error("找不到商户缓存,key:{0}", cacheKey);
-                    throw new TokenException("参数有误.TOKEN.01.");
-                } else if (userExtend.getKey() == null || userExtend.getKey().trim().length() == 0) {
-                    log.error("商户秘钥为空,merchant.code:{0}", TokenTool.getMerchantCode());
-                    throw new TokenException("参数有误.TOKEN.02.");
-                }
-                String token = CryptoTool.decryptDES3(vo.getToken(), userExtend.getKey());
-                log.debug("token:decrypt:{0}", token);
-//                Login login = tokenCache.getCache(token, new Login());
-//                if (login == null) {
-//                    log.error("token.找不到TOKEN缓存对象.");
-//                    throw new TokenException("TOKEN令牌不合法或已失效.");
+//    private boolean processPassportVo(PassportVo passportVo) throws LoginException {
+//        if (passportVo instanceof TokenPassportVo) {
+//            TokenPassportVo vo = (TokenPassportVo) passportVo;
+//            if (vo.getToken() != null) {
+//                log.debug("token:{0}", vo.getToken());
+//                String cacheKey = TokenTool.getCacheKey();
+//                SysUserExtend userExtend = CacheBase.getSysUser().get(TokenTool.getCacheKey());
+//                if (userExtend == null) {
+//                    log.error("找不到商户缓存,key:{0}", cacheKey);
+//                    throw new TokenException("参数有误.TOKEN.01.");
+//                } else if (userExtend.getKey() == null || userExtend.getKey().trim().length() == 0) {
+//                    log.error("商户秘钥为空,merchant.code:{0}", TokenTool.getMerchantCode());
+//                    throw new TokenException("参数有误.TOKEN.02.");
 //                }
-//                passportVo.getSearch().setUsername(login.getUserName());
-                passportVo.getSearch().setSiteId(userExtend.getSiteId());
-                //解密过的Token.
-                vo.setToken(token);
-                log.debug("token.value:{0}", userExtend);
-            }
-            return true;
-        }
-        return false;
-    }
+//                String token = CryptoTool.decryptDES3(vo.getToken(), userExtend.getKey());
+//                log.debug("token:decrypt:{0}", token);
+////                Login login = tokenCache.getCache(token, new Login());
+////                if (login == null) {
+////                    log.error("token.找不到TOKEN缓存对象.");
+////                    throw new TokenException("TOKEN令牌不合法或已失效.");
+////                }
+////                passportVo.getSearch().setUsername(login.getUserName());
+//                passportVo.getSearch().setSiteId(userExtend.getSiteId());
+//                //解密过的Token.
+//                vo.setToken(token);
+//                log.debug("token.value:{0}", userExtend);
+//            }
+//            return true;
+//        }
+//        return false;
+//    }
 
-    private void setExtInfo(PassportVo passportVo) {
-        if (passportVo instanceof TokenPassportVo) {
-            TokenPassportVo vo = (TokenPassportVo) passportVo;
-            SysUserExtend user = (SysUserExtend) vo.getResult();
-            user.setPayUri(vo.getPayUri());
-            user.setHallUri(vo.getHallUri());
-        }
-    }
+//    private void setExtInfo(PassportVo passportVo) {
+//        if (passportVo instanceof TokenPassportVo) {
+//            TokenPassportVo vo = (TokenPassportVo) passportVo;
+//            SysUserExtend user = (SysUserExtend) vo.getResult();
+//            user.setPayUri(vo.getPayUri());
+//            user.setHallUri(vo.getHallUri());
+//        }
+//    }
 
     @Override
     public PassportVo login(PassportVo passportVo) throws LoginException {
-        boolean isToken = processPassportVo(passportVo);
+//        boolean isToken = processPassportVo(passportVo);
         SysUserSo param = passportVo.getSearch();
         passportVo.getQuery().setSearch(param);
         List<SysUserExtend> users = sysUserExtendMapper.search(passportVo.getQuery().byUserNameAndSubSysCodeAndSiteId(), Order.desc(SysUserExtend.PROP_STATUS));
@@ -119,7 +119,7 @@ public class PassportService implements IPassportService {
         }
 
         SysUserExtend sysUser = users.get(0);
-        if (!isToken && !param.getPassword().equals(sysUser.getPassword())) {
+        if (!param.getPassword().equals(sysUser.getPassword())) {
             String message = MessageFormat.format("用户名:[{0}]或密码不对!", passportVo.getSearch().getUsername());
             AccountPasswordException accountPasswordException = new AccountPasswordException(message, sysUser.getId(), sysUser.getLoginErrorTimes());
             if (accountIsLock(sysUser)) {
@@ -142,8 +142,8 @@ public class PassportService implements IPassportService {
                 throw new AccountNotFoundException(statusVo.getStatus().getTrans());
         }
         passportVo.setResult(sysUser);
-        if (isToken)
-            setExtInfo(passportVo);
+//        if (isToken)
+//            setExtInfo(passportVo);
         return passportVo;
     }
 
