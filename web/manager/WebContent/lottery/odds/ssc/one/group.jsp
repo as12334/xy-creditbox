@@ -34,7 +34,7 @@
                                 <input type="hidden" value="${odd.betCode}" name="lotteryOdds[${i}].betCode">
                                 <input type="hidden" value="${odd.siteId}" name="lotteryOdds[${i}].siteId">
                                 <input type="hidden" value="${odd.betNum}" name="lotteryOdds[${i}].betNum">
-                                <input type="text" class="form-control input-sm" placeholder="<=${odd.oddLimit}" name="lotteryOdds[${i}].odd" data-limit="${odd.oddLimit}" data-value="${odd.odd}" value="${odd.odd}">
+                                <input type="text" class="form-control input-sm" placeholder="<=${odd.maxOdd}" name="lotteryOdds[${i}].oddA" data-limit="${odd.maxOdd}" data-value="${odd.oddA}" value="${odd.oddA}">
                             </div>
                         </td>
                         <c:if test="${i%5==4}">

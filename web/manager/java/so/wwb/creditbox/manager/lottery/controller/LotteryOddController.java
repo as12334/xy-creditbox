@@ -146,6 +146,11 @@ public class LotteryOddController extends NoMappingCrudController {
         return url;
     }
 
+    /**
+     * 查询该siteId是否已经有设置odd
+     * @param siteId
+     * @return
+     */
     @RequestMapping("/oddContent")
     @ResponseBody
     public String oddsContent(@RequestParam("siteId") String siteId) {
@@ -354,6 +359,7 @@ public class LotteryOddController extends NoMappingCrudController {
                 }
                 if (CollectionTool.isNotEmpty(uplist)) {
                     vo.setEntities(uplist);
+                    vo.setProperties(SiteLotteryOdd.PROP_ID,SiteLotteryOdd.PROP_ODD_A,SiteLotteryOdd.PROP_ODD_B,SiteLotteryOdd.PROP_ODD_C);
                     ServiceTool.lotteryOddService().batchUpdateOnly(vo);
                     Cache.refreshLotteryOdd();
                 }

@@ -2,6 +2,7 @@ package so.wwb.creditbox.model.manager.lottery.po;
 
 
 import org.soul.commons.bean.IEntity;
+import org.soul.commons.support.Nonpersistent;
 import org.soul.model.common.Sortable;
 
 
@@ -9,7 +10,7 @@ import org.soul.model.common.Sortable;
  * 赔率设置表实体
  *
  * @author block
- * @time 2019-10-21 23:16:42
+ * @time 2019-10-23 13:18:13
  */
 //region your codes 1
 public class LotteryOdd implements IEntity<Integer> {
@@ -88,6 +89,7 @@ public class LotteryOdd implements IEntity<Integer> {
 	public void setCode(String value) {
 		this.code = value;
 	}
+	@org.soul.model.common.Sortable
 	public String getBetCode() {
 		return this.betCode;
 	}
@@ -102,6 +104,7 @@ public class LotteryOdd implements IEntity<Integer> {
 	public void setPlayCode(String value) {
 		this.playCode = value;
 	}
+	@org.soul.model.common.Sortable
 	public String getBetNum() {
 		return this.betNum;
 	}
@@ -161,7 +164,15 @@ public class LotteryOdd implements IEntity<Integer> {
 	//endregion
 
 	//region your codes 2
+	private Integer siteId = 0;
+	@Nonpersistent
+	public Integer getSiteId() {
+		return siteId;
+	}
 
+	public void setSiteId(Integer siteId) {
+		this.siteId = siteId;
+	}
 	//endregion your codes 2
 
 }
