@@ -22,7 +22,6 @@
         <result column="build_in" property="buildIn"/>
         <result column="parent_id" property="parentId"/>
         <result column="username" property="username"/>
-        <result column="user_code" property="userCode"/>
     </resultMap>
 
     <!--//region your codes 1-->

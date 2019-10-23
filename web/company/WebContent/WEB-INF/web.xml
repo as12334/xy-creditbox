@@ -126,19 +126,19 @@
         <!--<url-pattern>/tool/save-site-server-ip.html</url-pattern>-->
     <!--</filter-mapping>-->
 
-    <filter>
-        <filter-name>GetDomainFilter</filter-name>
-        <filter-class>so.wwb.creditbox.company.filter.GetDomainFilter</filter-class>
-        <async-supported>true</async-supported>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>GetDomainFilter</filter-name>
-        <url-pattern>/tool/get-domains.html</url-pattern>
-    </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>GetDomainFilter</filter-name>-->
+        <!--<filter-class>so.wwb.creditbox.company.filter.GetDomainFilter</filter-class>-->
+        <!--<async-supported>true</async-supported>-->
+        <!--<init-param>-->
+            <!--<param-name>encoding</param-name>-->
+            <!--<param-value>UTF-8</param-value>-->
+        <!--</init-param>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>GetDomainFilter</filter-name>-->
+        <!--<url-pattern>/tool/get-domains.html</url-pattern>-->
+    <!--</filter-mapping>-->
 
     <!--<filter>-->
         <!--<filter-name>GetSitesFilter</filter-name>-->
@@ -154,19 +154,19 @@
         <!--<url-pattern>/tool/get-sites.html</url-pattern>-->
     <!--</filter-mapping>-->
 
-    <filter>
-        <filter-name>CheckDomainIpFilter</filter-name>
-        <filter-class>so.wwb.creditbox.company.filter.CheckDomainIpFilter</filter-class>
-        <async-supported>true</async-supported>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>CheckDomainIpFilter</filter-name>
-        <url-pattern>/tool/check-DomainIp.html</url-pattern>
-    </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>CheckDomainIpFilter</filter-name>-->
+        <!--<filter-class>so.wwb.creditbox.company.filter.CheckDomainIpFilter</filter-class>-->
+        <!--<async-supported>true</async-supported>-->
+        <!--<init-param>-->
+            <!--<param-name>encoding</param-name>-->
+            <!--<param-value>UTF-8</param-value>-->
+        <!--</init-param>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>CheckDomainIpFilter</filter-name>-->
+        <!--<url-pattern>/tool/check-DomainIp.html</url-pattern>-->
+    <!--</filter-mapping>-->
 
     <filter>
         <filter-name>domainFilter</filter-name>

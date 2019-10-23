@@ -121,7 +121,7 @@ public class MsgMqConsume implements IMsgMqConsume {
             siteId = dataSourceId;
             if (vSysSiteUser.getSiteParentId() != null && !Const.BOSS_DATASOURCE_ID.equals(vSysSiteUser.getSiteParentId())) {//目标库为站点库
                 masterId = vSysSiteUser.getSysUserId();
-                ccenterId = vSysSiteUser.getCenterId();
+                ccenterId = vSysSiteUser.getId();
             }
 
         }

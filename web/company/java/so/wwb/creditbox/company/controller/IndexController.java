@@ -27,6 +27,7 @@ import so.wwb.creditbox.model.enums.base.Module;
 import so.wwb.creditbox.model.enums.base.SiteParamEnum;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryListVo;
+import so.wwb.creditbox.model.manager.lottery.vo.SiteLotteryListVo;
 import so.wwb.creditbox.model.manager.sys.po.VSysSiteManage;
 import so.wwb.creditbox.model.manager.sys.vo.SysSiteVo;
 import so.wwb.creditbox.model.manager.sys.vo.VSysSiteManageListVo;
@@ -73,10 +74,10 @@ public class IndexController extends BaseIndexController {
 
     @RequestMapping(value = "index")
     protected String index(HttpServletRequest request, HttpServletResponse response, Model model) {
-        LotteryListVo lotteryListVo = new LotteryListVo();
-//        lotteryListVo.getSearch().setSiteId(SessionManager.getSiteId());
-        lotteryListVo = ServiceTool.lotteryService().search(lotteryListVo);
-        model.addAttribute("lotterys",lotteryListVo.getResult());
+        SiteLotteryListVo siteLotteryListVo = new SiteLotteryListVo();
+        siteLotteryListVo.getSearch().setSiteId(SessionManager.getSiteId());
+        siteLotteryListVo = ServiceTool.siteLotteryService().search(siteLotteryListVo);
+        model.addAttribute("lotterys",siteLotteryListVo.getResult());
 
 
 

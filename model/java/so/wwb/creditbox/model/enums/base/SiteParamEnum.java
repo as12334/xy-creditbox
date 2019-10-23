@@ -51,7 +51,7 @@ public enum SiteParamEnum implements IParamEnum {
 //    SETTING_RAKEBACKSETTING_SETTLEMENTPERIODTIMES(Module.MASTER_SETTING, "rakebackSetting", "settlement.period.times"),
 //    SETTING_RAKEBACKSETTING_SETTLEMENTPERIODTIMESNEW(Module.MASTER_SETTING, "rakebackSetting", "settlement.period.times.new"),
 //    SETTING_RAKEBACKSETTING_SETTLEMENTPERIODEFFECTIVETIME(Module.MASTER_SETTING, "rakebackSetting", "settlement.period.effective.time"),
-//    SETTING_SYSTEM_SETTINGS_VERIFICATION(Module.MASTER_SETTING,"system_settings","verification"),//是否启动验证
+    SETTING_SYSTEM_SETTINGS_VERIFICATION(Module.MASTER_SETTING,"system_settings","verification"),//是否启动验证
 //    SETTING_SYSTEM_SETTINGS_NAME_VERIFICATION(Module.MASTER_SETTING,"system_settings","name_verification"),//启用真实姓名验证
 //    SETTING_SYSTEM_SETTINGS_BANKCARDNUMBER_VERIFICATION(Module.MASTER_SETTING,"system_settings","bank_card_number_verification"),//启用银行卡验证
 //    SETTING_SYSTEM_SETTINGS_DEMO(Module.MASTER_SETTING,"system_settings","demo"),//是否启动试玩

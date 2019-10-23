@@ -131,7 +131,7 @@ public enum BoModuleType implements IModuleType {
 //    SITE_SH_DOMAIN_ISDISABLE(ModuleType.SITE_SH_DOMAIN_ISDISABLE.getCode(), ModuleType.SITE_SH_DOMAIN_ISDISABLE.getTrans()),
 //    SITE_SH_STATUS(ModuleType.SITE_SH_STATUS.getCode(), ModuleType.SITE_SH_STATUS.getTrans()),
 //
-//    SITE_ME_STATUS(ModuleType.SITE_ME_STATUS.getCode(), ModuleType.SITE_ME_STATUS.getTrans()),
+//    SITE_ME_STATUS(ModuleType.SITE_COMPANY_STATUS.getCode(), ModuleType.SITE_COMPANY_STATUS.getTrans()),
 //    SITE_ME_UPDATE(ModuleType.SITE_ME_UPDATE.getCode(), ModuleType.SITE_ME_UPDATE.getTrans()),
 //
 //    SITE_GROUP_ADD(ModuleType.SITE_GROUP_ADD.getCode(), ModuleType.SITE_GROUP_ADD.getTrans()),

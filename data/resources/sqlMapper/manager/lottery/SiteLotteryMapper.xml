@@ -6,6 +6,7 @@
         <id column="id" property="id"/>
         <result column="site_id" property="siteId"/>
         <result column="code" property="code"/>
+        <result column="name" property="name"/>
         <result column="status" property="status"/>
         <result column="order_num" property="orderNum"/>
         <result column="terminal" property="terminal"/>
@@ -26,8 +27,8 @@
 
 
     <select id="sync" parameterType="so.wwb.creditbox.model.manager.lottery.so.SiteLotterySo" resultMap="TABLE:site_lottery">
-        INSERT INTO site_lottery ("site_id", "code", "status", "order_num", "terminal","type","genre")
-        SELECT #{siteId}, #{code},status,order_num,terminal,l."type",l."genre" FROM lottery l
+        INSERT INTO site_lottery ("site_id","name", "code", "status", "order_num", "terminal","type","genre")
+        SELECT #{siteId},name, code,status,order_num,terminal,l."type",l."genre" FROM lottery l
         WHERE not EXISTS (SELECT sl.id from site_lottery sl where site_id=#{siteId} and sl.code=l.code) and l.code=#{code}
     </select>
 

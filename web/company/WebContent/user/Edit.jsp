@@ -37,7 +37,7 @@
                                     <td class="w25 bc txt-right">上級<span name="shareRole">${views.page[command.superUserList[0].subsysCode]}</span>:</td>
                                     <td class="txt-left"><select name="shareName">
                                         <c:forEach items="${command.superUserList}" var="result">
-                                            <option value="${result.hid}">${result.username}</option>
+                                            <option value="${result.hid}">${fn:substringBefore(result.username,'@')}</option>
                                         </c:forEach>
 
                                     </select> 餘額:<span name="shareCredits">900000</span></td>
@@ -70,15 +70,6 @@
                                                                 maxlength="9" value="0" class="text-input sw90"
                                                                 reg="/^[0-9]{1,9}$/" mesg="“信用額度” 由1-9位正整数组成。"> <span
                                             class="red" id="up-rmb"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="w25 bc txt-right">信用/現金:</td>
-                                    <td class="txt-left"><label class="label-box"><input type="radio"
-                                                                                         name="modeSelection"
-                                                                                         checked="checked"
-                                                                                         data-value="0">信用</label>
-                                        <label class="label-box"><input type="radio" name="modeSelection"
-                                                                        data-value="1">現金</label></td>
                                 </tr>
                                 <tr>
                                     <td class="w25 bc txt-right">试玩帐户:</td>

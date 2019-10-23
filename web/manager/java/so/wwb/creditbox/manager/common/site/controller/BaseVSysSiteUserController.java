@@ -40,11 +40,11 @@ public class BaseVSysSiteUserController extends NoMappingCrudController<IVSysSit
 
     protected static final String SITE_UPDATE = "site.update";
 
-    protected static final String SITE_SH_UPDATE = "site.sh.update";
-    protected static final String SITE_SH_STATUS = "site.sh.status";
+    protected static final String SITE_COMPANIES_UPDATE = "site.companies.update";
+    protected static final String SITE_COMPANIES_STATUS = "site.companies.status";
 
-    protected static final String SITE_ME_UPDATE = "site.me.update";
-    protected static final String SITE_ME_STATUS = "site.me.status";
+    protected static final String SITE_COMPANY_UPDATE = "site.company.update";
+    protected static final String SITE_COMPANYE_STATUS = "site.company.status";
 
 
     @Override
@@ -151,7 +151,7 @@ public class BaseVSysSiteUserController extends NoMappingCrudController<IVSysSit
         try {
             List<String> params = new ArrayList<>();
             params.add(sysSiteVo.getResult().getId().toString());
-            if (StringTool.equals(SITE_BOSS_UPDATE,msgKey)||StringTool.equals(SITE_SH_UPDATE,msgKey)||StringTool.equals(SITE_ME_UPDATE,msgKey)){
+            if (StringTool.equals(SITE_BOSS_UPDATE,msgKey)||StringTool.equals(SITE_COMPANIES_UPDATE,msgKey)||StringTool.equals(SITE_COMPANY_UPDATE,msgKey)){
                 params.add(sysSiteVo.getResult().getRemark());
                 AuditAddLogTool.addLog(request,msgKey,params);
                 return;

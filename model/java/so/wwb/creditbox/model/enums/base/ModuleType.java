@@ -229,13 +229,13 @@ public enum ModuleType implements IModuleType {
 //    SITE_BOSS_DOMAIN_BLACKLIST_ADD_OR_UPDATE("722","新增/编辑平台黑名单"),
 //
 //
-//    SITE_SH_UPDATE("730","编辑股东站点备注"),
-//    SITE_SH_DOMAIN_ADD_OR_UPDATE("731","新增/编辑股东域名"),
-//    SITE_SH_DOMAIN_ISDISABLE("732","启用/禁用股东域名"),
-//    SITE_SH_STATUS("733","启用/禁用股东站点"),
+    SITE_COMPANIES_UPDATE("730","编辑股东站点备注"),
+    SITE_COMPANIES_DOMAIN_ADD_OR_UPDATE("731","新增/编辑股东域名"),
+    SITE_COMPANIES_DOMAIN_ISDISABLE("732","启用/禁用股东域名"),
+    SITE_COMPANIES_STATUS("733","启用/禁用股东站点"),
 //
-//    SITE_ME_STATUS("734","启用/禁用商户站点"),
-//    SITE_ME_UPDATE("735","编辑商户站点备注"),
+    SITE_COMPANY_STATUS("734","启用/禁用商户站点"),
+    SITE_COMPANY_UPDATE("735","编辑商户站点备注"),
 //
 //    SITE_GROUP_ADD("736", "站点分组新增"),
 //    SITE_GROUP_UPDATE("737", "站点分组修改"),

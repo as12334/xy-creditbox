@@ -10,7 +10,7 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-10-11 19:37:33
+ * @time 2019-10-23 16:35:04
  */
 //region your codes 1
 public class VSysDomain implements IEntity<Integer> {
@@ -40,7 +40,6 @@ public class VSysDomain implements IEntity<Integer> {
 	public static final String PROP_BUILD_IN = "buildIn";
 	public static final String PROP_PARENT_ID = "parentId";
 	public static final String PROP_USERNAME = "username";
-	public static final String PROP_USER_CODE = "userCode";
 	//endregion
 	
 	
@@ -83,8 +82,6 @@ public class VSysDomain implements IEntity<Integer> {
 	private Integer parentId;
 	/**  */
 	private String username;
-	/**  */
-	private String userCode;
 	//endregion
 
 	
@@ -235,13 +232,6 @@ public class VSysDomain implements IEntity<Integer> {
 
 	public void setUsername(String value) {
 		this.username = value;
-	}
-	public String getUserCode() {
-		return this.userCode;
-	}
-
-	public void setUserCode(String value) {
-		this.userCode = value;
 	}
 	//endregion
 

@@ -1,5 +1,6 @@
 package so.wwb.creditbox.model.manager.lottery.po;
 
+
 import org.soul.commons.bean.IEntity;
 import org.soul.model.common.Sortable;
 
@@ -8,7 +9,7 @@ import org.soul.model.common.Sortable;
  * 站点彩票实体
  *
  * @author block
- * @time 2019-10-20 23:13:50
+ * @time 2019-10-23 22:20:43
  */
 //region your codes 1
 public class SiteLottery implements IEntity<Integer> {
@@ -22,6 +23,7 @@ public class SiteLottery implements IEntity<Integer> {
 	public static final String PROP_ID = "id";
 	public static final String PROP_SITE_ID = "siteId";
 	public static final String PROP_CODE = "code";
+	public static final String PROP_NAME = "name";
 	public static final String PROP_STATUS = "status";
 	public static final String PROP_ORDER_NUM = "orderNum";
 	public static final String PROP_TERMINAL = "terminal";
@@ -37,6 +39,8 @@ public class SiteLottery implements IEntity<Integer> {
 	private Integer siteId;
 	/** 彩种 */
 	private String code;
+	/** 名称 */
+	private String name;
 	/**  */
 	private String status;
 	/** 顺序 */
@@ -82,6 +86,14 @@ public class SiteLottery implements IEntity<Integer> {
 
 	public void setCode(String value) {
 		this.code = value;
+	}
+	@org.soul.model.common.Sortable
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String value) {
+		this.name = value;
 	}
 	public String getStatus() {
 		return this.status;

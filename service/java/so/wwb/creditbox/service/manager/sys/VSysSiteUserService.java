@@ -28,7 +28,7 @@ public class VSysSiteUserService extends BaseService<VSysSiteUserMapper, VSysSit
     @Override
     public Map<String,VSysSiteUser> load(VSysSiteUserVo vSysSiteUserVo){
         List<VSysSiteUser> list = this.mapper.search(Criteria.add(VSysSiteUser.PROP_STATUS, Operator.EQ, SysUserStatus.NORMAL.getCode()),
-                Order.asc(VSysSiteUser.PROP_CENTER_ID), Order.asc(VSysSiteUser.PROP_SYS_USER_ID));
+                Order.asc(VSysSiteUser.PROP_ID), Order.asc(VSysSiteUser.PROP_SYS_USER_ID));
         return CollectionTool.toEntityMap(list, VSysSiteUser.PROP_CACHE_KEY,String.class);
     }
 
