@@ -61,8 +61,8 @@ public class AddSysUserExtendForm implements IForm {
     }
 
     @NotBlank
-    @Pattern(message = "请输入4-16个字符(由英文字母,下划线“-”,数字或任意组合而成)", regexp = RegexConst.ACCOUNT)
-    @Remote(checkClass = CheckToolController.class, checkMethod = "checkUsername", type = "input",additionalProperties = {"result.username"}, message = "该用户名已存在于平台")
+    @Pattern(message = "请输入4-16个字符(由英文字母,下划线“-”,数字或任意组合而成)", regexp = "^[a-z0-9A-Z][a-z0-9A-Z_]{0,12}$")
+    @Remote(checkClass = CheckToolController.class, checkMethod = "checkUsername", type = "input",additionalProperties = {"result.username"}, message = "此“賬號”已經有人使用！請重新填寫！")
     public String getResult_username() {
         return result_username;
     }
@@ -92,7 +92,7 @@ public class AddSysUserExtendForm implements IForm {
     }
 
     @NotBlank
-    @Pattern(message = "退水設定:輸入錯誤！", regexp = RegexConst.POSITIVE)
+    @Pattern(message = "退水設定:輸入錯誤！", regexp = RegexConst.ZERO_POSITIVE)
     public String getWater() {
         return water;
     }

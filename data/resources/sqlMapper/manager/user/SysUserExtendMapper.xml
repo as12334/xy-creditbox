@@ -223,4 +223,10 @@
        and subsys_code = #{subsysCode}  GROUP BY   owner_id
     </select>
 
+
+
+    <select id="doInitUserLottery" parameterType="so.wwb.creditbox.model.manager.user.po.SysUserExtend" resultMap="TABLE:sys_user">
+        SELECT * FROM f_site_init_lottery(#{siteId},#{hid});
+    </select>
+
 </mapper>

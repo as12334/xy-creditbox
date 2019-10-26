@@ -81,9 +81,9 @@ public class SysUserExtendController extends BaseCrudController<ISysUserExtendSe
 
         if (result.hasErrors()) {
             objectVo.setSuccess(false);
-            objectVo.setErrMsg("参数错误，保存失败");
+            objectVo.setErrMsg(result.getAllErrors().get(0).getDefaultMessage());
             LOG.error("参数错误，保存失败");
-            this.getVoMessage(objectVo);
+            return this.getVoMessage(objectVo);
         }
         String subSysCode = getSubSysCode(objectVo.getResult().getUserType());
 
