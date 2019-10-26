@@ -76,7 +76,7 @@
                     <td><span class="${p.status=='expired'?"label label-danger":"label label-success"}">${dicts.setting.site_confine_status[p.status]}</span></td>
                     <td>
                         <c:if test="${p.builtIn ne 'true'}">
-                            <soul:button target="${root}/siteConfineArea/merchantEdit.html?search.id=${p.id}" permission="blacklist:edit_black"  size="open-dialog-50" text="${views.common['edit']}" cssClass="co-blue m-r-xs m-l-xs" opType="dialog" callback="callBackQuery" />
+                            <soul:button target="${root}/siteConfineArea/merchantEdit.html?search.id=${p.id}" permission="blacklist:edit_black"  size="open-dialog-50" text="编辑" cssClass="co-blue m-r-xs m-l-xs" opType="dialog" callback="callBackQuery" />
                         </c:if>
                     </td>
                 </tr>

@@ -1,9 +1,13 @@
 package so.wwb.creditbox.data.manager.sys;
 
 import org.soul.data.rdb.mybatis.IBaseQueryMapper;
+import org.soul.model.security.privilege.so.SysResourceSo;
+import so.wwb.creditbox.model.manager.sys.po.Nav;
 import so.wwb.creditbox.model.manager.sys.po.SysSite;
 import so.wwb.creditbox.model.manager.sys.po.VSysSiteManage;
 import so.wwb.creditbox.model.manager.sys.vo.VSysSiteManageVo;
+
+import java.util.List;
 
 
 /**
@@ -21,9 +25,9 @@ public interface VSysSiteManageMapper extends IBaseQueryMapper<VSysSiteManage, I
     /**
      * 查询站点code是否唯一
      */
-    Integer checkCodeUnique(SysSite sysSite);
+    void doInitSiteData(VSysSiteManage result);
 
-    void doInitSiteLotteryOdd(VSysSiteManage result);
+    List<Nav> getAllMenus(SysResourceSo search);
 
 
     //endregion your codes 2

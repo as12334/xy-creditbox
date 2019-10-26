@@ -3,7 +3,7 @@
 
 <html lang="zh-CN">
 <head>
-    <title>${views.common['edit']}</title>
+    <title>编辑</title>
     <%@ include file="/include/include.head.jsp" %>
 </head>
 

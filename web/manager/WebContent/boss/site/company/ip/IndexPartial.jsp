@@ -98,7 +98,7 @@
                     <td>
                         <soul:button target="${root}/siteConfineIp/merchantEdit.html?search.id=${p.id}"
                                      dd="" size="open-dialog-50"
-                                     text="${views.common['edit']}" cssClass="co-blue m-r-xs m-l-xs" opType="dialog"
+                                     text="编辑" cssClass="co-blue m-r-xs m-l-xs" opType="dialog"
                                      callback="callBackQuery" permission="siteConfineIp:merchant_edit"/>
                     </td>
                 </tr>

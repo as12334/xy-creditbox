@@ -79,7 +79,7 @@
                 <td>
                     <soul:button
                             target="${root}/account/domain/edit.html?search.id=${p.id}&search.siteId=${getSiteId}"
-                            size="open-dialog-50" text="${views.common['edit']}" cssClass="co-blue m-r-xs m-l-xs"
+                            size="open-dialog-50" text="编辑" cssClass="co-blue m-r-xs m-l-xs"
                             opType="dialog" callback="callBackQuery" permission="domin:deit_domain"/>
                 </td>
             </tr>

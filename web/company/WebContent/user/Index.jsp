@@ -20,14 +20,15 @@
             <option value="1">凍結</option>
             <option value="2">啟用</option>
         </select>賬號：<input type="text" id="seachName" autocomplete="off" maxlength="15" class="text-input sw90"><span
-                class="text-btn-s" id="search">查詢</span><span class="text-btn-s" id="magAdd" data-userType="${command.search.userType}">新增</span></div>
+                class="text-btn-s" id="search">查詢</span>
+            <span class="text-btn-s" id="magAdd" data-url="/sysUserExtend/createManagerUser.html?search.userType=${command.search.userType}">新增</span></div>
     </div>
     <%@ include file="IndexPartial.jsp" %>
 </form:form>
 <%--<soul:import res="site/user/Index"/>--%>
 
 <script type="text/javascript">
-    curl(['site/user/Index'], function(Page,Dialog) {
+    curl(['site/user/Index'], function (Page, Dialog) {
         page = new Page();
     });
 </script>

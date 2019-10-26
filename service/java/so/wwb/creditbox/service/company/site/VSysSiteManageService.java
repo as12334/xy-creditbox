@@ -3,6 +3,7 @@ package so.wwb.creditbox.service.company.site;
 import org.soul.commons.bean.BeanTool;
 import org.soul.commons.enums.EnumTool;
 import org.soul.commons.lang.string.StringTool;
+import org.soul.model.security.privilege.vo.SysResourceVo;
 import org.soul.model.sys.po.SysParam;
 import org.soul.service.support.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import so.wwb.creditbox.model.enums.base.SubSysCodeEnum;
 import so.wwb.creditbox.model.enums.sys.ResolveStatusEnum;
 import so.wwb.creditbox.model.enums.sys.SysSiteStatusEnum;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
+import so.wwb.creditbox.model.manager.sys.po.Nav;
 import so.wwb.creditbox.model.manager.sys.po.SysDomain;
 import so.wwb.creditbox.model.manager.sys.po.SysSite;
 import so.wwb.creditbox.model.manager.sys.po.VSysSiteManage;
@@ -30,6 +32,7 @@ import so.wwb.creditbox.model.manager.sys.vo.VSysSiteManageVo;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -56,7 +59,7 @@ public class VSysSiteManageService extends BaseService<VSysSiteManageMapper, VSy
         siteBasic.setSysSite(sysSite);
         //运行站点赔率函数
         if(SubSysCodeEnum.COMPANY == EnumTool.enumOf(SubSysCodeEnum.class,siteBasic.getSubCode())) {
-            mapper.doInitSiteLotteryOdd(siteBasic.getResult());
+            mapper.doInitSiteData(siteBasic.getResult());
         }
         return siteBasic;
     }
@@ -68,6 +71,12 @@ public class VSysSiteManageService extends BaseService<VSysSiteManageMapper, VSy
         // 新增默认代理
 //        createDefaultAgent(siteBasic);
         return siteBasic;
+    }
+
+
+    @Override
+    public List<Nav> getAllMenus(SysResourceVo o) {
+        return mapper.getAllMenus(o.getSearch());
     }
 
 //    /**

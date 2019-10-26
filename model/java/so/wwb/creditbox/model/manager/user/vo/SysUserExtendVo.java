@@ -6,10 +6,11 @@ import org.soul.commons.query.enums.Operator;
 import org.soul.model.common.AbstractQuery;
 import org.soul.model.common.BaseObjectVo;
 import org.soul.model.msg.notice.po.NoticeContactWay;
-import org.soul.model.security.privilege.po.SysUser;
 import so.wwb.creditbox.model.manager.sys.po.SysSite;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.so.SysUserExtendSo;
+
+import java.util.List;
 
 
 /**
@@ -22,6 +23,7 @@ public class SysUserExtendVo extends BaseObjectVo<SysUserExtend, SysUserExtendSo
 
     private static final long serialVersionUID = 6345574264795463363L;
 
+    //region your codes 5
     /*角色ids*/
     private Integer[] roleIds = null;
     private SysSite site;
@@ -36,11 +38,24 @@ public class SysUserExtendVo extends BaseObjectVo<SysUserExtend, SysUserExtendSo
     private Integer loginUserId;
 
     private String lastTimeSearch;
-//    private RegisterParam registerParam;
 
-//    private UserPlayer player;
+
+    //管理用户扩展
+    private SysUserExtend sysUserExtend;
+
+
+    /**
+     * 上级用户
+     */
+    private List<SysUserExtend> superUserList;
+
+
+    //退水点数
+    private Double water;
+
     /** API token */
-    private String token;
+//    private String token;
+    //endregion your codes 5
     
     /**
      * 系统用户查询逻辑
@@ -51,6 +66,7 @@ public class SysUserExtendVo extends BaseObjectVo<SysUserExtend, SysUserExtendSo
 
         @Override
         public Criteria getCriteria() {
+            //region your codes 2
             Criteria criteria = new Criteria();
             if(null != searchObject.getId()){
                 criteria.addAnd(SysUserExtend.PROP_ID,Operator.EQ,searchObject.getId());
@@ -59,18 +75,10 @@ public class SysUserExtendVo extends BaseObjectVo<SysUserExtend, SysUserExtendSo
                 criteria.addAnd(SysUserExtend.PROP_USERNAME,Operator.EQ,searchObject.getUsername());
             }
             return criteria;
+            //region your codes 2
         }
-
-        public Criteria likeUserNameAndSubSysCodeAndSiteId() {
-            return Criteria.and(
-                    Criteria.add(SysUser.PROP_USERNAME, Operator.LIKE, searchObject.getUsername()),
-                    Criteria.add(SysUser.PROP_SUBSYS_CODE, Operator.EQ, searchObject.getSubsysCode()),
-                    Criteria.add(SysUser.PROP_SITE_ID, Operator.EQ, searchObject.getSiteId())
-            );
-        }
-
     }
-
+    //region your codes 4
     public Integer[] getRoleIds() {
         return roleIds;
     }
@@ -179,12 +187,40 @@ public class SysUserExtendVo extends BaseObjectVo<SysUserExtend, SysUserExtendSo
 //        this.player = player;
 //    }
 
-    public String getToken() {
-        return token;
+//    public String getToken() {
+//        return token;
+//    }
+//
+//    public void setToken(String token) {
+//        this.token = token;
+//    }
+
+
+    public SysUserExtend getSysUserExtend() {
+        return sysUserExtend;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setSysUserExtend(SysUserExtend sysUserExtend) {
+        this.sysUserExtend = sysUserExtend;
     }
+
+    public List<SysUserExtend> getSuperUserList() {
+        return superUserList;
+    }
+
+    public void setSuperUserList(List<SysUserExtend> superUserList) {
+        this.superUserList = superUserList;
+    }
+
+    public Double getWater() {
+        return water;
+    }
+
+    public void setWater(Double water) {
+        this.water = water;
+    }
+
+
+    //endregion your codes 4
 
 }

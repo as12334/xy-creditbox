@@ -18,6 +18,7 @@ import so.wwb.creditbox.model.annotations.Audit;
 import so.wwb.creditbox.model.enums.base.Module;
 import so.wwb.creditbox.model.enums.base.ModuleType;
 import so.wwb.creditbox.model.enums.base.SubSysCodeEnum;
+import so.wwb.creditbox.model.enums.lottery.*;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendListVo;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
@@ -108,6 +109,11 @@ public class CompanyAccountController extends BaseAccountController {
 
         objectVo.getResult().setSuperiorOccupy(0.0);
         objectVo.getResult().setStintOccupy(100.0);
+        objectVo.getResult().setBreakpoint(BreakpointEnum.ZERO.getCode());
+        objectVo.getResult().setGeneral(GeneralEnum.ALL.getCode());
+        objectVo.getResult().setModeSelection(ModeSelectionEnum.CREDIT.getCode());
+        objectVo.getResult().setSetOdds(SetOddsEnum.OFF.getCode());
+        objectVo.getResult().setTestAccount(TestAccountEnum.NO.getCode());
         return getVoMessage(baseAddAccount(objectVo, form, result, request));
     }
 

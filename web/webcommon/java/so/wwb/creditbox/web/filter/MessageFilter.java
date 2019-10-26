@@ -38,7 +38,7 @@ public class MessageFilter implements Filter {
         o.getSearch().setSubsysCode(contextParam.getDomainSubsysCode());
         o._setSiteId(contextParam.getSiteId());
         o._setDataSourceId(contextParam.getSiteId());
-        List<Nav> navs = ServiceTool.vUserManagerService().getAllMenus(o);
+        List<Nav> navs = ServiceTool.vSysSiteManageService().getAllMenus(o);
 
         LinkedHashMap linkedHashMap = new LinkedHashMap();
         for (Nav nav : navs) {

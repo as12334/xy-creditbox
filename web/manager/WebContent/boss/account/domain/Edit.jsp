@@ -18,7 +18,6 @@
                 <input id="result.name" name="result.name" class="form-control m-b-xs" type="text" value="${command.result.name}" aria-required="true" aria-invalid="true"/>
             </div>
         </div>
-        <c:if test="${command.result.type eq '3'}">
             <div class="form-group clearfix">
                 <label class="col-xs-3 al-right line-hi34">模板名称：</label>
                 <div class="col-xs-9">
@@ -31,7 +30,6 @@
                     <input id="result.theme" name="result.theme" class="form-control m-b-xs" type="text" value="${command.result.theme}" aria-required="true" aria-invalid="true"/>
                 </div>
             </div>
-        </c:if>
         <%--默认域名--%>
         <div class="form-group clearfix isDefault" >
             <label class="col-xs-3 al-right" >${views.content['domain.defaultDomain']}：</label>

@@ -2,7 +2,7 @@
 <%@ include file="/include/include.inc.jsp" %>
 <html>
 <head>
-    <title>${views.common['edit']}</title>
+    <title>编辑</title>
     <%@ include file="/include/include.head.jsp" %>
     <%@ include file="/WebContent/include/include.base.js.jsp" %>
 </head>

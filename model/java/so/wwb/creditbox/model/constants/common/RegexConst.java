@@ -115,6 +115,7 @@ public interface RegexConst {
     String IP = "^(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(\\.(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}$";
     /** 验证数字，只能是数字（0-9） */
     String DIGITS = "^[0-9]*$";
+    String NUMBER = "^(-)?[1-9][0-9]*$";
     /** 中文或英文大小写 */
     String CNANDEN = "^[\\u4e00-\\u9fa5a-zA-Z]+$";
     /** 中文或英文大小写和数字 */

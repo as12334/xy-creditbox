@@ -25,6 +25,9 @@ public class SysUserExtendSo extends SysUserExtend {
     //endregion your codes 3
 
     //region your codes 2
+
+    private  Integer hidLength;
+
     /*多个用户类型*/
     private String[] userTypes;
     /*创建时间开始时间*/
@@ -227,6 +230,15 @@ public class SysUserExtendSo extends SysUserExtend {
     public void setSubSysCodes(List<String> subSysCodes) {
         this.subSysCodes = subSysCodes;
     }
+
+    public Integer getHidLength() {
+        return hidLength;
+    }
+
+    public void setHidLength(Integer hidLength) {
+        this.hidLength = hidLength;
+    }
+
 
     //endregion your codes 2
 }

@@ -19,6 +19,7 @@ import so.wwb.creditbox.model.annotations.Audit;
 import so.wwb.creditbox.model.enums.base.Module;
 import so.wwb.creditbox.model.enums.base.ModuleType;
 import so.wwb.creditbox.model.enums.base.SubSysCodeEnum;
+import so.wwb.creditbox.model.enums.lottery.*;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendListVo;
@@ -27,6 +28,7 @@ import so.wwb.creditbox.model.manager.user.vo.VSubAccountVo;
 import so.wwb.creditbox.web.membercenter.form.ResetPwdForm;
 import so.wwb.creditbox.web.passport.captcha.GoogleAuthenticator;
 import so.wwb.creditbox.web.tools.token.Token;
+import sun.security.x509.GeneralName;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -101,6 +103,13 @@ public class CompaniesAccountController extends BaseAccountController {
         objectVo.getResult().setSuperiorOccupy(0.0);
         objectVo.getResult().setStintOccupy(0.0);
         objectVo.getResult().setCredits(0.0);
+        objectVo.getResult().setBreakpoint(BreakpointEnum.ZERO.getCode());
+        objectVo.getResult().setGeneral(GeneralEnum.ALL.getCode());
+        objectVo.getResult().setManualAutoShipments(ManualAutoShipmentsEnum.OFF.getCode());
+        objectVo.getResult().setModeSelection(ModeSelectionEnum.CREDIT.getCode());
+        objectVo.getResult().setSetOdds(SetOddsEnum.OFF.getCode());
+        objectVo.getResult().setTestAccount(TestAccountEnum.NO.getCode());
+
         if (StringTool.equals(UserTypeEnum.BOSS.getCode(), operator.getUserType())) {
             objectVo.getResult().setOwnerId(operator.getId());
         } else if (StringTool.equals(UserTypeEnum.BOSS_SUB.getCode(), operator.getUserType())) {

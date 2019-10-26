@@ -1,5 +1,6 @@
 package so.wwb.creditbox.service.manager.user;
 
+import org.apache.shiro.session.mgt.SessionManager;
 import org.soul.commons.bean.Pair;
 import org.soul.commons.collections.CollectionTool;
 import org.soul.commons.collections.ListTool;
@@ -20,6 +21,7 @@ import org.soul.data.support.DataContext;
 import org.soul.model.msg.notice.po.NoticeContactWay;
 import org.soul.model.passport.vo.PassportVo;
 import org.soul.model.security.privilege.po.*;
+import org.soul.model.security.privilege.vo.SysDeptVo;
 import org.soul.model.security.privilege.vo.SysUserStatusVo;
 import org.soul.service.support.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,7 @@ import so.wwb.creditbox.iservice.manager.user.ISysUserExtendService;
 //import so.wwb.lotterybox.iservice.company.user.IUserAssetsService;
 //import so.wwb.lotterybox.iservice.company.user.IUserPlayerService;
 import so.wwb.creditbox.model.enums.base.SubSysCodeEnum;
+import so.wwb.creditbox.model.enums.lottery.*;
 import so.wwb.creditbox.model.enums.notice.ContactWayType;
 import so.wwb.creditbox.model.enums.setting.UserParamEnum;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
@@ -40,7 +43,6 @@ import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.so.SysUserExtendSo;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendListVo;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
-import so.wwb.creditbox.model.company.setting.po.UserParam;
 import so.wwb.creditbox.utility.UserTool;
 
 import javax.sql.DataSource;
@@ -415,7 +417,7 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
         user.setBirthday(userExtendVo.getResult().getBirthday());
         boolean isSuccess = this.mapper.updateOnly(user, SysUserExtend.PROP_REAL_NAME,
                 SysUserExtend.PROP_NICKNAME, SysUserExtend.PROP_BIRTHDAY, SysUserExtend.PROP_SEX,
-                SysUserExtend.PROP_UPDATE_TIME, SysUserExtend.PROP_UPDATE_USER, SysUserExtend.PROP_UPDATE_NAME);
+                SysUserExtend.PROP_UPDATE_TIME, SysUserExtend.PROP_UPDATE_USER, SysUserExtend.PROP_UPDATE_NAME ,SysUserExtend.PROP_MANUAL_AUTO_SHIPMENTS);
         if (isSuccess) {
             //子账号删除旧的角色，再保存角色
             user = this.mapper.get(user.getId());
@@ -645,6 +647,30 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
     public boolean updateUserInfoOnly(SysUserExtend userExtend, String... var2){
         return this.mapper.updateOnly(userExtend,var2);
     }
+
+    @Override
+    public SysUserExtendVo searchLevelUser(SysUserExtendVo objectVo) {
+        objectVo.setSuperUserList(mapper.searchLevelUser(objectVo.getSearch()));
+        return objectVo;
+    }
+
+    @Override
+    public SysUserExtendVo saveManagerUser(SysUserExtendVo objectVo) {
+        SysUserExtend user = objectVo.getResult();
+        user.setCreateTime(new Date());
+        user.setKey(getKey());
+        user.setPassword(AuthTool.md5SysUserPassword(user.getPassword(), user.getUsername())); //账户密码加密
+        user.setPermissionPwd(AuthTool.md5SysUserPermission(user.getPermissionPwd(), user.getUsername()));//安全密码加密
+        boolean isSuccess = this.mapper.insert(user);
+        if (!isSuccess) {
+            objectVo.setSuccess(false);
+            return objectVo;
+        }
+        objectVo.setResult(user);
+        return objectVo;
+    }
+
+
 //
 //    @Override
 //    public boolean insertSysUserExtend(SysUserExtend userExtend) {

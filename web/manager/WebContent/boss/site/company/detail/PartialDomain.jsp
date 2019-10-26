@@ -76,8 +76,8 @@
                 <td>
                     <soul:button
                             target="${root}/account/domain/merchantEdit.html?search.id=${p.id}"
-                            size="open-dialog-50" text="${views.common['edit']}" cssClass="co-blue m-r-xs m-l-xs"
-                            opType="dialog" callback="callBackQuery" permission="site:merchant_edit_domain"/>
+                            size="open-dialog-50" text="编辑" cssClass="co-blue m-r-xs m-l-xs"
+                            opType="dialog" callback="callBackQuery" />
                 </td>
             </tr>
         </c:forEach>

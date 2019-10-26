@@ -72,7 +72,7 @@
                 <td>
                     <soul:button
                             target="${root}/account/domain/shareHolderEdit.html?search.id=${p.id}"
-                            size="open-dialog-50" text="${views.common['edit']}" cssClass="co-blue m-r-xs m-l-xs"
+                            size="open-dialog-50" text="编辑" cssClass="co-blue m-r-xs m-l-xs"
                             opType="dialog" callback="callBackQuery" permission="domain:shareholder_edit"/>
                 </td>
             </tr>

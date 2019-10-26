@@ -4,7 +4,17 @@
 
     <resultMap id="TABLE:sys_user_extend" type="so.wwb.creditbox.model.manager.user.po.SysUserExtend" extends="TABLE:sys_user">
         <result column="key" property="key"/>
+        <result column="superior_occupy" property="superiorOccupy"/>
+        <result column="hid" property="hid"/>
+        <result column="credits" property="credits"/>
         <result column="update_name" property="updateName"/>
+        <result column="stint_occupy" property="stintOccupy"/>
+        <result column="breakpoint" property="breakpoint"/>
+        <result column="manual_auto_shipments" property="manualAutoShipments"/>
+        <result column="mode_selection" property="modeSelection"/>
+        <result column="general" property="general"/>
+        <result column="test_account" property="testAccount"/>
+        <result column="set_odds" property="setOdds"/>
     </resultMap>
 
     <resultMap id="TABLE:sys_user" type="org.soul.model.security.privilege.po.SysUser">
@@ -70,16 +80,17 @@
         <result column="session_key" property="sessionKey"/>
         <result column="terminal" property="terminal"/>
         <result column="authentication_key" property="authenticationKey"/>
-        <result column="superior_occupy" property="superiorOccupy" javaType="double"/>
-        <result column="stint_occupy" property="stintOccupy" javaType="double"/>
-        <result column="hid" property="hid"/>
-        <result column="credits" property="credits" javaType="double"/>
     </resultMap>
     <!--//region your codes 1-->
     <resultMap id="sysUserRM" type="org.soul.model.security.privilege.po.SysUser" extends="TABLE:sys_user">
         <collection property="roles" ofType="org.soul.model.security.privilege.po.SysRole" column="user_id"
                     resultMap="org.soul.data.mapper.security.privilege.SysRoleMapper.TABLE:SYS_ROLE"/>
     </resultMap>
+
+
+    <select id="searchLevelUser" resultMap="TABLE:sys_user_extend">
+        SELECT  * from  sys_user_extend WHERE hid like CONCAT('',#{hid},'%')  AND length(hid)>= #{hidLength}
+    </select>
 
     <sql id="Base_Column_List">
         id, username, password, dept_id, status, create_user, create_time, update_user, update_time, subsys_code, user_type,built_in,

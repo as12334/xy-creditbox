@@ -91,7 +91,7 @@
                     <td>
                         <soul:button target="${root}/siteConfineIp/shareHolderEdit.html?search.id=${p.id}"
                                      dd="" size="open-dialog-50"
-                                     text="${views.common['edit']}" cssClass="co-blue m-r-xs m-l-xs" opType="dialog"
+                                     text="编辑" cssClass="co-blue m-r-xs m-l-xs" opType="dialog"
                                      callback="callBackQuery" permission="siteConfineIp:shareHolder_edit"/>
                     </td>
                 </tr>

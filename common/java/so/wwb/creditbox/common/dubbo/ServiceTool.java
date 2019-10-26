@@ -16,14 +16,12 @@ import org.soul.iservice.sys.ISysParamService;
 import org.soul.iservice.test.IDbValidService;
 import so.wwb.creditbox.iservice.common.IMessageService;
 import so.wwb.creditbox.iservice.company.site.ISiteSysParamService;
-import so.wwb.creditbox.iservice.company.user.IVUserDetailService;
 import so.wwb.creditbox.iservice.manager.common.*;
 import so.wwb.creditbox.iservice.manager.lottery.*;
 import so.wwb.creditbox.iservice.manager.message.ISystemAnnouncementService;
 import so.wwb.creditbox.iservice.manager.sys.*;
 import so.wwb.creditbox.iservice.manager.user.ISysUserExtendService;
 import so.wwb.creditbox.iservice.manager.user.IVSubAccountService;
-import so.wwb.creditbox.iservice.manager.user.IVUserManagerService;
 
 public class ServiceTool {
     private static String dubboApplicationName;
@@ -53,9 +51,6 @@ public class ServiceTool {
      *
      * @return 用户管理/详细视图 - Fei  jeremy远程服务实例
      */
-    public static IVUserManagerService vUserManagerService() {
-        return getService(IVUserManagerService.class);
-    }
 
 
 
@@ -146,9 +141,6 @@ public static ISysUserRoleService sysUserRoleService() {
      *
      * @return 用户管理/详细视图 - Fei  jeremy远程服务实例
      */
-    public static IVUserDetailService vUserDetailService() {
-        return getService(IVUserDetailService.class);
-    }
 
     public static ISysUserExtendService sysUserExtendService() {
         return getService(ISysUserExtendService.class);

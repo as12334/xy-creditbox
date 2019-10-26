@@ -75,9 +75,6 @@
     <!--账号权限-->
     <dubbo:service ref="sysRoleService" interface="org.soul.iservice.security.privilege.ISysRoleService"/>
 
-    <dubbo:service ref="vUserDetailService" interface="so.wwb.creditbox.iservice.company.user.IVUserDetailService"/>
-
-    <dubbo:service ref="vUserManagerService" interface="so.wwb.creditbox.iservice.manager.user.IVUserManagerService"/>
 
 
 </beans>

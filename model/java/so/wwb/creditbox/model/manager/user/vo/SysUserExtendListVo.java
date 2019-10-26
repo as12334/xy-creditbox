@@ -1,6 +1,7 @@
 package so.wwb.creditbox.model.manager.user.vo;
 
 
+import org.apache.zookeeper.Op;
 import org.soul.commons.collections.CollectionTool;
 import org.soul.commons.data.json.JsonTool;
 import org.soul.commons.query.Criteria;
@@ -58,6 +59,7 @@ public class SysUserExtendListVo extends BaseListVo<SysUserExtend, SysUserExtend
             criteria.addAnd(SysUserExtend.PROP_SITE_ID, Operator.EQ, searchObject.getSiteId());
             criteria.addAnd(SysUserExtend.PROP_STATUS,Operator.EQ,searchObject.getStatus());
             criteria.addAnd(SysUserExtend.PROP_ID,Operator.IN,searchObject.getUserIds());
+            criteria.addAnd(SysUserExtend.PROP_USER_TYPE, Operator.EQ,searchObject.getUserType());
             //api一起遍历
             if(CollectionTool.isNotEmpty(searchObject.getSubSysCodes())){
                 criteria.addAnd(SysUserExtend.PROP_SUBSYS_CODE, Operator.IN, searchObject.getSubSysCodes());
