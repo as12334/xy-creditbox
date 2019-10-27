@@ -120,7 +120,7 @@
             href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=9">正碼、總和</a><b>|</b><a
             href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=10">連碼</a></div>
 </div>
-<div class="search-list-container">
+<div id="mainFrameContainer">
     <!--//region your codes 1-->
 
 </div>

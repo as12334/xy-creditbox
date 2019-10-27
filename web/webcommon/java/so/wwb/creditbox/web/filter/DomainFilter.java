@@ -144,8 +144,8 @@ public class DomainFilter implements Filter {
             sysSiteDomain.setSiteStatus(SysSiteStatusEnum.NORMAL.getCode());
         } else if (domainCacheResolver.isSiteDisabled(objectVo)) {
             errorCodeEnum = ErrorCodeEnum.SC_SITE_MAINTAIN;
-        } else if (domainCacheResolver.isDomainTempAndTimeOut(objectVo)) {
-            errorCodeEnum = ErrorCodeEnum.SC_DOMAIN_TEMP_TIMEOUT;
+//        } else if (domainCacheResolver.isDomainTempAndTimeOut(objectVo)) {
+//            errorCodeEnum = ErrorCodeEnum.SC_DOMAIN_TEMP_TIMEOUT;
         }
 
         if (null == errorCodeEnum) {

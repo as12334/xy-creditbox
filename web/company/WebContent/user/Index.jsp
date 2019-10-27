@@ -6,7 +6,7 @@
 <!--//region your codes 1-->
 
 <!--//endregion your codes 1-->
-<form:form action="${root}/vUserDetail/list.html" method="post">
+<form:form id="userListForm" action="${root}/sysUserExtend/list.html" method="post">
 
 
     <div class="shell-top" id="shell_top">
@@ -15,15 +15,20 @@
             <span id="shell_title">分公司管理</span>
         </div>
         <div class="shell-top-right"></div>
-        <div id="title-nav"><select id="state">
-            <option value="0">停用</option>
-            <option value="1">凍結</option>
-            <option value="2">啟用</option>
-        </select>賬號：<input type="text" id="seachName" autocomplete="off" maxlength="15" class="text-input sw90"><span
+        <div id="title-nav">
+            <select id="state" name="search.status">
+                <option value="1">啟用</option>
+                <option value="2">停用</option>
+                <option value="3">凍結</option>
+            </select>
+            賬號：<input type="text" id="seachName" autocomplete="off" maxlength="15" class="text-input sw90" name="search.username"><span
                 class="text-btn-s" id="search">查詢</span>
             <span class="text-btn-s" id="magAdd" data-url="/sysUserExtend/createManagerUser.html?search.userType=${command.search.userType}">新增</span></div>
     </div>
-    <%@ include file="IndexPartial.jsp" %>
+    <div class="search-list-container">
+        <%@ include file="IndexPartial.jsp" %>
+
+    </div>
 </form:form>
 <%--<soul:import res="site/user/Index"/>--%>
 
