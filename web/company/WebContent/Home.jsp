@@ -18,7 +18,7 @@
 
     <title>${siteName}</title>
 </head>
-<body class="skinGreen" id="mainFrame">
+<body class="skinGreen">
 <div class="topBox widthAuto" id="topBox">
     <div class="jpBox" id="scrollDiv">
         <ul id="autoOddsList" style="margin-top: 0px;">
@@ -120,7 +120,7 @@
             href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=9">正碼、總和</a><b>|</b><a
             href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=10">連碼</a></div>
 </div>
-<div id="mainFrameContainer">
+<div id="mainFrame">
     <!--//region your codes 1-->
 
 </div>
@@ -132,8 +132,9 @@
 </script>
     <lb:validateRule/>
 <script type="text/javascript">
-    curl(['site/home/Top'], function(Page) {
+    curl(['site/home/Top','lb/home/TopPage'], function(Page,TopPage) {
         page = new Page();
+        topPage = new TopPage();
     });
 </script>
 <%--<script type="text/javascript" src="${resRoot}/js/home/Top.js"></script>--%>

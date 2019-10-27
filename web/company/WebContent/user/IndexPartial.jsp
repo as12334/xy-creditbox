@@ -96,13 +96,16 @@
         </div>
     </div>
 </div>
-<div class="shell-bottom">
-    <div class="shell-bottom-left"></div>
-    <div class="shell-bottom-right"></div>
-    <div class="shell-bottom-content" id="shell_pageControl">
-        <div class="pager" id="data-page">共 2 條記錄 分頁：1/1頁&nbsp;&nbsp;&nbsp;上一頁...『&nbsp;<span
-                class="font_c">1</span>&nbsp;』...下一頁&nbsp;&nbsp;<input type="text" value="1" name="txtPager"
-                                                                       id="txtPager" class="GOtext"></div>
-    </div>
-</div>
+<%@ include file="/common/Pagination.jsp" %>
+
+
+<%--<div class="shell-bottom">--%>
+    <%--<div class="shell-bottom-left"></div>--%>
+    <%--<div class="shell-bottom-right"></div>--%>
+    <%--<div class="shell-bottom-content" id="shell_pageControl">--%>
+        <%--<div class="pager" id="data-page">共 2 條記錄 分頁：1/1頁&nbsp;&nbsp;&nbsp;上一頁...『&nbsp;<span--%>
+                <%--class="font_c">1</span>&nbsp;』...下一頁&nbsp;&nbsp;<input type="text" value="1" name="txtPager"--%>
+                                                                       <%--id="txtPager" class="GOtext"></div>--%>
+    <%--</div>--%>
+<%--</div>--%>
 <!--//endregion your codes 1-->
