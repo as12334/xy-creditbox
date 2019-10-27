@@ -93,32 +93,31 @@
         <!-- 1级导航栏 -->
         <div class="menu">
             <ul id="menuUl">
-                <li data-action="immediate" class="on">即時注單</li>
-                <li data-action="1">用戶管理</li>
-                <li data-action="2">系統管理</li>
-                <li data-action="3">註單管理</li>
-                <li data-action="4">开奖管理</li>
-                <li data-action="6">個人管理</li>
-                <li data-action="5">報表查詢</li>
-                <li data-action="7" class="">歷史開獎</li>
-                <li data-action="8" class="">站内消息</li>
-                <li data-action="out">安全退出</li>
+                <%--<li data-action="immediate" class="on">即時注單</li>--%>
+                <%--<li data-action="1">用戶管理</li>--%>
+                <%--<li data-action="2">系統管理</li>--%>
+                <%--<li data-action="3">註單管理</li>--%>
+                <%--<li data-action="4">开奖管理</li>--%>
+                <%--<li data-action="6">個人管理</li>--%>
+                <%--<li data-action="5">報表查詢</li>--%>
+                <%--<li data-action="7" class="">歷史開獎</li>--%>
+                <%--<li data-action="8" class="">站内消息</li>--%>
+                <%--<li data-action="out">安全退出</li>--%>
             </ul>
         </div>
     </div>
     <!-- 2级导航栏 -->
-    <div class="navListBox" id="navListBox"><a href="javascript:void(0);"
-                                               data-action="gamedata&amp;gameIndex=2&amp;type=1"
-                                               class="onBtn">第一球</a><b>|</b><a href="javascript:void(0);"
-                                                                               data-action="gamedata&amp;gameIndex=2&amp;type=2">第二球</a><b>|</b><a
-            href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=3">第三球</a><b>|</b><a
-            href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=4">第四球</a><b>|</b><a
-            href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=5">第五球</a><b>|</b><a
-            href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=6">第六球</a><b>|</b><a
-            href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=7">第七球</a><b>|</b><a
-            href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=8">第八球</a><b>|</b><a
-            href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=9">正碼、總和</a><b>|</b><a
-            href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=10">連碼</a></div>
+    <div class="navListBox" id="navListBox">
+        <%--<a href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=1" class="onBtn">第一球</a><b>|</b>--%>
+        <%--<a href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=2">第二球</a><b>|</b><a--%>
+            <%--href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=3">第三球</a><b>|</b><a--%>
+            <%--href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=4">第四球</a><b>|</b><a--%>
+            <%--href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=5">第五球</a><b>|</b><a--%>
+            <%--href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=6">第六球</a><b>|</b><a--%>
+            <%--href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=7">第七球</a><b>|</b><a--%>
+            <%--href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=8">第八球</a><b>|</b><a--%>
+            <%--href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=9">正碼、總和</a><b>|</b><a--%>
+            <%--href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=10">連碼</a></div>--%>
 </div>
 <div id="mainFrame">
     <!--//region your codes 1-->
@@ -132,7 +131,7 @@
 </script>
     <lb:validateRule/>
 <script type="text/javascript">
-    curl(['site/home/Top','lb/home/TopPage'], function(Page,TopPage) {
+    curl(['site/home/Top','lb/xy/TopPage'], function(Page,TopPage) {
         page = new Page();
         topPage = new TopPage();
     });
