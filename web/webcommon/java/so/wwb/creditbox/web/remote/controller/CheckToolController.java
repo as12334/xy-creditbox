@@ -54,20 +54,18 @@ public class CheckToolController {
      * 2.创建总代账号、所有子账号时，应做全匹配
      *
      * @param username 用户名 not null
-     * @param userType 用户类型 not null
-     * @param ownerId  上级ID not null
+//     * @param userType 用户类型 not null
+//     * @param ownerId  上级ID not null
      * @return
      */
     @RequestMapping("/checkUsername")
     @ResponseBody
-    public Boolean checkUsername(@RequestParam("result.username") String username,
-                                 @RequestParam("result.userType") String userType,
-                                 @RequestParam("result.ownerId") Integer ownerId) {
+    public Boolean checkUsername(@RequestParam("result.username") String username) {
         SysUserExtendVo objectVo = new SysUserExtendVo();
         objectVo.setResult(new SysUserExtend());
-        objectVo.getResult().setUsername(username);
-        objectVo.getResult().setUserType(userType);
-        objectVo.getResult().setOwnerId(ownerId);
+        objectVo.getResult().setUsername(username +"@%");
+//        objectVo.getResult().setUserType(userType);
+//        objectVo.getResult().setOwnerId(ownerId);
         return SysParamTool.checkManageUsername(objectVo);
     }
 

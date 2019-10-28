@@ -336,7 +336,7 @@ public class SysParamTool {
      * @return true：不存在； false：已存在
      */
     public static boolean checkManageUsername(SysUserExtendVo objectVo) {
-        return ServiceTool.sysUserExtendService().countUserName(addManageUsernameSuffix(objectVo)) == 0;
+        return ServiceTool.sysUserExtendService().countUserName(objectVo.getResult().getUsername()) == 0;
     }
 
     /**

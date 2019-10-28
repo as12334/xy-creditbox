@@ -35,6 +35,7 @@ import so.wwb.creditbox.web.tools.token.Token;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -67,8 +68,12 @@ public class SysUserExtendController extends BaseCrudController<ISysUserExtendSe
         int i = (Integer.valueOf(search.getUserType()) - 1) * HidTool.FLAG;
         search.setHidLength(i);
         search.setHid(SessionManager.getSysUserExtend().getHid());
+        //查詢上一級UserType 要向上一級
+        search.setUserType((Integer.valueOf(search.getUserType())-1)+"");
         objectVo = this.getService().searchLevelUser(objectVo);
-
+        //恢復userType
+        search.setUserType((Integer.valueOf(search.getUserType())+1)+"");
+        objectVo.setSearch(search);
         objectVo.setValidateRule(JsRuleCreator.create(AddSysUserExtendForm.class, "result"));
         model.addAttribute("command", objectVo);
         return getViewBasePath() + "/Edit";
@@ -81,7 +86,6 @@ public class SysUserExtendController extends BaseCrudController<ISysUserExtendSe
 
         if (result.hasErrors()) {
             objectVo.setSuccess(false);
-            objectVo.setErrMsg(result.getAllErrors().get(0).getDefaultMessage());
             LOG.error("参数错误，保存失败");
             return this.getVoMessage(objectVo);
         }
@@ -156,6 +160,21 @@ public class SysUserExtendController extends BaseCrudController<ISysUserExtendSe
         objectVo.getResult().setRegisterIpDictCode(SessionManagerCommon.getIpDictCode());
         objectVo.getResult().setStatus(SysUserStatus.NORMAL.getCode());
         objectVo.getResult().setBuiltIn(false);
+    }
+
+    /**
+     * 獲取上級信息
+     * @param vo
+     * @return
+     */
+    @RequestMapping("/getSubInfo")
+    @ResponseBody
+    private Map getSubInfo(SysUserExtendVo vo){
+        Map map = new HashMap<>();
+        vo = this.getService().get(vo);
+        map.put("shareCredits",vo.getResult().getCredits());
+        map.put("superiorOccupy",vo.getResult().getStintOccupy());
+        return map;
     }
     //endregion your codes 3
 

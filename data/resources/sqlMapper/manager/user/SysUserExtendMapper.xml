@@ -89,7 +89,7 @@
 
 
     <select id="searchLevelUser" resultMap="TABLE:sys_user_extend">
-        SELECT  * from  sys_user_extend WHERE hid like CONCAT('',#{hid},'%')  AND length(hid)>= #{hidLength}
+        SELECT  * from  sys_user_extend WHERE hid like CONCAT('',#{hid},'%')  AND user_type = #{userType}
     </select>
 
     <sql id="Base_Column_List">
@@ -150,7 +150,7 @@
 
     <!--系统账号-->
     <select id="countUserName" parameterType="string" resultType="long">
-      SELECT COUNT(1)::bigint FROM sys_user_extend WHERE username = #{username}
+      SELECT COUNT(1)::bigint FROM sys_user_extend WHERE username LIKE #{username}
     </select>
     <!--玩家账号-->
     <select id="countPlayerName" parameterType="so.wwb.creditbox.model.manager.user.so.SysUserExtendSo" resultType="long">

@@ -25,15 +25,11 @@
                       name="search.username">
             <span class="text-btn-s" >
                 <soul:button target="query" text="" opType="function">查询</soul:button>
-                <%--<a title="搜索" data-rel="{&quot;precall&quot;:&quot;&quot;,&quot;callback&quot;:&quot;&quot;,post:&quot;&quot;,opType:&quot;function&quot;,dataType:&quot;&quot;,target:&quot;query&quot;,confirm:&quot;&quot;,text:&quot;搜索&quot;,size:&quot;&quot; }">--%>
-                        <%--<i class="fa fa-search "></i>--%>
-                            <%--<spen>搜索</spen>--%>
-
-
-                <%--</a>--%>
             </span>
-            <span class="text-btn-s" id="magAdd"
-                  data-url="/sysUserExtend/createManagerUser.html?search.userType=${command.search.userType}">新增</span>
+            <span class="text-btn-s" >
+                <a nav-target="mainFrame" href="/sysUserExtend/createManagerUser.html?search.userType=${command.search.userType}">新增</a>
+                 </span>
+
         </div>
     </div>
     <div class="search-list-container">
