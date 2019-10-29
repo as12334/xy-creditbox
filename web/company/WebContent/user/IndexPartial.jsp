@@ -1,4 +1,4 @@
-<%--@elvariable id="command" type="so.wwb.creditbox.model.company.user.vo.VUserDetailListVo"--%>
+<%--@elvariable id="command" type="so.wwb.creditbox.model.company.user.vo.VSiteUserListVo"--%>
 <%@page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ include file="/include/include.inc.jsp" %>
 
@@ -12,7 +12,7 @@
                         <thead>
                         <tr>
                             <th>在線</th>
-                            <th>上級賬號</th>
+                            <th>上級${views.page[command.search.userType]}</th>
                             <th>占成</th>
                             <th>分公司</th>
                             <th>暱稱</th>

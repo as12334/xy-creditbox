@@ -26,4 +26,14 @@ public class CommonTool {
         DataContext.setDataSource(bossDataSource);
     }
 
+    /**
+     * 獲取上級的userType
+     * @param userType
+     * @return
+     */
+    public static Integer getSuperUserType(String userType){
+        return Integer.valueOf(userType) - 1;
+    }
+
+
 }

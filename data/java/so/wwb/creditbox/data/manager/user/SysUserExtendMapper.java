@@ -94,10 +94,7 @@ public interface SysUserExtendMapper extends IBaseMapper<SysUserExtend, Integer>
 
     List<Map<String,Object>> queryOwnerIdList(SysUserExtendSo so);
 
-    List<SysUserExtend> searchLevelUser(SysUserExtendSo search);
 
-    void doInitUserLotteryOdd(SysUserExtend user);
-    void doInitUserLotteryRebate(SysUserExtend user);
 
     //endregion your codes 2
 

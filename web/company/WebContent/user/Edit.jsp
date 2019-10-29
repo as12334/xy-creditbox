@@ -1,4 +1,4 @@
-<%--@elvariable id="command" type="so.wwb.creditbox.model.company.user.vo.VUserDetailListVo"--%>
+<%--@elvariable id="command" type="so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo"--%>
 <%@page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ include file="/include/include.inc.jsp" %>
 <%--@elvariable id="command" type="so.wwb.creditbox.model.company.user.vo.VUserDetailListVo"--%>
@@ -9,7 +9,7 @@
 <form:form method="post" id="editUserForm">
     <lb:validateRule/>
 
-    <c:set var="superName" value="${views.page[command.superUserList[0].subsysCode]}"></c:set>
+    <c:set var="superUserTypeName" value='${views.page["UserTypeEnum.".concat(command.search.ownerUserType)]}'></c:set>
 
 
     <input hidden name="result.userType" value="${command.search.userType}">
@@ -18,7 +18,7 @@
     <div class="shell-top" id="shell_top">
         <div class="shell-top-left"></div>
         <div class="shell-title-icon">
-            <span id="shell_title">總代理 -> 新增</span>
+            <span id="shell_title">${views.page["UserTypeEnum.".concat(command.search.userType)]} -> 新增</span>
         </div>
         <div class="shell-top-right"></div>
     </div>
@@ -34,7 +34,7 @@
                             <tbody>
                             <tr>
                                 <td class="w25 bc txt-right">上級<span
-                                        name="shareRole">${superName}</span>:
+                                        name="shareRole">${superUserTypeName}</span>:
                                 </td>
                                 <td class="txt-left"><select name="result.ownerId">
                                     <c:forEach items="${command.superUserList}" var="result">
@@ -90,7 +90,7 @@
                             </tr>
                             <tr>
                                 <td class="w25 bc txt-right"><span
-                                        name="shareRole">${views.page[command.superUserList[0].subsysCode]}</span>占成:
+                                        name="shareRole">${superUserTypeName}</span>占成:
                                 </td>
                                 <td class="txt-left">
                                     <input type="text" name="result.superiorOccupy" autocomplete="off" maxlength="3" value="0" class="text-input sw50" reg="/^[0-9]{1,3}$/" mesg="“上级占成” 由1-3位正整数组成。">

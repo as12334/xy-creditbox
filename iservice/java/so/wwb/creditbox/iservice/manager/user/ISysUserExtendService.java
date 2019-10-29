@@ -54,7 +54,7 @@ public interface ISysUserExtendService extends IBaseService<SysUserExtendListVo,
      */
     SysUserExtendVo updateSysUser(SysUserExtendVo userExtendVo, SysUserExtend operator);
 
-    String getHid(String Thid);
+//    String getHid(String Thid);
 
     /**
      * 系统账号同名数
@@ -136,14 +136,6 @@ public interface ISysUserExtendService extends IBaseService<SysUserExtendListVo,
 //
     boolean updateUserInfoOnly(SysUserExtend userExtend, String... var2);
 
-    SysUserExtendVo searchLevelUser(SysUserExtendVo objectVo);
-
-    SysUserExtendVo saveManagerUser(SysUserExtendVo objectVo);
-
-
-    void doInitUserLotteryOdd(SysUserExtendVo objectVo);
-
-    void doInitUserLotteryRebate(SysUserExtendVo objectVo);
 //
 //    boolean insertSysUserExtend(SysUserExtend userExtend);
 //

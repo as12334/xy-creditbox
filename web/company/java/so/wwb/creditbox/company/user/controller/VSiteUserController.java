@@ -11,24 +11,29 @@ import org.soul.model.security.privilege.po.SysUserStatus;
 import org.soul.web.controller.BaseCrudController;
 import org.soul.web.validation.form.annotation.FormModel;
 import org.soul.web.validation.form.js.JsRuleCreator;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import so.wwb.creditbox.common.dubbo.ServiceTool;
 import so.wwb.creditbox.company.session.SessionManager;
 import so.wwb.creditbox.company.user.form.AddSysUserExtendForm;
-import so.wwb.creditbox.company.user.form.SysUserExtendSearchForm;
-import so.wwb.creditbox.iservice.manager.user.ISysUserExtendService;
+import so.wwb.creditbox.iservice.company.user.IVSiteUserService;
+import so.wwb.creditbox.model.company.user.po.VSiteUser;
+import so.wwb.creditbox.model.company.user.vo.VSiteUserListVo;
+import so.wwb.creditbox.model.company.user.vo.VSiteUserVo;
+import so.wwb.creditbox.company.user.form.VSiteUserSearchForm;
+import so.wwb.creditbox.company.user.form.VSiteUserForm;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import so.wwb.creditbox.model.enums.base.SubSysCodeEnum;
-import so.wwb.creditbox.model.enums.lottery.*;
+import so.wwb.creditbox.model.enums.lottery.ModeSelectionEnum;
+import so.wwb.creditbox.model.enums.lottery.SetOddsEnum;
+import so.wwb.creditbox.model.enums.lottery.TestAccountEnum;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.so.SysUserExtendSo;
-import so.wwb.creditbox.model.manager.user.vo.SysUserExtendListVo;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
+import so.wwb.creditbox.utility.CommonTool;
 import so.wwb.creditbox.utility.DesTool;
 import so.wwb.creditbox.web.passport.captcha.GoogleAuthenticator;
 import so.wwb.creditbox.web.tools.SessionManagerCommon;
@@ -41,16 +46,16 @@ import java.util.Map;
 
 
 /**
- * 用户管理/详细视图 - Fei  jeremy控制器
+ * 控制器
  *
  * @author block
- * @time 2019-10-16 18:58:21
+ * @time 2019-10-29 20:12:43
  */
 @Controller
 //region your codes 1
-@RequestMapping("/sysUserExtend")
-public class SysUserExtendController extends BaseCrudController<ISysUserExtendService, SysUserExtendListVo, SysUserExtendVo, SysUserExtendSearchForm, AddSysUserExtendForm, SysUserExtend, Integer> {
-    private static final Log LOG = LogFactory.getLog(SysUserExtendController.class);
+@RequestMapping("/vSiteUser")
+public class VSiteUserController extends BaseCrudController<IVSiteUserService, VSiteUserListVo, VSiteUserVo, VSiteUserSearchForm, VSiteUserForm, VSiteUser, Integer> {
+    private static final Log LOG = LogFactory.getLog(VSiteUserController.class);
 
 //endregion your codes 1
 
@@ -65,16 +70,18 @@ public class SysUserExtendController extends BaseCrudController<ISysUserExtendSe
     @RequestMapping("/createManagerUser")
     @Token(generate = true)
     public String create(SysUserExtendVo objectVo, Model model) {
-        SysUserExtendSo search = objectVo.getSearch();
-        int i = (Integer.valueOf(search.getUserType()) - 1) * HidTool.FLAG;
-        search.setHidLength(i);
-        search.setHid(SessionManager.getSysUserExtend().getHid());
-        //查詢上一級UserType 要向上一級
-        search.setUserType((Integer.valueOf(search.getUserType())-1)+"");
+
+
+        //查詢上級用戶  begin
+        objectVo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
+        //如果是查詢分公司的上級，要查詢管理庫
+        if(UserTypeEnum.BRANCH.getCode().equals(objectVo.getSearch().getUserType())){
+            objectVo.setDataSourceId(Const.BASE_DATASOURCE_ID);
+        }
         objectVo = this.getService().searchLevelUser(objectVo);
-        //恢復userType
-        search.setUserType((Integer.valueOf(search.getUserType())+1)+"");
-        objectVo.setSearch(search);
+        //查詢上級用戶 end
+
+
         objectVo.setValidateRule(JsRuleCreator.create(AddSysUserExtendForm.class, "result"));
         model.addAttribute("command", objectVo);
         return getViewBasePath() + "/Edit";
@@ -154,6 +161,7 @@ public class SysUserExtendController extends BaseCrudController<ISysUserExtendSe
         SysUserExtend owner = ServiceTool.sysUserExtendService().get(ownerVo).getResult();
         objectVo.getResult().setHid(this.getService().getHid(owner.getHid()));
 
+        objectVo.getResult().setParentName(owner.getUsername());
         objectVo.getResult().setSiteId(owner.getSiteId());
         objectVo.getResult().setDefaultCurrency(owner.getDefaultCurrency());
         objectVo.getResult().setDefaultTimezone(owner.getDefaultTimezone());
@@ -187,7 +195,7 @@ public class SysUserExtendController extends BaseCrudController<ISysUserExtendSe
     @ResponseBody
     private Map getSubInfo(SysUserExtendVo vo){
         Map map = new HashMap<>();
-        vo = this.getService().get(vo);
+        vo = ServiceTool.sysUserExtendService().get(vo);
         map.put("shareCredits",vo.getResult().getCredits());
         map.put("superiorOccupy",vo.getResult().getStintOccupy());
         return map;

@@ -15,6 +15,7 @@
         <result column="general" property="general"/>
         <result column="test_account" property="testAccount"/>
         <result column="set_odds" property="setOdds"/>
+        <result column="parent_name" property="parentName"/>
     </resultMap>
 
     <resultMap id="TABLE:sys_user" type="org.soul.model.security.privilege.po.SysUser">
@@ -88,9 +89,7 @@
     </resultMap>
 
 
-    <select id="searchLevelUser" resultMap="TABLE:sys_user_extend">
-        SELECT  * from  sys_user_extend WHERE hid like CONCAT('',#{hid},'%')  AND user_type = #{userType}
-    </select>
+
 
     <sql id="Base_Column_List">
         id, username, password, dept_id, status, create_user, create_time, update_user, update_time, subsys_code, user_type,built_in,

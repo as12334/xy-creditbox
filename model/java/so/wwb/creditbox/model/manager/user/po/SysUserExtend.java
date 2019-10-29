@@ -1,6 +1,9 @@
 package so.wwb.creditbox.model.manager.user.po;
 
+import org.apache.xmlbeans.UserType;
 import org.soul.commons.bean.IEntity;
+import org.soul.commons.lang.string.StringTool;
+import org.soul.commons.support.Nonpersistent;
 import org.soul.model.security.privilege.po.SysUser;
 
 
@@ -60,6 +63,10 @@ public class SysUserExtend extends SysUser {
 	private String testAccount;
 	/** 赔率设置 1:启用  0:禁用 */
 	private String setOdds;
+
+
+	/** 上級用戶名 */
+	private String parentName;
 	//endregion
 
 	
@@ -155,10 +162,31 @@ public class SysUserExtend extends SysUser {
 	public void setSetOdds(String value) {
 		this.setOdds = value;
 	}
+
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
+
 	//endregion
 
 	//region your codes 2
+	private String ownerUserType;
 
+	@Nonpersistent
+	public String getOwnerUserType() {
+		if(StringTool.isNotBlank(this.getUserType())){
+			return (Integer.valueOf(this.getUserType())-1)+"";
+		}
+		return ownerUserType;
+	}
+
+	public void setOwnerUserType(String ownerUserType) {
+		this.ownerUserType = ownerUserType;
+	}
 	//endregion your codes 2
 
 }

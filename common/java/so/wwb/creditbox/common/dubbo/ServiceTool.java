@@ -16,6 +16,7 @@ import org.soul.iservice.sys.ISysParamService;
 import org.soul.iservice.test.IDbValidService;
 import so.wwb.creditbox.iservice.common.IMessageService;
 import so.wwb.creditbox.iservice.company.site.ISiteSysParamService;
+import so.wwb.creditbox.iservice.company.user.IVSiteUserService;
 import so.wwb.creditbox.iservice.manager.common.*;
 import so.wwb.creditbox.iservice.manager.lottery.*;
 import so.wwb.creditbox.iservice.manager.message.ISystemAnnouncementService;
@@ -45,6 +46,9 @@ public class ServiceTool {
         return getService(IVSiteMasterManageService.class);
     }
 
+    public static IVSiteUserService vSiteUserService() {
+        return getService(IVSiteUserService.class);
+    }
 
     /**
      * 返回用户管理/详细视图 - Fei  jeremy远程服务实例

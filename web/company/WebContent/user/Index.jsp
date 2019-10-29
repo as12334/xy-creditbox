@@ -1,7 +1,6 @@
-<%--@elvariable id="command" type="so.wwb.creditbox.model.company.user.vo.VUserDetailListVo"--%>
+<%--@elvariable id="command" type="so.wwb.creditbox.model.company.user.vo.VSiteUserListVo"--%>
 <%@page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ include file="/include/include.inc.jsp" %>
-<%--@elvariable id="command" type="so.wwb.creditbox.model.company.user.vo.VUserDetailListVo"--%>
 
 <!--//region your codes 1-->
 
@@ -9,6 +8,7 @@
 <form:form id="userListForm" action="${root}/sysUserExtend/list.html" method="post">
 
 
+    <<input hidden name="search.userType" value="${command.search.userType}">
     <div class="shell-top" id="shell_top">
         <div class="shell-top-left"></div>
         <div class="shell-title-icon">
@@ -27,7 +27,7 @@
                 <soul:button target="query" text="" opType="function">查询</soul:button>
             </span>
             <span class="text-btn-s" >
-                <a nav-target="mainFrame" href="/sysUserExtend/createManagerUser.html?search.userType=${command.search.userType}">新增</a>
+                <a nav-target="mainFrame" href="/vSiteUser/createManagerUser.html?search.userType=${command.search.userType}">新增</a>
                  </span>
 
         </div>

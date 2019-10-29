@@ -280,24 +280,6 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
 //        return code;
 //    }
 //
-    /**
-     * 生成用户的唯一标示
-     * @param Thid 上级的
-     * @return
-     */
-    @Override
-    public String getHid(String Thid) {
-        String hid = null;
-        boolean flag = true;
-        while (flag) {
-            hid = StringTool.upperCase(RandomStringTool.random(8, true, true));
-            long count = mapper.count(Criteria.add(SysUserExtend.PROP_HID, Operator.EQ, Thid + hid));
-            if (count == 0) {
-                flag = false;
-            }
-        }
-        return Thid + hid;
-    }
 
     private String getKey() {
         String key = null;
@@ -648,37 +630,6 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
         return this.mapper.updateOnly(userExtend,var2);
     }
 
-    @Override
-    public SysUserExtendVo searchLevelUser(SysUserExtendVo objectVo) {
-        objectVo.setSuperUserList(mapper.searchLevelUser(objectVo.getSearch()));
-        return objectVo;
-    }
-
-    @Override
-    public SysUserExtendVo saveManagerUser(SysUserExtendVo objectVo) {
-        SysUserExtend user = objectVo.getResult();
-        user.setCreateTime(new Date());
-        user.setKey(getKey());
-        user.setPassword(AuthTool.md5SysUserPassword(user.getPassword(), user.getUsername())); //账户密码加密
-        user.setPermissionPwd(AuthTool.md5SysUserPermission(user.getPermissionPwd(), user.getUsername()));//安全密码加密
-        boolean isSuccess = this.mapper.insert(user);
-
-        if (!isSuccess) {
-            objectVo.setSuccess(false);
-            return objectVo;
-        }
-        objectVo.setResult(user);
-        return objectVo;
-    }
-
-    @Override
-    public void doInitUserLotteryOdd(SysUserExtendVo objectVo) {
-        mapper.doInitUserLotteryOdd(objectVo.getResult());
-    }
-    @Override
-    public void doInitUserLotteryRebate(SysUserExtendVo objectVo) {
-        mapper.doInitUserLotteryRebate(objectVo.getResult());
-    }
 
 
 //
