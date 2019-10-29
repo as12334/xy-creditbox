@@ -662,13 +662,22 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
         user.setPassword(AuthTool.md5SysUserPassword(user.getPassword(), user.getUsername())); //账户密码加密
         user.setPermissionPwd(AuthTool.md5SysUserPermission(user.getPermissionPwd(), user.getUsername()));//安全密码加密
         boolean isSuccess = this.mapper.insert(user);
-        mapper.doInitUserLottery(user);
+
         if (!isSuccess) {
             objectVo.setSuccess(false);
             return objectVo;
         }
         objectVo.setResult(user);
         return objectVo;
+    }
+
+    @Override
+    public void doInitUserLotteryOdd(SysUserExtendVo objectVo) {
+        mapper.doInitUserLotteryOdd(objectVo.getResult());
+    }
+    @Override
+    public void doInitUserLotteryRebate(SysUserExtendVo objectVo) {
+        mapper.doInitUserLotteryRebate(objectVo.getResult());
     }
 
 

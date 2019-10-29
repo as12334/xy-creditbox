@@ -229,4 +229,12 @@
         SELECT * FROM f_site_init_lottery(#{siteId},#{hid});
     </select>
 
+    <select id="doInitUserLotteryOdd" parameterType="so.wwb.creditbox.model.manager.user.po.SysUserExtend" resultMap="TABLE:sys_user">
+        SELECT * FROM f_init_site_lottery_odd(#{siteId},#{hid});
+    </select>
+
+    <select id="doInitUserLotteryRebate" parameterType="so.wwb.creditbox.model.manager.user.po.SysUserExtend" resultMap="TABLE:sys_user">
+        SELECT * FROM f_init_site_lottery_rebate(#{siteId},#{hid});
+    </select>
+
 </mapper>

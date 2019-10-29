@@ -139,6 +139,11 @@ public interface ISysUserExtendService extends IBaseService<SysUserExtendListVo,
     SysUserExtendVo searchLevelUser(SysUserExtendVo objectVo);
 
     SysUserExtendVo saveManagerUser(SysUserExtendVo objectVo);
+
+
+    void doInitUserLotteryOdd(SysUserExtendVo objectVo);
+
+    void doInitUserLotteryRebate(SysUserExtendVo objectVo);
 //
 //    boolean insertSysUserExtend(SysUserExtend userExtend);
 //

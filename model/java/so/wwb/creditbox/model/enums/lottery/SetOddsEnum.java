@@ -9,8 +9,8 @@ import org.soul.commons.enums.ICodeEnum;
 public enum SetOddsEnum implements ICodeEnum {
 
     //赔率设置 1:启用  0:禁用
-    OFF("0", "启用"),
-    ON("1", "禁用");
+    OFF("0", "禁用"),
+    ON("1", "启用");
 
     private String code;
     private String trans;
