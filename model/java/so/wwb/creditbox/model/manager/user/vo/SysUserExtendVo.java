@@ -44,10 +44,6 @@ public class SysUserExtendVo extends BaseObjectVo<SysUserExtend, SysUserExtendSo
     private SysUserExtend sysUserExtend;
 
 
-    /**
-     * 上级用户
-     */
-    private List<SysUserExtend> superUserList;
 
 
     //退水点数
@@ -202,14 +198,6 @@ public class SysUserExtendVo extends BaseObjectVo<SysUserExtend, SysUserExtendSo
 
     public void setSysUserExtend(SysUserExtend sysUserExtend) {
         this.sysUserExtend = sysUserExtend;
-    }
-
-    public List<SysUserExtend> getSuperUserList() {
-        return superUserList;
-    }
-
-    public void setSuperUserList(List<SysUserExtend> superUserList) {
-        this.superUserList = superUserList;
     }
 
     public Double getWater() {

@@ -69,14 +69,14 @@ public class VSiteUserController extends BaseCrudController<IVSiteUserService, V
     //region your codes 3
     @RequestMapping("/createManagerUser")
     @Token(generate = true)
-    public String create(SysUserExtendVo objectVo, Model model) {
+    public String create(VSiteUserVo objectVo, Model model) {
 
 
         //查詢上級用戶  begin
         objectVo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
         //如果是查詢分公司的上級，要查詢管理庫
         if(UserTypeEnum.BRANCH.getCode().equals(objectVo.getSearch().getUserType())){
-            objectVo.setDataSourceId(Const.BASE_DATASOURCE_ID);
+            objectVo._setDataSourceId(Const.BASE_DATASOURCE_ID);
         }
         objectVo = this.getService().searchLevelUser(objectVo);
         //查詢上級用戶 end

@@ -18,7 +18,8 @@ public interface IVSiteUserService extends IBaseService<VSiteUserListVo, VSiteUs
 //endregion your codes 1
 
     //region your codes 2
-    SysUserExtendVo searchLevelUser(SysUserExtendVo objectVo);
+
+    VSiteUserVo searchLevelUser(VSiteUserVo objectVo);
 
     SysUserExtendVo saveManagerUser(SysUserExtendVo objectVo);
 

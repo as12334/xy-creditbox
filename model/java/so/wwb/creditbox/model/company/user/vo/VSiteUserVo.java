@@ -5,6 +5,9 @@ import org.soul.model.common.AbstractQuery;
 import org.soul.model.common.BaseObjectVo;
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
 import so.wwb.creditbox.model.company.user.so.VSiteUserSo;
+import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
+
+import java.util.List;
 
 
 /**
@@ -19,6 +22,15 @@ public class VSiteUserVo extends BaseObjectVo<VSiteUser, VSiteUserSo, VSiteUserV
 
     //region your codes 5
     private static final long serialVersionUID = 6694474193966734089L;
+    private List<VSiteUser> superUserList;
+
+    public void setSuperUserList(List<VSiteUser> superUserList) {
+        this.superUserList = superUserList;
+    }
+
+    public List<VSiteUser> getSuperUserList() {
+        return superUserList;
+    }
     //endregion your codes 5
 
     /**

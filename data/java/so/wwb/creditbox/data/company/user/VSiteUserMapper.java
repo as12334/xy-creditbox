@@ -2,6 +2,7 @@ package so.wwb.creditbox.data.company.user;
 
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
 import org.soul.data.rdb.mybatis.IBaseQueryMapper;
+import so.wwb.creditbox.model.company.user.so.VSiteUserSo;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.so.SysUserExtendSo;
 
@@ -19,7 +20,7 @@ public interface VSiteUserMapper extends IBaseQueryMapper<VSiteUser, Integer> {
 //endregion your codes 1
 
     //region your codes 2
-    List<SysUserExtend> searchLevelUser(SysUserExtendSo search);
+    List<VSiteUser> searchLevelUser(VSiteUserSo search);
 
     void doInitUserLotteryOdd(SysUserExtend user);
     void doInitUserLotteryRebate(SysUserExtend user);

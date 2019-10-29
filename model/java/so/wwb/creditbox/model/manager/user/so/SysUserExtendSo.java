@@ -2,6 +2,7 @@ package so.wwb.creditbox.model.manager.user.so;
 
 
 import org.soul.commons.lang.string.StringTool;
+import org.soul.commons.support.Nonpersistent;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 
 import java.util.ArrayList;
@@ -62,6 +63,7 @@ public class SysUserExtendSo extends SysUserExtend {
     private Integer merchantId;
     private boolean checkBossUsb;
     private String code;
+
 
 
     public Integer getRankId() {
@@ -238,6 +240,8 @@ public class SysUserExtendSo extends SysUserExtend {
     public void setHidLength(Integer hidLength) {
         this.hidLength = hidLength;
     }
+
+
 
 
     //endregion your codes 2

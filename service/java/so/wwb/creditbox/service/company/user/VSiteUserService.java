@@ -34,7 +34,7 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
     private SysUserMapper sysUserMapper;
 
     @Override
-    public SysUserExtendVo searchLevelUser(SysUserExtendVo objectVo) {
+    public VSiteUserVo searchLevelUser(VSiteUserVo objectVo) {
         objectVo.setSuperUserList(mapper.searchLevelUser(objectVo.getSearch()));
         return objectVo;
     }

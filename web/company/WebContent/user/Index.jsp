@@ -8,7 +8,7 @@
 <form:form id="userListForm" action="${root}/sysUserExtend/list.html" method="post">
 
 
-    <<input hidden name="search.userType" value="${command.search.userType}">
+    <input hidden name="search.userType" value="${command.search.userType}">
     <div class="shell-top" id="shell_top">
         <div class="shell-top-left"></div>
         <div class="shell-title-icon">
