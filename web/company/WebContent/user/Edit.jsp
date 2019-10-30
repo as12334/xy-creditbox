@@ -1,6 +1,7 @@
 <%@page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ include file="/include/include.inc.jsp" %>
 <%--@elvariable id="command" type="so.wwb.creditbox.model.company.user.vo.VSiteUserVo"--%>
+<%--@elvariable id="userTypeEnum" type="so.wwb.creditbox.model.enums.user.UserTypeEnum"--%>
 
 <!--//region your codes 1-->
 
@@ -74,7 +75,7 @@
                                     <label class="label-box"><input type="radio" name="result.manualAutoShipments" value="0">禁用</label>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr ${command.search.userType == "4"?"":"hidden"}>
                                 <td class="w25 bc txt-right">剩餘成數:</td>
                                 <td class="txt-left">
                                     <label class="label-box"><input type="radio" name="result.breakpoint" checked="checked" value="1">總監</label>
@@ -119,8 +120,8 @@
                             <tr>
                                 <td class="w25 bc txt-right">操盤:</td>
                                 <td class="txt-left">
-                                    <label class="label-box"> <input type="radio" name="result.setOdds" checked="checked" value="1">啟用</label>
-                                    <label class="label-box"><input type="radio" name="result.setOdds"  value="0">禁用</label>
+                                    <label class="label-box"><input type="radio" name="result.setOdds"  value="1">啟用</label>
+                                    <label class="label-box"><input type="radio" name="result.setOdds"  value="0" checked="checked">禁用</label>
                                 </td>
                             </tr>
 

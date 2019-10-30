@@ -4,11 +4,11 @@ import org.soul.commons.lang.string.RandomStringTool;
 import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.query.Criteria;
 import org.soul.commons.query.enums.Operator;
-import org.soul.data.mapper.security.privilege.SysUserMapper;
 import org.soul.service.support.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import so.wwb.creditbox.common.utility.security.AuthTool;
 import so.wwb.creditbox.data.company.user.VSiteUserMapper;
+import so.wwb.creditbox.data.manager.user.SysUserExtendMapper;
 import so.wwb.creditbox.iservice.company.user.IVSiteUserService;
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
 import so.wwb.creditbox.model.company.user.vo.VSiteUserListVo;
@@ -31,7 +31,7 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
 
     //region your codes 2
     @Autowired
-    private SysUserMapper sysUserMapper;
+    private SysUserExtendMapper sysUserExtendMapper;
 
     @Override
     public VSiteUserVo searchLevelUser(VSiteUserVo objectVo) {
@@ -46,7 +46,7 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
         user.setKey(getKey());
         user.setPassword(AuthTool.md5SysUserPassword(user.getPassword(), user.getUsername())); //账户密码加密
         user.setPermissionPwd(AuthTool.md5SysUserPermission(user.getPermissionPwd(), user.getUsername()));//安全密码加密
-        boolean isSuccess =sysUserMapper.insert(user);
+        boolean isSuccess = sysUserExtendMapper.insert(user);
 
         if (!isSuccess) {
             objectVo.setSuccess(false);
@@ -66,7 +66,7 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
         boolean flag = true;
         while (flag) {
             hid = StringTool.upperCase(RandomStringTool.random(8, true, true));
-            long count = mapper.count(Criteria.add(SysUserExtend.PROP_HID, Operator.EQ, Thid + hid));
+            long count = sysUserExtendMapper.count(Criteria.add(SysUserExtend.PROP_HID, Operator.EQ, Thid + hid));
             if (count == 0) {
                 flag = false;
             }

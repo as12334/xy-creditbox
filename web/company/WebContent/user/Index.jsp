@@ -5,7 +5,7 @@
 <!--//region your codes 1-->
 
 <!--//endregion your codes 1-->
-<form:form id="userListForm" action="${root}/sysUserExtend/list.html" method="post">
+<form:form id="userListForm" action="${root}/vSiteUser/list.html" method="post">
 
 
     <input hidden name="search.userType" value="${command.search.userType}">

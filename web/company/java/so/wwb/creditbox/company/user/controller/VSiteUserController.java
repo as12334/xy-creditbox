@@ -1,5 +1,6 @@
 package so.wwb.creditbox.company.user.controller;
 
+import org.apache.xmlbeans.impl.xb.xmlconfig.Usertypeconfig;
 import org.soul.commons.enums.EnumTool;
 import org.soul.commons.init.context.Const;
 import org.soul.commons.lang.string.HidTool;
@@ -7,6 +8,7 @@ import org.soul.commons.log.Log;
 import org.soul.commons.log.LogFactory;
 import org.soul.commons.net.IpTool;
 import org.soul.commons.net.ServletTool;
+import org.soul.model.gameapi.param.User;
 import org.soul.model.security.privilege.po.SysUserStatus;
 import org.soul.web.controller.BaseCrudController;
 import org.soul.web.validation.form.annotation.FormModel;
@@ -26,9 +28,7 @@ import so.wwb.creditbox.company.user.form.VSiteUserForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import so.wwb.creditbox.model.enums.base.SubSysCodeEnum;
-import so.wwb.creditbox.model.enums.lottery.ModeSelectionEnum;
-import so.wwb.creditbox.model.enums.lottery.SetOddsEnum;
-import so.wwb.creditbox.model.enums.lottery.TestAccountEnum;
+import so.wwb.creditbox.model.enums.lottery.*;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.so.SysUserExtendSo;
@@ -149,18 +149,29 @@ public class VSiteUserController extends BaseCrudController<IVSiteUserService, V
      */
     private void initAccount(SysUserExtendVo objectVo, HttpServletRequest request) {
 
+        //剩餘占成和報表查詢權限，只有一下角色有
+        if(UserTypeEnum.SHAREHOLDER.getCode().equals(objectVo.getResult().getUserType())
+                ||UserTypeEnum.DISTRIBUTOR.getCode().equals(objectVo.getResult().getUserType())
+                ||UserTypeEnum.AGENT.getCode().equals(objectVo.getResult().getUserType())){
+            objectVo.getResult().setBreakpoint(BreakpointEnum.ZERO.getCode());
+            objectVo.getResult().setGeneral(GeneralEnum.OFF.getCode());
+        }
+
 
         objectVo.getResult().setCreateUser(SessionManager.getSysUserExtend().getId());
         objectVo.getResult().setModeSelection(ModeSelectionEnum.CREDIT.getCode());
         objectVo.getResult().setTestAccount(TestAccountEnum.NO.getCode());
         String createUserType = objectVo.getResult().getUserType();
 
+        //查詢上級 start
         SysUserExtendVo ownerVo = new SysUserExtendVo();
         ownerVo.getSearch().setId(objectVo.getResult().getOwnerId());
-
+        if(!UserTypeEnum.BRANCH.getCode().equals(objectVo.getResult().getUserType())){
+            ownerVo.setDataSourceId(SessionManager.getSiteId());
+        }
         SysUserExtend owner = ServiceTool.sysUserExtendService().get(ownerVo).getResult();
         objectVo.getResult().setHid(this.getService().getHid(owner.getHid()));
-
+        //查詢上級 end
         objectVo.getResult().setParentName(owner.getUsername());
         objectVo.getResult().setSiteId(owner.getSiteId());
         objectVo.getResult().setDefaultCurrency(owner.getDefaultCurrency());
@@ -195,6 +206,14 @@ public class VSiteUserController extends BaseCrudController<IVSiteUserService, V
     @ResponseBody
     private Map getSubInfo(SysUserExtendVo vo){
         Map map = new HashMap<>();
+        if(UserTypeEnum.SHAREHOLDER.getCode().equals(vo.getSearch().getUserType())
+                || UserTypeEnum.DISTRIBUTOR.getCode().equals(vo.getSearch().getUserType())
+                || UserTypeEnum.AGENT.getCode().equals(vo.getSearch().getUserType())
+                || UserTypeEnum.PLAYER.getCode().equals(vo.getSearch().getUserType())){
+            vo.setDataSourceId(SessionManagerCommon.getSiteId());
+        }else{
+            vo.setDataSourceId(Const.BOSS_DATASOURCE_ID);
+        }
         vo = ServiceTool.sysUserExtendService().get(vo);
         map.put("shareCredits",vo.getResult().getCredits());
         map.put("superiorOccupy",vo.getResult().getStintOccupy());

@@ -80,9 +80,9 @@
                             <%--</tr>--%>
                             <tr>
                                 <td class="offline sw50"></td>
-                                <td>${result.parentName}</td>
+                                <td>${fn:substringBefore(result.parentName,'@')}</td>
                                 <td class="txt-left txt-fhs">${result.superiorOccupy}%</td>
-                                <td data-name="f01">${result.username}</td>
+                                <td data-name="f01">${fn:substringBefore(result.username,'@')}</td>
                                 <td>${result.stintOccupy}</td>
                                 <td>${result.nickname}</td>
                                 <td class="w5"><a href="javascript:void(0)" data-name="f01" data-level="3">0</a></td>

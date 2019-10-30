@@ -9,7 +9,7 @@ import org.soul.commons.enums.ICodeEnum;
 public enum BreakpointEnum implements ICodeEnum {
 
     //1占余归总监、2占余归分公司
-    ZERO("0", "公司及以上角色为0"),
+    ZERO("0", "除了分公司其他角色為0"),
     COMPANY("1", "占余归总监"),
     BRANCH("2", "占余归分公司");
 

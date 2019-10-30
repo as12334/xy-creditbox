@@ -1,6 +1,7 @@
 package so.wwb.creditbox.model.company.user.vo;
 
 import org.soul.commons.query.Criteria;
+import org.soul.commons.query.enums.Operator;
 import org.soul.model.common.AbstractQuery;
 import org.soul.model.common.BaseListVo;
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
@@ -33,7 +34,9 @@ public class VSiteUserListVo extends BaseListVo<VSiteUser, VSiteUserSo, VSiteUse
         @Override
         public Criteria getCriteria() {
             //region your codes 2
-            return null;
+            return Criteria.add(VSiteUser.PROP_USER_TYPE, Operator.EQ,searchObject.getUserType())
+                    .addAnd(VSiteUser.PROP_USERNAME, Operator.LIKE_S,searchObject.getUsername())
+                    .addAnd(VSiteUser.PROP_STATUS, Operator.EQ,searchObject.getStatus());
             //endregion your codes 2
         }
 

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import so.wwb.creditbox.common.dubbo.ServiceTool;
+import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
 import so.wwb.creditbox.web.tools.SessionManagerCommon;
@@ -60,12 +61,16 @@ public class CheckToolController {
      */
     @RequestMapping("/checkUsername")
     @ResponseBody
-    public Boolean checkUsername(@RequestParam("result.username") String username) {
+    public Boolean checkUsername(@RequestParam("result.username") String username,@RequestParam("result.userType") String userType) {
         SysUserExtendVo objectVo = new SysUserExtendVo();
         objectVo.setResult(new SysUserExtend());
         objectVo.getResult().setUsername(username +"@%");
 //        objectVo.getResult().setUserType(userType);
 //        objectVo.getResult().setOwnerId(ownerId);
+        //除了查找分公司的上級要用管理庫，其他的要切到相應的站點庫
+        if(!UserTypeEnum.COMPANIES.getCode().equals(userType) || !UserTypeEnum.COMPANY.getCode().equals(userType) || !UserTypeEnum.BRANCH.getCode().equals(userType)){
+            objectVo.setDataSourceId(SessionManagerCommon.getSiteId());
+        }
         return SysParamTool.checkManageUsername(objectVo);
     }
 
