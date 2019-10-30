@@ -33,51 +33,6 @@
                         </thead>
                         <tbody>
                         <c:forEach var="result" items="${command.result}">
-                            <%--<tr>--%>
-                                <%--<td class="offline sw50"></td>--%>
-                                <%--<td>${result.parentName}</td>--%>
-                                <%--<td class="txt-left txt-fhs">${result.superiorOccupy}%</td>--%>
-                                <%--<td data-name="f02">${result.username}</td>--%>
-                                <%--<td>${result.stintOccupy}</td>--%>
-                                <%--<td>${result.nickname}</td>--%>
-                                <%--<td class="w5">0</td>--%>
-                                <%--<td class="w5">0</td>--%>
-                                <%--<td class="w5">0</td>--%>
-                                <%--<td class="w5">0</td>--%>
-                                <%--<td class="txt-right">${result.credits}</td>--%>
-                                <%--<td class="txt-right">${result.credits}</td>--%>
-                                <%--<td class="txt-right">${soulFn:formatDateTz(result.createTime, DateFormat.DAY_SECOND,timeZone)}</td>--%>
-                                <%--<td>啟用</td>--%>
-                                <%--<td>啟用</td>--%>
-                                <%--<td class="sw100">--%>
-                                    <%--<span class="sp s-22" data-rec="userrebate" data-name="f02">退水</span>--%>
-                                    <%--<span class="sp s-44" data-up="userupdate" data-name="f02">修改</span>--%>
-                                    <%--<span class="sp s-55" data-fid="login" data-name="f02">日誌</span>--%>
-                                    <%--<span class="sp s-99" data-fid="record" data-name="f02">記錄</span>--%>
-                                <%--</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td class="offline sw50"></td>--%>
-                                <%--<td>${result.parentName}</td>--%>
-                                <%--<td class="txt-left txt-fhs">${result.superiorOccupy}%</td>--%>
-                                <%--<td data-name="f02">${result.username}</td>--%>
-                                <%--<td>${result.stintOccupy}</td>--%>
-                                <%--<td>${result.nickname}</td>--%>
-                                <%--<td class="w5">0</td>--%>
-                                <%--<td class="w5">0</td>--%>
-                                <%--<td class="w5">0</td>--%>
-                                <%--<td class="w5">0</td>--%>
-                                <%--<td class="txt-right">${result.credits}</td>--%>
-                                <%--<td class="txt-right">${result.credits}</td>--%>
-                                <%--<td class="txt-right">${soulFn:formatDateTz(result.createTime, DateFormat.DAY_SECOND,timeZone)}</td>--%>
-                                <%--<td>啟用</td>--%>
-                                <%--<td class="sw100">--%>
-                                    <%--<span class="sp s-22" data-rec="userrebate" data-name="f02">退水</span>--%>
-                                    <%--<span class="sp s-44" data-up="userupdate" data-name="f02">修改</span>--%>
-                                    <%--<span class="sp s-55" data-fid="login" data-name="f02">日誌</span>--%>
-                                    <%--<span class="sp s-99" data-fid="record" data-name="f02">記錄</span>--%>
-                                <%--</td>--%>
-                            <%--</tr>--%>
                             <tr>
                                 <td class="offline sw50"></td>
                                 <td>${fn:substringBefore(result.parentName,'@')}</td>
@@ -95,7 +50,7 @@
                                 <td><p class="fgs zun">0</p></td>
                                 <td><a href="javascript:void(0)" data-state="2" data-name="f01">啟用</a></td>
                                 <td class="sw100">
-                                    <span class="sp s-22" data-rec="userrebate" data-name="f01">退水</span><span class="sp s-44" data-up="userupdate" data-name="f01">修改</span>
+                                    <span class="sp s-22" data-rec="userrebate" data-name="f01">退水</span><span class="sp s-44" data-up="userupdate" data-name="f01"><a nav-target="mainFrame" href="/vSiteUser/edit.html?id=${result.id}&search.userType=${result.userType}">修改</a></span>
                                     <span class="sp s-55" data-fid="login" data-name="f01">日誌</span><span class="sp s-99" data-fid="record" data-name="f01">記錄</span>
                                 </td>
                             </tr>

@@ -6,13 +6,14 @@
 
 <!--//endregion your codes 1-->
 <form:form id="userListForm" action="${root}/vSiteUser/list.html" method="post">
+    <c:set var="superUserTypeName" value='${views.page["UserTypeEnum.".concat(command.search.ownerUserType)]}'></c:set>
 
 
     <input hidden name="search.userType" value="${command.search.userType}">
     <div class="shell-top" id="shell_top">
         <div class="shell-top-left"></div>
         <div class="shell-title-icon">
-            <span id="shell_title">分公司管理</span>
+            <span id="shell_title">${superUserTypeName}管理</span>
         </div>
         <div class="shell-top-right"></div>
         <div id="title-nav">
