@@ -33,6 +33,7 @@ import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.so.SysUserExtendSo;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
+import so.wwb.creditbox.model.session.Session;
 import so.wwb.creditbox.utility.CommonTool;
 import so.wwb.creditbox.utility.DesTool;
 import so.wwb.creditbox.web.passport.captcha.GoogleAuthenticator;
@@ -41,6 +42,7 @@ import so.wwb.creditbox.web.tools.token.Token;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -116,6 +118,21 @@ public class VSiteUserController extends BaseCrudController<IVSiteUserService, V
 
         }
         //切換到管理庫
+        model.addAttribute("command", objectVo);
+        return this.getVoMessage(objectVo);
+    }
+    @RequestMapping("/updateManagerUser")
+    @Token(generate = true)
+    @ResponseBody
+    public Map updateManagerUser(SysUserExtendVo objectVo, Model model, HttpServletRequest request, @FormModel("result") @Valid VSiteUserForm form, BindingResult result) {
+
+        if (result.hasErrors()) {
+            objectVo.setSuccess(false);
+            LOG.error("参数错误，保存失败");
+            return this.getVoMessage(objectVo);
+        }
+        objectVo.setDataSourceId(SessionManagerCommon.getSiteId());
+        objectVo = ServiceTool.sysUserExtendService().updateManagerUser(objectVo);
         model.addAttribute("command", objectVo);
         return this.getVoMessage(objectVo);
     }

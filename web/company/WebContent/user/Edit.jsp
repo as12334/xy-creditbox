@@ -14,7 +14,8 @@
 
     <input hidden name="result.userType" value="${command.search.userType}">
     <input hidden id="superStintOccupy" value="">
-    <form:hidden path="result.id"/>
+    <input hidden name="result.id" value="${command.result.id}">
+
 
     <div class="shell-top" id="shell_top">
         <div class="shell-top-left"></div>
@@ -59,7 +60,7 @@
                                     <input type="text" name="result.nickname" value="${command.result.nickname}" autocomplete="off" maxlength="12" class="text-input sw90" reg="/^[a-zA-Z0-9_]{4,16}$/" mesg="請輸入4-16个(由英文字母,下划线“-”,數字或任意組合而成)" >
                                 </td>
                             </tr>
-                            <tr>
+                            <tr ${empty command.result.id?"":"hidden"}>
                                 <td class="w25 bc txt-right">登錄賬號:</td>
                                 <td class="txt-left">
                                     <input type="text" name="result.username" value="${fn:substringBefore(command.result.username,'@')}" autocomplete="off" maxlength="12" class="text-input sw90" reg="/^[a-z0-9A-Z][a-z0-9A-Z_]{3,12}$/" mesg="“賬號”由4-12位英文字母、數字、下劃線組成，且第壹位不能是下劃線！">
@@ -74,7 +75,7 @@
                             <tr>
                                 <td class="w25 bc txt-right">信用額度:</td>
                                 <td class="txt-left">
-                                    <input type="text" name="result.credits" value="${command.result.credits}" autocomplete="off" maxlength="9" value="0" class="text-input sw90" reg="/^[0-9]{1,9}$/" mesg="“信用額度” 由1-9位正整数组成。">
+                                    <input type="text" name="result.credits" value="${command.result.credits}" autocomplete="off" maxlength="9" value="0" class="text-input sw90" reg="/^[0-9].*$/" mesg="請輸入 1-99999999 ">
                                     <span class="red" id="up-rmb"></span>
                                 </td>
                             </tr>
@@ -103,7 +104,7 @@
                                         name="shareRole">${superUserTypeName}</span>占成:
                                 </td>
                                 <td class="txt-left">
-                                    <input type="text" name="result.superiorOccupy" autocomplete="off" maxlength="3" value="${command.result.superiorOccupy}" class="text-input sw50" reg="/^[0-9]{1,3}$/" mesg="“上级占成” 由1-3位正整数组成。">
+                                    <input type="text" name="result.superiorOccupy" autocomplete="off" maxlength="3" value="${command.result.superiorOccupy}" class="text-input sw50" reg="/^[0-9].*$/" mesg="“上级占成” 由1-3位正整数组成。">
                                     <span name="shareSuperior">100</span>%
                                 </td>
                             </tr>
@@ -112,7 +113,7 @@
                                 <td class="txt-left">
                                     <label class="label-box"> <input type="radio" name="stintId" ${empty command.result.stintOccupy || command.result.stintOccupy==-1?"checked":""} value="yes">占餘成數下線任占</label>
                                     <label class="label-box"><input type="radio" name="stintId"  ${command.result.stintOccupy > 0?"checked":""} value="no">限制下線占成</label>
-                                    <input type="text" name="result.stintOccupy" autocomplete="off" maxlength="3" value="${command.result.stintOccupy}" class="text-input sw50" reg="/^[-]?[0-9]+$/" mesg="“下級限占” 由1-3位正整数组成。">
+                                    <input ${empty command.result.stintOccupy || command.result.stintOccupy==-1 ? "hidden":""} type="text" name="result.stintOccupy" autocomplete="off" maxlength="3" value="${command.result.stintOccupy}" class="text-input sw50" reg="/^(-)?[1-9][0-9]*$/" mesg="“下級限占” 由1-3位數字组成。">
                                 </td>
                             </tr>
                             <tr>
@@ -153,6 +154,8 @@
     </div>
 </form:form>
 <%--<%@ include file="/include/include.js.jsp" %>--%>
-<soul:import res="site/user/Edit"/>
+<c:if test="${empty command.result.id}"><soul:import res="site/user/Add"/></c:if>
+<c:if test="${!empty command.result.id}"><soul:import res="site/user/Edit"/></c:if>
+
 <!--//region your codes 3-->
 <!--//endregion your codes 3-->

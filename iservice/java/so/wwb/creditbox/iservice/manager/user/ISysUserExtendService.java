@@ -136,6 +136,8 @@ public interface ISysUserExtendService extends IBaseService<SysUserExtendListVo,
 //
     boolean updateUserInfoOnly(SysUserExtend userExtend, String... var2);
 
+    SysUserExtendVo updateManagerUser(SysUserExtendVo objectVo);
+
 //
 //    boolean insertSysUserExtend(SysUserExtend userExtend);
 //

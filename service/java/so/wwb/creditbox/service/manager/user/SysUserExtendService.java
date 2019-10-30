@@ -630,6 +630,23 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
         return this.mapper.updateOnly(userExtend,var2);
     }
 
+    @Transactional
+    @Override
+    public SysUserExtendVo updateManagerUser(SysUserExtendVo objectVo) {
+        SysUserExtend sysUserExtend = mapper.get(objectVo.getResult().getId());
+        String password = sysUserExtend.getPassword();
+        if(StringTool.isNotBlank(objectVo.getResult().getPassword())){
+            password = AuthTool.md5SysUserPassword(sysUserExtend.getUsername(), objectVo.getResult().getPassword());
+        }
+        objectVo.getResult().setPassword(password);
+        boolean b = mapper.updateOnly(objectVo.getResult(), SysUserExtend.PROP_NICKNAME, SysUserExtend.PROP_CREDITS,
+                SysUserExtend.PROP_MANUAL_AUTO_SHIPMENTS, SysUserExtend.PROP_BREAKPOINT,
+                SysUserExtend.PROP_GENERAL, SysUserExtend.PROP_SUPERIOR_OCCUPY,
+                SysUserExtend.PROP_STINT_OCCUPY, SysUserExtend.PROP_SET_ODDS,
+                SysUserExtend.PROP_PASSWORD);
+        objectVo.setSuccess(b);
+        return objectVo;
+    }
 
 
 //

@@ -1,7 +1,9 @@
 package so.wwb.creditbox.company.user.form;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.soul.commons.query.enums.Operator;
 import org.soul.commons.validation.form.constraints.Compare;
+import org.soul.commons.validation.form.constraints.Depends;
 import org.soul.commons.validation.form.constraints.Remote;
 import org.soul.commons.validation.form.support.Comment;
 import org.soul.commons.validation.form.support.CompareLogic;
@@ -51,7 +53,7 @@ public class AddSysUserExtendForm implements IForm {
 
 
     @NotBlank
-    @Pattern(message = "请输入数字！", regexp = RegexConst.DIGIT)
+    @Pattern(message = "请输入数字！", regexp = RegexConst.ZERO_POSITIVE)
     public String getResult_credits() {
         return result_credits;
     }
@@ -72,6 +74,7 @@ public class AddSysUserExtendForm implements IForm {
     }
 
     @NotBlank
+    @Depends(property = "isValid", operator = Operator.EQ, value = "false", message = "playerRank.notBlank", jsValueExp = "$(\"[name=\'isValid\']\").val()=='true'")
     @Pattern(regexp = RegexConst.LOGIN_PWD, message = "请输入6-16个符号（由大小写英文字母、数字或特殊符号组成）")
     public String getResult_password() {
         return result_password;
