@@ -11,6 +11,8 @@ import org.soul.web.support.IForm;
 import so.wwb.creditbox.model.constants.common.RegexConst;
 import so.wwb.creditbox.web.remote.controller.CheckToolController;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 /**
@@ -30,7 +32,10 @@ public class AddSysUserExtendForm implements IForm {
     private String result_credits;
 
      /*退水設定*/
-    private String water;
+    private String $water;
+
+    /*现在单选*/
+    private String $stintId;
 
     /*上級占成*/
     private String result_superiorOccupy;
@@ -53,7 +58,8 @@ public class AddSysUserExtendForm implements IForm {
 
 
     @NotBlank
-    @Pattern(message = "请输入数字！", regexp = RegexConst.ZERO_POSITIVE)
+    @Min(value = 0,message = "请输入数字0-99999999")
+    @Max(value = 99999999 , message = "请输入数字0-99999999")
     public String getResult_credits() {
         return result_credits;
     }
@@ -64,7 +70,7 @@ public class AddSysUserExtendForm implements IForm {
 
     @NotBlank
     @Pattern(message = "请输入4-16个字符(由英文字母,下划线“-”,数字或任意组合而成)", regexp = "^[a-z0-9A-Z][a-z0-9A-Z_]{0,12}$")
-    @Remote(checkClass = CheckToolController.class, checkMethod = "checkUsername", type = "input",additionalProperties = {"result.username"}, message = "此“賬號”已經有人使用！請重新填寫！")
+    @Remote(checkClass = CheckToolController.class, checkMethod = "checkUsername", type = "input",additionalProperties = {"result.username","result.userType"}, message = "此“賬號”已經有人使用！請重新填寫！")
     public String getResult_username() {
         return result_username;
     }
@@ -74,7 +80,6 @@ public class AddSysUserExtendForm implements IForm {
     }
 
     @NotBlank
-    @Depends(property = "isValid", operator = Operator.EQ, value = "false", message = "playerRank.notBlank", jsValueExp = "$(\"[name=\'isValid\']\").val()=='true'")
     @Pattern(regexp = RegexConst.LOGIN_PWD, message = "请输入6-16个符号（由大小写英文字母、数字或特殊符号组成）")
     public String getResult_password() {
         return result_password;
@@ -95,17 +100,20 @@ public class AddSysUserExtendForm implements IForm {
     }
 
     @NotBlank
-    @Pattern(message = "退水設定:輸入錯誤！", regexp = RegexConst.ZERO_POSITIVE)
-    public String getWater() {
-        return water;
+    @Min(value = 0,message = "请输入数字0-100")
+    @Max(value = 100 , message = "请输入数字0-100")
+    public String get$water() {
+        return $water;
     }
 
-    public void setWater(String water) {
-        this.water = water;
+    public void set$water(String $water) {
+        this.$water = $water;
     }
+
 
     @NotBlank
-    @Pattern(message = "占成輸入錯誤！", regexp = RegexConst.DIGIT)
+    @Min(value = 0,message = "请输入数字0-100")
+    @Max(value = 100 , message = "请输入数字0-100")
     public String getResult_superiorOccupy() {
         return result_superiorOccupy;
     }
@@ -113,8 +121,19 @@ public class AddSysUserExtendForm implements IForm {
     public void setResult_superiorOccupy(String result_superiorOccupy) {
         this.result_superiorOccupy = result_superiorOccupy;
     }
-    @NotBlank
-    @Pattern(message = "限制下線占成:輸入錯誤！", regexp = RegexConst.NUMBER)
+
+
+    public String get$stintId() {
+        return $stintId;
+    }
+
+    public void set$stintId(String $stintId) {
+        this.$stintId = $stintId;
+    }
+
+    @Depends(property = "$stintId", operator = Operator.EQ, value = {"no"}, jsValueExp = "$(\"[name=\\'stintId\\']\").val()=='no'")
+    @Min(value = 0,message = "请输入数字0-100")
+    @Max(value = 100 , message = "请输入数字0-100")
     public String getResult_stintOccupy() {
         return result_stintOccupy;
     }

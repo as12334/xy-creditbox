@@ -68,7 +68,10 @@ public class CheckToolController {
 //        objectVo.getResult().setUserType(userType);
 //        objectVo.getResult().setOwnerId(ownerId);
         //除了查找分公司的上級要用管理庫，其他的要切到相應的站點庫
-        if(!UserTypeEnum.COMPANIES.getCode().equals(userType) || !UserTypeEnum.COMPANY.getCode().equals(userType) || !UserTypeEnum.BRANCH.getCode().equals(userType)){
+        if( UserTypeEnum.BRANCH.getCode().equals(userType)
+                || UserTypeEnum.DISTRIBUTOR.getCode().equals(userType)
+                || UserTypeEnum.AGENT.getCode().equals(userType)
+                || UserTypeEnum.PLAYER.getCode().equals(userType)){
             objectVo.setDataSourceId(SessionManagerCommon.getSiteId());
         }
         return SysParamTool.checkManageUsername(objectVo);

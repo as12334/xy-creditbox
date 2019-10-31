@@ -1,10 +1,7 @@
 package so.wwb.creditbox.service.manager.user;
 
-import org.apache.shiro.session.mgt.SessionManager;
 import org.soul.commons.bean.Pair;
 import org.soul.commons.collections.CollectionTool;
-import org.soul.commons.collections.ListTool;
-import org.soul.commons.enums.EnumTool;
 import org.soul.commons.enums.YesNot;
 import org.soul.commons.lang.string.RandomStringTool;
 import org.soul.commons.lang.string.StringTool;
@@ -21,23 +18,18 @@ import org.soul.data.support.DataContext;
 import org.soul.model.msg.notice.po.NoticeContactWay;
 import org.soul.model.passport.vo.PassportVo;
 import org.soul.model.security.privilege.po.*;
-import org.soul.model.security.privilege.vo.SysDeptVo;
 import org.soul.model.security.privilege.vo.SysUserStatusVo;
 import org.soul.service.support.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import so.wwb.creditbox.common.utility.security.AuthTool;
-import so.wwb.creditbox.context.LotteryCommonContext;
-import so.wwb.creditbox.context.LotteryContextParam;
 import so.wwb.creditbox.data.manager.user.SysUserExtendMapper;
 import so.wwb.creditbox.iservice.manager.user.ISysUserExtendService;
 //import so.wwb.lotterybox.iservice.company.setting.IUserParamService;
 //import so.wwb.lotterybox.iservice.company.user.IUserAssetsService;
 //import so.wwb.lotterybox.iservice.company.user.IUserPlayerService;
 import so.wwb.creditbox.model.enums.base.SubSysCodeEnum;
-import so.wwb.creditbox.model.enums.lottery.*;
 import so.wwb.creditbox.model.enums.notice.ContactWayType;
-import so.wwb.creditbox.model.enums.setting.UserParamEnum;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.so.SysUserExtendSo;
@@ -323,8 +315,8 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
 //    }
 
     @Override
-    public long countUserName(String username) {
-        return mapper.countUserName(username);
+    public long countUserName(SysUserExtendVo sysUserExtendVo) {
+        return mapper.countUserName(sysUserExtendVo.getResult().getUsername());
     }
 //
 //    @Override

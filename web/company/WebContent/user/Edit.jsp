@@ -75,7 +75,7 @@
                             <tr>
                                 <td class="w25 bc txt-right">信用額度:</td>
                                 <td class="txt-left">
-                                    <input type="text" name="result.credits" value="${command.result.credits}" autocomplete="off" maxlength="9" value="0" class="text-input sw90" reg="/^[0-9].*$/" mesg="請輸入 1-99999999 ">
+                                    <input type="text" name="result.credits" value="${empty command.result.credits ? '0':command.result.credits}" autocomplete="off" maxlength="9" value="0" class="text-input sw90" reg="/^[0-9].*$/" mesg="請輸入 1-99999999 ">
                                     <span class="red" id="up-rmb"></span>
                                 </td>
                             </tr>
@@ -104,7 +104,7 @@
                                         name="shareRole">${superUserTypeName}</span>占成:
                                 </td>
                                 <td class="txt-left">
-                                    <input type="text" name="result.superiorOccupy" autocomplete="off" maxlength="3" value="${command.result.superiorOccupy}" class="text-input sw50" reg="/^[0-9].*$/" mesg="“上级占成” 由1-3位正整数组成。">
+                                    <input type="text" name="result.superiorOccupy" autocomplete="off" maxlength="3" value="${empty command.result.superiorOccupy ? '0':command.result.superiorOccupy}" class="text-input sw50" reg="/^[0-9].*$/" mesg="“上级占成” 由1-3位正整数组成。">
                                     <span name="shareSuperior">100</span>%
                                 </td>
                             </tr>
@@ -141,7 +141,10 @@
                                 <td class="txt-left">
                                     <div class="myLayerFooter" style="display: block;    text-align: left;">
                                         <a href="javascript:;" class="btn grayBtn myLayerCancel" title="取消" style="display: inline-block;">取消</a>
-                                        <a href="javascript:;" class="btn hotBtn myLayerOk" title="確認" style="display: inline-block;text-align: left;">確認</a>
+                                        <soul:button cssClass="btn hotBtn " target="saveValid" text="確認" opType="function"></soul:button>
+                                        <%--<soul:button target="${root}/vSiteUser/saveManagerUser.html" post="getCurrentFormData" precall="validateForm" text="确认" opType="ajax" dataType="json" cssClass="btn hotBtn" callback="saveCallbak" tag="button"/>--%>
+
+                                    <%--<a href="javascript:;" class="btn hotBtn myLayerOk" title="確認" style="display: inline-block;text-align: left;">確認</a>--%>
                                     </div>
                                 </td>
                             </tr>

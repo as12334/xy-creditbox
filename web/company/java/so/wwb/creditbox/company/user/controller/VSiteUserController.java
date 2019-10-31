@@ -4,6 +4,7 @@ import org.apache.xmlbeans.impl.xb.xmlconfig.Usertypeconfig;
 import org.soul.commons.enums.EnumTool;
 import org.soul.commons.init.context.Const;
 import org.soul.commons.lang.string.HidTool;
+import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.log.Log;
 import org.soul.commons.log.LogFactory;
 import org.soul.commons.net.IpTool;
@@ -200,7 +201,9 @@ public class VSiteUserController extends BaseCrudController<IVSiteUserService, V
             objectVo.getResult().setGeneral(GeneralEnum.OFF.getCode());
         }
 
-
+        if(objectVo.getResult().getStintOccupy() == null){
+            objectVo.getResult().setStintOccupy(-1.0);
+        }
         objectVo.getResult().setCreateUser(SessionManager.getSysUserExtend().getId());
         objectVo.getResult().setModeSelection(ModeSelectionEnum.CREDIT.getCode());
         objectVo.getResult().setTestAccount(TestAccountEnum.NO.getCode());

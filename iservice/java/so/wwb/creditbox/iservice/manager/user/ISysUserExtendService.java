@@ -1,7 +1,6 @@
 package so.wwb.creditbox.iservice.manager.user;
 
 import org.soul.commons.bean.Pair;
-import org.soul.commons.query.Criteria;
 import org.soul.iservice.support.IBaseService;
 import org.soul.model.passport.vo.PassportVo;
 import org.soul.model.security.privilege.vo.SysUserStatusVo;
@@ -58,10 +57,10 @@ public interface ISysUserExtendService extends IBaseService<SysUserExtendListVo,
 
     /**
      * 系统账号同名数
-     * @param username
+     * @param sysUserExtendVo
      * @return
      */
-    long countUserName(String username);
+    long countUserName(SysUserExtendVo sysUserExtendVo);
 //
 //    /**
 //     * 玩家账号同名数
