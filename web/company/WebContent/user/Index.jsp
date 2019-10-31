@@ -28,8 +28,8 @@
                 <soul:button target="query" text="" opType="function">查询</soul:button>
             </span>
             <span class="text-btn-s" >
-                <a nav-target="mainFrame" href="/vSiteUser/createManagerUser.html?search.userType=${command.search.userType}">新增</a>
-                 </span>
+                <a nav-target="mainFrame" href="/vSiteUser/createUser/${command.search.userType}.html">新增</a>
+            </span>
 
         </div>
     </div>

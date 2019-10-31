@@ -70,23 +70,46 @@ public class VSiteUserController extends BaseCrudController<IVSiteUserService, V
 
     //region your codes 3
 
-
-
-    @RequestMapping("/createManagerUser")
+    @RequestMapping("/createUser/4")
     @Token(generate = true)
-    public String create(VSiteUserVo objectVo, Model model) {
+    public String createUser4(VSiteUserVo objectVo, Model model) {
+        objectVo.getSearch().setUserType(UserTypeEnum.BRANCH.getCode());
+        objectVo._setDataSourceId(Const.BOSS_DATASOURCE_ID);
+        return createUser(objectVo,model);
+    }
+    @RequestMapping("/createUser/5")
+    @Token(generate = true)
+    public String createUser5(VSiteUserVo objectVo, Model model) {
+        objectVo.getSearch().setUserType(UserTypeEnum.SHAREHOLDER.getCode());
+        return createUser(objectVo,model);
+    }
+    @RequestMapping("/createUser/6")
+    @Token(generate = true)
+    public String createUser6(VSiteUserVo objectVo, Model model) {
+        objectVo.getSearch().setUserType(UserTypeEnum.DISTRIBUTOR.getCode());
+        return createUser(objectVo,model);
+    }
+    @RequestMapping("/createUser/7")
+    @Token(generate = true)
+    public String createUser7(VSiteUserVo objectVo, Model model) {
+        objectVo.getSearch().setUserType(UserTypeEnum.AGENT.getCode());
+        return createUser(objectVo,model);
+    }
+    @RequestMapping("/createUser/8")
+    @Token(generate = true)
+    public String createUser8(VSiteUserVo objectVo, Model model) {
+        objectVo.getSearch().setUserType(UserTypeEnum.PLAYER.getCode());
+        createUser(objectVo,model);
+        return getViewBasePath() + "/PlayEdit";
+    }
 
 
+
+    public String createUser(VSiteUserVo objectVo, Model model) {
         //查詢上級用戶  begin
         objectVo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
-        //如果是查詢分公司的上級，要查詢管理庫
-        if(UserTypeEnum.BRANCH.getCode().equals(objectVo.getSearch().getUserType())){
-            objectVo._setDataSourceId(Const.BASE_DATASOURCE_ID);
-        }
         objectVo = this.getService().searchLevelUser(objectVo);
         //查詢上級用戶 end
-
-
         objectVo.setValidateRule(JsRuleCreator.create(AddSysUserExtendForm.class, "result"));
         model.addAttribute("command", objectVo);
         return getViewBasePath() + "/Edit";
@@ -238,6 +261,29 @@ public class VSiteUserController extends BaseCrudController<IVSiteUserService, V
         map.put("shareCredits",vo.getResult().getCredits());
         map.put("superiorOccupy",vo.getResult().getStintOccupy());
         return map;
+    }
+
+
+    @RequestMapping("/createPlay")
+    @Token(generate = true)
+    public String createPlay(VSiteUserVo objectVo, Model model) {
+
+
+
+
+        //查詢上級用戶  begin
+        objectVo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
+        //如果是查詢分公司的上級，要查詢管理庫
+        if(UserTypeEnum.BRANCH.getCode().equals(objectVo.getSearch().getUserType())){
+            objectVo._setDataSourceId(Const.BASE_DATASOURCE_ID);
+        }
+        objectVo = this.getService().searchLevelUser(objectVo);
+        //查詢上級用戶 end
+
+
+        objectVo.setValidateRule(JsRuleCreator.create(AddSysUserExtendForm.class, "result"));
+        model.addAttribute("command", objectVo);
+        return getViewBasePath() + "/playEdit";
     }
     //endregion your codes 3
 
