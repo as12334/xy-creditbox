@@ -635,7 +635,7 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
                 SysUserExtend.PROP_MANUAL_AUTO_SHIPMENTS, SysUserExtend.PROP_BREAKPOINT,
                 SysUserExtend.PROP_GENERAL, SysUserExtend.PROP_SUPERIOR_OCCUPY,
                 SysUserExtend.PROP_STINT_OCCUPY, SysUserExtend.PROP_SET_ODDS,
-                SysUserExtend.PROP_PASSWORD);
+                SysUserExtend.PROP_PASSWORD,SysUserExtend.PROP_STATUS);
         objectVo.setSuccess(b);
         return objectVo;
     }

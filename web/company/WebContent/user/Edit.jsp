@@ -55,6 +55,14 @@
 
                             </tr>
                             <tr>
+                                <td class="w25 bc txt-right">賬號狀態:</td>
+                                <td class="txt-left">
+                                    <label class="label-box"><input type="radio" name="result.status" data-value="1" ${command.result.status == '1'?'checked':''} value="2">啟用</label>
+                                    <label class="label-box"><input type="radio" name="result.status" data-value="2" ${command.result.status == '2'?'checked':''} value="2">停用</label>
+                                    <label class="label-box"><input type="radio" name="result.status" data-value="3" ${command.result.status == '3' || empty command.result.status?'checked':''}  value="3">凍結</label>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td class="w25 bc txt-right">用戶暱稱:</td>
                                 <td class="txt-left">
                                     <input type="text" name="result.nickname" value="${command.result.nickname}" autocomplete="off" maxlength="12" class="text-input sw90" reg="/^[a-zA-Z0-9_]{4,16}$/" mesg="請輸入4-16个(由英文字母,下划线“-”,數字或任意組合而成)" >
@@ -112,7 +120,7 @@
                                 <td class="w25 bc txt-right">下級限占:</td>
                                 <td class="txt-left">
                                     <label class="label-box"> <input type="radio" name="stintId" ${empty command.result.stintOccupy || command.result.stintOccupy==-1?"checked":""} value="yes">占餘成數下線任占</label>
-                                    <label class="label-box"><input type="radio" name="stintId"  ${command.result.stintOccupy > 0?"checked":""} value="no">限制下線占成</label>
+                                    <label class="label-box"><input type="radio" name="stintId"  ${command.result.stintOccupy > -1?"checked":""} value="no">限制下線占成</label>
                                     <input ${empty command.result.stintOccupy || command.result.stintOccupy==-1 ? "hidden":""} type="text" name="result.stintOccupy" autocomplete="off" maxlength="3" value="${command.result.stintOccupy}" class="text-input sw50" reg="/^(-)?[1-9][0-9]*$/" mesg="“下級限占” 由1-3位數字组成。">
                                 </td>
                             </tr>
@@ -131,8 +139,8 @@
                             <tr ${hiddenStatus}>
                                 <td class="w25 bc txt-right">操盤:</td>
                                 <td class="txt-left">
-                                    <label class="label-box"><input type="radio" name="result.setOdds"  value="1">啟用</label>
-                                    <label class="label-box"><input type="radio" name="result.setOdds"  value="0" checked="checked">禁用</label>
+                                    <label class="label-box"><input type="radio" name="result.setOdds" ${command.result.setOdds == '1'?"checked":""}  value="1">啟用</label>
+                                    <label class="label-box"><input type="radio" name="result.setOdds" ${empty command.result.setOdds || command.result.setOdds==0?"checked":""} value="0">禁用</label>
                                 </td>
                             </tr>
 
@@ -141,7 +149,8 @@
                                 <td class="txt-left">
                                     <div class="myLayerFooter" style="display: block;    text-align: left;">
                                         <a href="javascript:;" class="btn grayBtn myLayerCancel" title="取消" style="display: inline-block;">取消</a>
-                                        <soul:button cssClass="btn hotBtn " target="saveValid" text="確認" opType="function"></soul:button>
+                                        <c:if test="${empty command.result.id}"><soul:button cssClass="btn hotBtn " target="saveValid" text="確認" opType="function"></soul:button></c:if>
+                                        <c:if test="${!empty command.result.id}"><soul:button cssClass="btn hotBtn " target="updateValid" text="確認" opType="function"></soul:button></c:if>
                                         <%--<soul:button target="${root}/vSiteUser/saveManagerUser.html" post="getCurrentFormData" precall="validateForm" text="确认" opType="ajax" dataType="json" cssClass="btn hotBtn" callback="saveCallbak" tag="button"/>--%>
 
                                     <%--<a href="javascript:;" class="btn hotBtn myLayerOk" title="確認" style="display: inline-block;text-align: left;">確認</a>--%>
@@ -157,8 +166,7 @@
     </div>
 </form:form>
 <%--<%@ include file="/include/include.js.jsp" %>--%>
-<c:if test="${empty command.result.id}"><soul:import res="site/user/Add"/></c:if>
-<c:if test="${!empty command.result.id}"><soul:import res="site/user/Edit"/></c:if>
+<soul:import res="site/user/Edit"/>
 
 <!--//region your codes 3-->
 <!--//endregion your codes 3-->
