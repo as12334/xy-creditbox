@@ -631,11 +631,23 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
             password = AuthTool.md5SysUserPassword(sysUserExtend.getUsername(), objectVo.getResult().getPassword());
         }
         objectVo.getResult().setPassword(password);
-        boolean b = mapper.updateOnly(objectVo.getResult(), SysUserExtend.PROP_NICKNAME, SysUserExtend.PROP_CREDITS,
-                SysUserExtend.PROP_MANUAL_AUTO_SHIPMENTS, SysUserExtend.PROP_BREAKPOINT,
-                SysUserExtend.PROP_GENERAL, SysUserExtend.PROP_SUPERIOR_OCCUPY,
-                SysUserExtend.PROP_STINT_OCCUPY, SysUserExtend.PROP_SET_ODDS,
-                SysUserExtend.PROP_PASSWORD,SysUserExtend.PROP_STATUS);
+        List<String> strings = new ArrayList<>();
+        strings.add(SysUserExtend.PROP_NICKNAME);
+        strings.add(SysUserExtend.PROP_PASSWORD);
+        strings.add(SysUserExtend.PROP_CREDITS);
+        strings.add(SysUserExtend.PROP_SUPERIOR_OCCUPY);
+        strings.add(SysUserExtend.PROP_STATUS);
+
+        if(objectVo.getResult().equals(UserTypeEnum.BRANCH.getCode())){
+            strings.add(SysUserExtend.PROP_GENERAL);
+            strings.add(SysUserExtend.PROP_SET_ODDS);
+        }
+        if(objectVo.getResult().getUserType().equals(UserTypeEnum.PLAYER.getCode())){
+            strings.add(SysUserExtend.HANDICAP);
+        }else{
+            strings.add(SysUserExtend.PROP_MANUAL_AUTO_SHIPMENTS);
+        }
+        boolean b = mapper.updateOnly(objectVo.getResult(),  strings.toArray(new String[strings.size()]));
         objectVo.setSuccess(b);
         return objectVo;
     }

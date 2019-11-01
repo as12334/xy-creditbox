@@ -35,6 +35,9 @@ public class SysUserExtend extends SysUser {
 	public static final String PROP_GENERAL = "general";
 	public static final String PROP_TEST_ACCOUNT = "testAccount";
 	public static final String PROP_SET_ODDS = "setOdds";
+	public static final String OWNER_NAME = "ownerName";
+	public static final String OWNER_USER_TYPE = "ownerUserType";
+	public static final String HANDICAP = "handicap";
 	//endregion
 	
 	

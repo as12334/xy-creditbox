@@ -29,6 +29,9 @@ public class AddSysUserExtendForm implements IForm {
     /*昵称*/
     private String result_nickname;
 
+    /*上级Id*/
+    private String result_ownerId;
+
     /*昵称*/
     private String result_credits;
 
@@ -82,6 +85,15 @@ public class AddSysUserExtendForm implements IForm {
 
     public void setResult_username(String result_username) {
         this.result_username = result_username;
+    }
+
+    @NotBlank(message = "请先创建上级用户")
+    public String getResult_ownerId() {
+        return result_ownerId;
+    }
+
+    public void setResult_ownerId(String result_ownerId) {
+        this.result_ownerId = result_ownerId;
     }
 
     @NotBlank

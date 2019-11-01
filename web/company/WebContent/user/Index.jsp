@@ -9,6 +9,7 @@
     <c:set var="superUserTypeName" value='${views.page["UserTypeEnum.".concat(command.search.ownerUserType)]}'></c:set>
 
 
+
     <input hidden name="search.userType" value="${command.search.userType}">
     <div class="shell-top" id="shell_top">
         <div class="shell-top-left"></div>

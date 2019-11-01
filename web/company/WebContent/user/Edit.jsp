@@ -6,14 +6,18 @@
 <!--//region your codes 1-->
 
 <!--//endregion your codes 1-->
+
 <form:form method="post" id="editUserForm">
+    <a hidden id="changeOwnerUserType" nav-target="mainFrame" href="/vSiteUser/createUser/8.html">新增</a>
+
     <lb:validateRule/>
 
     <c:set var="superUserTypeName" value='${views.page["UserTypeEnum.".concat(command.search.ownerUserType)]}'></c:set>
     <%--新增分公司才要显示，其他用户类型不显示--%>
-    <c:set var="hiddenStatus" value="${command.search.userType == '4'?'':'hidden'}"></c:set>
+    <c:set var="hiddenBranchStatus" value="${command.search.userType == '4'?'':'hidden'}"></c:set>
     <%--新增玩家才要显示，其他用户类型不显示--%>
-    <c:set var="playHiddenStatus" value="${command.search.userType == '8'?'':'hidden'}"></c:set>
+    <c:set var="playHiddenStatus" value="${command.search.userType == '8'}"></c:set>
+    <c:set var="playEditHiddenStatus" value="${empty command.result.id}"></c:set>
 
     <input hidden name="result.userType" value="${command.search.userType}">
     <input hidden id="superStintOccupy" value="">
@@ -37,13 +41,13 @@
                             <tr></tr>
                             </thead>
                             <tbody>
-                            <tr ${playHiddenStatus}>
+                            <tr ${playHiddenStatus &&  playEditHiddenStatus? "":"hidden"}>
                                 <td class="w25 bc txt-right">選擇上級:</td>
                                 <td class="txt-left">
-                                    <label class="label-box"><input type="radio" name="result.ownerUserType" data-value="4" ${empty command.result.ownerUserType || command.result.ownerUserType == '4' ? 'checked':''}>分公司</label>
-                                    <label class="label-box"><input type="radio" name="result.ownerUserType" data-value="5">${command.result.ownerUserType == '5' ? 'checked':''}股東</label>
-                                    <label class="label-box"><input type="radio" name="result.ownerUserType" data-value="6">${command.result.ownerUserType == '6' ? 'checked':''}總代理</label>
-                                    <label class="label-box"><input type="radio" name="result.ownerUserType" data-value="7">${command.result.ownerUserType == '7' ? 'checked':''}代理</label>
+                                    <label class="label-box"><input type="radio" name="result.ownerUserType" value="4" ${empty command.search.ownerUserType || command.search.ownerUserType == '4' ? 'checked':''}>分公司</label>
+                                    <label class="label-box"><input type="radio" name="result.ownerUserType" value="5" ${command.search.ownerUserType == '5' ? 'checked':''}>股東</label>
+                                    <label class="label-box"><input type="radio" name="result.ownerUserType" value="6" ${command.search.ownerUserType == '6' ? 'checked':''}>總代理</label>
+                                    <label class="label-box"><input type="radio" name="result.ownerUserType" value="7" ${command.search.ownerUserType == '7' ? 'checked':''}>代理</label>
                                 </td>
                             </tr>
                             <tr>
@@ -54,6 +58,9 @@
                                     <c:when test="${empty command.result.id}">
                                         <td class="txt-left">
                                             <select name="result.ownerId">
+                                                <c:if test="${command.superUserList.size()==0}">
+                                                    <option value="">请先创建${superUserTypeName}用户</option>
+                                                </c:if>
                                                 <c:forEach items="${command.superUserList}" var="result">
                                                     <option value="${result.id}" data-credit="${result.credits}">${fn:substringBefore(result.username,'@')}</option>
                                                 </c:forEach>
@@ -66,20 +73,20 @@
                                 </c:choose>
 
                             </tr>
-                            <tr ${playHiddenStatus}>
+                            <tr ${playHiddenStatus ? "":"hidden"}>
                                 <td class="w25 bc txt-right">會員盤口:</td>
                                 <td class="txt-left">
-                                    <label class="label-box"><input type="radio" name="rebate" value="1" ${empty command.result.handicap || command.result.handicap == '1' ? 'checked':''}>A盤</label>
-                                    <label class="label-box"><input type="radio" name="rebate" value="2" ${command.result.handicap == '2' ? 'checked':''}>B盤</label>
-                                    <label class="label-box"><input type="radio" name="rebate" value="3" ${command.result.handicap == '3' ? 'checked':''}>C盤</label>
+                                    <label class="label-box"><input type="radio" name="result.handicap" value="1" ${empty command.result.handicap || command.result.handicap == '1' ? 'checked':''}>A盤</label>
+                                    <label class="label-box"><input type="radio" name="result.handicap" value="2" ${command.result.handicap == '2' ? 'checked':''}>B盤</label>
+                                    <label class="label-box"><input type="radio" name="result.handicap" value="3" ${command.result.handicap == '3' ? 'checked':''}>C盤</label>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="w25 bc txt-right">賬號狀態:</td>
                                 <td class="txt-left">
-                                    <label class="label-box"><input type="radio" name="result.status" data-value="1" ${command.result.status == '1'?'checked':''} value="2">啟用</label>
+                                    <label class="label-box"><input type="radio" name="result.status" data-value="1" ${command.result.status == '1' || empty command.result.status?'checked':''} value="1">啟用</label>
                                     <label class="label-box"><input type="radio" name="result.status" data-value="2" ${command.result.status == '2'?'checked':''} value="2">停用</label>
-                                    <label class="label-box"><input type="radio" name="result.status" data-value="3" ${command.result.status == '3' || empty command.result.status?'checked':''}  value="3">凍結</label>
+                                    <label class="label-box"><input type="radio" name="result.status" data-value="3" ${command.result.status == '3'?'checked':''}  value="3">凍結</label>
                                 </td>
                             </tr>
                             <tr>
@@ -107,20 +114,20 @@
                                     <span class="red" id="up-rmb"></span>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr ${playHiddenStatus ? "hidden":""}>
                                 <td class="w25 bc txt-right">補貨設定:</td>
                                 <td class="txt-left">
                                     <label class="label-box"><input type="radio" name="result.manualAutoShipments" ${command.result.manualAutoShipments == '1'?'checked':''} value="1">啟用</label>
                                     <label class="label-box"><input type="radio" name="result.manualAutoShipments" ${command.result.manualAutoShipments != '1'?'checked':''} value="0">禁用</label>
                                 </td>
                             </tr>
-                            <tr ${hiddenStatus}>
+                            <tr ${hiddenBranchStatus}>
                                 <td class="w25 bc txt-right">剩餘成數:</td>
                                 <td class="txt-left">
                                     <label class="label-box"><input type="radio" name="result.breakpoint" ${command.result.breakpoint != '2'?'checked':''} value="1">總監</label>
                                     <label class="label-box"><input type="radio" name="result.breakpoint" ${command.result.breakpoint == '2'?'checked':''} value="2">分公司</label></td>
                             </tr>
-                            <tr ${hiddenStatus}>
+                            <tr ${hiddenBranchStatus}>
                                 <td class="w25 bc txt-right">總賬報表:</td>
                                 <td class="txt-left">
                                     <label class="label-box"><input type="radio" name="result.general" ${command.result.general == '1'?'checked':''} value="1">總賬(非明细)</label>
@@ -136,7 +143,7 @@
                                     <span name="shareSuperior">100</span>%
                                 </td>
                             </tr>
-                            <tr>
+                            <tr ${playHiddenStatus ? "hidden":""}>
                                 <td class="w25 bc txt-right">下級限占:</td>
                                 <td class="txt-left">
                                     <label class="label-box"> <input type="radio" name="stintId" ${empty command.result.stintOccupy || command.result.stintOccupy==-1?"checked":""} value="yes">占餘成數下線任占</label>
@@ -156,7 +163,7 @@
                                     <input type="text" name="water" autocomplete="off" maxlength="5" value="0" class="text-input sw40" reg="/^[0-9.]+$/" mesg="“自定退水” 0-100之间，允许4位小数组成。"> 自定設置
                                 </td>
                             </tr>
-                            <tr ${hiddenStatus}>
+                            <tr ${hiddenBranchStatus}>
                                 <td class="w25 bc txt-right">操盤:</td>
                                 <td class="txt-left">
                                     <label class="label-box"><input type="radio" name="result.setOdds" ${command.result.setOdds == '1'?"checked":""}  value="1">啟用</label>
