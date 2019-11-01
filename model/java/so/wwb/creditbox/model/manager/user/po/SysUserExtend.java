@@ -66,7 +66,13 @@ public class SysUserExtend extends SysUser {
 
 
 	/** 上級用戶名 */
-	private String parentName;
+	private String ownerName;
+
+	/** 上級用戶类型 */
+	private String ownerUserType;
+
+	/**盘口 1 A盘、2 B盘 3 C盘*/
+	private Integer handicap;
 	//endregion
 
 	
@@ -163,12 +169,29 @@ public class SysUserExtend extends SysUser {
 		this.setOdds = value;
 	}
 
-	public String getParentName() {
-		return parentName;
+
+	public Integer getHandicap() {
+		return handicap;
 	}
 
-	public void setParentName(String parentName) {
-		this.parentName = parentName;
+	public void setHandicap(Integer handicap) {
+		this.handicap = handicap;
+	}
+
+	public String getOwnerName() {
+		return ownerName;
+	}
+
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
+	}
+
+	public String getOwnerUserType() {
+		return ownerUserType;
+	}
+
+	public void setOwnerUserType(String ownerUserType) {
+		this.ownerUserType = ownerUserType;
 	}
 
 	//endregion

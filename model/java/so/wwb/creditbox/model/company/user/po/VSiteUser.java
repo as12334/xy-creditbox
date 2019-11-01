@@ -1,6 +1,8 @@
 package so.wwb.creditbox.model.company.user.po;
 
+
 import org.soul.commons.bean.IEntity;
+import org.soul.commons.lang.string.StringTool;
 import org.soul.model.common.Sortable;
 
 
@@ -8,7 +10,7 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-10-29 20:12:43
+ * @time 2019-11-1 23:55:29
  */
 //region your codes 1
 public class VSiteUser implements IEntity<Integer> {
@@ -93,7 +95,9 @@ public class VSiteUser implements IEntity<Integer> {
 	public static final String PROP_GENERAL = "general";
 	public static final String PROP_TEST_ACCOUNT = "testAccount";
 	public static final String PROP_SET_ODDS = "setOdds";
-	public static final String PROP_PARENT_NAME = "parentName";
+	public static final String PROP_OWNER_NAME = "ownerName";
+	public static final String PROP_HANDICAP = "handicap";
+	public static final String PROP_OWNER_USER_TYPE = "ownerUserType";
 	public static final String PROP_CHILD_NUM = "childNum";
 	//endregion
 	
@@ -248,7 +252,11 @@ public class VSiteUser implements IEntity<Integer> {
 	/**  */
 	private String setOdds;
 	/**  */
-	private String parentName;
+	private String ownerName;
+	/**  */
+	private Integer handicap;
+	/**  */
+	private String ownerUserType;
 	/**  */
 	private Long childNum;
 	//endregion
@@ -783,12 +791,32 @@ public class VSiteUser implements IEntity<Integer> {
 	public void setSetOdds(String value) {
 		this.setOdds = value;
 	}
-	public String getParentName() {
-		return this.parentName;
+	public String getOwnerName() {
+		return this.ownerName;
 	}
 
-	public void setParentName(String value) {
-		this.parentName = value;
+	public void setOwnerName(String value) {
+		this.ownerName = value;
+	}
+	public Integer getHandicap() {
+		return this.handicap;
+	}
+
+	public void setHandicap(Integer value) {
+		this.handicap = value;
+	}
+
+	public String getOwnerUserType() {
+		if(StringTool.isBlank(this.ownerUserType)){
+			if(StringTool.isNotBlank(this.userType)){
+				return (Integer.valueOf(this.userType)-1)+"";
+			}
+		}
+		return this.ownerUserType;
+	}
+
+	public void setOwnerUserType(String value) {
+		this.ownerUserType = value;
 	}
 	public Long getChildNum() {
 		return this.childNum;

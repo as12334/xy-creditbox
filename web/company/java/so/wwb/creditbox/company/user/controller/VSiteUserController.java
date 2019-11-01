@@ -99,9 +99,22 @@ public class VSiteUserController extends BaseCrudController<IVSiteUserService, V
     @RequestMapping("/createUser/8")
     @Token(generate = true)
     public String createUser8(VSiteUserVo objectVo, Model model) {
+        String thisUserType = SessionManager.getUser().getUserType();
+        //如果不是代理新增会员
+        if(!thisUserType.equals(UserTypeEnum.AGENT.getCode())){
+            //第一次加载新增会员页面，默认本用户类型
+            if(StringTool.isBlank(objectVo.getSearch().getOwnerUserType())){
+                //如果是公司类型，默认分公司类型
+                if(thisUserType.equals(UserTypeEnum.COMPANY.getCode())){
+                    objectVo.getSearch().setOwnerUserType(UserTypeEnum.BRANCH.getCode());
+                }
+                else {
+                    objectVo.getSearch().setOwnerUserType(thisUserType);
+                }
+            }
+        }
         objectVo.getSearch().setUserType(UserTypeEnum.PLAYER.getCode());
-        createUser(objectVo,model);
-        return getViewBasePath() + "/PlayEdit";
+        return  createUser(objectVo,model);
     }
 
 
@@ -218,7 +231,7 @@ public class VSiteUserController extends BaseCrudController<IVSiteUserService, V
         SysUserExtend owner = ServiceTool.sysUserExtendService().get(ownerVo).getResult();
         objectVo.getResult().setHid(this.getService().getHid(owner.getHid()));
         //查詢上級 end
-        objectVo.getResult().setParentName(owner.getUsername());
+        objectVo.getResult().setOwnerName(owner.getUsername());
         objectVo.getResult().setSiteId(owner.getSiteId());
         objectVo.getResult().setDefaultCurrency(owner.getDefaultCurrency());
         objectVo.getResult().setDefaultTimezone(owner.getDefaultTimezone());

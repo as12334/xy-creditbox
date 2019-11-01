@@ -9,6 +9,7 @@ import org.soul.commons.validation.form.support.Comment;
 import org.soul.commons.validation.form.support.CompareLogic;
 import org.soul.web.support.IForm;
 import so.wwb.creditbox.model.constants.common.RegexConst;
+import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.web.remote.controller.CheckToolController;
 
 import javax.validation.constraints.Max;
@@ -30,6 +31,9 @@ public class AddSysUserExtendForm implements IForm {
 
     /*昵称*/
     private String result_credits;
+
+    /*昵称*/
+    private String result_userType;
 
      /*退水設定*/
     private String $water;
@@ -132,7 +136,9 @@ public class AddSysUserExtendForm implements IForm {
         this.$stintId = $stintId;
     }
 
-    @Depends(property = "$stintId", operator = Operator.EQ, value = {"no"}, jsValueExp = "$(\"[name=\\'stintId\\']\").val()=='no'")
+
+//    @Depends(property = "$stintId", operator = Operator.EQ, value = {"no"}, jsValueExp = "$(\"[name=\\'stintId\\']\").val()=='no'")
+    @Depends(property = {"result.userType", "$stintId"}, operator = {Operator.NE, Operator.EQ}, value = {"8", "no"})
     @Min(value = 0,message = "请输入数字0-100")
     @Max(value = 100 , message = "请输入数字0-100")
     public String getResult_stintOccupy() {
@@ -142,6 +148,7 @@ public class AddSysUserExtendForm implements IForm {
     public void setResult_stintOccupy(String result_stintOccupy) {
         this.result_stintOccupy = result_stintOccupy;
     }
+    @Depends(property = {"result.userType"}, operator = {Operator.NE}, value = {"8"})
     @NotBlank
     public String getResult_setOdds() {
         return result_setOdds;
@@ -151,6 +158,8 @@ public class AddSysUserExtendForm implements IForm {
         this.result_setOdds = result_setOdds;
     }
 
+
+    @Depends(property = {"result.userType"}, operator = {Operator.NE}, value = {"8"})
     @NotBlank
     public String getResult_general() {
         return result_general;
@@ -159,7 +168,7 @@ public class AddSysUserExtendForm implements IForm {
     public void setResult_general(String result_general) {
         this.result_general = result_general;
     }
-
+    @Depends(property = {"result.userType"}, operator = {Operator.NE}, value = {"8"})
     @NotBlank
     public String getResult_breakpoint() {
         return result_breakpoint;
@@ -169,6 +178,7 @@ public class AddSysUserExtendForm implements IForm {
         this.result_breakpoint = result_breakpoint;
     }
 
+    @Depends(property = {"result.userType"}, operator = {Operator.NE}, value = {"8"})
     @NotBlank
     public String getResult_manualAutoShipments() {
         return result_manualAutoShipments;
@@ -176,5 +186,13 @@ public class AddSysUserExtendForm implements IForm {
 
     public void setResult_manualAutoShipments(String result_manualAutoShipments) {
         this.result_manualAutoShipments = result_manualAutoShipments;
+    }
+
+    public String getResult_userType() {
+        return result_userType;
+    }
+
+    public void setResult_userType(String result_userType) {
+        this.result_userType = result_userType;
     }
 }

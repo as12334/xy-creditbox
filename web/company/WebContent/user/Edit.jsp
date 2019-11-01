@@ -10,7 +10,10 @@
     <lb:validateRule/>
 
     <c:set var="superUserTypeName" value='${views.page["UserTypeEnum.".concat(command.search.ownerUserType)]}'></c:set>
+    <%--新增分公司才要显示，其他用户类型不显示--%>
     <c:set var="hiddenStatus" value="${command.search.userType == '4'?'':'hidden'}"></c:set>
+    <%--新增玩家才要显示，其他用户类型不显示--%>
+    <c:set var="playHiddenStatus" value="${command.search.userType == '8'?'':'hidden'}"></c:set>
 
     <input hidden name="result.userType" value="${command.search.userType}">
     <input hidden id="superStintOccupy" value="">
@@ -34,6 +37,15 @@
                             <tr></tr>
                             </thead>
                             <tbody>
+                            <tr ${playHiddenStatus}>
+                                <td class="w25 bc txt-right">選擇上級:</td>
+                                <td class="txt-left">
+                                    <label class="label-box"><input type="radio" name="result.ownerUserType" data-value="4" ${empty command.result.ownerUserType || command.result.ownerUserType == '4' ? 'checked':''}>分公司</label>
+                                    <label class="label-box"><input type="radio" name="result.ownerUserType" data-value="5">${command.result.ownerUserType == '5' ? 'checked':''}股東</label>
+                                    <label class="label-box"><input type="radio" name="result.ownerUserType" data-value="6">${command.result.ownerUserType == '6' ? 'checked':''}總代理</label>
+                                    <label class="label-box"><input type="radio" name="result.ownerUserType" data-value="7">${command.result.ownerUserType == '7' ? 'checked':''}代理</label>
+                                </td>
+                            </tr>
                             <tr>
                                 <td class="w25 bc txt-right">上級<span
                                         name="shareRole">${superUserTypeName}</span>:
@@ -49,10 +61,18 @@
                                             餘額:<span id="shareCredits">0</span></td>
                                     </c:when>
                                     <c:otherwise>
-                                <td class="txt-left">${fn:substringBefore(command.result.parentName,'@')}</td>
+                                <td class="txt-left">${fn:substringBefore(command.result.ownerName,'@')}</td>
                                     </c:otherwise>
                                 </c:choose>
 
+                            </tr>
+                            <tr ${playHiddenStatus}>
+                                <td class="w25 bc txt-right">會員盤口:</td>
+                                <td class="txt-left">
+                                    <label class="label-box"><input type="radio" name="rebate" value="1" ${empty command.result.handicap || command.result.handicap == '1' ? 'checked':''}>A盤</label>
+                                    <label class="label-box"><input type="radio" name="rebate" value="2" ${command.result.handicap == '2' ? 'checked':''}>B盤</label>
+                                    <label class="label-box"><input type="radio" name="rebate" value="3" ${command.result.handicap == '3' ? 'checked':''}>C盤</label>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="w25 bc txt-right">賬號狀態:</td>

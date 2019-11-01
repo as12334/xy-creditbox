@@ -517,7 +517,7 @@ public class BaseAccountController extends NoMappingCrudController<ISysUserExten
                 && !StringTool.equals(UserTypeEnum.COMPANY.getCode(), createUserType)) {
             objectVo.getResult().setSiteId(owner.getSiteId());
         }
-        objectVo.getResult().setParentName(owner.getUsername());
+        objectVo.getResult().setOwnerName(owner.getUsername());
         objectVo.getResult().setDefaultCurrency(owner.getDefaultCurrency());
         objectVo.getResult().setDefaultTimezone(owner.getDefaultTimezone());
         objectVo.getResult().setDefaultLocale(owner.getDefaultLocale());

@@ -77,7 +77,9 @@
         <result column="general" property="general"/>
         <result column="test_account" property="testAccount"/>
         <result column="set_odds" property="setOdds"/>
-        <result column="parent_name" property="parentName"/>
+        <result column="owner_name" property="ownerName"/>
+        <result column="handicap" property="handicap"/>
+        <result column="owner_user_type" property="ownerUserType"/>
         <result column="child_num" property="childNum"/>
     </resultMap>
 

@@ -35,7 +35,7 @@
                         <c:forEach var="result" items="${command.result}">
                             <tr>
                                 <td class="offline sw50"></td>
-                                <td>${fn:substringBefore(result.parentName,'@')}</td>
+                                <td>${fn:substringBefore(result.ownerName,'@')}</td>
                                 <td class="txt-left txt-fhs">${result.superiorOccupy}%</td>
                                 <td data-name="f01">${fn:substringBefore(result.username,'@')}</td>
                                 <td>${result.stintOccupy}</td>
