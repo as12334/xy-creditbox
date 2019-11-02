@@ -65,6 +65,11 @@ public class AddSysUserExtendForm implements IForm {
 
 
 
+    /*上级已使用占成*/
+    private String $maxSuperiorOccupy;
+
+
+
     @NotBlank
     @Min(value = 0,message = "请输入数字0-99999999")
     @Max(value = 99999999 , message = "请输入数字0-99999999")
@@ -131,6 +136,7 @@ public class AddSysUserExtendForm implements IForm {
     @NotBlank
     @Min(value = 0,message = "请输入数字0-100")
     @Max(value = 100 , message = "请输入数字0-100")
+    @Compare(message = "已超过最大值",logic = CompareLogic.LE,anotherProperty = "$maxSuperiorOccupy")
     public String getResult_superiorOccupy() {
         return result_superiorOccupy;
     }
@@ -206,5 +212,13 @@ public class AddSysUserExtendForm implements IForm {
 
     public void setResult_userType(String result_userType) {
         this.result_userType = result_userType;
+    }
+
+    public String get$maxSuperiorOccupy() {
+        return $maxSuperiorOccupy;
+    }
+
+    public void set$maxSuperiorOccupy(String $maxSuperiorOccupy) {
+        this.$maxSuperiorOccupy = $maxSuperiorOccupy;
     }
 }
