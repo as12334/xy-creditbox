@@ -45,10 +45,10 @@ public class AddSysUserExtendForm implements IForm {
     private String $stintId;
 
     /*上級占成*/
-    private String result_superiorOccupy;
+    private Double result_superiorOccupy;
 
     /*限制占成*/
-    private String result_stintOccupy;
+    private Double result_stintOccupy;
 
 
     /*限制占成*/
@@ -65,8 +65,8 @@ public class AddSysUserExtendForm implements IForm {
 
 
 
-    /*上级已使用占成*/
-    private String $maxSuperiorOccupy;
+    /*最高可设置的占成数*/
+    private Double maxSuperiorOccupy;
 
 
 
@@ -133,15 +133,14 @@ public class AddSysUserExtendForm implements IForm {
     }
 
 
-    @NotBlank
     @Min(value = 0,message = "请输入数字0-100")
     @Max(value = 100 , message = "请输入数字0-100")
-    @Compare(message = "已超过最大值",logic = CompareLogic.LE,anotherProperty = "$maxSuperiorOccupy")
-    public String getResult_superiorOccupy() {
+    @Compare(message = "已超过最大值",logic = CompareLogic.LE,anotherProperty = "maxSuperiorOccupy")
+    public Double getResult_superiorOccupy() {
         return result_superiorOccupy;
     }
 
-    public void setResult_superiorOccupy(String result_superiorOccupy) {
+    public void setResult_superiorOccupy(Double result_superiorOccupy) {
         this.result_superiorOccupy = result_superiorOccupy;
     }
 
@@ -159,11 +158,11 @@ public class AddSysUserExtendForm implements IForm {
     @Depends(property = {"result.userType", "$stintId"}, operator = {Operator.NE, Operator.EQ}, value = {"8", "no"})
     @Min(value = 0,message = "请输入数字0-100")
     @Max(value = 100 , message = "请输入数字0-100")
-    public String getResult_stintOccupy() {
+    public Double getResult_stintOccupy() {
         return result_stintOccupy;
     }
 
-    public void setResult_stintOccupy(String result_stintOccupy) {
+    public void setResult_stintOccupy(Double result_stintOccupy) {
         this.result_stintOccupy = result_stintOccupy;
     }
     @Depends(property = {"result.userType"}, operator = {Operator.NE}, value = {"8"})
@@ -214,11 +213,11 @@ public class AddSysUserExtendForm implements IForm {
         this.result_userType = result_userType;
     }
 
-    public String get$maxSuperiorOccupy() {
-        return $maxSuperiorOccupy;
+    public Double getMaxSuperiorOccupy() {
+        return maxSuperiorOccupy;
     }
 
-    public void set$maxSuperiorOccupy(String $maxSuperiorOccupy) {
-        this.$maxSuperiorOccupy = $maxSuperiorOccupy;
+    public void setMaxSuperiorOccupy(Double maxSuperiorOccupy) {
+        this.maxSuperiorOccupy = maxSuperiorOccupy;
     }
 }

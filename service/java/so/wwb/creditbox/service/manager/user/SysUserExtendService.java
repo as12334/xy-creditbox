@@ -638,7 +638,7 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
         strings.add(SysUserExtend.PROP_SUPERIOR_OCCUPY);
         strings.add(SysUserExtend.PROP_STATUS);
 
-        if(objectVo.getResult().equals(UserTypeEnum.BRANCH.getCode())){
+        if(objectVo.getResult().getUserType().equals(UserTypeEnum.BRANCH.getCode())){
             strings.add(SysUserExtend.PROP_GENERAL);
             strings.add(SysUserExtend.PROP_SET_ODDS);
         }

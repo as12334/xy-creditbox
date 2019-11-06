@@ -49,6 +49,14 @@ public class SysUserExtendVo extends BaseObjectVo<SysUserExtend, SysUserExtendSo
     //退水点数
     private Double water;
 
+
+    //上级累计分成
+    private  Integer sumSuperStintOccupy;
+
+
+    //上级占成最高限制
+    private  Integer maxSuperiorOccupy;
+
     /** API token */
 //    private String token;
     //endregion your codes 5
@@ -208,8 +216,22 @@ public class SysUserExtendVo extends BaseObjectVo<SysUserExtend, SysUserExtendSo
         this.water = water;
     }
 
+    public Integer getSumSuperStintOccupy() {
+        return sumSuperStintOccupy == null?0:sumSuperStintOccupy;
+    }
 
+    public void setSumSuperStintOccupy(Integer sumSuperStintOccupy) {
 
-    //endregion your codes 4
+        this.sumSuperStintOccupy = sumSuperStintOccupy;
+    }
+
+    public Integer getMaxSuperiorOccupy() {
+        return maxSuperiorOccupy;
+    }
+
+    public void setMaxSuperiorOccupy(Integer maxSuperiorOccupy) {
+        this.maxSuperiorOccupy = maxSuperiorOccupy;
+    }
+//endregion your codes 4
 
 }

@@ -12,6 +12,7 @@ import org.soul.commons.net.ServletTool;
 import org.soul.model.gameapi.param.User;
 import org.soul.model.security.privilege.po.SysUserStatus;
 import org.soul.web.controller.BaseCrudController;
+import org.soul.web.session.SessionManagerBase;
 import org.soul.web.validation.form.annotation.FormModel;
 import org.soul.web.validation.form.js.JsRuleCreator;
 import org.springframework.ui.Model;
@@ -125,6 +126,7 @@ public class VSiteUserController extends BaseCrudController<IVSiteUserService, V
         objectVo = this.getService().searchLevelUser(objectVo);
         //查詢上級用戶 end
         objectVo.setValidateRule(JsRuleCreator.create(AddSysUserExtendForm.class, "result"));
+
         model.addAttribute("command", objectVo);
         return getViewBasePath() + "/Edit";
     }
@@ -215,12 +217,15 @@ public class VSiteUserController extends BaseCrudController<IVSiteUserService, V
         }
 
         if(objectVo.getResult().getStintOccupy() == null){
-            objectVo.getResult().setStintOccupy(-1.0);
+            objectVo.getResult().setStintOccupy(-1);
         }
         objectVo.getResult().setCreateUser(SessionManager.getSysUserExtend().getId());
         objectVo.getResult().setModeSelection(ModeSelectionEnum.CREDIT.getCode());
         objectVo.getResult().setTestAccount(TestAccountEnum.NO.getCode());
         String createUserType = objectVo.getResult().getUserType();
+
+
+
 
         //查詢上級 start
         SysUserExtendVo ownerVo = new SysUserExtendVo();
@@ -264,18 +269,36 @@ public class VSiteUserController extends BaseCrudController<IVSiteUserService, V
     @RequestMapping("/getSubInfo")
     @ResponseBody
     private Map getSubInfo(SysUserExtendVo vo){
+        Integer maxSuperiorOccupy;
         Map map = new HashMap<>();
         if(UserTypeEnum.SHAREHOLDER.getCode().equals(vo.getSearch().getUserType())
                 || UserTypeEnum.DISTRIBUTOR.getCode().equals(vo.getSearch().getUserType())
                 || UserTypeEnum.AGENT.getCode().equals(vo.getSearch().getUserType())
                 || UserTypeEnum.PLAYER.getCode().equals(vo.getSearch().getUserType())){
-            vo.setDataSourceId(SessionManagerCommon.getSiteId());
+            vo._setDataSourceId(SessionManagerCommon.getSiteId());
+            vo = ServiceTool.sysUserExtendService().get(vo);
+            vo.getSearch().setHid(vo.getResult().getHid());
+            if(vo.getSearch().getId() == null){
+                //获取上级剩余成数
+                vo = this.getService().sumSuperStintOccupy(vo);
+            }
+            else {
+                //获取上级剩余成数
+                vo = this.getService().sumSuperStintOccupyCount(vo);
+            }
+            maxSuperiorOccupy = vo.getSumSuperStintOccupy();
         }else{
-            vo.setDataSourceId(Const.BOSS_DATASOURCE_ID);
+            vo._setDataSourceId(Const.BOSS_DATASOURCE_ID);
+            maxSuperiorOccupy = 0;
         }
+
+        //获取上级信息 start
+        vo.getSearch().setId(vo.getSearch().getOwnerId());
         vo = ServiceTool.sysUserExtendService().get(vo);
         map.put("shareCredits",vo.getResult().getCredits());
         map.put("superiorOccupy",vo.getResult().getStintOccupy());
+        //获取上级信息 end
+        map.put("maxSuperiorOccupy",maxSuperiorOccupy);
         return map;
     }
 

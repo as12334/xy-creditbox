@@ -3,8 +3,10 @@ package so.wwb.creditbox.data.company.user;
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
 import org.soul.data.rdb.mybatis.IBaseQueryMapper;
 import so.wwb.creditbox.model.company.user.so.VSiteUserSo;
+import so.wwb.creditbox.model.company.user.vo.VSiteUserVo;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.so.SysUserExtendSo;
+import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
 
 import java.util.List;
 
@@ -24,6 +26,10 @@ public interface VSiteUserMapper extends IBaseQueryMapper<VSiteUser, Integer> {
 
     void doInitUserLotteryOdd(SysUserExtend user);
     void doInitUserLotteryRebate(SysUserExtend user);
+
+    Integer sumSuperStintOccupy(SysUserExtendSo search);
+
+    Integer sumSuperStintOccupyCount(SysUserExtendSo search);
     //endregion your codes 2
 
 }

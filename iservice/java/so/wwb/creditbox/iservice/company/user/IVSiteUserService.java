@@ -30,6 +30,10 @@ public interface IVSiteUserService extends IBaseService<VSiteUserListVo, VSiteUs
 
     void doInitUserLotteryRebate(SysUserExtendVo objectVo);
 
+    SysUserExtendVo sumSuperStintOccupy(SysUserExtendVo objectVo);
+
+    SysUserExtendVo sumSuperStintOccupyCount(SysUserExtendVo vo);
+
     //endregion your codes 2
 
 }

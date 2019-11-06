@@ -2,8 +2,10 @@ package so.wwb.creditbox.company.user.form;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.soul.commons.query.enums.Operator;
+import org.soul.commons.validation.form.constraints.Compare;
 import org.soul.commons.validation.form.constraints.Depends;
 import org.soul.commons.validation.form.constraints.Remote;
+import org.soul.commons.validation.form.support.CompareLogic;
 import org.soul.web.support.IForm;
 import so.wwb.creditbox.model.constants.common.RegexConst;
 import so.wwb.creditbox.web.remote.controller.CheckToolController;
@@ -39,10 +41,10 @@ public class VSiteUserForm implements IForm {
     private String $water;
 
     /*上級占成*/
-    private String result_superiorOccupy;
+    private Double result_superiorOccupy;
 
     /*限制占成*/
-    private String result_stintOccupy;
+    private Double result_stintOccupy;
     /*限占单选*/
     private String $stintId;
 
@@ -55,6 +57,9 @@ public class VSiteUserForm implements IForm {
     /*補貨設定*/
     private String result_manualAutoShipments;
 
+
+    /*最高可设置的占成数*/
+    private Double maxSuperiorOccupy;
 
     @NotBlank
     @Min(value = 0,message = "请输入数字0-99999999")
@@ -99,17 +104,17 @@ public class VSiteUserForm implements IForm {
     }
 
 
-    @NotBlank
+
     @Min(value = 0,message = "请输入数字0-100")
     @Max(value = 100 , message = "请输入数字0-100")
-    public String getResult_superiorOccupy() {
+    @Compare(message = "已超过最大值",logic = CompareLogic.LE,anotherProperty = "maxSuperiorOccupy")
+    public Double getResult_superiorOccupy() {
         return result_superiorOccupy;
     }
 
-    public void setResult_superiorOccupy(String result_superiorOccupy) {
+    public void setResult_superiorOccupy(Double result_superiorOccupy) {
         this.result_superiorOccupy = result_superiorOccupy;
     }
-
 
     public String get$stintId() {
         return $stintId;
@@ -122,11 +127,11 @@ public class VSiteUserForm implements IForm {
     @Depends(property = "$stintId", operator = Operator.EQ, value = {"no"}, jsValueExp = "$(\"[name=\\'stintId\\']\").val()=='no'")
     @Min(value = -1,message = "请输入数字-1 - 100")
     @Max(value = 100 , message = "请输入数字-1 - 100")
-    public String getResult_stintOccupy() {
+    public Double getResult_stintOccupy() {
         return result_stintOccupy;
     }
 
-    public void setResult_stintOccupy(String result_stintOccupy) {
+    public void setResult_stintOccupy(Double result_stintOccupy) {
         this.result_stintOccupy = result_stintOccupy;
     }
     @NotBlank
@@ -173,6 +178,15 @@ public class VSiteUserForm implements IForm {
     public void setResult_status(String result_status) {
         this.result_status = result_status;
     }
-    //endregion your codes 2
+
+    public Double getMaxSuperiorOccupy() {
+        return maxSuperiorOccupy;
+    }
+
+    public void setMaxSuperiorOccupy(Double maxSuperiorOccupy) {
+        this.maxSuperiorOccupy = maxSuperiorOccupy;
+    }
+
+//endregion your codes 2
 
 }

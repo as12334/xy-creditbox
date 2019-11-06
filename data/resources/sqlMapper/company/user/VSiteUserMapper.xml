@@ -100,6 +100,29 @@
     <select id="searchLevelUser" resultType="so.wwb.creditbox.model.manager.user.po.SysUserExtend">
         SELECT  * from  sys_user_extend WHERE hid like CONCAT('',#{hid},'%')  AND user_type = #{ownerUserType}
     </select>
+
+    <!--查询上级的占成总和-->
+    <select id="sumSuperStintOccupy" parameterType="so.wwb.creditbox.model.company.user.so.VSiteUserSo" resultType="int">
+        SELECT sum(r2.superior_occupy) from  (WITH RECURSIVE r AS (
+        SELECT * FROM sys_user_extend WHERE id = #{id}
+        union   ALL
+        SELECT cur.* FROM sys_user_extend cur, r WHERE cur.id = r.owner_id
+        )
+        SELECT * FROM r ORDER BY id)r2;
+    </select>
+    <!--查询上级和下级的占成总和-->
+    <select id="sumSuperStintOccupyCount" parameterType="so.wwb.creditbox.model.company.user.so.VSiteUserSo" resultType="int">
+        SELECT sum(r2.superior_occupy)-(SELECT superior_occupy from sys_user_extend where id =<include refid="extendSql"></include> ) from
+        (WITH RECURSIVE r AS (
+        SELECT * FROM sys_user_extend WHERE id = <include refid="extendSql"></include>
+        union   ALL
+        SELECT cur.* FROM sys_user_extend cur, r WHERE cur.id = r.owner_id
+        )
+        SELECT * FROM r ORDER BY id)r2;
+    </select>
+    <sql id="extendSql">
+        (SELECT id FROM sys_user_extend WHERE user_type = (SELECT MAX(user_type) FROM sys_user_extend  WHERE hid like 'AAAAAAAA60CTDANYXKPRNFXAFCJD1CVB%') order by superior_occupy desc limit 1)
+    </sql>
     <!--//endregion your codes 1-->
 
 </mapper>

@@ -31,6 +31,10 @@ public class VSiteUserVo extends BaseObjectVo<VSiteUser, VSiteUserSo, VSiteUserV
     public List<VSiteUser> getSuperUserList() {
         return superUserList;
     }
+
+
+    //上级和下级占成最高限制
+    private  Integer maxSuperiorOccupyCount;
     //endregion your codes 5
 
     /**
@@ -56,6 +60,15 @@ public class VSiteUserVo extends BaseObjectVo<VSiteUser, VSiteUserSo, VSiteUserV
     }
 
     //region your codes 4
+
+    public Integer getMaxSuperiorOccupyCount() {
+        return maxSuperiorOccupyCount;
+    }
+
+    public void setMaxSuperiorOccupyCount(Integer maxSuperiorOccupyCount) {
+        this.maxSuperiorOccupyCount = maxSuperiorOccupyCount;
+    }
+
 
     //endregion your codes 4
 

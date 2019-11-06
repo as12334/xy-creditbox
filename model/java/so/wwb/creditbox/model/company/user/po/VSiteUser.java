@@ -1,8 +1,8 @@
 package so.wwb.creditbox.model.company.user.po;
 
+import org.soul.commons.lang.string.StringTool;
 
 import org.soul.commons.bean.IEntity;
-import org.soul.commons.lang.string.StringTool;
 import org.soul.model.common.Sortable;
 
 
@@ -10,7 +10,7 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-11-1 23:55:29
+ * @time 2019-11-7 0:06:10
  */
 //region your codes 1
 public class VSiteUser implements IEntity<Integer> {
@@ -230,7 +230,7 @@ public class VSiteUser implements IEntity<Integer> {
 	/**  */
 	private String key;
 	/**  */
-	private Double superiorOccupy;
+	private Integer superiorOccupy;
 	/**  */
 	private String hid;
 	/**  */
@@ -238,7 +238,7 @@ public class VSiteUser implements IEntity<Integer> {
 	/**  */
 	private String updateName;
 	/**  */
-	private Double stintOccupy;
+	private Integer stintOccupy;
 	/**  */
 	private String breakpoint;
 	/**  */
@@ -714,11 +714,11 @@ public class VSiteUser implements IEntity<Integer> {
 	public void setKey(String value) {
 		this.key = value;
 	}
-	public Double getSuperiorOccupy() {
+	public Integer getSuperiorOccupy() {
 		return this.superiorOccupy;
 	}
 
-	public void setSuperiorOccupy(Double value) {
+	public void setSuperiorOccupy(Integer value) {
 		this.superiorOccupy = value;
 	}
 	public String getHid() {
@@ -742,11 +742,11 @@ public class VSiteUser implements IEntity<Integer> {
 	public void setUpdateName(String value) {
 		this.updateName = value;
 	}
-	public Double getStintOccupy() {
+	public Integer getStintOccupy() {
 		return this.stintOccupy;
 	}
 
-	public void setStintOccupy(Double value) {
+	public void setStintOccupy(Integer value) {
 		this.stintOccupy = value;
 	}
 	public String getBreakpoint() {
@@ -805,13 +805,7 @@ public class VSiteUser implements IEntity<Integer> {
 	public void setHandicap(Integer value) {
 		this.handicap = value;
 	}
-
 	public String getOwnerUserType() {
-		if(StringTool.isBlank(this.ownerUserType)){
-			if(StringTool.isNotBlank(this.userType)){
-				return (Integer.valueOf(this.userType)-1)+"";
-			}
-		}
 		return this.ownerUserType;
 	}
 

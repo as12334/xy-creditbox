@@ -68,7 +68,8 @@
                                             餘額:<span id="shareCredits">0</span></td>
                                     </c:when>
                                     <c:otherwise>
-                                <td class="txt-left">${fn:substringBefore(command.result.ownerName,'@')}</td>
+                                        <td class="txt-left">${fn:substringBefore(command.result.ownerName,'@')}</td>
+                                        <input hidden name="result.ownerId" value="${command.result.ownerId}"/>
                                     </c:otherwise>
                                 </c:choose>
 
@@ -139,8 +140,9 @@
                                         name="shareRole">${superUserTypeName}</span>占成:
                                 </td>
                                 <td class="txt-left">
-                                    <input type="text" name="result.superiorOccupy" autocomplete="off" maxlength="3" value="${empty command.result.superiorOccupy ? '0':command.result.superiorOccupy}" class="text-input sw50" reg="/^[0-9].*$/" mesg="“上级占成” 由1-3位正整数组成。">
-                                    <span name="shareSuperior">100</span>%
+                                    <input type="text" name="result.superiorOccupy" autocomplete="off" maxlength="5" value="${empty command.result.superiorOccupy ? '0':command.result.superiorOccupy}" class="text-input sw50" reg="/^[0-9].*$/" mesg="“上级占成” 由1-3位正整数组成。">
+                                    <span id="maxSuperiorOccupy" >0</span>%
+                                    <input hidden name="maxSuperiorOccupy" value="0"/>
                                 </td>
                             </tr>
                             <tr ${playHiddenStatus ? "hidden":""}>
@@ -148,7 +150,7 @@
                                 <td class="txt-left">
                                     <label class="label-box"> <input type="radio" name="stintId" ${empty command.result.stintOccupy || command.result.stintOccupy==-1?"checked":""} value="yes">占餘成數下線任占</label>
                                     <label class="label-box"><input type="radio" name="stintId"  ${command.result.stintOccupy > -1?"checked":""} value="no">限制下線占成</label>
-                                    <input ${empty command.result.stintOccupy || command.result.stintOccupy==-1 ? "hidden":""} type="text" name="result.stintOccupy" autocomplete="off" maxlength="3" value="${command.result.stintOccupy}" class="text-input sw50" reg="/^(-)?[1-9][0-9]*$/" mesg="“下級限占” 由1-3位數字组成。">
+                                    <input ${empty command.result.stintOccupy || command.result.stintOccupy==-1 ? "hidden":""} type="text" name="result.stintOccupy" autocomplete="off" maxlength="5" value="${command.result.stintOccupy}" class="text-input sw50" reg="/^(-)?[1-9][0-9]*$/" mesg="“下級限占” 由1-3位數字组成。">
                                 </td>
                             </tr>
                             <tr>

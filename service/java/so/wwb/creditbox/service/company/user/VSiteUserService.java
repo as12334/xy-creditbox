@@ -82,6 +82,21 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
     public void doInitUserLotteryRebate(SysUserExtendVo objectVo) {
         mapper.doInitUserLotteryRebate(objectVo.getResult());
     }
+
+    @Override
+    public SysUserExtendVo sumSuperStintOccupy(SysUserExtendVo objectVo) {
+        Integer sumSuperStintOccupy = mapper.sumSuperStintOccupy(objectVo.getSearch());
+        objectVo.setSumSuperStintOccupy(sumSuperStintOccupy);
+        return objectVo;
+    }
+
+    @Override
+    public SysUserExtendVo sumSuperStintOccupyCount(SysUserExtendVo objectVo) {
+        Integer sumSuperStintOccupy = mapper.sumSuperStintOccupyCount(objectVo.getSearch());
+        objectVo.setSumSuperStintOccupy(sumSuperStintOccupy);
+        return objectVo;
+    }
+
     private String getKey() {
         String key = null;
         boolean flag = true;

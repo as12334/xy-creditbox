@@ -45,7 +45,7 @@ public class SysUserExtend extends SysUser {
 	/** 钥匙 */
 	private String key;
 	/** 上级占成 */
-	private Double superiorOccupy;
+	private Integer superiorOccupy;
 	/** ID标示(每级8位) */
 	private String hid;
 	/** 信用额 */
@@ -53,7 +53,7 @@ public class SysUserExtend extends SysUser {
 	/**  */
 	private String updateName;
 	/** 限制占成 */
-	private Double stintOccupy;
+	private Integer stintOccupy;
 	/** 1占余归总监、2占余归分公司 */
 	private String breakpoint;
 	/** 补货设定  1:启用  0:禁用 */
@@ -94,11 +94,11 @@ public class SysUserExtend extends SysUser {
 	public void setKey(String value) {
 		this.key = value;
 	}
-	public Double getSuperiorOccupy() {
+	public Integer getSuperiorOccupy() {
 		return this.superiorOccupy;
 	}
 
-	public void setSuperiorOccupy(Double value) {
+	public void setSuperiorOccupy(Integer value) {
 		this.superiorOccupy = value;
 	}
 	public String getHid() {
@@ -122,11 +122,11 @@ public class SysUserExtend extends SysUser {
 	public void setUpdateName(String value) {
 		this.updateName = value;
 	}
-	public Double getStintOccupy() {
+	public Integer getStintOccupy() {
 		return this.stintOccupy;
 	}
 
-	public void setStintOccupy(Double value) {
+	public void setStintOccupy(Integer value) {
 		this.stintOccupy = value;
 	}
 	public String getBreakpoint() {

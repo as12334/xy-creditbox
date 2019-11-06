@@ -238,4 +238,5 @@
         SELECT * FROM f_init_site_lottery_rebate(#{siteId},#{hid});
     </select>
 
+
 </mapper>
