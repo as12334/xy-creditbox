@@ -3,47 +3,15 @@ import org.soul.commons.enums.ICodeEnum;
 
 public enum LotteryPlayEnum implements ICodeEnum {
 
-    //时时彩
-    //传统玩法
-    ONE_DIGITAL("ssc","one_digital", "一字定位"),
-    ONE_BIG_SMALL("ssc","one_big_small", "一字大小"),
-    ONE_SINGLE_DOUBLE("ssc","one_single_double", "一字单双"),
-    ONE_PRIME_COMBINED("ssc","one_prime_combined", "一字质合"),
-    ONE_COMBINATION("ssc","one_combination", "一字组合"),
-    TWO_DIGITAL("ssc","two_digital", "二字定位"),
-    TWO_COMBINATION("ssc","two_combination", "二字组合"),
-    TWO_SUM_SINGLE_DOUBLE("ssc","two_sum_single_double", "二字和数单双"),
-    THREE_DIGITAL("ssc","three_digital", "三字定位"),
-    THREE_COMBINATION("ssc","three_combination", "三字组合"),
-    FIVE_SUM_BIG_SMALL("ssc","five_sum_big_small", "五字和数大小"),
-    FIVE_SUM_SINGLE_DOUBLE("ssc","five_sum_single_double", "五字和数单双"),
-    DRAGON_TIGER_TIE("ssc","dragon_tiger_tie", "龙虎和"),
-    GROUP_THREE("ssc","group_three", "组选三"),
-    GROUP_SIX("ssc","group_six", "组选六"),
-    SPAN("ssc","span", "跨度"),
-    SSC_NN("ssc","ssc_nn","牛牛"),
 
-    //官方玩法
-    SSC_WUXING_ZHIXUAN("ssc","ssc_wuxing_zhixuan", "五星直选"),
-    SSC_SIXING_ZHIXUAN("ssc","ssc_sixing_zhixuan", "四星直选"),
-    SSC_SANXING_ZHIXUAN("ssc","ssc_sanxing_zhixuan", "三星直选"),
-    SSC_SANXING_ZUXUAN("ssc","ssc_sanxing_zuxuan", "三星组选"),
-    SSC_SANXING_TESHU("ssc","ssc_sanxing_teshu", "三星特殊"),
-    SSC_ERXING_ZHIXUAN("ssc","ssc_erxing_zhixuan", "二星直选"),
-    SSC_ERXING_ZUXUAN("ssc","ssc_erxing_zuxuan", "二星组选"),
-    SSC_YIXING("ssc","ssc_yixing", "定位胆"),
-    SSC_BUDINGWEI_WUXING("ssc","ssc_budingwei_wuxing", "五星不定位"),
-    SSC_BUDINGWEI_SIXING("ssc","ssc_budingwei_sixing", "四星不定位"),
-    SSC_BUDINGWEI_SANXING("ssc","ssc_budingwei_sanxing", "三星不定位"),
-    SSC_RENXUAN4_ZHIXUAN("ssc","ssc_renxuan4_zhixuan", "任选四直选"),
-    SSC_RENXUAN4_ZUXUAN("ssc","ssc_renxuan4_zuxuan", "任选四组选"),
-    SSC_RENXUAN3_ZHIXUAN("ssc","ssc_renxuan3_zhixuan", "任选三直选"),
-    SSC_RENXUAN3_ZUXUAN("ssc","ssc_renxuan3_zuxuan", "任选三组选"),
-    SSC_RENXUAN2_ZHIXUAN("ssc","ssc_renxuan2_zhixuan", "任选二直选"),
-    SSC_RENXUAN2_ZUXUAN("ssc","ssc_renxuan2_zuxuan", "任选二组选"),
-    SSC_DAXIAO_DANSHUANG("ssc","ssc_daxiao_danshuang", "大小单双"),
-
-
+    SSC_BIG_SMALL("ssc", "16", "大小"),
+    SSC_SINGLE_DOUBLE("ssc", "17", "单双"),
+    SSC_SUM_BIG_SMALL("ssc", "16", "總和大小"),
+    SSC_SUM_SINGLE_DOUBLE("ssc", "17", "總和单双"),
+    SSC_DRAGON_TIGER_SUM("ssc", "18", "龍虎和"),
+    TEN_THOUSAND_THOUSAND_HUNDRED("ssc", "19", "前三"),
+    THOUSAND_HUNDRED_TEN("ssc", "20", "中三"),
+    HUNDRED_TEN_ONE("ssc", "21", "後三"),
 
     //pk10
     PK10_DIGITAL("pk10","pk10_digital", "定位"),

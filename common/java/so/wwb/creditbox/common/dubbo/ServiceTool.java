@@ -195,6 +195,9 @@ public static ISysUserRoleService sysUserRoleService() {
     public static ILotteryOddService lotteryOddService() {
         return getService(ILotteryOddService.class);
     }
+    public static ILotteryOddsService lotteryOddsService() {
+        return getService(ILotteryOddsService.class);
+    }
 
 //    /**
 //     * 返回用户管理/详细视图 - Fei  jeremy远程服务实例

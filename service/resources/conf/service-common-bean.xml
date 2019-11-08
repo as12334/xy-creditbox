@@ -39,7 +39,9 @@
     <bean id="lotteryService" class="so.wwb.creditbox.service.manager.lottery.LotteryService"/>
     <bean id="siteLotteryService" class="so.wwb.creditbox.service.manager.lottery.SiteLotteryService"/>
     <bean id="lotteryOddService" class="so.wwb.creditbox.service.manager.lottery.LotteryOddService"/>
+    <bean id="lotteryOddsService" class="so.wwb.creditbox.service.manager.lottery.LotteryOddsService"/>
     <bean id="siteLotteryOddService" class="so.wwb.creditbox.service.manager.lottery.SiteLotteryOddService"/>
+    <bean id="siteLotteryOddsService" class="so.wwb.creditbox.service.manager.lottery.SiteLotteryOddsService"/>
 
 
 
