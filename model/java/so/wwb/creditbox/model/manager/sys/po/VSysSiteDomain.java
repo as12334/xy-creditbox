@@ -12,7 +12,7 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-10-19 21:44:13
+ * @time 2019-11-10 1:20:28
  */
 //region your codes 1
 public class VSysSiteDomain implements IEntity<Integer> {
@@ -28,6 +28,7 @@ public class VSysSiteDomain implements IEntity<Integer> {
 	public static final String PROP_SITE_ID = "siteId";
 	public static final String PROP_NAME = "name";
 	public static final String PROP_SITE_USER_ID = "siteUserId";
+	public static final String PROP_SITE_USER_HID = "siteUserHid";
 	public static final String PROP_SITE_USER_NAME = "siteUserName";
 	public static final String PROP_SITE_USER_TYPE = "siteUserType";
 	public static final String PROP_DOMAIN_ID = "domainId";
@@ -71,6 +72,8 @@ public class VSysSiteDomain implements IEntity<Integer> {
 	private String name;
 	/**  */
 	private Integer siteUserId;
+	/**  */
+	private String siteUserHid;
 	/**  */
 	private String siteUserName;
 	/**  */
@@ -180,6 +183,13 @@ public class VSysSiteDomain implements IEntity<Integer> {
 
 	public void setSiteUserId(Integer value) {
 		this.siteUserId = value;
+	}
+	public String getSiteUserHid() {
+		return this.siteUserHid;
+	}
+
+	public void setSiteUserHid(String value) {
+		this.siteUserHid = value;
 	}
 	public String getSiteUserName() {
 		return this.siteUserName;

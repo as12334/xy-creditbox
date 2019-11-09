@@ -2,6 +2,8 @@ package so.wwb.creditbox.data.manager.lottery;
 
 import so.wwb.creditbox.model.manager.lottery.po.SiteLotteryOdds;
 import org.soul.data.rdb.mybatis.IBaseMapper;
+import so.wwb.creditbox.model.manager.lottery.so.SiteLotteryOddsSo;
+import so.wwb.creditbox.model.manager.lottery.vo.SiteLotteryOddsVo;
 
 
 /**
@@ -17,6 +19,8 @@ public interface SiteLotteryOddsMapper extends IBaseMapper<SiteLotteryOdds, Inte
 
     //region your codes 2
     SiteLotteryOdds getBetSortLine(String code ,Integer siteId,String hid,Integer betSort);
+
+    Integer saveSiteLotteryOdds(SiteLotteryOddsVo search);
     //endregion your codes 2
 
 }

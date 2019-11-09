@@ -15,7 +15,7 @@
             </div>
             <div class="shell-top-right"></div>
             <div id="title-nav" class="title-nav-right">
-                <select name="search.code">
+                <select name="search.code" id="lotteryCode">
                     <c:forEach items="${command.siteLotteryList}" var="p">
                         <option value="${p.code}">${p.name}</option>
                     </c:forEach>
@@ -34,7 +34,7 @@
                             </tr>
                             </thead>
                         </table>
-                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" id="">
                             <thead>
                             <tr>
                                 <td>
@@ -52,12 +52,13 @@
                                             </thead>
                                             <tbody>
                                             <c:forEach items="${command.oddsMap}" var="map">
-                                                <tr sort="1" class="">
+                                                <tr sort="1" class="betSortTr">
+                                                    <input hidden name="betSort" value="${map.value.betSort}"/>
                                                     <td class="bc sw120">${map.key}</td>
-                                                    <td><input type="text" autocomplete="off" ext=""  class="text-input sw70" value="${map.value.oddA}"></td>
-                                                    <td><input type="text" autocomplete="off" exts="" class="text-input sw70" value="${map.value.oddB}"></td>
-                                                    <td><input type="text" autocomplete="off" exts="" class="text-input sw70" value="${map.value.oddC}"></td>
-                                                    <td><input type="text" autocomplete="off" ext=""  class="text-input sw70" value="${map.value.maxOdd}"></td>
+                                                    <td><input type="text" autocomplete="off" ext=""  class="text-input sw70" name="oddA" value="${map.value.oddA}"></td>
+                                                    <td><input type="text" autocomplete="off" exts="" class="text-input sw70" name="oddB" value="${map.value.oddB}"></td>
+                                                    <td><input type="text" autocomplete="off" exts="" class="text-input sw70" name="oddC" value="${map.value.oddC}"></td>
+                                                    <td><input type="text" autocomplete="off" ext=""  class="text-input sw70" name="maxOdd" value="${map.value.maxOdd}"></td>
                                                     <td><input type="checkbox" name="ddd"></td>
                                                 </tr>
                                             </c:forEach>
@@ -66,152 +67,7 @@
                                         </table>
                                     </div>
                                     <div style="float:right;width:49.9%">
-                                        <table class="middle-table bor-top">
-                                            <thead>
-                                            <tr>
-                                                <th class="sw120">交易類型</th>
-                                                <th>A盤賠率</th>
-                                                <th>B盤差分</th>
-                                                <th>C盤差分</th>
-                                                <th>最高賠率</th>
-                                                <th>選擇</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr sort="93" class="">
-                                                <td class="bc sw120">牛一</td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr sort="94" class="">
-                                                <td class="bc sw120">牛二</td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr sort="95" class="">
-                                                <td class="bc sw120">牛三</td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr sort="96" class="">
-                                                <td class="bc sw120">牛四</td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr sort="97" class="">
-                                                <td class="bc sw120">牛五</td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr sort="98" class="">
-                                                <td class="bc sw120">牛六</td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr sort="99" class="">
-                                                <td class="bc sw120">牛七</td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr sort="100" class="">
-                                                <td class="bc sw120">牛八</td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr sort="101" class="">
-                                                <td class="bc sw120">牛九</td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr sort="102" class="">
-                                                <td class="bc sw120">牛牛</td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            <tr sort="103" class="">
-                                                <td class="bc sw120">無牛</td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" exts=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="text" autocomplete="off" ext=""
-                                                           class="text-input sw70"></td>
-                                                <td><input type="checkbox"></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
+
                                     </div>
                                 </td>
                             </tr>

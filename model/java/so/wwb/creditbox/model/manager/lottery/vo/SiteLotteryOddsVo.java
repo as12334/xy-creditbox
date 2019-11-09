@@ -34,8 +34,9 @@ public class SiteLotteryOddsVo extends BaseObjectVo<SiteLotteryOdds, SiteLottery
     private Map<String,SiteLotteryOdds> oddsMap;
 
 
+
     //赔率设置保存一行数据，要对应更改数据库多行记录
-    private static Map<String,Map<String,String>> betSortMap = new LinkedHashMap<>();
+    public static Map<String,Map<String,String>> betSortMap = new LinkedHashMap<>();
 
     static {
         //对应的bet_sort
@@ -126,6 +127,26 @@ public class SiteLotteryOddsVo extends BaseObjectVo<SiteLotteryOdds, SiteLottery
         betSortMap.put(LotteryEnum.GDKL10.getCode(),map);
     }
 
+    private String lotteryOddsJson;
+
+    private String[] betSorts;
+
+    public String getLotteryOddsJson() {
+        return lotteryOddsJson;
+    }
+
+    public void setLotteryOddsJson(String lotteryOddsJson) {
+        this.lotteryOddsJson = lotteryOddsJson;
+    }
+
+    public String[] getBetSorts() {
+        return betSorts;
+    }
+
+    public void setBetSorts(String[] betSorts) {
+        this.betSorts = betSorts;
+    }
+
     //endregion your codes 5
 
     /**
@@ -167,6 +188,8 @@ public class SiteLotteryOddsVo extends BaseObjectVo<SiteLotteryOdds, SiteLottery
     public void setOddsMap(Map<String, SiteLotteryOdds> oddsMap) {
         this.oddsMap = oddsMap;
     }
+
+
 
     //endregion your codes 4
 

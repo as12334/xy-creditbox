@@ -37,6 +37,11 @@ public class LotteryContextParam extends ContextParam {
     private final static String _Key_domainUserId="domainUserId";
 
     /**
+     * 域名归属(商户|代理)主账号ID.
+     */
+    private final static String _Key_domainUserHid="domainUserHid";
+
+    /**
      * 此站点的拥有者(总控、股东、商户)的账户的上级代码
      */
     private final static String _Key_siteUserOwnerCode="siteUserOwnerCode";
@@ -113,6 +118,17 @@ public class LotteryContextParam extends ContextParam {
     }
     public void setDomainUserId(Integer domainUserId) {
         super.getExtendProperties().put(_Key_domainUserId,domainUserId);
+    }
+
+    public String getDomainUserHid() {
+        if(super.getExtendProperties().containsKey(_Key_domainUserHid)) {
+            return (String) super.getExtendProperties().get(_Key_domainUserHid);
+        }else{
+            return null;
+        }
+    }
+    public void setDomainUserHid(String domainUserId) {
+        super.getExtendProperties().put(_Key_domainUserHid,domainUserId);
     }
 
     public String getDomainUserName() {

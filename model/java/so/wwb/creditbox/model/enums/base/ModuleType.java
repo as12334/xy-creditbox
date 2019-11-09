@@ -101,7 +101,7 @@ public enum ModuleType implements IModuleType {
 //    LOTTERY_TYPE_DELETE("263","删除彩种类型"),
 //    LOTTERY_TYPE_STATUS("264","启用/停用彩种类型"),
 //
-//    LOTTERY_ODD_UPDATE("270","修改赔率奖金"),
+    LOTTERY_ODD_UPDATE("270","修改赔率奖金"),
 //    LOTTERY_QUOTA_UPDATE("271","修改限额"),
 //    LOTTERY_BET_RECORD_EXPORT("280","投注记录导出"),
 //

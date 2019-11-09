@@ -8,6 +8,7 @@
         <result column="site_id" property="siteId"/>
         <result column="name" property="name"/>
         <result column="site_user_id" property="siteUserId"/>
+        <result column="site_user_hid" property="siteUserHid"/>
         <result column="site_user_name" property="siteUserName"/>
         <result column="site_user_type" property="siteUserType"/>
         <result column="domain_id" property="domainId"/>

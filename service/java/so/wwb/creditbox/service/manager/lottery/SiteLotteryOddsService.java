@@ -1,8 +1,12 @@
 package so.wwb.creditbox.service.manager.lottery;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.sun.javafx.collections.MappingChange;
 import org.apache.commons.collections.map.LinkedMap;
 import org.soul.commons.enums.EnumTool;
+import org.soul.commons.log.Log;
+import org.soul.commons.log.LogFactory;
 import org.soul.commons.query.Criteria;
 import org.soul.commons.query.enums.Operator;
 import org.soul.service.support.BaseService;
@@ -13,6 +17,7 @@ import so.wwb.creditbox.iservice.manager.lottery.ISiteLotteryOddsService;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryStatusEnum;
 import so.wwb.creditbox.model.manager.lottery.po.Lottery;
+import so.wwb.creditbox.model.manager.lottery.po.LotteryOdd;
 import so.wwb.creditbox.model.manager.lottery.po.SiteLottery;
 import so.wwb.creditbox.model.manager.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.manager.lottery.so.SiteLotteryOddsSo;
@@ -33,6 +38,7 @@ import java.util.Map;
  */
 //region your codes 1
 public class SiteLotteryOddsService extends BaseService<SiteLotteryOddsMapper, SiteLotteryOddsListVo, SiteLotteryOddsVo, SiteLotteryOdds, Integer> implements ISiteLotteryOddsService {
+    private static final Log LOG = LogFactory.getLog(SiteLotteryOddsService.class);
 
 //endregion your codes 1
 
@@ -107,6 +113,45 @@ public class SiteLotteryOddsService extends BaseService<SiteLotteryOddsMapper, S
 
         vo.setOddsMap(hashMap);
         return vo;
+    }
+
+    @Override
+    public SiteLotteryOddsVo saveSiteLotteryOdds(SiteLotteryOddsVo siteLotteryOddsVo) {
+        JSONArray arr = null;
+        try {
+            arr = JSONObject.parseArray(siteLotteryOddsVo.getLotteryOddsJson());
+        } catch (Exception e) {
+            LOG.error("提交赔率格式有问题，转换出错！{0}", siteLotteryOddsVo.getLotteryOddsJson());
+            siteLotteryOddsVo.setSuccess(false);
+            return siteLotteryOddsVo;
+        }
+        SiteLotteryOddsSo search = siteLotteryOddsVo.getSearch();
+        Integer count = 0;
+        for (int i = 0; i < arr.size(); i++) {
+            JSONObject obj = arr.getJSONObject(i);
+            if (obj != null) {
+                String  betSort = obj.getString("betSort");
+                String  code = obj.getString("code");
+                Double  oddA = obj.getDouble("oddA");
+                Double  oddB = obj.getDouble("oddB");
+                Double  oddC = obj.getDouble("oddC");
+                Double  maxOdd = obj.getDouble("maxOdd");
+                Map<String, String> map = SiteLotteryOddsVo.betSortMap.get(search.getCode());
+                String s = map.get(betSort);
+                String[] split = s.split(",");
+                siteLotteryOddsVo.setBetSorts(split);
+                search.setCode(code);
+                search.setOddA(oddA);
+                search.setOddB(oddB);
+                search.setOddC(oddC);
+                search.setMaxOdd(maxOdd);
+                count += mapper.saveSiteLotteryOdds(siteLotteryOddsVo);
+            }
+        }
+        if(count == 0){
+            siteLotteryOddsVo.setSuccess(false);
+        }
+        return siteLotteryOddsVo;
     }
     //endregion your codes 2
 

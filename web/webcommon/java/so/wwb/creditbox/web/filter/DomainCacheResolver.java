@@ -41,9 +41,10 @@ public class DomainCacheResolver implements IDomainCacheResolver {
         LotteryContextParam contextParam = LotteryCommonContext.get();
         VSysSiteDomain domain =(VSysSiteDomain)iEntity;
         if (domain != null) {
-
+            contextParam.setDomainUserHid(domain.getSiteUserHid());
             contextParam.setUserType(domain.getDomainUserType());
             contextParam.setSiteId(domain.getSiteId());
+            contextParam.setSiteUserId(domain.getSiteUserId());
             contextParam.setSiteUserId(domain.getSiteUserId());
             contextParam.setSiteParentId(domain.getSiteParentId());
             contextParam.setSiteCode(domain.getSiteCode());
