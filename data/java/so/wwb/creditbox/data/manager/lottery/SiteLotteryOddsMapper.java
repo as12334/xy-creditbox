@@ -12,10 +12,11 @@ import org.soul.data.rdb.mybatis.IBaseMapper;
  */
 //region your codes 1
 public interface SiteLotteryOddsMapper extends IBaseMapper<SiteLotteryOdds, Integer> {
+
 //endregion your codes 1
 
     //region your codes 2
-
+    SiteLotteryOdds getBetSortLine(String code ,Integer siteId,String hid,Integer betSort);
     //endregion your codes 2
 
 }

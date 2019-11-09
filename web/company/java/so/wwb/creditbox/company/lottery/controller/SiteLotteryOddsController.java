@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import so.wwb.creditbox.common.dubbo.ServiceTool;
 import so.wwb.creditbox.company.lottery.form.SiteLotteryOddsForm;
 import so.wwb.creditbox.company.lottery.form.SiteLotteryOddsSearchForm;
+import so.wwb.creditbox.company.session.SessionManager;
 import so.wwb.creditbox.iservice.manager.lottery.ISiteLotteryOddsService;
 import so.wwb.creditbox.model.company.user.vo.VSiteUserVo;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
@@ -46,6 +47,7 @@ public class SiteLotteryOddsController extends BaseCrudController<ISiteLotteryOd
     public String createUser4(@PathVariable("code") String code,SiteLotteryOddsVo vo, Model model) {
         vo.getSearch().setCode(code);
         vo.getSearch().setSiteId(SessionManagerBase.getSiteId());
+        vo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
         vo = this.getService().initData(vo);
         model.addAttribute("command",vo);
         return this.getViewBasePath()+code;

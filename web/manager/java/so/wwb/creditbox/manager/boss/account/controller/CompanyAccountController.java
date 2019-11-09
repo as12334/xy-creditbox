@@ -107,8 +107,8 @@ public class CompanyAccountController extends BaseAccountController {
 
 
 
-        objectVo.getResult().setSuperiorOccupy(0.0);
-        objectVo.getResult().setStintOccupy(100.0);
+        objectVo.getResult().setSuperiorOccupy(0);
+        objectVo.getResult().setStintOccupy(100);
         objectVo.getResult().setBreakpoint(BreakpointEnum.ZERO.getCode());
         objectVo.getResult().setGeneral(GeneralEnum.ALL.getCode());
         objectVo.getResult().setModeSelection(ModeSelectionEnum.CREDIT.getCode());

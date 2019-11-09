@@ -100,8 +100,8 @@ public class CompaniesAccountController extends BaseAccountController {
         objectVo.getResult().setUserType(UserTypeEnum.COMPANIES.getCode());
         objectVo.getResult().setSubsysCode(SubSysCodeEnum.COMPANIES.getCode());
         objectVo.getResult().setCreateUser(operator.getId());
-        objectVo.getResult().setSuperiorOccupy(0.0);
-        objectVo.getResult().setStintOccupy(0.0);
+        objectVo.getResult().setSuperiorOccupy(0);
+        objectVo.getResult().setStintOccupy(0);
         objectVo.getResult().setCredits(0.0);
         objectVo.getResult().setBreakpoint(BreakpointEnum.ZERO.getCode());
         objectVo.getResult().setGeneral(GeneralEnum.ALL.getCode());
