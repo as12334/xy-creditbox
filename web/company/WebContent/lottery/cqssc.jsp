@@ -62,7 +62,7 @@
                                                     <td><input type="text" autocomplete="off" exts="" class="text-input sw70" name="oddB" value="${map.value.oddB}"></td>
                                                     <td><input type="text" autocomplete="off" exts="" class="text-input sw70" name="oddC" value="${map.value.oddC}"></td>
                                                     <td><input type="text" autocomplete="off" ext=""  class="text-input sw70" name="maxOdd" value="${map.value.maxOdd}"></td>
-                                                    <td><input type="checkbox" name="ddd"></td>
+                                                    <td><input type="checkbox" /></td>
                                                 </tr>
                                             </c:forEach>
 
@@ -97,8 +97,8 @@
                             <tr>
                                 <td style="padding-top:15px;">
                                     <%--<span class="text-btn" id="submit">保存設置</span>--%>
-                                    <soul:button cssClass="text-btn" target="saveLotteryOdd" text="保存設置" opType="function"></soul:button>
-                                    <span class="text-btn" id="reset">重置選項</span>
+                                    <soul:button cssClass="text-btn" target="saveLotterysOdd" text="保存設置" opType="function"></soul:button>
+                                    <soul:button cssClass="text-btn" target="resetOption" text="重置選項" opType="function"></soul:button>
                                 </td>
                             </tr>
                             </tfoot>
