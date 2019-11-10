@@ -7,6 +7,7 @@ import org.soul.commons.init.context.ContextParam;
 import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.log.Log;
 import org.soul.commons.log.LogFactory;
+import org.soul.commons.net.ServletTool;
 import org.soul.model.log.audit.enums.OpType;
 import org.soul.web.controller.BaseCrudController;
 import org.soul.web.session.SessionManagerBase;
@@ -36,6 +37,7 @@ import so.wwb.creditbox.web.cache.Cache;
 import so.wwb.creditbox.web.tools.token.Token;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -65,14 +67,18 @@ public class SiteLotteryOddsController extends BaseCrudController<ISiteLotteryOd
     //region your codes 3
     @RequestMapping("/set/{code}")
     @Token(generate = true)
-    public String createUser4(@PathVariable("code") String code,SiteLotteryOddsVo vo, Model model) {
+    public String createUser4(@PathVariable("code") String code,SiteLotteryOddsVo vo, Model model , HttpServletRequest request, HttpServletResponse response) {
         vo.getSearch().setCode(code);
         vo.getSearch().setSiteId(SessionManagerBase.getSiteId());
         vo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
         vo = this.getService().initData(vo);
         vo.setValidateRule(JsRuleCreator.create(SiteLotteryOddsForm.class));
         model.addAttribute("command",vo);
-        return this.getViewBasePath()+code;
+        if(ServletTool.isAjaxSoulRequest(request)) {
+            return this.getViewBasePath() + "OddEditPartial";
+        } else {
+            return this.getViewBasePath() + "OddEdit";
+        }
     }
 
     @Audit(module = Module.LOTTERY, moduleType = ModuleType.LOTTERY_ODD, opType = OpType.UPDATE)
