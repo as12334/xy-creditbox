@@ -26,9 +26,9 @@
     </select>
 
     <update id="saveSiteLotteryOdds" parameterType="so.wwb.creditbox.model.manager.lottery.vo.SiteLotteryOddsVo">
-        UPDATE site_lottery_odds SET odd_a=#{search.oddA},odd_b=#{search.oddB},odd_c=#{search.oddC},max_odd=#{search.maxOdd} WHERE site_id=#{search.siteId} AND  code = #{search.code} bet_sort in
-        <foreach item="sort" collection="betSorts" open="(" close=")" separator=",">
-            ${sort}
+        UPDATE site_lottery_odds SET odd_a=#{search.oddA},odd_b=#{search.oddB},odd_c=#{search.oddC},max_odd=#{search.maxOdd} WHERE site_id=#{search.siteId} AND  code = #{search.code} AND bet_sort in
+        <foreach item="a" collection="betSorts" open="(" close=")" separator=",">
+            #{a}
         </foreach>
     </update>
     <!--//endregion your codes 1-->

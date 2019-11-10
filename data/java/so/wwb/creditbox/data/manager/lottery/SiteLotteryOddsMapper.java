@@ -18,7 +18,7 @@ public interface SiteLotteryOddsMapper extends IBaseMapper<SiteLotteryOdds, Inte
 //endregion your codes 1
 
     //region your codes 2
-    SiteLotteryOdds getBetSortLine(String code ,Integer siteId,String hid,Integer betSort);
+    SiteLotteryOdds getBetSortLine(String code ,Integer siteId,String hid,String betSort);
 
     Integer saveSiteLotteryOdds(SiteLotteryOddsVo search);
     //endregion your codes 2

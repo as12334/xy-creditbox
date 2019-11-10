@@ -7,6 +7,7 @@
 <!--//endregion your codes 1-->
 
 <form:form method="post" id="edidOddForm">
+    <lb:validateRule></lb:validateRule>
     <div class="widthAuto">
         <div class="shell-top" id="shell_top">
             <div class="shell-top-left"></div>
@@ -17,7 +18,7 @@
             <div id="title-nav" class="title-nav-right">
                 <select name="search.code" id="lotteryCode">
                     <c:forEach items="${command.siteLotteryList}" var="p">
-                        <option value="${p.code}">${p.name}</option>
+                        <option value="${p.code}"  ${p.code == command.search.code?'selected':''}>${p.name}</option>
                     </c:forEach>
 
                 </select>
@@ -53,8 +54,10 @@
                                             <tbody>
                                             <c:forEach items="${command.oddsMap}" var="map">
                                                 <tr sort="1" class="betSortTr">
-                                                    <input hidden name="betSort" value="${map.value.betSort}"/>
-                                                    <td class="bc sw120">${map.key}</td>
+
+                                                    <td class="bc sw120">${map.key}
+                                                        <input hidden name="betSort" value="${map.value.betSort}"/>
+                                                    </td>
                                                     <td><input type="text" autocomplete="off" ext=""  class="text-input sw70" name="oddA" value="${map.value.oddA}"></td>
                                                     <td><input type="text" autocomplete="off" exts="" class="text-input sw70" name="oddB" value="${map.value.oddB}"></td>
                                                     <td><input type="text" autocomplete="off" exts="" class="text-input sw70" name="oddC" value="${map.value.oddC}"></td>
@@ -92,8 +95,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding-top:15px;"><span class="text-btn" id="submit">保存設置</span><span
-                                        class="text-btn" id="reset">重置選項</span></td>
+                                <td style="padding-top:15px;">
+                                    <%--<span class="text-btn" id="submit">保存設置</span>--%>
+                                    <soul:button cssClass="text-btn" target="saveLotteryOdd" text="保存設置" opType="function"></soul:button>
+                                    <span class="text-btn" id="reset">重置選項</span>
+                                </td>
                             </tr>
                             </tfoot>
                         </table>

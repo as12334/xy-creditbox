@@ -10,6 +10,7 @@ import org.soul.commons.log.LogFactory;
 import org.soul.model.log.audit.enums.OpType;
 import org.soul.web.controller.BaseCrudController;
 import org.soul.web.session.SessionManagerBase;
+import org.soul.web.validation.form.js.JsRuleCreator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -69,6 +70,7 @@ public class SiteLotteryOddsController extends BaseCrudController<ISiteLotteryOd
         vo.getSearch().setSiteId(SessionManagerBase.getSiteId());
         vo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
         vo = this.getService().initData(vo);
+        vo.setValidateRule(JsRuleCreator.create(SiteLotteryOddsForm.class));
         model.addAttribute("command",vo);
         return this.getViewBasePath()+code;
     }

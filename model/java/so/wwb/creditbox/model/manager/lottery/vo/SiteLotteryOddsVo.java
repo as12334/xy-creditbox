@@ -129,7 +129,7 @@ public class SiteLotteryOddsVo extends BaseObjectVo<SiteLotteryOdds, SiteLottery
 
     private String lotteryOddsJson;
 
-    private String[] betSorts;
+    private List<String> betSorts;
 
     public String getLotteryOddsJson() {
         return lotteryOddsJson;
@@ -139,11 +139,11 @@ public class SiteLotteryOddsVo extends BaseObjectVo<SiteLotteryOdds, SiteLottery
         this.lotteryOddsJson = lotteryOddsJson;
     }
 
-    public String[] getBetSorts() {
+    public List<String> getBetSorts() {
         return betSorts;
     }
 
-    public void setBetSorts(String[] betSorts) {
+    public void setBetSorts(List<String> betSorts) {
         this.betSorts = betSorts;
     }
 
