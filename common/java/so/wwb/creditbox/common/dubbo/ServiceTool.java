@@ -231,15 +231,7 @@ public static ISysUserRoleService sysUserRoleService() {
         return getService(so.wwb.creditbox.iservice.manager.lottery.ILotteryRebatesService.class);
     }
     
-    /**
-     * 返回远程服务实例
-     *
-     * @return 远程服务实例
-     */
-    public static so.wwb.creditbox.iservice.manager.lottery.ISiteLotteryRebatesService siteLotteryRebatesService() {
-        return getService(so.wwb.creditbox.iservice.manager.lottery.ISiteLotteryRebatesService.class);
-    }
-    
+
     /**
      * 返回远程服务实例
      *

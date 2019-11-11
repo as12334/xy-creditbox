@@ -89,7 +89,6 @@
     <dubbo:service ref="lotteryRebatesService" interface="so.wwb.creditbox.iservice.manager.lottery.ILotteryRebatesService"/>
 
 
-    <dubbo:service ref="siteLotteryRebatesService" interface="so.wwb.creditbox.iservice.manager.lottery.ISiteLotteryRebatesService"/>
 
     <dubbo:service ref="siteLotteryRebatesService" interface="so.wwb.creditbox.iservice.company.lottery.ISiteLotteryRebatesService"/>
 

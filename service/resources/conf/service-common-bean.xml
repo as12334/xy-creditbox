@@ -54,7 +54,6 @@
     <bean id="lotteryRebatesService" class="so.wwb.creditbox.service.manager.lottery.LotteryRebatesService"/>
 
 
-    <bean id="siteLotteryRebatesService" class="so.wwb.creditbox.service.manager.lottery.SiteLotteryRebatesService"/>
 
     <bean id="siteLotteryRebatesService" class="so.wwb.creditbox.service.company.lottery.SiteLotteryRebatesService"/>
 

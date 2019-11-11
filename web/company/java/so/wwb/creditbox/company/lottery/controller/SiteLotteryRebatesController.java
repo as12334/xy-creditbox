@@ -45,6 +45,7 @@ public class SiteLotteryRebatesController extends BaseCrudController<ISiteLotter
     @RequestMapping("/editRebates")
     @Token(generate = true)
     public String editRebates(SiteLotteryRebatesVo vo, Model model , HttpServletRequest request, HttpServletResponse response) {
+        vo._setDataSourceId(SessionManagerBase.getSiteId());
         vo.getSearch().setSiteId(SessionManagerBase.getSiteId());
         vo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
         vo = this.getService().initRebatesData(vo);

@@ -71,6 +71,7 @@ public class SiteLotteryOddsController extends BaseCrudController<ISiteLotteryOd
         vo.getSearch().setCode(code);
         vo.getSearch().setSiteId(SessionManagerBase.getSiteId());
         vo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
+        vo._setDataSourceId(SessionManagerBase.getSiteId());
         vo = this.getService().initOddsData(vo);
         vo.setValidateRule(JsRuleCreator.create(SiteLotteryOddsForm.class));
         model.addAttribute("command",vo);
@@ -86,7 +87,7 @@ public class SiteLotteryOddsController extends BaseCrudController<ISiteLotteryOd
     @ResponseBody
     public Map saveSiteLotteryOdds(HttpServletRequest request, SiteLotteryOddsVo siteLotteryOddsVo) {
 
-
+        siteLotteryOddsVo._setDataSourceId(SessionManagerBase.getSiteId());
         siteLotteryOddsVo.getSearch().setSiteId(LotteryCommonContext.get().getSiteId());
         siteLotteryOddsVo.getSearch().setHid(LotteryCommonContext.get().getDomainUserHid());
         siteLotteryOddsVo = this.getService().saveSiteLotteryOdds(siteLotteryOddsVo);
