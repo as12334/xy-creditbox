@@ -2,10 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
-       http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-4.1.xsd"
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd"
        default-autowire="byName" default-lazy-init="true">
 
+    <!--//region your codes 1-->
+
+
+    <!--//region append PARTIBLE codes 1-->
     <!-- 框架相关懒加载 -->
     <bean lazy-init="true" id="auditLogService" class="so.wwb.creditbox.service.manager.sys.AuditLogService"/>
     <bean lazy-init="true" id="messageService" class="so.wwb.creditbox.service.common.MessageService" />
@@ -43,10 +46,14 @@
     <bean id="siteLotteryOddService" class="so.wwb.creditbox.service.manager.lottery.SiteLotteryOddService"/>
     <bean id="siteLotteryOddsService" class="so.wwb.creditbox.service.manager.lottery.SiteLotteryOddsService"/>
 
+    <!--//endregion append PARTIBLE codes 1-->
+
+        <!-- 彩种表服务 -->
+
+    <!-- 服务 -->
+    <bean id="lotteryRebatesService" class="so.wwb.creditbox.service.manager.lottery.LotteryRebatesService"/>
 
 
-
-
-
+<!--//endregion your codes 1-->
 
 </beans>

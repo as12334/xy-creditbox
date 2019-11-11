@@ -3,7 +3,6 @@ package so.wwb.creditbox.iservice.manager.lottery;
 import org.soul.iservice.support.IBaseService;
 import org.springframework.transaction.annotation.Transactional;
 import so.wwb.creditbox.model.manager.lottery.po.Lottery;
-import so.wwb.creditbox.model.manager.lottery.po.LotteryType;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryListVo;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryVo;
 

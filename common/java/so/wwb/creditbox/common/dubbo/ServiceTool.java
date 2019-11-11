@@ -1,6 +1,4 @@
 package so.wwb.creditbox.common.dubbo;
-
-import org.soul.commons.dubbo.DubboTool;
 import org.soul.iservice.log.audit.IAuditService;
 import org.soul.iservice.msg.notice.INoticeReceiverService;
 import org.soul.iservice.msg.notice.INoticeService;
@@ -24,7 +22,18 @@ import so.wwb.creditbox.iservice.manager.sys.*;
 import so.wwb.creditbox.iservice.manager.user.ISysUserExtendService;
 import so.wwb.creditbox.iservice.manager.user.IVSubAccountService;
 
+import org.soul.commons.dubbo.DubboTool;
+/**
+ * 远程服务实例获取工具类
+ *
+ * @author block
+ * @time 2019-11-11 23:05:37
+ */
 public class ServiceTool {
+
+    //region your codes 1
+
+    //region append IMPARTIBLE codes 1
     private static String dubboApplicationName;
     protected static <T> T getService(Class<T> interfaceClazz) {
         return DubboTool.getServiceByAppName(interfaceClazz, dubboApplicationName);
@@ -210,5 +219,18 @@ public static ISysUserRoleService sysUserRoleService() {
 //    public static IVUserManagerService vUserManagerService() {
 //        return getService(IVUserManagerService.class);
 //    }
+
+    //endregion append IMPARTIBLE codes 1
+
+        /**
+     * 返回远程服务实例
+     *
+     * @return 远程服务实例
+     */
+    public static so.wwb.creditbox.iservice.manager.lottery.ILotteryRebatesService lotteryRebatesService() {
+        return getService(so.wwb.creditbox.iservice.manager.lottery.ILotteryRebatesService.class);
+    }
+    
+//endregion your codes 1
 
 }

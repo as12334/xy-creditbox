@@ -6,6 +6,9 @@
 		http://code.alibabatech.com/schema/dubbo	http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
     <!--//region your codes 1-->
+
+
+    <!--//region append PARTIBLE codes 1-->
     <!-- 功能防御 -->
     <dubbo:service ref="defenseRecordService" interface="so.wwb.creditbox.iservice.manager.common.IDefenseRecordService" registry="zookeeperService"/>
 
@@ -80,6 +83,12 @@
     <!--账号权限-->
     <dubbo:service ref="sysRoleService" interface="org.soul.iservice.security.privilege.ISysRoleService"/>
 
+    <!--//endregion append PARTIBLE codes 1-->
 
+        <!-- dubbo服务 -->
+    <dubbo:service ref="lotteryRebatesService" interface="so.wwb.creditbox.iservice.manager.lottery.ILotteryRebatesService"/>
+
+
+<!--//endregion your codes 1-->
 
 </beans>
