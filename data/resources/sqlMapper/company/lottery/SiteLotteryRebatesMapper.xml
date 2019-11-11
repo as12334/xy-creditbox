@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.creditbox.data.company.lottery.SiteLotteryRebatesMapper">
+
+    <resultMap id="TABLE:site_lottery_rebates" type="so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="site_id" property="siteId"/>
+        <result column="hid" property="hid"/>
+        <result column="bet_name" property="betName"/>
+        <result column="bet_code" property="betCode"/>
+        <result column="play_code" property="playCode"/>
+        <result column="bet_num" property="betNum"/>
+        <result column="bet_sort" property="betSort"/>
+        <result column="rebate_a" property="rebateA"/>
+        <result column="rebate_b" property="rebateB"/>
+        <result column="rebate_c" property="rebateC"/>
+        <result column="min_bet" property="minBet"/>
+        <result column="max_bet" property="maxBet"/>
+        <result column="max_expect_bet" property="maxExpectBet"/>
+        <result column="post_money" property="postMoney"/>
+        <result column="post_money_close" property="postMoneyClose"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+    <select id="getRebateBetSortLine" resultMap="TABLE:site_lottery_rebates">
+        SELECT * FROM  site_lottery_rebates WHERE code = #{0} AND site_id = #{1} AND hid = #{2} AND bet_sort = #{3};
+    </select>
+
+    <!--//endregion your codes 1-->
+
+</mapper>

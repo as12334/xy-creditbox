@@ -60,18 +60,18 @@ public class SiteLotteryOddsController extends BaseCrudController<ISiteLotteryOd
     @Override
     protected String getViewBasePath() {
         //region your codes 2
-        return "/lottery/";
+        return "/lottery/odd/";
         //endregion your codes 2
     }
 
     //region your codes 3
     @RequestMapping("/set/{code}")
     @Token(generate = true)
-    public String createUser4(@PathVariable("code") String code,SiteLotteryOddsVo vo, Model model , HttpServletRequest request, HttpServletResponse response) {
+    public String editOdds(@PathVariable("code") String code,SiteLotteryOddsVo vo, Model model , HttpServletRequest request, HttpServletResponse response) {
         vo.getSearch().setCode(code);
         vo.getSearch().setSiteId(SessionManagerBase.getSiteId());
         vo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
-        vo = this.getService().initData(vo);
+        vo = this.getService().initOddsData(vo);
         vo.setValidateRule(JsRuleCreator.create(SiteLotteryOddsForm.class));
         model.addAttribute("command",vo);
         if(ServletTool.isAjaxSoulRequest(request)) {

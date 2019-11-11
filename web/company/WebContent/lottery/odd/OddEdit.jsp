@@ -35,7 +35,7 @@
     </div>
 </form:form>
 <%--<%@ include file="/include/include.js.jsp" %>--%>
-<soul:import res="site/lottery/OddEdit"/>
+<soul:import res="site/lottery/odd/OddEdit"/>
 
 <!--//region your codes 3-->
 <!--//endregion your codes 3-->
