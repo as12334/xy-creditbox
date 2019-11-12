@@ -19,6 +19,8 @@ import so.wwb.creditbox.iservice.manager.common.*;
 import so.wwb.creditbox.iservice.manager.lottery.*;
 import so.wwb.creditbox.iservice.manager.message.ISystemAnnouncementService;
 import so.wwb.creditbox.iservice.manager.sys.*;
+import so.wwb.creditbox.iservice.manager.taskschedule.ITaskScheduleServiceExGs;
+import so.wwb.creditbox.iservice.manager.taskschedule.ITaskScheduleServiceExS;
 import so.wwb.creditbox.iservice.manager.user.ISysUserExtendService;
 import so.wwb.creditbox.iservice.manager.user.IVSubAccountService;
 
@@ -54,6 +56,16 @@ public class ServiceTool {
     public static IVSiteMasterManageService vSiteMasterManageService() {
         return getService(IVSiteMasterManageService.class);
     }
+
+
+    public static ITaskScheduleServiceExGs taskScheduleServiceExGs() {
+        return getService(ITaskScheduleServiceExGs.class);
+    }
+
+    public static ITaskScheduleServiceExS taskScheduleServiceExS() {
+        return getService(ITaskScheduleServiceExS.class);
+    }
+
 
     public static IVSiteUserService vSiteUserService() {
         return getService(IVSiteUserService.class);

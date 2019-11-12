@@ -296,7 +296,7 @@ public enum ModuleType implements IModuleType {
 //    SYS_UPDATE_API_TRANSFER_SITE("1013","修改api是否开启免转状态"),
 //
 //    //运维　1101 - 1200
-//    OPS_TASK_SCHEDULE_SERVICE_RUN("1001","任务调度运行"),
+    OPS_TASK_SCHEDULE_SERVICE_RUN("1001","任务调度运行"),
 
 
 
