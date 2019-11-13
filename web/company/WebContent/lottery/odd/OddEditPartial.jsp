@@ -35,7 +35,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <c:set var="ind"><fmt:formatNumber value="${(command.oddsMap.size()/2) + ((command.oddsMap.size()%2)>0?1:0)}"></fmt:formatNumber></c:set>
+                                        <c:set var="ind"><fmt:formatNumber value="${(command.oddsMap.size()/2) + ((command.oddsMap.size()%2)>0?1:0)}" maxFractionDigits="0"></fmt:formatNumber></c:set>
                                         <c:forEach items="${command.oddsMap}" var="map" begin="0" end="${ind - 1}">
                                             <tr sort="1" class="betSortTr">
 

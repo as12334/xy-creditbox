@@ -1,6 +1,5 @@
 package so.wwb.creditbox.model.company.lottery.po;
 
-
 import org.soul.commons.bean.IEntity;
 import org.soul.model.common.Sortable;
 
@@ -9,20 +8,18 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-11-14 2:27:09
+ * @time 2019-11-14 2:30:39
  */
 //region your codes 1
-public class SiteLotteryOdds implements IEntity<Integer> {
+public class LotteryOdds implements IEntity<Integer> {
 //endregion your codes 1
 
 	//region your codes 3
-	private static final long serialVersionUID = -4878812135951948164L;
+	private static final long serialVersionUID = -2453173488585261561L;
 	//endregion your codes 3
 
 	//region property name constants
 	public static final String PROP_ID = "id";
-	public static final String PROP_SITE_ID = "siteId";
-	public static final String PROP_HID = "hid";
 	public static final String PROP_CODE = "code";
 	public static final String PROP_BET_NAME = "betName";
 	public static final String PROP_BET_CODE = "betCode";
@@ -43,10 +40,6 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 	//region properties
 	/**  */
 	private Integer id;
-	/**  */
-	private Integer siteId;
-	/**  */
-	private String hid;
 	/**  */
 	private String code;
 	/**  */
@@ -79,10 +72,10 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 
 	
 	//region constuctors
-	public SiteLotteryOdds(){
+	public LotteryOdds(){
 	}
 
-	public SiteLotteryOdds(Integer id){
+	public LotteryOdds(Integer id){
 		this.id = id;
 	}
 	//endregion
@@ -95,20 +88,6 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 
 	public void setId(Integer value) {
 		this.id = value;
-	}
-	public Integer getSiteId() {
-		return this.siteId;
-	}
-
-	public void setSiteId(Integer value) {
-		this.siteId = value;
-	}
-	public String getHid() {
-		return this.hid;
-	}
-
-	public void setHid(String value) {
-		this.hid = value;
 	}
 	public String getCode() {
 		return this.code;

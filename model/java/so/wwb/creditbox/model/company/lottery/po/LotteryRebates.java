@@ -1,6 +1,5 @@
 package so.wwb.creditbox.model.company.lottery.po;
 
-
 import org.soul.commons.bean.IEntity;
 import org.soul.model.common.Sortable;
 
@@ -9,21 +8,19 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-11-14 2:26:51
+ * @time 2019-11-14 2:31:01
  */
 //region your codes 1
-public class SiteLotteryRebates implements IEntity<Integer> {
+public class LotteryRebates implements IEntity<Integer> {
 //endregion your codes 1
 
 	//region your codes 3
-	private static final long serialVersionUID = 3098885399576700267L;
+	private static final long serialVersionUID = 5665622851320188711L;
 	//endregion your codes 3
 
 	//region property name constants
 	public static final String PROP_ID = "id";
 	public static final String PROP_CODE = "code";
-	public static final String PROP_SITE_ID = "siteId";
-	public static final String PROP_HID = "hid";
 	public static final String PROP_BET_NAME = "betName";
 	public static final String PROP_BET_CODE = "betCode";
 	public static final String PROP_PLAY_CODE = "playCode";
@@ -47,10 +44,6 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 	private Integer id;
 	/** 彩种代号 */
 	private String code;
-	/** 站点id */
-	private Integer siteId;
-	/** 用户唯一标示 */
-	private String hid;
 	/**  */
 	private String betName;
 	/** 玩法代号 */
@@ -85,10 +78,10 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 
 	
 	//region constuctors
-	public SiteLotteryRebates(){
+	public LotteryRebates(){
 	}
 
-	public SiteLotteryRebates(Integer id){
+	public LotteryRebates(Integer id){
 		this.id = id;
 	}
 	//endregion
@@ -108,20 +101,6 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 
 	public void setCode(String value) {
 		this.code = value;
-	}
-	public Integer getSiteId() {
-		return this.siteId;
-	}
-
-	public void setSiteId(Integer value) {
-		this.siteId = value;
-	}
-	public String getHid() {
-		return this.hid;
-	}
-
-	public void setHid(String value) {
-		this.hid = value;
 	}
 	public String getBetName() {
 		return this.betName;

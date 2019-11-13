@@ -76,7 +76,13 @@ public class SiteLotteryOddsService extends BaseService<SiteLotteryOddsMapper, S
                 hashMap.put("冠亞大",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"37_168"));
                 hashMap.put("冠亞小",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"37_169"));
                 hashMap.put("冠亞單",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"38_170"));
-                hashMap.put("冠亞雙",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"38_171"));
+                hashMap.put("冠亞双",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"38_171"));
+
+                hashMap.put("冠亞和-3,4,18,19",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"36_151"));
+                hashMap.put("冠亞和-5,6,16,17",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"36_153"));
+                hashMap.put("冠亞和-7,8,14,15",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"36_155"));
+                hashMap.put("冠亞和-9,10,12,13",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"36_157"));
+                hashMap.put("冠亞和-11",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"36_159"));
                 break;
             case GDKL10:
                 hashMap.put("1-8單碼",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"81_1"));
