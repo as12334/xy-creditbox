@@ -1,4 +1,4 @@
-package so.wwb.creditbox.model.manager.lottery.po;
+package so.wwb.creditbox.model.company.lottery.po;
 
 
 import org.soul.commons.bean.IEntity;

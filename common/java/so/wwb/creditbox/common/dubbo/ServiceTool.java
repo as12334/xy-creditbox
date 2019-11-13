@@ -1,9 +1,7 @@
 package so.wwb.creditbox.common.dubbo;
 import org.soul.iservice.log.audit.IAuditService;
 import org.soul.iservice.msg.notice.INoticeReceiverService;
-import org.soul.iservice.msg.notice.INoticeService;
 import org.soul.iservice.passport.IPassportService;
-import org.soul.iservice.pay.IOnlinePayService;
 import org.soul.iservice.security.privilege.ISysResourceService;
 import org.soul.iservice.security.privilege.ISysRoleService;
 import org.soul.iservice.security.privilege.ISysUserRoleService;
@@ -13,6 +11,8 @@ import org.soul.iservice.sys.ISysDatasourceService;
 import org.soul.iservice.sys.ISysParamService;
 import org.soul.iservice.test.IDbValidService;
 import so.wwb.creditbox.iservice.common.IMessageService;
+import so.wwb.creditbox.iservice.company.lottery.ISiteLotteryOddsService;
+import so.wwb.creditbox.iservice.company.lottery.ISiteLotteryService;
 import so.wwb.creditbox.iservice.company.site.ISiteSysParamService;
 import so.wwb.creditbox.iservice.company.user.IVSiteUserService;
 import so.wwb.creditbox.iservice.manager.common.*;

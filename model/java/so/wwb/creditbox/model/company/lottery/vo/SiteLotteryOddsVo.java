@@ -1,15 +1,13 @@
-package so.wwb.creditbox.model.manager.lottery.vo;
+package so.wwb.creditbox.model.company.lottery.vo;
 
 import org.soul.commons.query.Criteria;
 import org.soul.model.common.AbstractQuery;
 import org.soul.model.common.BaseObjectVo;
-import so.wwb.creditbox.model.enums.lottery.LotteryBettingEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
-import so.wwb.creditbox.model.manager.lottery.po.SiteLottery;
-import so.wwb.creditbox.model.manager.lottery.po.SiteLotteryOdds;
-import so.wwb.creditbox.model.manager.lottery.so.SiteLotteryOddsSo;
+import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
+import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
+import so.wwb.creditbox.model.company.lottery.so.SiteLotteryOddsSo;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;

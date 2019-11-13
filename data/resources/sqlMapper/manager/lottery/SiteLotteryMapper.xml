@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="so.wwb.creditbox.data.manager.lottery.SiteLotteryMapper">
 
-    <resultMap id="TABLE:site_lottery" type="so.wwb.creditbox.model.manager.lottery.po.SiteLottery">
+    <resultMap id="TABLE:site_lottery" type="so.wwb.creditbox.model.company.lottery.po.SiteLottery">
         <id column="id" property="id"/>
         <result column="site_id" property="siteId"/>
         <result column="code" property="code"/>
@@ -15,18 +15,18 @@
     </resultMap>
 
     <!--//region your codes 1-->
-    <update id="takeOff" parameterType="so.wwb.creditbox.model.manager.lottery.so.SiteLotterySo">
+    <update id="takeOff" parameterType="so.wwb.creditbox.model.company.lottery.so.SiteLotterySo">
         DELETE FROM  site_lottery WHERE id=#{id} and site_id=#{siteId}
     </update>
 
 
     <!--下架全部站点的彩种-->
-    <update id="takeOffAllByCode" parameterType="so.wwb.creditbox.model.manager.lottery.so.SiteLotterySo">
+    <update id="takeOffAllByCode" parameterType="so.wwb.creditbox.model.company.lottery.so.SiteLotterySo">
         DELETE FROM  site_lottery WHERE site_id>0 and code=#{code}
     </update>
 
 
-    <select id="sync" parameterType="so.wwb.creditbox.model.manager.lottery.so.SiteLotterySo" resultMap="TABLE:site_lottery">
+    <select id="sync" parameterType="so.wwb.creditbox.model.company.lottery.so.SiteLotterySo" resultMap="TABLE:site_lottery">
         INSERT INTO site_lottery ("site_id","name", "code", "status", "order_num", "terminal","type","genre")
         SELECT #{siteId},name, code,status,order_num,terminal,l."type",l."genre" FROM lottery l
         WHERE not EXISTS (SELECT sl.id from site_lottery sl where site_id=#{siteId} and sl.code=l.code) and l.code=#{code}
@@ -34,7 +34,7 @@
 
 
 
-    <update id="updateAllSiteOrderNum" parameterType="so.wwb.creditbox.model.manager.lottery.po.SiteLottery">
+    <update id="updateAllSiteOrderNum" parameterType="so.wwb.creditbox.model.company.lottery.po.SiteLottery">
         <foreach item="item" index="index" collection="list" open="" separator=";" close="">
             UPDATE site_lottery SET order_num =#{item.orderNum} WHERE code = #{item.code}
         </foreach>

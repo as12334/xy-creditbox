@@ -1,6 +1,6 @@
 <%@page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ include file="/include/include.inc.jsp" %>
-<%--@elvariable id="command" type="so.wwb.creditbox.model.manager.lottery.vo.SiteLotteryOddsVo"--%>
+<%--@elvariable id="command" type="so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo"--%>
 
 <!--//region your codes 1-->
 

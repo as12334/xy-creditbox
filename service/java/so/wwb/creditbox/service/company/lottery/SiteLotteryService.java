@@ -1,13 +1,13 @@
-package so.wwb.creditbox.service.manager.lottery;
+package so.wwb.creditbox.service.company.lottery;
 
 import org.soul.service.support.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import so.wwb.creditbox.data.manager.lottery.SiteLotteryMapper;
-import so.wwb.creditbox.iservice.manager.lottery.ISiteLotteryService;
-import so.wwb.creditbox.model.manager.lottery.po.SiteLottery;
+import so.wwb.creditbox.iservice.company.lottery.ISiteLotteryService;
+import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
 import so.wwb.creditbox.model.manager.lottery.vo.GameManageOrderVo;
-import so.wwb.creditbox.model.manager.lottery.vo.SiteLotteryListVo;
-import so.wwb.creditbox.model.manager.lottery.vo.SiteLotteryVo;
+import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryListVo;
+import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryVo;
 
 import java.util.ArrayList;
 import java.util.List;

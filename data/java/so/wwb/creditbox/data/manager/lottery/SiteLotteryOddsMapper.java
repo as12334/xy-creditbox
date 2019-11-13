@@ -1,9 +1,8 @@
 package so.wwb.creditbox.data.manager.lottery;
 
-import so.wwb.creditbox.model.manager.lottery.po.SiteLotteryOdds;
+import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import org.soul.data.rdb.mybatis.IBaseMapper;
-import so.wwb.creditbox.model.manager.lottery.so.SiteLotteryOddsSo;
-import so.wwb.creditbox.model.manager.lottery.vo.SiteLotteryOddsVo;
+import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo;
 
 
 /**

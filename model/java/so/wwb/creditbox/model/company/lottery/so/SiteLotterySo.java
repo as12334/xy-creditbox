@@ -1,6 +1,6 @@
-package so.wwb.creditbox.model.manager.lottery.so;
+package so.wwb.creditbox.model.company.lottery.so;
 
-import so.wwb.creditbox.model.manager.lottery.po.SiteLottery;
+import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
 
 
 /**

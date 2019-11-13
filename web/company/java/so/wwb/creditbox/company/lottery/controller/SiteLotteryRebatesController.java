@@ -4,8 +4,6 @@ import org.soul.web.controller.BaseCrudController;
 import org.soul.web.session.SessionManagerBase;
 import org.soul.web.validation.form.js.JsRuleCreator;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import so.wwb.creditbox.company.lottery.form.SiteLotteryOddsForm;
 import so.wwb.creditbox.company.session.SessionManager;
 import so.wwb.creditbox.iservice.company.lottery.ISiteLotteryRebatesService;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
@@ -15,7 +13,6 @@ import so.wwb.creditbox.company.lottery.form.SiteLotteryRebatesSearchForm;
 import so.wwb.creditbox.company.lottery.form.SiteLotteryRebatesForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import so.wwb.creditbox.model.manager.lottery.vo.SiteLotteryOddsVo;
 import so.wwb.creditbox.web.tools.token.Token;
 
 import javax.servlet.http.HttpServletRequest;

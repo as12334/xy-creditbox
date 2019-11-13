@@ -8,7 +8,7 @@ import so.wwb.creditbox.data.manager.lottery.LotteryMapper;
 import so.wwb.creditbox.data.manager.lottery.SiteLotteryMapper;
 import so.wwb.creditbox.iservice.manager.lottery.ILotteryService;
 import so.wwb.creditbox.model.manager.lottery.po.Lottery;
-import so.wwb.creditbox.model.manager.lottery.po.SiteLottery;
+import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
 import so.wwb.creditbox.model.manager.lottery.vo.GameManageOrderVo;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryListVo;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryVo;

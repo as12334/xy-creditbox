@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="so.wwb.creditbox.data.manager.lottery.SiteLotteryOddsMapper">
 
-    <resultMap id="TABLE:site_lottery_odds" type="so.wwb.creditbox.model.manager.lottery.po.SiteLotteryOdds">
+    <resultMap id="TABLE:site_lottery_odds" type="so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds">
         <id column="id" property="id"/>
         <result column="site_id" property="siteId"/>
         <result column="hid" property="hid"/>
@@ -25,7 +25,7 @@
         SELECT * FROM  site_lottery_odds WHERE code = #{0} AND site_id = #{1} AND hid = #{2} AND bet_sort = #{3};
     </select>
 
-    <update id="saveSiteLotteryOdds" parameterType="so.wwb.creditbox.model.manager.lottery.vo.SiteLotteryOddsVo">
+    <update id="saveSiteLotteryOdds" parameterType="so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo">
         UPDATE site_lottery_odds SET odd_a=#{search.oddA},odd_b=#{search.oddB},odd_c=#{search.oddC},max_odd=#{search.maxOdd} WHERE site_id=#{search.siteId} AND  code = #{search.code} AND bet_sort in
         <foreach item="a" collection="betSorts" open="(" close=")" separator=",">
             #{a}

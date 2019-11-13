@@ -40,11 +40,11 @@
 
     <!--彩种表dubbo服务-->
     <bean id="lotteryService" class="so.wwb.creditbox.service.manager.lottery.LotteryService"/>
-    <bean id="siteLotteryService" class="so.wwb.creditbox.service.manager.lottery.SiteLotteryService"/>
+    <bean id="siteLotteryService" class="so.wwb.creditbox.service.company.lottery.SiteLotteryService"/>
     <bean id="lotteryOddService" class="so.wwb.creditbox.service.manager.lottery.LotteryOddService"/>
     <bean id="lotteryOddsService" class="so.wwb.creditbox.service.manager.lottery.LotteryOddsService"/>
     <bean id="siteLotteryOddService" class="so.wwb.creditbox.service.manager.lottery.SiteLotteryOddService"/>
-    <bean id="siteLotteryOddsService" class="so.wwb.creditbox.service.manager.lottery.SiteLotteryOddsService"/>
+    <bean id="siteLotteryOddsService" class="so.wwb.creditbox.service.company.lottery.SiteLotteryOddsService"/>
 
     <!--//endregion append PARTIBLE codes 1-->
 

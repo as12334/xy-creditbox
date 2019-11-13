@@ -1,10 +1,6 @@
 package so.wwb.creditbox.company.lottery.controller;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import org.soul.commons.collections.CollectionTool;
-import org.soul.commons.init.context.ContextParam;
-import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.log.Log;
 import org.soul.commons.log.LogFactory;
 import org.soul.commons.net.ServletTool;
@@ -23,22 +19,19 @@ import so.wwb.creditbox.company.lottery.form.SiteLotteryOddsForm;
 import so.wwb.creditbox.company.lottery.form.SiteLotteryOddsSearchForm;
 import so.wwb.creditbox.company.session.SessionManager;
 import so.wwb.creditbox.context.LotteryCommonContext;
-import so.wwb.creditbox.context.LotteryContextParam;
-import so.wwb.creditbox.iservice.manager.lottery.ISiteLotteryOddsService;
+import so.wwb.creditbox.iservice.company.lottery.ISiteLotteryOddsService;
 import so.wwb.creditbox.model.annotations.Audit;
+import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsListVo;
+import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo;
 import so.wwb.creditbox.model.enums.base.Module;
 import so.wwb.creditbox.model.enums.base.ModuleType;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryOdds;
-import so.wwb.creditbox.model.manager.lottery.po.LotteryOdds;
-import so.wwb.creditbox.model.manager.lottery.po.SiteLotteryOdds;
-import so.wwb.creditbox.model.manager.lottery.po.SiteLotteryOdds;
+import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.manager.lottery.vo.*;
-import so.wwb.creditbox.web.cache.Cache;
 import so.wwb.creditbox.web.tools.token.Token;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

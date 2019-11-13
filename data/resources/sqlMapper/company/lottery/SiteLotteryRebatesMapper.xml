@@ -12,6 +12,7 @@
         <result column="play_code" property="playCode"/>
         <result column="bet_num" property="betNum"/>
         <result column="bet_sort" property="betSort"/>
+        <result column="sort" property="sort"/>
         <result column="rebate_a" property="rebateA"/>
         <result column="rebate_b" property="rebateB"/>
         <result column="rebate_c" property="rebateC"/>

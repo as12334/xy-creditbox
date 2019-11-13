@@ -3,12 +3,12 @@ package so.wwb.creditbox.manager.ops.taskschedule.controller;
 import org.soul.web.controller.BaseCrudController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import so.wwb.lotterybox.iservice.manager.taskschedule.ITaskRunRecordService;
-import so.wwb.lotterybox.manager.ops.taskschedule.form.TaskRunRecordForm;
-import so.wwb.lotterybox.manager.ops.taskschedule.form.TaskRunRecordSearchForm;
-import so.wwb.lotterybox.model.manager.taskschedule.po.TaskRunRecord;
-import so.wwb.lotterybox.model.manager.taskschedule.vo.TaskRunRecordListVo;
-import so.wwb.lotterybox.model.manager.taskschedule.vo.TaskRunRecordVo;
+import so.wwb.creditbox.iservice.manager.taskschedule.ITaskRunRecordService;
+import so.wwb.creditbox.manager.ops.taskschedule.form.TaskRunRecordForm;
+import so.wwb.creditbox.manager.ops.taskschedule.form.TaskRunRecordSearchForm;
+import so.wwb.creditbox.model.manager.taskschedule.po.TaskRunRecord;
+import so.wwb.creditbox.model.manager.taskschedule.vo.TaskRunRecordListVo;
+import so.wwb.creditbox.model.manager.taskschedule.vo.TaskRunRecordVo;
 
 
 /**

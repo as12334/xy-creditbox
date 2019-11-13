@@ -1,5 +1,6 @@
 package so.wwb.creditbox.model.company.lottery.po;
 
+
 import org.soul.commons.bean.IEntity;
 import org.soul.model.common.Sortable;
 
@@ -8,7 +9,7 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-11-12 0:36:34
+ * @time 2019-11-13 15:19:46
  */
 //region your codes 1
 public class SiteLotteryRebates implements IEntity<Integer> {
@@ -28,6 +29,7 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 	public static final String PROP_PLAY_CODE = "playCode";
 	public static final String PROP_BET_NUM = "betNum";
 	public static final String PROP_BET_SORT = "betSort";
+	public static final String PROP_SORT = "sort";
 	public static final String PROP_REBATE_A = "rebateA";
 	public static final String PROP_REBATE_B = "rebateB";
 	public static final String PROP_REBATE_C = "rebateC";
@@ -57,7 +59,9 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 	/** 号码 */
 	private String betNum;
 	/** 玩法唯一标示 */
-	private Integer betSort;
+	private String betSort;
+	/**  */
+	private Integer sort;
 	/** A盤水位 */
 	private Double rebateA;
 	/** B盤水位 */
@@ -144,12 +148,19 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 	public void setBetNum(String value) {
 		this.betNum = value;
 	}
-	public Integer getBetSort() {
+	public String getBetSort() {
 		return this.betSort;
 	}
 
-	public void setBetSort(Integer value) {
+	public void setBetSort(String value) {
 		this.betSort = value;
+	}
+	public Integer getSort() {
+		return this.sort;
+	}
+
+	public void setSort(Integer value) {
+		this.sort = value;
 	}
 	public Double getRebateA() {
 		return this.rebateA;

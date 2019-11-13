@@ -1,12 +1,9 @@
-package so.wwb.creditbox.service.manager.lottery;
+package so.wwb.creditbox.service.company.lottery;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.sun.javafx.collections.MappingChange;
-import org.apache.commons.collections.map.LinkedMap;
 import org.soul.commons.collections.ListTool;
 import org.soul.commons.enums.EnumTool;
-import org.soul.commons.lang.ArrayTool;
 import org.soul.commons.log.Log;
 import org.soul.commons.log.LogFactory;
 import org.soul.commons.query.Criteria;
@@ -15,19 +12,16 @@ import org.soul.service.support.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import so.wwb.creditbox.data.manager.lottery.SiteLotteryMapper;
 import so.wwb.creditbox.data.manager.lottery.SiteLotteryOddsMapper;
-import so.wwb.creditbox.iservice.manager.lottery.ISiteLotteryOddsService;
+import so.wwb.creditbox.iservice.company.lottery.ISiteLotteryOddsService;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryStatusEnum;
-import so.wwb.creditbox.model.manager.lottery.po.Lottery;
-import so.wwb.creditbox.model.manager.lottery.po.LotteryOdd;
-import so.wwb.creditbox.model.manager.lottery.po.SiteLottery;
-import so.wwb.creditbox.model.manager.lottery.po.SiteLotteryOdds;
-import so.wwb.creditbox.model.manager.lottery.so.SiteLotteryOddsSo;
-import so.wwb.creditbox.model.manager.lottery.vo.SiteLotteryOddsListVo;
-import so.wwb.creditbox.model.manager.lottery.vo.SiteLotteryOddsVo;
+import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
+import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
+import so.wwb.creditbox.model.company.lottery.so.SiteLotteryOddsSo;
+import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsListVo;
+import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo;
 
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 

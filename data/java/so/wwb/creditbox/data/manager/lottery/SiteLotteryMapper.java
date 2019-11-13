@@ -1,9 +1,9 @@
 package so.wwb.creditbox.data.manager.lottery;
 
 import so.wwb.creditbox.model.manager.lottery.po.Lottery;
-import so.wwb.creditbox.model.manager.lottery.po.SiteLottery;
+import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
 import org.soul.data.rdb.mybatis.IBaseMapper;
-import so.wwb.creditbox.model.manager.lottery.so.SiteLotterySo;
+import so.wwb.creditbox.model.company.lottery.so.SiteLotterySo;
 
 import java.util.List;
 

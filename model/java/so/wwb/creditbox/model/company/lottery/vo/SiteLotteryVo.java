@@ -1,10 +1,11 @@
-package so.wwb.creditbox.model.manager.lottery.vo;
+package so.wwb.creditbox.model.company.lottery.vo;
 
 import org.soul.commons.query.Criteria;
 import org.soul.model.common.AbstractQuery;
 import org.soul.model.common.BaseObjectVo;
-import so.wwb.creditbox.model.manager.lottery.po.SiteLottery;
-import so.wwb.creditbox.model.manager.lottery.so.SiteLotterySo;
+import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
+import so.wwb.creditbox.model.company.lottery.so.SiteLotterySo;
+import so.wwb.creditbox.model.manager.lottery.vo.GameManageOrderVo;
 
 
 /**

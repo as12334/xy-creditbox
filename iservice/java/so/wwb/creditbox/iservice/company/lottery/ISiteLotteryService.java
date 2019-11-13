@@ -1,9 +1,9 @@
-package so.wwb.creditbox.iservice.manager.lottery;
+package so.wwb.creditbox.iservice.company.lottery;
 
 import org.soul.iservice.support.IBaseService;
-import so.wwb.creditbox.model.manager.lottery.po.SiteLottery;
-import so.wwb.creditbox.model.manager.lottery.vo.SiteLotteryListVo;
-import so.wwb.creditbox.model.manager.lottery.vo.SiteLotteryVo;
+import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
+import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryListVo;
+import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryVo;
 
 
 /**

@@ -1,11 +1,7 @@
 package so.wwb.creditbox.company.controller;
 
-import org.apache.ibatis.jdbc.Null;
 import org.soul.commons.data.json.JsonTool;
 import org.soul.commons.enums.EnumTool;
-import org.soul.commons.init.context.CommonContext;
-import org.soul.commons.init.context.ContextParam;
-import org.soul.commons.lang.DateTool;
 import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.tree.TreeNode;
 import org.soul.model.security.privilege.po.VSysUserResource;
@@ -14,7 +10,6 @@ import org.soul.model.sys.po.SysParam;
 import org.soul.model.sys.vo.SysParamVo;
 import org.soul.web.controller.BaseIndexController;
 import org.soul.web.security.privilege.controller.SysResourceController;
-import org.soul.web.session.SessionManagerBase;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,17 +17,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import so.wwb.creditbox.common.dubbo.ServiceTool;
 import so.wwb.creditbox.company.init.ConfigManager;
 import so.wwb.creditbox.company.session.SessionManager;
-import so.wwb.creditbox.model.base.ParamTool;
 import so.wwb.creditbox.model.enums.base.Module;
-import so.wwb.creditbox.model.enums.base.SiteParamEnum;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
-import so.wwb.creditbox.model.manager.lottery.vo.LotteryListVo;
-import so.wwb.creditbox.model.manager.lottery.vo.SiteLotteryListVo;
+import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryListVo;
 import so.wwb.creditbox.model.manager.sys.po.VSysSiteManage;
-import so.wwb.creditbox.model.manager.sys.vo.SysSiteVo;
 import so.wwb.creditbox.model.manager.sys.vo.VSysSiteManageListVo;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
-import so.wwb.creditbox.model.session.Session;
 import so.wwb.creditbox.web.cache.Cache;
 import so.wwb.creditbox.web.tools.SessionManagerCommon;
 
@@ -76,6 +66,7 @@ public class IndexController extends BaseIndexController {
     protected String index(HttpServletRequest request, HttpServletResponse response, Model model) {
         SiteLotteryListVo siteLotteryListVo = new SiteLotteryListVo();
         siteLotteryListVo.getSearch().setSiteId(SessionManager.getSiteId());
+        siteLotteryListVo._setDataSourceId(SessionManager.getSiteId());
         siteLotteryListVo = ServiceTool.siteLotteryService().search(siteLotteryListVo);
         model.addAttribute("lotterys",siteLotteryListVo.getResult());
 
