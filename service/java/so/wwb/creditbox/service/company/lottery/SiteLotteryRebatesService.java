@@ -1,22 +1,27 @@
 package so.wwb.creditbox.service.company.lottery;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import org.soul.commons.collections.ListTool;
 import org.soul.commons.enums.EnumTool;
+import org.soul.commons.log.Log;
+import org.soul.commons.log.LogFactory;
 import org.soul.commons.query.Criteria;
 import org.soul.commons.query.enums.Operator;
 import org.soul.service.support.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import so.wwb.creditbox.data.company.lottery.SiteLotteryRebatesMapper;
-import so.wwb.creditbox.data.manager.lottery.SiteLotteryMapper;
+import so.wwb.creditbox.data.company.lottery.SiteLotteryMapper;
 import so.wwb.creditbox.iservice.company.lottery.ISiteLotteryRebatesService;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
 import so.wwb.creditbox.model.company.lottery.so.SiteLotteryRebatesSo;
+import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryRebatesListVo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryRebatesVo;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryStatusEnum;
 import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
-import so.wwb.creditbox.model.enums.lottery.LotteryTypeEnum;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -31,6 +36,9 @@ import java.util.Map;
  */
 //region your codes 1
 public class SiteLotteryRebatesService extends BaseService<SiteLotteryRebatesMapper, SiteLotteryRebatesListVo, SiteLotteryRebatesVo, SiteLotteryRebates, Integer> implements ISiteLotteryRebatesService {
+
+    private static final Log LOG = LogFactory.getLog(SiteLotteryRebatesService.class);
+
 
 //endregion your codes 1
 
@@ -111,6 +119,51 @@ public class SiteLotteryRebatesService extends BaseService<SiteLotteryRebatesMap
 
         vo.setRebatesMap(map);
         return vo;
+    }
+
+    @Override
+    public SiteLotteryRebatesVo saveSiteLotteryOdds(SiteLotteryRebatesVo siteLotteryRebatesVo) {
+        JSONArray arr = null;
+        try {
+            arr = JSONObject.parseArray(siteLotteryRebatesVo.getLotteryRebatesJson());
+        } catch (Exception e) {
+            LOG.error("提交赔率格式有问题，转换出错！{0}", siteLotteryRebatesVo.getLotteryRebatesJson());
+            siteLotteryRebatesVo.setSuccess(false);
+            return siteLotteryRebatesVo;
+        }
+        SiteLotteryRebatesSo search = siteLotteryRebatesVo.getSearch();
+        Integer count = 0;
+        for (int i = 0; i < arr.size(); i++) {
+            JSONObject obj = arr.getJSONObject(i);
+            if (obj != null) {
+                String  betSort = obj.getString("betSort");
+                String  code = obj.getString("code");
+                Integer  minBet = obj.getInteger("minBet");
+                Integer  maxBet = obj.getInteger("maxBet");
+                Integer  maxExpectBet = obj.getInteger("maxExpectBet");
+                Double  rebateA = obj.getDouble("rebateA");
+                Double  rebateB = obj.getDouble("rebateB");
+                Double  rebateC = obj.getDouble("rebateC");
+                Map<String, String> map = SiteLotteryOddsVo.betSortMap.get(code);
+                String s = map.get(betSort);
+                String[] split = s.split(",");
+                siteLotteryRebatesVo.setBetSorts(ListTool.newArrayList(split));
+                search.setCode(code);
+                search.setBetCode(betSort);
+                search.setMinBet(minBet);
+                search.setMaxBet(maxBet);
+                search.setMaxExpectBet(maxExpectBet);
+                search.setRebateA(rebateA);
+                search.setRebateB(rebateB);
+                search.setRebateC(rebateC);
+                siteLotteryRebatesVo.setSearch(search);
+                count += mapper.saveSiteLotteryRebates(siteLotteryRebatesVo);
+            }
+        }
+        if(count == 0){
+            siteLotteryRebatesVo.setSuccess(false);
+        }
+        return siteLotteryRebatesVo;
     }
 
     //endregion your codes 2

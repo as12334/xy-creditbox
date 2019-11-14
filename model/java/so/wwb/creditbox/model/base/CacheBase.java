@@ -665,12 +665,12 @@ public class CacheBase {
         return getLotteryMap(siteId).get(code);
     }
 
-    public static List<LotteryOdd> getLotteryOdd(String code) {
+    public static List<LotteryOdds> getLotteryOdd(String code) {
         Map<String, Serializable> map = CacheTool.get(CacheKey.CACHE_KEY_LOTTERY_ODD);
         if (map != null) {
             Serializable odds = map.get(code);
             if (odds != null) {
-                return (List<LotteryOdd>) odds;
+                return (List<LotteryOdds>) odds;
             }
         }
         log.error("缺少LotteryOdd的缓存数据！");

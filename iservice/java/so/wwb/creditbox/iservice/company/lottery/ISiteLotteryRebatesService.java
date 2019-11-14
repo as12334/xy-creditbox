@@ -19,6 +19,8 @@ public interface ISiteLotteryRebatesService extends IBaseService<SiteLotteryReba
 
     //region your codes 2
     SiteLotteryRebatesVo initRebatesData(SiteLotteryRebatesVo vo);
+
+    SiteLotteryRebatesVo saveSiteLotteryOdds(SiteLotteryRebatesVo siteLotteryRebatesVo);
     //endregion your codes 2
 
 }

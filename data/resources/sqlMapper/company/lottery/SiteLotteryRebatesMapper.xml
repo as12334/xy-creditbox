@@ -28,7 +28,13 @@
     <select id="getRebateBetSortLine" resultMap="TABLE:site_lottery_rebates">
         SELECT * FROM  site_lottery_rebates WHERE code = #{0} AND site_id = #{1} AND hid = #{2} AND bet_sort = #{3};
     </select>
-
+    <update id="saveSiteLotteryRebates" parameterType="so.wwb.creditbox.model.company.lottery.vo.SiteLotteryRebatesVo">
+        UPDATE site_lottery_rebates SET rebate_a=#{search.rebateA},rebate_b=#{search.rebateB},rebate_c=#{search.rebateC}, min_bet=#{search.minBet} ,max_bet=#{search.maxBet} ,max_expect_bet=#{search.maxExpectBet}
+        WHERE site_id=#{search.siteId} AND  code = #{search.code} AND hid = #{search.hid} AND bet_sort in
+        <foreach item="a" collection="betSorts" open="(" close=")" separator=",">
+            #{a}
+        </foreach>
+    </update>
     <!--//endregion your codes 1-->
 
 </mapper>

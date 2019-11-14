@@ -23,7 +23,17 @@
     </resultMap>
 
     <!--//region your codes 1-->
+    <select id="getOddBetSortLine" resultMap="TABLE:site_lottery_odds">
+        SELECT * FROM  site_lottery_odds WHERE code = #{0} AND site_id = #{1} AND hid = #{2} AND bet_sort = #{3};
+    </select>
 
+    <update id="saveSiteLotteryOdds" parameterType="so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo">
+        UPDATE site_lottery_odds SET odd_a=#{search.oddA},odd_b=#{search.oddB},odd_c=#{search.oddC},max_odd=#{search.maxOdd}
+        WHERE site_id=#{search.siteId} AND  code = #{search.code} AND hid = #{search.hid} AND bet_sort in
+        <foreach item="a" collection="betSorts" open="(" close=")" separator=",">
+            #{a}
+        </foreach>
+    </update>
     <!--//endregion your codes 1-->
 
 </mapper>

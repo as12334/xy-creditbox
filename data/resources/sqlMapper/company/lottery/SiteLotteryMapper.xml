@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="so.wwb.creditbox.data.manager.lottery.SiteLotteryMapper">
+<mapper namespace="so.wwb.creditbox.data.company.lottery.SiteLotteryMapper">
 
     <resultMap id="TABLE:site_lottery" type="so.wwb.creditbox.model.company.lottery.po.SiteLottery">
         <id column="id" property="id"/>

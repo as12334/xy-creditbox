@@ -5,7 +5,7 @@ import org.soul.service.support.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import so.wwb.creditbox.data.manager.lottery.LotteryMapper;
-import so.wwb.creditbox.data.manager.lottery.SiteLotteryMapper;
+import so.wwb.creditbox.data.company.lottery.SiteLotteryMapper;
 import so.wwb.creditbox.iservice.manager.lottery.ILotteryService;
 import so.wwb.creditbox.model.manager.lottery.po.Lottery;
 import so.wwb.creditbox.model.company.lottery.po.SiteLottery;

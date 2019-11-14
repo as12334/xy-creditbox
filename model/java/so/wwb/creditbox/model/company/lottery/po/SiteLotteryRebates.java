@@ -9,7 +9,7 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-11-14 2:26:51
+ * @time 2019-11-14 20:57:39
  */
 //region your codes 1
 public class SiteLotteryRebates implements IEntity<Integer> {
@@ -70,16 +70,16 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 	/** C盤水位 */
 	private Double rebateC;
 	/** 最低下注额 */
-	private Double minBet;
+	private Integer minBet;
 	/** 单注限额 */
-	private Double maxBet;
+	private Integer maxBet;
 	/** 单期限额 */
-	private Double maxExpectBet;
+	private Integer maxExpectBet;
 	/** 起补金额 */
 	private Double postMoney;
 	/** 是否开启，1开启、0关闭 */
 	private String postMoneyClose;
-	/** 玩法小类 LotterySortTypeEnum */
+	/**  */
 	private String sortType;
 	//endregion
 
@@ -186,25 +186,25 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 	public void setRebateC(Double value) {
 		this.rebateC = value;
 	}
-	public Double getMinBet() {
+	public Integer getMinBet() {
 		return this.minBet;
 	}
 
-	public void setMinBet(Double value) {
+	public void setMinBet(Integer value) {
 		this.minBet = value;
 	}
-	public Double getMaxBet() {
+	public Integer getMaxBet() {
 		return this.maxBet;
 	}
 
-	public void setMaxBet(Double value) {
+	public void setMaxBet(Integer value) {
 		this.maxBet = value;
 	}
-	public Double getMaxExpectBet() {
+	public Integer getMaxExpectBet() {
 		return this.maxExpectBet;
 	}
 
-	public void setMaxExpectBet(Double value) {
+	public void setMaxExpectBet(Integer value) {
 		this.maxExpectBet = value;
 	}
 	public Double getPostMoney() {

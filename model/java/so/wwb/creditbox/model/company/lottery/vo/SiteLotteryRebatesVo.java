@@ -6,6 +6,7 @@ import org.soul.model.common.BaseObjectVo;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
 import so.wwb.creditbox.model.company.lottery.so.SiteLotteryRebatesSo;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -23,6 +24,10 @@ public class SiteLotteryRebatesVo extends BaseObjectVo<SiteLotteryRebates, SiteL
     private static final long serialVersionUID = -8832445994781301201L;
 
     private Map rebatesMap;
+
+    private String lotteryRebatesJson;
+
+    private List<String> betSorts;
     //endregion your codes 5
 
     /**
@@ -55,6 +60,22 @@ public class SiteLotteryRebatesVo extends BaseObjectVo<SiteLotteryRebates, SiteL
 
     public void setRebatesMap(Map rebatesMap) {
         this.rebatesMap = rebatesMap;
+    }
+
+    public String getLotteryRebatesJson() {
+        return lotteryRebatesJson;
+    }
+
+    public void setLotteryRebatesJson(String lotteryRebatesJson) {
+        this.lotteryRebatesJson = lotteryRebatesJson;
+    }
+
+    public List<String> getBetSorts() {
+        return betSorts;
+    }
+
+    public void setBetSorts(List<String> betSorts) {
+        this.betSorts = betSorts;
     }
 
     //endregion your codes 4

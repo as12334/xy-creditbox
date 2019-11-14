@@ -210,14 +210,8 @@ public static ISysUserRoleService sysUserRoleService() {
     public static ISiteLotteryService siteLotteryService() {
         return getService(ISiteLotteryService.class);
     }
-    public static ISiteLotteryOddService siteLotteryOddService() {
-        return getService(ISiteLotteryOddService.class);
-    }
     public static ISiteLotteryOddsService siteLotteryOddsService() {
         return getService(ISiteLotteryOddsService.class);
-    }
-    public static ILotteryOddService lotteryOddService() {
-        return getService(ILotteryOddService.class);
     }
     public static ILotteryOddsService lotteryOddsService() {
         return getService(ILotteryOddsService.class);

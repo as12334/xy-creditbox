@@ -1,22 +1,31 @@
 package so.wwb.creditbox.company.lottery.controller;
 
+import org.soul.model.log.audit.enums.OpType;
 import org.soul.web.controller.BaseCrudController;
 import org.soul.web.session.SessionManagerBase;
 import org.soul.web.validation.form.js.JsRuleCreator;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import so.wwb.creditbox.company.session.SessionManager;
+import so.wwb.creditbox.context.LotteryCommonContext;
 import so.wwb.creditbox.iservice.company.lottery.ISiteLotteryRebatesService;
+import so.wwb.creditbox.model.annotations.Audit;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
+import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryRebatesListVo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryRebatesVo;
 import so.wwb.creditbox.company.lottery.form.SiteLotteryRebatesSearchForm;
 import so.wwb.creditbox.company.lottery.form.SiteLotteryRebatesForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import so.wwb.creditbox.model.enums.base.Module;
+import so.wwb.creditbox.model.enums.base.ModuleType;
 import so.wwb.creditbox.web.tools.token.Token;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 
 /**
@@ -50,6 +59,19 @@ public class SiteLotteryRebatesController extends BaseCrudController<ISiteLotter
         model.addAttribute("command",vo);
         return this.getViewBasePath()+"EditRebates";
     }
-    //endregion your codes 3
+
+    @Audit(module = Module.LOTTERY, moduleType = ModuleType.LOTTERY_ODD, opType = OpType.UPDATE)
+    @RequestMapping(value = "/saveSiteLotteryRebates", method = RequestMethod.POST)
+    @ResponseBody
+    public Map saveSiteLotteryRebates(HttpServletRequest request, SiteLotteryRebatesVo siteLotteryRebatesVo) {
+
+        siteLotteryRebatesVo._setDataSourceId(SessionManagerBase.getSiteId());
+        siteLotteryRebatesVo.getSearch().setSiteId(LotteryCommonContext.get().getSiteId());
+        siteLotteryRebatesVo.getSearch().setHid(LotteryCommonContext.get().getDomainUserHid());
+        siteLotteryRebatesVo = this.getService().saveSiteLotteryOdds(siteLotteryRebatesVo);
+        return getVoMessage(siteLotteryRebatesVo);
+
+    }
+        //endregion your codes 3
 
 }
