@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.creditbox.data.manager.lottery.LotteryResultRecordMapper">
+
+    <resultMap id="TABLE:lottery_result_record" type="so.wwb.creditbox.model.manager.lottery.po.LotteryResultRecord">
+        <id column="id" property="id"/>
+        <result column="expect" property="expect"/>
+        <result column="code" property="code"/>
+        <result column="record_type" property="recordType"/>
+        <result column="open_code" property="openCode"/>
+        <result column="create_time" property="createTime"/>
+        <result column="user_name" property="userName"/>
+        <result column="hash" property="hash"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+
+    <!--//endregion your codes 1-->
+
+</mapper>

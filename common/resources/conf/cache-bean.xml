@@ -583,20 +583,20 @@
         <!--</property>-->
     <!--</bean>-->
 
-    <!-- 彩票采集配置缓存 -->
-    <!--<util:constant id="CACHE_KEY_LOTTERY_GATHER_CONF" static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_GATHER_CONF"/>-->
-    <!--<bean id="lotteryGatherConfCache" class="org.soul.commons.cache.core.CacheItemConf">-->
-        <!--<property name="dataProviderClass" value="so.wwb.creditbox.iservice.manager.lottery.ILotteryGatherConfService"/>-->
-        <!--<property name="dubboVersionApp" value="${service.dubbo.application.name}"/>-->
-        <!--<property name="dataProviderMethod" value="load"/>-->
-        <!--<property name="cacheLoadStrategy" ref="FIRST_TIME"/>-->
-        <!--<property name="cacheProviderType" ref="jedisProxy"/>-->
-        <!--<property name="methodArgs">-->
-            <!--<list>-->
-                <!--<bean class="so.wwb.creditbox.model.manager.lottery.vo.LotteryGatherConfListVo"/>-->
-            <!--</list>-->
-        <!--</property>-->
-    <!--</bean>-->
+     <!--彩票采集配置缓存 -->
+    <util:constant id="CACHE_KEY_LOTTERY_GATHER_CONF" static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_GATHER_CONF"/>
+    <bean id="lotteryGatherConfCache" class="org.soul.commons.cache.core.CacheItemConf">
+        <property name="dataProviderClass" value="so.wwb.creditbox.iservice.manager.lottery.ILotteryGatherConfService"/>
+        <property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+        <property name="dataProviderMethod" value="load"/>
+        <property name="cacheLoadStrategy" ref="FIRST_TIME"/>
+        <property name="cacheProviderType" ref="jedisProxy"/>
+        <property name="methodArgs">
+            <list>
+                <bean class="so.wwb.creditbox.model.manager.lottery.vo.LotteryGatherConfListVo"/>
+            </list>
+        </property>
+    </bean>
 
 	<bean id="baseCacheItemConfMap"
 		  class="org.springframework.beans.factory.config.MapFactoryBean">
@@ -719,10 +719,10 @@
                 <!--<entry key-ref="CACHE_KEY_LOTTERY_RESULT_RULE">-->
                     <!--<ref bean="lotteryResultRuleCache"/>-->
                 <!--</entry>-->
-                <!--&lt;!&ndash; 彩票采集配置缓存 &ndash;&gt;-->
-                <!--<entry key-ref="CACHE_KEY_LOTTERY_GATHER_CONF">-->
-                    <!--<ref bean="lotteryGatherConfCache"/>-->
-                <!--</entry>-->
+                <!-- 彩票采集配置缓存 -->
+                <entry key-ref="CACHE_KEY_LOTTERY_GATHER_CONF">
+                    <ref bean="lotteryGatherConfCache"/>
+                </entry>
 				<!-- 中国大陆ip缓存 -->
 				<entry key-ref="CACHE_KEY_IP_DB">
 					<ref bean="ipDbCache"/>

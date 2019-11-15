@@ -9,6 +9,10 @@
 
 
     <!--//region append PARTIBLE codes 1-->
+
+    <bean id="taskScheduleCrudServiceEx" class="so.wwb.creditbox.service.manager.taskschedule.TaskScheduleCrudServiceEx" />
+    <bean id="taskRunRecordService" class="so.wwb.creditbox.service.manager.taskschedule.TaskRunRecordService"/>
+
     <!-- 框架相关懒加载 -->
     <bean lazy-init="true" id="auditLogService" class="so.wwb.creditbox.service.manager.sys.AuditLogService"/>
     <bean lazy-init="true" id="messageService" class="so.wwb.creditbox.service.common.MessageService" />
@@ -54,6 +58,23 @@
 
 
     <bean id="siteLotteryRebatesService" class="so.wwb.creditbox.service.company.lottery.SiteLotteryRebatesService"/>
+
+    <!-- 彩种盘口服务 -->
+    <bean id="lotteryHandicapService" class="so.wwb.creditbox.service.manager.lottery.LotteryHandicapService"/>
+
+    <!-- 开奖结果主表服务 -->
+    <bean id="lotteryResultService" class="so.wwb.creditbox.service.manager.lottery.LotteryResultService"/>
+
+    <bean id="lotteryHandicapLhcService" class="so.wwb.creditbox.service.manager.lottery.LotteryHandicapLhcService"/>
+
+    <!-- 彩票采集接口配置表服务 -->
+    <bean id="lotteryGatherConfService" class="so.wwb.creditbox.service.manager.lottery.LotteryGatherConfService"/>
+
+    <!-- 开奖结果记录表服务 -->
+    <bean id="lotteryResultRecordService" class="so.wwb.creditbox.service.manager.lottery.LotteryResultRecordService"/>
+
+    <!-- 自主开号规则表服务 -->
+    <bean id="lotteryOwnRuleService" class="so.wwb.creditbox.service.manager.lottery.LotteryOwnRuleService"/>
 
 <!--//endregion your codes 1-->
 

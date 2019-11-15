@@ -8,6 +8,7 @@ import org.soul.commons.enums.ICodeEnum;
 public enum LotteryConfTypeEnum implements ICodeEnum {
     GATHER("gather", "采集"),
     VALID("valid", "验证"),
+    OPEN_CODE_VALID("open_code_valid", "开奖结果验证"),
     COLLECTION("collection", "补采");
 
     private String code;

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.creditbox.data.manager.lottery.LotteryResultMapper">
+
+    <resultMap id="TABLE:lottery_result" type="so.wwb.creditbox.model.manager.lottery.po.LotteryResult">
+        <id column="id" property="id"/>
+        <result column="expect" property="expect"/>
+        <result column="code" property="code"/>
+        <result column="type" property="type"/>
+        <result column="open_code" property="openCode"/>
+        <result column="open_time" property="openTime"/>
+        <result column="close_time" property="closeTime"/>
+        <result column="opening_time" property="openingTime"/>
+        <result column="gather_time" property="gatherTime"/>
+        <result column="origin" property="origin"/>
+        <result column="result_hash" property="resultHash"/>
+        <result column="open_code_memo" property="openCodeMemo"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+    <!--查询当前要开奖记录-->
+    <select id="searchCurLotteryResult" parameterType="so.wwb.creditbox.model.manager.lottery.so.LotteryResultSo"
+            resultType="so.wwb.creditbox.model.manager.lottery.po.LotteryResult">
+        SELECT * FROM lottery_result WHERE (clock_timestamp() BETWEEN (open_time - interval '40 sec') AND (open_time +
+        interval '40 sec')) and open_code is null
+        <if test="codes!=null">
+            and code in
+            <foreach collection="codes" item="item" open="(" close=")" index="index" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        ORDER BY open_time ;
+    </select>
+
+    <!--查询当前要开奖记录-->
+    <select id="searchByCurTime" parameterType="so.wwb.creditbox.model.manager.lottery.so.LotteryResultSo"
+            resultMap="TABLE:lottery_result">
+        SELECT * FROM lottery_result WHERE (clock_timestamp() BETWEEN (open_time - interval '40 sec') AND (open_time +
+        <choose>
+            <when test="code=='ffssc' or code=='efssc' or code=='sfssc' or code=='wfssc' or code=='jspk10' ">
+                interval '30 sec'
+            </when>
+            <otherwise>
+                interval '2 min'
+            </otherwise>
+        </choose>
+
+        )) AND code = #{code} and open_code is null ORDER BY open_time limit 1;
+    </select>
+
+
+    <select id="queryBossIds" resultType="integer" parameterType="org.soul.model.security.privilege.so.SysResourceSo">
+        SELECT DISTINCT user_id
+        FROM sys_user_role
+        WHERE role_id IN (
+        SELECT role_id
+        FROM sys_role_resource
+        WHERE resource_id = (
+        SELECT ID FROM sys_resource WHERE url = #{url} LIMIT 1
+        )
+        )
+        ORDER BY user_id
+    </select>
+    <!--//endregion your codes 1-->
+
+</mapper>

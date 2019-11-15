@@ -452,33 +452,15 @@ public class CacheBase {
         getProxy().refresh(CacheKey.CACHE_KEY_LOTTERY_CODE_MODEL + CacheKey.CACHE_KEY_SEPERATOR + SessionManagerBase.getSiteIdString()+CacheKey.CACHE_KEY_SEPERATOR + userId);
     }
 
-//    public static Map<String,List<LotteryGatherConf>> getLotteryGatherConf(String confType) {
-//        Map<String, Serializable> gatherConfMap = getProxy().get(CacheKey.CACHE_KEY_LOTTERY_GATHER_CONF);
-//        if(MapTool.isEmpty(gatherConfMap)){
-//            log.error("缺少confType:{0}的LotteryGatherConf的缓存数据!",confType);
-//            return null;
-//        }
-//        return (Map<String,List<LotteryGatherConf>>) gatherConfMap.get(confType);
-//    }
-//
-//
-//
-//    public static List<LotteryGatherConf> getLotteryGatherConf(String confType,String code) {
-//        if(StringTool.isEmpty(code)){
-//            log.error("LotteryGatherConf:缺少code参数!");
-//            return null;
-//        }
-//        Map<String,List<LotteryGatherConf>> map = getLotteryGatherConf(confType);
-//        if(MapTool.isEmpty(map)){
-//            return null;
-//        }
-//        List<LotteryGatherConf> result = map.get(code);
-//        if(CollectionTool.isEmpty(result)){
-//            log.error("缺少confType:{0},code:{1}的LotteryGatherConf的缓存数据!",confType,code);
-//            return null;
-//        }
-//        return result;
-//    }
+
+    public static List<LotteryGatherConf> getLotteryGatherConf(String code) {
+        Map<String, Serializable> gatherConfs = CacheTool.get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_LOTTERY_GATHER_CONF));
+        Serializable gatherConf = gatherConfs.get(code);
+        return (List<LotteryGatherConf>) gatherConf;
+    }
+
+
+
 
     public static void refreshLotteryGatherConf() {
         getProxy().refresh(CacheKey.CACHE_KEY_LOTTERY_GATHER_CONF);

@@ -1,4 +1,5 @@
 package so.wwb.creditbox.common.dubbo;
+import org.soul.commons.cache.jedis.proxy.JedisClientProxy;
 import org.soul.iservice.log.audit.IAuditService;
 import org.soul.iservice.msg.notice.INoticeReceiverService;
 import org.soul.iservice.passport.IPassportService;
@@ -23,13 +24,14 @@ import so.wwb.creditbox.iservice.manager.taskschedule.ITaskScheduleServiceExGs;
 import so.wwb.creditbox.iservice.manager.taskschedule.ITaskScheduleServiceExS;
 import so.wwb.creditbox.iservice.manager.user.ISysUserExtendService;
 import so.wwb.creditbox.iservice.manager.user.IVSubAccountService;
+import static org.soul.commons.spring.utils.SpringTool.getBean;
 
 import org.soul.commons.dubbo.DubboTool;
 /**
  * 远程服务实例获取工具类
  *
  * @author block
- * @time 2019-11-12 0:36:34
+ * @time 2019-11-15 15:39:41
  */
 public class ServiceTool {
 
@@ -40,6 +42,14 @@ public class ServiceTool {
     protected static <T> T getService(Class<T> interfaceClazz) {
         return DubboTool.getServiceByAppName(interfaceClazz, dubboApplicationName);
     }
+    /**
+     * 返回redis缓存
+     * @return
+     */
+    public static JedisClientProxy jedisTemplate() {
+        return (JedisClientProxy) getBean("jedisTemplateData");
+    }
+
 
     public static ISiteConfineAreaService siteConfineAreaService() {
         return getService(ISiteConfineAreaService.class);
@@ -245,6 +255,60 @@ public static ISysUserRoleService sysUserRoleService() {
      */
     public static so.wwb.creditbox.iservice.company.lottery.ISiteLotteryRebatesService siteLotteryRebatesService() {
         return getService(so.wwb.creditbox.iservice.company.lottery.ISiteLotteryRebatesService.class);
+    }
+    
+    /**
+     * 返回彩种盘口远程服务实例
+     *
+     * @return 彩种盘口远程服务实例
+     */
+    public static so.wwb.creditbox.iservice.manager.lottery.ILotteryHandicapService lotteryHandicapService() {
+        return getService(so.wwb.creditbox.iservice.manager.lottery.ILotteryHandicapService.class);
+    }
+    
+    /**
+     * 返回开奖结果主表远程服务实例
+     *
+     * @return 开奖结果主表远程服务实例
+     */
+    public static so.wwb.creditbox.iservice.manager.lottery.ILotteryResultService lotteryResultService() {
+        return getService(so.wwb.creditbox.iservice.manager.lottery.ILotteryResultService.class);
+    }
+    
+    /**
+     * 返回彩种盘口远程服务实例
+     *
+     * @return 彩种盘口远程服务实例
+     */
+    public static so.wwb.creditbox.iservice.manager.lottery.ILotteryHandicapLhcService lotteryHandicapLhcService() {
+        return getService(so.wwb.creditbox.iservice.manager.lottery.ILotteryHandicapLhcService.class);
+    }
+    
+    /**
+     * 返回彩票采集接口配置表远程服务实例
+     *
+     * @return 彩票采集接口配置表远程服务实例
+     */
+    public static so.wwb.creditbox.iservice.manager.lottery.ILotteryGatherConfService lotteryGatherConfService() {
+        return getService(so.wwb.creditbox.iservice.manager.lottery.ILotteryGatherConfService.class);
+    }
+    
+    /**
+     * 返回开奖结果记录表远程服务实例
+     *
+     * @return 开奖结果记录表远程服务实例
+     */
+    public static so.wwb.creditbox.iservice.manager.lottery.ILotteryResultRecordService lotteryResultRecordService() {
+        return getService(so.wwb.creditbox.iservice.manager.lottery.ILotteryResultRecordService.class);
+    }
+    
+    /**
+     * 返回自主开号规则表远程服务实例
+     *
+     * @return 自主开号规则表远程服务实例
+     */
+    public static so.wwb.creditbox.iservice.manager.lottery.ILotteryOwnRuleService lotteryOwnRuleService() {
+        return getService(so.wwb.creditbox.iservice.manager.lottery.ILotteryOwnRuleService.class);
     }
     
 //endregion your codes 1

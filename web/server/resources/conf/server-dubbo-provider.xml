@@ -71,9 +71,9 @@
 
 
     <!--任务-->
-    <!--<dubbo:service ref="taskScheduleCrudServiceEx" interface="so.wwb.creditbox.iservice.manager.taskschedule.ITaskScheduleCrudServiceEx" registry="zookeeperService"/>-->
+    <dubbo:service ref="taskScheduleCrudServiceEx" interface="so.wwb.creditbox.iservice.manager.taskschedule.ITaskScheduleCrudServiceEx" registry="zookeeperService"/>
 
-    <!--<dubbo:service ref="taskRunRecordService" interface="so.wwb.creditbox.iservice.manager.taskschedule.ITaskRunRecordService" registry="zookeeperService"/>-->
+    <dubbo:service ref="taskRunRecordService" interface="so.wwb.creditbox.iservice.manager.taskschedule.ITaskRunRecordService" registry="zookeeperService"/>
 
     <!--站点域名-->
     <dubbo:service ref="vSysSiteDomainService" interface="so.wwb.creditbox.iservice.manager.sys.IVSysSiteDomainService" registry="zookeeperService"/>
@@ -89,6 +89,23 @@
 
 
     <dubbo:service ref="siteLotteryRebatesService" interface="so.wwb.creditbox.iservice.company.lottery.ISiteLotteryRebatesService"/>
+
+    <!-- 彩种盘口dubbo服务 -->
+    <dubbo:service ref="lotteryHandicapService" interface="so.wwb.creditbox.iservice.manager.lottery.ILotteryHandicapService"/>
+
+    <!-- 开奖结果主表dubbo服务 -->
+    <dubbo:service ref="lotteryResultService" interface="so.wwb.creditbox.iservice.manager.lottery.ILotteryResultService"/>
+
+    <dubbo:service ref="lotteryHandicapLhcService" interface="so.wwb.creditbox.iservice.manager.lottery.ILotteryHandicapLhcService"/>
+
+    <!-- 彩票采集接口配置表dubbo服务 -->
+    <dubbo:service ref="lotteryGatherConfService" interface="so.wwb.creditbox.iservice.manager.lottery.ILotteryGatherConfService"/>
+
+    <!-- 开奖结果记录表dubbo服务 -->
+    <dubbo:service ref="lotteryResultRecordService" interface="so.wwb.creditbox.iservice.manager.lottery.ILotteryResultRecordService"/>
+
+    <!-- 自主开号规则表dubbo服务 -->
+    <dubbo:service ref="lotteryOwnRuleService" interface="so.wwb.creditbox.iservice.manager.lottery.ILotteryOwnRuleService"/>
 
 <!--//endregion your codes 1-->
 

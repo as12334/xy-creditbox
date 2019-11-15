@@ -6,7 +6,22 @@
        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd"
        default-autowire="byName" default-lazy-init="true">
 
-    <bean class="so.wwb.creditbox.schedule.service.merchant.task.BillRakebackTask" id="billRakebackTask" scope="prototype"/>
+
+    <!-- 采集线程池 -->
+    <bean class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean" id="gatherExecutor">
+        <property name="corePoolSize" value="10"/>
+        <property name="maxPoolSize" value="20"/>
+        <property name="keepAliveSeconds" value="60"/>
+        <property name="queueCapacity" value="1000"/>
+        <property name="threadGroupName" value="lottery"/>
+        <property name="threadNamePrefix" value="lottery-gather-"/>
+        <property name="waitForTasksToCompleteOnShutdown" value="true"/>
+        <property name="rejectedExecutionHandler">
+            <bean class="java.util.concurrent.ThreadPoolExecutor.AbortPolicy"/>
+        </property>
+    </bean>
+
+    <!--<bean class="so.wwb.creditbox.schedule.service.merchant.task.BillRakebackTask" id="billRakebackTask" scope="prototype"/>-->
     <bean class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean" id="rakebackExecutor">
         <property name="corePoolSize" value="20"/>
         <property name="maxPoolSize" value="50"/>
@@ -21,7 +36,7 @@
         </property>
     </bean>
 
-    <bean class="so.wwb.creditbox.schedule.service.merchant.task.BillSalaryTask" id="billSalaryTask" scope="prototype"/>
+    <!--<bean class="so.wwb.creditbox.schedule.service.merchant.task.BillSalaryTask" id="billSalaryTask" scope="prototype"/>-->
     <bean class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean" id="salaryExecutor">
         <property name="corePoolSize" value="20"/>
         <property name="maxPoolSize" value="50"/>
@@ -36,7 +51,7 @@
         </property>
     </bean>
 
-    <bean class="so.wwb.creditbox.schedule.service.merchant.task.BillDividenTask" id="billDividenTask" scope="prototype"/>
+    <!--<bean class="so.wwb.creditbox.schedule.service.merchant.task.BillDividenTask" id="billDividenTask" scope="prototype"/>-->
     <bean class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean" id="dividenExecutor">
         <property name="corePoolSize" value="20"/>
         <property name="maxPoolSize" value="50"/>
@@ -51,7 +66,7 @@
         </property>
     </bean>
 
-    <bean class="so.wwb.creditbox.schedule.service.merchant.task.ReportGameTask" id="reportGameTask" scope="prototype"/>
+    <!--<bean class="so.wwb.creditbox.schedule.service.merchant.task.ReportGameTask" id="reportGameTask" scope="prototype"/>-->
     <bean class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean" id="reportGameExecutor">
         <property name="corePoolSize" value="20"/>
         <property name="maxPoolSize" value="50"/>
@@ -66,7 +81,7 @@
         </property>
     </bean>
 
-    <bean class="so.wwb.creditbox.schedule.service.merchant.task.OnlinePayTask" id="onlinePayTask" scope="prototype"/>
+    <!--<bean class="so.wwb.creditbox.schedule.service.merchant.task.OnlinePayTask" id="onlinePayTask" scope="prototype"/>-->
     <bean class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean" id="onlinePayExecutor">
         <property name="corePoolSize" value="20"/>
         <property name="maxPoolSize" value="50"/>
@@ -81,8 +96,8 @@
         </property>
     </bean>
 
-    <bean class="so.wwb.creditbox.schedule.service.merchant.task.ReportOperateTask" id="reportOperateTask" scope="prototype"/>
-    <bean class="so.wwb.creditbox.schedule.service.merchant.task.RemovePlayerTask" id="removePlayerTask" scope="prototype"/>
+    <!--<bean class="so.wwb.creditbox.schedule.service.merchant.task.ReportOperateTask" id="reportOperateTask" scope="prototype"/>-->
+    <!--<bean class="so.wwb.creditbox.schedule.service.merchant.task.RemovePlayerTask" id="removePlayerTask" scope="prototype"/>-->
     <bean class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean" id="reportExecutor">
         <property name="corePoolSize" value="20"/>
         <property name="maxPoolSize" value="50"/>
@@ -97,7 +112,7 @@
         </property>
     </bean>
 
-    <bean class="so.wwb.creditbox.schedule.service.merchant.task.BillRetreatTask" id="billRetreatTask" scope="prototype"/>
+    <!--<bean class="so.wwb.creditbox.schedule.service.merchant.task.BillRetreatTask" id="billRetreatTask" scope="prototype"/>-->
     <bean class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean" id="retreatExecutor">
         <property name="corePoolSize" value="20"/>
         <property name="maxPoolSize" value="50"/>
@@ -112,7 +127,7 @@
         </property>
     </bean>
 
-    <bean class="so.wwb.creditbox.schedule.service.merchant.task.ReportBusinessTask" id="reportBusinessTask" scope="prototype"/>
+    <!--<bean class="so.wwb.creditbox.schedule.service.merchant.task.ReportBusinessTask" id="reportBusinessTask" scope="prototype"/>-->
     <bean class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean" id="reportBusinessExecutor">
         <property name="corePoolSize" value="20"/>
         <property name="maxPoolSize" value="50"/>

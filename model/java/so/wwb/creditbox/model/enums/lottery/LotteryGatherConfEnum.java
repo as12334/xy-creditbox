@@ -7,7 +7,9 @@ public enum LotteryGatherConfEnum implements ICodeEnum {
     kai("kai", "168开彩网"),
     lbw("lbw", "六百万"),
     auto("auto", "自动开奖"),
-    wangyi("wangyi", "网易采集");
+    wangyi("wangyi", "网易采集"),
+    fhlm("fhlm", "凤凰联盟"),
+    cpk("cpk","彩票控");
 
     private String code;
     private String trans;
