@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+
+    <description>SOUL functions library</description>
+    <display-name>SOUL FN JSTL</display-name>
+    <tlib-version>1.0</tlib-version>
+    <short-name>gbFn</short-name>
+    <uri>http://gb/fnTag</uri>
+    <function>
+        <description>
+            /**
+            * 将IpRegionCode转换成国际化的字符
+            * @param ipRegionCode
+            * @return 将IpRegionCode转换成国际化的字符
+            */
+        </description>
+        <name>getIpRegion</name>
+        <function-class>so.wwb.creditbox.web.tools.IpRegionTool</function-class>
+        <function-signature>java.lang.String getIpRegion(java.lang.String)</function-signature>
+    </function>
+    <function>
+        <description>
+            /**
+            * 将IpRegionCode转换成国际化的字符(不包括七大洲)
+            * @param ipRegionCode
+            * @return 将IpRegionCode转换成国际化的字符(不包括七大洲)
+            */
+        </description>
+        <name>getShortIpRegion</name>
+        <function-class>so.wwb.creditbox.web.tools.IpRegionTool</function-class>
+        <function-signature>java.lang.String getShortIpRegion(java.lang.String)</function-signature>
+    </function>
+    <function>
+        <description>
+            /**
+            * unescapeXml
+            * @param escapeXml
+            * @return unescapeXml
+            */
+        </description>
+        <name>unescapeXml</name>
+        <function-class>org.soul.commons.lang.string.StringEscapeTool</function-class>
+        <function-signature>java.lang.String unescapeXml(java.lang.String)</function-signature>
+    </function>
+    <function>
+        <description>
+            /**
+            * 获取时区
+            */
+        </description>
+        <name>getTimezoneByGmt</name>
+        <function-class>so.wwb.creditbox.model.base.CacheBase</function-class>
+        <function-signature>java.util.TimeZone getTimezoneByGmt(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <description>
+            /**
+             * add by Bruce.Q
+             * ip Long整型转为字符串
+             * @param ip
+             * @return 返回字符串ip,格式:0.0.0.0
+            */
+        </description>
+        <name>ipv4LongToString</name>
+        <function-class>org.soul.commons.net.IpTool</function-class>
+        <function-signature>java.lang.String ipv4LongToString(long))</function-signature>
+    </function>
+
+    <function>
+        <description>
+            /**
+            * add by Bruce.Q
+            * 获取站点名称
+            * @param 站点id
+            * @return 站点名称
+            */
+        </description>
+        <name>getSiteName</name>
+        <function-class>so.wwb.creditbox.model.base.CacheBase</function-class>
+        <function-signature>java.lang.String getSiteName(java.lang.Integer)</function-signature>
+    </function>
+    <function>
+        <description>
+            /**
+            * 活动方案缓存
+            * @param ipRegionCode
+            * @return 将IpRegionCode转换成国际化的字符
+            */
+        </description>
+        <name>getActivityMessageInfo</name>
+        <function-class>so.wwb.creditbox.model.base.CacheBase</function-class>
+        <function-signature>so.wwb.lotterybox.model.manager.operation.vo.PlayerActivityMessage getActivityMessageInfo(java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <description>
+            格式化货币 3位
+            @author: Longer
+        </description>
+        <name>formatBonus</name>
+        <function-class>org.soul.commons.currency.CurrencyTool</function-class>
+        <function-signature>java.lang.String formatBonus(java.lang.Number,int)</function-signature>
+    </function>
+</taglib>

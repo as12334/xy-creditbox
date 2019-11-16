@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-4.1.xsd"
+	default-autowire="byName">
+
+	<import resource="classpath*:conf/shiro-base.xml"/>
+	<import resource="classpath*:conf/shiro-common.xml"/>
+	<import resource="classpath*:conf/shiro-base-local.xml"/>
+	<import resource="classpath*:conf/shiro-app-local.xml"/>
+
+	<!-- manager自定义subsysCode过滤 -->
+	<bean id="subsysCodeFilter" class="so.wwb.creditbox.company.filter.ManagerSubsysCodeFilter"/>
+
+	<bean id="passportDelegate" class="so.wwb.creditbox.web.shiro.common.delegate.PassportDelegate">
+		<property name="passportListeners" ref="passportListeners"/>
+	</bean>
+
+	<util:list id="passportListeners">
+		<ref bean="passportListener"/>
+		<ref bean="userInfoListener"/>
+	</util:list>
+
+	<bean id="userInfoListener" class="so.wwb.creditbox.company.session.listener.UserInfoListener"/>
+
+	<bean id="shiroFilter" class="org.soul.web.shiro.common.spring.CustomShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="successUrl" value="/index.html"  />
+		<property name="loginUrl" value="/passport/login.html"/>
+		<property name="unauthorizedUrl" value="/errors/403.html"></property>
+		<property name="filters">
+			<map>
+				<entry key="kickout" value-ref="kickoutFilter"></entry>
+				<entry key="login" value-ref="login"></entry>
+				<entry key="logout" value-ref="logout"></entry>
+				<entry key="autho" value-ref="authoFilter"></entry>
+				<entry key="authc" value-ref="authcFilter"></entry>
+				<entry key="subsys" value-ref="subsysCodeFilter"></entry>
+				<entry key="captcha" value-ref="captcha"></entry>
+				<entry key="ip" value-ref="ipFilterCenter"/>
+			</map>
+		</property>
+		<property name="filterChainDefinitions">
+			<value>
+				/images/favicon.ico = anon <!--for chrome-->
+				/resource/** = anon
+				/template/email/** = anon
+				/errors/** = anon
+				/message_*.js = ip
+				/index/language.html = ip
+				/index/language/change.html = ip
+				/forgetPassword/** = ip
+				/app/** = ip
+				/captcha/*.html = ip,captcha
+				/passport/login.html = ip,subsys,login
+				/** = ip,kickout,authc,autho
+			</value>
+		</property>
+	</bean>
+</beans>

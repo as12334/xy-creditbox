@@ -16,6 +16,7 @@
         <module>mdcenter</module>
         <module>manager</module>
         <module>company</module>
+        <module>hall</module>
         <module>server</module>
         <module>schedule</module>
         <module>game-schedule</module>
