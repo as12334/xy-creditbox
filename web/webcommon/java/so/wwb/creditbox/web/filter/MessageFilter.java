@@ -30,10 +30,27 @@ public class MessageFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        SysResourceVo o = new SysResourceVo();
+        LotteryContextParam contextParam = LotteryCommonContext.get();
+        if(!StringTool.equals(contextParam.getUserType(), UserTypeEnum.COMPANY.getCode())){
+            o.getSearch().setUserId(SessionManagerCommon.getUserId());
+        }
+        o.getSearch().setSubsysCode(contextParam.getDomainSubsysCode());
+        o._setSiteId(contextParam.getSiteId());
+        o._setDataSourceId(contextParam.getSiteId());
+        List<Nav> navs = ServiceTool.vSysSiteManageService().getAllMenus(o);
+
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        for (Nav nav : navs) {
+            linkedHashMap.put(nav.getName(),nav);
+        }
+
+
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/javascript");
-        response.getWriter().print("var message =" + I18nTool.getScriptMessageObject(CommonContext.get().getLocale().toString()) + ";");
+        String result = MessageFormat.format("var message = {0}; var nav = {1};",I18nTool.getScriptMessageObject(CommonContext.get().getLocale().toString()), JsonTool.toJson(linkedHashMap));
+        response.getWriter().print(result);
         response.getWriter().close();
     }
 

@@ -125,13 +125,16 @@ public class LocalLoginFilter extends FormAuthenticationFilter {
         PassportVo passportVo = generatePassportVo(token);
         try {
             try {
-//                if (DomainTypeEnum.HALL == contextParam().getDomainTypeEnum()) {
-//                    passportVo._setDataSourceId(contextParam().getSiteId());
-//                }
-                //如果用户名不是玩家就去主数据库找
-                if(contextParam().getUserType() != UserTypeEnum.PLAYER.getCode()){
-                    passportVo._setDataSourceId(0);
+                if (SubSysCodeEnum.BOSS == contextParam().getSubSysCodeEnum()
+                        || token.getUsername().equals(contextParam().getDomainUserName())) {
+                    passportVo._setDataSourceId(Const.BOSS_DATASOURCE_ID);
+                }else {
+                    passportVo._setDataSourceId(contextParam().getSiteId());
                 }
+//                //如果用户名不是玩家就去主数据库找
+//                if(contextParam().getUserType() != UserTypeEnum.PLAYER.getCode()){
+//                    passportVo._setDataSourceId(0);
+//                }
                 passportVo.getSearch().setSiteId(contextParam().getSiteId());
                 CommonContext.get().setEntrance(token._getEntrance());
                 passportVo = ServiceTool.passportService().login(passportVo);
@@ -214,9 +217,9 @@ public class LocalLoginFilter extends FormAuthenticationFilter {
             String securityKey = sysUser.getUsername();
             String userId = CryptoTool.encryptDES3(sessionKey, securityKey);
             Cookie cookie = new Cookie(CookieKey.STR_SESSION_KEY, userId);
-            cookie.setPath("/manager");
+            cookie.setPath("/");
             Cookie cookie2 = new Cookie(CookieKey.STR_SECURITY_KEY, securityKey);
-            cookie2.setPath("/manager");
+            cookie2.setPath("/");
             response.addCookie(cookie);
             response.addCookie(cookie2);
 

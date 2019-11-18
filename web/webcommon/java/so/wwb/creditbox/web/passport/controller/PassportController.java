@@ -55,9 +55,9 @@ public class PassportController {
             return "redirect:" + SessionManagerCommon.getRedirectUrl(request, "/");
         }
 
-        if (!request.getContextPath().equals("") && !request.getContextPath().equals("/") && SubSysCodeEnum.HALL.getCode().equals(subsysCode)) {
-            return "redirect:" + SessionManagerCommon.getRedirectUrl(request, "/login/commonLogin.html");
-        }
+//        if (!request.getContextPath().equals("") && !request.getContextPath().equals("/") && SubSysCodeEnum.HALL.getCode().equals(subsysCode)) {
+//            return "redirect:" + SessionManagerCommon.getRedirectUrl(request, "/login/commonLogin.html");
+//        }
         String uri = request.getRequestURI();
         String contextPath = request.getContextPath();
         Integer entranceId = passportDelegate.getEntranceType(contextPath, uri);

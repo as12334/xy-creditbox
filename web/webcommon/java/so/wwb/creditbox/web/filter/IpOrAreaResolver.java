@@ -30,7 +30,7 @@ public class IpOrAreaResolver implements IIpOrAreaResolver {
         boolean isAllowIp = false;
         long ip = IpTool.ipv4StringToLong(ipStr);
         Map<String, SiteConfineIp> ipMap = CacheBase.getSiteConfineIp(siteId);
-        isAllowIp = checkIpMap(ipMap, ipStr, siteId, ip, domain);
+//        isAllowIp = checkIpMap(ipMap, ipStr, siteId, ip, domain);
         return true;
     }
 

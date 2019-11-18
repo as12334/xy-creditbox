@@ -13,6 +13,7 @@ import so.wwb.creditbox.context.LotteryCommonContext;
 import so.wwb.creditbox.model.enums.base.SubSysCodeEnum;
 import so.wwb.creditbox.model.enums.sys.DomainPageUrlEnum;
 import so.wwb.creditbox.model.enums.sys.SysSiteStatusEnum;
+import so.wwb.creditbox.model.enums.sys.SystemEnum;
 import so.wwb.creditbox.model.manager.sys.po.VSysSiteDomain;
 import so.wwb.creditbox.web.tools.CommonTool;
 import so.wwb.creditbox.web.tools.SessionManagerCommon;
@@ -103,42 +104,29 @@ public class DomainFilter implements Filter {
         //endregion
 
         //TODO dick 添加DomainTypeEnum.COMPANY.getCode()
-//        if (DomainTypeEnum.COMPANY.getCode().equals(sysSiteDomain.getType()) || DomainTypeEnum.COMPANY.getCode().equals(sysSiteDomain.getType())) {
-//            if (!strRequestURI.startsWith(SystemEnum.MANAGER.getCode())) {
-//                String strUrl = SystemEnum.MANAGER.getCode() + request.getRequestURI();
-//                response.sendRedirect(strUrl);
-//                return;
-//            }
-//
-//            String strPath = MessageFormat.format("{0}://{1}:{2}{3}", CommonTool.getHttp(request), strServerName, CommonTool.getPort(request), strContextPath);
-//            if (!strPath.endsWith("/")) strPath = strPath + "/";
-//            if (strPath.equals(strRequestURL.toString())) {
-//                strPath = MessageFormat.format("{0}://{1}:{2}{3}", CommonTool.getHttp(request), strServerName, CommonTool.getPort(request), DomainPageUrlEnum.COMPANY.getCode());
-//                response.sendRedirect(strPath);
-//                return;
-//            }
-//        } else if (DomainTypeEnum.HALL.getCode().equals(sysSiteDomain.getType())) {
-//            String strPath = MessageFormat.format("{0}://{1}:{2}{3}", CommonTool.getHttp(request), strServerName, CommonTool.getPort(request), strContextPath);
-//            if (!strPath.endsWith("/")) strPath = strPath + "/";
-//            if (strPath.equals(strRequestURL.toString())) {
-//                strPath = MessageFormat.format("{0}://{1}:{2}{3}", CommonTool.getHttp(request), strServerName, CommonTool.getPort(request), DomainPageUrlEnum.HALL.getCode());
-//                response.sendRedirect(strPath);
-//                return;
-//            }
-//        }
-        // 判断是否是支付域名，如果是支付域名，只允许访问onlinePay请上下文的请求
-//        else if(DomainTypeEnum.PAY.getCode().equals(sysSiteDomain.getType())
-//                && !strRequestURI.contains(DomainPageUrlEnum.PAY.getCode() + "/")){
-//            errorCodeEnum = ErrorCodeEnum.SC_FORBIDDEN;
-//            this.HandleError(response, request, errorCodeEnum, strServerName, strContextPath);
-//            return;
-//        }else if(DomainTypeEnum.API.getCode().equals(sysSiteDomain.getType())
-//                && !strRequestURI.contains(DomainPageUrlEnum.API.getCode())) {// 判断是否是API域名，如果是API域名，不能直接访问,用于接口请求
-//            errorCodeEnum = ErrorCodeEnum.SC_SITE_DISABLED;
-//            LOG.info("商户api域名不能直接访问:{0}", strRequestURI);
-//            this.HandleError(response, request, errorCodeEnum, strServerName, strContextPath);
-//           return;
-//        }
+        if (SubSysCodeEnum.COMPANY.getCode().equals(sysSiteDomain.getDomainSubsysCode())) {
+            if (!strRequestURI.startsWith(SystemEnum.COMPANY.getCode())) {
+                String strUrl = SystemEnum.COMPANY.getCode() + request.getRequestURI();
+                response.sendRedirect(strUrl);
+                return;
+            }
+
+            String strPath = MessageFormat.format("{0}://{1}:{2}{3}", CommonTool.getHttp(request), strServerName, CommonTool.getPort(request), strContextPath);
+            if (!strPath.endsWith("/")) strPath = strPath + "/";
+            if (strPath.equals(strRequestURL.toString())) {
+                strPath = MessageFormat.format("{0}://{1}:{2}{3}", CommonTool.getHttp(request), strServerName, CommonTool.getPort(request), DomainPageUrlEnum.COMPANY.getCode());
+                response.sendRedirect(strPath);
+                return;
+            }
+        } else if (SubSysCodeEnum.HALL.getCode().equals(sysSiteDomain.getDomainSubsysCode())) {
+            String strPath = MessageFormat.format("{0}://{1}:{2}{3}", CommonTool.getHttp(request), strServerName, CommonTool.getPort(request), strContextPath);
+            if (!strPath.endsWith("/")) strPath = strPath + "/";
+            if (strPath.equals(strRequestURL.toString())) {
+                strPath = MessageFormat.format("{0}://{1}:{2}{3}", CommonTool.getHttp(request), strServerName, CommonTool.getPort(request), DomainPageUrlEnum.HALL.getCode());
+                response.sendRedirect(strPath);
+                return;
+            }
+        }
 
         if (SubSysCodeEnum.BOSS.equals(LotteryCommonContext.get().getSubSysCodeEnum())) {
             sysSiteDomain.setSiteStatus(SysSiteStatusEnum.NORMAL.getCode());
