@@ -123,13 +123,13 @@
     <!--//region your codes 1-->
 
 </div>
-
+    <lb:validateRule/>
 
 <script type="text/javascript" src="${root}/message_<%=SessionManagerCommon.getLocale().toString()%>.js?v=${rcVersion}"></script>
 <script language="javascript" type="text/javascript">
     window.top.language="zh-CN";
 </script>
-    <lb:validateRule/>
+
 <script type="text/javascript">
     curl(['site/home/Top','lb/xy/TopPage'], function(Page,TopPage) {
         page = new Page();

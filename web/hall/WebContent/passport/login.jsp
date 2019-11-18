@@ -6,49 +6,69 @@
 
     <%@ include file="/include/include.js.jsp" %>
     <title>用戶登錄</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="${resRoot}/images/favicon.ico" rel="shortcut icon">
-    <%--<link rel="stylesheet" type="text/css" href="${resRoot}/themes/skin/main.css?v=${rcVersion}"/>--%>
-    <link rel="stylesheet" type="text/css" href="${resRoot}/themes/skin/yellow/userlogin.css?v=${rcVersion}"/>
+    <meta name="keyword" content="">
 
-    <%--<script type="text/javascript" src="/scripts/jquery.js"></script>--%>
-    <%--<script type="text/javascript" src="/scripts/globals.js"></script>--%>
-    <title>${siteName}</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <link href="${resRoot}/images/favicon.ico" rel="shortcut icon">
+
+    <link rel="stylesheet" type="text/css" href="${resRoot}/themes/default/userlogin.css?v=${rcVersion}"/>
+    <%--<script src="${resRoot}/js/login.js" type="text/javascript"/>--%>
+
+
+    <script>
+        var jsver=20170128;
+        var isDisplayCode = false;
+        var sysver=1
+    </script>
+    <%--<script src="./login_files/sea.js.下载" type="text/javascript"></script>--%>
+    <%--<script src="./login_files/config.js.下载" type="text/javascript"></script>--%>
+    <style>
+        .btnD{
+            background: #ccc!important;
+            color: #999!important;
+        }
+    </style>
 </head>
 
-<body >
+<body>
 
-
-
+<%--<link href="./login_files/userlogin.css" rel="stylesheet" type="text/css">--%>
 <div class="AL_box">
     <form id="login" method="post">
         <div class="AL_t01"></div>
         <div class="AL_t02">
-            <ul>
-                <input type="hidden" name="siteCode" value="${siteCode}" class="form-control" >
-                <input hidden  data-type="text" type="text" value=""  name="username" tabindex="1" class="text" />
+            <div class="left"></div>
+            <div class="right">
+                <ul>
+                    <input type="hidden" name="siteCode" value="${siteCode}" class="form-control" >
+                    <input hidden  data-type="text" type="text" value=""  name="username" tabindex="1" class="text" />
 
-
-
-                <li><input  data-type="text" type="text" value=""  name="name" tabindex="1" class="text" placeholder="請輸入您的用戶名" /></li>
-                <li><input  data-type="text" type="password" value="" tabindex="2" name="password" class="text" placeholder="請輸入您的密碼" /></li>
-                <%--<li style=""><input  data-type="text" type="text" id="pic_input" name="captcha"  tabindex="3" autocomplete="off" maxlength="4" class="w100 text" placeholder="請輸入驗證碼" /><span><img onclick="changeCode()" src="${root}/captcha/code.html" id="pic_code" style="height:32px;  width:100px; cursor:pointer;position:absolute; right:0px; top:0px;" title="" ></span></li>--%>
-            </ul>
+                    <li><input data-type="text" type="text" value="" id="loginName" name="name" tabindex="1" class="text" placeholder="請輸入您的用戶名" data-issubmit="1"></li>
+                    <li><input data-type="text" type="password" value="" tabindex="2" id="loginPwd" name="password" class="text" placeholder="請輸入您的密碼" data-issubmit="1"></li>
+                </ul>
+                <div class="btnBox">
+                    <button id="login_btn" type="button" value="Login" class="loginBtn" onclick="doLogin()">登 錄</button>
+                </div>
+            </div>
             <div class="clear"></div>
         </div>
-        <div class="form-group" id="authentication-error-msg">
-            ${sessionScope.SK_Passport_Rs.propMessages["authentication"]}${sessionScope.SK_Passport_Rs.message}
-        </div>
-        <div class="AL_t03">
-            <label>
-                <button type="button" class="loginBtn" id="login_btn" onclick="doLogin()">登 錄</button>
-            </label>
-            <div class="copy">版權所有   2019  All  Rights  Reserved</div>
-        </div>
+
     </form>
+    <div class="copy">版權所有   <span id="year">2019</span>  All  Rights  Reserved</div>
     <div class="clear"></div>
 </div>
-</body>
+
+
+<%--<script>--%>
+    <%--window.onload = function () {--%>
+        <%--seajs.use('login');--%>
+    <%--}--%>
+<%--</script>--%>
+
+
+<%--<soul:import res="site/login"/>--%>
+
 <script>function doLogin(){
 
     var password = $("[name='password']").val();
@@ -73,4 +93,4 @@
 }
 </script>
 
-</html>
+</body></html>

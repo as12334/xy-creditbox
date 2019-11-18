@@ -10,7 +10,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            classpath*:conf/compnay-appCtx.xml
+            classpath*:conf/hall-appCtx.xml
         </param-value>
     </context-param>
 
