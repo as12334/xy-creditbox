@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
-    <script> if (top.location == self.location) top.location.href = "/"; </script>
+    <script> if (top.location == self.location) top.location.href = "/WebContent"; </script>
     <link href="favicon.ico" rel="shortcut icon">
 
     <link id="Iframe_skin" rel="stylesheet" type="text/css" href="${resRoot}/themes/red/skin.css?v=${rcVersion}"/>

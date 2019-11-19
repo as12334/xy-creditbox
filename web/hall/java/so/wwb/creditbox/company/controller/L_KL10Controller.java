@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping("/L_KL10/Handler/")
+@RequestMapping("/handler")
 public class L_KL10Controller {
     private static final String INDEX_URI = "Home";
     private static final String LOGIN_VALIDATE = "LoginValidate";
@@ -19,7 +19,7 @@ public class L_KL10Controller {
 
 
 
-    @RequestMapping(value = "Handler")
+    @RequestMapping(value = "handler")
     @ResponseBody
     protected String handler(@RequestParam("action") String action,@RequestParam("playpage") String playpage,HttpServletRequest request, HttpServletResponse response, Model model ) {
 

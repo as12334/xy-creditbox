@@ -67,7 +67,7 @@
         <a id="menuText" href="javascript:void(0)" data-id="0" data-type="2"><span>廣東快樂十分</span><i></i></a>
         <div>
             <ul id="menuList">
-                <li><a data-id="0" data-type="2" data-url="L_KL10" href="javascript:void(0)">廣東快樂十分</a></li>
+                <li><a data-id="0" data-type="2" data-url="gdklsf" href="javascript:void(0)">廣東快樂十分</a></li>
                 <li><a data-id="1" data-type="2" data-url="L_CQSC" href="javascript:void(0)">重慶時時彩</a></li>
                 <li><a data-id="2" data-type="2" data-url="L_PK10" href="javascript:void(0)">北京賽車(PK10)</a></li>
                 <li><a data-id="6" data-type="2" data-url="L_K8SC" href="javascript:void(0)">幸運飛艇(3分鍾)</a></li>
@@ -198,7 +198,7 @@
     var menuData = {
         "play_0": {
             "name": "廣東快樂十分",
-            "url": "L_KL10",
+            "url": "gdkl10",
             "page": {
                 "kl10_lmp": "两面盘",
                 "kl10_dq1_8": "单球1-8",
