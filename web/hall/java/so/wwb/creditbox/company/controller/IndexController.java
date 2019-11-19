@@ -46,4 +46,13 @@ public class IndexController {
     protected String loginValidate(HttpServletRequest request, HttpServletResponse response, Model model) {
         return LOGIN_VALIDATE;
     }
+
+
+
+    @RequestMapping(value = "L_KL10/index")
+    protected String L_KL10(HttpServletRequest request, HttpServletResponse response, Model model) {
+        return "lottery/sfc/Kl10";
+    }
+
+
 }

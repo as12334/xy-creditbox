@@ -6,5 +6,5 @@
 <link rel="stylesheet" type="text/css" href="${resRoot}/themes/sub.css?v=${rcVersion}"/>
 <link rel="stylesheet" type="text/css" href="${resRoot}/themes/ui-dialog.css?v=${rcVersion}"/>
 
-<link rel="stylesheet" type="text/css" href="${resRoot}/themes/red/skin.css?v=${rcVersion}"/>
+<%--<link id="skin" rel="stylesheet" type="text/css" href="${resRoot}/themes/red/skin.css?v=${rcVersion}"/>--%>
 

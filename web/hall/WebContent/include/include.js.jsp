@@ -7,6 +7,10 @@
 <script src="${resRoot}/js/plugin/sea/seajs-css.js?v=${rcVersion}"></script>
 <script src="${resRoot}/js/config.js?v=${rcVersion}"></script>
 <script src="${resRoot}/js/global.js?v=${rcVersion}"></script>
+<script src="${resRoot}/js/juicer-min.js?v=${rcVersion}"></script>
+<script src="${resRoot}/js/iframeConfig.js?v=${rcVersion}"></script>
+
+
 <%--<script src="${resRoot}/js/dialog-plus.js?v=${rcVersion}"></script>--%>
 
 
