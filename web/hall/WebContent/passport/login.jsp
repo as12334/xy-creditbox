@@ -3,6 +3,7 @@
 <head>
     <%@ include file="/include/include.inc.jsp" %>
     <%--<%@ include file="/include/include.head.jsp" %>--%>
+    <script src="${resComRoot}/js/lotterybox/common/main.js"></script>
 
     <%@ include file="/include/include.js.jsp" %>
     <title>用戶登錄</title>
@@ -60,17 +61,17 @@
 </div>
 
 
-<%--<script>--%>
-    <%--window.onload = function () {--%>
-        <%--seajs.use('login');--%>
-    <%--}--%>
-<%--</script>--%>
+<script>
+    window.onload = function () {
+        seajs.use('login');
+    }
+</script>
 
 
 <%--<soul:import res="site/login"/>--%>
 
-<script>function doLogin(){
-
+<script>
+    function doLogin(){
     var password = $("[name='password']").val();
     var name = $("[name='name']").val();
     var siteCode = $("[name='siteCode']").val();
