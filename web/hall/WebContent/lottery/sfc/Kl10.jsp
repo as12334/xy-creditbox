@@ -200,17 +200,17 @@
 <script id="tpl_history" type="text/template">
     {@each jqkj as it}
     <tr>
-        <td>${it.phase}</td>
-        <td>${it.play_open_date}</td>
+        <td>&{it.phase}</td>
+        <td>&{it.play_open_date}</td>
         <td>
             <strong class="ball">
                 {@each it.draw_num as item}
-                <span class="No_${item}"></span>
+                <span class="No_&{item}"></span>
                 {@/each}
             </strong>
         </td>
         {@each it.total as item}
-        <td>$${item}</td>
+        <td>$&{item}</td>
         {@/each}
     </tr>
     {@/each}
@@ -222,15 +222,15 @@
     {@each lmcl as it, index}
     {@if it.cl_name.indexOf("-")>0 }
     {@if index % 2 != 0 }
-    <li class="on"><span>${it.cl_num}期</span>${it.cl_name.split('-')[0]} - <b class="red">${it.cl_name.split('-')[1]}</b></li>
+    <li class="on"><span>&{it.cl_num}期</span>&{it.cl_name.split('-')[0]} - <b class="red">&{it.cl_name.split('-')[1]}</b></li>
     {@else}
-    <li><span>${it.cl_num}期</span>${it.cl_name.split('-')[0]} - <b class="red">${it.cl_name.split('-')[1]}</b></li>
+    <li><span>&{it.cl_num}期</span>&{it.cl_name.split('-')[0]} - <b class="red">&{it.cl_name.split('-')[1]}</b></li>
     {@/if}
     {@else}
     {@if index % 2 != 0 }
-    <li class="on"><span>${it.cl_num}期</span>${it.cl_name.split('-')[0]} <b class="red">${it.cl_name.split('-')[1]}</b></li>
+    <li class="on"><span>&{it.cl_num}期</span>&{it.cl_name.split('-')[0]} <b class="red">&{it.cl_name.split('-')[1]}</b></li>
     {@else}
-    <li><span>${it.cl_num}期</span>${it.cl_name.split('-')[0]} <b class="red">${it.cl_name.split('-')[1]}</b></li>
+    <li><span>&{it.cl_num}期</span>&{it.cl_name.split('-')[0]} <b class="red">&{it.cl_name.split('-')[1]}</b></li>
     {@/if}
     {@/if}
     {@/each}
@@ -243,9 +243,9 @@
     <tr>
         {@each lryl.num as it, index}
         {@if index==0}
-        <th width="80">${it}</th>
+        <th width="80">&{it}</th>
         {@else}
-        <th>${it}</th>
+        <th>&{it}</th>
         {@/if}
         {@/each}
     </tr>
@@ -253,12 +253,12 @@
     <tbody>
     <tr>
         {@each lryl.lr as it}
-        <td>${it}</td>
+        <td>&{it}</td>
         {@/each}
     </tr>
     <tr>
         {@each lryl.yl as it}
-        <td>${it}</td>
+        <td>&{it}</td>
         {@/each}
     </tr>
     </tbody>
@@ -271,9 +271,9 @@
         <ul class="base-clear">
             {@each cql.title as it, index}
             {@if index==0}
-            <li class="tab_btn active"><a href="javascript:void(0)">${it}</a></li>
+            <li class="tab_btn active"><a href="javascript:void(0)">&{it}</a></li>
             {@else}
-            <li class="tab_btn"><a href="javascript:void(0)">${it}</a></li>
+            <li class="tab_btn"><a href="javascript:void(0)">&{it}</a></li>
             {@/if}
             {@/each}
         </ul>
@@ -286,7 +286,7 @@
                 {@each item.split("|") as it3}
                 <span class="dib">
 								 {@each i in range(0, it3.split(",")[1]-0)}
-									<em>${it3.split(",")[0]}</em>
+									<em>&{it3.split(",")[0]}</em>
 								 {@/each}
 							</span>
                 {@/each}
@@ -296,7 +296,7 @@
                 {@each item.split("|") as it3}
                 <span class="dib">
 								 {@each i in range(0, it3.split(",")[1]-0)}
-									<em>${it3.split(",")[0]}</em>
+									<em>&{it3.split(",")[0]}</em>
 								 {@/each}
 							</span>
                 {@/each}
@@ -329,9 +329,9 @@
                 <tbody>
                 {@each list as it, index}
                 <tr>
-                    <td>${it.iName}-${it.name}</td>
-                    <td width="100"><div class="plShow">${it.pl}<div class="plFloat"><span></span><div class="pl_left"></div></div></div></td>
-                    <td><input id="order_${index}" data-min="${it.min}" data-max="${it.max}" name="uPI_M" class="input onlyNum" value="${it.m}" type="text"><input name="uPI_ID" value="${it.uPI_ID}" type="hidden"><input name="uPI_P" value="${it.pl}" type="hidden"><input name="i_index" value="${index}" type="hidden"></td>
+                    <td>&{it.iName}-&{it.name}</td>
+                    <td width="100"><div class="plShow">&{it.pl}<div class="plFloat"><span></span><div class="pl_left"></div></div></div></td>
+                    <td><input id="order_${index}" data-min="&{it.min}" data-max="&{it.max}" name="uPI_M" class="input onlyNum" value="&{it.m}" type="text"><input name="uPI_ID" value="&{it.uPI_ID}" type="hidden"><input name="uPI_P" value="&{it.pl}" type="hidden"><input name="i_index" value="${index}" type="hidden"></td>
                     <td><a class="deleteOrder" href="javascript:void(0)">删除</a></td>
                 </tr>
                 {@/each}
