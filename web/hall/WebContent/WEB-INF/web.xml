@@ -307,8 +307,12 @@
     </servlet-mapping>
     <!-- spring mvc servlet end -->
     <welcome-file-list>
-        <welcome-file>/index.html</welcome-file>
+        <welcome-file>/loginValidate.html</welcome-file>
     </welcome-file-list>
+
+    <!--<welcome-file-list>-->
+        <!--<welcome-file>/index.html</welcome-file>-->
+    <!--</welcome-file-list>-->
 
     <session-config>
         <session-timeout>30</session-timeout>

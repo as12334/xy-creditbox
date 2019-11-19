@@ -33,11 +33,17 @@ import java.util.*;
 @Controller
 public class IndexController {
     private static final String INDEX_URI = "Home";
+    private static final String LOGIN_VALIDATE = "LoginValidate";
     private static final String INDEX_CONTENT_URI = "index.include/content";
 
 
     @RequestMapping(value = "index")
     protected String index(HttpServletRequest request, HttpServletResponse response, Model model) {
         return INDEX_URI;
+    }
+
+    @RequestMapping(value = "loginValidate")
+    protected String loginValidate(HttpServletRequest request, HttpServletResponse response, Model model) {
+        return LOGIN_VALIDATE;
     }
 }

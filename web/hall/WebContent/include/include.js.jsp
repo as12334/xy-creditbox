@@ -1,7 +1,12 @@
 <%--<%@ include file="include.base.js.jsp" %>--%>
 <%@ include file="include.base.js.common.jsp" %>
-<script src="${resRoot}/js/common/main.js?v=${rcVersion}"></script>
-<script data-curl-run="" src="${resComRoot}/js/curl/curl.js"></script>
+<%--<script src="${resRoot}/js/common/main.js?v=${rcVersion}"></script>--%>
+<%--<script data-curl-run="" src="${resComRoot}/js/curl/curl.js"></script>--%>
+
+<script src="${resRoot}/js/sea.js?v=${rcVersion}"></script>
+<script src="${resRoot}/js/config.js?v=${rcVersion}"></script>
+
+
 <script type="text/javascript" language="JavaScript" src="${resComRoot}/js/lotterybox/common/urlencode.js"></script>
 <%--<script type="text/javascript">--%>
     <%--curl(['lb/components/select'], function(Page) {--%>
