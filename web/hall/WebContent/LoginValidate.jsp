@@ -2,12 +2,10 @@
 <html>
 <head>
     <%@ include file="/include/include.inc.jsp" %>
-    <%--<%@ include file="/include/include.head.jsp" %>--%>
+    <%@ include file="/include/include.head.jsp" %>
 
     <%@ include file="/include/include.js.jsp" %>
     <title>用戶協議與規則</title>
-    <link rel="stylesheet" type="text/css" href="${resRoot}/themes/base.css?v=${rcVersion}"/>
-    <link rel="stylesheet" type="text/css" href="${resRoot}/themes/red/skin.css?v=${rcVersion}"/>
     <link rel="stylesheet" type="text/css" href="${resRoot}/themes/red/userlogin.css?v=${rcVersion}"/>
     <script>
         function exit()
@@ -17,7 +15,7 @@
         function agree()
         {
 
-            location.href = 'Index.aspx';
+            location.href = 'index.html';
 
         }
         var massage = '聚发原网址911yg.com改为847e.com 安全码656829备用网址863126.com  请各级代理会员知悉!!!';
