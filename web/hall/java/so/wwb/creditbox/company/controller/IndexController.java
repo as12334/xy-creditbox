@@ -33,14 +33,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 @Controller
-@RequestMapping("index")
 public class IndexController {
     private static final String INDEX_URI = "Home";
     private static final String LOGIN_VALIDATE = "LoginValidate";
     private static final String INDEX_CONTENT_URI = "index.include/content";
 
 
-    @RequestMapping(value = "")
+    @RequestMapping(value = "index")
     protected String index(HttpServletRequest request, HttpServletResponse response, Model model) {
         return INDEX_URI;
     }
@@ -50,7 +49,7 @@ public class IndexController {
         return LOGIN_VALIDATE;
     }
 
-    @RequestMapping(value = "{code}")
+    @RequestMapping(value = "{code}/index")
     protected String lotteryCodeIndex(@PathVariable String code, HttpServletRequest request, HttpServletResponse response, Model model) {
         LotteryEnum anEnum = EnumTool.enumOf(LotteryEnum.class, code);
         return "lottery/template/"+anEnum.getType();

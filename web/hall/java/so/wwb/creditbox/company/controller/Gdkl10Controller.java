@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping("/handler")
-public class L_KL10Controller {
+@RequestMapping("/gdkl10/handler")
+public class Gdkl10Controller {
     private static final String INDEX_URI = "Home";
     private static final String LOGIN_VALIDATE = "LoginValidate";
     private static final String INDEX_CONTENT_URI = "index.include/content";
