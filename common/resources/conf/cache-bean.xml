@@ -429,21 +429,21 @@
 	<!--站点彩票赔率缓存-->
 	<util:constant id="CACHE_KEY_SITE_LOTTERY_ODD"  static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_SITE_LOTTERY_ODD"/>
 
-	<!--<bean id="siteLotteryOddCache" class="org.soul.commons.cache.core.CacheItemConf">-->
-		<!--<property name="dataProviderClass" value="so.wwb.creditbox.iservice.manager.lottery.ISiteLotteryOddService"/>-->
+	<bean id="siteLotteryOddCache" class="org.soul.commons.cache.core.CacheItemConf">
+		<property name="dataProviderClass" value="so.wwb.creditbox.iservice.company.lottery.ISiteLotteryOddsService"/>
 
-		<!--<property name="dataProviderMethod" value="load"/>-->
-		<!--<property name="cacheLoadStrategy" ref="FIRST_TIME"/>-->
-		<!--<property name="cacheProviderType" ref="siteJedisPorxy"/>-->
-		<!--<property name="dubboVersionApp" value="${companies.dubbo.application.name}"/>-->
-		<!--<property name="methodArgs">-->
-			<!--<list>-->
-				<!--<bean class="so.wwb.creditbox.model.manager.lottery.vo.SiteLotteryOddListVo"/>-->
-			<!--</list>-->
-		<!--</property>-->
-		<!--<property name="localCache" value="true"/>-->
-		<!--<property name="localExpire" value="3600"/>-->
-	<!--</bean>-->
+		<property name="dataProviderMethod" value="load"/>
+		<property name="cacheLoadStrategy" ref="FIRST_TIME"/>
+		<property name="cacheProviderType" ref="siteOddsJedisPorxy"/>
+		<property name="dubboVersionApp" value="${companies.dubbo.application.name}"/>
+		<property name="methodArgs">
+			<list>
+				<bean class="so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsListVo"/>
+			</list>
+		</property>
+		<property name="localCache" value="true"/>
+		<property name="localExpire" value="3600"/>
+	</bean>
 
 
 	<!--&lt;!&ndash; 彩种类型缓存 &ndash;&gt;-->
@@ -665,9 +665,9 @@
 				<!--<entry key-ref="CACHE_KEY_LOTTERY_ODD" >-->
 					<!--<ref bean="lotteryOddCache"/>-->
 				<!--</entry>-->
-				<!--<entry key-ref="CACHE_KEY_SITE_LOTTERY_ODD" >-->
-					<!--<ref bean="siteLotteryOddCache"/>-->
-				<!--</entry>-->
+				<entry key-ref="CACHE_KEY_SITE_LOTTERY_ODD" >
+					<ref bean="siteLotteryOddCache"/>
+				</entry>
 				<!--&lt;!&ndash; token 缓存&ndash;&gt;-->
 				<!--<entry key-ref="CACHE_KEY_OAUTH_TOKEN">-->
 					<!--<ref bean="oauthTokenCache"/>-->
@@ -758,5 +758,14 @@
 		<property name="testOnBorrow" value="${gather.redis.testOnBorrow}"/>
 		<property name="timeBetweenEvictionRunsMillis" value="${gather.redis.timeBetweenEvictionRunsMillis}"/>
 	</bean>
+
+	<bean id="siteOddsJedisPorxy" class="so.wwb.creditbox.model.cache.CustomSiteOddsJedisPorxy">
+		<property name="cacheConf" ref="cacheConf"/>
+		<property name="dynamicItemLoader" value="true"/>
+		<property name="jedisClientProxy" ref="jedisTemplateData"/>
+		<property name="expire" value="${data.redis.expire}"/>
+		<property name="keyPrefix" value="#{commonConf.getIdc()}${dubbo.split}${data.redis.keyPrefix}"/>
+	</bean>
+
 
 </beans>

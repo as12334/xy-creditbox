@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.soul.commons.collections.ListTool;
 import org.soul.commons.enums.EnumTool;
+import org.soul.commons.lang.string.HidTool;
 import org.soul.commons.log.Log;
 import org.soul.commons.log.LogFactory;
 import org.soul.commons.query.Criteria;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import so.wwb.creditbox.data.company.lottery.SiteLotteryMapper;
 import so.wwb.creditbox.data.company.lottery.SiteLotteryOddsMapper;
 import so.wwb.creditbox.iservice.company.lottery.ISiteLotteryOddsService;
+import so.wwb.creditbox.model.constants.cache.CacheKey;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryStatusEnum;
 import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
@@ -21,6 +23,7 @@ import so.wwb.creditbox.model.company.lottery.so.SiteLotteryOddsSo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsListVo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +45,37 @@ public class SiteLotteryOddsService extends BaseService<SiteLotteryOddsMapper, S
 
     @Autowired
     private SiteLotteryMapper siteLotteryMapper;
+
+
+    @Override
+    public Map<String, Map<String, SiteLotteryOdds>> load(SiteLotteryOddsListVo siteLotteryOddListVo) {
+        SiteLotteryOddsSo search = siteLotteryOddListVo.getSearch();
+        Integer siteId = search.getSiteId();
+        if (siteId == null) {
+            siteId = siteLotteryOddListVo._getSiteId();
+        }
+        Map<String, Map<String, SiteLotteryOdds>> cacheMap = new HashMap<>();
+        String cacheKey;
+        String valueKey;
+        List<SiteLotteryOdds> list = mapper.getBranchOdds(search);
+        for (SiteLotteryOdds siteLotteryOdd : list) {
+            cacheKey = CacheKey.getCacheKey(siteId.toString(), search.getHid(),siteLotteryOdd.getCode());
+            if (cacheMap.get(cacheKey) == null) {
+                cacheMap.put(cacheKey, new HashMap<String, SiteLotteryOdds>());
+            }
+            valueKey = CacheKey.getCacheKey(siteLotteryOdd.getBetSort());
+            cacheMap.get(cacheKey).put(valueKey, siteLotteryOdd);
+        }
+        return cacheMap;
+    }
+
+    private List<SiteLotteryOdds> getSiteLotteryOdds(SiteLotteryOddsSo search, Integer siteId) {
+        Criteria criteria = Criteria.add(SiteLotteryOdds.PROP_SITE_ID, Operator.EQ, siteId)
+                .addAnd(SiteLotteryOdds.PROP_HID, Operator.EQ, search.getHid())
+                ;
+        return this.mapper.search(criteria);
+    }
+
 
     @Override
     public SiteLotteryOddsVo initOddsData(SiteLotteryOddsVo vo) {

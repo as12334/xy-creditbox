@@ -20,8 +20,10 @@ import org.soul.web.support.BaseWebBeanFactory;
 import so.wwb.creditbox.context.LotteryCommonContext;
 import so.wwb.creditbox.model.base.CacheBase;
 import so.wwb.creditbox.model.base.ParamTool;
+import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.constants.cache.CacheKey;
 import so.wwb.creditbox.model.enums.base.BossParamEnum;
+import so.wwb.creditbox.model.manager.lottery.po.LotteryOdds;
 import so.wwb.creditbox.model.manager.sys.po.VSysSiteDomain;
 
 import java.io.Serializable;
@@ -42,11 +44,28 @@ public class Cache extends CacheBase {
         }
         return rcVersion;
     }
-    public static void refreshSiteLotteryOdds(Integer siteId) {
-        if (siteId == null) {
-            siteId = LotteryCommonContext.get().getSiteId();
+    public static void refreshSiteLotteryOdds(String hid) {
+        CacheTool.refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_LOTTERY_ODD, LotteryCommonContext.get().getSiteId().toString(),hid));
+    }
+
+    /*获取站点彩票赔率缓存*/
+    public static Map<String, SiteLotteryOdds> getSiteLotteryOdds(String hid) {
+        Map<String, SiteLotteryOdds> map = CacheTool.get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_LOTTERY_ODD, LotteryCommonContext.get().getSiteId().toString(), hid));
+        if (MapTool.isEmpty(map)) {
+            log.error("缺少SiteLotteryOdd的缓存数据！");
         }
-        CacheTool.refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_LOTTERY_ODD, siteId.toString()));
+//        List<LotteryOdds> list = getLotteryOdd(code);
+//        if (CollectionTool.isNotEmpty(list)) {
+//            for (LotteryOdds odd : list) {
+//                if (odd != null && odd.getBaseNum() != null) {
+//                    String key = CacheKey.getCacheKey(odd.getBetCode(), odd.getBetNum());
+//                    if (map.containsKey(key) && map.get(key) != null) {
+//                        map.get(key).setBaseNum(odd.getBaseNum());
+//                    }
+//                }
+//            }
+//        }
+        return map;
     }
 
 

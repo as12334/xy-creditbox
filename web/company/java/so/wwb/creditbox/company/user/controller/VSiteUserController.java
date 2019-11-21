@@ -76,6 +76,7 @@ public class VSiteUserController extends BaseCrudController<IVSiteUserService, V
     @Token(generate = true)
     public String createUser4(VSiteUserVo objectVo, Model model) {
         objectVo.getSearch().setUserType(UserTypeEnum.BRANCH.getCode());
+        objectVo.getSearch().setOwnerUserType(UserTypeEnum.COMPANY.getCode());
         objectVo._setDataSourceId(Const.BOSS_DATASOURCE_ID);
         return createUser(objectVo,model);
     }
@@ -83,18 +84,24 @@ public class VSiteUserController extends BaseCrudController<IVSiteUserService, V
     @Token(generate = true)
     public String createUser5(VSiteUserVo objectVo, Model model) {
         objectVo.getSearch().setUserType(UserTypeEnum.SHAREHOLDER.getCode());
+        objectVo.getSearch().setOwnerUserType(UserTypeEnum.BRANCH.getCode());
+
         return createUser(objectVo,model);
     }
     @RequestMapping("/createUser/6")
     @Token(generate = true)
     public String createUser6(VSiteUserVo objectVo, Model model) {
         objectVo.getSearch().setUserType(UserTypeEnum.DISTRIBUTOR.getCode());
+        objectVo.getSearch().setOwnerUserType(UserTypeEnum.SHAREHOLDER.getCode());
+
         return createUser(objectVo,model);
     }
     @RequestMapping("/createUser/7")
     @Token(generate = true)
     public String createUser7(VSiteUserVo objectVo, Model model) {
         objectVo.getSearch().setUserType(UserTypeEnum.AGENT.getCode());
+        objectVo.getSearch().setOwnerUserType(UserTypeEnum.DISTRIBUTOR.getCode());
+
         return createUser(objectVo,model);
     }
     @RequestMapping("/createUser/8")
@@ -276,14 +283,15 @@ public class VSiteUserController extends BaseCrudController<IVSiteUserService, V
                 || UserTypeEnum.AGENT.getCode().equals(vo.getSearch().getUserType())
                 || UserTypeEnum.PLAYER.getCode().equals(vo.getSearch().getUserType())){
             vo._setDataSourceId(SessionManagerCommon.getSiteId());
-            vo = ServiceTool.sysUserExtendService().get(vo);
-            vo.getSearch().setHid(vo.getResult().getHid());
             if(vo.getSearch().getId() == null){
-                //获取上级剩余成数
+                vo.getSearch().setId(vo.getSearch().getOwnerId());
+                //获取上级使用成数
                 vo = this.getService().sumSuperStintOccupy(vo);
             }
             else {
-                //获取上级剩余成数
+                //获取上下级已使用成数
+                vo = ServiceTool.sysUserExtendService().get(vo);
+                vo.getSearch().setHid(vo.getResult().getHid());
                 vo = this.getService().sumSuperStintOccupyCount(vo);
             }
             maxSuperiorOccupy = vo.getSumSuperStintOccupy();

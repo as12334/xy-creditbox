@@ -2,6 +2,7 @@ package so.wwb.creditbox.model.company.lottery.po;
 
 
 import org.soul.commons.bean.IEntity;
+import org.soul.commons.support.Nonpersistent;
 import org.soul.model.common.Sortable;
 
 
@@ -211,6 +212,19 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 	//endregion
 
 	//region your codes 2
+
+	/**
+	 * 上级的赔率
+	 */
+	private SiteLotteryOdds parentOdds;
+
+	public SiteLotteryOdds getParentOdds() {
+		return parentOdds;
+	}
+	@Nonpersistent
+	public void setParentOdds(SiteLotteryOdds parentOdds) {
+		this.parentOdds = parentOdds;
+	}
 
 	//endregion your codes 2
 

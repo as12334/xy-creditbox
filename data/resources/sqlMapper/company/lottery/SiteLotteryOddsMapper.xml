@@ -34,6 +34,28 @@
             #{a}
         </foreach>
     </update>
+
+
+
+
+
+
+
+
+    <!--查询用户所有菜单-->
+    <select id="getBranchOdds" resultMap="getParentOdds">
+        SELECT * FROM site_lottery_odds WHERE  hid = #{hid};
+    </select>
+
+
+    <resultMap id="getParentOdds"  type="so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds">
+        <id column="phid" property="hid"/>
+        <collection property="parentOdds" ofType="so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds" select="selectParentOdds" column="hid" fetchType="eager" />
+    </resultMap>
+
+    <select id="selectParentOdds" resultType="so.wwb.creditbox.model.manager.sys.po.Nav" parameterType="integer">
+        SELECT * FROM site_lottery_odds WHERE  hid = substring(phid,0,25)
+    </select>
     <!--//endregion your codes 1-->
 
 </mapper>
