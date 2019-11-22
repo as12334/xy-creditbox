@@ -69,12 +69,6 @@ public class SiteLotteryOddsService extends BaseService<SiteLotteryOddsMapper, S
         return cacheMap;
     }
 
-    private List<SiteLotteryOdds> getSiteLotteryOdds(SiteLotteryOddsSo search, Integer siteId) {
-        Criteria criteria = Criteria.add(SiteLotteryOdds.PROP_SITE_ID, Operator.EQ, siteId)
-                .addAnd(SiteLotteryOdds.PROP_HID, Operator.EQ, search.getHid())
-                ;
-        return this.mapper.search(criteria);
-    }
 
 
     @Override

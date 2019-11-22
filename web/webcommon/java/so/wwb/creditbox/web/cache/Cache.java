@@ -50,7 +50,7 @@ public class Cache extends CacheBase {
 
     /*获取站点彩票赔率缓存*/
     public static Map<String, SiteLotteryOdds> getSiteLotteryOdds(String hid) {
-        Map<String, SiteLotteryOdds> map = CacheTool.get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_LOTTERY_ODD, LotteryCommonContext.get().getSiteId().toString(), hid));
+        Map<String, SiteLotteryOdds> map = CacheTool.get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_LOTTERY_ODD, LotteryCommonContext.get().getSiteId().toString(),hid,"bjpk10"));
         if (MapTool.isEmpty(map)) {
             log.error("缺少SiteLotteryOdd的缓存数据！");
         }

@@ -20,6 +20,9 @@
         <result column="odd_close" property="oddClose"/>
         <result column="bet_sort" property="betSort"/>
         <result column="sort_type" property="sortType"/>
+
+        <result column="parentOdds.oddA" property="sortType"/>
+
     </resultMap>
 
     <!--//region your codes 1-->
@@ -43,19 +46,22 @@
 
 
     <!--查询用户所有菜单-->
-    <select id="getBranchOdds" resultMap="getParentOdds">
-        SELECT * FROM site_lottery_odds WHERE  hid = #{hid};
+    <select id="getBranchOdds" resultMap="TABLE:site_lottery_odds">
+        SELECT
+        s1.*,
+        s2.odd_a  as  "parentOdds.oddA",
+        s2.odd_b  as  "parentOdds.oddB",
+        s2.odd_c  as  "parentOdds.oddC",
+        s2.min_odd  as  "parentOdds.minOdd",
+        s2.max_odd  as  "parentOdds.maxOdd"
+        FROM
+            (SELECT * FROM site_lottery_odds WHERE hid = #{hid})  s1
+        LEFT JOIN site_lottery_odds s2 ON SUBSTRING (s1.hid, 0, 25) = s2.hid
+        AND s1.code = s2.code
+        AND s1.bet_sort = s2.bet_sort
+
     </select>
 
-
-    <resultMap id="getParentOdds"  type="so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds">
-        <id column="phid" property="hid"/>
-        <collection property="parentOdds" ofType="so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds" select="selectParentOdds" column="hid" fetchType="eager" />
-    </resultMap>
-
-    <select id="selectParentOdds" resultType="so.wwb.creditbox.model.manager.sys.po.Nav" parameterType="integer">
-        SELECT * FROM site_lottery_odds WHERE  hid = substring(phid,0,25)
-    </select>
     <!--//endregion your codes 1-->
 
 </mapper>

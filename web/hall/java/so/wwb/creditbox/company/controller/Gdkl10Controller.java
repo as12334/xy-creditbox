@@ -36,6 +36,8 @@ public class Gdkl10Controller {
     @ResponseBody
     protected String handler(@RequestParam("action") String action,@RequestParam("playpage") String playpage,HttpServletRequest request, HttpServletResponse response, Model model ) {
         Cache.refreshSiteLotteryOdds(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()));
+        Map<String, SiteLotteryOdds> aaaaaaaa60CTDANYXKPRNFXARXFHPLHH = Cache.getSiteLotteryOdds("AAAAAAAA60CTDANYXKPRNFXARXFHPLHH");
+
         if("get_openball".equals(action)){
             return "{\n" +
                     "  \"success\": 200,\n" +
