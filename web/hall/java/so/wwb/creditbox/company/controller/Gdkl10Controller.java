@@ -16,6 +16,7 @@ import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
+import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
 import so.wwb.creditbox.web.cache.Cache;
@@ -23,6 +24,7 @@ import so.wwb.creditbox.web.tools.HidTool;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -42,6 +44,8 @@ public class Gdkl10Controller {
         Cache.refreshSiteLotteryRebates(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()),LotteryEnum.BJPK10.getCode());
         Map<String, SiteLotteryOdds> oddsMap = Cache.getSiteLotteryOdds(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()), LotteryEnum.BJPK10.getCode());
         Map<String, SiteLotteryRebates> rebatesMap = Cache.getSiteLotteryRebates(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()), LotteryEnum.BJPK10.getCode());
+
+        List<LotteryResult> lotteryResult = Cache.getLotteryResult(LotteryEnum.BJPK10.getCode());
 
         if("get_openball".equals(action)){
             return "{\n" +
