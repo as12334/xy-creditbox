@@ -1,10 +1,13 @@
 package so.wwb.creditbox.model.manager.user.po;
 
 import org.apache.xmlbeans.UserType;
+import org.hibernate.validator.constraints.NotBlank;
 import org.soul.commons.bean.IEntity;
+import org.soul.commons.lang.string.HidTool;
 import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.support.Nonpersistent;
 import org.soul.model.security.privilege.po.SysUser;
+import so.wwb.creditbox.model.common.Const;
 
 
 /**
@@ -201,6 +204,16 @@ public class SysUserExtend extends SysUser {
 
 	//region your codes 2
 
+	private String parentHid;
+
+	@Nonpersistent
+	public String getParentHid() {
+		return hid.substring(0, hid.length() - HidTool.FLAG);
+	}
+
+	public void setParentHid(String parentHid) {
+		this.parentHid = parentHid;
+	}
 	//endregion your codes 2
 
 }

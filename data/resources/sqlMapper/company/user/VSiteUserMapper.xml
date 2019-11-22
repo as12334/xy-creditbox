@@ -90,11 +90,15 @@
     </select>
 
     <select id="doInitUserLotteryOdd" parameterType="so.wwb.creditbox.model.manager.user.po.SysUserExtend" resultMap="TABLE:v_site_user">
-        SELECT * FROM f_init_site_lottery_odd(#{siteId},#{hid});
+        INSERT INTO site_lottery_odds ("site_id", "hid","code", "bet_name", "bet_code", "play_code", "bet_num", "sort", "odd_a", "odd_b", "odd_c", "min_odd", "max_odd", "odd_close", "bet_sort", "sort_type")
+        SELECT  "site_id", #{hid}, "code", "bet_name", "bet_code", "play_code", "bet_num", "sort", "odd_a", "odd_b", "odd_c", "min_odd", "max_odd", "odd_close", "bet_sort", "sort_type" FROM site_lottery_odds WHERE hid = #{parentHid}
+        AND #{hid} NOT in (SELECT hid FROM site_lottery_odds WHERE hid = #{hid});
     </select>
 
     <select id="doInitUserLotteryRebate" parameterType="so.wwb.creditbox.model.manager.user.po.SysUserExtend" resultMap="TABLE:v_site_user">
-        SELECT * FROM f_init_site_lottery_rebate(#{siteId},#{hid});
+        INSERT INTO site_lottery_rebates( "code", "site_id", "hid", "bet_name", "bet_code", "play_code", "bet_num", "bet_sort", "sort", "rebate_a", "rebate_b", "rebate_c", "min_bet", "max_bet", "max_expect_bet", "post_money", "post_money_close", "sort_type")
+        SELECT  "code", "site_id", #{hid}, "bet_name", "bet_code", "play_code", "bet_num", "bet_sort", "sort", "rebate_a", "rebate_b", "rebate_c", "min_bet", "max_bet", "max_expect_bet", "post_money", "post_money_close", "sort_type" FROM site_lottery_rebates WHERE hid = #{parentHid}
+        AND #{hid} NOT in (SELECT hid FROM site_lottery_rebates WHERE hid = #{hid});
     </select>
 
     <select id="searchLevelUser" resultType="so.wwb.creditbox.model.manager.user.po.SysUserExtend">

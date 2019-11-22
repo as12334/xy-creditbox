@@ -154,15 +154,6 @@ public class VSiteUserController extends BaseCrudController<IVSiteUserService, V
         initAccount(objectVo,request);
         objectVo = this.getService().saveManagerUser(objectVo);
         objectVo.setDataSourceId(Const.BASE_DATASOURCE_ID);
-        //只有分公司並且開啟了賠率設置 才能新增賠率
-        if(objectVo.getResult().getUserType().equals(UserTypeEnum.BRANCH.getCode()) && SetOddsEnum.ON.getCode().equals(objectVo.getResult().getSetOdds())){
-            this.getService().doInitUserLotteryOdd(objectVo);
-        }
-        //只有新增主賬號才有返水設置
-        if(objectVo.getResult().getUserType().length()==1){
-            this.getService().doInitUserLotteryOdd(objectVo);
-
-        }
         //切換到管理庫
         model.addAttribute("command", objectVo);
         return this.getVoMessage(objectVo);

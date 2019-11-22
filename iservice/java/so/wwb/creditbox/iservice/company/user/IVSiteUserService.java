@@ -26,9 +26,6 @@ public interface IVSiteUserService extends IBaseService<VSiteUserListVo, VSiteUs
 
     String getHid(String Thid);
 
-    void doInitUserLotteryOdd(SysUserExtendVo objectVo);
-
-    void doInitUserLotteryRebate(SysUserExtendVo objectVo);
 
     SysUserExtendVo sumSuperStintOccupy(SysUserExtendVo objectVo);
 

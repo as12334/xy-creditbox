@@ -1,14 +1,20 @@
 package so.wwb.creditbox.company.controller;
 
+import com.alibaba.druid.pool.DruidDataSource;
+import org.soul.commons.spring.utils.SpringTool;
+import org.soul.data.datasource.DatasourceTool;
 import org.soul.web.session.SessionManagerBase;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import so.wwb.creditbox.common.dubbo.ServiceTool;
 import so.wwb.creditbox.company.session.SessionManager;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
+import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
+import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
 import so.wwb.creditbox.web.cache.Cache;
 import so.wwb.creditbox.web.tools.HidTool;
 
@@ -30,9 +36,6 @@ public class Gdkl10Controller {
     @ResponseBody
     protected String handler(@RequestParam("action") String action,@RequestParam("playpage") String playpage,HttpServletRequest request, HttpServletResponse response, Model model ) {
         Cache.refreshSiteLotteryOdds(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()));
-        Map<String, SiteLotteryOdds> siteLotteryOdds = Cache.getSiteLotteryOdds(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()));
-
-
         if("get_openball".equals(action)){
             return "{\n" +
                     "  \"success\": 200,\n" +

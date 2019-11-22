@@ -6,6 +6,7 @@ import org.soul.commons.query.Criteria;
 import org.soul.commons.query.enums.Operator;
 import org.soul.service.support.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import so.wwb.creditbox.common.utility.security.AuthTool;
 import so.wwb.creditbox.data.company.user.VSiteUserMapper;
 import so.wwb.creditbox.data.manager.user.SysUserExtendMapper;
@@ -13,6 +14,7 @@ import so.wwb.creditbox.iservice.company.user.IVSiteUserService;
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
 import so.wwb.creditbox.model.company.user.vo.VSiteUserListVo;
 import so.wwb.creditbox.model.company.user.vo.VSiteUserVo;
+import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
 
@@ -39,6 +41,7 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
         return objectVo;
     }
 
+    @Transactional
     @Override
     public SysUserExtendVo saveManagerUser(SysUserExtendVo objectVo) {
         SysUserExtend user = objectVo.getResult();
@@ -47,6 +50,16 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
         user.setPassword(AuthTool.md5SysUserPassword(user.getPassword(), user.getUsername())); //账户密码加密
         user.setPermissionPwd(AuthTool.md5SysUserPermission(user.getPermissionPwd(), user.getUsername()));//安全密码加密
         boolean isSuccess = sysUserExtendMapper.insert(user);
+
+        //只有分公司並且開啟了賠率設置 才能新增賠率
+        if(objectVo.getResult().getUserType().equals(UserTypeEnum.BRANCH.getCode())){
+            mapper.doInitUserLotteryOdd(objectVo.getResult());
+        }
+        //只有新增主賬號才有返水設置
+        if(objectVo.getResult().getUserType().length()==1){
+            mapper.doInitUserLotteryRebate(objectVo.getResult());
+
+        }
 
         if (!isSuccess) {
             objectVo.setSuccess(false);
@@ -72,15 +85,6 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
             }
         }
         return Thid + hid;
-    }
-
-    @Override
-    public void doInitUserLotteryOdd(SysUserExtendVo objectVo) {
-        mapper.doInitUserLotteryOdd(objectVo.getResult());
-    }
-    @Override
-    public void doInitUserLotteryRebate(SysUserExtendVo objectVo) {
-        mapper.doInitUserLotteryRebate(objectVo.getResult());
     }
 
     @Override
