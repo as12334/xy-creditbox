@@ -35,6 +35,34 @@
             #{a}
         </foreach>
     </update>
+
+
+
+
+    <!--查询分公司赔率-->
+    <select id="getUserRebates" resultMap="TABLE:site_lottery_rebates">
+        SELECT
+        s1.*,
+        s2.hid AS "parendRebate.hid",
+        s2.rebate_a AS "parendRebate.rebateA",
+        s2.rebate_b AS "parendRebate.rebateB",
+        s2.rebate_c AS "parendRebate.rebateC",
+        s2.min_bet AS "parendRebate.minBet",
+        s2.max_bet AS "parendRebate.maxBet",
+        s2.max_expect_bet AS "parendRebate.maxExpectBet"
+        FROM
+            (
+                SELECT
+                    *
+                FROM
+                    site_lottery_rebates
+                WHERE
+                    hid = #{hid}
+            ) s1
+        LEFT JOIN site_lottery_rebates s2 ON #{parentHid} = s2.hid
+        AND s1.code = s2.code
+        AND s1.bet_sort = s2.bet_sort
+    </select>
     <!--//endregion your codes 1-->
 
 </mapper>

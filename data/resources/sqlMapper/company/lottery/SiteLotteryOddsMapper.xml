@@ -49,6 +49,7 @@
     <select id="getBranchOdds" resultMap="TABLE:site_lottery_odds">
         SELECT
         s1.*,
+        s2.hid  as  "parentOdds.hid",
         s2.odd_a  as  "parentOdds.oddA",
         s2.odd_b  as  "parentOdds.oddB",
         s2.odd_c  as  "parentOdds.oddC",

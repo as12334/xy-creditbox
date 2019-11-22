@@ -2,6 +2,8 @@ package so.wwb.creditbox.model.company.lottery.po;
 
 
 import org.soul.commons.bean.IEntity;
+import org.soul.commons.lang.string.HidTool;
+import org.soul.commons.support.Nonpersistent;
 import org.soul.model.common.Sortable;
 
 
@@ -231,6 +233,27 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 	//endregion
 
 	//region your codes 2
+
+	private String parentHid;
+
+	private SiteLotteryRebates parendRebate;
+
+	@Nonpersistent
+	public String getParentHid() {
+		return hid.substring(0, hid.length() - HidTool.FLAG);
+	}
+
+	public void setParentHid(String parentHid) {
+		this.parentHid = parentHid;
+	}
+
+	public SiteLotteryRebates getParendRebate() {
+		return parendRebate;
+	}
+
+	public void setParendRebate(SiteLotteryRebates parendRebate) {
+		this.parendRebate = parendRebate;
+	}
 
 	//endregion your codes 2
 

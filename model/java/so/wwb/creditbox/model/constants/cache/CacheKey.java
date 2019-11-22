@@ -50,6 +50,7 @@ public class CacheKey extends org.soul.commons.cache.CacheKey{
      * 站点赔率缓存
      */
     public static final String CACHE_KEY_SITE_LOTTERY_ODD = "SITE_LOTTERY_ODD";
+    public static final String CACHE_KEY_SITE_LOTTERY_REBATE = "SITE_LOTTERY_REBATE";
     public static final String CACHE_KEY_SITE_LOTTERY = "SITE_LOTTERY";
     /** 彩种缓存 Key */
     public static final String CACHE_KEY_LOTTERY = "LOTTERY";

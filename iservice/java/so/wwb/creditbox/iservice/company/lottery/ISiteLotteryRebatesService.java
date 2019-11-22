@@ -5,6 +5,8 @@ import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryRebatesListVo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryRebatesVo;
 
+import java.util.Map;
+
 
 /**
  * 服务接口
@@ -16,6 +18,8 @@ import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryRebatesVo;
 public interface ISiteLotteryRebatesService extends IBaseService<SiteLotteryRebatesListVo, SiteLotteryRebatesVo, SiteLotteryRebates, Integer> {
 
 //endregion your codes 1
+
+    Map<String, Map<String, SiteLotteryRebates>> load(SiteLotteryRebatesListVo siteLotteryRebatesListVo);
 
     //region your codes 2
     SiteLotteryRebatesVo initRebatesData(SiteLotteryRebatesVo vo);

@@ -14,15 +14,19 @@ import so.wwb.creditbox.data.company.lottery.SiteLotteryRebatesMapper;
 import so.wwb.creditbox.data.company.lottery.SiteLotteryMapper;
 import so.wwb.creditbox.iservice.company.lottery.ISiteLotteryRebatesService;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
+import so.wwb.creditbox.model.company.lottery.so.SiteLotteryOddsSo;
 import so.wwb.creditbox.model.company.lottery.so.SiteLotteryRebatesSo;
+import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsListVo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryRebatesListVo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryRebatesVo;
+import so.wwb.creditbox.model.constants.cache.CacheKey;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryStatusEnum;
 import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +49,30 @@ public class SiteLotteryRebatesService extends BaseService<SiteLotteryRebatesMap
     //region your codes 2
     @Autowired
     private SiteLotteryMapper siteLotteryMapper;
+
+    @Override
+    public Map<String, Map<String, SiteLotteryRebates>> load(SiteLotteryRebatesListVo siteLotteryRebatesListVo) {
+        SiteLotteryRebatesSo search = siteLotteryRebatesListVo.getSearch();
+        Integer siteId = search.getSiteId();
+        if (siteId == null) {
+            siteId = siteLotteryRebatesListVo._getSiteId();
+        }
+        Map<String, Map<String, SiteLotteryRebates>> cacheMap = new HashMap<>();
+        String cacheKey;
+        String valueKey;
+        List<SiteLotteryRebates> list = mapper.getUserRebates(search);
+        for (SiteLotteryRebates siteLotteryRebates : list) {
+            cacheKey = CacheKey.getCacheKey(siteId.toString(), search.getHid(),siteLotteryRebates.getCode());
+            if (cacheMap.get(cacheKey) == null) {
+                cacheMap.put(cacheKey, new HashMap<String, SiteLotteryRebates>());
+            }
+            valueKey = CacheKey.getCacheKey(siteLotteryRebates.getBetSort());
+            cacheMap.get(cacheKey).put(valueKey, siteLotteryRebates);
+        }
+        return cacheMap;
+    }
+
+
     @Override
     public SiteLotteryRebatesVo initRebatesData(SiteLotteryRebatesVo vo) {
         Map map= new LinkedHashMap<String,LinkedHashMap<String,SiteLotteryOdds>>();

@@ -446,6 +446,26 @@
 	</bean>
 
 
+	<!--站点水位赔率缓存-->
+	<util:constant id="CACHE_KEY_SITE_LOTTERY_REBATE"  static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_SITE_LOTTERY_REBATE"/>
+
+	<bean id="siteLotteryRebatesCache" class="org.soul.commons.cache.core.CacheItemConf">
+		<property name="dataProviderClass" value="so.wwb.creditbox.iservice.company.lottery.ISiteLotteryRebatesService"/>
+
+		<property name="dataProviderMethod" value="load"/>
+		<property name="cacheLoadStrategy" ref="FIRST_TIME"/>
+		<property name="cacheProviderType" ref="siteOddsJedisPorxy"/>
+		<property name="dubboVersionApp" value="${companies.dubbo.application.name}"/>
+		<property name="methodArgs">
+			<list>
+				<bean class="so.wwb.creditbox.model.company.lottery.vo.SiteLotteryRebatesListVo"/>
+			</list>
+		</property>
+		<property name="localCache" value="true"/>
+		<property name="localExpire" value="3600"/>
+	</bean>
+
+
 	<!--&lt;!&ndash; 彩种类型缓存 &ndash;&gt;-->
 	<!--<util:constant id="CACHE_KEY_LOTTERY_TYPE" static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY_TYPE"/>-->
 	<!--<bean id="lotteryTypeCache" class="org.soul.commons.cache.core.CacheItemConf">-->
@@ -667,6 +687,9 @@
 				<!--</entry>-->
 				<entry key-ref="CACHE_KEY_SITE_LOTTERY_ODD" >
 					<ref bean="siteLotteryOddCache"/>
+				</entry>
+				<entry key-ref="CACHE_KEY_SITE_LOTTERY_REBATE" >
+					<ref bean="siteLotteryRebatesCache"/>
 				</entry>
 				<!--&lt;!&ndash; token 缓存&ndash;&gt;-->
 				<!--<entry key-ref="CACHE_KEY_OAUTH_TOKEN">-->

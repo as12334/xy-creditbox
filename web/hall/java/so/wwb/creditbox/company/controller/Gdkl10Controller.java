@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import so.wwb.creditbox.common.dubbo.ServiceTool;
 import so.wwb.creditbox.company.session.SessionManager;
+import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
+import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
+import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
@@ -35,8 +38,10 @@ public class Gdkl10Controller {
     @RequestMapping(value = "handler")
     @ResponseBody
     protected String handler(@RequestParam("action") String action,@RequestParam("playpage") String playpage,HttpServletRequest request, HttpServletResponse response, Model model ) {
-        Cache.refreshSiteLotteryOdds(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()));
-        Map<String, SiteLotteryOdds> aaaaaaaa60CTDANYXKPRNFXARXFHPLHH = Cache.getSiteLotteryOdds("AAAAAAAA60CTDANYXKPRNFXARXFHPLHH");
+        Cache.refreshSiteLotteryOdds(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()),LotteryEnum.BJPK10.getCode());
+        Cache.refreshSiteLotteryRebates(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()),LotteryEnum.BJPK10.getCode());
+        Map<String, SiteLotteryOdds> oddsMap = Cache.getSiteLotteryOdds(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()), LotteryEnum.BJPK10.getCode());
+        Map<String, SiteLotteryRebates> rebatesMap = Cache.getSiteLotteryRebates(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()), LotteryEnum.BJPK10.getCode());
 
         if("get_openball".equals(action)){
             return "{\n" +

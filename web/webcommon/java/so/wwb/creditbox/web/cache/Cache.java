@@ -21,6 +21,7 @@ import so.wwb.creditbox.context.LotteryCommonContext;
 import so.wwb.creditbox.model.base.CacheBase;
 import so.wwb.creditbox.model.base.ParamTool;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
+import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
 import so.wwb.creditbox.model.constants.cache.CacheKey;
 import so.wwb.creditbox.model.enums.base.BossParamEnum;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryOdds;
@@ -44,30 +45,32 @@ public class Cache extends CacheBase {
         }
         return rcVersion;
     }
-    public static void refreshSiteLotteryOdds(String hid) {
-        CacheTool.refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_LOTTERY_ODD, LotteryCommonContext.get().getSiteId().toString(),hid));
+    public static void refreshSiteLotteryOdds(String hid, String code) {
+        CacheTool.refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_LOTTERY_ODD, LotteryCommonContext.get().getSiteId().toString(),hid,code));
     }
 
     /*获取站点彩票赔率缓存*/
-    public static Map<String, SiteLotteryOdds> getSiteLotteryOdds(String hid) {
-        Map<String, SiteLotteryOdds> map = CacheTool.get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_LOTTERY_ODD, LotteryCommonContext.get().getSiteId().toString(),hid,"bjpk10"));
+    public static Map<String, SiteLotteryOdds> getSiteLotteryOdds(String hid , String code) {
+        Map<String, SiteLotteryOdds> map = CacheTool.get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_LOTTERY_ODD, LotteryCommonContext.get().getSiteId().toString(),hid,code));
         if (MapTool.isEmpty(map)) {
             log.error("缺少SiteLotteryOdd的缓存数据！");
         }
-//        List<LotteryOdds> list = getLotteryOdd(code);
-//        if (CollectionTool.isNotEmpty(list)) {
-//            for (LotteryOdds odd : list) {
-//                if (odd != null && odd.getBaseNum() != null) {
-//                    String key = CacheKey.getCacheKey(odd.getBetCode(), odd.getBetNum());
-//                    if (map.containsKey(key) && map.get(key) != null) {
-//                        map.get(key).setBaseNum(odd.getBaseNum());
-//                    }
-//                }
-//            }
-//        }
         return map;
     }
 
+
+    public static void refreshSiteLotteryRebates(String hid ,String code) {
+        CacheTool.refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_LOTTERY_REBATE, LotteryCommonContext.get().getSiteId().toString(),hid,code));
+    }
+
+    /*获取站点彩票赔率缓存*/
+    public static Map<String, SiteLotteryRebates> getSiteLotteryRebates(String hid , String code) {
+        Map<String, SiteLotteryRebates> map = CacheTool.get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_LOTTERY_REBATE, LotteryCommonContext.get().getSiteId().toString(),hid,code));
+        if (MapTool.isEmpty(map)) {
+            log.error("缺少SiteLotteryOdd的缓存数据！");
+        }
+        return map;
+    }
 
     /**
      * 刷新站点彩票

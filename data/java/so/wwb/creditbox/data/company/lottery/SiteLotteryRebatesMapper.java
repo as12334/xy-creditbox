@@ -2,7 +2,10 @@ package so.wwb.creditbox.data.company.lottery;
 
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
 import org.soul.data.rdb.mybatis.IBaseMapper;
+import so.wwb.creditbox.model.company.lottery.so.SiteLotteryRebatesSo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryRebatesVo;
+
+import java.util.List;
 
 
 /**
@@ -19,6 +22,8 @@ public interface SiteLotteryRebatesMapper extends IBaseMapper<SiteLotteryRebates
     SiteLotteryRebates getRebateBetSortLine(String code, Integer siteId, String hid, String s);
 
     Integer saveSiteLotteryRebates(SiteLotteryRebatesVo siteLotteryRebatesVo);
+
+    List<SiteLotteryRebates> getUserRebates(SiteLotteryRebatesSo search);
 
     //endregion your codes 2
 
