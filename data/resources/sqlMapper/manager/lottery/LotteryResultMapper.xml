@@ -18,6 +18,24 @@
     </resultMap>
 
     <!--//region your codes 1-->
+
+
+    <select id="getCurLotteryResult" parameterType="so.wwb.creditbox.model.manager.lottery.so.LotteryResultSo"
+            resultType="so.wwb.creditbox.model.manager.lottery.po.LotteryResult">
+        SELECT * FROM ((select * from lottery_result where code = #{code} and close_time &lt; now() order by open_time desc limit 5)
+        UNION (SELECT * FROM lottery_result WHERE now() &lt; close_time AND  code = #{code} ORDER BY close_time LIMIT 2)) lbo
+        ORDER BY expect::INT8
+    </select>
+
+    <!--查询所有彩种的最近一期开奖结果-->
+    <select id="queryRecentResult" resultMap="TABLE:lottery_result">
+        SELECT t1.* FROM lottery_result t1,
+        (SELECT code,MAX(close_time) close_time
+        FROM lottery_result WHERE clock_timestamp() >= close_time GROUP BY code) t2
+        where
+        t1.code=t2.code AND t1.close_time=t2.close_time
+    </select>
+
     <!--查询当前要开奖记录-->
     <select id="searchCurLotteryResult" parameterType="so.wwb.creditbox.model.manager.lottery.so.LotteryResultSo"
             resultType="so.wwb.creditbox.model.manager.lottery.po.LotteryResult">

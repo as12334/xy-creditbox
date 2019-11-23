@@ -1,6 +1,8 @@
 package so.wwb.creditbox.company.controller;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import org.soul.commons.collections.CollectionTool;
+import org.soul.commons.data.json.JsonTool;
 import org.soul.commons.spring.utils.SpringTool;
 import org.soul.data.datasource.DatasourceTool;
 import org.soul.web.session.SessionManagerBase;
@@ -17,6 +19,7 @@ import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
+import so.wwb.creditbox.model.manager.lottery.vo.LotteryResultVo;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
 import so.wwb.creditbox.web.cache.Cache;
@@ -45,8 +48,11 @@ public class Gdkl10Controller {
         Map<String, SiteLotteryOdds> oddsMap = Cache.getSiteLotteryOdds(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()), LotteryEnum.BJPK10.getCode());
         Map<String, SiteLotteryRebates> rebatesMap = Cache.getSiteLotteryRebates(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()), LotteryEnum.BJPK10.getCode());
 
-        List<LotteryResult> lotteryResult = Cache.getLotteryResult(LotteryEnum.BJPK10.getCode());
+        List<LotteryResult> lotteryResult = Cache.getLotteryResult(LotteryEnum.XYFT.getCode());
+        List<LotteryResult> results = ServiceTool.lotteryResultService().queryRecentResult(new LotteryResultVo());
+        Map<Object, LotteryResult> objectLotteryResultMap = CollectionTool.toEntityMap(results, LotteryResult.PROP_CODE);
 
+        System.out.println(JsonTool.toJson(objectLotteryResultMap.get(LotteryEnum.XYFT.getCode())));
         if("get_openball".equals(action)){
             return "{\n" +
                     "  \"success\": 200,\n" +

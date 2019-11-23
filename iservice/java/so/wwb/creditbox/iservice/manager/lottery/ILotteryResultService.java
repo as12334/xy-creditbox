@@ -9,6 +9,7 @@ import so.wwb.creditbox.model.manager.lottery.vo.LotteryResultVo;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -21,6 +22,8 @@ import java.util.List;
 public interface ILotteryResultService extends IBaseService<LotteryResultListVo, LotteryResultVo, LotteryResult, Integer> {
     //region your codes 2
 //endregion your codes 1
+
+    Map<String, Map<String, LotteryResult>> load(LotteryResultVo vo);
 
     //region your codes 2
     Boolean doInitLotteryJob(Date initDate);
@@ -41,6 +44,12 @@ public interface ILotteryResultService extends IBaseService<LotteryResultListVo,
     boolean validLotteryResult(LotteryResultVo resultVo);
 
     LotteryResultVo saveUpdateLotteryResult(LotteryResultVo resultVo);
+
+    /**
+     * 查询所有彩种的最近一期开奖结果
+     */
+    List<LotteryResult> queryRecentResult(LotteryResultVo vo);
+
     //endregion your codes 2
 
 }

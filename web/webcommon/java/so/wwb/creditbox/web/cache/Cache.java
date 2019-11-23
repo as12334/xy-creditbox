@@ -25,6 +25,7 @@ import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
 import so.wwb.creditbox.model.constants.cache.CacheKey;
 import so.wwb.creditbox.model.enums.base.BossParamEnum;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryOdds;
+import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
 import so.wwb.creditbox.model.manager.sys.po.VSysSiteDomain;
 
 import java.io.Serializable;
@@ -70,6 +71,32 @@ public class Cache extends CacheBase {
             log.error("缺少SiteLotteryOdd的缓存数据！");
         }
         return map;
+    }
+
+
+    /**
+     * 根据code查询开奖结果
+     *
+     * @param code
+     * @return
+     */
+    public static List<LotteryResult> getLotteryResult(String code) {
+        if (StringTool.isBlank(code)) {
+            return new ArrayList<>(0);
+        }
+        Map<String, LotteryResult> result = CacheTool.get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_LOTTERY_RESULT, code));
+        if (MapTool.isEmpty(result)) {
+            log.error("缺少LotteryResult的缓存数据！");
+            return new ArrayList<>(0);
+        }
+        List<LotteryResult> list = new ArrayList<>(result.values());
+        return list;
+    }
+    /**
+     * 刷新指定彩种的开奖结果
+     */
+    public static void refreshLotteryResult(String code) {
+        CacheTool.refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_LOTTERY_RESULT, code));
     }
 
     /**

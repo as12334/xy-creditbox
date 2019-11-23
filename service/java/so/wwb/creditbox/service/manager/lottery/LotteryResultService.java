@@ -22,6 +22,7 @@ import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryResultTypeEnum;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResultRecord;
+import so.wwb.creditbox.model.manager.lottery.so.LotteryResultSo;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryResultListVo;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryResultRecordVo;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryResultVo;
@@ -30,9 +31,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 /**
@@ -55,8 +54,25 @@ public class LotteryResultService extends BaseService<LotteryResultMapper, Lotte
 
     private static JedisClientProxy jedisTemplate = (JedisClientProxy) SpringTool.getBean("jedisTemplateData");
 
+    @Override
+    public Map<String, Map<String, LotteryResult>> load(LotteryResultVo vo) {
+        Map<String, Map<String, LotteryResult>> result = new LinkedHashMap<>();
+        LotteryResultSo resultSo = vo.getSearch();
+        if (resultSo != null && StringTool.isNotBlank(resultSo.getCode())) {
+            List<LotteryResult> list = mapper.getCurLotteryResult(resultSo);
+            if (CollectionTool.isNotEmpty(list)) {
+                Map<String, LotteryResult> resultMap = CollectionTool.toEntityMap(list, LotteryResult.PROP_EXPECT, String.class);
+                result.put(resultSo.getCode(), resultMap);
+            }
+        }
+        return result;
+    }
 
 
+    @Override
+    public List<LotteryResult> queryRecentResult(LotteryResultVo vo) {
+        return this.mapper.queryRecentResult();
+    }
     @Override
     public Boolean doInitLotteryJob(Date initDate) {
         Boolean init = excuteInit(initDate);

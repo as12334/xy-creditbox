@@ -25,6 +25,19 @@ public interface LotteryResultMapper extends IBaseMapper<LotteryResult, Integer>
 
     List<Integer> queryBossIds(SysResourceSo so);
 
+    /**
+     * 根据归属时间获取开奖结果
+     */
+    List<LotteryResult> getCurLotteryResult(LotteryResultSo so);
+
+
+    /**
+     * 查询所有彩种的最近一期开奖结果
+     *
+     * @return
+     */
+    List<LotteryResult> queryRecentResult();
+
     //endregion your codes 2
 
 }
