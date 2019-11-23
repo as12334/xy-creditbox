@@ -3,6 +3,15 @@ package so.wwb.creditbox.model.enums.lottery;
 import so.wwb.creditbox.model.enums.base.IChildEnum;
 
 public enum LotteryEnum implements IChildEnum {
+
+    BJPK10(LotteryTypeEnum.PK10, LotteryClassifyEnum.OFFICE, "bjpk10", "北京PK10"),
+    XYFT(LotteryTypeEnum.PK10, LotteryClassifyEnum.OFFICE, "xyft", "幸运飞艇"),
+    CQSSC(LotteryTypeEnum.SSC, LotteryClassifyEnum.OFFICE, "cqssc", "重庆时时彩"),
+    GDKL10(LotteryTypeEnum.SFC, LotteryClassifyEnum.OFFICE, "gdkl10", "广东快乐十分"),
+
+
+
+
     JSK3(LotteryTypeEnum.K3, LotteryClassifyEnum.OFFICE, "jsk3", "江苏快3"),
     AHK3(LotteryTypeEnum.K3, LotteryClassifyEnum.OFFICE, "ahk3","安徽快3"),
     HBK3(LotteryTypeEnum.K3, LotteryClassifyEnum.OFFICE, "hbk3","湖北快3"),
@@ -18,14 +27,11 @@ public enum LotteryEnum implements IChildEnum {
 
     XJSSC(LotteryTypeEnum.SSC, LotteryClassifyEnum.OFFICE, "xjssc", "新疆时时彩"),
     FFSSC(LotteryTypeEnum.SSC, LotteryClassifyEnum.OWN, "ffssc", "分分时时彩"),
-    CQSSC(LotteryTypeEnum.SSC, LotteryClassifyEnum.OFFICE, "cqssc", "重庆时时彩"),
 
-    BJPK10(LotteryTypeEnum.PK10, LotteryClassifyEnum.OFFICE, "bjpk10", "北京PK10"),
-    XYFT(LotteryTypeEnum.PK10, LotteryClassifyEnum.OFFICE, "xyft", "幸运飞艇"),
+
     JSPK10(LotteryTypeEnum.PK10, LotteryClassifyEnum.OWN, "jspk10", "极速PK10"),
 
     CQXYNC(LotteryTypeEnum.SFC, LotteryClassifyEnum.OFFICE, "cqxync", "重庆幸运农场"),
-    GDKL10(LotteryTypeEnum.SFC, LotteryClassifyEnum.OFFICE, "gdkl10", "广东快乐十分"),
 
     BJKL8(LotteryTypeEnum.KENO, LotteryClassifyEnum.OFFICE, "bjkl8", "北京快乐8"),
     XY28(LotteryTypeEnum.XY28, LotteryClassifyEnum.OFFICE, "xy28", "幸运28"),

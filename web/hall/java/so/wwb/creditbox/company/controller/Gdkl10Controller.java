@@ -22,11 +22,13 @@ import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryResultVo;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
+import so.wwb.creditbox.service.tool.DatasourceUtil;
 import so.wwb.creditbox.web.cache.Cache;
 import so.wwb.creditbox.web.tools.HidTool;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import java.util.List;
 import java.util.Map;
 
@@ -51,6 +53,10 @@ public class Gdkl10Controller {
         List<LotteryResult> lotteryResult = Cache.getLotteryResult(LotteryEnum.XYFT.getCode());
         List<LotteryResult> results = ServiceTool.lotteryResultService().queryRecentResult(new LotteryResultVo());
         Map<Object, LotteryResult> objectLotteryResultMap = CollectionTool.toEntityMap(results, LotteryResult.PROP_CODE);
+
+
+
+
 
         System.out.println(JsonTool.toJson(objectLotteryResultMap.get(LotteryEnum.XYFT.getCode())));
         if("get_openball".equals(action)){
@@ -343,663 +349,87 @@ public class Gdkl10Controller {
                     "  \"success\": 200,\n" +
                     "  \"data\": {\n" +
                     "    \"type\": \"get_oddsinfo\",\n" +
-                    "    \"playpage\": \"kl10_lmp\",\n" +
+                    "    \"playpage\": \"kl10_lm\",\n" +
                     "    \"credit\": \"0\",\n" +
                     "    \"usable_credit\": 0,\n" +
                     "    \"openning\": \"y\",\n" +
                     "    \"isopen\": \"1\",\n" +
                     "    \"drawopen_time\": \"22:40:00\",\n" +
-                    "    \"stop_time\": \"00:10:25\",\n" +
-                    "    \"nn\": \"2019111941\",\n" +
-                    "    \"p_id\": \"137390\",\n" +
+                    "    \"stop_time\": \"00:02:34\",\n" +
+                    "    \"nn\": \"2019112341\",\n" +
+                    "    \"p_id\": \"137558\",\n" +
                     "    \"profit\": \"0\",\n" +
                     "    \"play_odds\": {\n" +
-                    "      \"82_21\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
+                    "      \"72_1\": {\n" +
+                    "        \"pl\": \"6.3\",\n" +
                     "        \"plx\": [],\n" +
                     "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
+                    "        \"max_amount\": \"2000\",\n" +
+                    "        \"top_amount\": \"500000\",\n" +
+                    "        \"dq_max_amount\": \"50000\",\n" +
                     "        \"dh_max_amount\": \"100000\"\n" +
                     "      },\n" +
-                    "      \"82_22\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
+                    "      \"73_330\": {\n" +
+                    "        \"pl\": \"0\",\n" +
                     "        \"plx\": [],\n" +
                     "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
+                    "        \"max_amount\": \"2000\",\n" +
+                    "        \"top_amount\": \"500000\",\n" +
+                    "        \"dq_max_amount\": \"50000\",\n" +
                     "        \"dh_max_amount\": \"100000\"\n" +
                     "      },\n" +
-                    "      \"83_23\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
+                    "      \"74_331\": {\n" +
+                    "        \"pl\": \"25\",\n" +
                     "        \"plx\": [],\n" +
                     "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
+                    "        \"max_amount\": \"2000\",\n" +
+                    "        \"top_amount\": \"500000\",\n" +
+                    "        \"dq_max_amount\": \"50000\",\n" +
                     "        \"dh_max_amount\": \"100000\"\n" +
                     "      },\n" +
-                    "      \"83_24\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
+                    "      \"75_1181\": {\n" +
+                    "        \"pl\": \"18.5\",\n" +
                     "        \"plx\": [],\n" +
                     "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
+                    "        \"max_amount\": \"2000\",\n" +
+                    "        \"top_amount\": \"500000\",\n" +
+                    "        \"dq_max_amount\": \"20000\",\n" +
                     "        \"dh_max_amount\": \"100000\"\n" +
                     "      },\n" +
-                    "      \"85_25\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
+                    "      \"76_1200\": {\n" +
+                    "        \"pl\": \"0\",\n" +
                     "        \"plx\": [],\n" +
                     "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
+                    "        \"max_amount\": \"2000\",\n" +
+                    "        \"top_amount\": \"500000\",\n" +
+                    "        \"dq_max_amount\": \"10000\",\n" +
                     "        \"dh_max_amount\": \"100000\"\n" +
                     "      },\n" +
-                    "      \"85_26\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
+                    "      \"77_1201\": {\n" +
+                    "        \"pl\": \"900\",\n" +
                     "        \"plx\": [],\n" +
                     "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
+                    "        \"max_amount\": \"2000\",\n" +
+                    "        \"top_amount\": \"500000\",\n" +
+                    "        \"dq_max_amount\": \"10000\",\n" +
                     "        \"dh_max_amount\": \"100000\"\n" +
                     "      },\n" +
-                    "      \"84_27\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
+                    "      \"78_1202\": {\n" +
+                    "        \"pl\": \"58\",\n" +
                     "        \"plx\": [],\n" +
                     "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
+                    "        \"max_amount\": \"1000\",\n" +
+                    "        \"top_amount\": \"500000\",\n" +
+                    "        \"dq_max_amount\": \"10000\",\n" +
                     "        \"dh_max_amount\": \"100000\"\n" +
                     "      },\n" +
-                    "      \"84_28\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
+                    "      \"79_1203\": {\n" +
+                    "        \"pl\": \"240\",\n" +
                     "        \"plx\": [],\n" +
                     "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"87_49\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"87_50\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"88_51\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"88_52\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"90_53\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"90_54\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"89_55\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"89_56\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"92_77\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"92_78\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"93_79\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"93_80\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"95_81\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"95_82\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"94_83\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"94_84\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"97_105\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"97_106\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"98_107\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"98_108\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"100_109\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"100_110\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"99_111\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"99_112\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"102_133\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"102_134\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"103_135\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"103_136\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"105_137\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"105_138\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"104_139\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"104_140\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"107_161\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"107_162\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"108_163\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"108_164\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"110_165\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"110_166\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"109_167\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"109_168\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"112_189\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"112_190\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"113_191\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"113_192\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"115_193\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"115_194\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"114_195\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"114_196\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"117_217\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"117_218\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"118_219\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"118_220\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"120_221\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"120_222\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"119_223\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"119_224\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"11_245\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"11_246\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"12_247\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"12_248\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"13_249\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"13_250\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"80_307\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
-                    "        \"dh_max_amount\": \"100000\"\n" +
-                    "      },\n" +
-                    "      \"80_308\": {\n" +
-                    "        \"pl\": \"1.9828\",\n" +
-                    "        \"plx\": [],\n" +
-                    "        \"min_amount\": \"2\",\n" +
-                    "        \"max_amount\": \"20000\",\n" +
-                    "        \"top_amount\": \"10000000\",\n" +
-                    "        \"dq_max_amount\": \"1000000\",\n" +
+                    "        \"max_amount\": \"1000\",\n" +
+                    "        \"top_amount\": \"500000\",\n" +
+                    "        \"dq_max_amount\": \"10000\",\n" +
                     "        \"dh_max_amount\": \"100000\"\n" +
                     "      }\n" +
                     "    }\n" +
