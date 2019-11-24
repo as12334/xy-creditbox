@@ -16,7 +16,10 @@ public class HtmlController {
 
     @RequestMapping(value = "/{name}")
     protected String html(@PathVariable String name, HttpServletRequest request, HttpServletResponse response, Model model) {
-        return "html/"+name;
+        String prefix = name.substring(0, name.indexOf("_"));
+        String suffix = name.substring(name.indexOf("_"), name.length());
+        LotteryEnum anEnum = EnumTool.enumOf(LotteryEnum.class, prefix);
+        return "html/"+anEnum.getType()+suffix;
     }
 
 

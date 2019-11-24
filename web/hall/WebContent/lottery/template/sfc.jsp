@@ -89,18 +89,18 @@
                 <div class="game_box tab_box">
                     <div class="game_box_title">
                         <ul class="base-clear">
-                            <li class="active subBtn" data-id="kl10_lmp"><a href="javascript:void(0)">兩面盤</a></li>
-                            <li class="subBtn" data-id="kl10_d1_8"><a href="javascript:void(0)">單球1-8</a></li>
-                            <li class="subBtn" data-id="kl10_d1"><a href="javascript:void(0)">第一球</a></li>
-                            <li class="subBtn" data-id="kl10_d2"><a href="javascript:void(0)">第二球</a></li>
-                            <li class="subBtn" data-id="kl10_d3"><a href="javascript:void(0)">第三球</a></li>
-                            <li class="subBtn" data-id="kl10_d4"><a href="javascript:void(0)">第四球</a></li>
-                            <li class="subBtn" data-id="kl10_d5"><a href="javascript:void(0)">第五球</a></li>
-                            <li class="subBtn" data-id="kl10_d6"><a href="javascript:void(0)">第六球</a></li>
-                            <li class="subBtn" data-id="kl10_d7"><a href="javascript:void(0)">第七球</a></li>
-                            <li class="subBtn" data-id="kl10_d8"><a href="javascript:void(0)">第八球</a></li>
-                            <li class="subBtn" data-id="kl10_zhlh"><a href="javascript:void(0)">總和、龍虎</a></li>
-                            <li data-type="lm" class="subBtn" data-id="kl10_lm"><a href="javascript:void(0)">連碼</a></li>
+                            <li class="active subBtn" data-id="gdkl10_lmp"><a href="javascript:void(0)">兩面盤</a></li>
+                            <li class="subBtn" data-id="gdkl10_d1_8"><a href="javascript:void(0)">單球1-8</a></li>
+                            <li class="subBtn" data-id="gdkl10_d1"><a href="javascript:void(0)">第一球</a></li>
+                            <li class="subBtn" data-id="gdkl10_d2"><a href="javascript:void(0)">第二球</a></li>
+                            <li class="subBtn" data-id="gdkl10_d3"><a href="javascript:void(0)">第三球</a></li>
+                            <li class="subBtn" data-id="gdkl10_d4"><a href="javascript:void(0)">第四球</a></li>
+                            <li class="subBtn" data-id="gdkl10_d5"><a href="javascript:void(0)">第五球</a></li>
+                            <li class="subBtn" data-id="gdkl10_d6"><a href="javascript:void(0)">第六球</a></li>
+                            <li class="subBtn" data-id="gdkl10_d7"><a href="javascript:void(0)">第七球</a></li>
+                            <li class="subBtn" data-id="gdkl10_d8"><a href="javascript:void(0)">第八球</a></li>
+                            <li class="subBtn" data-id="gdkl10_zhlh"><a href="javascript:void(0)">總和、龍虎</a></li>
+                            <li data-type="lm" class="subBtn" data-id="gdkl10_lm"><a href="javascript:void(0)">連碼</a></li>
                         </ul>
                     </div>
                     <div class="game_box_con">
