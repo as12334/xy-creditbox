@@ -102,6 +102,10 @@
 		<property name="filterUrl" value="${url.filter}"/>
 	</bean>
 
+
+	<!--彩种过滤器-->
+	<bean id="lotteryFilter" class="so.wwb.creditbox.web.filter.LotteryFilter"/>
+
 	<bean id="accessFilter" class="so.wwb.creditbox.web.filter.AccessFilter"/>
 
 	<bean id="illegalCharacterFilter" class="org.soul.web.filter.IllegalCharacterFilter"/>

@@ -147,6 +147,23 @@ public class SiteLotteryOddsVo extends BaseObjectVo<SiteLotteryOdds, SiteLottery
         betSortMap.put(LotteryEnum.GDKL10.getCode(),map);
     }
 
+
+    /**
+     * 页面请求
+     */
+    private String action;
+
+    /**
+     * 请求玩法ID
+     */
+    private String playid;
+    /**
+     * 请求的玩法页面
+     */
+    private String playpage;
+
+
+
     private String lotteryOddsJson;
 
     private List<String> betSorts;
@@ -209,6 +226,29 @@ public class SiteLotteryOddsVo extends BaseObjectVo<SiteLotteryOdds, SiteLottery
         this.oddsMap = oddsMap;
     }
 
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+    public String getPlayid() {
+        return playid;
+    }
+
+    public void setPlayid(String playid) {
+        this.playid = playid;
+    }
+
+    public String getPlaypage() {
+        return playpage;
+    }
+
+    public void setPlaypage(String playpage) {
+        this.playpage = playpage;
+    }
 
 
     //endregion your codes 4

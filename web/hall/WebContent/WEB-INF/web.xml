@@ -168,6 +168,21 @@
         <!--<url-pattern>/tool/check-DomainIp.html</url-pattern>-->
     <!--</filter-mapping>-->
 
+    <!--多语言资源过滤-->
+    <filter>
+        <filter-name>lotteryFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <async-supported>true</async-supported>
+    </filter>
+    <filter-mapping>
+        <filter-name>lotteryFilter</filter-name>
+        <url-pattern>/lottery_en_US.js</url-pattern>
+        <url-pattern>/lottery_zh_CN.js</url-pattern>
+        <url-pattern>/lottery_zh_TW.js</url-pattern>
+    </filter-mapping>
+
+
+
     <filter>
         <filter-name>domainFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

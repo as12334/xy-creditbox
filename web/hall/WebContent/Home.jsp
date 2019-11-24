@@ -71,7 +71,7 @@
                 <li><a data-id="1" data-type="2" data-url="L_CQSC" href="javascript:void(0)">重慶時時彩</a></li>
                 <li><a data-id="2" data-type="2" data-url="L_PK10" href="javascript:void(0)">北京賽車(PK10)</a></li>
                 <li><a data-id="6" data-type="2" data-url="L_K8SC" href="javascript:void(0)">幸運飛艇(3分鍾)</a></li>
-                <li><a data-id="9" data-type="2" data-url="L_XYFT5" href="javascript:void(0)">幸運飛艇(5分鍾)</a></li>
+                <li><a data-id="9" data-type="2" data-url="xyft" href="javascript:void(0)">幸運飛艇(5分鍾)</a></li>
                 <li><a data-id="10" data-type="2" data-url="L_JSCAR" href="javascript:void(0)">極速賽車</a></li>
                 <li><a data-id="11" data-type="2" data-url="L_SPEED5" href="javascript:void(0)">極速時時彩</a></li>
                 <li><a data-id="12" data-type="2" data-url="L_JSPK10" href="javascript:void(0)">極速PK10(5分鍾)</a></li>
@@ -127,7 +127,7 @@
     var nowMenuId = '0';
     var useNowMenuId = '1';//1表示不起用cookies的默認彩種id,直接使用nowMenuId的值；0表示使用cookies的默認彩種id（按原來的邏輯）。
     // 游戏logo
-    var LogoSrc = 'Images/logo.png';
+    var LogoSrc = 'Images/xyft/logo.png';
     // 游戏名称
     var GameName = '';
     // 游戏路径
@@ -253,13 +253,13 @@
         },
         "play_9": {
             "name": "幸運飛艇(5分鍾)",
-            "url": "L_XYFT5",
+            "url": "xyft",
             "page": {
-                "xyft5_lmp": "两面盘",
-                "xyft5_dq1_10": "单球1-10",
-                "xyft5_gy": "冠亚组合",
-                "xyft5_dq3_6": "三四五六名",
-                "xyft5_dq7_9": "七八九十名"
+                "xyft_lmp": "两面盘",
+                "xyft_dq1_10": "单球1-10",
+                "xyft_gy": "冠亚组合",
+                "xyft_dq3_6": "三四五六名",
+                "xyft_dq7_9": "七八九十名"
             }
         },
         "play_10": {
