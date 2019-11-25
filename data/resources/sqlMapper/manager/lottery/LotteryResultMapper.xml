@@ -79,6 +79,47 @@
         )
         ORDER BY user_id
     </select>
+
+    <!--查询最近已开奖的彩票结果-->
+    <select id="queryRecentOpenResult" parameterType="so.wwb.creditbox.model.manager.lottery.vo.LotteryResultListVo"
+            resultType="so.wwb.creditbox.model.manager.lottery.po.LotteryResult">
+        SELECT t1.*
+        FROM
+        lottery_result t1,
+        (SELECT code,MAX(close_time) close_time FROM lottery_result
+        WHERE open_code is not NULL
+        AND clock_timestamp() > close_time
+        <if test="search.codes!=null">
+            and code in
+            <foreach collection="search.codes" item="item" open="(" close=")" index="index" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        GROUP BY code) t2
+        WHERE
+        t1.code = t2.code and t1.close_time = t2.close_time
+        ORDER BY t1.close_time DESC
+        <if test="paging.pageSize>0">
+            LIMIT #{paging.pageSize}
+            OFFSET (#{paging.pageNumber} - 1) * #{paging.pageSize}
+        </if>
+    </select>
+
+
+    <!--查询所有彩种的最近一期开奖结果-->
+    <select id="queryFiveRecentOpenResult" resultMap="TABLE:lottery_result">
+        SELECT
+            *
+        FROM
+            lottery_result
+        WHERE
+            open_code IS NOT NULL
+        AND code = #{code}
+        ORDER BY
+            expect DESC
+        LIMIT 5
+    </select>
+
     <!--//endregion your codes 1-->
 
 </mapper>

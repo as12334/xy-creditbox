@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class WebJson implements Serializable {
 
     private int success;
-    private Data data;
+    private Object data;
     private String tipinfo;
 
     public int getSuccess() {
@@ -19,11 +19,11 @@ public class WebJson implements Serializable {
         this.success = success;
     }
 
-    public Data getData() {
+    public Object getData() {
         return data;
     }
 
-    public void setData(Data data) {
+    public void setData(Object data) {
         this.data = data;
     }
 

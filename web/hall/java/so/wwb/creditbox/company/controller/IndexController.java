@@ -52,6 +52,7 @@ public class IndexController {
     @RequestMapping(value = "{code}/index")
     protected String lotteryCodeIndex(@PathVariable String code, HttpServletRequest request, HttpServletResponse response, Model model) {
         LotteryEnum anEnum = EnumTool.enumOf(LotteryEnum.class, code);
+        model.addAttribute("code",code);
         return "lottery/template/"+anEnum.getType();
     }
 

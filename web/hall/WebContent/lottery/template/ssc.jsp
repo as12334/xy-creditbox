@@ -16,7 +16,7 @@
 
     <link id="Iframe_skin" rel="stylesheet" type="text/css" href="${resRoot}/themes/red/skin.css?v=${rcVersion}"/>
 
-<%--<link rel="stylesheet" href="/Styles/base.css">--%>
+    <%--<link rel="stylesheet" href="/Styles/base.css">--%>
     <%--<link rel="stylesheet" href="/Styles/sub.css">--%>
     <%--<link rel="stylesheet" href="/Styles/BallCss/ball_all.css">--%>
     <%--<link rel="stylesheet" id="Iframe_skin" href="/Styles/Yellow/skin.css">--%>
@@ -37,16 +37,15 @@
 <style>
     body{ background: none; }
 </style>
-
 <div class="top_info">
     <div class="top_info_box base-clear">
         <div class="game_name_wrap base-clear">
             <div class="game_pic">
 
-                <a href="http://www.gdfc.org.cn/play_list_game_9.html" target="_blank"><img id="game_logo" src="" alt=""></a>
+                <a href="http://www.cqcp.net/game/ssc/" target="_blank"><img id="game_logo" src="" alt=""></a>
             </div>
             <div class="game_name">
-                <h5><a href="http://www.gdfc.org.cn/play_list_game_9.html" target="_blank" title="官網"><span id="game_big_name"></span></a> <span>-</span> <em id="game_small_name"></em></h5>
+                <h5><a href="http://www.cqcp.net/game/ssc/" target="_blank" title="官網"><span id="game_big_name"></span></a> <span>-</span> <em id="game_small_name"></em></h5>
                 <p><b><span id="intervaltime"></span></b>一期，每天<b><span id="begintime"></span>-<span id="endtime"></span></b>銷售</p>
                 <p>今天已售 <b id="phase1" class="green"></b> 期，還剩 <b id="phase2" class="green"></b> 期</p>
             </div>
@@ -72,8 +71,11 @@
                 <th>期數</th>
                 <th>開獎時間</th>
                 <th>開出號碼</th>
-                <th colspan="4">總和</th>
+                <th colspan="3">總和</th>
                 <th>龍虎</th>
+                <th>前三</th>
+                <th>中三</th>
+                <th>后三</th>
             </tr>
             </thead>
             <tbody id="historyResult">
@@ -88,18 +90,13 @@
                 <div class="game_box tab_box">
                     <div class="game_box_title">
                         <ul class="base-clear">
-                            <li class="active subBtn" data-id="${code}_lmp"><a href="javascript:void(0)">兩面盤</a></li>
-                            <li class="subBtn" data-id="${code}_d1_8"><a href="javascript:void(0)">單球1-8</a></li>
-                            <li class="subBtn" data-id="${code}_d1"><a href="javascript:void(0)">第一球</a></li>
-                            <li class="subBtn" data-id="${code}_d2"><a href="javascript:void(0)">第二球</a></li>
-                            <li class="subBtn" data-id="${code}_d3"><a href="javascript:void(0)">第三球</a></li>
-                            <li class="subBtn" data-id="${code}_d4"><a href="javascript:void(0)">第四球</a></li>
-                            <li class="subBtn" data-id="${code}_d5"><a href="javascript:void(0)">第五球</a></li>
-                            <li class="subBtn" data-id="${code}_d6"><a href="javascript:void(0)">第六球</a></li>
-                            <li class="subBtn" data-id="${code}_d7"><a href="javascript:void(0)">第七球</a></li>
-                            <li class="subBtn" data-id="${code}_d8"><a href="javascript:void(0)">第八球</a></li>
-                            <li class="subBtn" data-id="${code}_zhlh"><a href="javascript:void(0)">總和、龍虎</a></li>
-                            <li data-type="lm" class="subBtn" data-id="${code}_lm"><a href="javascript:void(0)">連碼</a></li>
+                            <li class="active subBtn" data-id="cqsc_lmp"><a href="javascript:void(0)">兩面盤</a></li>
+                            <li class="subBtn" data-id="cqsc_d1_5"><a href="javascript:void(0)">單球1-5</a></li>
+                            <li class="subBtn" data-id="cqsc_d1"><a href="javascript:void(0)">第一球</a></li>
+                            <li class="subBtn" data-id="cqsc_d2"><a href="javascript:void(0)">第二球</a></li>
+                            <li class="subBtn" data-id="cqsc_d3"><a href="javascript:void(0)">第三球</a></li>
+                            <li class="subBtn" data-id="cqsc_d4"><a href="javascript:void(0)">第四球</a></li>
+                            <li class="subBtn" data-id="cqsc_d5"><a href="javascript:void(0)">第五球</a></li>
                         </ul>
                     </div>
                     <div class="game_box_con">
@@ -188,28 +185,27 @@
         </div>
         <!-- rightBox end -->
     </div>
+
 </div>
 
-<div class="updata_wrap">
-</div>
-<div id="myWarp">
-</div>
+<div class="updata_wrap"></div>
+<div id="myWarp"></div>
 
 <!-- 历史开奖 公用框架模板结构 start -->
 <script id="tpl_history" type="text/template">
     {@each jqkj as it}
     <tr>
-        <td>&{it.phase}</td>
-        <td>&{it.play_open_date}</td>
+        <td>${it.phase}</td>
+        <td>${it.play_open_date}</td>
         <td>
             <strong class="ball">
                 {@each it.draw_num as item}
-                <span class="No_&{item}"></span>
+                <span class="No_${item}"></span>
                 {@/each}
             </strong>
         </td>
         {@each it.total as item}
-        <td>$&{item}</td>
+        <td>$${item}</td>
         {@/each}
     </tr>
     {@/each}
@@ -307,7 +303,6 @@
 </script>
 <!-- 出球率 公用框架模板结构 end -->
 
-
 <!-- 确认弹窗 公用框架模板结构 start -->
 <script id="tpl_order" type="text/template">
     <form id="orderForm">
@@ -330,7 +325,7 @@
                 <tr>
                     <td>&{it.iName}-&{it.name}</td>
                     <td width="100"><div class="plShow">&{it.pl}<div class="plFloat"><span></span><div class="pl_left"></div></div></div></td>
-                    <td><input id="order_${index}" data-min="&{it.min}" data-max="&{it.max}" name="uPI_M" class="input onlyNum" value="&{it.m}" type="text"><input name="uPI_ID" value="&{it.uPI_ID}" type="hidden"><input name="uPI_P" value="&{it.pl}" type="hidden"><input name="i_index" value="${index}" type="hidden"></td>
+                    <td><input id="order_${index}" data-min="&{it.min}" data-max="&{it.max}" name="uPI_M" class="input onlyNum" value="&{it.m}" type="text"><input name="uPI_ID" value="&{it.uPI_ID}" type="hidden"><input name="uPI_P" value="&{it.pl}" type="hidden"><input name="i_index" value="&{index}" type="hidden"></td>
                     <td><a class="deleteOrder" href="javascript:void(0)">删除</a></td>
                 </tr>
                 {@/each}
@@ -342,9 +337,9 @@
                 </thead>
             </table>
         </div>
-        <input value="${jV}" name="JeuValidate" type="hidden">
-        <input value="${wanfa}" name="wanfa" type="hidden">
-        <input value="${jiangqi}" name="jiangqi" type="hidden">
+        <input value="&{jV}" name="JeuValidate" type="hidden">
+        <input value="&{wanfa}" name="wanfa" type="hidden">
+        <input value="&{jiangqi}" name="jiangqi" type="hidden">
     </form>
 </script>
 <!-- 确认弹窗 公用框架模板结构 end -->
@@ -356,12 +351,12 @@
             <div class="formTips_text"></div>
             <a class="formTips_close" href="javascript:void(0)">×</a>
         </div>
-        <div>${title}【${type}】@ <span class="odPl">${odds}</span><input id="odds_pl" data-min="${min}" data-max="${max}" data-credit="${value}" name="uPI_M" class="input onlyNum" data-pl="${odds}" type="text" value="${value}"><input name="uPI_P" value="${odds}" type="hidden"><input name="uPI_ID" value="${uPI_ID}" type="hidden"><input name="i_index" value="0" type="hidden"><div class="oddsPlFl"><div class="plFloat"><span></span><div class="pl_left"></div></div></div></div>
-        <p>可赢金额：<span class="odPl" id="valueOdds">${value*odds}</span></p>
-        <p>最高派彩：${topAmount}</p>
-        <input value="${jV}" name="JeuValidate" type="hidden">
-        <input value="${wanfa}" name="wanfa" type="hidden">
-        <input value="${jiangqi}" name="jiangqi" type="hidden">
+        <div>&{title}【&{type}】@ <span class="odPl">&{odds}</span><input id="odds_pl" data-min="&{min}" data-max="&{max}" data-credit="&{value}" name="uPI_M" class="input onlyNum" data-pl="&{odds}" type="text" value="&{value}"><input name="uPI_P" value="&{odds}" type="hidden"><input name="uPI_ID" value="&{uPI_ID}" type="hidden"><input name="i_index" value="0" type="hidden"><div class="oddsPlFl"><div class="plFloat"><span></span><div class="pl_left"></div></div></div></div>
+        <p>可赢金额：<span class="odPl" id="valueOdds">&{value*odds}</span></p>
+        <p>最高派彩：&{topAmount}</p>
+        <input value="&{jV}" name="JeuValidate" type="hidden">
+        <input value="&{wanfa}" name="wanfa" type="hidden">
+        <input value="&{jiangqi}" name="jiangqi" type="hidden">
     </form>
 </script>
 <!-- 赔率弹窗 公用框架模板结构 end -->
@@ -376,27 +371,29 @@
         <div class="lmSubmitWrap">
             <div class="lsw_top">
                 <p>下注號碼明細</p>
-                <p class="myNos">${myNos}</p>
+                <p class="myNos">&{myNos}</p>
             </div>
-            <div>您共選擇了<span>${len}</span>個號碼<br>‘復式’共分為<span>${group}</span>組，
-                每注最高可下注金額<span>${max}</span>元。 </div>
-            <div><em>${h3} @</em><strong>${odds}</strong><input id="odds_lm_pl" data-min="${min}" data-max="${max}" data-credit="" name="uPI_M" class="input onlyNum" data-pl="${odds}" type="text" value=""><input name="uPI_P" value="${odds}" type="hidden"><input name="uPI_ID" value="${uPI_ID}" type="hidden"><div class="oddsPlFl"><div class="plFloat"><span></span><div class="pl_left"></div></div></div></div>
+            <div>您共選擇了<span>&{len}</span>個號碼<br>‘復式’共分為<span>&{group}</span>組，
+                每注最高可下注金額<span>&{max}</span>元。 </div>
+            <div><em>&{h3} @</em><strong>&{odds}</strong><input id="odds_lm_pl" data-min="&{min}" data-max="&{max}" data-credit="" name="uPI_M" class="input onlyNum" data-pl="&{odds}" type="text" value=""><input name="uPI_P" value="&{odds}" type="hidden"><input name="uPI_ID" value="&{uPI_ID}" type="hidden"><div class="oddsPlFl"><div class="plFloat"><span></span><div class="pl_left"></div></div></div></div>
             <div>总金额：<span data-credit="" id="lmPl">0</span></div>
         </div>
         <input value="" id="uPI_TM" name="uPI_TM" type="hidden">
-        <input value="${jV}" name="JeuValidate" type="hidden">
-        <input value="${wanfa}" name="wanfa" type="hidden">
-        <input value="${jiangqi}" name="jiangqi" type="hidden">
+        <input value="&{jV}" name="JeuValidate" type="hidden">
+        <input value="&{wanfa}" name="wanfa" type="hidden">
+        <input value="&{jiangqi}" name="jiangqi" type="hidden">
         <input value="0" name="LM_Type" type="hidden">
-        <input value="${NoS}" name="NoS" type="hidden">
+        <input value="&{NoS}" name="NoS" type="hidden">
     </form>
 </script>
 <!-- 赔率弹窗 公用框架模板结构 end -->
+
 <script>
-    var JeuValidate = '11190836317117';
+    var JeuValidate = '11250322320554';
     var GameName = '';
     var GameSmallName = '兩面盤';
     var GamePath = '';
+
     window.onload = function () {
         seajs.use(['jquery', 'game_global'], function ($, subInit) {
             // sub Init

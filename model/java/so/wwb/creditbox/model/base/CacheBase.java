@@ -312,16 +312,22 @@ public class CacheBase {
 //    }
 
     /**
-     * 获取开奖结果数据
+     * 根据code查询开奖结果
+     *
+     * @param code
      * @return
      */
-    public static Map<String, Serializable> getLotteryResult() {
-        Map<String, Serializable> result = getProxy().get(CacheKey.CACHE_KEY_LOTTERY_RESULT);
-        if(MapTool.isEmpty(result)){
-            log.error("缺少LotteryResult的缓存数据！");
-            return new HashMap<>(0);
+    public static List<LotteryResult> getLotteryResult(String code) {
+        if (StringTool.isBlank(code)) {
+            return new ArrayList<>(0);
         }
-        return result;
+        Map<String, LotteryResult> result = CacheTool.get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_LOTTERY_RESULT, code));
+        if (MapTool.isEmpty(result)) {
+            log.error("缺少LotteryResult的缓存数据！");
+            return new ArrayList<>(0);
+        }
+        List<LotteryResult> list = new ArrayList<>(result.values());
+        return list;
     }
 
 //    /**

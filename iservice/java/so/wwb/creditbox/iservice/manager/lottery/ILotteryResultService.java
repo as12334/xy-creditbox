@@ -50,6 +50,15 @@ public interface ILotteryResultService extends IBaseService<LotteryResultListVo,
      */
     List<LotteryResult> queryRecentResult(LotteryResultVo vo);
 
+    List<LotteryResult> queryRecentOpenResult(LotteryResultListVo lotteryResultListVo);
+
+    /**
+     * 查询最近5期已开奖
+     * @param lotteryResultVo
+     * @return
+     */
+    List<LotteryResult> queryFiveRecentOpenResult(LotteryResultVo lotteryResultVo);
+
     //endregion your codes 2
 
 }

@@ -4,6 +4,7 @@ import org.soul.model.security.privilege.so.SysResourceSo;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
 import org.soul.data.rdb.mybatis.IBaseMapper;
 import so.wwb.creditbox.model.manager.lottery.so.LotteryResultSo;
+import so.wwb.creditbox.model.manager.lottery.vo.LotteryResultListVo;
 
 import java.util.List;
 
@@ -37,6 +38,10 @@ public interface LotteryResultMapper extends IBaseMapper<LotteryResult, Integer>
      * @return
      */
     List<LotteryResult> queryRecentResult();
+
+    List<LotteryResult> queryRecentOpenResult(LotteryResultListVo listVo);
+
+    List<LotteryResult> queryFiveRecentOpenResult(LotteryResultSo search);
 
     //endregion your codes 2
 

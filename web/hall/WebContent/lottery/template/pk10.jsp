@@ -89,11 +89,11 @@
                 <div class="game_box tab_box">
                     <div class="game_box_title">
                         <ul class="base-clear">
-                            <li class="active subBtn" data-id="xyft_lmp"><a href="javascript:void(0)">兩面盤</a></li>
-                            <li class="subBtn" data-id="xyft_d1_10"><a href="javascript:void(0)">單球1-10</a></li>
-                            <li class="subBtn" data-id="xyft_12"><a href="javascript:void(0)">冠、亞軍 組合</a></li>
-                            <li class="subBtn" data-id="xyft_3456"><a href="javascript:void(0)">三、四、五、六名</a></li>
-                            <li class="subBtn" data-id="xyft_78910"><a href="javascript:void(0)">七、八、九、十名</a></li>
+                            <li class="active subBtn" data-id="${code}_lmp"><a href="javascript:void(0)">兩面盤</a></li>
+                            <li class="subBtn" data-id="${code}_d1_10"><a href="javascript:void(0)">單球1-10</a></li>
+                            <li class="subBtn" data-id="${code}_12"><a href="javascript:void(0)">冠、亞軍 組合</a></li>
+                            <li class="subBtn" data-id="${code}_3456"><a href="javascript:void(0)">三、四、五、六名</a></li>
+                            <li class="subBtn" data-id="${code}_78910"><a href="javascript:void(0)">七、八、九、十名</a></li>
                         </ul>
                     </div>
                     <div class="game_box_con">
@@ -210,7 +210,7 @@
             </strong>
         </td>
         {@each it.total as item}
-        <td>$&{item}</td>
+        <td>&&{item}</td>
         {@/each}
     </tr>
     {@/each}
@@ -331,7 +331,7 @@
                 <tr>
                     <td>&{it.iName}-&{it.name}</td>
                     <td width="100"><div class="plShow">&{it.pl}<div class="plFloat"><span></span><div class="pl_left"></div></div></div></td>
-                    <td><input id="order_${index}" data-min="&{it.min}" data-max="&{it.max}" name="uPI_M" class="input onlyNum" value="&{it.m}" type="text"><input name="uPI_ID" value="&{it.uPI_ID}" type="hidden"><input name="uPI_P" value="&{it.pl}" type="hidden"><input name="i_index" value="${index}" type="hidden"></td>
+                    <td><input id="order_&{index}" data-min="&{it.min}" data-max="&{it.max}" name="uPI_M" class="input onlyNum" value="&{it.m}" type="text"><input name="uPI_ID" value="&{it.uPI_ID}" type="hidden"><input name="uPI_P" value="&{it.pl}" type="hidden"><input name="i_index" value="&{index}" type="hidden"></td>
                     <td><a class="deleteOrder" href="javascript:void(0)">删除</a></td>
                 </tr>
                 {@/each}
@@ -343,9 +343,9 @@
                 </thead>
             </table>
         </div>
-        <input value="${jV}" name="JeuValidate" type="hidden">
-        <input value="${wanfa}" name="wanfa" type="hidden">
-        <input value="${jiangqi}" name="jiangqi" type="hidden">
+        <input value="&{jV}" name="JeuValidate" type="hidden">
+        <input value="&{wanfa}" name="wanfa" type="hidden">
+        <input value="&{jiangqi}" name="jiangqi" type="hidden">
     </form>
 </script>
 <!-- 确认弹窗 公用框架模板结构 end -->
@@ -357,12 +357,12 @@
             <div class="formTips_text"></div>
             <a class="formTips_close" href="javascript:void(0)">×</a>
         </div>
-        <div>${title}【${type}】@ <span class="odPl">${odds}</span><input id="odds_pl" data-min="${min}" data-max="${max}" data-credit="${value}" name="uPI_M" class="input onlyNum" data-pl="${odds}" type="text" value="${value}"><input name="uPI_P" value="${odds}" type="hidden"><input name="uPI_ID" value="${uPI_ID}" type="hidden"><input name="i_index" value="0" type="hidden"><div class="oddsPlFl"><div class="plFloat"><span></span><div class="pl_left"></div></div></div></div>
-        <p>可赢金额：<span class="odPl" id="valueOdds">${value*odds}</span></p>
-        <p>最高派彩：${topAmount}</p>
-        <input value="${jV}" name="JeuValidate" type="hidden">
-        <input value="${wanfa}" name="wanfa" type="hidden">
-        <input value="${jiangqi}" name="jiangqi" type="hidden">
+        <div>&{title}【&{type}】@ <span class="odPl">&{odds}</span><input id="odds_pl" data-min="&{min}" data-max="&{max}" data-credit="&{value}" name="uPI_M" class="input onlyNum" data-pl="&{odds}" type="text" value="&{value}"><input name="uPI_P" value="&{odds}" type="hidden"><input name="uPI_ID" value="&{uPI_ID}" type="hidden"><input name="i_index" value="0" type="hidden"><div class="oddsPlFl"><div class="plFloat"><span></span><div class="pl_left"></div></div></div></div>
+        <p>可赢金额：<span class="odPl" id="valueOdds">&{value*odds}</span></p>
+        <p>最高派彩：&{topAmount}</p>
+        <input value="&{jV}" name="JeuValidate" type="hidden">
+        <input value="&{wanfa}" name="wanfa" type="hidden">
+        <input value="&{jiangqi}" name="jiangqi" type="hidden">
     </form>
 </script>
 <!-- 赔率弹窗 公用框架模板结构 end -->
@@ -377,19 +377,19 @@
         <div class="lmSubmitWrap">
             <div class="lsw_top">
                 <p>下注號碼明細</p>
-                <p class="myNos">${myNos}</p>
+                <p class="myNos">&{myNos}</p>
             </div>
-            <div>您共選擇了<span>${len}</span>個號碼<br>‘復式’共分為<span>${group}</span>組，
-                每注最高可下注金額<span>${max}</span>元。 </div>
-            <div><em>${h3} @</em><strong>${odds}</strong><input id="odds_lm_pl" data-min="${min}" data-max="${max}" data-credit="" name="uPI_M" class="input onlyNum" data-pl="${odds}" type="text" value=""><input name="uPI_P" value="${odds}" type="hidden"><input name="uPI_ID" value="${uPI_ID}" type="hidden"><div class="oddsPlFl"><div class="plFloat"><span></span><div class="pl_left"></div></div></div></div>
+            <div>您共選擇了<span>&{len}</span>個號碼<br>‘復式’共分為<span>&{group}</span>組，
+                每注最高可下注金額<span>&{max}</span>元。 </div>
+            <div><em>&{h3} @</em><strong>&{odds}</strong><input id="odds_lm_pl" data-min="&{min}" data-max="&{max}" data-credit="" name="uPI_M" class="input onlyNum" data-pl="&{odds}" type="text" value=""><input name="uPI_P" value="&{odds}" type="hidden"><input name="uPI_ID" value="&{uPI_ID}" type="hidden"><div class="oddsPlFl"><div class="plFloat"><span></span><div class="pl_left"></div></div></div></div>
             <div>总金额：<span data-credit="" id="lmPl">0</span></div>
         </div>
         <input value="" id="uPI_TM" name="uPI_TM" type="hidden">
-        <input value="${jV}" name="JeuValidate" type="hidden">
-        <input value="${wanfa}" name="wanfa" type="hidden">
-        <input value="${jiangqi}" name="jiangqi" type="hidden">
+        <input value="&{jV}" name="JeuValidate" type="hidden">
+        <input value="&{wanfa}" name="wanfa" type="hidden">
+        <input value="&{jiangqi}" name="jiangqi" type="hidden">
         <input value="0" name="LM_Type" type="hidden">
-        <input value="${NoS}" name="NoS" type="hidden">
+        <input value="&{NoS}" name="NoS" type="hidden">
     </form>
 </script>
 <!-- 赔率弹窗 公用框架模板结构 end -->

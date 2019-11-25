@@ -1,6 +1,7 @@
 package so.wwb.creditbox.model.manager.lottery.po;
 
 import org.soul.commons.bean.IEntity;
+import org.soul.commons.support.Nonpersistent;
 import org.soul.model.common.Sortable;
 
 
@@ -160,6 +161,25 @@ public class LotteryResult implements IEntity<Integer> {
 	//endregion
 
 	//region your codes 2
+	private long leftTime;//距离封盘时间
+	private long leftOpenTime;//距离开盘时间
+
+
+	public Long getLeftTime() {
+		return leftTime;
+	}
+
+	public void setLeftTime(long leftTime) {
+		this.leftTime = leftTime;
+	}
+	@Nonpersistent
+	public long getLeftOpenTime() {
+		return leftOpenTime;
+	}
+
+	public void setLeftOpenTime(Long leftOpenTime) {
+		this.leftOpenTime = leftOpenTime;
+	}
 
 	//endregion your codes 2
 

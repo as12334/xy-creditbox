@@ -4,6 +4,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import org.soul.commons.collections.CollectionTool;
 import org.soul.commons.data.json.JsonTool;
 import org.soul.commons.enums.EnumTool;
+import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.spring.utils.SpringTool;
 import org.soul.data.datasource.DatasourceTool;
 import org.soul.web.session.SessionManagerBase;
@@ -57,8 +58,13 @@ public class Gdkl10Controller {
         List<LotteryResult> results = ServiceTool.lotteryResultService().queryRecentResult(new LotteryResultVo());
         Map<Object, LotteryResult> objectLotteryResultMap = CollectionTool.toEntityMap(results, LotteryResult.PROP_CODE);
 
-        String prefix = vo.getPlaypage().substring(0, vo.getPlaypage().indexOf("_"));
-        LotteryEnum anEnum = EnumTool.enumOf(LotteryEnum.class, prefix);
+        String prefix ;
+        LotteryEnum anEnum;
+
+        if(StringTool.isNotBlank(vo.getPlaypage())){
+            prefix = vo.getPlaypage().substring(0, vo.getPlaypage().indexOf("_"));
+            anEnum = EnumTool.enumOf(LotteryEnum.class, prefix);
+        }
 
 
 

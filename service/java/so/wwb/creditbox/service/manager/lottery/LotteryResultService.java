@@ -56,8 +56,6 @@ public class LotteryResultService extends BaseService<LotteryResultMapper, Lotte
 
     @Override
     public Map<String, Map<String, LotteryResult>> load(LotteryResultVo vo) {
-        DruidDataSource baseDatasource = (DruidDataSource) SpringTool.getBean("bossDataSource");
-        String mainsiteDataSource = DatasourceTool.getDbLink(baseDatasource);
         Map<String, Map<String, LotteryResult>> result = new LinkedHashMap<>();
         LotteryResultSo resultSo = vo.getSearch();
         if (resultSo != null && StringTool.isNotBlank(resultSo.getCode())) {
@@ -75,6 +73,17 @@ public class LotteryResultService extends BaseService<LotteryResultMapper, Lotte
     public List<LotteryResult> queryRecentResult(LotteryResultVo vo) {
         return this.mapper.queryRecentResult();
     }
+
+    @Override
+    public List<LotteryResult> queryRecentOpenResult(LotteryResultListVo listVo) {
+        return this.mapper.queryRecentOpenResult(listVo);
+    }
+
+    @Override
+    public List<LotteryResult> queryFiveRecentOpenResult(LotteryResultVo lotteryResultVo) {
+        return mapper.queryFiveRecentOpenResult(lotteryResultVo.getSearch());
+    }
+
     @Override
     public Boolean doInitLotteryJob(Date initDate) {
         Boolean init = excuteInit(initDate);
