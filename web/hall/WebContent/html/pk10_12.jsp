@@ -1,6 +1,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" %>
-<input type="hidden" id="playids" value="1,2,3,4,5,6,7,8,36,37,38" />
+<%--<input type="hidden" id="playids" value="1,2,3,4,5,6,7,8,36,37,38" />--%>
+<input type="hidden" id="playids" value="5_21,36_160,36_167,7_30,37_169,37_168,38_170,38_171,6_28,3_14,7_29,4_16,8_31,6_27,8_32,1_7,1_8,1_10,5_26,1_1,1_3,1_9,36_158,36_159,36_161,36_162,36_163,36_164,36_165,36_166,5_17,5_18,5_19,5_20,5_22,5_23,5_24,5_25,1_4,1_5,1_6,2_11,2_12,3_13,4_15,36_151,36_152,36_153,1_2,36_154,36_155,36_156,36_157" />
 <div class="game_ball_wrap game_item_wrap base-clear">
     <div class="game_box col_5 gameBox base-clear" data-title="冠、亞軍和">
         <div class="game_con">

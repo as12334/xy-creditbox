@@ -3,6 +3,7 @@ package so.wwb.creditbox.company.controller;
 import com.alibaba.druid.pool.DruidDataSource;
 import org.soul.commons.collections.CollectionTool;
 import org.soul.commons.data.json.JsonTool;
+import org.soul.commons.enums.EnumTool;
 import org.soul.commons.spring.utils.SpringTool;
 import org.soul.data.datasource.DatasourceTool;
 import org.soul.web.session.SessionManagerBase;
@@ -16,6 +17,7 @@ import so.wwb.creditbox.company.session.SessionManager;
 import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
+import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
@@ -29,6 +31,7 @@ import so.wwb.creditbox.web.tools.HidTool;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -44,7 +47,7 @@ public class Gdkl10Controller {
 
     @RequestMapping(value = "handler")
     @ResponseBody
-    protected String handler(@RequestParam("action") String action,@RequestParam("playpage") String playpage,HttpServletRequest request, HttpServletResponse response, Model model ) {
+    protected String handler(SiteLotteryOddsVo vo, HttpServletRequest request, HttpServletResponse response, Model model ) {
         Cache.refreshSiteLotteryOdds(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()),LotteryEnum.BJPK10.getCode());
         Cache.refreshSiteLotteryRebates(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()),LotteryEnum.BJPK10.getCode());
         Map<String, SiteLotteryOdds> oddsMap = Cache.getSiteLotteryOdds(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()), LotteryEnum.BJPK10.getCode());
@@ -54,12 +57,13 @@ public class Gdkl10Controller {
         List<LotteryResult> results = ServiceTool.lotteryResultService().queryRecentResult(new LotteryResultVo());
         Map<Object, LotteryResult> objectLotteryResultMap = CollectionTool.toEntityMap(results, LotteryResult.PROP_CODE);
 
-
+        String prefix = vo.getPlaypage().substring(0, vo.getPlaypage().indexOf("_"));
+        LotteryEnum anEnum = EnumTool.enumOf(LotteryEnum.class, prefix);
 
 
 
         System.out.println(JsonTool.toJson(objectLotteryResultMap.get(LotteryEnum.XYFT.getCode())));
-        if("get_openball".equals(action)){
+        if("get_openball".equals(vo.getAction())){
             return "{\n" +
                     "  \"success\": 200,\n" +
                     "  \"data\": {\n" +
@@ -86,7 +90,7 @@ public class Gdkl10Controller {
                     "  \"tipinfo\": \"\"\n" +
                     "}";
         }
-        else if("get_ranklist".equals(action)){
+        else if("get_ranklist".equals(vo.getAction())){
             return "{\n" +
                     "  \"success\": 200,\n" +
                     "  \"data\": {\n" +
@@ -335,7 +339,7 @@ public class Gdkl10Controller {
                     "  \"tipinfo\": \"\"\n" +
                     "}";
         }
-        else if("get_putinfo".equals(action)){
+        else if("get_putinfo".equals(vo.getAction())){
             return "{\n" +
                     "  \"success\": 200,\n" +
                     "  \"data\": {\n" +
@@ -344,7 +348,7 @@ public class Gdkl10Controller {
                     "  \"tipinfo\": \"\"\n" +
                     "}";
         }
-        else if("get_oddsinfo".equals(action)){
+        else if("get_oddsinfo".equals(vo.getAction())){
             return "{\n" +
                     "  \"success\": 200,\n" +
                     "  \"data\": {\n" +
@@ -1013,7 +1017,7 @@ public class Gdkl10Controller {
                     "  \"tipinfo\": \"\"\n" +
                     "}";
         }
-        else if("put_money".equals(action)){
+        else if("put_money".equals(vo.getAction())){
             return "{\n" +
                     "  \"success\": 200,\n" +
                     "  \"data\": {\n" +
