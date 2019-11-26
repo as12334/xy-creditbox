@@ -37,7 +37,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/gdkl10/handler")
+@RequestMapping("/handler")
 public class Gdkl10Controller {
     private static final String INDEX_URI = "Home";
     private static final String LOGIN_VALIDATE = "LoginValidate";

@@ -53,7 +53,7 @@
             </div>
         </div>
         <div class="game_info_wrap">
-            <h4><b class="red">今日輸贏：<i id="profit"></i></b>&nbsp;&nbsp;&nbsp;第<span id="NowJq" data-id=""></span>期，距離<label id="closeText">封盤</label>：<label data-time="4" id="closedTime" class="time time_loading"></label></h4>
+            <h4><b class="red">今日輸贏：<i id="profit">0</i></b>&nbsp;&nbsp;&nbsp;第<span id="NowJq" data-id=""></span>期，距離<label id="closeText">封盤</label>：<label data-time="4" id="closedTime" class="time time_loading"></label></h4>
             <h5>第<b id="newPhase"></b>期開獎：<strong id="prevBall" class="ball time_loading"></strong></h5>
         </div>
         <div class="game_tool">

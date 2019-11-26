@@ -9,7 +9,7 @@
 <script src="${resRoot}/js/global.js?v=${rcVersion}"></script>
 <script src="${resRoot}/js/juicer-min.js?v=${rcVersion}"></script>
 <script src="${resRoot}/js/iframeConfig.js?v=${rcVersion}"></script>
-<script src="${resRoot}/js/kc_script.js?v=${rcVersion}"></script>
+<%--<script src="${resRoot}/js/kc_script.js?v=${rcVersion}"></script>--%>
 
 
 <%--<script src="${resRoot}/js/dialog-plus.js?v=${rcVersion}"></script>--%>

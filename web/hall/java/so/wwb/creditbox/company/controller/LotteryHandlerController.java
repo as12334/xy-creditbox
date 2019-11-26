@@ -9,6 +9,7 @@ import org.soul.commons.lang.string.StringTool;
 import org.soul.web.session.SessionManagerBase;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import so.wwb.creditbox.common.dubbo.ServiceTool;
@@ -34,8 +35,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.text.MessageFormat;
 import java.util.*;
 
+import static io.netty.handler.codec.http.multipart.DiskFileUpload.prefix;
+
 @Controller
-@RequestMapping("/handler")
 public class LotteryHandlerController {
     private static final String INDEX_URI = "Home";
     private static final String LOGIN_VALIDATE = "LoginValidate";
@@ -44,9 +46,21 @@ public class LotteryHandlerController {
 
 
 
-    @RequestMapping(value = "handler")
+    @RequestMapping(value = "/{code}/handler/handler")
     @ResponseBody
-    protected String handler(SiteLotteryOddsVo vo, HttpServletRequest request, HttpServletResponse response, Model model ) {
+    protected String handler(@PathVariable String code, SiteLotteryOddsVo vo, HttpServletRequest request, HttpServletResponse response, Model model ) {
+
+        LotteryEnum lotteryEnum = EnumTool.enumOf(LotteryEnum.class, code);
+
+        if(StringTool.isNotBlank(vo.getPlaypage())){
+            String[] split = vo.getPlaypage().split("_");
+            if(split.length==2){
+                vo.setPlaypage(code+"_"+split[1]);
+            }
+        }else {
+            vo.setPlaypage(code+"_lmp");
+        }
+
         WebJson webJson = new WebJson();
         if(StringTool.isBlank(vo.getPlaypage())){
             webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
@@ -60,13 +74,6 @@ public class LotteryHandlerController {
         Cache.refreshSiteLotteryRebates(HidTool.getBranchHid(sessionUser.getHid()),LotteryEnum.BJPK10.getCode());
 
 
-        String prefix ;
-        LotteryEnum lotteryEnum = null;
-
-        if(StringTool.isNotBlank(vo.getPlaypage())){
-            prefix = vo.getPlaypage().substring(0, vo.getPlaypage().indexOf("_"));
-            lotteryEnum = EnumTool.enumOf(LotteryEnum.class, prefix);
-        }
 
 
         //最近一期的开奖结果 start
@@ -107,9 +114,39 @@ public class LotteryHandlerController {
 
         else if("get_oddsinfo".equals(vo.getAction())){
 
+            Map<String, Object> dataMap = new LinkedHashMap<>();
+            dataMap.put("type","get_oddsinfo");
+            dataMap.put("playpage",vo.getPlaypage());
+            dataMap.put("credit",sessionUser.getCredits());
+            //todo 已用额度后面添加
+            dataMap.put("usable_credit",100000);
+            dataMap.put("isopen","1");
+            LotteryResult lotteryResult = getHandicap(lotteryEnum.getCode());
+            //开奖时间
+            dataMap.put("drawopen_time",DateTool.formatDate(lotteryResult.getOpenTime(),SessionManagerBase.getTimeZone(),DateTool.HH_mm_ss));
+            //封盘倒计时
 
-            String[] split = vo.getPlayid().split(",");
+            //进入封盘时间
+            if(new Date().getTime()<lotteryResult.getCloseTime().getTime()){
+                dataMap.put("openning","y");
+                dataMap.put("stop_time","00:"+(lotteryResult.getLeftTime())/60+":"+(lotteryResult.getLeftTime())%60);
+            }
+            else {
+                dataMap.put("openning","n");
+                Long l = DateTool.secondsBetween(lotteryResult.getOpenTime(),new Date() );
+                dataMap.put("stop_time","00:"+l/60+":"+l%60);
+            }
+
+            dataMap.put("nn",lotteryResult.getExpect());
+            dataMap.put("p_id",lotteryResult.getId());
+            //TODO 今日输赢
+            dataMap.put("profit","");
+            webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
+            webJson.setTipinfo("");
+
+            //赔率 start
             Map<String, Object> playOddsMap = new LinkedHashMap<>();
+            String[] split = vo.getPlayid().split(",");
             for (String s : split) {
                 Map<String, SiteLotteryOdds> siteLotteryOdds = Cache.getSiteLotteryOdds(HidTool.getBranchHid(sessionUser.getHid()), lotteryEnum.getCode());
                 Map<String, SiteLotteryRebates> siteLotteryRebates = Cache.getSiteLotteryRebates(HidTool.getBranchHid(sessionUser.getHid()), lotteryEnum.getCode());
@@ -131,60 +168,12 @@ public class LotteryHandlerController {
                 oddsMap.put("dh_max_amount","100000");
 
                 playOddsMap.put(s,oddsMap);
-
-
-
-
-
-
-
-
             }
-            Map<String, Object> dataMap = new LinkedHashMap<>();
-
-
             dataMap.put("play_odds",playOddsMap);
+            //赔率 end
 
-
-            dataMap.put("type","get_oddsinfo");
-            dataMap.put("playpage",vo.getPlaypage());
-            dataMap.put("credit",sessionUser.getCredits());
-            //todo 已用额度后面添加
-            dataMap.put("usable_credit",100000);
-
-            dataMap.put("isopen","1");
-
-            LotteryResult lotteryResult = getHandicap(lotteryEnum.getCode());
-            //开奖时间
-            dataMap.put("drawopen_time",DateTool.formatDate(lotteryResult.getOpenTime(),SessionManagerBase.getTimeZone(),DateTool.HH_mm_ss));
-            //封盘倒计时
-
-
-            //进入封盘时间
-            if(new Date().getTime()<lotteryResult.getCloseTime().getTime()){
-                dataMap.put("openning","y");
-                dataMap.put("stop_time","00:"+(lotteryResult.getLeftTime())/60+":"+(lotteryResult.getLeftTime())%60);
-            }
-            else {
-                dataMap.put("openning","n");
-                Long l = DateTool.secondsBetween(lotteryResult.getOpenTime(),new Date() );
-                dataMap.put("stop_time","00:"+l/60+":"+l%60);
-            }
-
-
-
-
-            dataMap.put("nn",lotteryResult.getExpect());
-            dataMap.put("p_id","143910");
-            //TODO 今日输赢
-            dataMap.put("profit","");
-            webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
-            webJson.setTipinfo("");
             webJson.setData(dataMap);
 
-
-
-            System.out.println(JsonTool.toJson(webJson));
             return JsonTool.toJson(webJson);
         }
         else if("get_ranklist".equals(vo.getAction())){
