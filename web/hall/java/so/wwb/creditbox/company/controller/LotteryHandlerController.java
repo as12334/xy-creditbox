@@ -35,8 +35,8 @@ import java.text.MessageFormat;
 import java.util.*;
 
 @Controller
-@RequestMapping("/xyft/handler")
-public class XyftController {
+@RequestMapping("/handler")
+public class LotteryHandlerController {
     private static final String INDEX_URI = "Home";
     private static final String LOGIN_VALIDATE = "LoginValidate";
     private static final String INDEX_CONTENT_URI = "index.include/content";
@@ -47,7 +47,12 @@ public class XyftController {
     @RequestMapping(value = "handler")
     @ResponseBody
     protected String handler(SiteLotteryOddsVo vo, HttpServletRequest request, HttpServletResponse response, Model model ) {
-
+        WebJson webJson = new WebJson();
+        if(StringTool.isBlank(vo.getPlaypage())){
+            webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
+            webJson.setTipinfo("");
+            return JsonTool.toJson(webJson);
+        }
         SysUserExtend sessionUser = SessionManager.getSysUserExtend();
 
 
@@ -80,7 +85,6 @@ public class XyftController {
         //最近五期的开奖结果 start
         List<LotteryResult> lotteryResult5 = Cache.getLotteryResult(LotteryEnum.XYFT.getCode());
         //最近五期的开奖结果 end
-        WebJson webJson = new WebJson();
         if("get_openball".equals(vo.getAction())){
             HashMap<String, String> phaseinfoMap = new HashMap<>();
             phaseinfoMap.put("intervaltime","5分鐘");
@@ -146,7 +150,7 @@ public class XyftController {
             dataMap.put("playpage",vo.getPlaypage());
             dataMap.put("credit",sessionUser.getCredits());
             //todo 已用额度后面添加
-            dataMap.put("usable_credit",0);
+            dataMap.put("usable_credit",100000);
 
             dataMap.put("isopen","1");
 

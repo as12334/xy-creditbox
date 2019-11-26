@@ -83,8 +83,8 @@ public class HandlerController {
                 "    \"game_2\": {\n" +
                 "      \"kind\": \"A\",\n" +
                 "      \"name\": \"快彩\",\n" +
-                "      \"credit\": \"1000\",\n" +
-                "      \"usable_credit\": 10,\n" +
+                "      \"credit\": \"10000000\",\n" +
+                "      \"usable_credit\": 100000,\n" +
                 "      \"profit\": \"0\",\n" +
                 "      \"iscash\": \"0\"\n" +
                 "    }\n" +
