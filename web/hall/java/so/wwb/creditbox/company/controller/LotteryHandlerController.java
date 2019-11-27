@@ -49,9 +49,8 @@ public class LotteryHandlerController {
     @RequestMapping(value = "/{code}/handler/handler")
     @ResponseBody
     protected String handler(@PathVariable String code, SiteLotteryOddsVo vo, HttpServletRequest request, HttpServletResponse response, Model model ) {
-
+        SysUserExtend sessionUser = SessionManager.getSysUserExtend();
         LotteryEnum lotteryEnum = EnumTool.enumOf(LotteryEnum.class, code);
-
         if(StringTool.isNotBlank(vo.getPlaypage())){
             String[] split = vo.getPlaypage().split("_");
             if(split.length==2){
@@ -61,25 +60,15 @@ public class LotteryHandlerController {
             vo.setPlaypage(code+"_lmp");
         }
 
+
+
         WebJson webJson = new WebJson();
         if(StringTool.isBlank(vo.getPlaypage())){
             webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
             webJson.setTipinfo("");
             return JsonTool.toJson(webJson);
         }
-        SysUserExtend sessionUser = SessionManager.getSysUserExtend();
 
-
-        Cache.refreshSiteLotteryOdds(HidTool.getBranchHid(sessionUser.getHid()),LotteryEnum.BJPK10.getCode());
-        Cache.refreshSiteLotteryRebates(HidTool.getBranchHid(sessionUser.getHid()),LotteryEnum.BJPK10.getCode());
-
-
-
-
-        //最近一期的开奖结果 start
-        List<LotteryResult> results = ServiceTool.lotteryResultService().queryRecentResult(new LotteryResultVo());
-        Map<Object, LotteryResult> objectLotteryResultMap = CollectionTool.toEntityMap(results, LotteryResult.PROP_CODE);
-        //最近一期的开奖结果 end
 
         //最近五期期的已开奖结果 start
         LotteryResultVo lotteryResultVo = new LotteryResultVo();
@@ -152,12 +141,8 @@ public class LotteryHandlerController {
             for (String s : split) {
                 Map<String, SiteLotteryOdds> siteLotteryOdds = Cache.getSiteLotteryOdds(HidTool.getBranchHid(sessionUser.getHid()), lotteryEnum.getCode());
                 Map<String, SiteLotteryRebates> siteLotteryRebates = Cache.getSiteLotteryRebates(HidTool.getBranchHid(sessionUser.getHid()), lotteryEnum.getCode());
-
-
                 SiteLotteryOdds Odd = siteLotteryOdds.get(s);
                 SiteLotteryRebates rebates = siteLotteryRebates.get(s);
-
-
                 Map<String, Object> oddsMap = new LinkedHashMap<>();
                 oddsMap.put("pl",isOpen?Odd.getOddA()+"":"-");
                 oddsMap.put("plx","");
@@ -173,9 +158,7 @@ public class LotteryHandlerController {
             }
             dataMap.put("play_odds",playOddsMap);
             //赔率 end
-
             webJson.setData(dataMap);
-
             return JsonTool.toJson(webJson);
         }
         else if("get_ranklist".equals(vo.getAction())){
