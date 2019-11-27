@@ -68,7 +68,7 @@
         <div>
             <ul id="menuList">
                 <li><a data-id="0" data-type="2" data-url="gdklsf" href="javascript:void(0)">廣東快樂十分</a></li>
-                <li><a data-id="1" data-type="2" data-url="L_CQSC" href="javascript:void(0)">重慶時時彩</a></li>
+                <li><a data-id="1" data-type="2" data-url="cqssc" href="javascript:void(0)">重慶時時彩</a></li>
                 <li><a data-id="2" data-type="2" data-url="L_PK10" href="javascript:void(0)">北京賽車(PK10)</a></li>
                 <li><a data-id="6" data-type="2" data-url="L_K8SC" href="javascript:void(0)">幸運飛艇(3分鍾)</a></li>
                 <li><a data-id="9" data-type="2" data-url="xyft" href="javascript:void(0)">幸運飛艇(5分鍾)</a></li>
@@ -216,15 +216,15 @@
         },
         "play_1": {
             "name": "重慶時時彩",
-            "url": "L_CQSC",
+            "url": "cqssc",
             "page": {
-                "cqsc_lmp": "两面盘",
-                "cqsc_dq1_5": "单球1-5",
-                "cqsc_d1": "第一球",
-                "cqsc_d2": "第二球",
-                "cqsc_d3": "第三球",
-                "cqsc_d4": "第四球",
-                "cqsc_d5": ":第五球"
+                "cqssc_lmp": "两面盘",
+                "cqssc_dq1_5": "单球1-5",
+                "cqssc_d1": "第一球",
+                "cqssc_d2": "第二球",
+                "cqssc_d3": "第三球",
+                "cqssc_d4": "第四球",
+                "cqssc_d5": ":第五球"
             }
         },
         "play_2": {
@@ -301,13 +301,13 @@
             "name": "極速時時彩(5分鐘)",
             "url": "L_JSCQSC",
             "page": {
-                "jscqsc_lmp": "两面盘",
-                "jscqsc_dq1_5": "单球1-5",
-                "jscqsc_d1": "第一球",
-                "jscqsc_d2": "第二球",
-                "jscqsc_d3": "第三球",
-                "jscqsc_d4": "第四球",
-                "jscqsc_d5": ":第五球"
+                "jscqssc_lmp": "两面盘",
+                "jscqssc_dq1_5": "单球1-5",
+                "jscqssc_d1": "第一球",
+                "jscqssc_d2": "第二球",
+                "jscqssc_d3": "第三球",
+                "jscqssc_d4": "第四球",
+                "jscqssc_d5": ":第五球"
             }
         }
     };

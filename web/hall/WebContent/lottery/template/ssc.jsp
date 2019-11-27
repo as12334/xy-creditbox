@@ -90,13 +90,13 @@
                 <div class="game_box tab_box">
                     <div class="game_box_title">
                         <ul class="base-clear">
-                            <li class="active subBtn" data-id="cqsc_lmp"><a href="javascript:void(0)">兩面盤</a></li>
-                            <li class="subBtn" data-id="cqsc_d1_5"><a href="javascript:void(0)">單球1-5</a></li>
-                            <li class="subBtn" data-id="cqsc_d1"><a href="javascript:void(0)">第一球</a></li>
-                            <li class="subBtn" data-id="cqsc_d2"><a href="javascript:void(0)">第二球</a></li>
-                            <li class="subBtn" data-id="cqsc_d3"><a href="javascript:void(0)">第三球</a></li>
-                            <li class="subBtn" data-id="cqsc_d4"><a href="javascript:void(0)">第四球</a></li>
-                            <li class="subBtn" data-id="cqsc_d5"><a href="javascript:void(0)">第五球</a></li>
+                            <li class="active subBtn" data-id="${code}_lmp"><a href="javascript:void(0)">兩面盤</a></li>
+                            <li class="subBtn" data-id="${code}_d1_5"><a href="javascript:void(0)">單球1-5</a></li>
+                            <li class="subBtn" data-id="${code}_d1"><a href="javascript:void(0)">第一球</a></li>
+                            <li class="subBtn" data-id="${code}_d2"><a href="javascript:void(0)">第二球</a></li>
+                            <li class="subBtn" data-id="${code}_d3"><a href="javascript:void(0)">第三球</a></li>
+                            <li class="subBtn" data-id="${code}_d4"><a href="javascript:void(0)">第四球</a></li>
+                            <li class="subBtn" data-id="${code}_d5"><a href="javascript:void(0)">第五球</a></li>
                         </ul>
                     </div>
                     <div class="game_box_con">
@@ -195,17 +195,17 @@
 <script id="tpl_history" type="text/template">
     {@each jqkj as it}
     <tr>
-        <td>${it.phase}</td>
-        <td>${it.play_open_date}</td>
+        <td>&{it.phase}</td>
+        <td>&{it.play_open_date}</td>
         <td>
             <strong class="ball">
                 {@each it.draw_num as item}
-                <span class="No_${item}"></span>
+                <span class="No_&{item}"></span>
                 {@/each}
             </strong>
         </td>
         {@each it.total as item}
-        <td>$${item}</td>
+        <td>&&{item}</td>
         {@/each}
     </tr>
     {@/each}
@@ -325,7 +325,7 @@
                 <tr>
                     <td>&{it.iName}-&{it.name}</td>
                     <td width="100"><div class="plShow">&{it.pl}<div class="plFloat"><span></span><div class="pl_left"></div></div></div></td>
-                    <td><input id="order_${index}" data-min="&{it.min}" data-max="&{it.max}" name="uPI_M" class="input onlyNum" value="&{it.m}" type="text"><input name="uPI_ID" value="&{it.uPI_ID}" type="hidden"><input name="uPI_P" value="&{it.pl}" type="hidden"><input name="i_index" value="&{index}" type="hidden"></td>
+                    <td><input id="order_&{index}" data-min="&{it.min}" data-max="&{it.max}" name="uPI_M" class="input onlyNum" value="&{it.m}" type="text"><input name="uPI_ID" value="&{it.uPI_ID}" type="hidden"><input name="uPI_P" value="&{it.pl}" type="hidden"><input name="i_index" value="&{index}" type="hidden"></td>
                     <td><a class="deleteOrder" href="javascript:void(0)">删除</a></td>
                 </tr>
                 {@/each}

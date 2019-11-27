@@ -142,7 +142,7 @@ public class LotteryHandlerController {
             dataMap.put("nn",lotteryResult.getExpect());
             dataMap.put("p_id",lotteryResult.getId());
             //TODO 今日输赢
-            dataMap.put("profit","");
+            dataMap.put("profit","0");
             webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
             webJson.setTipinfo("");
 
