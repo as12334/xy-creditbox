@@ -46,7 +46,7 @@
         <div class="game_con">
             <fieldset>
                 <legend>冠軍</legend>
-                <ul class="xyft5">
+                <ul class="xyft">
                     <li data-bid="1_1" data-name="1" id="g_1_1"></li>
                     <li data-bid="1_5" data-name="5" id="g_1_5"></li>
                     <li data-bid="1_9" data-name="9" id="g_1_9"></li>
@@ -71,7 +71,7 @@
         <div class="game_con">
             <fieldset>
                 <legend>亞軍</legend>
-                <ul class="xyft5">
+                <ul class="xyft">
                     <li data-bid="5_17" data-name="1" id="g_5_17"></li>
                     <li data-bid="5_21" data-name="5" id="g_5_21"></li>
                     <li data-bid="5_25" data-name="9" id="g_5_25"></li>

@@ -114,20 +114,22 @@ public class LotteryHandlerController {
 
         else if("get_oddsinfo".equals(vo.getAction())){
 
+            //封盘的时候禁止下注
+            Boolean isOpen = false;
+
             Map<String, Object> dataMap = new LinkedHashMap<>();
             dataMap.put("type","get_oddsinfo");
             dataMap.put("playpage",vo.getPlaypage());
-            dataMap.put("credit",sessionUser.getCredits());
+            dataMap.put("credit","111");
             //todo 已用额度后面添加
             dataMap.put("usable_credit",100000);
-            dataMap.put("isopen","1");
             LotteryResult lotteryResult = getHandicap(lotteryEnum.getCode());
             //开奖时间
             dataMap.put("drawopen_time",DateTool.formatDate(lotteryResult.getOpenTime(),SessionManagerBase.getTimeZone(),DateTool.HH_mm_ss));
-            //封盘倒计时
 
             //进入封盘时间
             if(new Date().getTime()<lotteryResult.getCloseTime().getTime()){
+                isOpen = true;
                 dataMap.put("openning","y");
                 dataMap.put("stop_time","00:"+(lotteryResult.getLeftTime())/60+":"+(lotteryResult.getLeftTime())%60);
             }
@@ -136,7 +138,7 @@ public class LotteryHandlerController {
                 Long l = DateTool.secondsBetween(lotteryResult.getOpenTime(),new Date() );
                 dataMap.put("stop_time","00:"+l/60+":"+l%60);
             }
-
+            dataMap.put("isopen","1");
             dataMap.put("nn",lotteryResult.getExpect());
             dataMap.put("p_id",lotteryResult.getId());
             //TODO 今日输赢
@@ -157,7 +159,7 @@ public class LotteryHandlerController {
 
 
                 Map<String, Object> oddsMap = new LinkedHashMap<>();
-                oddsMap.put("pl",Odd.getOddA()+"");
+                oddsMap.put("pl",isOpen?Odd.getOddA()+"":"-");
                 oddsMap.put("plx","");
                 oddsMap.put("min_amount",rebates.getMinBet()+"");
                 oddsMap.put("max_amount",rebates.getMaxBet()+"");

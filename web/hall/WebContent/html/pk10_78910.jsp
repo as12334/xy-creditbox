@@ -7,7 +7,7 @@
         <div class="game_con">
             <fieldset>
                 <legend>第七名</legend>
-                <ul class="xyft5">
+                <ul class="xyft">
                     <li data-bid="24_95" data-name="1" id="g_24_95"></li>
                     <li data-bid="24_99" data-name="5" id="g_24_99"></li>
                     <li data-bid="24_103" data-name="9" id="g_24_103"></li>
@@ -32,7 +32,7 @@
         <div class="game_con">
             <fieldset>
                 <legend>第八名</legend>
-                <ul class="xyft5">
+                <ul class="xyft">
                     <li data-bid="27_109" data-name="1" id="g_27_109"></li>
                     <li data-bid="27_113" data-name="5" id="g_27_113"></li>
                     <li data-bid="27_117" data-name="9" id="g_27_117"></li>
@@ -57,7 +57,7 @@
         <div class="game_con">
             <fieldset>
                 <legend>第九名</legend>
-                <ul class="xyft5">
+                <ul class="xyft">
                     <li data-bid="30_123" data-name="1" id="g_30_123"></li>
                     <li data-bid="30_127" data-name="5" id="g_30_127"></li>
                     <li data-bid="30_131" data-name="9" id="g_30_131"></li>
@@ -82,7 +82,7 @@
         <div class="game_con">
             <fieldset>
                 <legend>第十名</legend>
-                <ul class="xyft5">
+                <ul class="xyft">
                     <li data-bid="33_137" data-name="1" id="g_33_137"></li>
                     <li data-bid="33_141" data-name="5" id="g_33_141"></li>
                     <li data-bid="33_145" data-name="9" id="g_33_145"></li>
