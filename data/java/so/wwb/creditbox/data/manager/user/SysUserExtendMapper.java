@@ -94,6 +94,7 @@ public interface SysUserExtendMapper extends IBaseMapper<SysUserExtend, Integer>
 
     List<Map<String,Object>> queryOwnerIdList(SysUserExtendSo so);
 
+    Double getUsedCredit(Integer id);
 
 
     //endregion your codes 2

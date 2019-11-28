@@ -1,6 +1,8 @@
 package so.wwb.creditbox.service.manager.lottery;
 
 
+import org.soul.commons.collections.CollectionTool;
+import org.soul.commons.query.sort.Direction;
 import org.soul.service.support.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +17,7 @@ import so.wwb.creditbox.model.manager.lottery.vo.LotteryVo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LotteryService extends BaseService<LotteryMapper, LotteryListVo, LotteryVo, Lottery, Integer> implements ILotteryService {
 
@@ -25,7 +28,12 @@ public class LotteryService extends BaseService<LotteryMapper, LotteryListVo, Lo
     @Autowired
     private SiteLotteryMapper siteLotteryMapper;
 
-
+    @Override
+    public Map<String, Lottery> load(LotteryListVo lotteryListVo) {
+        lotteryListVo.getQuery().addOrder(Lottery.PROP_ORDER_NUM, Direction.ASC);
+        List<Lottery> lotteryList = allSearch(lotteryListVo);
+        return CollectionTool.toEntityMap(lotteryList, Lottery.PROP_CODE, String.class);
+    }
     @Override
     @Transactional
     public void changeLotteryGenre(LotteryVo lotteryVo) {

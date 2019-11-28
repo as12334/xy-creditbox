@@ -1,5 +1,9 @@
 package so.wwb.creditbox.service.company.lottery;
 
+import org.soul.commons.collections.CollectionTool;
+import org.soul.commons.query.Criteria;
+import org.soul.commons.query.enums.Operator;
+import org.soul.commons.query.sort.Order;
 import org.soul.service.support.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import so.wwb.creditbox.data.company.lottery.SiteLotteryMapper;
@@ -10,7 +14,9 @@ import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryListVo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryVo;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -27,6 +33,21 @@ public class SiteLotteryService extends BaseService<SiteLotteryMapper, SiteLotte
 
     @Autowired
     private SiteLotteryMapper siteLotteryMapper;
+
+
+    @Override
+    public Map<String, Map<String, SiteLottery>> load(SiteLotteryVo vo) {
+        Integer siteId = vo.getSearch().getSiteId();
+        if (siteId == null) {
+            siteId = vo._getSiteId();
+        }
+        Map<String, Map<String, SiteLottery>> cacheMap = new LinkedHashMap<>();
+        List<SiteLottery> list = mapper.search(Criteria.add(SiteLottery.PROP_SITE_ID, Operator.EQ, siteId), Order.asc(SiteLottery.PROP_ID));
+        if (CollectionTool.isNotEmpty(list)) {
+            cacheMap.put(siteId.toString(), CollectionTool.toEntityMap(list, SiteLottery.PROP_CODE, String.class));
+        }
+        return cacheMap;
+    }
 
     @Override
     public void takeOff(SiteLotteryListVo siteLotteryListVo) {

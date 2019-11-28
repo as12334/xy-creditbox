@@ -7,12 +7,10 @@ import org.soul.commons.enums.ICodeEnum;
  * Created by fei on 17-4-10.
  */
 public enum LotteryOrderStatusEnum implements ICodeEnum {
-    PENDING("pending", "未开奖"),
-    WINING("wining", "已中奖"),
-    NOWIN("nowin","未中奖"),
-    REVOKE_SYS("revoke_sys", "系统撤单"),
-    REVOKE_SELF("revoke_self", "主动撤单"),
-    REVOCATION("revocation","系统撤销")
+    PENDING("1", "待结算"),
+    SETTLED("2", "已结算"),
+    REVOKE("3", "已撤单"),
+    REVOCATION("4", "已撤销");
     ;
 
     private String code;

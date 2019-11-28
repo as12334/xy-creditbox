@@ -1,7 +1,5 @@
 package so.wwb.creditbox.company.controller;
 
-import com.alibaba.fastjson.JSONArray;
-import org.soul.commons.collections.CollectionTool;
 import org.soul.commons.data.json.JsonTool;
 import org.soul.commons.enums.EnumTool;
 import org.soul.commons.lang.DateTool;
@@ -15,30 +13,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import so.wwb.creditbox.common.dubbo.ServiceTool;
 import so.wwb.creditbox.company.session.SessionManager;
 import so.wwb.creditbox.model.base.CacheBase;
-import so.wwb.creditbox.model.bean.Data;
 import so.wwb.creditbox.model.bean.HttpCodeEnum;
 import so.wwb.creditbox.model.bean.WebJson;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
+import so.wwb.creditbox.model.hall.HandlerForm;
+import so.wwb.creditbox.model.hall.LotteryErrorCode;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
-import so.wwb.creditbox.model.manager.lottery.vo.LotteryResultListVo;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryResultVo;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
-import so.wwb.creditbox.model.session.Session;
 import so.wwb.creditbox.web.cache.Cache;
+import so.wwb.creditbox.web.lottery.controller.BaseLotteryController;
 import so.wwb.creditbox.web.tools.HidTool;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.text.MessageFormat;
 import java.util.*;
 
-import static io.netty.handler.codec.http.multipart.DiskFileUpload.prefix;
-
 @Controller
-public class LotteryHandlerController {
+public class LotteryHandlerController extends BaseLotteryController{
     private static final String INDEX_URI = "Home";
     private static final String LOGIN_VALIDATE = "LoginValidate";
     private static final String INDEX_CONTENT_URI = "index.include/content";
@@ -48,22 +43,30 @@ public class LotteryHandlerController {
 
     @RequestMapping(value = "/{code}/handler/handler")
     @ResponseBody
-    protected String handler(@PathVariable String code, SiteLotteryOddsVo vo, HttpServletRequest request, HttpServletResponse response, Model model ) {
+    protected String handler(@PathVariable String code, HandlerForm form, HttpServletRequest request, HttpServletResponse response, Model model ) {
+        WebJson webJson = new WebJson();
+        LotteryErrorCode errorCode = new LotteryErrorCode();
         SysUserExtend sessionUser = SessionManager.getSysUserExtend();
         LotteryEnum lotteryEnum = EnumTool.enumOf(LotteryEnum.class, code);
-        if(StringTool.isNotBlank(vo.getPlaypage())){
-            String[] split = vo.getPlaypage().split("_");
+        if(lotteryEnum == null){
+            webJson.setSuccess(HttpCodeEnum.ERROR.getCode());
+            webJson.setTipinfo("暂无该彩种!");
+            return JsonTool.toJson(webJson);
+        }
+
+        if(StringTool.isNotBlank(form.getPlaypage())){
+            String[] split = form.getPlaypage().split("_");
             if(split.length==2){
-                vo.setPlaypage(code+"_"+split[1]);
+                form.setPlaypage(code+"_"+split[1]);
             }
         }else {
-            vo.setPlaypage(code+"_lmp");
+            form.setPlaypage(code+"_lmp");
         }
 
 
 
-        WebJson webJson = new WebJson();
-        if(StringTool.isBlank(vo.getPlaypage())){
+
+        if(StringTool.isBlank(form.getPlaypage())){
             webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
             webJson.setTipinfo("");
             return JsonTool.toJson(webJson);
@@ -81,7 +84,23 @@ public class LotteryHandlerController {
         //最近五期的开奖结果 start
         List<LotteryResult> lotteryResult5 = Cache.getLotteryResult(LotteryEnum.XYFT.getCode());
         //最近五期的开奖结果 end
-        if("get_openball".equals(vo.getAction())){
+
+
+        //下单
+        if("put_money".equals(form.getAction())){
+
+
+            super.saveBetOrder(request,code, form);
+
+            return "{" +
+                    "  \"success\": 200," +
+                    "  \"data\": {" +
+                    "    \"type\": \"get_putinfo\"" +
+                    "  }," +
+                    "  \"tipinfo\": \"下单成功\"" +
+                    "}";
+        }
+        else if("get_openball".equals(form.getAction())){
             HashMap<String, String> phaseinfoMap = new HashMap<>();
             phaseinfoMap.put("intervaltime","5分鐘");
             phaseinfoMap.put("begintime","13:04");
@@ -101,18 +120,18 @@ public class LotteryHandlerController {
             return JsonTool.toJson(webJson);
         }
 
-        else if("get_oddsinfo".equals(vo.getAction())){
+        else if("get_oddsinfo".equals(form.getAction())){
 
             //封盘的时候禁止下注
             Boolean isOpen = false;
 
             Map<String, Object> dataMap = new LinkedHashMap<>();
             dataMap.put("type","get_oddsinfo");
-            dataMap.put("playpage",vo.getPlaypage());
+            dataMap.put("playpage", form.getPlaypage());
             dataMap.put("credit","111");
             //todo 已用额度后面添加
             dataMap.put("usable_credit",100000);
-            LotteryResult lotteryResult = getHandicap(lotteryEnum.getCode());
+            LotteryResult lotteryResult = getHandicapOpen(lotteryEnum.getCode());
             //开奖时间
             dataMap.put("drawopen_time",DateTool.formatDate(lotteryResult.getOpenTime(),SessionManagerBase.getTimeZone(),DateTool.HH_mm_ss));
 
@@ -137,7 +156,7 @@ public class LotteryHandlerController {
 
             //赔率 start
             Map<String, Object> playOddsMap = new LinkedHashMap<>();
-            String[] split = vo.getPlayid().split(",");
+            String[] split = form.getPlayid().split(",");
             for (String s : split) {
                 Map<String, SiteLotteryOdds> siteLotteryOdds = Cache.getSiteLotteryOdds(HidTool.getBranchHid(sessionUser.getHid()), lotteryEnum.getCode());
                 Map<String, SiteLotteryRebates> siteLotteryRebates = Cache.getSiteLotteryRebates(HidTool.getBranchHid(sessionUser.getHid()), lotteryEnum.getCode());
@@ -161,7 +180,7 @@ public class LotteryHandlerController {
             webJson.setData(dataMap);
             return JsonTool.toJson(webJson);
         }
-        else if("get_ranklist".equals(vo.getAction())){
+        else if("get_ranklist".equals(form.getAction())){
             return "{" +
                     "  \"success\": 200," +
                     "  \"data\": {" +
@@ -369,7 +388,7 @@ public class LotteryHandlerController {
                     "  \"tipinfo\": \"\"" +
                     "}";
         }
-        else if("get_putinfo".equals(vo.getAction())){
+        else if("get_putinfo".equals(form.getAction())){
             return "{" +
                     "  \"success\": 200," +
                     "  \"data\": {" +
@@ -378,23 +397,15 @@ public class LotteryHandlerController {
                     "  \"tipinfo\": \"\"" +
                     "}";
         }
-        else if("put_money".equals(vo.getAction())){
-            return "{" +
-                    "  \"success\": 200," +
-                    "  \"data\": {" +
-                    "    \"type\": \"get_putinfo\"" +
-                    "  }," +
-                    "  \"tipinfo\": \"下单成功\"" +
-                    "}";
-        }
+
 
         return "";
 
     }
     /**
-     * 获取彩票当前盘口信息
+     * 获取彩票当前盘口信息(开奖)
      */
-    public LotteryResult getHandicap(String code) {
+    public LotteryResult getHandicapOpen(String code) {
         List<LotteryResult> lotteryResultList = CacheBase.getLotteryResult(code);
         Date curDate = new Date();
         for (LotteryResult lotteryResult : lotteryResultList) {

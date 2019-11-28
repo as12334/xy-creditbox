@@ -107,6 +107,9 @@
     <!-- 自主开号规则表dubbo服务 -->
     <dubbo:service ref="lotteryOwnRuleService" interface="so.wwb.creditbox.iservice.manager.lottery.ILotteryOwnRuleService"/>
 
+    <!-- 投注记录表dubbo服务 -->
+    <dubbo:service ref="lotteryBetOrderService" interface="so.wwb.creditbox.iservice.company.lottery.ILotteryBetOrderService"/>
+
 <!--//endregion your codes 1-->
 
 </beans>

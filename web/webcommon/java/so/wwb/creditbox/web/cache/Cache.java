@@ -20,6 +20,7 @@ import org.soul.web.support.BaseWebBeanFactory;
 import so.wwb.creditbox.context.LotteryCommonContext;
 import so.wwb.creditbox.model.base.CacheBase;
 import so.wwb.creditbox.model.base.ParamTool;
+import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
 import so.wwb.creditbox.model.constants.cache.CacheKey;
@@ -27,6 +28,7 @@ import so.wwb.creditbox.model.enums.base.BossParamEnum;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryOdds;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
 import so.wwb.creditbox.model.manager.sys.po.VSysSiteDomain;
+import so.wwb.creditbox.web.tools.HidTool;
 
 import java.io.Serializable;
 import java.text.MessageFormat;
@@ -58,7 +60,10 @@ public class Cache extends CacheBase {
         }
         return map;
     }
-
+    /*获取站点分公司彩票赔率缓存*/
+    public static Map<String, SiteLotteryOdds> getBranchSiteLotteryOdds(String hid , String code) {
+        return  getSiteLotteryOdds(HidTool.getBranchHid(hid),code);
+    }
 
     public static void refreshSiteLotteryRebates(String hid ,String code) {
         CacheTool.refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_LOTTERY_REBATE, LotteryCommonContext.get().getSiteId().toString(),hid,code));
@@ -107,7 +112,19 @@ public class Cache extends CacheBase {
     public static void refreshSiteLottery(Integer siteId) {
         CacheTool.refresh(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_LOTTERY, String.valueOf(siteId)));
     }
-
+    /**
+     * 站点彩票
+     *
+     * @param siteId
+     * @return
+     */
+    public static Map<String, SiteLottery> getSiteLottery(Integer siteId) {
+        Map<String, SiteLottery> map = CacheTool.get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_LOTTERY, String.valueOf(siteId)));
+        if (MapTool.isEmpty(map)) {
+            log.error("缺少siteLottery的缓存数据！");
+        }
+        return map;
+    }
 
     /** 站点域名基本信息缓存 */
     public static VSysSiteDomain getSiteDomain(String domain) {

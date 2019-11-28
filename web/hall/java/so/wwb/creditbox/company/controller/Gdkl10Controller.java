@@ -1,38 +1,26 @@
 package so.wwb.creditbox.company.controller;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import org.soul.commons.collections.CollectionTool;
 import org.soul.commons.data.json.JsonTool;
 import org.soul.commons.enums.EnumTool;
 import org.soul.commons.lang.string.StringTool;
-import org.soul.commons.spring.utils.SpringTool;
-import org.soul.data.datasource.DatasourceTool;
-import org.soul.web.session.SessionManagerBase;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import so.wwb.creditbox.common.dubbo.ServiceTool;
 import so.wwb.creditbox.company.session.SessionManager;
-import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
-import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
-import so.wwb.creditbox.model.enums.user.UserTypeEnum;
+import so.wwb.creditbox.model.hall.HandlerForm;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryResultVo;
-import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
-import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
-import so.wwb.creditbox.service.tool.DatasourceUtil;
 import so.wwb.creditbox.web.cache.Cache;
 import so.wwb.creditbox.web.tools.HidTool;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -48,7 +36,7 @@ public class Gdkl10Controller {
 
     @RequestMapping(value = "handler")
     @ResponseBody
-    protected String handler(SiteLotteryOddsVo vo, HttpServletRequest request, HttpServletResponse response, Model model ) {
+    protected String handler(HandlerForm form, HttpServletRequest request, HttpServletResponse response, Model model ) {
         Cache.refreshSiteLotteryOdds(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()),LotteryEnum.BJPK10.getCode());
         Cache.refreshSiteLotteryRebates(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()),LotteryEnum.BJPK10.getCode());
         Map<String, SiteLotteryOdds> oddsMap = Cache.getSiteLotteryOdds(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()), LotteryEnum.BJPK10.getCode());
@@ -61,15 +49,15 @@ public class Gdkl10Controller {
         String prefix ;
         LotteryEnum anEnum;
 
-        if(StringTool.isNotBlank(vo.getPlaypage())){
-            prefix = vo.getPlaypage().substring(0, vo.getPlaypage().indexOf("_"));
+        if(StringTool.isNotBlank(form.getPlaypage())){
+            prefix = form.getPlaypage().substring(0, form.getPlaypage().indexOf("_"));
             anEnum = EnumTool.enumOf(LotteryEnum.class, prefix);
         }
 
 
 
         System.out.println(JsonTool.toJson(objectLotteryResultMap.get(LotteryEnum.XYFT.getCode())));
-        if("get_openball".equals(vo.getAction())){
+        if("get_openball".equals(form.getAction())){
             return "{\n" +
                     "  \"success\": 200,\n" +
                     "  \"data\": {\n" +
@@ -96,7 +84,7 @@ public class Gdkl10Controller {
                     "  \"tipinfo\": \"\"\n" +
                     "}";
         }
-        else if("get_ranklist".equals(vo.getAction())){
+        else if("get_ranklist".equals(form.getAction())){
             return "{\n" +
                     "  \"success\": 200,\n" +
                     "  \"data\": {\n" +
@@ -345,7 +333,7 @@ public class Gdkl10Controller {
                     "  \"tipinfo\": \"\"\n" +
                     "}";
         }
-        else if("get_putinfo".equals(vo.getAction())){
+        else if("get_putinfo".equals(form.getAction())){
             return "{\n" +
                     "  \"success\": 200,\n" +
                     "  \"data\": {\n" +
@@ -354,7 +342,7 @@ public class Gdkl10Controller {
                     "  \"tipinfo\": \"\"\n" +
                     "}";
         }
-        else if("get_oddsinfo".equals(vo.getAction())){
+        else if("get_oddsinfo".equals(form.getAction())){
             return "{\n" +
                     "  \"success\": 200,\n" +
                     "  \"data\": {\n" +
@@ -1023,7 +1011,7 @@ public class Gdkl10Controller {
                     "  \"tipinfo\": \"\"\n" +
                     "}";
         }
-        else if("put_money".equals(vo.getAction())){
+        else if("put_money".equals(form.getAction())){
             return "{\n" +
                     "  \"success\": 200,\n" +
                     "  \"data\": {\n" +

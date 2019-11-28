@@ -652,6 +652,16 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
         return objectVo;
     }
 
+    @Override
+    public List<SysUserExtend> findOwner(SysUserExtendVo sysUserExtendVo) {
+        return mapper.findOwner(sysUserExtendVo.getSearch().getId());
+    }
+
+    @Override
+    public Double getUsedCredit(SysUserExtendVo sysUserExtendVo) {
+        return mapper.getUsedCredit(sysUserExtendVo.getSearch().getId());
+    }
+
 
 //
 //    @Override

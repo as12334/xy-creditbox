@@ -76,6 +76,9 @@
     <!-- 自主开号规则表服务 -->
     <bean id="lotteryOwnRuleService" class="so.wwb.creditbox.service.manager.lottery.LotteryOwnRuleService"/>
 
+    <!-- 投注记录表服务 -->
+    <bean id="lotteryBetOrderService" class="so.wwb.creditbox.service.company.lottery.LotteryBetOrderService"/>
+
 <!--//endregion your codes 1-->
 
 </beans>

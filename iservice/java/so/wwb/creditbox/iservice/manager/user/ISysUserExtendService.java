@@ -137,6 +137,10 @@ public interface ISysUserExtendService extends IBaseService<SysUserExtendListVo,
 
     SysUserExtendVo updateManagerUser(SysUserExtendVo objectVo);
 
+    List<SysUserExtend> findOwner(SysUserExtendVo sysUserExtendVo);
+
+    Double getUsedCredit(SysUserExtendVo sysUserExtendVo);
+
 //
 //    boolean insertSysUserExtend(SysUserExtend userExtend);
 //

@@ -4,6 +4,7 @@ package so.wwb.creditbox.model.company.lottery.po;
 import org.soul.commons.bean.IEntity;
 import org.soul.commons.support.Nonpersistent;
 import org.soul.model.common.Sortable;
+import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 
 
 /**
@@ -209,6 +210,9 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 	public void setSortType(String value) {
 		this.sortType = value;
 	}
+
+
+
 	//endregion
 
 	//region your codes 2
@@ -216,15 +220,59 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 	/**
 	 * 上级的赔率
 	 */
-	private SiteLotteryOdds parentOdds;
 
-	public SiteLotteryOdds getParentOdds() {
-		return parentOdds;
+	/**  */
+	private Double parentOddA;
+	/**  */
+	private Double parentOddB;
+	/**  */
+	private Double parentOddC;
+
+	@Nonpersistent
+	public Double getParentOddA() {
+		return parentOddA;
+	}
+
+	public void setParentOddA(Double parentOddA) {
+		this.parentOddA = parentOddA;
 	}
 	@Nonpersistent
-	public void setParentOdds(SiteLotteryOdds parentOdds) {
-		this.parentOdds = parentOdds;
+	public Double getParentOddB() {
+		return parentOddB;
 	}
+
+	public void setParentOddB(Double parentOddB) {
+		this.parentOddB = parentOddB;
+	}
+	@Nonpersistent
+	public Double getParentOddC() {
+		return parentOddC;
+	}
+
+	public void setParentOddC(Double parentOddC) {
+		this.parentOddC = parentOddC;
+	}
+
+	public Double getCOdd(SysUserExtend sessionUser) {
+		if(sessionUser.getHandicap() == 1){
+			return parentOddA;
+		}else if(sessionUser.getHandicap() == 2){
+			return parentOddA - parentOddB;
+		}else {
+			return parentOddA - parentOddC;
+		}
+	}
+
+	public Double getBOdd(SysUserExtend sessionUser) {
+		if(sessionUser.getHandicap() == 1){
+			return oddA;
+		}else if(sessionUser.getHandicap() == 2){
+			return oddA - oddB;
+		}else {
+			return oddA - oddC;
+		}
+	}
+
 
 	//endregion your codes 2
 

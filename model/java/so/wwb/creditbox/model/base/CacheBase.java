@@ -580,23 +580,6 @@ public class CacheBase {
     }
 
     /**
-     * 根据站点id获取全部彩种缓存
-     * @param siteId
-     * @return
-     */
-    public static List<Lottery> getLotteryList(Integer siteId) {
-        List<Lottery> list = new ArrayList<>();
-        Map<String, Serializable> map = CacheTool.get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_LOTTERY, siteId.toString()));
-        if (MapTool.isEmpty(map)) {
-            log.error("缺少Lottery的缓存数据！");
-        }
-        map.forEach((key, value) -> {
-            list.add((Lottery) value);
-        });
-        return list;
-    }
-
-    /**
      * 根据站点id,彩种类型获取全部彩种缓存
      * @param siteId
      * @param type
@@ -618,20 +601,7 @@ public class CacheBase {
         }
     }
 
-    /**
-     * 站点彩票 add by Fei
-     */
-    public static Map<String, Lottery> getLotteryMap() {
-        return getLotteryMap(SessionManagerBase.getSiteId());
-    }
 
-    /**
-     * 根据siteId获取站点彩票
-     */
-    public static Map<String, Lottery> getLotteryMap(Integer siteId) {
-        List<Lottery> result = getLotteryList(siteId);
-        return CollectionTool.toEntityMap(result, Lottery.PROP_CODE, String.class);
-    }
 
     /**
      * 根据Code获取彩种
@@ -640,17 +610,19 @@ public class CacheBase {
         if (StringTool.isBlank(code)) {
             return null;
         }
-        return getLotteryMap().get(code);
+        Map<String, Lottery> lottery = getLottery();
+        return lottery.get(code);
     }
-
     /**
-     * 根据siteId与code获取站点彩票
+     * 获取所有彩种数据(不分终端，相同code只有一条数据)
      */
-    public static Lottery getLottery(Integer siteId, String code) {
-        if (siteId == null || StringTool.isBlank(code)) {
-            return null;
+    public static Map<String, Lottery> getLottery() {
+        Map<String, Lottery> map = CacheTool.get(CacheKey.CACHE_KEY_LOTTERY);
+        if (MapTool.isEmpty(map)) {
+            log.error("缺少彩票彩种（Lottery）的缓存数据！");
+            return map;
         }
-        return getLotteryMap(siteId).get(code);
+        return map;
     }
 
     public static List<LotteryOdds> getLotteryOdd(String code) {

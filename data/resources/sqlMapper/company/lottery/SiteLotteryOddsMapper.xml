@@ -21,8 +21,6 @@
         <result column="bet_sort" property="betSort"/>
         <result column="sort_type" property="sortType"/>
 
-        <result column="parentOdds.oddA" property="sortType"/>
-
     </resultMap>
 
     <!--//region your codes 1-->
@@ -49,12 +47,9 @@
     <select id="getBranchOdds" resultMap="TABLE:site_lottery_odds">
         SELECT
         s1.*,
-        s2.hid  as  "parentOdds.hid",
-        s2.odd_a  as  "parentOdds.oddA",
-        s2.odd_b  as  "parentOdds.oddB",
-        s2.odd_c  as  "parentOdds.oddC",
-        s2.min_odd  as  "parentOdds.minOdd",
-        s2.max_odd  as  "parentOdds.maxOdd"
+        s2.odd_a  as  "parentOddA",
+        s2.odd_b  as  "parentOddB",
+        s2.odd_c  as  "parentOddC"
         FROM
             (SELECT * FROM site_lottery_odds WHERE hid = #{hid})  s1
         LEFT JOIN site_lottery_odds s2 ON SUBSTRING (s1.hid, 0, 25) = s2.hid

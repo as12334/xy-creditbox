@@ -15,6 +15,8 @@ import java.util.Map;
 public interface ILotteryService extends IBaseService<LotteryListVo, LotteryVo, Lottery, Integer> {
 
 
+
+
     //region your codes 2
     @Transactional
     void changeLotteryGenre(LotteryVo lotteryVo);
@@ -22,7 +24,7 @@ public interface ILotteryService extends IBaseService<LotteryListVo, LotteryVo, 
     @Transactional
     void saveLotteryOrder(LotteryVo lotteryVo);
 
-
+    Map<String, Lottery> load(LotteryListVo lotteryListVo);
     //endregion your codes 2
 
 }

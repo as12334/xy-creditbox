@@ -391,19 +391,26 @@
 
     <!-- 彩种缓存 -->
 	<util:constant id="CACHE_KEY_LOTTERY" static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_LOTTERY"/>
+	<!-- 彩票彩种缓存 -->
 	<bean id="lotteryCache" class="org.soul.commons.cache.core.CacheItemConf">
 		<property name="dataProviderClass" value="so.wwb.creditbox.iservice.manager.lottery.ILotteryService"/>
-		<property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
+
 		<property name="dataProviderMethod" value="load"/>
 		<property name="cacheLoadStrategy" ref="FIRST_TIME"/>
-		<property name="cacheProviderType" ref="siteJedisPorxy"/>
-		<property name="expire" value="3600"/>
+		<property name="cacheProviderType" ref="jedisProxy"/>
+		<property name="dubboVersionApp" value="${companies.dubbo.application.name}"/>
 		<property name="methodArgs">
 			<list>
-				<bean class="so.wwb.creditbox.model.manager.lottery.vo.LotteryVo"/>
+				<bean class="so.wwb.creditbox.model.manager.lottery.vo.LotteryListVo" />
 			</list>
 		</property>
+		<property name="localCache" value="true"/>
+		<property name="localExpire" value="43200"/>
 	</bean>
+
+	<util:constant id="CACHE_KEY_SITE_LOTTERY"  static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_SITE_LOTTERY"/>
+
+
 
 
 	<!-- 彩票总彩种赔率缓存 -->
@@ -424,7 +431,21 @@
 		<!--<property name="localCache" value="true"/>-->
 		<!--<property name="localExpire" value="600"/>-->
 	<!--</bean>-->
+	<bean id="siteLotteryCache" class="org.soul.commons.cache.core.CacheItemConf">
+		<property name="dataProviderClass" value="so.wwb.creditbox.iservice.company.lottery.ISiteLotteryService"/>
 
+		<property name="dataProviderMethod" value="load"/>
+		<property name="cacheLoadStrategy" ref="FIRST_TIME"/>
+		<property name="cacheProviderType" ref="siteJedisPorxy"/>
+		<property name="dubboVersionApp" value="${companies.dubbo.application.name}"/>
+		<property name="methodArgs">
+			<list>
+				<bean class="so.wwb.creditbox.model.company.lottery.vo.SiteLotteryVo"/>
+			</list>
+		</property>
+		<property name="localCache" value="true"/>
+		<property name="localExpire" value="3600"/>
+	</bean>
 
 	<!--站点彩票赔率缓存-->
 	<util:constant id="CACHE_KEY_SITE_LOTTERY_ODD"  static-field="so.wwb.creditbox.model.constants.cache.CacheKey.CACHE_KEY_SITE_LOTTERY_ODD"/>
@@ -691,6 +712,9 @@
 				<entry key-ref="CACHE_KEY_SITE_LOTTERY_REBATE" >
 					<ref bean="siteLotteryRebatesCache"/>
 				</entry>
+				<entry key-ref="CACHE_KEY_SITE_LOTTERY" >
+					<ref bean="siteLotteryCache"/>
+				</entry>
 				<!--&lt;!&ndash; token 缓存&ndash;&gt;-->
 				<!--<entry key-ref="CACHE_KEY_OAUTH_TOKEN">-->
 					<!--<ref bean="oauthTokenCache"/>-->
@@ -708,10 +732,10 @@
 				<!--</entry>-->
 
 
-                <!--&lt;!&ndash; 彩种缓存 &ndash;&gt;-->
-                <!--<entry key-ref="CACHE_KEY_LOTTERY">-->
-                    <!--<ref bean="lotteryCache"/>-->
-                <!--</entry>-->
+                <!-- 彩种缓存 -->
+                <entry key-ref="CACHE_KEY_LOTTERY">
+                    <ref bean="lotteryCache"/>
+                </entry>
                 <!--&lt;!&ndash; 彩种类型缓存 &ndash;&gt;-->
                 <!--<entry key-ref="CACHE_KEY_LOTTERY_TYPE">-->
                     <!--<ref bean="lotteryTypeCache"/>-->
