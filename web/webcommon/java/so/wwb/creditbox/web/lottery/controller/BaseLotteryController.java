@@ -42,10 +42,7 @@ import so.wwb.creditbox.web.tools.SessionManagerCommon;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by block on 2019/11/28.
@@ -68,6 +65,9 @@ public class BaseLotteryController {
         ErrorCode errorCode = new ErrorCode();
         List<ErrorCode.Error> errors = new ArrayList<>();
         WebJson webJson = new WebJson();
+        webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
+
+
         try {
             LOG.info("下注表单:site:{0},username:{1},code:{2},handlerForm:{3}", SessionManagerCommon.getSiteId(), SessionManagerCommon.getUser().getUsername(), code, form);
             Lottery lottery = Cache.getLottery(code);
@@ -89,21 +89,140 @@ public class BaseLotteryController {
 
             if (StringTool.isNotBlank(form.getOddsid())) {
                 SysUserExtend sessionUser = SessionManagerCommon.getSysUserExtend();
-                //限额校验 start
-                String[] betSorts = form.getOddsid().split(",");
-                for (String betSort : betSorts) {
-                    Map<String, SiteLotteryRebates> siteLotteryRebatesMap = Cache.getSiteLotteryRebates(HidTool.getBranchHid(sessionUser.getHid()), code);
-                    SiteLotteryRebates rebates = siteLotteryRebatesMap.get(betSort);
+                //反水和限额
+                Map<String, SiteLotteryRebates> siteLotteryRebatesMap = Cache.getSiteLotteryRebates(HidTool.getBranchHid(sessionUser.getHid()), code);
+                //赔率缓存
+                Map<String, SiteLotteryOdds> siteLotteryOdds = Cache.getBranchSiteLotteryOdds(sessionUser.getHid(), code);
 
-                    if(form.getuPI_M() < rebates.getMinBet() || form.getuPI_M() > rebates.getMaxBet()){
+
+                List<Integer> indexList = new ArrayList<>();
+                List<Double> newPlList = new ArrayList<>();
+
+
+
+                //验证赔率是否变动 start
+                boolean oddChange=false;
+                for (int i=0;i<form.getBetSortArray().length;i++) {
+                    //下注项
+                    String betSort = form.getBetSortArray()[i];
+                    //赔率
+                    Double odd = Double.valueOf(form.getOddArray()[i]);
+                    SiteLotteryOdds lotteryOdd = siteLotteryOdds.get(betSort);
+                    //验证赔率是否变动
+                    if(odd.compareTo(lotteryOdd.getBOdd(sessionUser)) != 0){
+                        oddChange = true;
+                        indexList.add(i);
+                        newPlList.add(lotteryOdd.getBOdd(sessionUser));
+                    }
+                }
+                if(oddChange){
+                    webJson.setSuccess(HttpCodeEnum.ODD_CHENGE.getCode());
+                    webJson.setTipinfo("赔率变动！");
+                    HashMap<String, Object> phaseinfoMap = new HashMap<>();
+                    phaseinfoMap.put("index",indexList);
+                    phaseinfoMap.put("newpl",newPlList);
+                    webJson.setData(phaseinfoMap);
+                    return webJson;
+                }
+                //验证赔率是否变动 end
+
+
+                //限额校验 start
+                for (int i=0;i<form.getBetSortArray().length;i++) {
+                    //下注项
+                    String betSort = form.getBetSortArray()[i];
+                    //赔率
+                    Double odd = Double.valueOf(form.getOddArray()[i]);
+                    //下注接
+                    Double money = Double.valueOf(form.getMoneyArray()[i]);
+
+
+                    SiteLotteryRebates rebates = siteLotteryRebatesMap.get(betSort);
+                    SiteLotteryOdds lotteryOdd = siteLotteryOdds.get(betSort);
+
+                    if(money < rebates.getMinBet() || money > rebates.getMaxBet()){
                         webJson.setSuccess(HttpCodeEnum.ERROR.getCode());
                         webJson.setTipinfo(errorCode.MSG_113);
                         return webJson;
                     }
+
+                    //初始化赔率，返水，限额
+                    SysUserExtendVo sysUserExtendVo = new SysUserExtendVo();
+                    sysUserExtendVo.getSearch().setId(sessionUser.getId());
+                    sysUserExtendVo.setDataSourceId(sessionUser.getSiteId());
+                    List<SysUserExtend> users = ServiceTool.sysUserExtendService().findOwner(sysUserExtendVo);
+
+                    List<LotteryBetOrder> orders = new ArrayList<>();
+                    //当前期数
+                    String expect = expect(code);
+
+
+
+
+
+
+                    LotteryBetOrder lotteryBetOrder = new LotteryBetOrder();
+                    lotteryBetOrder.setHid(sessionUser.getHid());
+                    lotteryBetOrder.setUserId(sessionUser.getId());
+                    lotteryBetOrder.setUsername(sessionUser.getUsername());
+                    lotteryBetOrder.setStatus(LotteryOrderStatusEnum.PENDING.getCode());
+                    lotteryBetOrder.setHandicap(sessionUser.getHandicap());
+                    lotteryBetOrder.setExpect(expect);
+                    lotteryBetOrder.setCode(code);
+                    lotteryBetOrder.setCodd1(lotteryOdd.getCOdd(sessionUser));
+                    lotteryBetOrder.setBodd1(lotteryOdd.getBOdd(sessionUser));
+                    lotteryBetOrder.setPlayCode(lotteryOdd.getPlayCode());
+                    lotteryBetOrder.setBetName(lotteryOdd.getBetName());
+                    lotteryBetOrder.setBetNum(lotteryOdd.getBetNum());
+                    lotteryBetOrder.setBetAmount(money);
+                    lotteryBetOrder.setBodd1(odd);
+                    lotteryBetOrder.setBetTime(new Date());
+                    lotteryBetOrder.setBetSort(betSort);
+                    lotteryBetOrder.setOwnerUserType(sessionUser.getOwnerUserType());
+
+                    for (SysUserExtend user : users) {
+                        UserTypeEnum anEnum = EnumTool.enumOf(UserTypeEnum.class, user.getUserType());
+                        rebates = siteLotteryRebatesMap.get(betSort);
+
+                        switch (anEnum){
+                            case PLAYER:
+                                lotteryBetOrder.setRebate8((rebates.getRebateA()/100)* money);
+                                lotteryBetOrder.setOccupy7(user.getSuperiorOccupy()/100.0);
+                                break;
+                            case AGENT:
+                                lotteryBetOrder.setRebate7((rebates.getRebateA()/100)* money);
+                                lotteryBetOrder.setOccupy6(user.getSuperiorOccupy()/100.0);
+                                lotteryBetOrder.setAgentId(user.getId());
+                                break;
+                            case DISTRIBUTOR:
+                                lotteryBetOrder.setRebate6((rebates.getRebateA()/100)* money);
+                                lotteryBetOrder.setOccupy5(user.getSuperiorOccupy()/100.0);
+                                lotteryBetOrder.setDistributorId(user.getId());
+                                break;
+                            case SHAREHOLDER:
+                                lotteryBetOrder.setRebate5((rebates.getRebateA()/100)* money);
+                                lotteryBetOrder.setOccupy4(user.getSuperiorOccupy()/100.0);
+                                lotteryBetOrder.setShareholderId(user.getId());
+                                break;
+                            case BRANCH:
+                                lotteryBetOrder.setRebate4((rebates.getRebateA()/100)* money);
+                                lotteryBetOrder.setOccupy3(user.getSuperiorOccupy()/100.0);
+                                lotteryBetOrder.setBranchId(user.getId());
+                                break;
+                            case COMPANY:
+                                lotteryBetOrder.setRebate3((rebates.getRebateA()/100)* money);
+                                lotteryBetOrder.setOccupy2(lotteryBetOrder.getOccupy7());
+                                lotteryBetOrder.setCompanyId(LotteryCommonContext.get().getDomainUserId());
+                                break;
+                        }
+                    }
+                    orders.add(lotteryBetOrder);
+                    form.setBetOrderList(orders);
                 }
                 //限额校验 end
 
-                initOddRebate(code, form);
+
+                
 
 
 //                //校验参数（例如期数、赔率）
@@ -124,8 +243,11 @@ public class BaseLotteryController {
 
                 vo.setEntities(form.getBetOrderList());
                 vo = ServiceTool.lotteryBetOrderService().saveBetOrder(vo);
+                webJson.setTipinfo("下单成功！");
+
             }else {
                 LOG.error("注单接口出错:bean:{0}", JsonTool.toJson(form));
+                webJson.setTipinfo("非法下注！");
             }
 
 
@@ -141,7 +263,7 @@ public class BaseLotteryController {
 
 
 
-        return null;
+        return webJson;
 
     }
 
@@ -181,88 +303,87 @@ public class BaseLotteryController {
      * @param code 彩种CODE
      * @param form 请求对象
      */
-    private void initOddRebate(String code, HandlerForm form) {
-        SysUserExtend sessionUser = SessionManagerCommon.getSysUserExtend();
-        SysUserExtendVo sysUserExtendVo = new SysUserExtendVo();
-        sysUserExtendVo.getSearch().setId(sessionUser.getId());
-        sysUserExtendVo.setDataSourceId(sessionUser.getSiteId());
-        List<SysUserExtend> users = ServiceTool.sysUserExtendService().findOwner(sysUserExtendVo);
-
-        List<LotteryBetOrder> orders = new ArrayList<>();
-        Map<String, SiteLotteryOdds> siteLotteryOdds = Cache.getBranchSiteLotteryOdds(sessionUser.getHid(), code);
-
-        String expect = expect(code);
-
-        String[] betSorts = form.getOddsid().split(",");
-        for (String betSort : betSorts) {
-            LotteryBetOrder lotteryBetOrder = new LotteryBetOrder();
-            SiteLotteryOdds lotteryOdd = siteLotteryOdds.get(betSort);
-//            lotteryBetOrder.setExpect(form.getPhaseid());
-            lotteryBetOrder.setHid(sessionUser.getHid());
-            lotteryBetOrder.setUserId(sessionUser.getId());
-            lotteryBetOrder.setUsername(sessionUser.getUsername());
-            lotteryBetOrder.setStatus(LotteryOrderStatusEnum.PENDING.getCode());
-            lotteryBetOrder.setHandicap(sessionUser.getHandicap());
-            lotteryBetOrder.setExpect(expect);
-            lotteryBetOrder.setCode(code);
-            lotteryBetOrder.setCodd1(lotteryOdd.getCOdd(sessionUser));
-            lotteryBetOrder.setBodd1(lotteryOdd.getBOdd(sessionUser));
-            lotteryBetOrder.setPlayCode(lotteryOdd.getPlayCode());
-            lotteryBetOrder.setBetName(lotteryOdd.getBetName());
-            lotteryBetOrder.setBetNum(lotteryOdd.getBetNum());
-            lotteryBetOrder.setBetAmount(form.getuPI_M());
-            lotteryBetOrder.setBodd1(form.getuPI_P());
-            lotteryBetOrder.setBetTime(new Date());
-            lotteryBetOrder.setBetSort(betSort);
-            lotteryBetOrder.setOwnerUserType(sessionUser.getOwnerUserType());
-
-
-            for (SysUserExtend user : users) {
-                UserTypeEnum anEnum = EnumTool.enumOf(UserTypeEnum.class, user.getUserType());
-                Map<String, SiteLotteryRebates> siteLotteryRebatesMap = Cache.getSiteLotteryRebates(HidTool.getBranchHid(user.getHid()), code);
-                SiteLotteryRebates rebates = siteLotteryRebatesMap.get(betSort);
-
-                switch (anEnum){
-                    case PLAYER:
-                        lotteryBetOrder.setRebate8((rebates.getRebateA()/100)* form.getuPI_M());
-                        lotteryBetOrder.setOccupy7(user.getSuperiorOccupy()/100.0);
-                        break;
-                    case AGENT:
-                        lotteryBetOrder.setRebate7((rebates.getRebateA()/100)* form.getuPI_M());
-                        lotteryBetOrder.setOccupy6(user.getSuperiorOccupy()/100.0);
-                        lotteryBetOrder.setAgentId(user.getId());
-                        break;
-                    case DISTRIBUTOR:
-                        lotteryBetOrder.setRebate6((rebates.getRebateA()/100)* form.getuPI_M());
-                        lotteryBetOrder.setOccupy5(user.getSuperiorOccupy()/100.0);
-                        lotteryBetOrder.setDistributorId(user.getId());
-                        break;
-                    case SHAREHOLDER:
-                        lotteryBetOrder.setRebate5((rebates.getRebateA()/100)* form.getuPI_M());
-                        lotteryBetOrder.setOccupy4(user.getSuperiorOccupy()/100.0);
-                        lotteryBetOrder.setShareholderId(user.getId());
-                        break;
-                    case BRANCH:
-                        lotteryBetOrder.setRebate4((rebates.getRebateA()/100)* form.getuPI_M());
-                        lotteryBetOrder.setOccupy3(user.getSuperiorOccupy()/100.0);
-                        lotteryBetOrder.setBranchId(user.getId());
-                        break;
-                    case COMPANY:
-                        lotteryBetOrder.setRebate3((rebates.getRebateA()/100)* form.getuPI_M());
-                        lotteryBetOrder.setOccupy2(lotteryBetOrder.getOccupy7());
-                        lotteryBetOrder.setCompanyId(LotteryCommonContext.get().getDomainUserId());
-                        break;
-                }
-            }
-            orders.add(lotteryBetOrder);
-        }
-        form.setBetOrderList(orders);
-    }
+//    private void initOddRebate(String code, HandlerForm form) {
+//        SysUserExtend sessionUser = SessionManagerCommon.getSysUserExtend();
+//        SysUserExtendVo sysUserExtendVo = new SysUserExtendVo();
+//        sysUserExtendVo.getSearch().setId(sessionUser.getId());
+//        sysUserExtendVo.setDataSourceId(sessionUser.getSiteId());
+//        List<SysUserExtend> users = ServiceTool.sysUserExtendService().findOwner(sysUserExtendVo);
+//
+//        List<LotteryBetOrder> orders = new ArrayList<>();
+//        Map<String, SiteLotteryOdds> siteLotteryOdds = Cache.getBranchSiteLotteryOdds(sessionUser.getHid(), code);
+//
+//        String expect = expect(code);
+//
+//        String[] betSorts = form.getOddsid().split(",");
+//        for (String betSort : betSorts) {
+//            LotteryBetOrder lotteryBetOrder = new LotteryBetOrder();
+//            SiteLotteryOdds lotteryOdd = siteLotteryOdds.get(betSort);
+////            lotteryBetOrder.setExpect(form.getPhaseid());
+//            lotteryBetOrder.setHid(sessionUser.getHid());
+//            lotteryBetOrder.setUserId(sessionUser.getId());
+//            lotteryBetOrder.setUsername(sessionUser.getUsername());
+//            lotteryBetOrder.setStatus(LotteryOrderStatusEnum.PENDING.getCode());
+//            lotteryBetOrder.setHandicap(sessionUser.getHandicap());
+//            lotteryBetOrder.setExpect(expect);
+//            lotteryBetOrder.setCode(code);
+//            lotteryBetOrder.setCodd1(lotteryOdd.getCOdd(sessionUser));
+//            lotteryBetOrder.setBodd1(lotteryOdd.getBOdd(sessionUser));
+//            lotteryBetOrder.setPlayCode(lotteryOdd.getPlayCode());
+//            lotteryBetOrder.setBetName(lotteryOdd.getBetName());
+//            lotteryBetOrder.setBetNum(lotteryOdd.getBetNum());
+//            lotteryBetOrder.setBetAmount(money);
+//            lotteryBetOrder.setBodd1(form.getuPI_P());
+//            lotteryBetOrder.setBetTime(new Date());
+//            lotteryBetOrder.setBetSort(betSort);
+//            lotteryBetOrder.setOwnerUserType(sessionUser.getOwnerUserType());
+//
+//
+//            for (SysUserExtend user : users) {
+//                UserTypeEnum anEnum = EnumTool.enumOf(UserTypeEnum.class, user.getUserType());
+//                Map<String, SiteLotteryRebates> siteLotteryRebatesMap = Cache.getSiteLotteryRebates(HidTool.getBranchHid(user.getHid()), code);
+//                SiteLotteryRebates rebates = siteLotteryRebatesMap.get(betSort);
+//
+//                switch (anEnum){
+//                    case PLAYER:
+//                        lotteryBetOrder.setRebate8((rebates.getRebateA()/100)* money);
+//                        lotteryBetOrder.setOccupy7(user.getSuperiorOccupy()/100.0);
+//                        break;
+//                    case AGENT:
+//                        lotteryBetOrder.setRebate7((rebates.getRebateA()/100)* money);
+//                        lotteryBetOrder.setOccupy6(user.getSuperiorOccupy()/100.0);
+//                        lotteryBetOrder.setAgentId(user.getId());
+//                        break;
+//                    case DISTRIBUTOR:
+//                        lotteryBetOrder.setRebate6((rebates.getRebateA()/100)* money);
+//                        lotteryBetOrder.setOccupy5(user.getSuperiorOccupy()/100.0);
+//                        lotteryBetOrder.setDistributorId(user.getId());
+//                        break;
+//                    case SHAREHOLDER:
+//                        lotteryBetOrder.setRebate5((rebates.getRebateA()/100)* money);
+//                        lotteryBetOrder.setOccupy4(user.getSuperiorOccupy()/100.0);
+//                        lotteryBetOrder.setShareholderId(user.getId());
+//                        break;
+//                    case BRANCH:
+//                        lotteryBetOrder.setRebate4((rebates.getRebateA()/100)* money);
+//                        lotteryBetOrder.setOccupy3(user.getSuperiorOccupy()/100.0);
+//                        lotteryBetOrder.setBranchId(user.getId());
+//                        break;
+//                    case COMPANY:
+//                        lotteryBetOrder.setRebate3((rebates.getRebateA()/100)* money);
+//                        lotteryBetOrder.setOccupy2(lotteryBetOrder.getOccupy7());
+//                        lotteryBetOrder.setCompanyId(LotteryCommonContext.get().getDomainUserId());
+//                        break;
+//                }
+//            }
+//            orders.add(lotteryBetOrder);
+//        }
+//        form.setBetOrderList(orders);
+//    }
     /**
      * 检验参数（期数、彩种、玩法、赔率、金额）
      *
      * @param code
-     * @param expect
      * @param errorCode
      * @param bean
      * @return

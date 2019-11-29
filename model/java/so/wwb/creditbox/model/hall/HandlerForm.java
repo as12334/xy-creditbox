@@ -30,11 +30,12 @@ public class HandlerForm implements Serializable {
     //下注玩法
     private String  oddsid;
     //赔率
-    private Double uPI_P;
+    private String uPI_P;
     //金额
-    private Double uPI_M;
+    private String uPI_M;
     //彩种ID
-    private Integer i_index;
+    private String i_index;
+
     private Long JeuValidate;
 
     // 投注总额
@@ -82,27 +83,27 @@ public class HandlerForm implements Serializable {
         this.oddsid = oddsid;
     }
 
-    public Double getuPI_P() {
+    public String getuPI_P() {
         return uPI_P;
     }
 
-    public void setuPI_P(Double uPI_P) {
+    public void setuPI_P(String uPI_P) {
         this.uPI_P = uPI_P;
     }
 
-    public Double getuPI_M() {
+    public String getuPI_M() {
         return uPI_M;
     }
 
-    public void setuPI_M(Double uPI_M) {
+    public void setuPI_M(String uPI_M) {
         this.uPI_M = uPI_M;
     }
 
-    public Integer getI_index() {
+    public String getI_index() {
         return i_index;
     }
 
-    public void setI_index(Integer i_index) {
+    public void setI_index(String i_index) {
         this.i_index = i_index;
     }
 
@@ -129,4 +130,18 @@ public class HandlerForm implements Serializable {
     public void setTotalMoney(double totalMoney) {
         this.totalMoney = totalMoney;
     }
+
+    public String[] getBetSortArray() {
+        return oddsid.split(",");
+    }
+
+    public String[] getMoneyArray() {
+        return uPI_M.split(",");
+    }
+
+    public String[] getOddArray() {
+        return uPI_P.split(",");
+    }
+
+
 }

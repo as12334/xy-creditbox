@@ -253,6 +253,7 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 		this.parentOddC = parentOddC;
 	}
 
+	//获取公司的赔率
 	public Double getCOdd(SysUserExtend sessionUser) {
 		if(sessionUser.getHandicap() == 1){
 			return parentOddA;
@@ -262,7 +263,7 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 			return parentOddA - parentOddC;
 		}
 	}
-
+	//获取分公司的赔率
 	public Double getBOdd(SysUserExtend sessionUser) {
 		if(sessionUser.getHandicap() == 1){
 			return oddA;

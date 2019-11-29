@@ -90,15 +90,8 @@ public class LotteryHandlerController extends BaseLotteryController{
         if("put_money".equals(form.getAction())){
 
 
-            super.saveBetOrder(request,code, form);
+            return JsonTool.toJson(super.saveBetOrder(request,code, form));
 
-            return "{" +
-                    "  \"success\": 200," +
-                    "  \"data\": {" +
-                    "    \"type\": \"get_putinfo\"" +
-                    "  }," +
-                    "  \"tipinfo\": \"下单成功\"" +
-                    "}";
         }
         else if("get_openball".equals(form.getAction())){
             HashMap<String, String> phaseinfoMap = new HashMap<>();

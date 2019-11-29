@@ -1,6 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" %>
-<input type="hidden" id="playids" value="96,97,98,99,100,127,128" />
+<input type="hidden" id="playids" value="100_109,98_107,97_106,98_108,100_110,99_111,99_112,97_105,96_86,96_93,96_99,128_292,127_264,96_85,96_89,96_90,96_91,96_92,96_94,96_95,96_96,96_97,96_98,96_100,96_101,96_102,96_103,96_104,127_266,127_263,128_293,128_294,127_265,96_87,96_88" />
 <%--<input type="hidden" id="playids" value="96,97,98,99,100,127,128" />--%>
 <div class="game_ball_wrap game_item_wrap base-clear">
     <div class="game_box gameBox col_5 base-clear" data-title="第四球">
@@ -13,7 +13,7 @@
                     <li data-name="09" id="g_96_93" data-bid="96_93"></li>
                     <li data-name="13" id="g_96_97" data-bid="96_97"></li>
                     <li data-name="17" id="g_96_101" data-bid="96_101"></li>
-                    <li data-name="02" id="g_96_86" data-bid="96100_109,98_107,97_106,98_108,100_110,99_111,99_112,97_105,96_86,96_93,96_99,128_292,127_264,96_85,96_89,96_90,96_91,96_92,96_94,96_95,96_96,96_97,96_98,96_100,96_101,96_102,96_103,96_104,127_266,127_263,128_293,128_294,127_265,96_87,96_88_86"></li>
+                    <li data-name="02" id="g_96_86" data-bid="96_86"></li>
                     <li data-name="06" id="g_96_90" data-bid="96_90"></li>
                     <li data-name="10" id="g_96_94" data-bid="96_94"></li>
                     <li data-name="14" id="g_96_98" data-bid="96_98"></li>
