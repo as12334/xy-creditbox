@@ -13,6 +13,17 @@ public interface LotteryWinningNum {
     String TOTAL_MANTISSA_BIG = "总尾大";
     String TOTAL_MANTISSA_SMALL = "总尾小";
 
+
+    String ZBF_Z = "中";
+    String ZBF_B = "白";
+    String ZBF_F = "發";
+
+    String FW_D = "東";
+    String FW_X = "西";
+    String FW_N = "南";
+    String FW_B = "北";
+
+
     String SINGLE = "单";
     String DOUBLE = "双";
     String TOTAL_SINGLE = "总单";

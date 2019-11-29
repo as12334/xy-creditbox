@@ -1,5 +1,6 @@
 package so.wwb.creditbox.schedule.job;
 
+import org.soul.commons.cache.CacheTool;
 import org.soul.commons.log.Log;
 import org.soul.commons.log.LogFactory;
 import so.wwb.creditbox.common.dubbo.ServiceTool;

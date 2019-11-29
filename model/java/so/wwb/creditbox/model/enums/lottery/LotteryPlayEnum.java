@@ -108,6 +108,15 @@ public enum LotteryPlayEnum implements ICodeEnum {
     SFC_DIGITAL("sfc","sfc_digital", "定位"),
     SFC_BIG_SMALL("sfc","sfc_big_small", "大小"),
     SFC_SINGLE_DOUBLE("sfc","sfc_single_double", "单双"),
+//    中發白
+    SFC_ZBF("sfc","sfc_zbf", "方位"),
+//    方位
+    SFC_FW("sfc","sfc_fw", "东南西北"),
+
+
+
+
+
     SFC_MANTISSA_BIG_SMALL("sfc","sfc_mantissa_big_small", "尾数大小"),
     SFC_SUM_SINGLE_DOUBLE("sfc","sfc_sum_single_double", "合数单双"),
     SFC_SUM8_BIG_SMALL("sfc","sfc_sum8_big_small", "总和大小"),

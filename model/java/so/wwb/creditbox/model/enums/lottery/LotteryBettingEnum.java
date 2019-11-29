@@ -45,14 +45,16 @@ public enum LotteryBettingEnum implements ICodeEnum {
     CHAMPION_UP_DAXIAODANSHUANG("pk10", "champion_up_daxiaodanshuang", "冠亚大小單雙"),
 
     //十分彩(重庆幸运农场,广东快乐十分)
-    SFC_FIRST("sfc", "sfc_first", "第一球"),
-    SFC_SECOND("sfc", "sfc_second", "第二球"),
-    SFC_THIRD("sfc", "sfc_third", "第三球"),
-    SFC_FOURTH("sfc", "sfc_fourth", "第四球"),
-    SFC_FIFTH("sfc", "sfc_fifth", "第五球"),
-    SFC_SIXTH("sfc", "sfc_sixth", "第六球"),
-    SFC_SEVENTH("sfc", "sfc_seventh", "第七球"),
-    SFC_EIGHTH("sfc", "sfc_eighth", "第八球"),
+    SFC_FIRST("sfc", "81", "第一球"),
+    SFC_SECOND("sfc", "86", "第二球"),
+    SFC_THIRD("sfc", "91", "第三球"),
+    SFC_FOURTH("sfc", "96", "第四球"),
+    SFC_FIFTH("sfc", "101", "第五球"),
+    SFC_SIXTH("sfc", "106", "第六球"),
+    SFC_SEVENTH("sfc", "111", "第七球"),
+    SFC_EIGHTH("sfc", "116", "第八球"),
+
+
     SFC_SUM8("sfc", "sfc_sum8", "总和"),
     SFC_SUM_DRAGON_TIGER("sfc", "sfc_sum_dragon_tiger", "總和、龍虎"),
     SFC_CONTINUOUS_CODE("sfc", "sfc_continuous_code", "連碼"),

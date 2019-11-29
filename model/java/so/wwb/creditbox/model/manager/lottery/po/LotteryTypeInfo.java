@@ -1,6 +1,5 @@
 package so.wwb.creditbox.model.manager.lottery.po;
 
-
 import org.soul.commons.bean.IEntity;
 import org.soul.model.common.Sortable;
 
@@ -9,32 +8,25 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-11-29 19:37:20
+ * @time 2019-11-29 21:17:34
  */
 //region your codes 1
-public class LotteryOdds implements IEntity<Integer> {
+public class LotteryTypeInfo implements IEntity<Integer> {
 //endregion your codes 1
 
 	//region your codes 3
-	private static final long serialVersionUID = 640798668326443337L;
+	private static final long serialVersionUID = -4476604066118114897L;
 	//endregion your codes 3
 
 	//region property name constants
 	public static final String PROP_ID = "id";
-	public static final String PROP_CODE = "code";
+	public static final String PROP_TYPE = "type";
 	public static final String PROP_BET_NAME = "betName";
 	public static final String PROP_BET_CODE = "betCode";
 	public static final String PROP_PLAY_CODE = "playCode";
 	public static final String PROP_BET_NUM = "betNum";
 	public static final String PROP_SORT = "sort";
-	public static final String PROP_ODD_A = "oddA";
-	public static final String PROP_ODD_B = "oddB";
-	public static final String PROP_ODD_C = "oddC";
-	public static final String PROP_MIN_ODD = "minOdd";
-	public static final String PROP_MAX_ODD = "maxOdd";
-	public static final String PROP_ODD_CLOSE = "oddClose";
 	public static final String PROP_BET_SORT = "betSort";
-	public static final String PROP_SORT_TYPE = "sortType";
 	//endregion
 	
 	
@@ -42,7 +34,7 @@ public class LotteryOdds implements IEntity<Integer> {
 	/**  */
 	private Integer id;
 	/**  */
-	private String code;
+	private String type;
 	/**  */
 	private String betName;
 	/**  */
@@ -54,29 +46,15 @@ public class LotteryOdds implements IEntity<Integer> {
 	/**  */
 	private Integer sort;
 	/**  */
-	private Double oddA;
-	/**  */
-	private Double oddB;
-	/**  */
-	private Double oddC;
-	/**  */
-	private Double minOdd;
-	/**  */
-	private Double maxOdd;
-	/**  */
-	private Boolean oddClose;
-	/**  */
 	private String betSort;
-	/** 玩法小类 LotterySortTypeEnum */
-	private String sortType;
 	//endregion
 
 	
 	//region constuctors
-	public LotteryOdds(){
+	public LotteryTypeInfo(){
 	}
 
-	public LotteryOdds(Integer id){
+	public LotteryTypeInfo(Integer id){
 		this.id = id;
 	}
 	//endregion
@@ -90,12 +68,12 @@ public class LotteryOdds implements IEntity<Integer> {
 	public void setId(Integer value) {
 		this.id = value;
 	}
-	public String getCode() {
-		return this.code;
+	public String getType() {
+		return this.type;
 	}
 
-	public void setCode(String value) {
-		this.code = value;
+	public void setType(String value) {
+		this.type = value;
 	}
 	public String getBetName() {
 		return this.betName;
@@ -132,61 +110,12 @@ public class LotteryOdds implements IEntity<Integer> {
 	public void setSort(Integer value) {
 		this.sort = value;
 	}
-	public Double getOddA() {
-		return this.oddA;
-	}
-
-	public void setOddA(Double value) {
-		this.oddA = value;
-	}
-	public Double getOddB() {
-		return this.oddB;
-	}
-
-	public void setOddB(Double value) {
-		this.oddB = value;
-	}
-	public Double getOddC() {
-		return this.oddC;
-	}
-
-	public void setOddC(Double value) {
-		this.oddC = value;
-	}
-	public Double getMinOdd() {
-		return this.minOdd;
-	}
-
-	public void setMinOdd(Double value) {
-		this.minOdd = value;
-	}
-	public Double getMaxOdd() {
-		return this.maxOdd;
-	}
-
-	public void setMaxOdd(Double value) {
-		this.maxOdd = value;
-	}
-	public Boolean getOddClose() {
-		return this.oddClose;
-	}
-
-	public void setOddClose(Boolean value) {
-		this.oddClose = value;
-	}
 	public String getBetSort() {
 		return this.betSort;
 	}
 
 	public void setBetSort(String value) {
 		this.betSort = value;
-	}
-	public String getSortType() {
-		return this.sortType;
-	}
-
-	public void setSortType(String value) {
-		this.sortType = value;
 	}
 	//endregion
 
