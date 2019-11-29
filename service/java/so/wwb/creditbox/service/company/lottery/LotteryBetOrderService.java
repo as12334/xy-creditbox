@@ -1,6 +1,7 @@
 package so.wwb.creditbox.service.company.lottery;
 
 import org.soul.service.support.BaseService;
+import org.springframework.transaction.annotation.Transactional;
 import so.wwb.creditbox.data.company.lottery.LotteryBetOrderMapper;
 import so.wwb.creditbox.iservice.company.lottery.ILotteryBetOrderService;
 import so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder;
@@ -20,6 +21,7 @@ public class LotteryBetOrderService extends BaseService<LotteryBetOrderMapper, L
 //endregion your codes 1
 
     //region your codes 2
+    @Transactional
     @Override
     public LotteryBetOrderVo saveBetOrder(LotteryBetOrderVo vo) {
         mapper.batchInsert(vo.getEntities());

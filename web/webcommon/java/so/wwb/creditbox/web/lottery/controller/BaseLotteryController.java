@@ -69,6 +69,17 @@ public class BaseLotteryController {
 
 
         try {
+            //当前开奖结果
+            LotteryResult handicap = getHandicap(code);
+            //是否封盘
+            if(handicap.getLeftTime()<0){
+                webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
+                webJson.setTipinfo("该期已封盘！");
+                return webJson;
+            }
+
+
+
             LOG.info("下注表单:site:{0},username:{1},code:{2},handlerForm:{3}", SessionManagerCommon.getSiteId(), SessionManagerCommon.getUser().getUsername(), code, form);
             Lottery lottery = Cache.getLottery(code);
             if (lottery == null || !StringTool.equals(LotteryStatusEnum.NORMAL.getCode(), lottery.getStatus())) {
@@ -128,6 +139,7 @@ public class BaseLotteryController {
 
 
                 //限额校验 start
+                List<LotteryBetOrder> orders = new ArrayList<>();
                 for (int i=0;i<form.getBetSortArray().length;i++) {
                     //下注项
                     String betSort = form.getBetSortArray()[i];
@@ -152,11 +164,6 @@ public class BaseLotteryController {
                     sysUserExtendVo.setDataSourceId(sessionUser.getSiteId());
                     List<SysUserExtend> users = ServiceTool.sysUserExtendService().findOwner(sysUserExtendVo);
 
-                    List<LotteryBetOrder> orders = new ArrayList<>();
-                    //当前期数
-                    String expect = expect(code);
-
-
 
 
 
@@ -167,7 +174,7 @@ public class BaseLotteryController {
                     lotteryBetOrder.setUsername(sessionUser.getUsername());
                     lotteryBetOrder.setStatus(LotteryOrderStatusEnum.PENDING.getCode());
                     lotteryBetOrder.setHandicap(sessionUser.getHandicap());
-                    lotteryBetOrder.setExpect(expect);
+                    lotteryBetOrder.setExpect(handicap.getExpect());
                     lotteryBetOrder.setCode(code);
                     lotteryBetOrder.setCodd1(lotteryOdd.getCOdd(sessionUser));
                     lotteryBetOrder.setBodd1(lotteryOdd.getBOdd(sessionUser));
@@ -217,10 +224,10 @@ public class BaseLotteryController {
                         }
                     }
                     orders.add(lotteryBetOrder);
-                    form.setBetOrderList(orders);
+
                 }
                 //限额校验 end
-
+                form.setBetOrderList(orders);
 
                 
 
@@ -426,7 +433,7 @@ public class BaseLotteryController {
      * @return
      */
     public String expect(String code) {
-        LotteryResult lotteryResult = getHandicapClose(code);
+        LotteryResult lotteryResult = getHandicap(code);
         if (lotteryResult != null) {
             return lotteryResult.getExpect();
         }
@@ -436,11 +443,11 @@ public class BaseLotteryController {
     /**
      * 获取彩票当前盘口信息(封盘)
      */
-    public LotteryResult getHandicapClose(String code) {
+    public LotteryResult getHandicap(String code) {
         List<LotteryResult> lotteryResultList = CacheBase.getLotteryResult(code);
         Date curDate = new Date();
         for (LotteryResult lotteryResult : lotteryResultList) {
-            if (curDate.getTime() <= lotteryResult.getCloseTime().getTime()) {
+            if (curDate.getTime() <= lotteryResult.getOpenTime().getTime()) {
                 Long leftTime = DateTool.secondsBetween(lotteryResult.getCloseTime(), curDate);
                 lotteryResult.setLeftTime(leftTime);
                 lotteryResult.setLeftOpenTime(DateTool.secondsBetween(lotteryResult.getOpeningTime(), curDate));
