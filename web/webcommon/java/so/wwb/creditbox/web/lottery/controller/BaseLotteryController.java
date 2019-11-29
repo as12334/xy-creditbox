@@ -80,7 +80,7 @@ public class BaseLotteryController {
 
 
 
-            LOG.info("下注表单:site:{0},username:{1},code:{2},handlerForm:{3}", SessionManagerCommon.getSiteId(), SessionManagerCommon.getUser().getUsername(), code, form);
+            LOG.info("下注表单:site:{0},username:{1},code:{2},handlerForm:{3}", SessionManagerCommon.getSiteId(), SessionManagerCommon.getUser().getUsername(), code, JsonTool.toJson(form));
             Lottery lottery = Cache.getLottery(code);
             if (lottery == null || !StringTool.equals(LotteryStatusEnum.NORMAL.getCode(), lottery.getStatus())) {
                 errors.add(errorCode.new Error(errorCode.CODE_111, errorCode.MSG_DISABLE, errorCode.ICON_5));
@@ -157,6 +157,8 @@ public class BaseLotteryController {
                         webJson.setTipinfo(errorCode.MSG_113);
                         return webJson;
                     }
+                    //todo  单期校验未处理
+
 
                     //初始化赔率，返水，限额
                     SysUserExtendVo sysUserExtendVo = new SysUserExtendVo();
