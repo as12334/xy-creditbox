@@ -99,7 +99,7 @@ public enum DictEnum implements IDictEnum {
      */
     TY_RESULT_OPERATION_TYPE(Module.BET, "ty_result_operation"),
 
-    /**注单统计*/
+    /**注單统计*/
     COMMON_WINNING_STATUS(Module.COMMON,"winning_status"),
     /**
      * 赛事维护比分来源类型

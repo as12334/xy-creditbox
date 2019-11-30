@@ -5,7 +5,7 @@ import org.soul.web.support.IForm;
 
 
 /**
- * 表单验证对象
+ * 表單验证对象
  *
  * @author smith
  * @time 2018-08-10 11:08:56

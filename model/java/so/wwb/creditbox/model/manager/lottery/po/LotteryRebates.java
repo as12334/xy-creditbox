@@ -60,9 +60,9 @@ public class LotteryRebates implements IEntity<Integer> {
 	private Double rebateC;
 	/** 最低下注额 */
 	private Double minBet;
-	/** 单注限额 */
+	/** 單注限额 */
 	private Double maxBet;
-	/** 单期限额 */
+	/** 單期限额 */
 	private Double maxExpectBet;
 	/** 起补金额 */
 	private Double postMoney;

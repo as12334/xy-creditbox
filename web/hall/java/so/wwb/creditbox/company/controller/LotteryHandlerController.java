@@ -22,7 +22,9 @@ import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.hall.HandlerForm;
 import so.wwb.creditbox.model.hall.LotteryErrorCode;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
+import so.wwb.creditbox.model.manager.lottery.po.LotteryTypeInfo;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryResultVo;
+import so.wwb.creditbox.model.manager.lottery.vo.LotteryTypeInfoListVo;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.web.cache.Cache;
 import so.wwb.creditbox.web.lottery.controller.BaseLotteryController;
@@ -44,6 +46,13 @@ public class LotteryHandlerController extends BaseLotteryController{
     @RequestMapping(value = "/{code}/handler/handler")
     @ResponseBody
     protected String handler(@PathVariable String code, HandlerForm form, HttpServletRequest request, HttpServletResponse response, Model model ) {
+
+
+
+
+
+
+
         WebJson webJson = new WebJson();
         LotteryErrorCode errorCode = new LotteryErrorCode();
         SysUserExtend sessionUser = SessionManager.getSysUserExtend();
@@ -86,10 +95,24 @@ public class LotteryHandlerController extends BaseLotteryController{
         //最近五期的开奖结果 end
 
 
-        //下单
+        //下單
         if("put_money".equals(form.getAction())){
 
+            Map<String, HashMap<String, HashMap<String, String>>> codeMap = new HashMap<>();
+            List<LotteryTypeInfo> list = ServiceTool.lotteryTypeInfoService().allSearch(new LotteryTypeInfoListVo());
+            for (LotteryTypeInfo lotteryTypeInfo : list) {
+                String betName = lotteryTypeInfo.getBetName();
+                if (codeMap.get(betName) == null) {
+                    codeMap.put(betName, new HashMap<>());
+                }
 
+                String betNum = lotteryTypeInfo.getBetNum();
+                if (codeMap.get(betName).get(betNum) == null) {
+                    codeMap.get(betName).put(betNum, new HashMap<>());
+                }
+                String betSort = lotteryTypeInfo.getBetSort();
+                codeMap.get(betName).get(betNum).put(betNum, betSort);
+            }
             return JsonTool.toJson(super.saveBetOrder(request,code, form));
 
         }

@@ -138,11 +138,11 @@ public class SiteConfineAreaService extends BaseService<SiteConfineAreaMapper, S
             rs = cs.getResultSet();
             if (rs != null && rs.next()) {
                 String reVal = rs.getString(1);
-                LOG.info("SiteConfineAreaService:初始化黑名单返回结果:{0}",reVal);
+                LOG.info("SiteConfineAreaService:初始化黑名單返回结果:{0}",reVal);
             }
             return vo;
         } catch (SQLException e) {
-            LOG.error(e,"SiteConfineAreaService:初始化黑名单返回结果");
+            LOG.error(e,"SiteConfineAreaService:初始化黑名單返回结果");
             vo.setSuccess(false);
             return vo;
         } finally {

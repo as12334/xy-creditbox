@@ -1,23 +1,26 @@
-package so.wwb.creditbox.service.company.handler;
+package so.wwb.creditbox.service.manager.lottery;
 
 import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.log.Log;
 import org.soul.commons.log.LogFactory;
+import org.soul.service.support.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import so.wwb.creditbox.common.dubbo.ServiceTool;
+import so.wwb.creditbox.data.manager.lottery.LotteryResultMapper;
 import so.wwb.creditbox.data.manager.lottery.LotteryTypeInfoMapper;
-import so.wwb.creditbox.model.enums.lottery.LotteryBettingEnum;
-import so.wwb.creditbox.model.enums.lottery.LotteryPlayEnum;
+import so.wwb.creditbox.iservice.manager.lottery.ILotteryTypeInfoService;
 import so.wwb.creditbox.model.enums.lottery.LotteryWinningNum;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryTypeInfo;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryWinningRecord;
+import so.wwb.creditbox.model.manager.lottery.vo.LotteryTypeInfoListVo;
 
 import java.util.*;
 
 /**
  * Created by shook on 17-4-18.
  */
-public abstract class AbstractWinningRecordHandle {
+public abstract class AbstractWinningRecordHandle{
 
     static final Log log = LogFactory.getLog(AbstractWinningRecordHandle.class);
 
@@ -27,7 +30,10 @@ public abstract class AbstractWinningRecordHandle {
 
 
     @Autowired
-    private LotteryTypeInfoMapper lotteryTypeInfoMapper;
+    private ILotteryTypeInfoService lotteryTypeInfoService;
+
+    @Autowired
+    private LotteryResultMapper lotteryResultMapper;
 
     static {
 
@@ -106,19 +112,16 @@ public abstract class AbstractWinningRecordHandle {
     public  Map<String, HashMap<String, HashMap<String, String>>> getbetSortMap(){
         if (betSortMap == null) {
             Map<String, HashMap<String, HashMap<String, String>>> codeMap = new HashMap<>();
-            List<LotteryTypeInfo> list = lotteryTypeInfoMapper.allSearch();
+            List<LotteryTypeInfo> list = ServiceTool.lotteryTypeInfoService().allSearch(new LotteryTypeInfoListVo());
             for (LotteryTypeInfo lotteryTypeInfo : list) {
-                String type = lotteryTypeInfo.getType();
-                if (codeMap.get(type) == null) {
-                    codeMap.put(type, new HashMap<>());
+                String betName = lotteryTypeInfo.getBetName();
+                if (codeMap.get(betName) == null) {
+                    codeMap.put(betName, new HashMap<>());
                 }
-                String playCode = lotteryTypeInfo.getPlayCode() + "";
-                if (codeMap.get(type).get(playCode) == null) {
-                    codeMap.get(type).put(playCode, new HashMap<>());
-                }
+
                 String betNum = lotteryTypeInfo.getBetNum();
                 String betSort = lotteryTypeInfo.getBetSort();
-                codeMap.get(type).get(playCode).put(betNum, betSort);
+                codeMap.get(betName).get(betNum).put(betNum, betSort);
             }
             betSortMap = codeMap;
         }
@@ -130,7 +133,7 @@ public abstract class AbstractWinningRecordHandle {
     }
 
     /**
-     * 单码
+     * 單码
      *
      * @param openCode 开奖号码
      * @return 对应的bet_sort
@@ -146,14 +149,14 @@ public abstract class AbstractWinningRecordHandle {
     }
 
     /**
-     * 判断单数字的大小
+     * 判断單数字的大小
      *
      *
      * @param stringStringHashMap
      * @param openCode 开奖号码
      * @return 大，小
      */
-    String generateBigSmallNum(HashMap<String, String> stringStringHashMap, String openCode) {
+    protected String generateBigSmallNum(HashMap<String, String> stringStringHashMap, String openCode) {
         Integer num = Integer.valueOf(openCode);
         if (isBigNum(num)) {
             return stringStringHashMap.get(LotteryWinningNum.BIG);
@@ -181,7 +184,7 @@ public abstract class AbstractWinningRecordHandle {
 
 
     /**
-     * 单个数字的大规则
+     * 單个数字的大规则
      *
      * @param num
      * @return
@@ -192,14 +195,14 @@ public abstract class AbstractWinningRecordHandle {
 
 
     /**
-     * 判断该数字的单双
+     * 判断该数字的單雙
      *
      *
      * @param stringStringHashMap
      * @param num 号码
-     * @return 单，双
+     * @return 單，雙
      */
-    String generateSingleDoubleNum(HashMap<String, String> stringStringHashMap, Integer num) {
+    protected String generateSingleDoubleNum(HashMap<String, String> stringStringHashMap, Integer num) {
         if (num % 2 == 0) {
             return stringStringHashMap.get(LotteryWinningNum.DOUBLE);
         } else {
@@ -208,14 +211,14 @@ public abstract class AbstractWinningRecordHandle {
     }
 
     /**
-     * 生成合数单双
+     * 生成合数單雙
      *
      *
      * @param stringStringHashMap
      * @param openCode 开奖号码
-     * @return 合单，合双
+     * @return 合單，合雙
      */
-    String generateSingleSumSingleDoubleNum(HashMap<String, String> stringStringHashMap, String openCode) {
+    protected String generateSingleSumSingleDoubleNum(HashMap<String, String> stringStringHashMap, String openCode) {
         Integer num = generateSingleSum(openCode);
         if (num % 2 == 0) {
             return stringStringHashMap.get(LotteryWinningNum.SINGLE_SUM_DOUBLE);
@@ -225,12 +228,12 @@ public abstract class AbstractWinningRecordHandle {
     }
 
     /**
-     * 生成总和单双
+     * 生成总和單雙
      *
      *
      * @param stringStringHashMap
      * @param num 总和
-     * @return 总单，总双
+     * @return 总單，总雙
      */
     String generateTotalSingleDoubleNum(HashMap<String, String> stringStringHashMap, Integer num) {
         if (num % 2 == 0) {
@@ -262,7 +265,7 @@ public abstract class AbstractWinningRecordHandle {
      * @param openCode 开奖号码
      * @return 尾大，尾小
      */
-    String generateMantissaBigSmallNum(HashMap<String, String> stringStringHashMap, String openCode) {
+    protected String generateMantissaBigSmallNum(HashMap<String, String> stringStringHashMap, String openCode) {
         Integer num = Integer.valueOf(generateMantissa(openCode));
         if (isMatissaBigNum(num)) {
             return stringStringHashMap.get(LotteryWinningNum.MANTISSA_BIG);
@@ -282,7 +285,7 @@ public abstract class AbstractWinningRecordHandle {
      * @param openCode 开奖号码
      * @return 中發白
      */
-    String generateZbfNum(HashMap<String, String> stringStringHashMap, Integer openCode) {
+    protected String generateZbfNum(HashMap<String, String> stringStringHashMap, Integer openCode) {
         if(openCode <=7){
             return stringStringHashMap.get(LotteryWinningNum.ZBF_Z);
         }else if(openCode <=14){
@@ -307,7 +310,7 @@ public abstract class AbstractWinningRecordHandle {
      * @param openCode 开奖号码
      * @return 东南西北
      */
-    String generateFwfNum(HashMap<String, String> stringStringHashMap, Integer openCode) {
+    protected String generateFwfNum(HashMap<String, String> stringStringHashMap, Integer openCode) {
         if(openCode%4 == 1){
             return stringStringHashMap.get(LotteryWinningNum.FW_D);
         }else if(openCode%4 == 2){
@@ -344,7 +347,7 @@ public abstract class AbstractWinningRecordHandle {
      * 获取数字的合数
      *
      * @param numCode 开奖号码
-     * @return 单号码的和
+     * @return 單号码的和
      */
     Integer generateSingleSum(String numCode) {
         if (numCode.length() == 1) {
@@ -357,11 +360,11 @@ public abstract class AbstractWinningRecordHandle {
     }
 
     /**
-     * 生成龙虎和结果
+     * 生成龍虎和结果
      *
      *
      * @param stringStringHashMap
-     * @param dragon 龙位号码
+     * @param dragon 龍位号码
      * @param tiger  虎位号码
      * @return
      */

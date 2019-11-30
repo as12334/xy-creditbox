@@ -45,7 +45,7 @@ public interface LotteryFunction {
     String CALL_LOTTERY_ORDER_SUMMARY = "{call f_summary_lottery_order(?,?,?,?)}";
 
     /**
-     * 撤单
+     * 撤單
      * @param 彩种代号
      * @param 期数
      */
@@ -76,7 +76,7 @@ public interface LotteryFunction {
     //运营报表
     String CALL_LB_REPORT_OPERATE = "{call lb_report_operate(?)}";
 
-    //黑名单
+    //黑名單
     String CALL_F_INIT_SITE_CONFINE_AREA = "{call f_init_site_confine_area(?)}";
 
     //分红

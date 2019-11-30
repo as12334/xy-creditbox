@@ -73,7 +73,7 @@ public enum ModuleType implements IModuleType {
 //    LOTTERY_ADJUST("211","调盘"),
 //    LOTTERY_PAYOUT("212","派彩"),
 //    LOTTERY_RECALCULATE("213","重结"),
-//    LOTTERY_REVOKE("214","撤单"),
+//    LOTTERY_REVOKE("214","撤單"),
 //    LOTTERY_REVOCATION("215","撤销"),
 //    LOTTERY_MAKE_UP("216","补采"),
 //    LOTTERY_RESULT("217","开奖结果"),
@@ -163,8 +163,8 @@ public enum ModuleType implements IModuleType {
 //    FUND_FAVORABLE_CHECK("515","活动优惠审核"),
 //    FUND_BILLAUDIT_UPDATE("516","修改玩家存款,优惠稽核打码量"),
 //
-//    FUND_WITHDRAW_CHECK_UNLOCK("520","取款审核解锁订单"),
-//    FUND_WITHDRAW_CHECK_LOCK("521","取款审核锁定订单"),
+//    FUND_WITHDRAW_CHECK_UNLOCK("520","取款审核解锁订單"),
+//    FUND_WITHDRAW_CHECK_LOCK("521","取款审核锁定订單"),
 //    FUND_SYS_VOICE("590","财务模块声音禁用/启用"),
 //
 //    //内容601-700
@@ -210,10 +210,10 @@ public enum ModuleType implements IModuleType {
     SITE_DOMAIN_ADD("702","新增域名"),
     SITE_DOMAIN_UPDATE("703","编辑域名"),
     SITE_DOMAIN_ISDISABLE("704","启用/禁用域名"),
-    SITE_DOMAIN_WHITELIST_ADD_OR_UPDATE("705","新增/编辑白名单IP"),
-    SITE_DOMAIN_BLACKLIST_ADD_OR_UPDATE("706","新增/编辑黑名单IP"),
-    SITE_DOMAIN_WHITELIST_DELETE("707","删除白名单"),
-    SITE_DOMAIN_BLACKLIST_DELETE("708","删除黑名单"),
+    SITE_DOMAIN_WHITELIST_ADD_OR_UPDATE("705","新增/编辑白名單IP"),
+    SITE_DOMAIN_BLACKLIST_ADD_OR_UPDATE("706","新增/编辑黑名單IP"),
+    SITE_DOMAIN_WHITELIST_DELETE("707","删除白名單"),
+    SITE_DOMAIN_BLACKLIST_DELETE("708","删除黑名單"),
     SITE_DOMAIN_MAINTENANCE("709","站点维护"),
     SITE_DOMAIN_TO_BOUND("710","解绑域名"),
     SITE_DOMAIN_BOUNDED("711","解绑域名成功"),
@@ -226,7 +226,7 @@ public enum ModuleType implements IModuleType {
     SITE_BOSS_UPDATE("720","编辑平台备注"),
     SITE_BOSS_STATUS("721","启用/禁用平台站点"),
 //
-//    SITE_BOSS_DOMAIN_BLACKLIST_ADD_OR_UPDATE("722","新增/编辑平台黑名单"),
+//    SITE_BOSS_DOMAIN_BLACKLIST_ADD_OR_UPDATE("722","新增/编辑平台黑名單"),
 //
 //
     SITE_COMPANIES_UPDATE("730","编辑股东站点备注"),
@@ -244,10 +244,10 @@ public enum ModuleType implements IModuleType {
 //
 //
 //    //系统 901-1100
-//    SYS_CONFINE_WHITELIST_IP_ADD_OR_UPDATE("901","新增/编辑白名单ip"),
-//    SYS_CONFINE_WHITELIST_IP_DELETE("902","删除白名单ip"),
-//    SYS_CONFINE_BLACKLIST_IP_ADD_OR_UPDATE("904","新增/编辑黑名单ip"),
-//    SYS_CONFINE_BLACKLIST_IP_DELETE("910","删除黑名单ip"),
+//    SYS_CONFINE_WHITELIST_IP_ADD_OR_UPDATE("901","新增/编辑白名單ip"),
+//    SYS_CONFINE_WHITELIST_IP_DELETE("902","删除白名單ip"),
+//    SYS_CONFINE_BLACKLIST_IP_ADD_OR_UPDATE("904","新增/编辑黑名單ip"),
+//    SYS_CONFINE_BLACKLIST_IP_DELETE("910","删除黑名單ip"),
 //
 //    SYS_ACCOUNT_DOMAIN("911", "线路域名"),
 //    SYS_SETTING_VOICE("920","系统声音"),

@@ -1017,7 +1017,7 @@ public class Gdkl10Controller {
                     "  \"data\": {\n" +
                     "    \"type\": \"get_putinfo\"\n" +
                     "  },\n" +
-                    "  \"tipinfo\": \"下单成功\"\n" +
+                    "  \"tipinfo\": \"下單成功\"\n" +
                     "}";
         }
 

@@ -54,7 +54,7 @@ public class BaseLotteryController {
     public static DecimalFormat BONUS = new DecimalFormat("#0.000");
 
     /**
-     * 保存订单
+     * 保存订單
      *
      * @param request
      * @param code
@@ -80,7 +80,7 @@ public class BaseLotteryController {
 
 
 
-            LOG.info("下注表单:site:{0},username:{1},code:{2},handlerForm:{3}", SessionManagerCommon.getSiteId(), SessionManagerCommon.getUser().getUsername(), code, JsonTool.toJson(form));
+            LOG.info("下注表單:site:{0},username:{1},code:{2},handlerForm:{3}", SessionManagerCommon.getSiteId(), SessionManagerCommon.getUser().getUsername(), code, JsonTool.toJson(form));
             Lottery lottery = Cache.getLottery(code);
             if (lottery == null || !StringTool.equals(LotteryStatusEnum.NORMAL.getCode(), lottery.getStatus())) {
                 errors.add(errorCode.new Error(errorCode.CODE_111, errorCode.MSG_DISABLE, errorCode.ICON_5));
@@ -157,7 +157,7 @@ public class BaseLotteryController {
                         webJson.setTipinfo(errorCode.MSG_113);
                         return webJson;
                     }
-                    //todo  单期校验未处理
+                    //todo  單期校验未处理
 
 
                     //初始化赔率，返水，限额
@@ -252,18 +252,18 @@ public class BaseLotteryController {
 
                 vo.setEntities(form.getBetOrderList());
                 vo = ServiceTool.lotteryBetOrderService().saveBetOrder(vo);
-                webJson.setTipinfo("下单成功！");
+                webJson.setTipinfo("下單成功！");
 
             }else {
-                LOG.error("注单接口出错:bean:{0}", JsonTool.toJson(form));
+                LOG.error("注單接口出错:bean:{0}", JsonTool.toJson(form));
                 webJson.setTipinfo("非法下注！");
             }
 
 
         } catch (Exception e) {
-            LOG.error(e, "保存注单异常！");
+            LOG.error(e, "保存注單异常！");
             webJson.setSuccess(HttpCodeEnum.ERROR.getCode());
-            webJson.setTipinfo("保存注单异常");
+            webJson.setTipinfo("保存注單异常");
             return webJson;
         }
 
@@ -277,7 +277,7 @@ public class BaseLotteryController {
     }
 
 //    /**
-//     * 初始化注单数据
+//     * 初始化注單数据
 //     */
 //    private void initBetVo(HttpServletRequest request, HandlerForm form, SysUser user, LotteryBetOrderVo vo) {
 //        vo.setEntities(form.getBetOrderList());
@@ -308,7 +308,7 @@ public class BaseLotteryController {
         return false;
     }
     /**
-     * 处理注单赔率，水位，所有的上级ID
+     * 处理注單赔率，水位，所有的上级ID
      * @param code 彩种CODE
      * @param form 请求对象
      */

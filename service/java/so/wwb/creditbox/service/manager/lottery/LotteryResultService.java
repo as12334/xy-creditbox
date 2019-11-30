@@ -22,6 +22,7 @@ import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryResultTypeEnum;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResultRecord;
+import so.wwb.creditbox.model.manager.lottery.po.LotteryTypeInfo;
 import so.wwb.creditbox.model.manager.lottery.so.LotteryResultSo;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryResultListVo;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryResultRecordVo;
@@ -43,6 +44,10 @@ import java.util.*;
 //region your codes 1
 public class LotteryResultService extends BaseService<LotteryResultMapper, LotteryResultListVo, LotteryResultVo, LotteryResult, Integer> implements ILotteryResultService {
     private Log LOG = LogFactory.getLog(LotteryResultService.class);
+    @Autowired
+    LotteryResultPayoutService lotteryResultPayoutService;
+    @Autowired
+    LotteryWinningRecordService lotteryWinningRecordService;
 //endregion your codes 1
 
     //region your codes 2
@@ -120,7 +125,6 @@ public class LotteryResultService extends BaseService<LotteryResultMapper, Lotte
     public List<LotteryResult> searchCurLotteryResult(LotteryResultVo resultVo) {
         return mapper.searchCurLotteryResult(resultVo.getSearch());
     }
-
     @Override
     public void saveLotterResult(LotteryResultVo lotterResultVo) {
         openLotteryResult(lotterResultVo);
@@ -132,20 +136,20 @@ public class LotteryResultService extends BaseService<LotteryResultMapper, Lotte
         resultVo = resultService.buildLotteryResult(resultVo);
         String msg = resultVo.isSuccess() ? resultVo.getOkMsg() : resultVo.getErrMsg();
         LOG.info("保存开奖结果是否成功:{0},原因:{1}", resultVo.isSuccess() ? "是" : "否", msg);
-//        if (resultVo.isSuccess()) {
-//            boolean flag = lotteryResultPayoutService.payoutForAll(resultVo);
-//            if (flag) {
-//                resultVo.setSuccess(true);
-//                resultVo.setOkMsg("派彩成功");
-//                LOG.info("派彩成功");
-//            } else {
-//                resultVo.setSuccess(false);
-//                resultVo.setErrMsg("派彩失败");
-//                LOG.error("派彩失败");
-//            }
-//            msg = resultVo.isSuccess() ? resultVo.getOkMsg() : resultVo.getErrMsg();
-//            LOG.info("派彩是否成功:{0}", resultVo.isSuccess() ? "是" : "否", msg);
-//        }
+        if (resultVo.isSuccess()) {
+            boolean flag = lotteryResultPayoutService.payoutForAll(resultVo);
+            if (flag) {
+                resultVo.setSuccess(true);
+                resultVo.setOkMsg("派彩成功");
+                LOG.info("派彩成功");
+            } else {
+                resultVo.setSuccess(false);
+                resultVo.setErrMsg("派彩失败");
+                LOG.error("派彩失败");
+            }
+            msg = resultVo.isSuccess() ? resultVo.getOkMsg() : resultVo.getErrMsg();
+            LOG.info("派彩是否成功:{0}", resultVo.isSuccess() ? "是" : "否", msg);
+        }
         return resultVo;
     }
 

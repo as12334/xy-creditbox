@@ -10,7 +10,7 @@ import javax.validation.constraints.Pattern;
 
 
 /**
- * 站长管理视图表单验证对象
+ * 站长管理视图表單验证对象
  *
  * @author admin
  * @time 2016-10-4 16:28:46

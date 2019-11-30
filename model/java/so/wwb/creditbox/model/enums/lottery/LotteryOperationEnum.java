@@ -5,7 +5,7 @@ import so.wwb.creditbox.model.enums.base.IParentEnum;
 public enum LotteryOperationEnum implements IParentEnum {
 
     PAYOUT("payout", "派彩"),
-    REVOKE("revoke", "撤单"),
+    REVOKE("revoke", "撤單"),
     REVOCATION("revocation", "撤销"),
     RECALCULATE("recalculate", "重结"),
     MAKE_UP("make_up", "补采"),

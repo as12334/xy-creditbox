@@ -9,7 +9,7 @@ import javax.validation.constraints.Pattern;
 
 
 /**
- * 赔率设置表表单验证对象
+ * 赔率设置表表單验证对象
  *
  * @author block
  * @time 2019-10-21 21:46:34

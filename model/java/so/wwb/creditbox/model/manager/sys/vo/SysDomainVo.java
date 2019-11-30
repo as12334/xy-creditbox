@@ -29,7 +29,7 @@ public class SysDomainVo extends BaseObjectVo<SysDomain, SysDomainSo, SysDomainV
 
     private List<Map<String,Object>> playerRanks;
     private List<Map<String,Object>> domainRanks;
-    //表单验证需要
+    //表單验证需要
     private String rankType;
 
     private List<Integer> ids;

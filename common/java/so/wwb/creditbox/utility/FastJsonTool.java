@@ -41,7 +41,7 @@ public class FastJsonTool {
     }
 
     /**
-     * 针对单个对象排除不需要的属性
+     * 针对單个对象排除不需要的属性
      * @param obj 需要输出的对象
      * @param properties 需要输出的属性
      * @return 过滤后的Json
@@ -60,7 +60,7 @@ public class FastJsonTool {
     }
 
     /**
-     * 针对单个对象输出需要的属性
+     * 针对單个对象输出需要的属性
      * @param obj 需要输出的对象
      * @param properties 需要输出的属性
      * @return 过滤后的Json

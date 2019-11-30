@@ -44,7 +44,7 @@ public class SiteConfineIpVo extends BaseObjectVo<SiteConfineIp, SiteConfineIpSo
 
 
     /**
-     * 是否启用单次奖励
+     * 是否启用單次奖励
      */
     private SysParam isReward;
     /**

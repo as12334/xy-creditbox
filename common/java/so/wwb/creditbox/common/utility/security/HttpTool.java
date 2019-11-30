@@ -119,9 +119,9 @@ public class HttpTool {
         return url;
     }
 
-    // \b 是单词边界(连着的两个(字母字符 与 非字母字符) 之间的逻辑上的间隔),
+    // \b 是單词边界(连着的两个(字母字符 与 非字母字符) 之间的逻辑上的间隔),
     // 字符串在编译时会被转码一次,所以是 "\\b"
-    // \B 是单词内部逻辑间隔(连着的两个字母字符之间的逻辑上的间隔)
+    // \B 是單词内部逻辑间隔(连着的两个字母字符之间的逻辑上的间隔)
     static String phoneReg = "\\bNokia|SAMSUNG|MIDP-2|CLDC1.1|SymbianOS|MAUI|UNTRUSTED/1.0"
             + "|Windows CE|iPhone|iPad|Android|BlackBerry|UCWEB|ucweb|BREW|J2ME|YULONG|YuLong|COOLPAD|TIANYU|TY-"
             + "|K-Touch|Haier|DOPOD|Lenovo|LENOVO|HUAQIN|AIGO-|CTC/1.0"

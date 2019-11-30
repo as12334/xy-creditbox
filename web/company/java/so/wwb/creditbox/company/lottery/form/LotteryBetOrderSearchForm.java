@@ -4,7 +4,7 @@ import org.soul.web.support.IForm;
 
 
 /**
- * 投注记录表查询表单验证对象
+ * 投注记录表查询表單验证对象
  *
  * @author block
  * @time 2019-11-27 21:11:29

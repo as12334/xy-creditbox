@@ -4,7 +4,7 @@ package so.wwb.creditbox.model.common;
 import java.io.Serializable;
 
 /**
- * 自定义顶部菜单
+ * 自定义顶部菜單
  *
  * @author jeremy
  * @time 2018年11月16日

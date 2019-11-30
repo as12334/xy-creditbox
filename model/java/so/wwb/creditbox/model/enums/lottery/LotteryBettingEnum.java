@@ -21,12 +21,11 @@ public enum LotteryBettingEnum implements ICodeEnum {
     SSC_FIVE("ssc", "13", "第五球"),
 
     SSC_SUM_BIG_SMALL("ssc", "16", "總和大小"),
-    SSC_SUM_SINGLE_DOUBLE("ssc", "17", "總和单双"),
+    SSC_SUM_SINGLE_DOUBLE("ssc", "17", "總和單雙"),
     SSC_DRAGON_TIGER_SUM("ssc", "18", "龍虎和"),
     SSC_TEN_THOUSAND_THOUSAND_HUNDRED("ssc", "19", "前三"),
     SSC_THOUSAND_HUNDRED_TEN("ssc", "20", "中三"),
     SSC_HUNDRED_TEN_ONE("ssc", "21", "後三"),
-
 
 
 
@@ -44,6 +43,11 @@ public enum LotteryBettingEnum implements ICodeEnum {
     CHAMPION_UP_SUM("pk10", "champion_up_sum", "冠亚军和"),
     CHAMPION_UP_DAXIAODANSHUANG("pk10", "champion_up_daxiaodanshuang", "冠亚大小單雙"),
 
+
+
+
+
+
     //十分彩(重庆幸运农场,广东快乐十分)
     SFC_FIRST("sfc", "81", "第一球"),
     SFC_SECOND("sfc", "86", "第二球"),
@@ -55,9 +59,9 @@ public enum LotteryBettingEnum implements ICodeEnum {
     SFC_EIGHTH("sfc", "116", "第八球"),
 
     SFC_SUM8_BIG_SMALL("sfc", "11", "总和大小"),
-    SFC_SUM8_SINGLE_DOUBLE("sfc","12", "总和单双"),
+    SFC_SUM8_SINGLE_DOUBLE("sfc","12", "总和單雙"),
     SFC_SUM8_MANTISSA_BIG_SMALL("sfc","13", "总和尾数大小"),
-    SFC_DRAGON_TIGER("sfc","80", "龙虎"),
+    SFC_DRAGON_TIGER("sfc","80", "龍虎"),
 
 
 

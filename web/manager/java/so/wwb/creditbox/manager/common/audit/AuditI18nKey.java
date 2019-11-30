@@ -42,7 +42,7 @@ public class AuditI18nKey {
         public static final String WITHDRAW_CHECK = "withdraw.check.";
 
         /**
-         * [订单详情备注] 站点[{0}] 订单号[{1}] 类型[{2}] 备注[{3}]
+         * [订單详情备注] 站点[{0}] 订單号[{1}] 类型[{2}] 备注[{3}]
          * fund.favorable.remark
          */
         public static final String FAVORABLE_REMARK = FAVORABLE + "remark";
@@ -52,63 +52,63 @@ public class AuditI18nKey {
          */
         public static final String SYS_VOICE = SYS + "voice";
         /**
-         * [系统存款订单生成成功] 站点[{0}] 玩家[{1}] 订单号[{2}] 存款金额[{3}] 存款类型[{4}] 存款打码量[{5}] 优惠金额[{6}] 优惠打码量[{7}]
+         * [系统存款订單生成成功] 站点[{0}] 玩家[{1}] 订單号[{2}] 存款金额[{3}] 存款类型[{4}] 存款打码量[{5}] 优惠金额[{6}] 优惠打码量[{7}]
          * fund.manual.deposit.success
          */
         public static final String MANUAL_DEPOSIT_SUCCESS = MANUAL + "deposit." + SUCCESS;
         /**
-         * [系统存款订单生成失败] 站点[{0}] 玩家[{1}] 存款失败金额[{2}] 失败原因[{3}]
+         * [系统存款订單生成失败] 站点[{0}] 玩家[{1}] 存款失败金额[{2}] 失败原因[{3}]
          * fund.manual.deposit.fail
          */
         public static final String MANUAL_DEPOSIT_FAIL = MANUAL + "deposit." + FAIL;
         /**
-         * [系统取款订单生成成功] 站点[{0}] 玩家[{1}] 订单号[{2}] 取款金额[{3}] 取款类型[{4}] 是否清楚稽核点[{5}]
+         * [系统取款订單生成成功] 站点[{0}] 玩家[{1}] 订單号[{2}] 取款金额[{3}] 取款类型[{4}] 是否清楚稽核点[{5}]
          * fund.manual.withdraw.success
          */
         public static final String MANUAL_WITHDRAW_SUCCESS = MANUAL + "withdraw." + SUCCESS;
         /**
-         * [系统取款订单生成失败] 站点[{0}] 玩家[{1}] 取款失败金额[{2}] 失败原因[{3}]
+         * [系统取款订單生成失败] 站点[{0}] 玩家[{1}] 取款失败金额[{2}] 失败原因[{3}]
          * fund.manual.withdraw.fail
          */
         public static final String MANUAL_WITHDRAW_FAIL = MANUAL + "withdraw." + FAIL;
 
         /**
-         * [审核系统存款通过] 站点[{0}] 玩家[{1}] 订单号[{2}] 实际到账金额[{3}]
+         * [审核系统存款通过] 站点[{0}] 玩家[{1}] 订單号[{2}] 实际到账金额[{3}]
          * fund.manual.deposit.check.success
          */
         public static final String MANUAL_DEPOSIT_CHECK_SUCCESS = MANUAL + DEPOSIT_CHECK + SUCCESS;
         /**
-         * [审核系统存款失败] 站点[{0}] 玩家[{1}] 订单号[{2}] 失败金额[{3}]
+         * [审核系统存款失败] 站点[{0}] 玩家[{1}] 订單号[{2}] 失败金额[{3}]
          * fund.manual.deposit.check.fail
          */
         public static final String MANUAL_DEPOSIT_CHECK_FAIL = MANUAL + DEPOSIT_CHECK + FAIL;
         /**
-         * [审核线上支付通过] 站点[{0}] 玩家[{1}] 订单号[{2}] 实际到账金额[{3}]
+         * [审核线上支付通过] 站点[{0}] 玩家[{1}] 订單号[{2}] 实际到账金额[{3}]
          * fund.online.deposit.check.success
          */
         public static final String ONLINE_DEPOSIT_CHECK_SUCCESS = ONLINE + DEPOSIT_CHECK + SUCCESS;
         /**
-         * [审核线上支付失败] 站点[{0}] 玩家[{1}] 订单号[{2}] 失败金额[{3}]
+         * [审核线上支付失败] 站点[{0}] 玩家[{1}] 订單号[{2}] 失败金额[{3}]
          * fund.online.deposit.check.fail
          */
         public static final String ONLINE_DEPOSIT_CHECK_FAIL = ONLINE + DEPOSIT_CHECK + FAIL;
         /**
-         * [审核公司入款通过] 站点[{0}] 玩家[{1}] 订单号[{2}] 实际到账金额[{3}]
+         * [审核公司入款通过] 站点[{0}] 玩家[{1}] 订單号[{2}] 实际到账金额[{3}]
          * fund.company.deposit.check.success
          */
         public static final String COMPANY_DEPOSIT_CHECK_SUCCESS = COMPANY + DEPOSIT_CHECK + SUCCESS;
         /**
-         * [审核公司入款失败] 站点[{0}] 玩家[{1}] 订单号[{2}] 失败金额[{3}]
+         * [审核公司入款失败] 站点[{0}] 玩家[{1}] 订單号[{2}] 失败金额[{3}]
          * fund.manual.deposit.check.fail
          */
         public static final String COMPANY_DEPOSIT_CHECK_FAIL = COMPANY + DEPOSIT_CHECK + FAIL;
         /**
-         * [审核活动优惠通过] 站点[{0}] 玩家[{1}] 订单号[{2}] 优惠金额[{3}]
+         * [审核活动优惠通过] 站点[{0}] 玩家[{1}] 订單号[{2}] 优惠金额[{3}]
          * fund.favorable.check.success
          */
         public static final String FAVORABLE_CHECK_SUCCESS = FAVORABLE + "check." + SUCCESS;
         /**
-         * [审核活动优惠失败] 站点[{0}] 玩家[{1}] 订单号[{2}] 优惠金额[{3}]
+         * [审核活动优惠失败] 站点[{0}] 玩家[{1}] 订單号[{2}] 优惠金额[{3}]
          * fund.favorable.check.fail
          */
         public static final String FAVORABLE_CHECK_FAIL = FAVORABLE + "check." + FAIL;

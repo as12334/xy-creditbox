@@ -77,7 +77,7 @@ public class SysSite implements IEntity<Integer> {
 	private String theme;
 	/** 标题 */
 	private String title;
-	/** 单点主题 */
+	/** 單点主题 */
 	private String ssoTheme;
 	/** 状态,1:正常，2:停用，3:维护中, 4:未建库 */
 	private String status;

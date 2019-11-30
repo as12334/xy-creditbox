@@ -28,7 +28,7 @@ public enum LotteryBetNumEnum implements ICodeEnum {
     SUM3_DIGITAL_THREE("特码包三","特码包三"),
 
     DUPLEX("复式", "复式"),
-    SINGLE("单式", "单式"),
+    SINGLE("單式", "單式"),
     THREE_STAR("三星","三星"),
     TWO_STAR("二星","二星"),
     ONE_STAR("一星","一星"),
@@ -44,7 +44,7 @@ public enum LotteryBetNumEnum implements ICodeEnum {
     SIX("6", "6"),
     FOUR("4", "4"),
     CHECK("复选", "复选"),
-    RADIO("单选", "单选"),
+    RADIO("單选", "單选"),
     GENERAL("通选", "通选"),
     DANTUO("胆拖","胆拖"),
 

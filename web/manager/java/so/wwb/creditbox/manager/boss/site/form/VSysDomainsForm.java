@@ -13,7 +13,7 @@ import javax.validation.constraints.Pattern;
 /**
  * Created by cherry on 17-3-22.
  */
-@Comment("域名表单验证")
+@Comment("域名表單验证")
 public class VSysDomainsForm implements IForm {
     private Integer result_id;
     private String result_domain;

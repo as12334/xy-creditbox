@@ -73,7 +73,7 @@ public class VSysSiteManage implements IEntity<Integer> {
 	private String theme;
 	/** 标题　*/
 	private String title;
-	/** 单点主题 */
+	/** 單点主题 */
 	private String ssoTheme;
 	/** 状态 */
 	private String status;

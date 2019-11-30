@@ -134,7 +134,7 @@ public class BaseDetailController extends NoMappingCrudController<IVSysSiteUserS
     }
 
     /**
-     * 登录白名单
+     * 登录白名單
      */
     @RequestMapping("/viewWhiteList")
     public String viewWhiteList(SiteConfineIpListVo listVo, Model model, HttpServletRequest request) {

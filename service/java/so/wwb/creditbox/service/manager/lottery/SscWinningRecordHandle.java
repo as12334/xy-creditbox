@@ -1,105 +1,104 @@
 package so.wwb.creditbox.service.manager.lottery;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.soul.commons.enums.EnumTool;
+import org.soul.commons.lang.string.StringTool;
+import so.wwb.creditbox.model.enums.lottery.LotteryBettingEnum;
+import so.wwb.creditbox.model.enums.lottery.LotteryPlayEnum;
+import so.wwb.creditbox.model.enums.lottery.LotteryTypeEnum;
+import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
+import so.wwb.creditbox.model.manager.lottery.po.LotteryWinningRecord;
+import so.wwb.creditbox.service.company.handler.WinningRecordHandleVo;
+
+import java.util.*;
 
 /**
- * Created by block on 2019/11/9.
+ * Created by shook on 17-4-9.
  */
-public class SscWinningRecordHandle {
+public class SscWinningRecordHandle extends AbstractWinningRecordHandle implements IWinningRecordHandle {
+    private static List<String> oneDigitalBettingList = new ArrayList<>(5);
+    private static List<String> oneDigitalPlayList = new ArrayList<>(5);
+
+
     static {
+        //一字定位的投注玩法：万千百十个
+        oneDigitalBettingList.add(LotteryBettingEnum.SSC_ONE.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.SSC_TWO.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.SSC_THREE.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.SSC_FOUR.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.SSC_FIVE.getCode());
 
-        Map<String, Map<String, String>> map = new HashMap<>();
-        Map<String, String> mapMap = new HashMap<>();
-        mapMap = new HashMap<>();
-        mapMap.put("0","1");
-        mapMap.put("1","2");
-        mapMap.put("2","3");
-        mapMap.put("3","4");
-        mapMap.put("4","5");
-        mapMap.put("5","6");
-        mapMap.put("6","7");
-        mapMap.put("7","8");
-        mapMap.put("8","9");
-        mapMap.put("9","10");
-        mapMap.put("大","11");
-        mapMap.put("小","12");
-        mapMap.put("單","13");
-        mapMap.put("雙","14");
-        map.put("0",mapMap);
-
-
-        mapMap = new HashMap<>();
-        mapMap.put("0","15");
-        mapMap.put("1","16");
-        mapMap.put("2","17");
-        mapMap.put("3","18");
-        mapMap.put("4","19");
-        mapMap.put("5","20");
-        mapMap.put("6","21");
-        mapMap.put("7","22");
-        mapMap.put("8","23");
-        mapMap.put("9","24");
-        mapMap.put("大","25");
-        mapMap.put("小","26");
-        mapMap.put("單","27");
-        mapMap.put("雙","28");
-        map.put("1",mapMap);
-
-
-        mapMap = new HashMap<>();
-        mapMap.put("0","29");
-        mapMap.put("1","30");
-        mapMap.put("2","31");
-        mapMap.put("3","32");
-        mapMap.put("4","33");
-        mapMap.put("5","34");
-        mapMap.put("6","35");
-        mapMap.put("7","36");
-        mapMap.put("8","37");
-        mapMap.put("9","38");
-        mapMap.put("大","39");
-        mapMap.put("小","40");
-        mapMap.put("單","41");
-        mapMap.put("雙","42");
-        map.put("2",mapMap);
-
-
-        mapMap = new HashMap<>();
-        mapMap.put("0","43");
-        mapMap.put("1","44");
-        mapMap.put("2","45");
-        mapMap.put("3","46");
-        mapMap.put("4","47");
-        mapMap.put("5","48");
-        mapMap.put("6","49");
-        mapMap.put("7","50");
-        mapMap.put("8","51");
-        mapMap.put("9","52");
-        mapMap.put("大","53");
-        mapMap.put("小","54");
-        mapMap.put("單","55");
-        mapMap.put("雙","56");
-        map.put("3",mapMap);
-
-        mapMap.put("0","57");
-        mapMap.put("1","58");
-        mapMap.put("2","59");
-        mapMap.put("3","60");
-        mapMap.put("4","61");
-        mapMap.put("5","62");
-        mapMap.put("6","63");
-        mapMap.put("7","64");
-        mapMap.put("8","65");
-        mapMap.put("9","66");
-        mapMap.put("大","67");
-        mapMap.put("小","68");
-        mapMap.put("單","69");
-        mapMap.put("雙","70");
-        map.put("4",mapMap);
-
-
-
+        oneDigitalPlayList.add(LotteryPlayEnum.SSC_BIG_SMALL.getCode());
+        oneDigitalPlayList.add(LotteryPlayEnum.SSC_SINGLE_DOUBLE.getCode());
 
     }
+
+    @Override
+    public WinningRecordHandleVo handle(LotteryResult lotteryResult) {
+//        if (isIllegalResult(lotteryResult)) {
+//            log.info("开奖结果数据异常,请排查开奖接口是否正常!");
+//            return null;
+//        }
+        WinningRecordHandleVo winningRecordHandleVo = new WinningRecordHandleVo();
+        List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
+        String[] openCodes = StringTool.split(lotteryResult.getOpenCode(), ",");
+        if (openCodes != null && openCodes.length == 5) {
+            lotteryWinningRecordList.addAll(createOneDigital(lotteryResult));
+//            lotteryWinningRecordList.addAll(createTwoDigital(lotteryResult));
+//            lotteryWinningRecordList.addAll(createThreeDigital(lotteryResult));
+//            lotteryWinningRecordList.addAll(createOneCombination(lotteryResult));
+//            lotteryWinningRecordList.addAll(createTwoCombination(lotteryResult));
+//            lotteryWinningRecordList.addAll(createFive(lotteryResult));
+//            lotteryWinningRecordList.addAll(createDragonTigerTie(lotteryResult));
+//            lotteryWinningRecordList.addAll(createGroup3(lotteryResult));
+//            lotteryWinningRecordList.addAll(createGroup6(lotteryResult));
+//            lotteryWinningRecordList.addAll(createSpan(lotteryResult));
+            //官方玩法的中奖记录
+        }
+        winningRecordHandleVo.setLotteryWinningRecordList(lotteryWinningRecordList);
+        return winningRecordHandleVo;
+    }
+
+    private List<LotteryWinningRecord> createOneDigital(LotteryResult lotteryResult) {
+        HashMap<String, HashMap<String, String>> map = super.getbetSortMap(LotteryTypeEnum.SSC.getCode());
+
+        List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
+        String[] openCodes = StringTool.split(lotteryResult.getOpenCode(), ",");
+        for (int i = 0; i < oneDigitalBettingList.size(); i++) {
+            LotteryBettingEnum lotteryBettingEnum = EnumTool.enumOf(LotteryBettingEnum.class, oneDigitalBettingList.get(i));
+            for (String playCode : oneDigitalPlayList) {
+                LotteryPlayEnum lotteryPlayEnum = EnumTool.enumOf(LotteryPlayEnum.class, playCode);
+                String winningNum = null;
+                switch (lotteryPlayEnum) {
+                    case SSC_DIGITAL:
+                        winningNum = map.get(lotteryBettingEnum.getCode()).get(Integer.valueOf(openCodes[i])+"");
+                        break;
+                    case SSC_BIG_SMALL:
+                        winningNum = generateBigSmallNum(map.get(lotteryBettingEnum.getCode()),openCodes[i]);
+                        break;
+                    case SSC_SINGLE_DOUBLE:
+                        winningNum = generateSingleDoubleNum(map.get(lotteryBettingEnum.getCode()),Integer.valueOf(openCodes[i]));
+                    default:
+                        break;
+                }
+                LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult, winningNum);
+                if (lotteryWinningRecord != null) {
+                    log.info("彩票开奖.时时彩.{0},生成中奖记录:{1}", playCode, lotteryWinningRecord.toString());
+                    lotteryWinningRecordList.add(lotteryWinningRecord);
+                }
+            }
+        }
+        return lotteryWinningRecordList;
+    }
+
+
+
+
+    private String generateTwoDigital(String openCode1, String openCode2) {
+        return openCode1 + openCode2;
+    }
+
+    private String generateThreeDigital(String openCode1, String openCode2, String openCode3) {
+        return openCode1 + openCode2 + openCode3;
+    }
+
 }

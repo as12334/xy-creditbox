@@ -60,7 +60,7 @@ public class SessionManagerCommon extends SessionManagerBase {
     private static final String S_FORGET_PWD_CHECK_EMAIL_CODE = "S_FORGET_PWD_CHECK_EMAIL_CODE";
     //用户id加密
     private static final String S_ENCRYPTED_ID = "S_ENCRYPTED_ID";
-    //站点未结算账单调用函数间隔时间
+    //站点未结算账單调用函数间隔时间
     private static final String S_STAT_SITE_ORDER_UNSETTLE_DELAY_TIME = "S_STAT_SITE_ORDER_UNSETTLE_DELAY_TIME";
     //站点重分发行数调用间隔时间
     private static final String S_STAT_SITE_ORDER_DISTRIBUTE_DELAY_TIME = "S_STAT_SITE_ORDER_DISTRIBUTE_DELAY_TIME";
@@ -73,7 +73,7 @@ public class SessionManagerCommon extends SessionManagerBase {
     private static final String S_ADVISORY_MESSAGE_TIME = "S_ADVISORY_MESSAGE_TIME";
 
     /**
-     * 站点未结算账单调用函数间隔时间
+     * 站点未结算账單调用函数间隔时间
      *
      * @return
      */
@@ -87,7 +87,7 @@ public class SessionManagerCommon extends SessionManagerBase {
     }
 
     /**
-     * 站点未结算账单调用函数间隔时间
+     * 站点未结算账單调用函数间隔时间
      *
      * @return
      */

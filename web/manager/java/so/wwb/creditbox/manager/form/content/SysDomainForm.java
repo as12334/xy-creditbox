@@ -12,7 +12,7 @@ import javax.validation.constraints.Pattern;
 
 
 /**
- * 站长域名表-修改完会替换 sys_domain表单验证对象
+ * 站长域名表-修改完会替换 sys_domain表單验证对象
  *
  * @author jeff
  * @time 2015-8-20 9:21:53

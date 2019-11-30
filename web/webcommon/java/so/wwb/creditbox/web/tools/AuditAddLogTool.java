@@ -109,7 +109,7 @@ public class AuditAddLogTool {
 
 
     /**
-     * 订单备注、存款、赠送优惠相关审计日志
+     * 订單备注、存款、赠送优惠相关审计日志
      *
      * @param vo
      * @param request
@@ -144,7 +144,7 @@ public class AuditAddLogTool {
 //                    params.add(vo.getResult().getActualMoney().toString());
 //
 //                } else if (AuditLogEnum.UPDATE_COMPANY_DEPOSIT_CHECK_SUCCESS == logEnum) {//公司入款
-//                    //站点[{0}] 玩家[{1}] 订单号[{2}] 存款金额[{3}] 优惠金额[{4}] 优惠状态[{5}] 实际到账金额[{6}]
+//                    //站点[{0}] 玩家[{1}] 订單号[{2}] 存款金额[{3}] 优惠金额[{4}] 优惠状态[{5}] 实际到账金额[{6}]
 //                    params.add(vo.getResult().getMoney().toString());
 //                    params.add(vo.getResult().getFavorableMoney() == null ? "无" : vo.getResult().getFavorableMoney().toString());
 //                    params.add(AuditAddLogTool.installEnumMsg(BillDepositFavorableStatusEnum.class, vo.getResult().getFavorableStatus()));
@@ -156,7 +156,7 @@ public class AuditAddLogTool {
 //                    params.add(vo.getResult().getFavorableMoney() == null ? "无" : vo.getResult().getFavorableMoney().toString());
 //
 //                } else if (AuditLogEnum.UPDATE_ONLINE_DEPOSIT_CHECK_SUCCESS == logEnum) {//线上支付
-//                    //站点[{0}] 玩家[{1}] 订单号[{2}] 存款金额[{3}] 手续费[{4}] 实际到账金额[{5}]
+//                    //站点[{0}] 玩家[{1}] 订單号[{2}] 存款金额[{3}] 手续费[{4}] 实际到账金额[{5}]
 //                    params.add(vo.getResult().getMoney().toString());
 //                    params.add(vo.getResult().getCounterFee() == null ? "无" : vo.getResult().getCounterFee().toString());
 //                    params.add(vo.getResult().getActualMoney().toString());
@@ -174,7 +174,7 @@ public class AuditAddLogTool {
 //    public static void addBillWithdrawalLog(BillWithdrawalVo vo, AuditLogEnum logEnum, HttpServletRequest request) {
 //        try {
 //            if (vo.isSuccess()) {
-//                //站点[{0}] 玩家[{1}] 订单号[{2}]
+//                //站点[{0}] 玩家[{1}] 订單号[{2}]
 //                List<String> params = new ArrayList<>();
 //                params.add(SessionManagerCommon.getSiteId().toString());
 //                if (AuditLogEnum.UPDATE_MANUAL_WITHDRAW_CHECK_LOCK == logEnum
@@ -189,13 +189,13 @@ public class AuditAddLogTool {
 //                }
 //
 //                if (AuditLogEnum.UPDATE_MANUAL_WITHDRAW_CHECK_SUCCESS == logEnum) {
-//                    //[财务审核-系统取款订单通过] 站点[{0}] 玩家[{1}] 订单号[{2}] 取款金额[{3}] 类型[{4}] 清除稽核点[{5}]
+//                    //[财务审核-系统取款订單通过] 站点[{0}] 玩家[{1}] 订單号[{2}] 取款金额[{3}] 类型[{4}] 清除稽核点[{5}]
 //                    params.add(vo.getResult().getMoney().toString());
 //                    params.add(installEnumMsg(BillItemEnum.class, vo.getResult().getItem()));
 //                    params.add(vo.getResult().getCleared() ? "是" : "否");
 //
 //                } else if (AuditLogEnum.UPDATE_PLAYER_WITHDRAW_CHECK_SUCCESS == logEnum) {
-//                    //[财务审核-玩家取款订单通过] 站点[{0}] 玩家[{1}] 订单号[{2}] 取款金额[{3}] 扣除优惠[{4}] 行政费[{5}] 实际到账金额[{6}]
+//                    //[财务审核-玩家取款订單通过] 站点[{0}] 玩家[{1}] 订單号[{2}] 取款金额[{3}] 扣除优惠[{4}] 行政费[{5}] 实际到账金额[{6}]
 //                    params.add(vo.getResult().getMoney().toString());
 //                    params.add(vo.getResult().getDeductFavorable() == null ? "无" : vo.getResult().getDeductFavorable().toString());
 //                    params.add(vo.getResult().getDeductAdminFee() == null ? "无" : vo.getResult().getDeductAdminFee().toString());
@@ -203,7 +203,7 @@ public class AuditAddLogTool {
 //
 //                } else if (AuditLogEnum.UPDATE_MANUAL_WITHDRAW_REMARK == logEnum
 //                        || AuditLogEnum.UPDATE_PLAYER_WITHDRAW_REMARK == logEnum) {
-//                    //站点[{0}] 订单号[{1}] 类型[{2}] 备注[{3}]
+//                    //站点[{0}] 订單号[{1}] 类型[{2}] 备注[{3}]
 //                    params.add(installEnumMsg(BillItemEnum.class, vo.getResult().getItem()));
 //                    params.add(vo.getResult().getRemark());
 //                }

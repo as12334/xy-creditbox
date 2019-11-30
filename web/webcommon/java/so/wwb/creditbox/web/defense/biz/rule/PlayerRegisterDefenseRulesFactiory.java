@@ -22,7 +22,7 @@ public class PlayerRegisterDefenseRulesFactiory extends RegisterDefenseRulesFact
     @Override
     public InTimeAndTimeLimitRule isIntervalLimit(){
 //        SysParam intervalParam = ParamTool.getSysParam(SiteParamEnum.SETTING_REG_LIMIT_IP_REG_INTERVAL);
-//        final Float interval = Float.valueOf(ParamTool.blankThenDefault(intervalParam));//单位小时
+//        final Float interval = Float.valueOf(ParamTool.blankThenDefault(intervalParam));//單位小时
 //        if (interval <= 0) {//间隔时间小于等于的0等同于不做限制
 //            return null;
 //        }

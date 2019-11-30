@@ -106,7 +106,7 @@ public class LotteryBetOrder implements IEntity<Integer> {
 	private Double bpayout;
 	/**  */
 	private java.util.Date payoutTime;
-	/** 结算状态(待结算，已结算，已撤单，已撤销) */
+	/** 结算状态(待结算，已结算，已撤單，已撤销) */
 	private String status;
 	/** 终端标示 */
 	private String terminal;

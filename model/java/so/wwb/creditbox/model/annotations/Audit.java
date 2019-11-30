@@ -38,9 +38,9 @@ public @interface Audit {
 	OpType opType() default OpType.QUERY;
 
 	/**
-	 * 是否忽略表单数据
-	 * 忽略		: reuest提交表单数据将被存储
-	 * 不忽略	: reuest提交表单数据将不被存储
+	 * 是否忽略表單数据
+	 * 忽略		: reuest提交表單数据将被存储
+	 * 不忽略	: reuest提交表單数据将不被存储
 	 *
 	 * @return
 	 */

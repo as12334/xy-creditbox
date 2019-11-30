@@ -163,7 +163,7 @@ public class LotteryGatherTask implements Callable<LotteryResult> {
         Map<String, Object> map = new HashMap<>(3, 1f);
         map.put("date", DateTool.formatDate(DateTool.addHours(new Date(), GMT), DateTool.yyyy_MM_dd_HH_mm_ss));
         map.put("code", gatherParam.getCode());
-        String message = "彩票code:{0},当期期号:{1},当期封盘时间:{2},采集开奖时间：{3},采集接口开奖号码提前开奖,当期暂不开奖,请及时检查官方开奖数据并做好相关撤单!!";
+        String message = "彩票code:{0},当期期号:{1},当期封盘时间:{2},采集开奖时间：{3},采集接口开奖号码提前开奖,当期暂不开奖,请及时检查官方开奖数据并做好相关撤單!!";
         String closeTime = DateTool.formatDate(DateTool.addHours(gatherParam.getCloseTime(), GMT), DateTool.yyyy_MM_dd_HH_mm_ss);
         String openTime = DateTool.formatDate(DateTool.addHours(gatherOpenTime, GMT), DateTool.yyyy_MM_dd_HH_mm_ss);
         map.put("message", MessageFormat.format(message, codeName, gatherParam.getExpect(), closeTime,openTime));

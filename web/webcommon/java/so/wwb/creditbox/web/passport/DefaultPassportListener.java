@@ -95,7 +95,7 @@ public class DefaultPassportListener implements IPassportListener {
         Operator operator = passportEvent.getOperator();
         Integer operatorId = operator.getOperatorId();
         if (operatorId == null) {
-            LOG.error("单点登录:需要冻结用户名:[{0}],但用户id为空", operatorId);
+            LOG.error("單点登录:需要冻结用户名:[{0}],但用户id为空", operatorId);
             return;
         }
         Date now = new Date();

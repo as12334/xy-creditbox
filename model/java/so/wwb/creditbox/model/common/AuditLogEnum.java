@@ -47,41 +47,41 @@ public enum AuditLogEnum implements ICodeEnum {
 
     //资金
     //系统存取
-    INSERT_MANUAL_DEPOSIT_ORDER("insert.manual.deposit.order", "[系统存取-生成存款订单] 站点[{0}] [{1}]"),
-    INSERT_MANUAL_WITHDRAW_ORDER("insert.manual.withdraw.order", "[系统存取-生成取款订单] 站点[{0}] 玩家[{1}] 订单号[{2}] 取款金额[{3}] 取款类型[{4}] 是否清除稽核点[{5}]"),
+    INSERT_MANUAL_DEPOSIT_ORDER("insert.manual.deposit.order", "[系统存取-生成存款订單] 站点[{0}] [{1}]"),
+    INSERT_MANUAL_WITHDRAW_ORDER("insert.manual.withdraw.order", "[系统存取-生成取款订單] 站点[{0}] 玩家[{1}] 订單号[{2}] 取款金额[{3}] 取款类型[{4}] 是否清除稽核点[{5}]"),
     //存款审核
-    UPDATE_MANUAL_DEPOSIT_CHECK_SUCCESS("update.manual.deposit.check.success", "[财务审核-系统存款订单通过] 站点[{0}] 玩家[{1}] 订单号[{2}] 存款金额[{3}] 优惠金额[{4}] 优惠状态[{5}] 实际到账金额[{6}]"),
-    UPDATE_MANUAL_DEPOSIT_CHECK_FAIL("update.manual.deposit.check.fail", "[财务审核-系统存款订单失败] 站点[{0}] 玩家[{1}] 订单号[{2}] 失败金额[{3}]"),
-    UPDATE_MANUAL_DEPOSIT_REMARK("update.manual.deposit.remark", "[备注信息-系统存款订单] 站点[{0}] 订单号[{1}] 类型[{2}] 备注[{3}]"),
+    UPDATE_MANUAL_DEPOSIT_CHECK_SUCCESS("update.manual.deposit.check.success", "[财务审核-系统存款订單通过] 站点[{0}] 玩家[{1}] 订單号[{2}] 存款金额[{3}] 优惠金额[{4}] 优惠状态[{5}] 实际到账金额[{6}]"),
+    UPDATE_MANUAL_DEPOSIT_CHECK_FAIL("update.manual.deposit.check.fail", "[财务审核-系统存款订單失败] 站点[{0}] 玩家[{1}] 订單号[{2}] 失败金额[{3}]"),
+    UPDATE_MANUAL_DEPOSIT_REMARK("update.manual.deposit.remark", "[备注信息-系统存款订單] 站点[{0}] 订單号[{1}] 类型[{2}] 备注[{3}]"),
     //公司入款
-    UPDATE_COMPANY_DEPOSIT_CHECK_SUCCESS("update.company.deposit.check.success", "[财务审核-公司入款订单通过] 站点[{0}] 玩家[{1}] 订单号[{2}] 存款金额[{3}] 优惠金额[{4}] 优惠状态[{5}] 手续费[{6}] 实际到账金额[{7}]"),
-    UPDATE_COMPANY_DEPOSIT_CHECK_FAIL("update.company.deposit.check.fail", "[财务审核-公司入款订单失败] 站点[{0}] 玩家[{1}] 订单号[{2}] 失败金额[{3}]"),
-    UPDATE_COMPANY_DEPOSIT_REMARK("update.company.deposit.remark", "[备注信息-公司入款订单] 站点[{0}] 订单号[{1}] 类型[{2}] 备注[{3}]"),
+    UPDATE_COMPANY_DEPOSIT_CHECK_SUCCESS("update.company.deposit.check.success", "[财务审核-公司入款订單通过] 站点[{0}] 玩家[{1}] 订單号[{2}] 存款金额[{3}] 优惠金额[{4}] 优惠状态[{5}] 手续费[{6}] 实际到账金额[{7}]"),
+    UPDATE_COMPANY_DEPOSIT_CHECK_FAIL("update.company.deposit.check.fail", "[财务审核-公司入款订單失败] 站点[{0}] 玩家[{1}] 订單号[{2}] 失败金额[{3}]"),
+    UPDATE_COMPANY_DEPOSIT_REMARK("update.company.deposit.remark", "[备注信息-公司入款订單] 站点[{0}] 订單号[{1}] 类型[{2}] 备注[{3}]"),
     //优惠活动
-    UPDATE_FAVORABLE_DEPOSIT_CHECK_SUCCESS("update.favorable.deposit.check.success", "[财务审核-活动优惠订单赠送] 站点[{0}] 玩家[{1}] 订单号[{2}] 赠送优惠金额[{3}]"),
-    UPDATE_FAVORABLE_DEPOSIT_CHECK_FAIL("update.favorable.deposit.check.fail", "[财务审核-活动优惠订单拒绝] 站点[{0}] 玩家[{1}] 订单号[{2}] 拒绝优惠金额[{3}]"),
-    UPDATE_FAVORABLE_DEPOSIT_REMARK("update.favorable.deposit.remark", "[备注信息-优惠活动订单] 站点[{0}] 订单号[{1}] 类型[{2}] 备注[{3}]"),
+    UPDATE_FAVORABLE_DEPOSIT_CHECK_SUCCESS("update.favorable.deposit.check.success", "[财务审核-活动优惠订單赠送] 站点[{0}] 玩家[{1}] 订單号[{2}] 赠送优惠金额[{3}]"),
+    UPDATE_FAVORABLE_DEPOSIT_CHECK_FAIL("update.favorable.deposit.check.fail", "[财务审核-活动优惠订單拒绝] 站点[{0}] 玩家[{1}] 订單号[{2}] 拒绝优惠金额[{3}]"),
+    UPDATE_FAVORABLE_DEPOSIT_REMARK("update.favorable.deposit.remark", "[备注信息-优惠活动订單] 站点[{0}] 订單号[{1}] 类型[{2}] 备注[{3}]"),
     //线上支付
-    UPDATE_ONLINE_DEPOSIT_CHECK_SUCCESS("update.online.deposit.check.success", "[财务审核-线上支付订单通过] 站点[{0}] 玩家[{1}] 订单号[{2}] 存款金额[{3}] 手续费[{4}] 实际到账金额[{5}]"),
-    UPDATE_ONLINE_DEPOSIT_CHECK_FAIL("update.online.deposit.check.fail", "[财务审核-线上支付订单失败] 站点[{0}] 玩家[{1}] 订单号[{2}] 失败金额[{3}]"),
-    UPDATE_ONLINE_DEPOSIT_REMARK("update.online.deposit.remark", "[备注信息-线上支付订单] 站点[{0}] 订单号[{1}] 类型[{2}] 备注[{3}]"),
+    UPDATE_ONLINE_DEPOSIT_CHECK_SUCCESS("update.online.deposit.check.success", "[财务审核-线上支付订單通过] 站点[{0}] 玩家[{1}] 订單号[{2}] 存款金额[{3}] 手续费[{4}] 实际到账金额[{5}]"),
+    UPDATE_ONLINE_DEPOSIT_CHECK_FAIL("update.online.deposit.check.fail", "[财务审核-线上支付订單失败] 站点[{0}] 玩家[{1}] 订單号[{2}] 失败金额[{3}]"),
+    UPDATE_ONLINE_DEPOSIT_REMARK("update.online.deposit.remark", "[备注信息-线上支付订單] 站点[{0}] 订單号[{1}] 类型[{2}] 备注[{3}]"),
 
     //系统取款
-    UPDATE_MANUAL_WITHDRAW_CHECK_LOCK("update.manual.withdraw.check.lock", "[财务审核-系统取款订单锁定] 站点[{0}] 玩家[{1}] 订单号[{2}]"),
-    UPDATE_MANUAL_WITHDRAW_CHECK_UNLOCK("update.manual.withdraw.check.unlock", "[财务审核-系统取款订单解锁] 站点[{0}] 玩家[{1}] 订单号[{2}]"),
-    UPDATE_MANUAL_WITHDRAW_CHECK_SUCCESS("update.manual.withdraw.check.success", "[财务审核-系统取款订单通过] 站点[{0}] 玩家[{1}] 订单号[{2}] 取款金额[{3}] 类型[{4}] 是否清除稽核点[{5}]"),
-    UPDATE_MANUAL_WITHDRAW_CHECK_FAIL("update.manual.withdraw.check.fail", "[财务审核-系统取款订单失败] 站点[{0}] 玩家[{1}] 订单号[{2}]"),
-    UPDATE_MANUAL_WITHDRAW_REMARK("update.manual.withdraw.remark", "[备注信息-系统取款订单] 站点[{0}] 订单号[{1}] 类型[{2}] 备注[{3}]"),
+    UPDATE_MANUAL_WITHDRAW_CHECK_LOCK("update.manual.withdraw.check.lock", "[财务审核-系统取款订單锁定] 站点[{0}] 玩家[{1}] 订單号[{2}]"),
+    UPDATE_MANUAL_WITHDRAW_CHECK_UNLOCK("update.manual.withdraw.check.unlock", "[财务审核-系统取款订單解锁] 站点[{0}] 玩家[{1}] 订單号[{2}]"),
+    UPDATE_MANUAL_WITHDRAW_CHECK_SUCCESS("update.manual.withdraw.check.success", "[财务审核-系统取款订單通过] 站点[{0}] 玩家[{1}] 订單号[{2}] 取款金额[{3}] 类型[{4}] 是否清除稽核点[{5}]"),
+    UPDATE_MANUAL_WITHDRAW_CHECK_FAIL("update.manual.withdraw.check.fail", "[财务审核-系统取款订單失败] 站点[{0}] 玩家[{1}] 订單号[{2}]"),
+    UPDATE_MANUAL_WITHDRAW_REMARK("update.manual.withdraw.remark", "[备注信息-系统取款订單] 站点[{0}] 订單号[{1}] 类型[{2}] 备注[{3}]"),
     //玩家取款
-    UPDATE_PLAYER_WITHDRAW_CHECK_LOCK("update.player.withdraw.check.lock", "[财务审核-玩家取款订单锁定] 站点[{0}] 玩家[{1}] 订单号[{2}]"),
-    UPDATE_PLAYER_WITHDRAW_CHECK_UNLOCK("update.player.withdraw.check.unlock", "[财务审核-玩家取款订单解锁] 站点[{0}] 玩家[{1}] 订单号[{2}]"),
-    UPDATE_PLAYER_WITHDRAW_CHECK_SUCCESS("update.player.withdraw.check.success", "[财务审核-玩家取款订单通过] 站点[{0}] 玩家[{1}] 订单号[{2}] 取款金额[{3}] 扣除优惠[{4}] 行政费[{5}] 实际到账金额[{6}]"),
-    UPDATE_PLAYER_WITHDRAW_CHECK_FAIL("update.player.withdraw.check.fail", "[财务审核-玩家取款订单失败] 站点[{0}] 玩家[{1}] 订单号[{2}]"),
-    UPDATE_PLAYER_WITHDRAW_CHECK_REJECT("update.player.withdraw.check.reject", "[财务审核-玩家取款订单拒绝] 站点[{0}] 玩家[{1}] 订单号[{2}]"),
-    UPDATE_PLAYER_WITHDRAW_REMARK("update.player.withdraw.remark", "[备注信息-玩家取款订单] 站点[{0}] 订单号[{1}] 类型[{2}] 备注[{3}]"),
+    UPDATE_PLAYER_WITHDRAW_CHECK_LOCK("update.player.withdraw.check.lock", "[财务审核-玩家取款订單锁定] 站点[{0}] 玩家[{1}] 订單号[{2}]"),
+    UPDATE_PLAYER_WITHDRAW_CHECK_UNLOCK("update.player.withdraw.check.unlock", "[财务审核-玩家取款订單解锁] 站点[{0}] 玩家[{1}] 订單号[{2}]"),
+    UPDATE_PLAYER_WITHDRAW_CHECK_SUCCESS("update.player.withdraw.check.success", "[财务审核-玩家取款订單通过] 站点[{0}] 玩家[{1}] 订單号[{2}] 取款金额[{3}] 扣除优惠[{4}] 行政费[{5}] 实际到账金额[{6}]"),
+    UPDATE_PLAYER_WITHDRAW_CHECK_FAIL("update.player.withdraw.check.fail", "[财务审核-玩家取款订單失败] 站点[{0}] 玩家[{1}] 订單号[{2}]"),
+    UPDATE_PLAYER_WITHDRAW_CHECK_REJECT("update.player.withdraw.check.reject", "[财务审核-玩家取款订單拒绝] 站点[{0}] 玩家[{1}] 订單号[{2}]"),
+    UPDATE_PLAYER_WITHDRAW_REMARK("update.player.withdraw.remark", "[备注信息-玩家取款订單] 站点[{0}] 订單号[{1}] 类型[{2}] 备注[{3}]"),
     //赠送状态
-    UPDATE_GIVE_FAVORABLE_SUCCESS("update.give.favorable.success", "[修改赠送优惠状态-通过] 站点[{0}] 玩家[{1}] 订单号[{2}] 赠送金额[{3}]"),
-    UPDATE_GIVE_FAVORABLE_REJECT("update.give.favorable.reject", "[修改赠送优惠状态-拒绝] 站点[{0}] 玩家[{1}] 订单号[{2}] 拒绝金额[{3}]"),
+    UPDATE_GIVE_FAVORABLE_SUCCESS("update.give.favorable.success", "[修改赠送优惠状态-通过] 站点[{0}] 玩家[{1}] 订單号[{2}] 赠送金额[{3}]"),
+    UPDATE_GIVE_FAVORABLE_REJECT("update.give.favorable.reject", "[修改赠送优惠状态-拒绝] 站点[{0}] 玩家[{1}] 订單号[{2}] 拒绝金额[{3}]"),
 
     //系统参数
     UPDATE_PARAM_CHECK_REAL_NAME("update.param.check.real_name", "[系统参数-修改真实姓名必填状态] 站点[{0}] 修改前状态[{1}] 修改后状态[{2}]"),
@@ -97,7 +97,7 @@ public enum AuditLogEnum implements ICodeEnum {
     //函数
     CALL_REPORT_OPERATE_FUNCTION("call.report.operate.function", "[执行函数-手动执行运营报表函数] 站点[{0}] 日期[{1}]"),
     CALL_REPORT_OPERATE_BUSINESS("call.report.business.function", "[执行函数-手动执行经营报表函数] 站点[{0}] 日期[{1}]"),
-    CALL_INIT_SITE_CONFINE_AREA_FUNCTION("call.init.site.confine.area.function", "[执行函数-手动执初始化黑名单函数] 站点[{0}]"),
+    CALL_INIT_SITE_CONFINE_AREA_FUNCTION("call.init.site.confine.area.function", "[执行函数-手动执初始化黑名單函数] 站点[{0}]"),
 
 
     //彩票

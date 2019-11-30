@@ -8,7 +8,7 @@ import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 public class UserTypeVo {
 
     /**
-     * 是否需要检查菜单URL
+     * 是否需要检查菜單URL
      *
      * @param userTypeEnum
      * @return
@@ -25,7 +25,7 @@ public class UserTypeVo {
     }
 
     /**
-     * 是否拥有全权限(菜单,功能等)
+     * 是否拥有全权限(菜單,功能等)
      *
      * @param userTypeEnum
      * @return

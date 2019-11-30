@@ -40,7 +40,7 @@ public enum LotteryEnum implements IChildEnum {
     TCPL3(LotteryTypeEnum.PL3, LotteryClassifyEnum.OFFICE, "tcpl3", "体彩排列3"),
 
     GD11X5(LotteryTypeEnum.SYX5, LotteryClassifyEnum.OFFICE, "gd11x5", "广东11选5"),
-    HLJ11X5(LotteryTypeEnum.SYX5, LotteryClassifyEnum.OFFICE, "hlj11x5", "黑龙江11选5"),
+    HLJ11X5(LotteryTypeEnum.SYX5, LotteryClassifyEnum.OFFICE, "hlj11x5", "黑龍江11选5"),
     JX11X5(LotteryTypeEnum.SYX5, LotteryClassifyEnum.OFFICE, "jx11x5", "江西11选5"),
     SD11X5(LotteryTypeEnum.SYX5, LotteryClassifyEnum.OFFICE, "sd11x5", "山东11选5"),
     JS11X5(LotteryTypeEnum.SYX5, LotteryClassifyEnum.OFFICE, "js11x5", "江苏11选5"),

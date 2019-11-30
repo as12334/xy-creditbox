@@ -17,7 +17,7 @@ import java.util.Date;
 public class CacheHashTool {
     private static final Log LOG = LogFactory.getLog(CacheHashTool.class);
 
-    //开奖,撤单，撤销共用同一个时间与key
+    //开奖,撤單，撤销共用同一个时间与key
     private static final int COMMON_OFFSET = 30;
 
     //补采
@@ -30,7 +30,7 @@ public class CacheHashTool {
 
 
     /**
-     * 开奖,撤单，撤销
+     * 开奖,撤單，撤销
      * 是否间隔内满足30s间隔hash
      *
      * @return

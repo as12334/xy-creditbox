@@ -9,61 +9,61 @@ public class LotteryErrorCode {
     public final String ERR_CODE = "code";
 
     /**
-     * 提交订单错误信息: 订单提交成功
+     * 提交订單错误信息: 订單提交成功
      */
     public final String CODE_100 = "100";
     public final String MSG_100 = "下注成功";
 
     /**
-     * 提交订单错误信息: 游戏余额不足
+     * 提交订單错误信息: 游戏余额不足
      */
     public final String CODE_101 = "101";
     public final String MSG_101 = "下注失败：游戏余额不足";
 
     /**
-     * 提交订单错误信息: 请求参数异常（如json格式错误，未能获取提交注单数量等）
+     * 提交订單错误信息: 请求参数异常（如json格式错误，未能获取提交注單数量等）
      */
     public final String CODE_102 = "102";
     public final String MSG_102 = "下注失败：请求参数异常";
 
     /**
-     * 提交订单错误信息: 投注期数已过期
+     * 提交订單错误信息: 投注期数已过期
      */
     public final String CODE_103 = "103";
     public final String MSG_103 = "下注失败：下注期数已过期";
 
     /**
-     * 提交订单错误信息: 获取数据异常
+     * 提交订單错误信息: 获取数据异常
      */
     public final String CODE_104 = "104";
     public final String MSG_104 = "下注失败：获取数据异常";
 
     /**
-     * 提交订单错误信息: 超出单项限额
+     * 提交订單错误信息: 超出單项限额
      */
     public final String CODE_105 = "105";
-    public final String MSG_105 = "下注失败：超出单项限额";
+    public final String MSG_105 = "下注失败：超出單项限额";
 
     /**
-     * 提交订单错误信息: 超出单注限额
+     * 提交订單错误信息: 超出單注限额
      */
     public final String CODE_106 = "106";
-    public final String MSG_106 = "下注失败：超出单注限额";
+    public final String MSG_106 = "下注失败：超出單注限额";
 
     /**
-     * 提交订单错误信息: 超出单类别单项限额
+     * 提交订單错误信息: 超出單类别單项限额
      */
     public final String CODE_107 = "107";
-    public final String MSG_107 = "下注失败：超出单类别单项限额";
+    public final String MSG_107 = "下注失败：超出單类别單项限额";
 
     /**
-     * 提交订单错误信息: 订单提交失败
+     * 提交订單错误信息: 订單提交失败
      */
     public final String CODE_109 = "109";
     public final String MSG_109 = "下注失败：服务忙！";
 
     /**
-     * 提交订单错误信息: 投注期数已过期
+     * 提交订單错误信息: 投注期数已过期
      */
     public final String CODE_110 = "110";
     public final String MSG_110 = "下注失败：参数有误";
@@ -73,7 +73,7 @@ public class LotteryErrorCode {
     public final String MSG_DISABLE = "下注失败：彩票停售";
 
     /**
-     * 提交订单错误信息: 投注期数尚未开盘
+     * 提交订單错误信息: 投注期数尚未开盘
      */
     public final String CODE_112 = "112";
     public final String MSG_112 = "下注失败：尚未开盘";

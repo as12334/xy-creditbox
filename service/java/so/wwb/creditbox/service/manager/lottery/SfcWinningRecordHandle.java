@@ -1,19 +1,17 @@
-package so.wwb.creditbox.service.company.handler;
+package so.wwb.creditbox.service.manager.lottery;
 
 import org.soul.commons.enums.EnumTool;
-import org.soul.commons.lang.ArrayTool;
 import org.soul.commons.lang.string.StringTool;
 import so.wwb.creditbox.model.enums.lottery.LotteryBettingEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryPlayEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryTypeEnum;
-import so.wwb.creditbox.model.enums.lottery.LotteryWinningNum;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryWinningRecord;
+import so.wwb.creditbox.service.company.handler.WinningRecordHandleVo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by shook on 17-8-15.

@@ -4,7 +4,7 @@ package ${basepackage}.${webModule}.form;
 import org.soul.web.support.IForm;
 
 
-<@generateClassComment table.remarks+"查询表单验证对象"/>
+<@generateClassComment table.remarks+"查询表單验证对象"/>
 //region your codes 1
 public class ${className}SearchForm implements IForm {
 //endregion your codes 1

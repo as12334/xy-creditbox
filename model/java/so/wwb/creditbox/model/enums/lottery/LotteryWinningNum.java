@@ -48,10 +48,10 @@ public interface LotteryWinningNum {
     String CHAMPION_UP_56 = "5,6,16,17";
     String CHAMPION_UP_78 = "7,8,14,15";
     String CHAMPION_UP_910 = "9,10,12,13";
-    String BIG_DOUBLE = "大双";
-    String SMALL_DOUBLE = "小双";
-    String BIG_SINGLE = "大单";
-    String SMALL_SINGLE = "小单";
+    String BIG_DOUBLE = "大雙";
+    String SMALL_DOUBLE = "小雙";
+    String BIG_SINGLE = "大單";
+    String SMALL_SINGLE = "小單";
     String RED_WAVE = "红波";
     String BLUE_WAVE = "蓝波";
     String GREEN_WAVE = "绿波";
@@ -83,12 +83,12 @@ public interface LotteryWinningNum {
     String LHC_HALFCOLOUR_BLUE_SMALL = "蓝小";
     String LHC_HALFCOLOUR_GREEN_BIG = "绿大";
     String LHC_HALFCOLOUR_GREEN_SMALL = "绿小";
-    String LHC_HALFCOLOUR_RED_SINGLE = "红单";
-    String LHC_HALFCOLOUR_RED_DOUBLE = "红双";
-    String LHC_HALFCOLOUR_BLUE_SINGLE = "蓝单";
-    String LHC_HALFCOLOUR_BLUE_DOUBLE = "蓝双";
-    String LHC_HALFCOLOUR_GREEN_SINGLE = "绿单";
-    String LHC_HALFCOLOUR_GREEN_DOUBLE = "绿双";
+    String LHC_HALFCOLOUR_RED_SINGLE = "红單";
+    String LHC_HALFCOLOUR_RED_DOUBLE = "红雙";
+    String LHC_HALFCOLOUR_BLUE_SINGLE = "蓝單";
+    String LHC_HALFCOLOUR_BLUE_DOUBLE = "蓝雙";
+    String LHC_HALFCOLOUR_GREEN_SINGLE = "绿單";
+    String LHC_HALFCOLOUR_GREEN_DOUBLE = "绿雙";
 
     String GENERAL = "通选";
 
@@ -105,8 +105,8 @@ public interface LotteryWinningNum {
     String SSC_NIU_NIU = "牛牛";
     String SSC_BIG_NIU = "牛大";
     String SSC_SMALL_NIU = "牛小";
-    String SSC_DOUBLE_NIU = "牛双";
-    String SSC_SINGLE_NIU = "牛单";
+    String SSC_DOUBLE_NIU = "牛雙";
+    String SSC_SINGLE_NIU = "牛單";
     String SSC_PRIME_NIU = "牛质";
     String SSC_COMBINED_NIU = "牛合";
     String SSC_WU_TIAO = "五条";
@@ -115,6 +115,31 @@ public interface LotteryWinningNum {
     String SSC_SHUN_ZI = "顺子";
     String SSC_SAN_TIAO = "三条";
     String SSC_ER_DUI = "两对";
-    String SSC_DAN_DUI = "单对";
+    String SSC_DAN_DUI = "單对";
     String SSC_SAN_HAO = "散号";
+
+
+    String CHAMPION_UP_BIG = "冠亞大";
+    String CHAMPION_UP_SMALL = "冠亞小";
+    String CHAMPION_UP_SINGLE = "冠亞單";
+    String CHAMPION_UP_DOUBLE = "冠亞雙";
+
+    String CHAMPION_UP_SUM_3 = "3";
+    String CHAMPION_UP_SUM_4 = "4";
+    String CHAMPION_UP_SUM_5 = "5";
+    String CHAMPION_UP_SUM_6 = "6";
+    String CHAMPION_UP_SUM_7 = "7";
+    String CHAMPION_UP_SUM_8 = "8";
+    String CHAMPION_UP_SUM_9 = "9";
+    String CHAMPION_UP_SUM_10 = "10";
+    String CHAMPION_UP_SUM_11 = "11";
+    String CHAMPION_UP_SUM_12 = "12";
+    String CHAMPION_UP_SUM_13 = "13";
+    String CHAMPION_UP_SUM_14 = "14";
+    String CHAMPION_UP_SUM_15 = "15";
+    String CHAMPION_UP_SUM_16 = "16";
+    String CHAMPION_UP_SUM_17 = "17";
+    String CHAMPION_UP_SUM_18 = "18";
+    String CHAMPION_UP_SUM_19 = "19";
+
 }

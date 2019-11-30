@@ -5,7 +5,7 @@ import org.soul.model.msg.notice.enums.ICometSubscribeType;
 
 public enum CometSubscribeType implements ICometSubscribeType {
     SYS_TEST("SYS_TEST", "测试"),
-    NEW_BILL("NEW_BILL", "新订单通知"),
+    NEW_BILL("NEW_BILL", "新订單通知"),
     ECHO(CODE_ECHO,"测试回声"),
     M_SYS_ANN("M_SYS_ANN", "系统公告1"),
     S_SYS_ANN("S_SYS_ANN", "系统公告2"),
@@ -49,7 +49,7 @@ public enum CometSubscribeType implements ICometSubscribeType {
     BOSS_ATTACK_REMINDER("BOSS_ATTACK_REMINDER", "攻击监控"),
     BOSS_CREDIT_PAY_REMINDER("BOSS_CREDIT_PAY_REMINDER", "买分提醒"),
     BOSS_TRANSFER_REMINDER("BOSS_TRANSFER_REMINDER", "转账异常提醒"),
-    BOSS_API_ORDER_REMINDER("BOSS_API_ORDER_REMINDER", "API注单进度监控"),
+    BOSS_API_ORDER_REMINDER("BOSS_API_ORDER_REMINDER", "API注單进度监控"),
     BOSS_API_TRANS_REMINDER("BOSS_API_TRANS_REMINDER", "API转账进度监控"),
 
     BOSS_LOTTREY_RESULT_GATHER("BOSS_LOTTREY_RESULT_GATHER", "彩票结果采集监控"),
@@ -68,7 +68,7 @@ public enum CometSubscribeType implements ICometSubscribeType {
     MESSAGE_NOTICE("MESSAGE_NOTICE","消息通知"),
     TRANSFER_LIMIT_WARNING("TRANSFER_LIMIT_WARNING", "转账上限提醒"),
     LARGE_TRANSACTION_MONITOR("LARGE_TRANSACTION_MONITOR","大额交易监控"),
-    LOTTERY_BETORDER("LOTTERY_BETORDER","注单推送"),
+    LOTTERY_BETORDER("LOTTERY_BETORDER","注單推送"),
     MSITE_DIGICCY_REFRESH_BALANCE("MSITE_DIGICCY_REFRESH_BALANCE", "自动刷新余额");
 
 

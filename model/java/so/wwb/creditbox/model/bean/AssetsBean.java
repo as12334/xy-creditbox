@@ -22,7 +22,7 @@ public class AssetsBean extends BaseBean {
     private Double rebate = 0d;
     /** 未开奖金额 */
     private Double unOpen = 0d;
-    /** 撤单 */
+    /** 撤單 */
     private Double revoke = 0d;
     /** 撤销 */
     private Double repeal = 0d;

@@ -11,7 +11,7 @@ import javax.validation.GroupSequence;
 
 
 /**
- * 限制访问站点的地区表表单验证对象
+ * 限制访问站点的地区表表單验证对象
  *
  * @author loong
  * @time 2015-8-11 11:17:30

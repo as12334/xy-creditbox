@@ -16,7 +16,7 @@ import javax.validation.constraints.Pattern;
 
 
 /**
- * 表单验证对象
+ * 表單验证对象
  *
  * @author block
  * @time 2019-10-29 20:12:43
@@ -45,7 +45,7 @@ public class VSiteUserForm implements IForm {
 
     /*限制占成*/
     private Double result_stintOccupy;
-    /*限占单选*/
+    /*限占單选*/
     private String $stintId;
 
     /*限制占成*/

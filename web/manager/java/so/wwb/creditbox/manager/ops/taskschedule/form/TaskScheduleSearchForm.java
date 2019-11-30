@@ -5,7 +5,7 @@ import org.soul.web.support.IForm;
 
 
 /**
- * 任务调度实体查询表单验证对象
+ * 任务调度实体查询表單验证对象
  *
  * Created by mark using soul-code-generator on 2015-7-10 17:00:31
  */

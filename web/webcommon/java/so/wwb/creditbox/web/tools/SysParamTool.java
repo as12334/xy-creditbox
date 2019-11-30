@@ -55,7 +55,7 @@ public class SysParamTool {
 
     /**
      * 重新生成token
-     * 针对拥有表单token的操作，当前端验证通过，
+     * 针对拥有表單token的操作，当前端验证通过，
      * 后台验证失败或者服务失败时，重新生成token
      *
      * @param map state 服务是否成功
@@ -634,8 +634,8 @@ public class SysParamTool {
 
 
     /**
-     * 审计日志 页面菜单
-     * 区分不同后台的自定义菜单
+     * 审计日志 页面菜單
+     * 区分不同后台的自定义菜單
      */
     private static List<TopMenuJson> setAuditLogPage(List<TopMenuJson> menuList, String subsysCode, String basePath, String suffix) {
         List<AuditLogPageTypeEnum> enumList = new ArrayList<>();
@@ -726,7 +726,7 @@ public class SysParamTool {
     }
 
     /**
-     * 获取自定义菜单源路径
+     * 获取自定义菜單源路径
      * 1.现根据 RequestMapping 获取
      * 2.没有则获取 getViewBasePath 的路径
      *
@@ -759,7 +759,7 @@ public class SysParamTool {
                 }
             }
         } catch (Exception e) {
-            LOG.error("获取自定义菜单URI错误：", e);
+            LOG.error("获取自定义菜單URI错误：", e);
         }
         return path;
     }

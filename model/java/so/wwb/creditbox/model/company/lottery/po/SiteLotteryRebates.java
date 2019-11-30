@@ -73,9 +73,9 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 	private Double rebateC;
 	/** 最低下注额 */
 	private Integer minBet;
-	/** 单注限额 */
+	/** 單注限额 */
 	private Integer maxBet;
-	/** 单期限额 */
+	/** 單期限额 */
 	private Integer maxExpectBet;
 	/** 起补金额 */
 	private Double postMoney;

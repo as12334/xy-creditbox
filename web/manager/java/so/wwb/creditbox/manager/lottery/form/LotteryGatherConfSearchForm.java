@@ -4,7 +4,7 @@ import org.soul.web.support.IForm;
 
 
 /**
- * 彩票采集接口配置表查询表单验证对象
+ * 彩票采集接口配置表查询表單验证对象
  *
  * @author block
  * @time 2019-11-15 10:46:13

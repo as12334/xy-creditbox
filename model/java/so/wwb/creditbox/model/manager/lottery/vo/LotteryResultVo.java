@@ -43,6 +43,8 @@ public class LotteryResultVo extends BaseObjectVo<LotteryResult, LotteryResultSo
 
     //自动派彩:auto ,手动派彩:active
     private String payType;
+
+    private Integer siteId;
     //endregion your codes 5
 
     /**
@@ -133,6 +135,13 @@ public class LotteryResultVo extends BaseObjectVo<LotteryResult, LotteryResultSo
         this.payType = payType;
     }
 
-    //endregion your codes 4
+    public Integer getSiteId() {
+        return siteId;
+    }
+
+    public void setSiteId(Integer siteId) {
+        this.siteId = siteId;
+    }
+//endregion your codes 4
 
 }

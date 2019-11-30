@@ -17,7 +17,7 @@ import javax.validation.constraints.Pattern;
 
 
 /**
- * 站长管理表单验证对象
+ * 站长管理表單验证对象
  *
  * @author tom
  * @time 2015-11-17 16:57:53

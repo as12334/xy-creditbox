@@ -4,7 +4,7 @@ import org.soul.web.support.IForm;
 
 
 /**
- * 自主开号规则表查询表单验证对象
+ * 自主开号规则表查询表單验证对象
  *
  * @author block
  * @time 2019-11-15 15:39:42

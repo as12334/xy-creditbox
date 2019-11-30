@@ -160,7 +160,7 @@ public class BaseAuditLogController extends NoMappingCrudController<IAuditLogSer
                 roleKeys.add(new Pair<>(UserTypeEnum.COMPANY_SUB.getCode(), "商户-子账号"));
             } else if (StringTool.equals(SubSysCodeEnum.COMPANY.getCode(), subsysCode)
                     || StringTool.equals(SubSysCodeEnum.COMPANY.getCode(), subsysCode)) {
-                //商户暂时没有单独的总代日志
+                //商户暂时没有單独的总代日志
                 roleKeys.add(new Pair<>(UserTypeEnum.COMPANY.getCode(), "商户"));
                 roleKeys.add(new Pair<>(UserTypeEnum.COMPANY_SUB.getCode(), "商户-子账号"));
                 roleKeys.add(new Pair<>(UserTypeEnum.DISTRIBUTOR.getCode(), "总代"));

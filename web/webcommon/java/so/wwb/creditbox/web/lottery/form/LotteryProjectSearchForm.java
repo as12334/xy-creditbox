@@ -4,7 +4,7 @@ import org.soul.web.support.IForm;
 
 
 /**
- * 开奖结果表查询表单验证对象
+ * 开奖结果表查询表單验证对象
  *
  * @author shook
  * @time 2017-4-9 9:47:30

@@ -86,7 +86,7 @@ public class IndexController extends BaseIndexController {
 
 
     /**
-     * 获取所有菜单
+     * 获取所有菜單
      * @return
      */
     @RequestMapping("/fetchAllMenus")

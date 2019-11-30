@@ -4,7 +4,7 @@ import org.soul.web.support.IForm;
 
 
 /**
- * 彩种表查询表单验证对象
+ * 彩种表查询表單验证对象
  *
  * @author shook
  * @time 2017-4-7 19:50:21

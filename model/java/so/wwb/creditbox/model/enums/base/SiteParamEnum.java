@@ -58,7 +58,7 @@ public enum SiteParamEnum implements IParamEnum {
 //
 //    SETTING_SHOWPOP(Module.MASTER_SETTING, "showpop", ""), //是否默认显示消息通知框
     WARMING_TONE_GATHER(Module.MASTER_SETTING, "warming_tone_project", "gather"), //采集器报警
-//    WARMING_TONE_BILL(Module.MASTER_SETTING, "warming_tone_project", "bill"), //新订单通知
+//    WARMING_TONE_BILL(Module.MASTER_SETTING, "warming_tone_project", "bill"), //新订單通知
 //
     SETTING_PRIVILAGE_PASS_TIME(Module.MASTER_SETTING,"privilage_pass_time","setting.privilage.pass.time"),//密码权限时效性设置
 //    WARMING_TONE_DEPOSIT(Module.MASTER_SETTING,"warming_tone_project","deposit"),
@@ -87,7 +87,7 @@ public enum SiteParamEnum implements IParamEnum {
 //    SETTING_REG_SERVICE_TERMS_FORCED_SHOW_AGENT(Module.MASTER_SETTING, "reg_setting_agent", "service_forced"),//是否强制显示服务条款
 //    CONTENT_PAY_ACCOUNT_WARNING_DEPOSIT_RESET_DAYS_NEXT_TIME(Module.MASTER_CONTENT, "payAccountWarning", "deposit.reset.days.next.time"),//账户下次清零时间
 //    CONTENT_PAY_ACCOUNT_WARNING_UNUSUAL_ERROR_NOTICE_VAL(Module.MASTER_CONTENT, "payAccountWarning", "unusual.error.notice.val"),//X小时内X个玩家对某收款账户失败达到X次时进行提醒
-//    CONTENT_PAY_ACCOUNT_WARNING_UNUSUAL_NOINCOME_NOTICE_VAL(Module.MASTER_CONTENT, "payAccountWarning", "unusual.noincome.notice.val"),//X小时内次某收款账号没有存款成功的订单时提醒
+//    CONTENT_PAY_ACCOUNT_WARNING_UNUSUAL_NOINCOME_NOTICE_VAL(Module.MASTER_CONTENT, "payAccountWarning", "unusual.noincome.notice.val"),//X小时内次某收款账号没有存款成功的订單时提醒
 //
 //    //带玩注册初始金额
 //    SETTING_TAKE_PLAY_ACCOUNT_INIT_MONEY(Module.MASTER_SETTING, "take_play_account", "init_money"),
@@ -164,7 +164,7 @@ public enum SiteParamEnum implements IParamEnum {
 //     **/
 //    SITE_ACB_SWITCH(Module.MASTER_CONTENT, "company_recharge", "acb_switch"),
 //    /**
-//     * 站点单注最低限额设置
+//     * 站点單注最低限额设置
 //     */
 //    SETTING_CAPTCHA_MINBETQUOTA(Module.MASTER_SETTING,"quota","minBetQuota"),
 //

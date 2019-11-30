@@ -3,7 +3,7 @@ package so.wwb.creditbox.model.enums.lottery;
 import org.soul.commons.enums.ICodeEnum;
 
 /**
- * 投注订单奖金模式
+ * 投注订單奖金模式
  * Created by marz on 17-09-29.
  */
 public enum LotteryBonusModelEnum implements ICodeEnum {

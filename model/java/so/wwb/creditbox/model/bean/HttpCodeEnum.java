@@ -10,7 +10,7 @@ public enum HttpCodeEnum {
     SUCCESS(200,"成功"),
     PARTIAL_SUCCESS(210,"部分成功"),
     NO_LOGIN(300,"未登錄"),
-    ERROR_OTHER(400,"其他错误单独处理"),
+    ERROR_OTHER(400,"其他错误單独处理"),
     ERROR(500,"内部错误"),
     ODD_CHENGE(610,"赔率变动"),
 //    error(700,""),

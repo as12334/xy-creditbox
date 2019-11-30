@@ -8,7 +8,7 @@ import org.soul.web.support.IForm;
 /**
  * Created by cherry on 17-3-22.
  */
-@Comment("域名表单验证")
+@Comment("域名表單验证")
 public class VSysDomainForm implements IForm {
     private Integer result_id;
     private String result_name;

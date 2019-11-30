@@ -160,7 +160,7 @@ public interface RegexConst {
     String LOTTERY_TYPE_NAME = "^[0-9a-zA-Z\\u4e00-\\u9fa5]{3,15}$";
 
 
-    //TODO 新增支付JAR 相关正则，暂时简单验证，待完善规则 by jeremy 2018年05月16日11:26:08
+    //TODO 新增支付JAR 相关正则，暂时简單验证，待完善规则 by jeremy 2018年05月16日11:26:08
     /**API简称  2-20位英文大小写字母、数字、下划线*/
     String JAR_CHANNEL_CODE = "^[a-zA-Z0-9_\u4e00-\u9fa5()]{2,20}$";
     /**API全称  2-16位英文大小写字母、数字、下划线*/

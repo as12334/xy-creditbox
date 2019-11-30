@@ -13,6 +13,7 @@ import org.soul.commons.log.LogFactory;
 import org.soul.commons.query.sort.Order;
 import org.soul.commons.spring.utils.SpringTool;
 import org.soul.web.session.SessionManagerBase;
+import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
 import so.wwb.creditbox.model.constants.cache.CacheKey;
 import so.wwb.creditbox.model.enums.base.SiteI18nEnum;
 import so.wwb.creditbox.model.enums.site.SiteLangStatusEnum;
@@ -52,8 +53,25 @@ public class CacheBase {
         lastAccess = null;
         getProxy().refresh(CacheKey.CACHE_KEY_DOMAIN);
     }
-
-
+    /**
+     * 根据站点id，彩种code获取指定彩种
+     *
+     * @return
+     */
+    public static SiteLottery getSiteLotteryByCode(String siteId, String code) {
+        Map<String, SiteLottery> map = CacheTool.get(CacheKey.getCacheKey(CacheKey.CACHE_KEY_SITE_LOTTERY, siteId));
+        if (map == null || map.size() == 0) {
+            return null;
+        }
+        return map.get(code);
+    }
+    /**
+     * 获取所有彩种数据(不分终端，相同code只有一条数据)
+     */
+    public static Lottery getLotteryByCode(String code) {
+        Map<String, Lottery> map = getLottery();
+        return map != null && map.size() > 0 ? map.get(code) : null;
+    }
 
     public static void refreshLottery() {
         CacheTool.refresh(CacheKey.CACHE_KEY_LOTTERY);

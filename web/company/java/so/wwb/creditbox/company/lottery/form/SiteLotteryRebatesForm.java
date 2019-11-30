@@ -11,7 +11,7 @@ import javax.validation.constraints.Pattern;
 
 
 /**
- * 表单验证对象
+ * 表單验证对象
  *
  * @author block
  * @time 2019-11-12 0:36:34
@@ -104,9 +104,9 @@ public class SiteLotteryRebatesForm implements IForm {
 //    private String rebateC;
 //    /** 最低下注额 */
 //    private Double minBet;
-//    /** 单注限额 */
+//    /** 單注限额 */
 //    private Double maxBet;
-//    /** 单期限额 */
+//    /** 單期限额 */
 //    private Double maxExpectBet;
 //    /** 起补金额 */
 //    private Double postMoney;

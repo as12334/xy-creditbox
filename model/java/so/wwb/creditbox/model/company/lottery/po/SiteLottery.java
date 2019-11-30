@@ -49,7 +49,7 @@ public class SiteLottery implements IEntity<Integer> {
 	private String terminal;
 	/** 彩种类型 */
 	private String type;
-	/** 类型(1.全部2.官方玩法3.双面玩法) */
+	/** 类型(1.全部2.官方玩法3.雙面玩法) */
 	private Integer genre;
 	//endregion
 

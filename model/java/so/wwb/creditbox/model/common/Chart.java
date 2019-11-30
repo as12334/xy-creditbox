@@ -32,7 +32,7 @@ public class Chart implements Serializable {
     private Double effeAmount;
     /** API TYPE ID */
     private Integer apiTypeId;
-    /** 投注单量 */
+    /** 投注單量 */
     private Integer single;
     /** API ID */
     private Integer apiId;

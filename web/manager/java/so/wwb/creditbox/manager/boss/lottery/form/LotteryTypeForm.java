@@ -9,7 +9,7 @@ import javax.validation.constraints.Pattern;
 
 
 /**
- * 彩种类型表表单验证对象
+ * 彩种类型表表單验证对象
  *
  * @author steady
  * @time 2018-5-21 19:42:21

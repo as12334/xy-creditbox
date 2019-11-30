@@ -44,7 +44,7 @@ public class SysResourceController extends org.soul.web.security.privilege.contr
         return JsonTool.toJson(menuNodeList);
     }
 	/**
-     * 获取所有菜单
+     * 获取所有菜單
      * @return
      */
     @RequestMapping("/fetchAllMenus")

@@ -11,7 +11,7 @@ import javax.validation.constraints.Pattern;
 
 
 /**
- * 限制/允许访问站点/管理中心的IP表表单验证对象
+ * 限制/允许访问站点/管理中心的IP表表單验证对象
  *
  * @author loong
  * @time 2015-8-11 11:18:00

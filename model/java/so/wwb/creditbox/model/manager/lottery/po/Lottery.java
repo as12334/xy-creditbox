@@ -47,7 +47,7 @@ public class Lottery implements IEntity<Integer> {
 	private Integer orderNum;
 	/** 支持终端：0-全部终端,1-PC,2-移动 */
 	private String terminal;
-	/** 类型(1.全部2.官方玩法3.双面玩法) */
+	/** 类型(1.全部2.官方玩法3.雙面玩法) */
 	private Integer genre;
 	//endregion
 

@@ -28,7 +28,7 @@ public class TokenCache {
     }
 
     /**
-     * 默认缓存过期时间单位秒
+     * 默认缓存过期时间單位秒
      */
     private Integer expire;
 

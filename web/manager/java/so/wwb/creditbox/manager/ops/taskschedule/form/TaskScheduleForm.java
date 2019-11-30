@@ -6,7 +6,7 @@ import org.soul.web.support.IForm;
 
 
 /**
- * 任务调度实体表单验证对象
+ * 任务调度实体表單验证对象
  *
  * @author admin
  * @time 2018-3-2 15:15:57

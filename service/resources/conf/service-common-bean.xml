@@ -79,6 +79,20 @@
     <!-- 投注记录表服务 -->
     <bean id="lotteryBetOrderService" class="so.wwb.creditbox.service.company.lottery.LotteryBetOrderService"/>
 
+    <!-- 站点派彩记录表 create by marz服务 -->
+    <bean id="lotteryPayoutLogService" class="so.wwb.creditbox.service.company.lottery.LotteryPayoutLogService"/>
+
+    <!-- 开奖结果派发服务 -->
+    <bean id="lotteryResultPayoutService" class="so.wwb.creditbox.service.manager.lottery.LotteryResultPayoutService"/>
+
+    <!-- 中奖记录表服务 -->
+    <bean id="lotteryWinningRecordService" class="so.wwb.creditbox.service.manager.lottery.LotteryWinningRecordService"/>
+
+
+
+        <bean id="lotteryTypeInfoService" class="so.wwb.creditbox.service.manager.lottery.LotteryTypeInfoService"/>
+
+
 <!--//endregion your codes 1-->
 
 </beans>

@@ -13,7 +13,7 @@ import javax.validation.constraints.Pattern;
 
 
 /**
- * 表单验证对象
+ * 表單验证对象
  *
  * @author jerry
  */

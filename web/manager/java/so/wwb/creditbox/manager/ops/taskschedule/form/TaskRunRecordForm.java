@@ -4,7 +4,7 @@ import org.soul.web.support.IForm;
 
 
 /**
- * 任务运行结果表单验证对象
+ * 任务运行结果表單验证对象
  *
  * Created by mark using soul-code-generator on 2015-7-14 19:37:47
  */

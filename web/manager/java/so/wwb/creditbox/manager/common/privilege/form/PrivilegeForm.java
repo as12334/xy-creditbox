@@ -11,7 +11,7 @@ import so.wwb.creditbox.manager.common.privilege.controller.PrivilegeController;
 /**
  * Created by cj on 15-10-15.
  */
-@Comment("安全密码表单验证")
+@Comment("安全密码表單验证")
 public class PrivilegeForm implements IForm {
     private String code;
     private String validateCode;

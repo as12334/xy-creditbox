@@ -41,7 +41,7 @@ public class AddSysUserExtendForm implements IForm {
      /*退水設定*/
     private String $water;
 
-    /*限占单选*/
+    /*限占單选*/
     private String $stintId;
 
     /*上級占成*/

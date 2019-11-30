@@ -13,6 +13,22 @@
     <!--<bean class="so.wwb.creditbox.service.manager.lottery.task.LotteryRecalculateTask" id="lotteryRecalculateTask" scope="prototype"/>-->
     <!--<bean class="so.wwb.creditbox.service.manager.lottery.task.LotteryResultOwnPayoutTask" id="lotteryResultOwnPayoutTask" scope="prototype"/>-->
 
+    <bean class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean" id="payoutExecutor">
+        <property name="corePoolSize" value="500"/>
+        <property name="maxPoolSize" value="700"/>
+        <property name="keepAliveSeconds" value="120"/>
+        <property name="queueCapacity" value="0"/>
+        <!-- 线程组名 -->
+        <property name="threadGroupName" value="lottery"/>
+        <!-- 线程名称前缀 -->
+        <property name="threadNamePrefix" value="payout-"/>
+        <!-- 容器停止时是否等待job执行完，默认为false -->
+        <property name="waitForTasksToCompleteOnShutdown" value="true"/>
+        <property name="rejectedExecutionHandler">
+            <bean class="so.wwb.creditbox.model.policy.LotteryRejectPolicy"/>
+        </property>
+    </bean>
+
     <!-- 游戏相关线程池 -->
     <bean class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean" id="lotteryExecutor">
         <property name="corePoolSize" value="200"/>

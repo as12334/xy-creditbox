@@ -15,7 +15,7 @@ public class AgentRegisterDefenseRulesFactiory extends RegisterDefenseRulesFacti
     @Override
     public InTimeAndTimeLimitRule isIntervalLimit(){
 //        SysParam intervalParam = ParamTool.getSysParam(SiteParamEnum.SETTING_REG_LIMIT_IP_REG_INTERVAL_AGENT);
-//        final Float interval = Float.valueOf(ParamTool.blankThenDefault(intervalParam));//单位小时
+//        final Float interval = Float.valueOf(ParamTool.blankThenDefault(intervalParam));//單位小时
 //
 //        if (interval <= 0) {
 //            //不做限制
