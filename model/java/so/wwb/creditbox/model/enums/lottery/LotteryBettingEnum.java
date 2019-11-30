@@ -54,6 +54,16 @@ public enum LotteryBettingEnum implements ICodeEnum {
     SFC_SEVENTH("sfc", "111", "第七球"),
     SFC_EIGHTH("sfc", "116", "第八球"),
 
+    SFC_SUM8_BIG_SMALL("sfc", "11", "总和大小"),
+    SFC_SUM8_SINGLE_DOUBLE("sfc","12", "总和单双"),
+    SFC_SUM8_MANTISSA_BIG_SMALL("sfc","13", "总和尾数大小"),
+    SFC_DRAGON_TIGER("sfc","80", "龙虎"),
+
+
+
+
+
+
 
     SFC_SUM8("sfc", "sfc_sum8", "总和"),
     SFC_SUM_DRAGON_TIGER("sfc", "sfc_sum_dragon_tiger", "總和、龍虎"),

@@ -24,21 +24,21 @@ public interface LotteryWinningNum {
     String FW_B = "北";
 
 
-    String SINGLE = "单";
-    String DOUBLE = "双";
-    String TOTAL_SINGLE = "总单";
-    String TOTAL_DOUBLE = "总双";
-    String SINGLE_SUM_SINGLE = "合单";
-    String SINGLE_SUM_DOUBLE = "合双";
-    String SUM_SINGLE = "和单";
-    String SUM_DOUBLE = "和双";
+    String SINGLE = "單";
+    String DOUBLE = "雙";
+    String TOTAL_SINGLE = "總和單";
+    String TOTAL_DOUBLE = "總和雙";
+    String SINGLE_SUM_SINGLE = "合單";
+    String SINGLE_SUM_DOUBLE = "合雙";
+    String SUM_SINGLE = "合單";
+    String SUM_DOUBLE = "合雙";
 
     String PRIME = "质";
     String COMBINED = "合";
     String MANTISSA_PRIME = "尾质";
     String MANTISSA_COMBINED = "尾合";
 
-    String DRAGON = "龙";
+    String DRAGON = "龍";
     String TIGER = "虎";
     String DRAGON_TIGER_TIE = "和";
     String DRAW = "平局";
