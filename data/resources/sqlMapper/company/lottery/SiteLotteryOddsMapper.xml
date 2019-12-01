@@ -12,15 +12,15 @@
         <result column="play_code" property="playCode"/>
         <result column="bet_num" property="betNum"/>
         <result column="sort" property="sort"/>
+        <result column="sort_type" property="sortType"/>
+        <result column="bet_sort" property="betSort"/>
+        <result column="page_type" property="pageType"/>
         <result column="odd_a" property="oddA"/>
         <result column="odd_b" property="oddB"/>
         <result column="odd_c" property="oddC"/>
         <result column="min_odd" property="minOdd"/>
         <result column="max_odd" property="maxOdd"/>
         <result column="odd_close" property="oddClose"/>
-        <result column="bet_sort" property="betSort"/>
-        <result column="sort_type" property="sortType"/>
-
     </resultMap>
 
     <!--//region your codes 1-->

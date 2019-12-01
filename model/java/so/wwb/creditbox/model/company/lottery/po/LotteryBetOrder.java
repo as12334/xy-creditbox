@@ -9,7 +9,7 @@ import org.soul.model.common.Sortable;
  * 投注记录表实体
  *
  * @author block
- * @time 2019-11-28 15:20:05
+ * @time 2019-12-1 21:31:36
  */
 //region your codes 1
 public class LotteryBetOrder implements IEntity<Integer> {
@@ -29,8 +29,9 @@ public class LotteryBetOrder implements IEntity<Integer> {
 	public static final String PROP_HANDICAP = "handicap";
 	public static final String PROP_BET_TIME = "betTime";
 	public static final String PROP_BET_NAME = "betName";
-	public static final String PROP_BET_NUM = "betNum";
+	public static final String PROP_BET_CODE = "betCode";
 	public static final String PROP_PLAY_CODE = "playCode";
+	public static final String PROP_BET_NUM = "betNum";
 	public static final String PROP_BET_SORT = "betSort";
 	public static final String PROP_CODD1 = "codd1";
 	public static final String PROP_CODD2 = "codd2";
@@ -84,10 +85,12 @@ public class LotteryBetOrder implements IEntity<Integer> {
 	private java.util.Date betTime;
 	/** 彩种玩法 */
 	private String betName;
+	/**  */
+	private String betCode;
+	/** 投注小类代码 */
+	private String playCode;
 	/** 投注小类 */
 	private String betNum;
-	/** 投注小类代码 */
-	private Integer playCode;
 	/** 投注号码 */
 	private String betSort;
 	/** (公司)赔率 */
@@ -106,7 +109,7 @@ public class LotteryBetOrder implements IEntity<Integer> {
 	private Double bpayout;
 	/**  */
 	private java.util.Date payoutTime;
-	/** 结算状态(待结算，已结算，已撤單，已撤销) */
+	/** 结算状态(待结算，已结算，已撤单，已撤销)  */
 	private String status;
 	/** 终端标示 */
 	private String terminal;
@@ -227,19 +230,26 @@ public class LotteryBetOrder implements IEntity<Integer> {
 	public void setBetName(String value) {
 		this.betName = value;
 	}
+	public String getBetCode() {
+		return this.betCode;
+	}
+
+	public void setBetCode(String value) {
+		this.betCode = value;
+	}
+	public String getPlayCode() {
+		return this.playCode;
+	}
+
+	public void setPlayCode(String value) {
+		this.playCode = value;
+	}
 	public String getBetNum() {
 		return this.betNum;
 	}
 
 	public void setBetNum(String value) {
 		this.betNum = value;
-	}
-	public Integer getPlayCode() {
-		return this.playCode;
-	}
-
-	public void setPlayCode(Integer value) {
-		this.playCode = value;
 	}
 	public String getBetSort() {
 		return this.betSort;

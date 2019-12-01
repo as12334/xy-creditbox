@@ -180,8 +180,9 @@ public class BaseLotteryController {
                     lotteryBetOrder.setCode(code);
                     lotteryBetOrder.setCodd1(lotteryOdd.getCOdd(sessionUser));
                     lotteryBetOrder.setBodd1(lotteryOdd.getBOdd(sessionUser));
-                    lotteryBetOrder.setPlayCode(lotteryOdd.getPlayCode());
                     lotteryBetOrder.setBetName(lotteryOdd.getBetName());
+                    lotteryBetOrder.setBetCode(lotteryOdd.getBetCode());
+                    lotteryBetOrder.setPlayCode(lotteryOdd.getPlayCode());
                     lotteryBetOrder.setBetNum(lotteryOdd.getBetNum());
                     lotteryBetOrder.setBetAmount(money);
                     lotteryBetOrder.setBodd1(odd);

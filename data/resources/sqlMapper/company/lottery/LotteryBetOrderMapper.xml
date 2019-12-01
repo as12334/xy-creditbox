@@ -12,8 +12,9 @@
         <result column="handicap" property="handicap"/>
         <result column="bet_time" property="betTime"/>
         <result column="bet_name" property="betName"/>
-        <result column="bet_num" property="betNum"/>
+        <result column="bet_code" property="betCode"/>
         <result column="play_code" property="playCode"/>
+        <result column="bet_num" property="betNum"/>
         <result column="bet_sort" property="betSort"/>
         <result column="c_odd1" property="codd1"/>
         <result column="c_odd2" property="codd2"/>

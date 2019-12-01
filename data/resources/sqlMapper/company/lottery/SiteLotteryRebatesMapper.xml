@@ -4,15 +4,17 @@
 
     <resultMap id="TABLE:site_lottery_rebates" type="so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates">
         <id column="id" property="id"/>
-        <result column="code" property="code"/>
         <result column="site_id" property="siteId"/>
         <result column="hid" property="hid"/>
+        <result column="code" property="code"/>
         <result column="bet_name" property="betName"/>
         <result column="bet_code" property="betCode"/>
         <result column="play_code" property="playCode"/>
         <result column="bet_num" property="betNum"/>
-        <result column="bet_sort" property="betSort"/>
         <result column="sort" property="sort"/>
+        <result column="sort_type" property="sortType"/>
+        <result column="bet_sort" property="betSort"/>
+        <result column="page_type" property="pageType"/>
         <result column="rebate_a" property="rebateA"/>
         <result column="rebate_b" property="rebateB"/>
         <result column="rebate_c" property="rebateC"/>
@@ -21,7 +23,7 @@
         <result column="max_expect_bet" property="maxExpectBet"/>
         <result column="post_money" property="postMoney"/>
         <result column="post_money_close" property="postMoneyClose"/>
-        <result column="sort_type" property="sortType"/>
+        <result column="odd_close" property="oddClose"/>
     </resultMap>
 
     <!--//region your codes 1-->

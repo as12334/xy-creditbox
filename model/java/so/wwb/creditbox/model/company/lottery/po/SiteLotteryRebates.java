@@ -1,9 +1,9 @@
 package so.wwb.creditbox.model.company.lottery.po;
 
-
-import org.soul.commons.bean.IEntity;
 import org.soul.commons.lang.string.HidTool;
 import org.soul.commons.support.Nonpersistent;
+
+import org.soul.commons.bean.IEntity;
 import org.soul.model.common.Sortable;
 
 
@@ -11,7 +11,7 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-11-14 20:57:39
+ * @time 2019-12-1 21:26:58
  */
 //region your codes 1
 public class SiteLotteryRebates implements IEntity<Integer> {
@@ -23,15 +23,17 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 
 	//region property name constants
 	public static final String PROP_ID = "id";
-	public static final String PROP_CODE = "code";
 	public static final String PROP_SITE_ID = "siteId";
 	public static final String PROP_HID = "hid";
+	public static final String PROP_CODE = "code";
 	public static final String PROP_BET_NAME = "betName";
 	public static final String PROP_BET_CODE = "betCode";
 	public static final String PROP_PLAY_CODE = "playCode";
 	public static final String PROP_BET_NUM = "betNum";
-	public static final String PROP_BET_SORT = "betSort";
 	public static final String PROP_SORT = "sort";
+	public static final String PROP_SORT_TYPE = "sortType";
+	public static final String PROP_BET_SORT = "betSort";
+	public static final String PROP_PAGE_TYPE = "pageType";
 	public static final String PROP_REBATE_A = "rebateA";
 	public static final String PROP_REBATE_B = "rebateB";
 	public static final String PROP_REBATE_C = "rebateC";
@@ -40,19 +42,19 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 	public static final String PROP_MAX_EXPECT_BET = "maxExpectBet";
 	public static final String PROP_POST_MONEY = "postMoney";
 	public static final String PROP_POST_MONEY_CLOSE = "postMoneyClose";
-	public static final String PROP_SORT_TYPE = "sortType";
+	public static final String PROP_ODD_CLOSE = "oddClose";
 	//endregion
 	
 	
 	//region properties
 	/**  */
 	private Integer id;
+	/**  */
+	private Integer siteId;
+	/**  */
+	private String hid;
 	/** 彩种代号 */
 	private String code;
-	/** 站点id */
-	private Integer siteId;
-	/** 用户唯一标示 */
-	private String hid;
 	/**  */
 	private String betName;
 	/** 玩法代号 */
@@ -61,10 +63,14 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 	private String playCode;
 	/** 号码 */
 	private String betNum;
+	/**  */
+	private Integer sort;
+	/** 玩法小类 LotterySortTypeEnum */
+	private String sortType;
 	/** 玩法唯一标示 */
 	private String betSort;
 	/**  */
-	private Integer sort;
+	private String pageType;
 	/** A盤水位 */
 	private Double rebateA;
 	/** B盤水位 */
@@ -73,16 +79,16 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 	private Double rebateC;
 	/** 最低下注额 */
 	private Integer minBet;
-	/** 單注限额 */
+	/** 单注限额 */
 	private Integer maxBet;
-	/** 單期限额 */
+	/** 单期限额 */
 	private Integer maxExpectBet;
 	/** 起补金额 */
 	private Double postMoney;
 	/** 是否开启，1开启、0关闭 */
 	private String postMoneyClose;
 	/**  */
-	private String sortType;
+	private Boolean oddClose;
 	//endregion
 
 	
@@ -104,13 +110,6 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 	public void setId(Integer value) {
 		this.id = value;
 	}
-	public String getCode() {
-		return this.code;
-	}
-
-	public void setCode(String value) {
-		this.code = value;
-	}
 	public Integer getSiteId() {
 		return this.siteId;
 	}
@@ -124,6 +123,13 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 
 	public void setHid(String value) {
 		this.hid = value;
+	}
+	public String getCode() {
+		return this.code;
+	}
+
+	public void setCode(String value) {
+		this.code = value;
 	}
 	public String getBetName() {
 		return this.betName;
@@ -153,6 +159,20 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 	public void setBetNum(String value) {
 		this.betNum = value;
 	}
+	public Integer getSort() {
+		return this.sort;
+	}
+
+	public void setSort(Integer value) {
+		this.sort = value;
+	}
+	public String getSortType() {
+		return this.sortType;
+	}
+
+	public void setSortType(String value) {
+		this.sortType = value;
+	}
 	public String getBetSort() {
 		return this.betSort;
 	}
@@ -160,12 +180,12 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 	public void setBetSort(String value) {
 		this.betSort = value;
 	}
-	public Integer getSort() {
-		return this.sort;
+	public String getPageType() {
+		return this.pageType;
 	}
 
-	public void setSort(Integer value) {
-		this.sort = value;
+	public void setPageType(String value) {
+		this.pageType = value;
 	}
 	public Double getRebateA() {
 		return this.rebateA;
@@ -223,12 +243,12 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 	public void setPostMoneyClose(String value) {
 		this.postMoneyClose = value;
 	}
-	public String getSortType() {
-		return this.sortType;
+	public Boolean getOddClose() {
+		return this.oddClose;
 	}
 
-	public void setSortType(String value) {
-		this.sortType = value;
+	public void setOddClose(Boolean value) {
+		this.oddClose = value;
 	}
 	//endregion
 

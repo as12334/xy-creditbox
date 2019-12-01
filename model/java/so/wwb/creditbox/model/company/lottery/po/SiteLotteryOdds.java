@@ -1,17 +1,17 @@
 package so.wwb.creditbox.model.company.lottery.po;
 
+import org.soul.commons.support.Nonpersistent;
+import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 
 import org.soul.commons.bean.IEntity;
-import org.soul.commons.support.Nonpersistent;
 import org.soul.model.common.Sortable;
-import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 
 
 /**
  * 实体
  *
  * @author block
- * @time 2019-11-14 2:27:09
+ * @time 2019-12-1 21:26:07
  */
 //region your codes 1
 public class SiteLotteryOdds implements IEntity<Integer> {
@@ -31,14 +31,15 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 	public static final String PROP_PLAY_CODE = "playCode";
 	public static final String PROP_BET_NUM = "betNum";
 	public static final String PROP_SORT = "sort";
+	public static final String PROP_SORT_TYPE = "sortType";
+	public static final String PROP_BET_SORT = "betSort";
+	public static final String PROP_PAGE_TYPE = "pageType";
 	public static final String PROP_ODD_A = "oddA";
 	public static final String PROP_ODD_B = "oddB";
 	public static final String PROP_ODD_C = "oddC";
 	public static final String PROP_MIN_ODD = "minOdd";
 	public static final String PROP_MAX_ODD = "maxOdd";
 	public static final String PROP_ODD_CLOSE = "oddClose";
-	public static final String PROP_BET_SORT = "betSort";
-	public static final String PROP_SORT_TYPE = "sortType";
 	//endregion
 	
 	
@@ -56,11 +57,17 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 	/**  */
 	private String betCode;
 	/**  */
-	private Integer playCode;
+	private String playCode;
 	/**  */
 	private String betNum;
 	/**  */
 	private Integer sort;
+	/**  */
+	private String sortType;
+	/**  */
+	private String betSort;
+	/**  */
+	private String pageType;
 	/**  */
 	private Double oddA;
 	/**  */
@@ -73,10 +80,6 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 	private Double maxOdd;
 	/**  */
 	private Boolean oddClose;
-	/**  */
-	private String betSort;
-	/** 玩法小类 LotterySortTypeEnum */
-	private String sortType;
 	//endregion
 
 	
@@ -133,11 +136,11 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 	public void setBetCode(String value) {
 		this.betCode = value;
 	}
-	public Integer getPlayCode() {
+	public String getPlayCode() {
 		return this.playCode;
 	}
 
-	public void setPlayCode(Integer value) {
+	public void setPlayCode(String value) {
 		this.playCode = value;
 	}
 	public String getBetNum() {
@@ -153,6 +156,27 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 
 	public void setSort(Integer value) {
 		this.sort = value;
+	}
+	public String getSortType() {
+		return this.sortType;
+	}
+
+	public void setSortType(String value) {
+		this.sortType = value;
+	}
+	public String getBetSort() {
+		return this.betSort;
+	}
+
+	public void setBetSort(String value) {
+		this.betSort = value;
+	}
+	public String getPageType() {
+		return this.pageType;
+	}
+
+	public void setPageType(String value) {
+		this.pageType = value;
 	}
 	public Double getOddA() {
 		return this.oddA;
@@ -196,23 +220,6 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 	public void setOddClose(Boolean value) {
 		this.oddClose = value;
 	}
-	public String getBetSort() {
-		return this.betSort;
-	}
-
-	public void setBetSort(String value) {
-		this.betSort = value;
-	}
-	public String getSortType() {
-		return this.sortType;
-	}
-
-	public void setSortType(String value) {
-		this.sortType = value;
-	}
-
-
-
 	//endregion
 
 	//region your codes 2
