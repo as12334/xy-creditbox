@@ -145,7 +145,9 @@ public class LotteryResultPayoutService implements ILotteryResultPayoutService {
                     //符合数据库查询字段
                     map.put("expect", record.getExpect());
                     map.put("code", record.getCode());
-                    map.put("winning_bet_sort", record.getWinningBetSort());
+                    map.put("play_code", record.getPlayCode());
+                    map.put("bet_code", record.getBetCode());
+                    map.put("winning_num", record.getWinningNum());
                     result.add(map);
                 }
             }

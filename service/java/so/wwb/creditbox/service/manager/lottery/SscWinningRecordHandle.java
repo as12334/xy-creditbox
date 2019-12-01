@@ -59,7 +59,6 @@ public class SscWinningRecordHandle extends AbstractWinningRecordHandle implemen
     }
 
     private List<LotteryWinningRecord> createOneDigital(LotteryResult lotteryResult) {
-        HashMap<String, HashMap<String, String>> map = super.getbetSortMap(LotteryTypeEnum.SSC.getCode());
 
         List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
         String[] openCodes = StringTool.split(lotteryResult.getOpenCode(), ",");
@@ -69,18 +68,22 @@ public class SscWinningRecordHandle extends AbstractWinningRecordHandle implemen
                 LotteryPlayEnum lotteryPlayEnum = EnumTool.enumOf(LotteryPlayEnum.class, playCode);
                 String winningNum = null;
                 switch (lotteryPlayEnum) {
-                    case SSC_DIGITAL:
-                        winningNum = map.get(lotteryBettingEnum.getCode()).get(Integer.valueOf(openCodes[i])+"");
-                        break;
-                    case SSC_BIG_SMALL:
-                        winningNum = generateBigSmallNum(map.get(lotteryBettingEnum.getCode()),openCodes[i]);
-                        break;
-                    case SSC_SINGLE_DOUBLE:
-                        winningNum = generateSingleDoubleNum(map.get(lotteryBettingEnum.getCode()),Integer.valueOf(openCodes[i]));
-                    default:
-                        break;
+//                    case ONE_DIGITAL:
+//                        winningNum = openCodes[i];
+//                        break;
+//                    case ONE_BIG_SMALL:
+//                        winningNum = generateBigSmallNum(openCodes[i]);
+//                        break;
+//                    case ONE_SINGLE_DOUBLE:
+//                        winningNum = generateSingleDoubleNum(Integer.valueOf(openCodes[i]));
+//                        break;
+//                    case ONE_PRIME_COMBINED:
+//                        winningNum = generatePrimeCombinedNum(Integer.valueOf(openCodes[i]));
+//                        break;
+//                    default:
+//                        break;
                 }
-                LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult, winningNum);
+                LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult, lotteryPlayEnum, lotteryBettingEnum, winningNum);
                 if (lotteryWinningRecord != null) {
                     log.info("彩票开奖.时时彩.{0},生成中奖记录:{1}", playCode, lotteryWinningRecord.toString());
                     lotteryWinningRecordList.add(lotteryWinningRecord);

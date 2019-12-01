@@ -3,17 +3,11 @@ package so.wwb.creditbox.service.manager.lottery;
 import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.log.Log;
 import org.soul.commons.log.LogFactory;
-import org.soul.service.support.BaseService;
-import org.springframework.beans.factory.annotation.Autowired;
-import so.wwb.creditbox.common.dubbo.ServiceTool;
-import so.wwb.creditbox.data.manager.lottery.LotteryResultMapper;
-import so.wwb.creditbox.data.manager.lottery.LotteryTypeInfoMapper;
-import so.wwb.creditbox.iservice.manager.lottery.ILotteryTypeInfoService;
+import so.wwb.creditbox.model.enums.lottery.LotteryBettingEnum;
+import so.wwb.creditbox.model.enums.lottery.LotteryPlayEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryWinningNum;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
-import so.wwb.creditbox.model.manager.lottery.po.LotteryTypeInfo;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryWinningRecord;
-import so.wwb.creditbox.model.manager.lottery.vo.LotteryTypeInfoListVo;
 
 import java.util.*;
 
@@ -24,20 +18,6 @@ public abstract class AbstractWinningRecordHandle{
 
     static final Log log = LogFactory.getLog(AbstractWinningRecordHandle.class);
 
-
-    //所有的彩种玩法对应的betSort
-    protected static Map betSortMap = null;
-
-
-    @Autowired
-    private ILotteryTypeInfoService lotteryTypeInfoService;
-
-    @Autowired
-    private LotteryResultMapper lotteryResultMapper;
-
-    static {
-
-    }
     /**
      * 开奖记录是否合法
      *
@@ -92,12 +72,10 @@ public abstract class AbstractWinningRecordHandle{
      * 判断总和的大小，返回总大，总小
      * [重庆幸运农场/广东快乐十分有和局]
      *
-     *
-     * @param stringStringHashMap
      * @param totalSum 总和
      * @return 总大，总小
      */
-    String generateTotalBigSmallNum(HashMap<String, String> stringStringHashMap, Integer totalSum) {
+    String generateTotalBigSmallNum(Integer totalSum) {
         if (isTotalBigNum(totalSum)) {
             return LotteryWinningNum.TOTAL_BIG;
         } else {
@@ -109,37 +87,13 @@ public abstract class AbstractWinningRecordHandle{
         return true;
     }
 
-    public  Map<String, HashMap<String, HashMap<String, String>>> getbetSortMap(){
-        if (betSortMap == null) {
-            Map<String, HashMap<String, HashMap<String, String>>> codeMap = new HashMap<>();
-            List<LotteryTypeInfo> list = ServiceTool.lotteryTypeInfoService().allSearch(new LotteryTypeInfoListVo());
-            for (LotteryTypeInfo lotteryTypeInfo : list) {
-                String betName = lotteryTypeInfo.getBetName();
-                if (codeMap.get(betName) == null) {
-                    codeMap.put(betName, new HashMap<>());
-                }
-
-                String betNum = lotteryTypeInfo.getBetNum();
-                String betSort = lotteryTypeInfo.getBetSort();
-                codeMap.get(betName).get(betNum).put(betNum, betSort);
-            }
-            betSortMap = codeMap;
-        }
-        return betSortMap;
-    }
-
-    public HashMap<String, HashMap<String, String>> getbetSortMap(String lotteryType){
-        return getbetSortMap().get(lotteryType);
-    }
-
     /**
-     * 單码
+     * 判断单数字的大小
      *
      * @param openCode 开奖号码
-     * @return 对应的bet_sort
+     * @return 大，小
      */
-    String generateDigitalNum(String openCode) {
-
+    String generateBigSmallNum(String openCode) {
         Integer num = Integer.valueOf(openCode);
         if (isBigNum(num)) {
             return LotteryWinningNum.BIG;
@@ -149,97 +103,56 @@ public abstract class AbstractWinningRecordHandle{
     }
 
     /**
-     * 判断單数字的大小
-     *
-     *
-     * @param stringStringHashMap
-     * @param openCode 开奖号码
-     * @return 大，小
-     */
-    protected String generateBigSmallNum(HashMap<String, String> stringStringHashMap, String openCode) {
-        Integer num = Integer.valueOf(openCode);
-        if (isBigNum(num)) {
-            return stringStringHashMap.get(LotteryWinningNum.BIG);
-        } else {
-            return stringStringHashMap.get(LotteryWinningNum.SMALL);
-        }
-    }
-
-    /**
-     * 判断尾大小
-     *
-     *
-     * @param stringStringHashMap
-     * @param openCode 开奖号码
-     * @return 大，小
-     */
-    String generateBigSmallEnd(HashMap<String, String> stringStringHashMap, String openCode) {
-        Integer num = Integer.valueOf(openCode);
-        if (isBigNum(num)) {
-            return stringStringHashMap.get(LotteryWinningNum.BIG);
-        } else {
-            return stringStringHashMap.get(LotteryWinningNum.SMALL);
-        }
-    }
-
-
-    /**
-     * 單个数字的大规则
+     * 单个数字的大规则
      *
      * @param num
      * @return
      */
     boolean isBigNum(Integer num) {
-        return num >= 11;
+        return false;
     }
 
 
     /**
-     * 判断该数字的單雙
+     * 判断该数字的单双
      *
-     *
-     * @param stringStringHashMap
      * @param num 号码
-     * @return 單，雙
+     * @return 单，双
      */
-    protected String generateSingleDoubleNum(HashMap<String, String> stringStringHashMap, Integer num) {
+    String generateSingleDoubleNum(Integer num) {
         if (num % 2 == 0) {
-            return stringStringHashMap.get(LotteryWinningNum.DOUBLE);
+            return LotteryWinningNum.DOUBLE;
         } else {
-            return stringStringHashMap.get(LotteryWinningNum.SINGLE);
+            return LotteryWinningNum.SINGLE;
         }
     }
 
     /**
-     * 生成合数單雙
+     * 生成合数单双
      *
-     *
-     * @param stringStringHashMap
      * @param openCode 开奖号码
-     * @return 合單，合雙
+     * @return 合单，合双
      */
-    protected String generateSingleSumSingleDoubleNum(HashMap<String, String> stringStringHashMap, String openCode) {
+    String generateSingleSumSingleDoubleNum(String openCode) {
         Integer num = generateSingleSum(openCode);
         if (num % 2 == 0) {
-            return stringStringHashMap.get(LotteryWinningNum.SINGLE_SUM_DOUBLE);
+            return LotteryWinningNum.SINGLE_SUM_DOUBLE;
         } else {
-            return stringStringHashMap.get(LotteryWinningNum.SINGLE_SUM_SINGLE);
+            return LotteryWinningNum.SINGLE_SUM_SINGLE;
         }
     }
 
     /**
-     * 生成总和單雙
+     * 生成总和单双
      *
-     *
-     * @param stringStringHashMap
      * @param num 总和
-     * @return 总單，总雙
+     * @return 总单，总双
      */
-    String generateTotalSingleDoubleNum(HashMap<String, String> stringStringHashMap, Integer num) {
+    String generateTotalSingleDoubleNum(Integer num) {
         if (num % 2 == 0) {
-            return stringStringHashMap.get(LotteryWinningNum.TOTAL_DOUBLE);
+            return LotteryWinningNum.TOTAL_DOUBLE;
         } else {
-            return stringStringHashMap.get(LotteryWinningNum.TOTAL_SINGLE);
+            return LotteryWinningNum.TOTAL_SINGLE;
         }
     }
 
@@ -260,82 +173,31 @@ public abstract class AbstractWinningRecordHandle{
     /**
      * 判断尾数的大小
      *
-     *
-     * @param stringStringHashMap
      * @param openCode 开奖号码
      * @return 尾大，尾小
      */
-    protected String generateMantissaBigSmallNum(HashMap<String, String> stringStringHashMap, String openCode) {
+    String generateMantissaBigSmallNum(String openCode) {
         Integer num = Integer.valueOf(generateMantissa(openCode));
         if (isMatissaBigNum(num)) {
-            return stringStringHashMap.get(LotteryWinningNum.MANTISSA_BIG);
+            return LotteryWinningNum.MANTISSA_BIG;
         } else {
-            return stringStringHashMap.get(LotteryWinningNum.MANTISSA_SMALL);
+            return LotteryWinningNum.MANTISSA_SMALL;
         }
     }
 
-    /**
-     * 中發白
-     * ●中：開出之號碼為01、02、03、04、05、06、07
-     * ●發：開出之號碼為08、09、10、11、12、13、14
-     * ●白：開出之號碼為15、16、17、18、19、20
-     *
-     *
-     * @param stringStringHashMap
-     * @param openCode 开奖号码
-     * @return 中發白
-     */
-    protected String generateZbfNum(HashMap<String, String> stringStringHashMap, Integer openCode) {
-        if(openCode <=7){
-            return stringStringHashMap.get(LotteryWinningNum.ZBF_Z);
-        }else if(openCode <=14){
-            return stringStringHashMap.get(LotteryWinningNum.ZBF_F);
-        }else {
-            return stringStringHashMap.get(LotteryWinningNum.ZBF_B);
-        }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(19%4);
-    }
-    /**
-     * 东南西北
-     * ●東：開出之號碼為01、05、09、13、17
-     * ●南：開出之號碼為02、06、10、14、18
-     * ●西：開出之號碼為03、07、11、15、19
-     * ●北：開出之號碼為04、08、12、16、20
-     *
-     *
-     * @param stringStringHashMap
-     * @param openCode 开奖号码
-     * @return 东南西北
-     */
-    protected String generateFwfNum(HashMap<String, String> stringStringHashMap, Integer openCode) {
-        if(openCode%4 == 1){
-            return stringStringHashMap.get(LotteryWinningNum.FW_D);
-        }else if(openCode%4 == 2){
-            return stringStringHashMap.get(LotteryWinningNum.FW_N);
-        }else if(openCode%4 == 3){
-            return stringStringHashMap.get(LotteryWinningNum.FW_X);
-        }else {
-            return stringStringHashMap.get(LotteryWinningNum.FW_B);
-        }
-    }
 
     /**
      * 判断总和尾数的大小
      *
-     *
-     * @param stringStringHashMap
      * @param total 总和
      * @return 总尾大，总尾小
      */
-    String generateTotalMantissaBigSmallNum(HashMap<String, String> stringStringHashMap, Integer total) {
+    String generateTotalMantissaBigSmallNum(Integer total) {
         String matissa = generateMantissa(String.valueOf(total));
         if (isMatissaBigNum(Integer.valueOf(matissa))) {
-            return stringStringHashMap.get(LotteryWinningNum.TOTAL_MANTISSA_BIG);
+            return LotteryWinningNum.TOTAL_MANTISSA_BIG;
         } else {
-            return stringStringHashMap.get(LotteryWinningNum.TOTAL_MANTISSA_SMALL);
+            return LotteryWinningNum.TOTAL_MANTISSA_SMALL;
         }
     }
 
@@ -347,7 +209,7 @@ public abstract class AbstractWinningRecordHandle{
      * 获取数字的合数
      *
      * @param numCode 开奖号码
-     * @return 單号码的和
+     * @return 单号码的和
      */
     Integer generateSingleSum(String numCode) {
         if (numCode.length() == 1) {
@@ -360,21 +222,19 @@ public abstract class AbstractWinningRecordHandle{
     }
 
     /**
-     * 生成龍虎和结果
+     * 生成龙虎和结果
      *
-     *
-     * @param stringStringHashMap
-     * @param dragon 龍位号码
+     * @param dragon 龙位号码
      * @param tiger  虎位号码
      * @return
      */
-    String generateDragonTigerTie(HashMap<String, String> stringStringHashMap, Integer dragon, Integer tiger) {
+    String generateDragonTigerTie(Integer dragon, Integer tiger) {
         if (dragon > tiger) {
-            return stringStringHashMap.get(LotteryWinningNum.DRAGON);
+            return LotteryWinningNum.DRAGON;
         } else if (dragon < tiger) {
-            return stringStringHashMap.get(LotteryWinningNum.TIGER);
+            return LotteryWinningNum.TIGER;
         } else {
-            return stringStringHashMap.get(LotteryWinningNum.DRAGON_TIGER_TIE);
+            return LotteryWinningNum.DRAGON_TIGER_TIE;
         }
     }
 
@@ -493,17 +353,21 @@ public abstract class AbstractWinningRecordHandle{
      * 生成中奖结果对象
      *
      * @param lotteryResult      开奖结果
-     * @param winningBetSort         中奖号码
+     * @param lotteryPlayEnum    彩种玩法
+     * @param lotteryBettingEnum 投注玩法
+     * @param winningNum         中奖号码
      * @return 中奖结果对象
      */
-    protected LotteryWinningRecord createWinningRecord(LotteryResult lotteryResult, String winningBetSort) {
-        if (StringTool.isBlank(winningBetSort)) {
+    protected LotteryWinningRecord createWinningRecord(LotteryResult lotteryResult, LotteryPlayEnum lotteryPlayEnum, LotteryBettingEnum lotteryBettingEnum, String winningNum) {
+        if (StringTool.isBlank(winningNum)) {
             return null;
         }
         LotteryWinningRecord lotteryWinningRecord = new LotteryWinningRecord();
         lotteryWinningRecord.setExpect(lotteryResult.getExpect());
         lotteryWinningRecord.setCode(lotteryResult.getCode());
-        lotteryWinningRecord.setWinningBetSort(winningBetSort);
+        lotteryWinningRecord.setPlayCode(lotteryPlayEnum.getCode());
+        lotteryWinningRecord.setBetCode(lotteryBettingEnum.getCode());
+        lotteryWinningRecord.setWinningNum(winningNum);
         lotteryWinningRecord.setCreateTime(new Date());
         return lotteryWinningRecord;
     }

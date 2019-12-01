@@ -329,15 +329,7 @@ public static ISysUserRoleService sysUserRoleService() {
         return getService(so.wwb.creditbox.iservice.company.lottery.ILotteryPayoutLogService.class);
     }
     
-    /**
-     * 返回远程服务实例
-     *
-     * @return 远程服务实例
-     */
-    public static so.wwb.creditbox.iservice.manager.lottery.ILotteryTypeInfoService lotteryTypeInfoService() {
-        return getService(so.wwb.creditbox.iservice.manager.lottery.ILotteryTypeInfoService.class);
-    }
-    
+
 //endregion your codes 1
 
 }

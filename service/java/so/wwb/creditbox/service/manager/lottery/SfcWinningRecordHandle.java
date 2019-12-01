@@ -59,13 +59,12 @@ public class SfcWinningRecordHandle extends AbstractWinningRecordHandle implemen
         WinningRecordHandleVo winningRecordHandleVo = new WinningRecordHandleVo();
         List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
         lotteryWinningRecordList.addAll(createDigital(lotteryResult));
-        lotteryWinningRecordList.addAll(createSum8(lotteryResult));
-        lotteryWinningRecordList.addAll(createDragonTiger(lotteryResult));
+//        lotteryWinningRecordList.addAll(createSum8(lotteryResult));
+//        lotteryWinningRecordList.addAll(createDragonTiger(lotteryResult));
         winningRecordHandleVo.setLotteryWinningRecordList(lotteryWinningRecordList);
         return winningRecordHandleVo;
     }
     private List<LotteryWinningRecord> createDigital(LotteryResult lotteryResult) {
-        HashMap<String, HashMap<String, String>> map = super.getbetSortMap(LotteryTypeEnum.SFC.getCode());
 
         List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
         String[] openCodes = StringTool.split(lotteryResult.getOpenCode(), ",");
@@ -76,32 +75,32 @@ public class SfcWinningRecordHandle extends AbstractWinningRecordHandle implemen
                 String winningBetSort = null;
 
                 switch (lotteryPlayEnum) {
-                    case SFC_DIGITAL:
-                        winningBetSort = map.get(lotteryBettingEnum.getCode()).get(Integer.valueOf(openCodes[i])+"");
-                        break;
-                    case SFC_BIG_SMALL:
-                        winningBetSort = generateBigSmallNum(map.get(lotteryBettingEnum.getCode()),openCodes[i]);
-                        break;
-                    case SFC_SINGLE_DOUBLE:
-                        winningBetSort = generateSingleDoubleNum(map.get(lotteryBettingEnum.getCode()),Integer.valueOf(openCodes[i]));
-                        break;
-                    case SFC_ZBF:
-                        winningBetSort = generateZbfNum(map.get(lotteryBettingEnum.getCode()),Integer.valueOf(openCodes[i]));
-                        break;
-                    case SFC_FW:
-                        winningBetSort = generateFwfNum(map.get(lotteryBettingEnum.getCode()),Integer.valueOf(openCodes[i]));
-                        break;
-                    case SFC_MANTISSA_BIG_SMALL:
-                        winningBetSort = generateMantissaBigSmallNum(map.get(lotteryBettingEnum.getCode()),openCodes[i]);
-                        break;
-                    case SFC_SUM_SINGLE_DOUBLE:
-                        winningBetSort = generateSingleSumSingleDoubleNum(map.get(lotteryBettingEnum.getCode()),openCodes[i]);
-                        break;
-                    default:
-                        break;
+//                    case SFC_DIGITAL:
+//                        winningBetSort = map.get(lotteryBettingEnum.getCode()).get(Integer.valueOf(openCodes[i])+"");
+//                        break;
+//                    case SFC_BIG_SMALL:
+//                        winningBetSort = generateBigSmallNum(map.get(lotteryBettingEnum.getCode()),openCodes[i]);
+//                        break;
+//                    case SFC_SINGLE_DOUBLE:
+//                        winningBetSort = generateSingleDoubleNum(map.get(lotteryBettingEnum.getCode()),Integer.valueOf(openCodes[i]));
+//                        break;
+//                    case SFC_ZBF:
+//                        winningBetSort = generateZbfNum(map.get(lotteryBettingEnum.getCode()),Integer.valueOf(openCodes[i]));
+//                        break;
+//                    case SFC_FW:
+//                        winningBetSort = generateFwfNum(map.get(lotteryBettingEnum.getCode()),Integer.valueOf(openCodes[i]));
+//                        break;
+//                    case SFC_MANTISSA_BIG_SMALL:
+//                        winningBetSort = generateMantissaBigSmallNum(map.get(lotteryBettingEnum.getCode()),openCodes[i]);
+//                        break;
+//                    case SFC_SUM_SINGLE_DOUBLE:
+//                        winningBetSort = generateSingleSumSingleDoubleNum(map.get(lotteryBettingEnum.getCode()),openCodes[i]);
+//                        break;
+//                    default:
+//                        break;
                 }
 
-                LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult,  winningBetSort);
+                LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SFC_DRAGON_TIGER, lotteryBettingEnum, null);
                 if (lotteryWinningRecord != null) {
                     log.info("彩票开奖.十分彩.{0},生成中奖记录:{1}", playCode, lotteryWinningRecord.toString());
                     lotteryWinningRecordList.add(lotteryWinningRecord);
@@ -111,47 +110,46 @@ public class SfcWinningRecordHandle extends AbstractWinningRecordHandle implemen
         return lotteryWinningRecordList;
     }
     //总和
-    private List<LotteryWinningRecord> createSum8(LotteryResult lotteryResult) {
-        HashMap<String, HashMap<String, String>> map = super.getbetSortMap(LotteryTypeEnum.SFC.getCode());
-
-        List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
-        String[] openCodes = StringTool.split(lotteryResult.getOpenCode(), ",");
-        Integer eightSum = generateTotalSum(openCodes);
-        for (String playCode : sum8List) {
-            LotteryPlayEnum lotteryPlayEnum = EnumTool.enumOf(LotteryPlayEnum.class, playCode);
-            String winningBetSort = null;
-            switch (lotteryPlayEnum) {
-                case SFC_SUM8_BIG_SMALL:
-                    winningBetSort = generateTotalBigSmallNum(map.get(LotteryBettingEnum.SFC_SUM8_BIG_SMALL.getCode()),eightSum);
-                    break;
-                case SFC_SUM8_SINGLE_DOUBLE:
-                    winningBetSort = generateTotalSingleDoubleNum(map.get(LotteryBettingEnum.SFC_SUM8_SINGLE_DOUBLE.getCode()),eightSum);
-                    break;
-                case SFC_SUM8_MANTISSA_BIG_SMALL:
-                    winningBetSort = generateTotalMantissaBigSmallNum(map.get(LotteryBettingEnum.SFC_SUM8_MANTISSA_BIG_SMALL.getCode()),eightSum);
-                    break;
-                default:
-                    break;
-            }
-            LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult,  winningBetSort);
-            if (lotteryWinningRecord != null) {
-                log.info("彩票开奖.十分彩.{0},生成中奖记录:{1}", playCode, lotteryWinningRecord.toString());
-                lotteryWinningRecordList.add(lotteryWinningRecord);
-            }
-        }
-        return lotteryWinningRecordList;
-    }
-    private List<LotteryWinningRecord> createDragonTiger(LotteryResult lotteryResult) {
-        HashMap<String, HashMap<String, String>> map = super.getbetSortMap(LotteryTypeEnum.SFC.getCode());
-
-        List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
-        String[] openCodes = StringTool.split(lotteryResult.getOpenCode(), ",");
-        String winningBetSort = generateDragonTigerTie(map.get(LotteryBettingEnum.SFC_DRAGON_TIGER.getCode()),Integer.valueOf(openCodes[0]), Integer.valueOf(openCodes[7]));
-        LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult, winningBetSort);
-        if (lotteryWinningRecord != null) {
-            log.info("彩票开奖.十分彩.{0},生成中奖记录:{1}", LotteryPlayEnum.SFC_DRAGON_TIGER.getCode(), lotteryWinningRecord.toString());
-            lotteryWinningRecordList.add(lotteryWinningRecord);
-        }
-        return lotteryWinningRecordList;
-    }
+//    private List<LotteryWinningRecord> createSum8(LotteryResult lotteryResult) {
+//
+//        List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
+//        String[] openCodes = StringTool.split(lotteryResult.getOpenCode(), ",");
+//        Integer eightSum = generateTotalSum(openCodes);
+//        for (String playCode : sum8List) {
+//            LotteryPlayEnum lotteryPlayEnum = EnumTool.enumOf(LotteryPlayEnum.class, playCode);
+//            String winningBetSort = null;
+//            switch (lotteryPlayEnum) {
+//                case SFC_SUM8_BIG_SMALL:
+//                    winningBetSort = generateTotalBigSmallNum(map.get(LotteryBettingEnum.SFC_SUM8_BIG_SMALL.getCode()),eightSum);
+//                    break;
+//                case SFC_SUM8_SINGLE_DOUBLE:
+//                    winningBetSort = generateTotalSingleDoubleNum(map.get(LotteryBettingEnum.SFC_SUM8_SINGLE_DOUBLE.getCode()),eightSum);
+//                    break;
+//                case SFC_SUM8_MANTISSA_BIG_SMALL:
+//                    winningBetSort = generateTotalMantissaBigSmallNum(map.get(LotteryBettingEnum.SFC_SUM8_MANTISSA_BIG_SMALL.getCode()),eightSum);
+//                    break;
+//                default:
+//                    break;
+//            }
+//            LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult,  winningBetSort);
+//            if (lotteryWinningRecord != null) {
+//                log.info("彩票开奖.十分彩.{0},生成中奖记录:{1}", playCode, lotteryWinningRecord.toString());
+//                lotteryWinningRecordList.add(lotteryWinningRecord);
+//            }
+//        }
+//        return lotteryWinningRecordList;
+//    }
+//    private List<LotteryWinningRecord> createDragonTiger(LotteryResult lotteryResult) {
+//        HashMap<String, HashMap<String, String>> map = super.getbetSortMap(LotteryTypeEnum.SFC.getCode());
+//
+//        List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
+//        String[] openCodes = StringTool.split(lotteryResult.getOpenCode(), ",");
+//        String winningBetSort = generateDragonTigerTie(map.get(LotteryBettingEnum.SFC_DRAGON_TIGER.getCode()),Integer.valueOf(openCodes[0]), Integer.valueOf(openCodes[7]));
+//        LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult, winningBetSort);
+//        if (lotteryWinningRecord != null) {
+//            log.info("彩票开奖.十分彩.{0},生成中奖记录:{1}", LotteryPlayEnum.SFC_DRAGON_TIGER.getCode(), lotteryWinningRecord.toString());
+//            lotteryWinningRecordList.add(lotteryWinningRecord);
+//        }
+//        return lotteryWinningRecordList;
+//    }
 }

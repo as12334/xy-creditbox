@@ -90,7 +90,6 @@
 
 
 
-        <bean id="lotteryTypeInfoService" class="so.wwb.creditbox.service.manager.lottery.LotteryTypeInfoService"/>
 
 
 <!--//endregion your codes 1-->

@@ -45,15 +45,35 @@ public class LotteryWinningRecord implements IEntity<Integer> {
      * 彩种代号
      */
     private String code;
-
+    /**
+     * 彩种玩法
+     */
+    private String playCode;
+    /**
+     * 投注玩法
+     */
+    private String betCode;
     /**
      * 中奖号码
      */
-    private String winningBetSort;
+    private String winningNum;
     /**
      * 创建时间
      */
     private Date createTime;
+
+    /**
+     * 排行次数累计
+     */
+    private String rankCount;
+    /**
+     * 彩种玩法国际化
+     */
+    private String playCodeMemo;
+    /**
+     * 投注玩法国际化
+     */
+    private String betCodeMemo;
     //endregion
 
 
@@ -106,18 +126,54 @@ public class LotteryWinningRecord implements IEntity<Integer> {
 
     //region your codes 2
 
-    @Override
-    public String toString() {
-        return JsonTool.toJson(this);
+    public String getPlayCode() {
+        return playCode;
     }
 
-    public String getWinningBetSort() {
-        return winningBetSort;
+    public void setPlayCode(String playCode) {
+        this.playCode = playCode;
     }
 
-    public void setWinningBetSort(String winningBetSort) {
-        this.winningBetSort = winningBetSort;
+    public String getBetCode() {
+        return betCode;
     }
+
+    public void setBetCode(String betCode) {
+        this.betCode = betCode;
+    }
+
+    public String getWinningNum() {
+        return winningNum;
+    }
+
+    public void setWinningNum(String winningNum) {
+        this.winningNum = winningNum;
+    }
+
+    public String getRankCount() {
+        return rankCount;
+    }
+
+    public void setRankCount(String rankCount) {
+        this.rankCount = rankCount;
+    }
+
+    public String getPlayCodeMemo() {
+        return playCodeMemo;
+    }
+
+    public void setPlayCodeMemo(String playCodeMemo) {
+        this.playCodeMemo = playCodeMemo;
+    }
+
+    public String getBetCodeMemo() {
+        return betCodeMemo;
+    }
+
+    public void setBetCodeMemo(String betCodeMemo) {
+        this.betCodeMemo = betCodeMemo;
+    }
+
 
     //endregion your codes 2
 

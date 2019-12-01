@@ -61,8 +61,6 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
     }
 
     private List<LotteryWinningRecord> createDigital(LotteryResult lotteryResult) {
-        HashMap<String, HashMap<String, String>> map = super.getbetSortMap(LotteryTypeEnum.PK10.getCode());
-
         List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
         String[] openCodes = StringTool.split(lotteryResult.getOpenCode(), ",");
         for (int i = 0; i < oneDigitalBettingList.size(); i++) {
@@ -72,18 +70,21 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
                 String winningNum = null;
                 switch (lotteryPlayEnum) {
                     case PK10_DIGITAL:
-                        winningNum = map.get(lotteryBettingEnum.getCode()).get(Integer.valueOf(openCodes[i])+"");
+                        winningNum = openCodes[i];
                         break;
                     case PK10_BIG_SMALL:
-                        winningNum = generateBigSmallNum(map.get(lotteryBettingEnum.getCode()),openCodes[i]);
+                        winningNum = generateBigSmallNum(openCodes[i]);
                         break;
                     case PK10_SINGLE_DOUBLE:
-                        winningNum = generateSingleDoubleNum(map.get(lotteryBettingEnum.getCode()),Integer.valueOf(openCodes[i]));
+                        winningNum = generateSingleDoubleNum(Integer.valueOf(openCodes[i]));
+                        break;
+                    case PK10_DRAGON_TIGER:
+                        winningNum = generateDragonTigerTie(Integer.valueOf(openCodes[i]), Integer.valueOf(openCodes[9 - i]));
                         break;
                     default:
                         break;
                 }
-                LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult, winningNum);
+                LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult, lotteryPlayEnum, lotteryBettingEnum, winningNum);
                 if (lotteryWinningRecord != null) {
                     log.info("彩票开奖.PK10.{0},生成中奖记录:{1}", playCode, lotteryWinningRecord.toString());
                     lotteryWinningRecordList.add(lotteryWinningRecord);

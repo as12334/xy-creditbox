@@ -117,7 +117,6 @@
     <!-- 中奖记录表dubbo服务 -->
     <dubbo:service ref="lotteryWinningRecordService" interface="so.wwb.creditbox.iservice.manager.lottery.ILotteryWinningRecordService"/>
 
-        <dubbo:service ref="lotteryTypeInfoService" interface="so.wwb.creditbox.iservice.manager.lottery.ILotteryTypeInfoService"/>
 
 
 <!--//endregion your codes 1-->
