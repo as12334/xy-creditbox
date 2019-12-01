@@ -44,6 +44,10 @@ public class LotteryWinningRecord implements IEntity<Integer> {
     /**
      * 彩种代号
      */
+    private String type;
+    /**
+     * 彩种代号
+     */
     private String code;
     /**
      * 彩种玩法
@@ -172,6 +176,14 @@ public class LotteryWinningRecord implements IEntity<Integer> {
 
     public void setBetCodeMemo(String betCodeMemo) {
         this.betCodeMemo = betCodeMemo;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
 

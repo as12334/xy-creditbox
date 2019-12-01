@@ -22,7 +22,6 @@ import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryResultTypeEnum;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResultRecord;
-import so.wwb.creditbox.model.manager.lottery.po.LotteryTypeInfo;
 import so.wwb.creditbox.model.manager.lottery.so.LotteryResultSo;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryResultListVo;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryResultRecordVo;

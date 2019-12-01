@@ -364,6 +364,7 @@ public abstract class AbstractWinningRecordHandle{
         }
         LotteryWinningRecord lotteryWinningRecord = new LotteryWinningRecord();
         lotteryWinningRecord.setExpect(lotteryResult.getExpect());
+        lotteryWinningRecord.setType(lotteryResult.getType());
         lotteryWinningRecord.setCode(lotteryResult.getCode());
         lotteryWinningRecord.setPlayCode(lotteryPlayEnum.getCode());
         lotteryWinningRecord.setBetCode(lotteryBettingEnum.getCode());

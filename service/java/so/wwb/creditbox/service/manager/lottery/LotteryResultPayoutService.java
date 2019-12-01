@@ -41,10 +41,10 @@ public class LotteryResultPayoutService implements ILotteryResultPayoutService {
     private Log LOG = LogFactory.getLog(this.getClass());
 
     //新重结函数
-    private static final String CALL_HEAVY_PAYOUT = "{call lottery_payout_heavy(?,?,?,?)}";
+    private static final String CALL_HEAVY_PAYOUT = "{call lottery_payout_heavy(?,?,?,?,?)}";
 
     //新派彩函数
-    private static final String CALL_LOTTERY_PAYOUT = "{call lottery_payout(?,?,?,?)}";
+    private static final String CALL_LOTTERY_PAYOUT = "{call lottery_payout(?,?,?,?,?)}";
 
     @Autowired
     private ExecutorService payoutExecutor;
@@ -209,6 +209,7 @@ public class LotteryResultPayoutService implements ILotteryResultPayoutService {
 
         @Override
         public Integer call() throws Exception {
+            LOG.info("执行派彩函数的参数：{0}",JsonTool.toJson(resultVo));
             LotteryResult lotteryResult = resultVo.getResult();
             Integer siteId = resultVo.getSiteId();
             CallableStatement cs = null;
@@ -228,6 +229,7 @@ public class LotteryResultPayoutService implements ILotteryResultPayoutService {
                 }
                 String lotteryExpect = resultVo.getResult().getExpect();
                 String lotteryCode = resultVo.getResult().getCode();
+                String lotteryType = resultVo.getResult().getType();
 
                 conn = masterDataSource.getConnection();
                 if (resultVo.getPayoutSource() != null && resultVo.getPayoutSource() == 2) {
@@ -236,9 +238,10 @@ public class LotteryResultPayoutService implements ILotteryResultPayoutService {
                     cs = conn.prepareCall(CALL_LOTTERY_PAYOUT);
                 }
                 cs.setString(1, lotteryExpect);
-                cs.setString(2, lotteryCode);
-                cs.setString(3, lotteryResult.getOpenCode());
-                cs.setString(4, resultVo.getWinRecordJson());
+                cs.setString(2, lotteryType);
+                cs.setString(3, lotteryCode);
+                cs.setString(4, lotteryResult.getOpenCode());
+                cs.setString(5, resultVo.getWinRecordJson());
                 LOG.info("彩票派彩开始,站点ID:{0},code:{1},expect:{2},openCode:{3}",
                         String.valueOf(siteId), lotteryCode, lotteryExpect, lotteryResult.getOpenCode());
                 boolean rtn = cs.execute();
