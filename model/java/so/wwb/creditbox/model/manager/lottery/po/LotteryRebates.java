@@ -1,5 +1,6 @@
 package so.wwb.creditbox.model.manager.lottery.po;
 
+
 import org.soul.commons.bean.IEntity;
 import org.soul.model.common.Sortable;
 
@@ -8,7 +9,7 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-11-11 23:05:37
+ * @time 2019-12-1 20:04:38
  */
 //region your codes 1
 public class LotteryRebates implements IEntity<Integer> {
@@ -25,7 +26,10 @@ public class LotteryRebates implements IEntity<Integer> {
 	public static final String PROP_BET_CODE = "betCode";
 	public static final String PROP_PLAY_CODE = "playCode";
 	public static final String PROP_BET_NUM = "betNum";
+	public static final String PROP_SORT = "sort";
+	public static final String PROP_SORT_TYPE = "sortType";
 	public static final String PROP_BET_SORT = "betSort";
+	public static final String PROP_PAGE_TYPE = "pageType";
 	public static final String PROP_REBATE_A = "rebateA";
 	public static final String PROP_REBATE_B = "rebateB";
 	public static final String PROP_REBATE_C = "rebateC";
@@ -34,6 +38,7 @@ public class LotteryRebates implements IEntity<Integer> {
 	public static final String PROP_MAX_EXPECT_BET = "maxExpectBet";
 	public static final String PROP_POST_MONEY = "postMoney";
 	public static final String PROP_POST_MONEY_CLOSE = "postMoneyClose";
+	public static final String PROP_ODD_CLOSE = "oddClose";
 	//endregion
 	
 	
@@ -50,8 +55,14 @@ public class LotteryRebates implements IEntity<Integer> {
 	private String playCode;
 	/** 号码 */
 	private String betNum;
+	/**  */
+	private Integer sort;
+	/** 玩法小类 LotterySortTypeEnum */
+	private String sortType;
 	/** 玩法唯一标示 */
-	private Integer betSort;
+	private String betSort;
+	/**  */
+	private String pageType;
 	/** A盤水位 */
 	private Double rebateA;
 	/** B盤水位 */
@@ -59,15 +70,17 @@ public class LotteryRebates implements IEntity<Integer> {
 	/** C盤水位 */
 	private Double rebateC;
 	/** 最低下注额 */
-	private Double minBet;
-	/** 單注限额 */
-	private Double maxBet;
-	/** 單期限额 */
-	private Double maxExpectBet;
+	private Integer minBet;
+	/** 单注限额 */
+	private Integer maxBet;
+	/** 单期限额 */
+	private Integer maxExpectBet;
 	/** 起补金额 */
 	private Double postMoney;
 	/** 是否开启，1开启、0关闭 */
 	private String postMoneyClose;
+	/**  */
+	private Boolean oddClose;
 	//endregion
 
 	
@@ -124,12 +137,33 @@ public class LotteryRebates implements IEntity<Integer> {
 	public void setBetNum(String value) {
 		this.betNum = value;
 	}
-	public Integer getBetSort() {
+	public Integer getSort() {
+		return this.sort;
+	}
+
+	public void setSort(Integer value) {
+		this.sort = value;
+	}
+	public String getSortType() {
+		return this.sortType;
+	}
+
+	public void setSortType(String value) {
+		this.sortType = value;
+	}
+	public String getBetSort() {
 		return this.betSort;
 	}
 
-	public void setBetSort(Integer value) {
+	public void setBetSort(String value) {
 		this.betSort = value;
+	}
+	public String getPageType() {
+		return this.pageType;
+	}
+
+	public void setPageType(String value) {
+		this.pageType = value;
 	}
 	public Double getRebateA() {
 		return this.rebateA;
@@ -152,25 +186,25 @@ public class LotteryRebates implements IEntity<Integer> {
 	public void setRebateC(Double value) {
 		this.rebateC = value;
 	}
-	public Double getMinBet() {
+	public Integer getMinBet() {
 		return this.minBet;
 	}
 
-	public void setMinBet(Double value) {
+	public void setMinBet(Integer value) {
 		this.minBet = value;
 	}
-	public Double getMaxBet() {
+	public Integer getMaxBet() {
 		return this.maxBet;
 	}
 
-	public void setMaxBet(Double value) {
+	public void setMaxBet(Integer value) {
 		this.maxBet = value;
 	}
-	public Double getMaxExpectBet() {
+	public Integer getMaxExpectBet() {
 		return this.maxExpectBet;
 	}
 
-	public void setMaxExpectBet(Double value) {
+	public void setMaxExpectBet(Integer value) {
 		this.maxExpectBet = value;
 	}
 	public Double getPostMoney() {
@@ -186,6 +220,13 @@ public class LotteryRebates implements IEntity<Integer> {
 
 	public void setPostMoneyClose(String value) {
 		this.postMoneyClose = value;
+	}
+	public Boolean getOddClose() {
+		return this.oddClose;
+	}
+
+	public void setOddClose(Boolean value) {
+		this.oddClose = value;
 	}
 	//endregion
 

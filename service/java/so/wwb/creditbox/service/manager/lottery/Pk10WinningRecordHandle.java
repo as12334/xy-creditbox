@@ -95,7 +95,7 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
     }
 
 
-    private String generateChampionUpSumHalfNum(String code, Integer championUpSum) {
+    private String generateChampionUpSumHalfNum(String code, Integer championUpSum){
         if (isNeedDraw(code) && championUpSum == 11) {
             return LotteryWinningNum.DRAW;
         } else if (championUpSum % 2 == 0 && championUpSum > 11) {

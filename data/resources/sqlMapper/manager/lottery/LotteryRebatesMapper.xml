@@ -9,7 +9,10 @@
         <result column="bet_code" property="betCode"/>
         <result column="play_code" property="playCode"/>
         <result column="bet_num" property="betNum"/>
+        <result column="sort" property="sort"/>
+        <result column="sort_type" property="sortType"/>
         <result column="bet_sort" property="betSort"/>
+        <result column="page_type" property="pageType"/>
         <result column="rebate_a" property="rebateA"/>
         <result column="rebate_b" property="rebateB"/>
         <result column="rebate_c" property="rebateC"/>
@@ -18,6 +21,7 @@
         <result column="max_expect_bet" property="maxExpectBet"/>
         <result column="post_money" property="postMoney"/>
         <result column="post_money_close" property="postMoneyClose"/>
+        <result column="odd_close" property="oddClose"/>
     </resultMap>
 
     <!--//region your codes 1-->
