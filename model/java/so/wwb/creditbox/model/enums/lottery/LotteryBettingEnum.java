@@ -14,11 +14,11 @@ public enum LotteryBettingEnum implements ICodeEnum {
 
 
     //时时彩
-    SSC_ONE("ssc", "1", "第一球"),
-    SSC_TWO("ssc", "4", "第二球"),
-    SSC_THREE("ssc", "7", "第三球"),
-    SSC_FOUR("ssc", "10", "第四球"),
-    SSC_FIVE("ssc", "13", "第五球"),
+    SSC_ONE("ssc", "ten_thousand", "第一球"),
+    SSC_TWO("ssc", "thousand", "第二球"),
+    SSC_THREE("ssc", "hundred", "第三球"),
+    SSC_FOUR("ssc", "ten", "第四球"),
+    SSC_FIVE("ssc", "one", "第五球"),
 
     SSC_SUM_DRAGON_TIGER("ssc", "ssc_sum_dragon_tiger", "總和、龍虎"),
     SSC_ONE_COMBINATION("ssc", "ssc_one_combination", "（一字组合）前三、中三、後三"),
@@ -31,6 +31,9 @@ public enum LotteryBettingEnum implements ICodeEnum {
     THIRD_RUNNER("pk10", "third_runner", "季军"),
     FOURTH_RUNNER("pk10", "fourth_place", "第四名"),
     FIFTH_RUNNER("pk10", "fifth_place", "第五名"),
+
+    ONE_FIFTH_DRAGON_TIGER("pk10", "", "第五名"),
+
     SIXTH_RUNNER("pk10", "sixth_place", "第六名"),
     SEVENTH_RUNNER("pk10", "seventh_place", "第七名"),
     EIGHTH_RUNNER("pk10", "eighth_place", "第八名"),

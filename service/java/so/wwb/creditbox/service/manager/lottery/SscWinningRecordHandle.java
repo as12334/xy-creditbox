@@ -152,8 +152,6 @@ public class SscWinningRecordHandle extends AbstractWinningRecordHandle implemen
                 case SSC_ONE_AFTER_THREE:
                     winningNumSet = generateTeshuWinnum(openCodes[2], openCodes[3], openCodes[4]);
                     break;
-                default:
-                    break;
             }
             LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult, lotteryPlayEnum, LotteryBettingEnum.SSC_SUM_DRAGON_TIGER, winningNumSet);
             if (lotteryWinningRecord != null) {
