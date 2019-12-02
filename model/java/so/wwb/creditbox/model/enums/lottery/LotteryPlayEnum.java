@@ -50,6 +50,22 @@ public enum LotteryPlayEnum implements ICodeEnum {
     CHAMPION_UP_SUM_18("pk10", "champion_up_sum_18", "冠亚军和 18"),
     CHAMPION_UP_SUM_19("pk10", "champion_up_sum_19", "冠亚军和 19"),
 
+    //十分彩(重庆幸运农场,广东快乐十分)
+    SFC_DIGITAL("sfc","sfc_digital", "定位"),
+    SFC_BIG_SMALL("sfc","sfc_big_small", "大小"),
+    SFC_SINGLE_DOUBLE("sfc","sfc_single_double", "單雙"),
+    //    中發白
+    SFC_ZBF("sfc","128", "方位"),
+    //    方位
+    SFC_FW("sfc","sfc_sfc_fw", "东南西北"),
+    SFC_MANTISSA_BIG_SMALL("sfc","sfc_mantissa_big_small", "尾数大小"),
+    SFC_SUM_SINGLE_DOUBLE("sfc","sfc_sum_single_double", "合数單雙"),
+    SFC_DRAGON_TIGER("pk10", "sfc_dragon_tiger", "龍虎"),
+
+    SFC_SUM8_BIG_SMALL("sfc","sfc_sum8_big_small", "总和大小"),
+    SFC_SUM8_SINGLE_DOUBLE("sfc","sfc_sum8_single_double", "总和單雙"),
+    SFC_SUM8_MANTISSA_BIG_SMALL("sfc","sfc_sum8_mantissa_big_small", "总和尾数大小"),
+
 
 
     //六合彩
@@ -120,16 +136,6 @@ public enum LotteryPlayEnum implements ICodeEnum {
     K3_DIFF_NUM("k3","k3_diff_num", "不同号"),
     K3_THREE_STRAIGHT("k3","k3_three_straight", "三连号"),
 
-    //十分彩(重庆幸运农场,广东快乐十分)
-    SFC_DIGITAL("sfc","sfc_digital", "定位"),
-    SFC_BIG_SMALL("sfc","sfc_big_small", "大小"),
-    SFC_SINGLE_DOUBLE("sfc","sfc_single_double", "單雙"),
-//    中發白
-    SFC_ZBF("sfc","128", "方位"),
-//    方位
-    SFC_FW("sfc","sfc_fw", "东南西北"),
-    SFC_MANTISSA_BIG_SMALL("sfc","mantissa_big_small", "尾数大小"),
-    SFC_SUM_SINGLE_DOUBLE("sfc","sum_single_double", "合数單雙"),
 
 
 
@@ -137,10 +143,9 @@ public enum LotteryPlayEnum implements ICodeEnum {
 
 
 
-    SFC_SUM8_BIG_SMALL("sfc","sfc_sum8_big_small", "总和大小"),
-    SFC_SUM8_SINGLE_DOUBLE("sfc","sfc_sum8_single_double", "总和單雙"),
-    SFC_SUM8_MANTISSA_BIG_SMALL("sfc","sfc_sum8_mantissa_big_small", "总和尾数大小"),
-    SFC_DRAGON_TIGER("sfc","sfc_dragon_tiger", "龍虎"),
+
+
+
     //快乐彩(幸运28,北京快乐8)
     KENO_SELECTION_ONE("keno","keno_selection_one", "选一"),
     KENO_SELECTION_TWO("keno","keno_selection_two", "选二"),

@@ -45,6 +45,24 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
         championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_BIG_SMALL.getCode());
         championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SINGLE_DOUBLE.getCode());
 
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_3.getCode());
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_4.getCode());
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_5.getCode());
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_6.getCode());
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_7.getCode());
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_8.getCode());
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_9.getCode());
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_10.getCode());
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_11.getCode());
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_12.getCode());
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_13.getCode());
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_14.getCode());
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_15.getCode());
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_16.getCode());
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_17.getCode());
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_18.getCode());
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_19.getCode());
+
     }
 
     @Override
@@ -109,6 +127,58 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
                     break;
                 case CHAMPION_UP_SINGLE_DOUBLE:
                     winningNum = generateChampionUpSumSingleDouble(lotteryResult.getCode(), championUpSum);
+                    break;
+
+                case CHAMPION_UP_SUM_3:
+                    winningNum = 3 + "";
+                    break;
+                case CHAMPION_UP_SUM_4:
+                    winningNum = 4 + "";
+                    break;
+                case CHAMPION_UP_SUM_5:
+                    winningNum = 5 + "";
+                    break;
+                case CHAMPION_UP_SUM_6:
+                    winningNum = 6 + "";
+                    break;
+                case CHAMPION_UP_SUM_7:
+                    winningNum = 7 + "";
+                    break;
+                case CHAMPION_UP_SUM_8:
+                    winningNum = 8 + "";
+                    break;
+                case CHAMPION_UP_SUM_9:
+                    winningNum = 9 + "";
+                    break;
+                case CHAMPION_UP_SUM_10:
+                    winningNum = 10 + "";
+                    break;
+                case CHAMPION_UP_SUM_11:
+                    winningNum = 11 + "";
+                    break;
+                case CHAMPION_UP_SUM_12:
+                    winningNum = 12 + "";
+                    break;
+                case CHAMPION_UP_SUM_13:
+                    winningNum = 13 + "";
+                    break;
+                case CHAMPION_UP_SUM_14:
+                    winningNum = 14 + "";
+                    break;
+                case CHAMPION_UP_SUM_15:
+                    winningNum = 15 + "";
+                    break;
+                case CHAMPION_UP_SUM_16:
+                    winningNum = 16 + "";
+                    break;
+                case CHAMPION_UP_SUM_17:
+                    winningNum = 17 + "";
+                    break;
+                case CHAMPION_UP_SUM_18:
+                    winningNum = 18 + "";
+                    break;
+                case CHAMPION_UP_SUM_19:
+                    winningNum = 19 + "";
                     break;
                 default:
                     break;
