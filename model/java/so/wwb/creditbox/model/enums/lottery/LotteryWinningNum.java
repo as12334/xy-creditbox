@@ -4,8 +4,7 @@ public interface LotteryWinningNum {
     String FULL_DICE = "全骰";
     String BIG = "大";
     String SMALL = "小";
-    String TOTAL_BIG = "总大";
-    String TOTAL_SMALL = "总小";
+
     String SINGLE_SUM_BIG = "合大";
     String SINGLE_SUM_SMALL = "合小";
     String MANTISSA_BIG = "尾大";
@@ -26,6 +25,8 @@ public interface LotteryWinningNum {
 
     String SINGLE = "單";
     String DOUBLE = "雙";
+    String TOTAL_BIG = "總和大";
+    String TOTAL_SMALL = "總和小";
     String TOTAL_SINGLE = "總和單";
     String TOTAL_DOUBLE = "總和雙";
     String SINGLE_SUM_SINGLE = "合單";
@@ -56,8 +57,10 @@ public interface LotteryWinningNum {
     String EXTREME_BIG = "极大";
     String EXTREME_SMALL = "极小";
     String THREE_SAME = "豹子";
-    String STRAIGHT  = "顺子";
-    String PAIR = "对子";
+    String STRAIGHT  = "順子";
+    String HALF_STRAIGHT  = "半順";
+    String PAIR = "對子";
+    String SIX = "雜六";
 
 
     String KENO_810 = "810";

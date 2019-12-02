@@ -5,15 +5,23 @@ public enum LotteryPlayEnum implements ICodeEnum {
 
     //时时彩
 
-    SSC_DIGITAL("ssc", "one_digital", "一字定位"),
-    SSC_BIG_SMALL("ssc", "16", "大小"),
-    SSC_SINGLE_DOUBLE("ssc", "17", "單雙"),
-    SSC_SUM_BIG_SMALL("ssc", "16", "總和大小"),
-    SSC_SUM_SINGLE_DOUBLE("ssc", "17", "總和單雙"),
-    SSC_DRAGON_TIGER_SUM("ssc", "18", "龍虎和"),
-    TEN_THOUSAND_THOUSAND_HUNDRED("ssc", "19", "前三"),
-    THOUSAND_HUNDRED_TEN("ssc", "20", "中三"),
-    HUNDRED_TEN_ONE("ssc", "21", "後三"),
+    SSC_DIGITAL("ssc", "ssc_digital", "一字定位"),
+    SSC_BIG_SMALL("ssc", "ssc_big_small", "大小"),
+    SSC_SINGLE_DOUBLE("ssc", "ssc_single_double", "單雙"),
+
+
+    SSC_SUM_BIG_SMALL("ssc", "ssc_sum_big_small", "總和大小"),
+    SSC_SUM_SINGLE_DOUBLE("ssc", "ssc_sum_single_double", "總和單雙"),
+
+    SSC_DRAGON_TIGER_TIE("ssc", "ssc_dragon_tiger_tie", "龍虎和"),
+
+    SSC_ONE_FIRST_THREE("ssc", "ssc_one_first_three", "前三"),
+    SSC_ONE_IN_THREE("ssc", "ssc_one_in_three", "中三"),
+    SSC_ONE_AFTER_THREE("ssc", "ssc_one_after_three", "後三"),
+
+
+
+
 
     //pk10
     PK10_DIGITAL("pk10", "pk10_digital", "定位"),

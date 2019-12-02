@@ -20,12 +20,8 @@ public enum LotteryBettingEnum implements ICodeEnum {
     SSC_FOUR("ssc", "10", "第四球"),
     SSC_FIVE("ssc", "13", "第五球"),
 
-    SSC_SUM_BIG_SMALL("ssc", "16", "總和大小"),
-    SSC_SUM_SINGLE_DOUBLE("ssc", "17", "總和單雙"),
-    SSC_DRAGON_TIGER_SUM("ssc", "18", "龍虎和"),
-    SSC_TEN_THOUSAND_THOUSAND_HUNDRED("ssc", "19", "前三"),
-    SSC_THOUSAND_HUNDRED_TEN("ssc", "20", "中三"),
-    SSC_HUNDRED_TEN_ONE("ssc", "21", "後三"),
+    SSC_SUM_DRAGON_TIGER("ssc", "ssc_sum_dragon_tiger", "總和、龍虎"),
+    SSC_ONE_COMBINATION("ssc", "ssc_one_combination", "（一字组合）前三、中三、後三"),
 
 
 

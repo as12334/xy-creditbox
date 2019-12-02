@@ -158,6 +158,70 @@ public abstract class AbstractWinningRecordHandle{
 
 
     /**
+     * 豹子
+     * 順子
+     * 對子
+     * 半順
+     * 雜六
+     *
+     * @param openCodes
+     * @return
+     */
+    String generateTeshuWinnum(String... openCodes) {
+        if (openCodes[0].equals(openCodes[1]) && openCodes[0].equals(openCodes[2])) {
+            return LotteryWinningNum.THREE_SAME;
+        }
+        else if (openCodes[0].equals(openCodes[1]) || openCodes[0].equals(openCodes[2]) || openCodes[1].equals(openCodes[2])) {
+            return LotteryWinningNum.PAIR;
+        }
+        else if (checkStraight(openCodes)) {
+            return LotteryWinningNum.STRAIGHT;
+        }
+        else if (checkHalfStraight(openCodes)) {
+            return LotteryWinningNum.HALF_STRAIGHT;
+        }
+        else {
+            return LotteryWinningNum.SIX;
+        }
+    }
+
+    /**
+     * 判断是否是顺子
+     *
+     * @param openCodes
+     * @return
+     */
+    private boolean checkStraight(String... openCodes) {
+        List<String> list = Arrays.asList(openCodes);
+        Collections.sort(list);
+        if (list.contains("0") && list.contains("9") && (list.contains("1") || list.contains("8"))) {
+            return true;
+        }
+        Integer num1 = Integer.valueOf(list.get(0));
+        Integer num2 = Integer.valueOf(list.get(1));
+        Integer num3 = Integer.valueOf(list.get(2));
+        return num2 == num1 + 1 && num2 == num3 - 1;
+    }
+
+    /**
+     * 判断是否是半顺
+     *
+     * @param openCodes
+     * @return
+     */
+    private boolean checkHalfStraight(String... openCodes) {
+        List<String> list = Arrays.asList(openCodes);
+        Collections.sort(list);
+        if (list.contains("0") && list.contains("9")) {
+            return true;
+        }
+        Integer num1 = Integer.valueOf(list.get(0));
+        Integer num2 = Integer.valueOf(list.get(1));
+        Integer num3 = Integer.valueOf(list.get(2));
+        return num2 == num1 + 1 || num2 == num3 - 1;
+    }
+
+    /**
      * 获取数字的尾数
      *
      * @param numCode 号码
@@ -238,74 +302,8 @@ public abstract class AbstractWinningRecordHandle{
         }
     }
 
-    /**
-     * 生成质合结果
-     *
-     * @param num 号码
-     * @return
-     */
-    String generatePrimeCombinedNum(Integer num) {
-
-        if (num == 1 || num == 2 || num == 3 || num == 5 || num == 7) {
-            return LotteryWinningNum.PRIME;
-        } else if (num == 0 || num == 4 || num == 6 || num == 8 || num == 9) {
-            return LotteryWinningNum.COMBINED;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * 生成尾数质合结果
-     *
-     * @param openCode 开奖结果
-     * @return
-     */
-    String generateMantissaPrimeCombined(String openCode) {
-        Integer num = Integer.valueOf(generateMantissa(openCode));
-        if (num == 1 || num == 2 || num == 3 || num == 5 || num == 7) {
-            return LotteryWinningNum.MANTISSA_PRIME;
-        } else if (num == 0 || num == 4 || num == 6 || num == 8 || num == 9) {
-            return LotteryWinningNum.MANTISSA_COMBINED;
-        } else {
-            return null;
-        }
-    }
 
 
-    /**
-     * 生成组选三的中奖号码
-     *
-     * @param openCode1
-     * @param openCode2
-     * @param openCode3
-     * @return
-     */
-    String generateGroup3Num(String openCode1, String openCode2, String openCode3) {
-        if (openCode1.equals(openCode2) && openCode1.equals(openCode3)) {
-            return null;
-        }
-        if (!openCode1.equals(openCode2) && !openCode2.equals(openCode3) && !openCode1.equals(openCode3)) {
-            return null;
-        }
-        return sortOpenCode(openCode1, openCode2, openCode3);
-    }
-
-
-    /**
-     * 生成组选六的中奖号码
-     *
-     * @param openCode1
-     * @param openCode2
-     * @param openCode3
-     * @return
-     */
-    String generateGroup6Num(String openCode1, String openCode2, String openCode3) {
-        if (!openCode1.equals(openCode2) && !openCode2.equals(openCode3) && !openCode1.equals(openCode3)) {
-            return sortOpenCode(openCode1, openCode2, openCode3);
-        }
-        return null;
-    }
 
     /**
      * 由小到大排序，去重
@@ -330,22 +328,6 @@ public abstract class AbstractWinningRecordHandle{
             openCodes += openCode;
         }
         return openCodes;
-    }
-
-    /**
-     * 生成跨度的中奖号码
-     *
-     * @param openCode1 开奖号码1
-     * @param openCode2 开奖号码2
-     * @param openCode3 开奖号码3
-     * @return 跨度中奖号码
-     */
-    String generateSpanNum(String openCode1, String openCode2, String openCode3) {
-        int max = Integer.valueOf(openCode1) > Integer.valueOf(openCode2) ? Integer.valueOf(openCode1) : Integer.valueOf(openCode2);
-        max = max > Integer.valueOf(openCode3) ? max : Integer.valueOf(openCode3);
-        int min = Integer.valueOf(openCode1) < Integer.valueOf(openCode2) ? Integer.valueOf(openCode1) : Integer.valueOf(openCode2);
-        min = min < Integer.valueOf(openCode3) ? min : Integer.valueOf(openCode3);
-        return String.valueOf(max - min);
     }
 
 
