@@ -41,6 +41,10 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
         oneDigitalPlayList.add(LotteryPlayEnum.PK10_DRAGON_TIGER.getCode());
 
 
+        //冠亚和
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_BIG_SMALL.getCode());
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SINGLE_DOUBLE.getCode());
+
     }
 
     @Override
@@ -53,7 +57,7 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
         WinningRecordHandleVo winningRecordHandleVo = new WinningRecordHandleVo();
         List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
         lotteryWinningRecordList.addAll(createDigital(lotteryResult));
-//        lotteryWinningRecordList.addAll(createChampionUpSum(lotteryResult));
+        lotteryWinningRecordList.addAll(createChampionUpSum(lotteryResult));
         //官方玩法
 //        lotteryWinningRecordList.addAll(createOffical(lotteryResult));
         winningRecordHandleVo.setLotteryWinningRecordList(lotteryWinningRecordList);
@@ -86,28 +90,38 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
                 }
                 LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult, lotteryPlayEnum, lotteryBettingEnum, winningNum);
                 if (lotteryWinningRecord != null) {
-                    log.info("彩票开奖.PK10.{0},生成中奖记录:{1}", playCode, lotteryWinningRecord.toString());
                     lotteryWinningRecordList.add(lotteryWinningRecord);
                 }
             }
         }
         return lotteryWinningRecordList;
     }
-
-
-    private String generateChampionUpSumHalfNum(String code, Integer championUpSum){
-        if (isNeedDraw(code) && championUpSum == 11) {
-            return LotteryWinningNum.DRAW;
-        } else if (championUpSum % 2 == 0 && championUpSum > 11) {
-            return LotteryWinningNum.BIG_DOUBLE;
-        } else if (championUpSum % 2 == 0 && championUpSum < 11) {
-            return LotteryWinningNum.SMALL_DOUBLE;
-        } else if (championUpSum % 2 != 0 && championUpSum > 11) {
-            return LotteryWinningNum.BIG_SINGLE;
-        } else {
-            return LotteryWinningNum.SMALL_SINGLE;
+    private List<LotteryWinningRecord> createChampionUpSum(LotteryResult lotteryResult) {
+        List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
+        String[] openCodes = StringTool.split(lotteryResult.getOpenCode(), ",");
+        Integer championUpSum = generateChampionUpSum(openCodes);
+        for (String playCode : championUpSumPlayList) {
+            LotteryPlayEnum lotteryPlayEnum = EnumTool.enumOf(LotteryPlayEnum.class, playCode);
+            String winningNum = null;
+            switch (lotteryPlayEnum) {
+                case CHAMPION_UP_BIG_SMALL:
+                    winningNum = generateChampionUpSumBigSmall(lotteryResult.getCode(), championUpSum);
+                    break;
+                case CHAMPION_UP_SINGLE_DOUBLE:
+                    winningNum = generateChampionUpSumSingleDouble(lotteryResult.getCode(), championUpSum);
+                    break;
+                default:
+                    break;
+            }
+            LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult, lotteryPlayEnum, LotteryBettingEnum.CHAMPION_UP_SUM, winningNum);
+            if (lotteryWinningRecord != null) {
+                log.info("彩票开奖.PK10.{0},生成中奖记录:{1}", playCode, lotteryWinningRecord.toString());
+                lotteryWinningRecordList.add(lotteryWinningRecord);
+            }
         }
+        return lotteryWinningRecordList;
     }
+
 
     @Override
     boolean isBigNum(Integer num) {

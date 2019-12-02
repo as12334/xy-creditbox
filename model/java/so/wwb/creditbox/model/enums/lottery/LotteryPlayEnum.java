@@ -22,6 +22,8 @@ public enum LotteryPlayEnum implements ICodeEnum {
     PK10_DRAGON_TIGER("pk10", "pk10_dragon_tiger", "龍虎"),
     CHAMPION_UP_BIG_SMALL("pk10", "champion_up_big_small", "冠亚军和大小"),
     CHAMPION_UP_SINGLE_DOUBLE("pk10", "champion_up_single_double", "冠亚军和單雙"),
+
+
     CHAMPION_UP_SUM_3("pk10", "champion_up_sum_3", "冠亚军和 3"),
     CHAMPION_UP_SUM_4("pk10", "champion_up_sum_4", "冠亚军和 4"),
     CHAMPION_UP_SUM_5("pk10", "champion_up_sum_5", "冠亚军和 5"),

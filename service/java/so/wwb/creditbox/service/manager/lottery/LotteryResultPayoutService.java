@@ -16,6 +16,7 @@ import so.wwb.creditbox.model.base.CacheBase;
 import so.wwb.creditbox.model.company.lottery.po.LotteryPayoutLog;
 import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
 import so.wwb.creditbox.model.company.lottery.vo.LotteryPayoutLogVo;
+import so.wwb.creditbox.model.enums.base.SubSysCodeEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryStatusEnum;
 import so.wwb.creditbox.model.enums.site.SiteStatusEnum;
 import so.wwb.creditbox.model.manager.lottery.po.Lottery;
@@ -95,9 +96,11 @@ public class LotteryResultPayoutService implements ILotteryResultPayoutService {
         LOG.info("自动派彩,彩种为{0},期号为{1},开奖结果:{2}", resultVo.getResult().getCode(), resultVo.getResult().getExpect(), resultVo.getResult().getOpenCode());
         Map<Integer, Future<Integer>> futureMap = new HashMap<>();
         for (Map.Entry<String, VSysSiteUser> entry : sysSiteUserMap.entrySet()) {
-            Future<Integer> future = submitPayoutTask(resultVo, entry.getValue());
-            if (future != null) {
-                futureMap.put(entry.getValue().getId(), future);
+            if(entry.getValue().getSubsysCode().equals(SubSysCodeEnum.COMPANY.getCode())){
+                Future<Integer> future = submitPayoutTask(resultVo, entry.getValue());
+                if (future != null) {
+                    futureMap.put(entry.getValue().getId(), future);
+                }
             }
         }
         if (MapTool.isNotEmpty(futureMap)) {

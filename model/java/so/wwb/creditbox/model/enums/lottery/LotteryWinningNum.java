@@ -30,20 +30,17 @@ public interface LotteryWinningNum {
     String TOTAL_DOUBLE = "總和雙";
     String SINGLE_SUM_SINGLE = "合單";
     String SINGLE_SUM_DOUBLE = "合雙";
-    String SUM_SINGLE = "合單";
-    String SUM_DOUBLE = "合雙";
-
-    String PRIME = "质";
-    String COMBINED = "合";
-    String MANTISSA_PRIME = "尾质";
-    String MANTISSA_COMBINED = "尾合";
 
     String DRAGON = "龍";
     String TIGER = "虎";
     String DRAGON_TIGER_TIE = "和";
     String DRAW = "平局";
-    String SUM_BIG = "和大";
-    String SUM_SMALL = "和小";
+    String SUM_BIG = "冠亞大";
+    String SUM_SMALL = "冠亞小";
+    String SUM_SINGLE = "冠亞單";
+    String SUM_DOUBLE = "冠亞雙";
+
+
     String CHAMPION_UP_34 = "3,4,18,19";
     String CHAMPION_UP_56 = "5,6,16,17";
     String CHAMPION_UP_78 = "7,8,14,15";
