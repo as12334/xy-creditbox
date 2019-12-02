@@ -60,7 +60,6 @@ public enum LotteryBettingEnum implements ICodeEnum {
     SFC_DRAGON_TIGER("sfc","sfc_dragon_tiger", "龍虎"),
 
     SFC_SUM8("sfc", "sfc_sum8", "总和"),
-    SFC_SUM_DRAGON_TIGER("sfc", "sfc_sum_dragon_tiger", "總和、龍虎"),
     SFC_CONTINUOUS_CODE("sfc", "sfc_continuous_code", "連碼"),
 
 

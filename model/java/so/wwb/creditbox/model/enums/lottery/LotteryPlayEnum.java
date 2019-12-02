@@ -51,20 +51,24 @@ public enum LotteryPlayEnum implements ICodeEnum {
     CHAMPION_UP_SUM_19("pk10", "champion_up_sum_19", "冠亚军和 19"),
 
     //十分彩(重庆幸运农场,广东快乐十分)
+    //1-8号码 start
     SFC_DIGITAL("sfc","sfc_digital", "定位"),
     SFC_BIG_SMALL("sfc","sfc_big_small", "大小"),
     SFC_SINGLE_DOUBLE("sfc","sfc_single_double", "單雙"),
     //    中發白
-    SFC_ZBF("sfc","128", "方位"),
+    SFC_ZBF("sfc","sfc_zfb", "方位"),
     //    方位
-    SFC_FW("sfc","sfc_sfc_fw", "东南西北"),
+    SFC_FW("sfc","sfc_fw", "东南西北"),
     SFC_MANTISSA_BIG_SMALL("sfc","sfc_mantissa_big_small", "尾数大小"),
     SFC_SUM_SINGLE_DOUBLE("sfc","sfc_sum_single_double", "合数單雙"),
-    SFC_DRAGON_TIGER("pk10", "sfc_dragon_tiger", "龍虎"),
+    SFC_DRAGON_TIGER("sfc", "sfc_dragon_tiger", "龍虎"),
+    //1-8号码 end
+
 
     SFC_SUM8_BIG_SMALL("sfc","sfc_sum8_big_small", "总和大小"),
     SFC_SUM8_SINGLE_DOUBLE("sfc","sfc_sum8_single_double", "总和單雙"),
     SFC_SUM8_MANTISSA_BIG_SMALL("sfc","sfc_sum8_mantissa_big_small", "总和尾数大小"),
+    SFC_SUM8_DRAGON_TIGER("sfc","sfc_sum8_dragon_tiger", "總和龍虎"),
 
 
 

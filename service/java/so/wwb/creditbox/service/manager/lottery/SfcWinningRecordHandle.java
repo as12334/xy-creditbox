@@ -62,7 +62,7 @@ public class SfcWinningRecordHandle extends AbstractWinningRecordHandle implemen
         WinningRecordHandleVo winningRecordHandleVo = new WinningRecordHandleVo();
         List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
         lotteryWinningRecordList.addAll(createDigital(lotteryResult));
-//        lotteryWinningRecordList.addAll(createSum8(lotteryResult));
+        lotteryWinningRecordList.addAll(createSum8(lotteryResult));
 //        lotteryWinningRecordList.addAll(createDragonTiger(lotteryResult));
         winningRecordHandleVo.setLotteryWinningRecordList(lotteryWinningRecordList);
         return winningRecordHandleVo;
