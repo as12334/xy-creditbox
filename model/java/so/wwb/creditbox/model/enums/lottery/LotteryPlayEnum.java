@@ -71,6 +71,21 @@ public enum LotteryPlayEnum implements ICodeEnum {
     SFC_SUM8_DRAGON_TIGER("sfc","sfc_sum8_dragon_tiger", "總和龍虎"),
 
 
+    //連碼
+    SFC_RENXUAN_2("sfc","sfc_renxuan_2", "連碼-任選二"),
+    SFC_RENXUAN_3("sfc","sfc_renxuan_3", "連碼-任選三"),
+    SFC_RENXUAN_4("sfc","sfc_renxuan_4", "連碼-任選四"),
+    SFC_RENXUAN_5("sfc","sfc_renxuan_5", "連碼-任選五"),
+
+    SFC_LIANZU_2("sfc","sfc_lianzu_2", "連碼-選二連組"),
+    SFC_QIANZU_3("sfc","sfc_qianzu_3", "連碼-選三前組"),
+
+    SFC_LIANZHI_2("sfc","sfc_lianzhi_2", "連碼-選二連直"),
+    SFC_QINAZHI_3("sfc","sfc_qinazhi_3", "連碼-選三前直"),
+
+
+
+
 
     //六合彩
     SPECIAL_DIGITAL("lhc","special_digital", "特码"),

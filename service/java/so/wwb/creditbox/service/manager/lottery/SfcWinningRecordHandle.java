@@ -25,6 +25,8 @@ public class SfcWinningRecordHandle extends AbstractWinningRecordHandle implemen
 
     private static List<String> sum8List = new ArrayList<>();
 
+    private static List<String> continuousCodeList = new ArrayList<>();
+
     static {
         //投注玩法：第一球～第八球
         digitalBettingList.add(LotteryBettingEnum.SFC_FIRST.getCode());
@@ -63,7 +65,7 @@ public class SfcWinningRecordHandle extends AbstractWinningRecordHandle implemen
         List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
         lotteryWinningRecordList.addAll(createDigital(lotteryResult));
         lotteryWinningRecordList.addAll(createSum8(lotteryResult));
-//        lotteryWinningRecordList.addAll(createDragonTiger(lotteryResult));
+        lotteryWinningRecordList.addAll(createContinuousCode(lotteryResult));
         winningRecordHandleVo.setLotteryWinningRecordList(lotteryWinningRecordList);
         return winningRecordHandleVo;
     }
@@ -144,7 +146,58 @@ public class SfcWinningRecordHandle extends AbstractWinningRecordHandle implemen
         }
         return lotteryWinningRecordList;
     }
+    /**
+     * 构造連碼中奖记录
+     *
+     * @param lotteryResult
+     * @return
+     */
+    private List<LotteryWinningRecord> createContinuousCode(LotteryResult lotteryResult) {
+        List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
+        String[] openCodes = StringTool.split(lotteryResult.getOpenCode(), ",");
+        LotteryWinningRecord lotteryWinningRecord = null;
 
+
+        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SFC_RENXUAN_2, LotteryBettingEnum.SFC_CONTINUOUS_CODE, StringTool.join(",", openCodes));
+        if (lotteryWinningRecord != null) {
+            log.info("彩票开奖.时时彩.{0},生成中奖记录:{1}", LotteryPlayEnum.SFC_RENXUAN_2.getCode(), lotteryWinningRecord.toString());
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+            return lotteryWinningRecordList;
+        }
+        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SFC_RENXUAN_3, LotteryBettingEnum.SFC_CONTINUOUS_CODE, StringTool.join(",", openCodes));
+        if (lotteryWinningRecord != null) {
+            log.info("彩票开奖.时时彩.{0},生成中奖记录:{1}", LotteryPlayEnum.SFC_RENXUAN_3.getCode(), lotteryWinningRecord.toString());
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+            return lotteryWinningRecordList;
+        }
+        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SFC_RENXUAN_4, LotteryBettingEnum.SFC_CONTINUOUS_CODE, StringTool.join(",", openCodes));
+        if (lotteryWinningRecord != null) {
+            log.info("彩票开奖.时时彩.{0},生成中奖记录:{1}", LotteryPlayEnum.SFC_RENXUAN_4.getCode(), lotteryWinningRecord.toString());
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+            return lotteryWinningRecordList;
+        }
+        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SFC_RENXUAN_5, LotteryBettingEnum.SFC_CONTINUOUS_CODE, StringTool.join(",", openCodes));
+        if (lotteryWinningRecord != null) {
+            log.info("彩票开奖.时时彩.{0},生成中奖记录:{1}", LotteryPlayEnum.SFC_RENXUAN_5.getCode(), lotteryWinningRecord.toString());
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+            return lotteryWinningRecordList;
+        }
+
+        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SFC_LIANZU_2, LotteryBettingEnum.SFC_CONTINUOUS_CODE, StringTool.join(",", openCodes));
+        if (lotteryWinningRecord != null) {
+            log.info("彩票开奖.时时彩.{0},生成中奖记录:{1}", LotteryPlayEnum.SFC_LIANZU_2.getCode(), lotteryWinningRecord.toString());
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+            return lotteryWinningRecordList;
+        }
+        String winnum = StringTool.join(",", openCodes[0],openCodes[1],openCodes[2]);
+        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SFC_QIANZU_3, LotteryBettingEnum.SFC_CONTINUOUS_CODE, StringTool.join(",", winnum));
+        if (lotteryWinningRecord != null) {
+            log.info("彩票开奖.时时彩.{0},生成中奖记录:{1}", LotteryPlayEnum.SFC_QIANZU_3.getCode(), lotteryWinningRecord.toString());
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+            return lotteryWinningRecordList;
+        }
+        return lotteryWinningRecordList;
+    }
 
     /**
      * 中發白
