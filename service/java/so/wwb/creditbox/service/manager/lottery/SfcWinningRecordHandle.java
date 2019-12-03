@@ -43,12 +43,12 @@ public class SfcWinningRecordHandle extends AbstractWinningRecordHandle implemen
         digitalPlayList.add(LotteryPlayEnum.SFC_SUM_SINGLE_DOUBLE.getCode());
         digitalPlayList.add(LotteryPlayEnum.SFC_ZBF.getCode());
         digitalPlayList.add(LotteryPlayEnum.SFC_FW.getCode());
-        digitalPlayList.add(LotteryPlayEnum.SFC_DRAGON_TIGER.getCode());
 
 
         sum8List.add(LotteryPlayEnum.SFC_SUM8_BIG_SMALL.getCode());
         sum8List.add(LotteryPlayEnum.SFC_SUM8_SINGLE_DOUBLE.getCode());
         sum8List.add(LotteryPlayEnum.SFC_SUM8_MANTISSA_BIG_SMALL.getCode());
+        sum8List.add(LotteryPlayEnum.SFC_SUM8_DRAGON_TIGER.getCode());
 
 
     }
@@ -98,9 +98,6 @@ public class SfcWinningRecordHandle extends AbstractWinningRecordHandle implemen
                     case SFC_FW:
                         winningNum = generateFwfNum(Integer.valueOf(openCodes[i]));
                         break;
-                    case SFC_DRAGON_TIGER:
-                        winningNum = generateDragonTigerTie(Integer.valueOf(openCodes[i]), Integer.valueOf(openCodes[7 - i]));
-                        break;
                     default:
                         break;
                 }
@@ -132,6 +129,9 @@ public class SfcWinningRecordHandle extends AbstractWinningRecordHandle implemen
                     break;
                 case SFC_SUM8_MANTISSA_BIG_SMALL:
                     winningNum = generateTotalMantissaBigSmallNum(eightSum);
+                    break;
+                case SFC_SUM8_DRAGON_TIGER:
+                    winningNum = generateDragonTigerTie(Integer.valueOf(openCodes[0]), Integer.valueOf(openCodes[7]));
                     break;
                 default:
                     break;
