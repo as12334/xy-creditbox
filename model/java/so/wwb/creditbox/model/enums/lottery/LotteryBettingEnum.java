@@ -37,7 +37,6 @@ public enum LotteryBettingEnum implements ICodeEnum {
     NINTH_RUNNER("pk10", "ninth_place", "第九名"),
     TENTH_RUNNER("pk10", "tenth_place", "第十名"),
     CHAMPION_UP_SUM("pk10", "champion_up_sum", "冠亚军和"),
-    CHAMPION_UP_DAXIAODANSHUANG("pk10", "champion_up_daxiaodanshuang", "冠亚大小單雙"),
 
 
 

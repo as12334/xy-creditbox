@@ -1,9 +1,5 @@
-CREATE
-OR REPLACE FUNCTION "f_init_site_lottery_odds" (
-	p_com_url TEXT,
-	"siteid" int4,
-	"t_hid" TEXT
-) RETURNS "pg_catalog"."varchar" AS $BODY$ /*版本更新说明
+CREATE OR REPLACE FUNCTION "lb-site-6"."f_init_site_lottery_odds"("p_com_url" text, "siteid" int4, "t_hid" text)
+	RETURNS "pg_catalog"."varchar" AS $BODY$ /*版本更新说明
   版本   时间        作者   内容
 --v1.01  xxxx/xx/xx marz  创建
 --v1.02  2018/06/12 Steady  调整调用方式
@@ -36,38 +32,42 @@ BEGIN
 		"max_odd",
 		"odd_close"
 	) SELECT
-		siteid,
-		t_hid,
-		*
-	FROM
-		dblink (
-			p_com_url,
-			'SELECT "code", "bet_name", "bet_code", "play_code", "bet_num", "sort", "sort_type", "bet_sort", "page_type", "odd_a", "odd_b", "odd_c", "min_odd", "max_odd", "odd_close" FROM lottery_odds'
-		) AS lo (
-			"code" VARCHAR (32) ,
-			"bet_name" VARCHAR (32)  ,
-			"bet_code" VARCHAR (128) ,
-			"play_code" VARCHAR (32) ,
-			"bet_num" VARCHAR (32),
-			"sort" int4,
-			"sort_type" VARCHAR (32),
-			"bet_sort" VARCHAR (32),
-			"page_type" VARCHAR (32) ,
-			"odd_a" NUMERIC (20, 3),
-			"odd_b" NUMERIC (20, 3),
-			"odd_c" NUMERIC (20, 3),
-			"min_odd" NUMERIC (20, 3),
-			"max_odd" NUMERIC (20, 3),
-			"odd_close" bool
+			siteid,
+			t_hid,
+			*
+		FROM
+					dblink (
+							p_com_url,
+							'SELECT "code", "bet_name", "bet_code", "play_code", "bet_num", "sort", "sort_type", "bet_sort", "page_type", "odd_a", "odd_b", "odd_c", "min_odd", "max_odd", "odd_close" FROM lottery_odds'
+					) AS lo (
+					"code" VARCHAR (32) ,
+					"bet_name" VARCHAR (32)  ,
+					"bet_code" VARCHAR (128) ,
+					"play_code" VARCHAR (32) ,
+					"bet_num" VARCHAR (32),
+					"sort" int4,
+					"sort_type" VARCHAR (32),
+					"bet_sort" VARCHAR (32),
+					"page_type" VARCHAR (32) ,
+					"odd_a" NUMERIC (20, 3),
+					"odd_b" NUMERIC (20, 3),
+					"odd_c" NUMERIC (20, 3),
+					"min_odd" NUMERIC (20, 3),
+					"max_odd" NUMERIC (20, 3),
+					"odd_close" bool
 
-		)
-	WHERE
-		t_hid NOT IN (
-			SELECT
-				hid
-			FROM
-				site_lottery_odds
-			WHERE
-				hid = t_hid
-		) ; RETURN '' ;
-	END $BODY$ LANGUAGE 'plpgsql' VOLATILE COST 100;
+					)
+		WHERE
+			lo.bet_sort NOT IN (
+				SELECT
+					bet_sort
+				FROM
+					site_lottery_odds
+				WHERE
+					hid = t_hid AND lo.code = code
+			) ; RETURN '' ;
+END $BODY$
+LANGUAGE 'plpgsql' VOLATILE COST 100
+;
+
+ALTER FUNCTION "lb-site-6"."f_init_site_lottery_odds"("p_com_url" text, "siteid" int4, "t_hid" text) OWNER TO "postgres";

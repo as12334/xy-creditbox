@@ -1,4 +1,5 @@
-CREATE OR REPLACE FUNCTION "lottery_payout"("lottery_expect" text, "lottery_type" text, "lottery_code" text, "opencode" text, "winrecordjson" text)
+DROP FUNCTION "lottery_payout"("lottery_expect" text,"lottery_type" text, "lottery_code" text, "opencode" text, "winrecordjson" text);
+CREATE OR REPLACE FUNCTION "lottery_payout"("lottery_expect" text,"lottery_type" text, "lottery_code" text, "opencode" text, "winrecordjson" text)
   RETURNS "pg_catalog"."varchar" AS $BODY$
 /*版本更新说明
   版本   	时间        	作者   	内容
@@ -51,7 +52,7 @@ BEGIN
 	--v1.03   2019/06/04    rambo   添加耗时输出日志
 	select clock_timestamp() INTO testtime;
 
-	if lottery_type = 'pk10' then
+-- 	if lottery_type = 'pk10' then
 		SELECT lottery_payout_pk10(winRecordJson,lotteryParameter) INTO reslut_value;
 -- 	ELSEIF lottery_code like '%lhc' then
 -- 		SELECT lottery_payout_lhc(winRecordJson,lotteryParameter) INTO reslut_value;
@@ -69,7 +70,7 @@ BEGIN
 -- 		SELECT lottery_payout_xy28(winRecordJson,lotteryParameter) INTO reslut_value;
 -- 	ELSE
 	--其它彩种待处理
-	end if;
+-- 	end if;
 	--v1.03   2019/06/04    rambo   添加耗时输出日志
 	select clock_timestamp() INTO testtime1;
 	SELECT floor(extract(epoch from((testtime1 - testtime)*1000))) INTO time1;
@@ -81,7 +82,7 @@ BEGIN
 -- 			SELECT  lbo.user_id ,lbo.username , '2', lbo.payout, ((select p.money from player_api p where p.player_id=lbo.user_id and p.api_id=22 FOR UPDATE) + sum(payout) over(partition by lbo.user_id order by lbo.id)) as balance ,
 -- 				lbo.payout_time,lbo.terminal,lbo.id,'开奖派彩' from lottery_bet_order lbo WHERE lbo.expect = lottery_expect and lbo.code = lottery_code and lbo.status='2' AND lbo.payout>0
 -- 																																							and lbo.payout_time = NOW_TIME order by  lbo.user_id ,lbo.id;
--- 
+--
 -- 		--v1.03   2019/06/04    rambo   添加耗时输出日志
 -- 		select clock_timestamp() INTO testtime;
 -- 		SELECT floor(extract(epoch from((testtime - testtime1)*1000))) INTO time2;
@@ -90,9 +91,9 @@ BEGIN
 -- 		UPDATE player_api u SET money = COALESCE(money,0) + COALESCE( lbo.payout,0)
 -- 		FROM (SELECT "sum"(payout) payout,user_id FROM lottery_bet_order where expect = lottery_expect and code = lottery_code AND status='2' AND payout>0 and payout_time = NOW_TIME GROUP BY user_id) lbo
 -- 		where u.api_id=22 and u.player_id=lbo.user_id;
--- 
--- 
--- 
+--
+--
+--
 -- 		--v1.03   2019/06/04    rambo   添加耗时输出日志
 -- 		select clock_timestamp() INTO testtime1;
 -- 		SELECT floor(extract(epoch from((testtime1 - testtime)*1000))) INTO time3;
@@ -110,7 +111,7 @@ BEGIN
 -- 		UPDATE player_api u SET money = COALESCE(money,0) + COALESCE( lbo.rebate,0)
 -- 		FROM (SELECT COALESCE(SUM(trunc(rebate*bet_amount,3)),0) rebate,user_id FROM lottery_bet_order where expect = lottery_expect and code = lottery_code AND status='2' AND rebate>0 and payout_time = NOW_TIME GROUP BY user_id) lbo
 -- 		where u.api_id=22 and u.player_id=lbo.user_id;
--- 
+--
 -- 		--v1.03   2019/06/04    rambo   添加耗时输出日志
 -- 		select clock_timestamp() INTO testtime1;
 -- 		SELECT floor(extract(epoch from((testtime1 - testtime)*1000))) INTO time5;
@@ -134,7 +135,7 @@ BEGIN
 -- 					effective_trade_amount = excluded.effective_trade_amount,
 -- 					payout_time = excluded.payout_time,
 -- 					order_state = excluded.order_state;
--- 
+--
 -- 	--v1.03   2019/06/04    rambo   添加耗时输出日志
 -- 	select clock_timestamp() INTO testtime;
 -- 	SELECT floor(extract(epoch from((testtime - testtime1)*1000))) INTO time6;
@@ -147,4 +148,4 @@ $BODY$
 ;
 
 
-COMMENT ON FUNCTION "lottery_payout"("lottery_expect" text, "lottery_type" text, "lottery_code" text, "opencode" text, "winrecordjson" text) IS '彩票派彩';
+COMMENT ON FUNCTION "lottery_payout"("lottery_expect" text,"lottery_type" text, "lottery_code" text, "opencode" text, "winrecordjson" text) IS '彩票派彩';

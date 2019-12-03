@@ -1,3 +1,4 @@
+DROP FUNCTION "lottery_payout_pk10"("lotteryresultjson" text, "lotteryparameter" json);
 CREATE OR REPLACE FUNCTION "lottery_payout_pk10"("lotteryresultjson" text, "lotteryparameter" json)
   RETURNS "pg_catalog"."varchar" AS $BODY$
 /*
@@ -50,12 +51,21 @@ loop
     select resultJson::json->>'play_code' into p_play_code;
     select resultJson::json->>'bet_code' into p_bet_code;
     select resultJson::json->>'winning_num' into p_winning_num;
-    IF p_winning_num='平局' THEN
-    UPDATE lottery_bet_order  SET c_payout = 0, b_payout = 0,payout_time = now(), status='2' WHERE expect=p_expect AND code=p_code AND status='1' AND play_code= p_play_code AND bet_code=p_bet_code;
-	 ELSE
+
+IF p_play_code='sfc_renxuan_2' THEN UPDATE lottery_bet_order SET c_payout = trunc(bet_amount * c_odd1, 2), b_payout = trunc(bet_amount * b_odd1, 2), payout_time = now(), status = '2'  WHERE array_length(string_to_array(bet_num, ',') ::INT[]  & string_to_array(p_winning_num, ',') :: INT[], 1) = 2 AND expect=p_expect AND code=p_code AND status='1' AND play_code= p_play_code AND bet_code=p_bet_code;
+ELSEIF p_bet_code='sfc_renxuan_3' THEN UPDATE lottery_bet_order SET c_payout = trunc(bet_amount * c_odd1, 2), b_payout = trunc(bet_amount * b_odd1, 2), payout_time = now(), status = '2'  WHERE array_length(string_to_array(bet_num, ',') ::INT[]  & string_to_array(p_winning_num, ',') :: INT[], 1) = 3 AND expect=p_expect AND code=p_code AND status='1' AND play_code= p_play_code AND bet_code=p_bet_code;
+ELSEIF p_bet_code='sfc_renxuan_4' THEN UPDATE lottery_bet_order SET c_payout = trunc(bet_amount * c_odd1, 2), b_payout = trunc(bet_amount * b_odd1, 2), payout_time = now(), status = '2'  WHERE array_length(string_to_array(bet_num, ',') ::INT[]  & string_to_array(p_winning_num, ',') :: INT[], 1) = 4 AND expect=p_expect AND code=p_code AND status='1' AND play_code= p_play_code AND bet_code=p_bet_code;
+ELSEIF p_bet_code='sfc_renxuan_5' THEN UPDATE lottery_bet_order SET c_payout = trunc(bet_amount * c_odd1, 2), b_payout = trunc(bet_amount * b_odd1, 2), payout_time = now(), status = '2'  WHERE array_length(string_to_array(bet_num, ',') ::INT[]  & string_to_array(p_winning_num, ',') :: INT[], 1) = 5 AND expect=p_expect AND code=p_code AND status='1' AND play_code= p_play_code AND bet_code=p_bet_code;
+ELSEIF p_bet_code='sfc_lianzu_2' THEN  UPDATE lottery_bet_order SET c_payout = trunc(bet_amount * c_odd1, 2), b_payout = trunc(bet_amount * b_odd1, 2), payout_time = now(), status = '2'  WHERE POSITION(p_winning_num in bet_num ) > 0 and expect=p_expect AND code=p_code AND status='1' AND play_code= p_play_code AND bet_code=p_bet_code;
+ELSEIF p_bet_code='sfc_qianzu_3' THEN UPDATE lottery_bet_order SET c_payout = trunc(bet_amount * c_odd1, 2), b_payout = trunc(bet_amount * b_odd1, 2), payout_time = now(), status = '2'   WHERE array_length(string_to_array(bet_num, ',') ::INT[]  & string_to_array(p_winning_num, ',') :: INT[], 1) = 3 AND expect=p_expect AND code=p_code AND status='1' AND play_code= p_play_code AND bet_code=p_bet_code;
+ELSEIF p_bet_code='sfc_lianzhi_2' THEN
+ELSEIF p_bet_code='sfc_qinazhi_3' THEN
+ELSE
     UPDATE lottery_bet_order SET c_payout = trunc(bet_amount * c_odd1, 2), b_payout = trunc(bet_amount * b_odd1, 2), payout_time = now(), status = '2' WHERE expect = p_expect AND code = p_code AND status = '1' AND play_code = p_play_code AND bet_code = p_bet_code AND bet_num = p_winning_num;
-	 END IF;
-  END loop;
+END IF;
+
+
+END loop;
 
 --中奖记录之外的投注派彩全部为0
 UPDATE lottery_bet_order  SET c_payout = -bet_amount, b_payout = -bet_amount, payout_time = now(), status = '2' WHERE expect = p_expect AND code = p_code AND status = '1';
@@ -65,5 +75,6 @@ END;
 $BODY$
   LANGUAGE 'plpgsql' VOLATILE COST 100
 ;
+
 
 COMMENT ON FUNCTION "lottery_payout_pk10"("lotteryresultjson" text, "lotteryparameter" json) IS 'PK10派彩';

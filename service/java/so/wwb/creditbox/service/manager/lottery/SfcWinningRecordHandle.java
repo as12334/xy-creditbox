@@ -25,8 +25,6 @@ public class SfcWinningRecordHandle extends AbstractWinningRecordHandle implemen
 
     private static List<String> sum8List = new ArrayList<>();
 
-    private static List<String> continuousCodeList = new ArrayList<>();
-
     static {
         //投注玩法：第一球～第八球
         digitalBettingList.add(LotteryBettingEnum.SFC_FIRST.getCode());

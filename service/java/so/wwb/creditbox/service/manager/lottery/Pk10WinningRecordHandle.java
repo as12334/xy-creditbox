@@ -130,55 +130,89 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
                     break;
 
                 case CHAMPION_UP_SUM_3:
-                    winningNum = 3 + "";
+                    if (championUpSum == 3) {
+                        winningNum = championUpSum + "";
+                    }
                     break;
                 case CHAMPION_UP_SUM_4:
-                    winningNum = 4 + "";
+                    if (championUpSum == 4) {
+                        winningNum = championUpSum + "";
+                    }
                     break;
                 case CHAMPION_UP_SUM_5:
-                    winningNum = 5 + "";
+                    if (championUpSum == 5) {
+                        winningNum = championUpSum + "";
+                    }
                     break;
                 case CHAMPION_UP_SUM_6:
-                    winningNum = 6 + "";
+                    if (championUpSum == 6) {
+                        winningNum = championUpSum + "";
+                    }
                     break;
                 case CHAMPION_UP_SUM_7:
-                    winningNum = 7 + "";
+                    if (championUpSum == 7) {
+                        winningNum = championUpSum + "";
+                    }
                     break;
                 case CHAMPION_UP_SUM_8:
-                    winningNum = 8 + "";
+                    if (championUpSum == 8) {
+                        winningNum = championUpSum + "";
+                    }
                     break;
                 case CHAMPION_UP_SUM_9:
-                    winningNum = 9 + "";
+                    if (championUpSum == 9) {
+                        winningNum = championUpSum + "";
+                    }
                     break;
                 case CHAMPION_UP_SUM_10:
-                    winningNum = 10 + "";
+                    if (championUpSum == 10) {
+                        winningNum = championUpSum + "";
+                    }
                     break;
                 case CHAMPION_UP_SUM_11:
-                    winningNum = 11 + "";
+                    if (championUpSum == 11) {
+                        winningNum = championUpSum + "";
+                    }
                     break;
                 case CHAMPION_UP_SUM_12:
-                    winningNum = 12 + "";
+                    if (championUpSum == 12) {
+                        winningNum = championUpSum + "";
+                    }
                     break;
                 case CHAMPION_UP_SUM_13:
-                    winningNum = 13 + "";
+                    if (championUpSum == 13) {
+                        winningNum = championUpSum + "";
+                    }
                     break;
                 case CHAMPION_UP_SUM_14:
-                    winningNum = 14 + "";
+                    if (championUpSum == 14) {
+                        winningNum = championUpSum + "";
+                    }
                     break;
                 case CHAMPION_UP_SUM_15:
-                    winningNum = 15 + "";
+                    if (championUpSum == 15) {
+                        winningNum = championUpSum + "";
+                    }
                     break;
                 case CHAMPION_UP_SUM_16:
-                    winningNum = 16 + "";
+                    if (championUpSum == 16) {
+                        winningNum = championUpSum + "";
+                    }
                     break;
                 case CHAMPION_UP_SUM_17:
-                    winningNum = 17 + "";
+                    if (championUpSum == 17) {
+                        winningNum = championUpSum + "";
+                    }
                     break;
                 case CHAMPION_UP_SUM_18:
-                    winningNum = 18 + "";
+                    if (championUpSum == 18) {
+                        winningNum = championUpSum + "";
+                    }
                     break;
                 case CHAMPION_UP_SUM_19:
-                    winningNum = 19 + "";
+                    if (championUpSum == 19) {
+                        winningNum = championUpSum + "";
+                    }
                     break;
                 default:
                     break;
