@@ -1,8 +1,16 @@
 package so.wwb.creditbox.model.manager.lottery.po;
 
 import org.soul.commons.bean.IEntity;
+import org.soul.commons.data.json.JsonTool;
+import org.soul.commons.enums.EnumTool;
 import org.soul.commons.support.Nonpersistent;
 import org.soul.model.common.Sortable;
+import so.wwb.creditbox.model.enums.lottery.LotteryTypeEnum;
+import so.wwb.creditbox.model.enums.lottery.LotteryWinningNum;
+
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -163,6 +171,8 @@ public class LotteryResult implements IEntity<Integer> {
 	//region your codes 2
 	private long leftTime;//距离封盘时间
 	private long leftOpenTime;//距离开盘时间
+    private List<LotteryResultExtend> lotteryResultExtend;
+    private List resultList;
 
 
 	public Long getLeftTime() {
@@ -181,6 +191,57 @@ public class LotteryResult implements IEntity<Integer> {
 		this.leftOpenTime = leftOpenTime;
 	}
 
+    public List<LotteryResultExtend> getLotteryResultExtend() {
+        return lotteryResultExtend;
+    }
+
+    public void setLotteryResultExtend(List<LotteryResultExtend> lotteryResultExtend) {
+        this.lotteryResultExtend = lotteryResultExtend;
+    }
+
+    public void setResultList(List resultList) {
+        this.resultList = resultList;
+    }
+
+    public List getResultList() {
+        List<String> strings = new ArrayList<>();
+        for(LotteryResultExtend extend:this.lotteryResultExtend){
+            String str = MessageFormat.format("<span class=\"{0}\">{1}</span>",cov(extend.getBetNum()),extend.getBetNum().replace("冠亞","").replace("總和",""));
+            strings.add(str);
+        }
+        return strings;
+    }
+
+	private String cov(String value){
+        if(value.indexOf("大")>-1 ||value.indexOf("雙")>-1 ||value.indexOf("虎")>-1){
+            return "red";
+        }
+        else if(value.indexOf("和")>-1){
+            return "green";
+        }
+        else if(value.indexOf("小")>-1 ||value.indexOf("單")>-1 ||value.indexOf("龍")>-1) {
+            return "blue";
+        }
+        else{
+            return "";
+        }
+
+    }
+    private String generateChampionUpSumBigSmall(Integer championUpSum) {
+         if (championUpSum > 11) {
+            return LotteryWinningNum.SUM_BIG;
+        } else {
+            return LotteryWinningNum.SUM_SMALL;
+        }
+    }
+
+    private String generateChampionUpSumSingleDouble(Integer championUpSum) {
+        if (championUpSum % 2 == 0) {
+            return LotteryWinningNum.SUM_DOUBLE;
+        } else {
+            return LotteryWinningNum.SUM_SINGLE;
+        }
+    }
 	//endregion your codes 2
 
 }

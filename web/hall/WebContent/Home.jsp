@@ -69,7 +69,7 @@
             <ul id="menuList">
                 <li><a data-id="0" data-type="2" data-url="gdklsf" href="javascript:void(0)">廣東快樂十分</a></li>
                 <li><a data-id="1" data-type="2" data-url="cqssc" href="javascript:void(0)">重慶時時彩</a></li>
-                <li><a data-id="2" data-type="2" data-url="L_PK10" href="javascript:void(0)">北京賽車(PK10)</a></li>
+                <li><a data-id="2" data-type="2" data-url="bjpk10" href="javascript:void(0)">北京賽車(PK10)</a></li>
                 <li><a data-id="6" data-type="2" data-url="L_K8SC" href="javascript:void(0)">幸運飛艇(3分鍾)</a></li>
                 <li><a data-id="9" data-type="2" data-url="xyft" href="javascript:void(0)">幸運飛艇(5分鍾)</a></li>
                 <li><a data-id="10" data-type="2" data-url="L_JSCAR" href="javascript:void(0)">極速賽車</a></li>
@@ -229,7 +229,7 @@
         },
         "play_2": {
             "name": "北京賽車(PK10)",
-            "url": "L_PK10",
+            "url": "bjpk10",
             "page": {
                 "pk10_lmp": "两面盘",
                 "pk10_dq1_10": "单球1-10",

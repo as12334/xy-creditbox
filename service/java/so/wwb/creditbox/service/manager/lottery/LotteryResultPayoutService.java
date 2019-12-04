@@ -10,6 +10,7 @@ import org.soul.commons.log.LogFactory;
 import org.soul.data.datasource.DatasourceTool;
 import org.soul.data.support.DataContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import so.wwb.creditbox.data.manager.lottery.LotteryResultExtendMapper;
 import so.wwb.creditbox.iservice.company.lottery.ILotteryPayoutLogService;
 import so.wwb.creditbox.iservice.manager.lottery.ILotteryResultPayoutService;
 import so.wwb.creditbox.model.base.CacheBase;
@@ -17,15 +18,20 @@ import so.wwb.creditbox.model.company.lottery.po.LotteryPayoutLog;
 import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
 import so.wwb.creditbox.model.company.lottery.vo.LotteryPayoutLogVo;
 import so.wwb.creditbox.model.enums.base.SubSysCodeEnum;
+import so.wwb.creditbox.model.enums.lottery.LotteryBettingEnum;
+import so.wwb.creditbox.model.enums.lottery.LotteryPlayEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryStatusEnum;
+import so.wwb.creditbox.model.enums.lottery.LotteryTypeEnum;
 import so.wwb.creditbox.model.enums.site.SiteStatusEnum;
 import so.wwb.creditbox.model.manager.lottery.po.Lottery;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
+import so.wwb.creditbox.model.manager.lottery.po.LotteryResultExtend;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryWinningRecord;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryResultVo;
 import so.wwb.creditbox.model.manager.sys.po.VSysSiteUser;
 
 import javax.sql.DataSource;
+import java.sql.Array;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -55,6 +61,9 @@ public class LotteryResultPayoutService implements ILotteryResultPayoutService {
 
     @Autowired
     LotteryWinningRecordService lotteryWinningRecordService;
+
+    @Autowired
+    LotteryResultExtendMapper lotteryResultExtendMapper;
 
     @Override
     public boolean payoutForAll(LotteryResultVo resultVo) {
@@ -140,6 +149,11 @@ public class LotteryResultPayoutService implements ILotteryResultPayoutService {
      * @return
      */
     private List<Map<String, Object>> winRecordListChange(List<LotteryWinningRecord> list) {
+
+
+        ArrayList<LotteryResultExtend> lotteryResultExtends = new ArrayList<>();
+
+
         List<Map<String, Object>> result = new ArrayList<>();
         if (CollectionTool.isNotEmpty(list)) {
             for (LotteryWinningRecord record : list) {
@@ -152,10 +166,40 @@ public class LotteryResultPayoutService implements ILotteryResultPayoutService {
                     map.put("bet_code", record.getBetCode());
                     map.put("winning_num", record.getWinningNum());
                     result.add(map);
+
+                    if(record.getType().equals(LotteryTypeEnum.SFC.getCode())){
+                        if(record.getBetCode() == LotteryBettingEnum.SFC_SUM8.getCode()){
+                            lotteryResultExtends.add(insert(record));
+                        }
+                    }
+                    else if(record.getType().equals(LotteryTypeEnum.PK10.getCode())){
+                        if(record.getBetCode().equals(LotteryBettingEnum.CHAMPION_UP_SUM.getCode())
+                                || record.getPlayCode().equals(LotteryPlayEnum.PK10_DRAGON_TIGER.getCode())){
+                            lotteryResultExtends.add(insert(record));
+                        }
+                    }
+                    else if(record.getType().equals(LotteryTypeEnum.SSC.getCode())){
+                        if(record.getBetCode().equals(LotteryBettingEnum.SSC_ONE_COMBINATION.getCode())
+                                ||record.getBetCode().equals(LotteryBettingEnum.SSC_SUM_DRAGON_TIGER.getCode())){
+                            lotteryResultExtends.add(insert(record));
+                        }
+                    }
+
                 }
             }
         }
+        lotteryResultExtendMapper.batchInsert(lotteryResultExtends);
         return result;
+    }
+    private LotteryResultExtend insert(LotteryWinningRecord record) {
+        LotteryResultExtend lotteryResultExtend = new LotteryResultExtend();
+        lotteryResultExtend.setResultId(record.getId());
+        lotteryResultExtend.setCode(record.getCode());
+        lotteryResultExtend.setExpect(record.getExpect());
+        lotteryResultExtend.setBetCode(record.getBetCode());
+        lotteryResultExtend.setPlayCode(record.getPlayCode());
+        lotteryResultExtend.setBetNum(record.getWinningNum());
+        return lotteryResultExtend;
     }
 
     /**

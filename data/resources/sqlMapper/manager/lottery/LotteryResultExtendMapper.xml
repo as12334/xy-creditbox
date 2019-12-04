@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.creditbox.data.manager.lottery.LotteryResultExtendMapper">
+
+    <resultMap id="TABLE:lottery_result_extend" type="so.wwb.creditbox.model.manager.lottery.po.LotteryResultExtend">
+        <id column="id" property="id"/>
+        <result column="result_id" property="resultId"/>
+        <result column="expect" property="expect"/>
+        <result column="code" property="code"/>
+        <result column="bet_code" property="betCode"/>
+        <result column="play_code" property="playCode"/>
+        <result column="bet_num" property="betNum"/>
+        <result column="sort" property="sort"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+
+    <!--//endregion your codes 1-->
+
+</mapper>

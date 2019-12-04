@@ -119,6 +119,8 @@
 
 
 
+    <dubbo:service ref="lotteryResultExtendService" interface="so.wwb.creditbox.iservice.manager.lottery.ILotteryResultExtendService"/>
+
 <!--//endregion your codes 1-->
 
 </beans>

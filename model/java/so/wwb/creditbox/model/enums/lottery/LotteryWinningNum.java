@@ -41,6 +41,24 @@ public interface LotteryWinningNum {
     String SUM_SINGLE = "冠亞單";
     String SUM_DOUBLE = "冠亞雙";
 
+//               "          \"<span class=\\\"red\\\">大</span>\"," +
+//                       "          \"<span class=\\\"blue\\\">單</span>\"," +
+//                       "          \"<span class=\\\"blue\\\">龍</span>\"," +
+//                       "          \"<span class=\\\"red\\\">虎</span>\"," +
+//                       "          \"<span class=\\\"blue\\\">龍</span>\"," +
+//                       "          \"<span class=\\\"blue\\\">龍</span>\"," +
+//                       "          \"<span class=\\\"blue\\\">龍</span>\"" +
+//
+//    String result_big = "<span class='red'>大</span>";
+//    String result_SMALL = "<span class='blue'>小</span>";
+//
+//    String result_DRAGON = "<span class='blue'>龍</span>";
+//    String result_TIGER = "<span class='red'>虎</span>";
+//
+//    String result_MANTISSA_BIG = "<span class='red'>尾大</span>";
+//    String result_MANTISSA_SMALL = "<span class='blue'>尾小</span>";
+
+
 
     String CHAMPION_UP_34 = "3,4,18,19";
     String CHAMPION_UP_56 = "5,6,16,17";

@@ -107,7 +107,7 @@
 
 
     <!--查询所有彩种的最近一期开奖结果-->
-    <select id="queryFiveRecentOpenResult" resultMap="TABLE:lottery_result">
+    <select id="queryFiveRecentOpenResult" resultMap="getExtend">
         SELECT
             *
         FROM
@@ -118,6 +118,25 @@
         ORDER BY
             expect DESC
         LIMIT 5
+    </select>
+
+
+
+    <!--查询用户所有菜单-->
+
+
+    <resultMap id="getExtend"  type="so.wwb.creditbox.model.manager.lottery.po.LotteryResult">
+        <id column="resultId" property="id"/>
+        <collection property="lotteryResultExtend" ofType="so.wwb.creditbox.model.manager.lottery.po.LotteryResultExtend" select="getExtendSelect" column="id" fetchType="eager" />
+    </resultMap>
+
+    <select id="getExtendSelect" resultType="so.wwb.creditbox.model.manager.lottery.po.LotteryResultExtend" parameterType="integer">
+        SELECT
+            *
+        FROM
+            lottery_result_extend
+        WHERE
+            result_id = #{resultId}
     </select>
 
     <!--//endregion your codes 1-->

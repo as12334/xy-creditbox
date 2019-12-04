@@ -345,6 +345,7 @@ public abstract class AbstractWinningRecordHandle{
             return null;
         }
         LotteryWinningRecord lotteryWinningRecord = new LotteryWinningRecord();
+        lotteryWinningRecord.setId(lotteryResult.getId());
         lotteryWinningRecord.setExpect(lotteryResult.getExpect());
         lotteryWinningRecord.setType(lotteryResult.getType());
         lotteryWinningRecord.setCode(lotteryResult.getCode());

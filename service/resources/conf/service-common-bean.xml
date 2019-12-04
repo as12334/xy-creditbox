@@ -92,6 +92,8 @@
 
 
 
+    <bean id="lotteryResultExtendService" class="so.wwb.creditbox.service.manager.lottery.LotteryResultExtendService"/>
+
 <!--//endregion your codes 1-->
 
 </beans>

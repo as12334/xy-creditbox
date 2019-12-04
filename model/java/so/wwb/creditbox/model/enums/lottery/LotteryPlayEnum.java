@@ -9,9 +9,10 @@ public enum LotteryPlayEnum implements ICodeEnum {
     SSC_BIG_SMALL("ssc", "ssc_big_small", "大小"),
     SSC_SINGLE_DOUBLE("ssc", "ssc_single_double", "單雙"),
 
-
+    SSC_SUM8("sfc","ssc_sum8", "和值"),
     SSC_SUM_BIG_SMALL("ssc", "ssc_sum_big_small", "總和大小"),
     SSC_SUM_SINGLE_DOUBLE("ssc", "ssc_sum_single_double", "總和單雙"),
+
 
     SSC_DRAGON_TIGER_TIE("ssc", "ssc_dragon_tiger_tie", "龍虎和"),
 
@@ -30,6 +31,7 @@ public enum LotteryPlayEnum implements ICodeEnum {
     PK10_DRAGON_TIGER("pk10", "pk10_dragon_tiger", "龍虎"),
     CHAMPION_UP_BIG_SMALL("pk10", "champion_up_big_small", "冠亚军和大小"),
     CHAMPION_UP_SINGLE_DOUBLE("pk10", "champion_up_single_double", "冠亚军和單雙"),
+
 
 
     CHAMPION_UP_SUM_3("pk10", "champion_up_sum_3", "冠亚军和 3"),
@@ -69,6 +71,7 @@ public enum LotteryPlayEnum implements ICodeEnum {
     SFC_SUM8_SINGLE_DOUBLE("sfc","sfc_sum8_single_double", "总和單雙"),
     SFC_SUM8_MANTISSA_BIG_SMALL("sfc","sfc_sum8_mantissa_big_small", "总和尾数大小"),
     SFC_SUM8_DRAGON_TIGER("sfc","sfc_sum8_dragon_tiger", "總和龍虎"),
+    SFC_SUM8("sfc","sfc_sum8", "和值"),
 
 
     //連碼

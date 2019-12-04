@@ -36,9 +36,11 @@ public class SscWinningRecordHandle extends AbstractWinningRecordHandle implemen
         oneDigitalPlayList.add(LotteryPlayEnum.SSC_SINGLE_DOUBLE.getCode());
 
         //總和、龍虎
+        fiveSumPlayList.add(LotteryPlayEnum.SSC_SUM8.getCode());
         fiveSumPlayList.add(LotteryPlayEnum.SSC_SUM_BIG_SMALL.getCode());
         fiveSumPlayList.add(LotteryPlayEnum.SSC_SUM_SINGLE_DOUBLE.getCode());
         fiveSumPlayList.add(LotteryPlayEnum.SSC_DRAGON_TIGER_TIE.getCode());
+
 
         //一字组合
         oneCombinationBettingList.add(LotteryPlayEnum.SSC_ONE_FIRST_THREE.getCode());
@@ -120,6 +122,9 @@ public class SscWinningRecordHandle extends AbstractWinningRecordHandle implemen
             else if (LotteryPlayEnum.SSC_DRAGON_TIGER_TIE.equals(lotteryPlayEnum)) {
                 winningNum = generateDragonTigerTie(Integer.valueOf(openCodes[0]), Integer.valueOf(openCodes[4]));
             }
+            else if (LotteryPlayEnum.SSC_SUM8.equals(lotteryPlayEnum)) {
+                winningNum = fiveSum+"";
+            }
             LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult, lotteryPlayEnum, LotteryBettingEnum.SSC_SUM_DRAGON_TIGER, winningNum);
             if (lotteryWinningRecord != null) {
                 log.info("彩票开奖.时时彩.{0},生成中奖记录:{1}", playCode, lotteryWinningRecord.toString());
@@ -153,7 +158,7 @@ public class SscWinningRecordHandle extends AbstractWinningRecordHandle implemen
                     winningNumSet = generateTeshuWinnum(openCodes[2], openCodes[3], openCodes[4]);
                     break;
             }
-            LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult, lotteryPlayEnum, LotteryBettingEnum.SSC_SUM_DRAGON_TIGER, winningNumSet);
+            LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult, lotteryPlayEnum, LotteryBettingEnum.SSC_ONE_COMBINATION, winningNumSet);
             if (lotteryWinningRecord != null) {
                 log.info("彩票开奖.时时彩.{0},生成中奖记录:{1}", playCode, lotteryWinningRecord.toString());
                 lotteryWinningRecordList.add(lotteryWinningRecord);
@@ -161,4 +166,13 @@ public class SscWinningRecordHandle extends AbstractWinningRecordHandle implemen
         }
         return lotteryWinningRecordList;
     }
+    @Override
+    boolean isBigNum(Integer num) {
+        return num >= 5;
+    }
+    @Override
+    boolean isTotalBigNum(Integer totalSum) {
+        return totalSum >= 23;
+    }
+
 }

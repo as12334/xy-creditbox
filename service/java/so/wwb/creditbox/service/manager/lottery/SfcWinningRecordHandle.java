@@ -49,6 +49,7 @@ public class SfcWinningRecordHandle extends AbstractWinningRecordHandle implemen
         sum8List.add(LotteryPlayEnum.SFC_SUM8_SINGLE_DOUBLE.getCode());
         sum8List.add(LotteryPlayEnum.SFC_SUM8_MANTISSA_BIG_SMALL.getCode());
         sum8List.add(LotteryPlayEnum.SFC_SUM8_DRAGON_TIGER.getCode());
+        sum8List.add(LotteryPlayEnum.SFC_SUM8.getCode());
 
 
     }
@@ -132,6 +133,9 @@ public class SfcWinningRecordHandle extends AbstractWinningRecordHandle implemen
                     break;
                 case SFC_SUM8_DRAGON_TIGER:
                     winningNum = generateDragonTigerTie(Integer.valueOf(openCodes[0]), Integer.valueOf(openCodes[7]));
+                    break;
+                case SFC_SUM8:
+                    winningNum = eightSum+"";
                     break;
                 default:
                     break;
@@ -245,5 +249,15 @@ public class SfcWinningRecordHandle extends AbstractWinningRecordHandle implemen
             return LotteryWinningNum.FW_B;
         }
     }
+
+    @Override
+    boolean isBigNum(Integer num) {
+        return num >= 11;
+    }
+    @Override
+    boolean isTotalBigNum(Integer totalSum) {
+        return totalSum >= 84;
+    }
+
 
 }

@@ -42,8 +42,6 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
 
 
         //冠亚和
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_BIG_SMALL.getCode());
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SINGLE_DOUBLE.getCode());
 
         championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_3.getCode());
         championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_4.getCode());
@@ -63,6 +61,9 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
         championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_18.getCode());
         championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_19.getCode());
 
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_BIG_SMALL.getCode());
+        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SINGLE_DOUBLE.getCode());
+
     }
 
     @Override
@@ -74,8 +75,8 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
         }
         WinningRecordHandleVo winningRecordHandleVo = new WinningRecordHandleVo();
         List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
-        lotteryWinningRecordList.addAll(createDigital(lotteryResult));
         lotteryWinningRecordList.addAll(createChampionUpSum(lotteryResult));
+        lotteryWinningRecordList.addAll(createDigital(lotteryResult));
         //官方玩法
 //        lotteryWinningRecordList.addAll(createOffical(lotteryResult));
         winningRecordHandleVo.setLotteryWinningRecordList(lotteryWinningRecordList);
@@ -101,7 +102,9 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
                         winningNum = generateSingleDoubleNum(Integer.valueOf(openCodes[i]));
                         break;
                     case PK10_DRAGON_TIGER:
-                        winningNum = generateDragonTigerTie(Integer.valueOf(openCodes[i]), Integer.valueOf(openCodes[9 - i]));
+                        if(i<5){
+                            winningNum = generateDragonTigerTie(Integer.valueOf(openCodes[i]), Integer.valueOf(openCodes[9 - i]));
+                        }
                         break;
                     default:
                         break;
@@ -122,13 +125,6 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
             LotteryPlayEnum lotteryPlayEnum = EnumTool.enumOf(LotteryPlayEnum.class, playCode);
             String winningNum = null;
             switch (lotteryPlayEnum) {
-                case CHAMPION_UP_BIG_SMALL:
-                    winningNum = generateChampionUpSumBigSmall(lotteryResult.getCode(), championUpSum);
-                    break;
-                case CHAMPION_UP_SINGLE_DOUBLE:
-                    winningNum = generateChampionUpSumSingleDouble(lotteryResult.getCode(), championUpSum);
-                    break;
-
                 case CHAMPION_UP_SUM_3:
                     if (championUpSum == 3) {
                         winningNum = championUpSum + "";
@@ -214,6 +210,12 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
                         winningNum = championUpSum + "";
                     }
                     break;
+                case CHAMPION_UP_BIG_SMALL:
+                    winningNum = generateChampionUpSumBigSmall(lotteryResult.getCode(), championUpSum);
+                    break;
+                case CHAMPION_UP_SINGLE_DOUBLE:
+                    winningNum = generateChampionUpSumSingleDouble(lotteryResult.getCode(), championUpSum);
+                    break;
                 default:
                     break;
             }
@@ -227,10 +229,7 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
     }
 
 
-    @Override
-    boolean isBigNum(Integer num) {
-        return num >= 6;
-    }
+
 
     private Integer generateChampionUpSum(String[] openCodes) {
         Integer championUpSum = Integer.valueOf(openCodes[0]) + Integer.valueOf(openCodes[1]);
@@ -268,6 +267,9 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
         return LotteryEnum.BJPK10.getCode().equals(code);
     }
 
-
+    @Override
+    boolean isBigNum(Integer num) {
+        return num >= 6;
+    }
 
 }
