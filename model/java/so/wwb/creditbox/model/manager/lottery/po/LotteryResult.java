@@ -205,9 +205,12 @@ public class LotteryResult implements IEntity<Integer> {
 
     public List getResultList() {
         List<String> strings = new ArrayList<>();
-        for(LotteryResultExtend extend:this.lotteryResultExtend){
-            String str = MessageFormat.format("<span class=\"{0}\">{1}</span>",cov(extend.getBetNum()),extend.getBetNum().replace("冠亞","").replace("總和",""));
-            strings.add(str);
+	    if(this.lotteryResultExtend != null){
+            for(LotteryResultExtend extend:this.lotteryResultExtend){
+                String str = MessageFormat.format("<span class=\"{0}\">{1}</span>",cov(extend.getBetNum()),extend.getBetNum().replace("冠亞","").replace("總和",""));
+                strings.add(str);
+            }
+            return strings;
         }
         return strings;
     }
@@ -216,31 +219,16 @@ public class LotteryResult implements IEntity<Integer> {
         if(value.indexOf("大")>-1 ||value.indexOf("雙")>-1 ||value.indexOf("虎")>-1){
             return "red";
         }
-        else if(value.indexOf("和")>-1){
-            return "green";
-        }
         else if(value.indexOf("小")>-1 ||value.indexOf("單")>-1 ||value.indexOf("龍")>-1) {
             return "blue";
+        }
+        else if(value.indexOf("和")>-1){
+            return "green";
         }
         else{
             return "";
         }
 
-    }
-    private String generateChampionUpSumBigSmall(Integer championUpSum) {
-         if (championUpSum > 11) {
-            return LotteryWinningNum.SUM_BIG;
-        } else {
-            return LotteryWinningNum.SUM_SMALL;
-        }
-    }
-
-    private String generateChampionUpSumSingleDouble(Integer championUpSum) {
-        if (championUpSum % 2 == 0) {
-            return LotteryWinningNum.SUM_DOUBLE;
-        } else {
-            return LotteryWinningNum.SUM_SINGLE;
-        }
     }
 	//endregion your codes 2
 

@@ -189,7 +189,7 @@ public class LotteryHandlerController extends BaseLotteryController{
             for (LotteryResult lotteryResult : openResults) {
                 HashMap<Object, Object> map = new HashMap<>();
                 map.put("phase",lotteryResult.getExpect());
-                map.put("play_open_date",lotteryResult.getOpeningTime());
+                map.put("play_open_date",DateTool.formatDate(lotteryResult.getOpenTime(),SessionManagerBase.getTimeZone(),DateTool.yyyy_MM_dd_HH_mm_ss));
                 map.put("draw_num",lotteryResult.getOpenCode().split(","));
                 map.put("total",lotteryResult.getResultList());
                 jqkj.add(map);
