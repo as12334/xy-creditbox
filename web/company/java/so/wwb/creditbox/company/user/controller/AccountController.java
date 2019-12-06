@@ -112,12 +112,26 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
 
     @RequestMapping("/fgs_add")
     @Token(generate = true)
-    public String fgsAdd(VSiteUserVo objectVo, Model model) {
+    public String fgsAdd(VSiteUserVo objectVo,SysUserExtendVo sysUserExtendVo, Model model) {
+
         objectVo.getSearch().setUserType(UserTypeEnum.BRANCH.getCode());
-        objectVo.getSearch().setOwnerId(SessionManager.getSiteUserId());
         objectVo.getSearch().setOwnerUserType(UserTypeEnum.COMPANY.getCode());
-        objectVo._setDataSourceId(Const.BOSS_DATASOURCE_ID);
-        createUser(objectVo,model);
+
+
+        //查詢上級用戶  begin
+        sysUserExtendVo._setDataSourceId(Const.BOSS_DATASOURCE_ID);
+        sysUserExtendVo.getSearch().setId(SessionManager.getSiteUserId());
+        sysUserExtendVo = ServiceTool.sysUserExtendService().get(sysUserExtendVo);
+        //查詢上級用戶 end
+
+        objectVo.setParentUser(sysUserExtendVo.getResult());
+        objectVo._setDataSourceId(SessionManager.getSiteId());
+        objectVo = this.getService().get(objectVo);
+
+
+        objectVo.setValidateRule(JsRuleCreator.create(AddSysUserExtendForm.class, "result"));
+
+        model.addAttribute("command", objectVo);
         return getViewBasePath() + "/edit/FgsEdit";
     }
     @RequestMapping("/gd_add")
@@ -177,6 +191,7 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
 
 
     public void createUser(VSiteUserVo objectVo, Model model) {
+        objectVo = this.getService().get(objectVo);
         //查詢上級用戶  begin
         objectVo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
         objectVo = this.getService().searchLevelUser(objectVo);
@@ -187,24 +202,30 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         model.addAttribute("command", objectVo);
     }
 
-    @RequestMapping("/saveManagerUser")
+    @RequestMapping("/persistUser")
     @Token(generate = true)
     @ResponseBody
-    public String saveManagerUser(SysUserExtendVo objectVo, Model model, HttpServletRequest request, @FormModel("result") @Valid AddSysUserExtendForm form, BindingResult result) {
-
+    public String persistUser(SysUserExtendVo objectVo, Model model, HttpServletRequest request, @FormModel("result") @Valid AddSysUserExtendForm form, BindingResult result) {
+        if(objectVo.getResult().getStintOccupy() == null){
+            objectVo.getResult().setStintOccupy(-1);
+        }
         if (result.hasErrors()) {
             objectVo.setSuccess(false);
             LOG.error("参数错误，保存失败");
             return "参数错误，保存失败";
         }
-        String subSysCode = getSubSysCode(objectVo.getResult().getUserType());
 
-        objectVo.getResult().setSubsysCode(subSysCode);
-        initAccount(objectVo,request);
-        objectVo = this.getService().saveManagerUser(objectVo);
-        objectVo.setDataSourceId(Const.BASE_DATASOURCE_ID);
-        //切換到管理庫
-        model.addAttribute("command", objectVo);
+        if(objectVo.getResult().getId() == null){
+            String subSysCode = getSubSysCode(objectVo.getResult().getUserType());
+            objectVo.getResult().setSubsysCode(subSysCode);
+            initAccount(objectVo,request);
+            objectVo = this.getService().saveManagerUser(objectVo);
+            objectVo.setDataSourceId(Const.BASE_DATASOURCE_ID);
+        }
+        else{
+            objectVo.setDataSourceId(SessionManagerCommon.getSiteId());
+            ServiceTool.sysUserExtendService().updateManagerUser(objectVo);
+        }
         return "保存成功！";
     }
     @RequestMapping("/updateManagerUser")
@@ -261,10 +282,6 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
                 ||UserTypeEnum.AGENT.getCode().equals(objectVo.getResult().getUserType())){
             objectVo.getResult().setBreakpoint(BreakpointEnum.ZERO.getCode());
             objectVo.getResult().setGeneral(GeneralEnum.OFF.getCode());
-        }
-
-        if(objectVo.getResult().getStintOccupy() == null){
-            objectVo.getResult().setStintOccupy(-1);
         }
         objectVo.getResult().setCreateUser(SessionManager.getSysUserExtend().getId());
         objectVo.getResult().setModeSelection(ModeSelectionEnum.CREDIT.getCode());

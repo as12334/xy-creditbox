@@ -625,17 +625,19 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
     @Transactional
     @Override
     public SysUserExtendVo updateManagerUser(SysUserExtendVo objectVo) {
-        SysUserExtend sysUserExtend = mapper.get(objectVo.getResult().getId());
+        SysUserExtend result = objectVo.getResult();
+        SysUserExtend sysUserExtend = mapper.get(result.getId());
         String password = sysUserExtend.getPassword();
-        if(StringTool.isNotBlank(objectVo.getResult().getPassword())){
-            password = AuthTool.md5SysUserPassword(sysUserExtend.getUsername(), objectVo.getResult().getPassword());
+        if(StringTool.isNotBlank(result.getPassword())){
+            password = AuthTool.md5SysUserPassword(sysUserExtend.getUsername(), result.getPassword());
         }
-        objectVo.getResult().setPassword(password);
+        result.setPassword(password);
         List<String> strings = new ArrayList<>();
         strings.add(SysUserExtend.PROP_NICKNAME);
         strings.add(SysUserExtend.PROP_PASSWORD);
         strings.add(SysUserExtend.PROP_CREDITS);
         strings.add(SysUserExtend.PROP_SUPERIOR_OCCUPY);
+        strings.add(SysUserExtend.PROP_STINT_OCCUPY);
         strings.add(SysUserExtend.PROP_STATUS);
 
         if(objectVo.getResult().getUserType().equals(UserTypeEnum.BRANCH.getCode())){
