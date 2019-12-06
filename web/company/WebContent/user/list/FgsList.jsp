@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
     <script>var jsver=20191126;</script>
     <script>var isOpenUpper="0";</script>
-    <script> if (top.location == self.location) top.location.href = "/"; </script>
+    <script> if (top.location == self.location) top.location.href = "/WebContent"; </script>
     <title>title</title>
     <link href="favicon.ico" rel="shortcut icon">
 
@@ -116,7 +116,7 @@
 
 
                 <td>&nbsp;</td>
-                <td width="120"><div class="btnIco"><a id="" href="${root}/vSiteUser/createUser/6.html"><div class="GSico">新增${views.page["UserTypeEnum.".concat(command.search.userType)]}</div></a></div></td>
+                <td width="120"><div class="btnIco"><a id="" href="${root}/account/fgs_add.html"><div class="GSico">新增${views.page["UserTypeEnum.".concat(command.search.userType)]}</div></a></div></td>
             </tr>
         </table></td>
         <td class="topRightBg1"></td>

@@ -140,118 +140,6 @@
                     </tr>
                 </table>
                 <table width="700" border="0" cellspacing="0" cellpadding="0">
-                    <tr id="six" class="tabBox">
-                        <td>
-                            <table class="t_list" border="0" cellspacing="0" cellpadding="0">
-                                <tr>
-                                    <td align="right" width="140" class="tdbg1"><span
-                                            id="isCash_six_01">(⑥合彩)信用額度</span>&nbsp;
-                                    </td>
-                                    <td align="left">&nbsp;<input type="text" data-max="0" name="userCredit_six"
-                                                                  id="userCredit_six" class="text w130 zfNumber toRMB"/><span
-                                            class="toRMBspan"></span>
-                                        上級餘額:
-                                        <label id="userCredit_six_1">0</label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="right" width="140" class="tdbg1"> (⑥合彩)股東占成&nbsp;</td>
-                                    <td align="left">&nbsp;<input type="text" data-max="0" name="userRate_six"
-                                                                  id="userRate_six" class="text zfNumber"/>
-                                        % 　最高可設占成
-                                        <label id="userMaxRate_six">0%</label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="right" width="140" class="tdbg1"> (⑥合彩)下綫占成上限&nbsp;</td>
-                                    <td align="left"><label class="topLabel"><input type="radio" id="allowmaxrate_six"
-                                                                                    name="allowmaxrate_six" value="0"
-                                                                                    checked="checked"/>
-                                        <span>
-											占餘成數下綫任占
-										</span>
-                                    </label>
-                                        <label class="topLabel"><input type="radio" id="allowmaxrate_six"
-                                                                       name="allowmaxrate_six" value="1"/>
-                                            <span>
-											限製下綫可占成數
-										</span>
-                                        </label>
-                                        <span id="lowmaxrate_six_wrap"></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="right" width="140" class="tdbg1"> (⑥合彩)補貨功能&nbsp;</td>
-                                    <td align="left">
-                                        <table border="0" cellspacing="0" cellpadding="0">
-                                            <tr>
-
-                                                <td width="60"><label class="topLabel">
-                                                    <input type="radio" name="userAllowSale_six" id="userAllowSale_six"
-                                                           value="1" checked=checked/>
-                                                    <span>
-										啟用
-									</span>
-                                                </label></td>
-                                                <td width="60"><label class="topLabel">
-                                                    <input type="radio" name="userAllowSale_six" id="userAllowSale_six"
-                                                           value="0"/>
-                                                    <span>
-										禁用
-									</span>
-                                                </label></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="right" width="140" class="tdbg1"> (⑥合彩)盤口&nbsp;</td>
-                                    <td align="left"><label class="topLabel"><input type="radio" name="userKind_six"
-                                                                                    id="userKind_six" value="0"
-                                                                                    checked="checked"/>
-                                        <span>
-										不限
-									</span>
-                                    </label>
-                                        <label class="topLabel"><input type="radio" name="userKind_six"
-                                                                       id="userKind_six" value="A"/>
-                                            <span>
-										A盤
-									</span>
-                                        </label>
-                                        <label class="topLabel"><input type="radio" name="userKind_six"
-                                                                       id="userKind_six" value="B"/>
-                                            <span>
-										B盤
-									</span>
-                                        </label>
-                                        <label class="topLabel"><input type="radio" name="userKind_six"
-                                                                       id="userKind_six" value="C"/>
-                                            <span>
-										C盤
-									</span>
-                                        </label>
-
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td align="right" width="140" class="tdbg1"> (⑥合彩)信用/現金&nbsp;</td>
-                                    <td align="left">
-
-
-                                        <label class="topLabel"><input type="radio" name="isCash_six" id="isCash_six"
-                                                                       value="0" checked=checked disabled/>
-                                            <span>
-										信用
-									</span>
-                                        </label>
-
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
                     <tr id="kc" class="tabBox">
                         <td>
                             <table class="t_list" border="0" cellspacing="0" cellpadding="0">
@@ -266,6 +154,69 @@
                                         <label id="userCredit_kc_1">0</label>
                                     </td>
                                 </tr>
+
+
+                                <tr>
+                                    <td align="right" width="140" class="tdbg1"> (快彩)剩餘成數:&nbsp;</td>
+                                    <td align="left">
+                                        <table border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+
+                                                <td width="60"><label class="topLabel">
+                                                    <input type="radio" name="userAllowSale_kc" id="userAllowSale_kc"
+                                                           value="1" checked=checked/>
+                                                    <span>
+										總監
+									</span>
+                                                </label></td>
+                                                <td width="60"><label class="topLabel">
+                                                    <input type="radio" name="userAllowSale_kc" id="userAllowSale_kc"
+                                                           value="0"/>
+                                                    <span>
+										分公司
+									</span>
+                                                </label></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td align="right" width="140" class="tdbg1"> (快彩)總賬報表:&nbsp;</td>
+                                    <td align="left">
+                                        <table border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+
+                                                <td width="60"><label class="topLabel">
+                                                    <input type="radio" name="userAllowSale_kc" id="userAllowSale_kc"
+                                                           value="1" checked=checked/>
+                                                    <span>
+										總賬(非明细)
+									</span>
+                                                </label></td>
+                                                <td width="60"><label class="topLabel">
+                                                    <input type="radio" name="userAllowSale_kc" id="userAllowSale_kc"
+                                                           value="0"/>
+                                                    <span>
+										總賬(包括明細)
+									</span>
+                                                </label></td>
+                                                <td width="60"><label class="topLabel">
+                                                    <input type="radio" name="userAllowSale_kc" id="userAllowSale_kc"
+                                                           value="0"/>
+                                                    <span>
+										關閉
+									</span>
+                                                </label></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+
+
+
                                 <tr>
                                     <td align="right" width="140" class="tdbg1"> (快彩)股東占成&nbsp;</td>
                                     <td align="left">&nbsp;<input type="text" data-max="0" name="userRate_kc"
@@ -283,8 +234,7 @@
 											占餘成數下綫任占
 										</span>
                                     </label>
-                                        <label class="topLabel"><input type="radio" id="allowmaxrate_kc"
-                                                                       name="allowmaxrate_kc" value="1"/>
+                                        <label class="topLabel"><input type="radio" id="allowmaxrate_kc" name="allowmaxrate_kc" value="1"/>
                                             <span>
 											限製下綫可占成數
 										</span>

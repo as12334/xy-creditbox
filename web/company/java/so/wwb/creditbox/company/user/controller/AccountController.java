@@ -69,37 +69,42 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
     @Token(generate = true)
     public String fgsList(VSiteUserListVo listVo,VSiteUserSearchForm form, BindingResult result, Model model, HttpServletRequest request, HttpServletResponse response) {
         listVo.getSearch().setUserType(UserTypeEnum.BRANCH.getCode());
-        return super.list(listVo, form, result, model, request, response);
+        super.list(listVo, form, result, model, request, response);
+        return getViewBasePath() + "/list/FgsList";
     }
     @RequestMapping("/gd_list")
     @Token(generate = true)
     public String gdList(VSiteUserListVo listVo,VSiteUserSearchForm form, BindingResult result, Model model, HttpServletRequest request, HttpServletResponse response) {
         listVo.getSearch().setUserType(UserTypeEnum.SHAREHOLDER.getCode());
-        return super.list(listVo, form, result, model, request, response);
+        super.list(listVo, form, result, model, request, response);
+        return getViewBasePath() + "/list/GdList";
     }
     @RequestMapping("/zd_list")
     @Token(generate = true)
     public String zdList(VSiteUserListVo listVo,VSiteUserSearchForm form, BindingResult result, Model model, HttpServletRequest request, HttpServletResponse response) {
         listVo.getSearch().setUserType(UserTypeEnum.DISTRIBUTOR.getCode());
-        return super.list(listVo, form, result, model, request, response);
+        super.list(listVo, form, result, model, request, response);
+        return getViewBasePath() + "/list/ZdList";
     }
     @RequestMapping("/dl_list")
     @Token(generate = true)
     public String dlList(VSiteUserListVo listVo,VSiteUserSearchForm form, BindingResult result, Model model, HttpServletRequest request, HttpServletResponse response) {
         listVo.getSearch().setUserType(UserTypeEnum.AGENT.getCode());
-        return super.list(listVo, form, result, model, request, response);
+        super.list(listVo, form, result, model, request, response);
+        return getViewBasePath() + "/list/DlList";
     }
     @RequestMapping("/hy_list")
     @Token(generate = true)
     public String hyList(VSiteUserListVo listVo,VSiteUserSearchForm form, BindingResult result, Model model, HttpServletRequest request, HttpServletResponse response) {
         listVo.getSearch().setUserType(UserTypeEnum.PLAYER.getCode());
-        return super.list(listVo, form, result, model, request, response);
+        super.list(listVo, form, result, model, request, response);
+        return getViewBasePath() + "/list/HyList";
     }
     @RequestMapping("/child_list")
     @Token(generate = true)
     public String childList(VSiteUserListVo listVo,VSiteUserSearchForm form, BindingResult result, Model model, HttpServletRequest request, HttpServletResponse response) {
-//        listVo.getSearch().setUserType(UserTypeEnum..getCode());
-        return super.list(listVo, form, result, model, request, response);
+        super.list(listVo, form, result, model, request, response);
+        return getViewBasePath() + "/list/ChildList";
     }
 
 
@@ -109,39 +114,40 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         objectVo.getSearch().setUserType(UserTypeEnum.BRANCH.getCode());
         objectVo.getSearch().setOwnerUserType(UserTypeEnum.COMPANY.getCode());
         objectVo._setDataSourceId(Const.BOSS_DATASOURCE_ID);
-        return createUser(objectVo,model);
+        createUser(objectVo,model);
+        return getViewBasePath() + "/edit/FgsEdit";
     }
     @RequestMapping("/gd_add")
     @Token(generate = true)
     public String gdAdd(VSiteUserVo objectVo, Model model) {
         objectVo.getSearch().setUserType(UserTypeEnum.SHAREHOLDER.getCode());
         objectVo.getSearch().setOwnerUserType(UserTypeEnum.BRANCH.getCode());
-
-        return createUser(objectVo,model);
+        createUser(objectVo,model);
+        return getViewBasePath() + "/GdEdit";
     }
     @RequestMapping("/zd_add")
     @Token(generate = true)
     public String zdAdd(VSiteUserVo objectVo, Model model) {
         objectVo.getSearch().setUserType(UserTypeEnum.DISTRIBUTOR.getCode());
         objectVo.getSearch().setOwnerUserType(UserTypeEnum.SHAREHOLDER.getCode());
-
-        return createUser(objectVo,model);
+        createUser(objectVo,model);
+        return getViewBasePath() + "/ZdEdit";
     }
     @RequestMapping("/dl_add")
     @Token(generate = true)
     public String dlAdd(VSiteUserVo objectVo, Model model) {
         objectVo.getSearch().setUserType(UserTypeEnum.AGENT.getCode());
         objectVo.getSearch().setOwnerUserType(UserTypeEnum.DISTRIBUTOR.getCode());
-
-        return createUser(objectVo,model);
+        createUser(objectVo,model);
+        return getViewBasePath() + "/DlEdit";
     }
     @RequestMapping("/child_add")
     @Token(generate = true)
     public String childAdd(VSiteUserVo objectVo, Model model) {
         objectVo.getSearch().setUserType(UserTypeEnum.AGENT.getCode());
         objectVo.getSearch().setOwnerUserType(UserTypeEnum.DISTRIBUTOR.getCode());
-
-        return createUser(objectVo,model);
+        createUser(objectVo,model);
+        return getViewBasePath() + "/ChildEdit";
     }
     @RequestMapping("/hy_add")
     @Token(generate = true)
@@ -161,12 +167,13 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
             }
         }
         objectVo.getSearch().setUserType(UserTypeEnum.PLAYER.getCode());
-        return  createUser(objectVo,model);
+        createUser(objectVo,model);
+        return getViewBasePath() + "/HyEdit";
     }
 
 
 
-    public String createUser(VSiteUserVo objectVo, Model model) {
+    public void createUser(VSiteUserVo objectVo, Model model) {
         //查詢上級用戶  begin
         objectVo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
         objectVo = this.getService().searchLevelUser(objectVo);
@@ -174,7 +181,6 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         objectVo.setValidateRule(JsRuleCreator.create(AddSysUserExtendForm.class, "result"));
 
         model.addAttribute("command", objectVo);
-        return getViewBasePath() + "/Edit";
     }
 
     @RequestMapping("/saveManagerUser")
