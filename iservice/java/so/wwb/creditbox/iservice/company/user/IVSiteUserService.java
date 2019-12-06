@@ -27,9 +27,9 @@ public interface IVSiteUserService extends IBaseService<VSiteUserListVo, VSiteUs
     String getHid(String Thid);
 
 
-    SysUserExtendVo sumSuperStintOccupy(SysUserExtendVo objectVo);
-
-    SysUserExtendVo sumSuperStintOccupyCount(SysUserExtendVo vo);
+//    SysUserExtendVo sumSuperStintOccupy(SysUserExtendVo objectVo);
+//
+//    SysUserExtendVo sumSuperStintOccupyCount(SysUserExtendVo vo);
 
     //endregion your codes 2
 

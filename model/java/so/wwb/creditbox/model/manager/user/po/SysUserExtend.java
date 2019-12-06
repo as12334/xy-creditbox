@@ -78,7 +78,7 @@ public class SysUserExtend extends SysUser {
 	private String ownerUserType;
 
 	/**盘口 1 A盘、2 B盘 3 C盘*/
-	private Integer handicap;
+	private String handicap;
 	//endregion
 
 	
@@ -176,11 +176,11 @@ public class SysUserExtend extends SysUser {
 	}
 
 
-	public Integer getHandicap() {
+	public String getHandicap() {
 		return handicap;
 	}
 
-	public void setHandicap(Integer handicap) {
+	public void setHandicap(String handicap) {
 		this.handicap = handicap;
 	}
 

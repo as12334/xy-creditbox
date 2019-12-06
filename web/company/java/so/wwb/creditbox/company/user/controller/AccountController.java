@@ -13,6 +13,7 @@ import org.soul.web.validation.form.annotation.FormModel;
 import org.soul.web.validation.form.js.JsRuleCreator;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import so.wwb.creditbox.common.dubbo.ServiceTool;
 import so.wwb.creditbox.company.session.SessionManager;
@@ -33,6 +34,7 @@ import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
 import so.wwb.creditbox.utility.DesTool;
 import so.wwb.creditbox.web.passport.captcha.GoogleAuthenticator;
 import so.wwb.creditbox.web.tools.SessionManagerCommon;
+import so.wwb.creditbox.web.tools.SysParamTool;
 import so.wwb.creditbox.web.tools.token.Token;
 
 import javax.servlet.http.HttpServletRequest;
@@ -112,6 +114,7 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
     @Token(generate = true)
     public String fgsAdd(VSiteUserVo objectVo, Model model) {
         objectVo.getSearch().setUserType(UserTypeEnum.BRANCH.getCode());
+        objectVo.getSearch().setOwnerId(SessionManager.getSiteUserId());
         objectVo.getSearch().setOwnerUserType(UserTypeEnum.COMPANY.getCode());
         objectVo._setDataSourceId(Const.BOSS_DATASOURCE_ID);
         createUser(objectVo,model);
@@ -178,6 +181,7 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         objectVo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
         objectVo = this.getService().searchLevelUser(objectVo);
         //查詢上級用戶 end
+
         objectVo.setValidateRule(JsRuleCreator.create(AddSysUserExtendForm.class, "result"));
 
         model.addAttribute("command", objectVo);
@@ -186,12 +190,12 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
     @RequestMapping("/saveManagerUser")
     @Token(generate = true)
     @ResponseBody
-    public Map saveManagerUser(SysUserExtendVo objectVo, Model model, HttpServletRequest request, @FormModel("result") @Valid AddSysUserExtendForm form, BindingResult result) {
+    public String saveManagerUser(SysUserExtendVo objectVo, Model model, HttpServletRequest request, @FormModel("result") @Valid AddSysUserExtendForm form, BindingResult result) {
 
         if (result.hasErrors()) {
             objectVo.setSuccess(false);
             LOG.error("参数错误，保存失败");
-            return this.getVoMessage(objectVo);
+            return "参数错误，保存失败";
         }
         String subSysCode = getSubSysCode(objectVo.getResult().getUserType());
 
@@ -201,7 +205,7 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         objectVo.setDataSourceId(Const.BASE_DATASOURCE_ID);
         //切換到管理庫
         model.addAttribute("command", objectVo);
-        return this.getVoMessage(objectVo);
+        return "保存成功！";
     }
     @RequestMapping("/updateManagerUser")
     @Token(generate = true)
@@ -304,47 +308,47 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         objectVo.setDataSourceId(SessionManager.getSiteId());
     }
 
-    /**
-     * 獲取上級信息
-     * @param vo
-     * @return
-     */
-    @RequestMapping("/getSubInfo")
-    @ResponseBody
-    private Map getSubInfo(SysUserExtendVo vo){
-        Integer maxSuperiorOccupy;
-        Map map = new HashMap<>();
-        if(UserTypeEnum.SHAREHOLDER.getCode().equals(vo.getSearch().getUserType())
-                || UserTypeEnum.DISTRIBUTOR.getCode().equals(vo.getSearch().getUserType())
-                || UserTypeEnum.AGENT.getCode().equals(vo.getSearch().getUserType())
-                || UserTypeEnum.PLAYER.getCode().equals(vo.getSearch().getUserType())){
-            vo._setDataSourceId(SessionManagerCommon.getSiteId());
-            if(vo.getSearch().getId() == null){
-                vo.getSearch().setId(vo.getSearch().getOwnerId());
-                //获取上级使用成数
-                vo = this.getService().sumSuperStintOccupy(vo);
-            }
-            else {
-                //获取上下级已使用成数
-                vo = ServiceTool.sysUserExtendService().get(vo);
-                vo.getSearch().setHid(vo.getResult().getHid());
-                vo = this.getService().sumSuperStintOccupyCount(vo);
-            }
-            maxSuperiorOccupy = vo.getSumSuperStintOccupy();
-        }else{
-            vo._setDataSourceId(Const.BOSS_DATASOURCE_ID);
-            maxSuperiorOccupy = 0;
-        }
-
-        //获取上级信息 start
-        vo.getSearch().setId(vo.getSearch().getOwnerId());
-        vo = ServiceTool.sysUserExtendService().get(vo);
-        map.put("shareCredits",vo.getResult().getCredits());
-        map.put("superiorOccupy",vo.getResult().getStintOccupy());
-        //获取上级信息 end
-        map.put("maxSuperiorOccupy",maxSuperiorOccupy);
-        return map;
-    }
+//    /**
+//     * 獲取上級信息
+//     * @param vo
+//     * @return
+//     */
+//    @RequestMapping("/getSubInfo")
+//    @ResponseBody
+//    private Map getSubInfo(VSiteUser vo){
+//        Integer maxSuperiorOccupy;
+//        Map map = new HashMap<>();
+//        if(UserTypeEnum.SHAREHOLDER.getCode().equals(vo.getSearch().getUserType())
+//                || UserTypeEnum.DISTRIBUTOR.getCode().equals(vo.getSearch().getUserType())
+//                || UserTypeEnum.AGENT.getCode().equals(vo.getSearch().getUserType())
+//                || UserTypeEnum.PLAYER.getCode().equals(vo.getSearch().getUserType())){
+//            vo._setDataSourceId(SessionManagerCommon.getSiteId());
+//            if(vo.getSearch().getId() == null){
+//                vo.getSearch().setId(vo.getSearch().getOwnerId());
+//                //获取上级使用成数
+//                vo = this.getService().sumSuperStintOccupy(vo);
+//            }
+//            else {
+//                //获取上下级已使用成数
+//                vo = ServiceTool.sysUserExtendService().get(vo);
+//                vo.getSearch().setHid(vo.getResult().getHid());
+//                vo = this.getService().sumSuperStintOccupyCount(vo);
+//            }
+//            maxSuperiorOccupy = vo.getSumSuperStintOccupy();
+//        }else{
+//            vo._setDataSourceId(Const.BOSS_DATASOURCE_ID);
+//            maxSuperiorOccupy = 0;
+//        }
+//
+//        //获取上级信息 start
+//        vo.getSearch().setId(vo.getSearch().getOwnerId());
+//        vo = ServiceTool.sysUserExtendService().get(vo);
+//        map.put("shareCredits",vo.getResult().getCredits());
+//        map.put("superiorOccupy",vo.getResult().getStintOccupy());
+//        //获取上级信息 end
+//        map.put("maxSuperiorOccupy",maxSuperiorOccupy);
+//        return map;
+//    }
 
 
     @RequestMapping("/createPlay")
@@ -367,6 +371,25 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         objectVo.setValidateRule(JsRuleCreator.create(AddSysUserExtendForm.class, "result"));
         model.addAttribute("command", objectVo);
         return getViewBasePath() + "/playEdit";
+    }
+
+    @RequestMapping("/existNameAjax")
+    @ResponseBody
+    public String ExistNameAjax(@RequestParam("uname") String username){
+        if(StringTool.isNotBlank(username)){
+            SysUserExtendVo objectVo = new SysUserExtendVo();
+            objectVo.setResult(new SysUserExtend());
+            objectVo.getResult().setUsername(username +"@%");
+            objectVo.setDataSourceId(SessionManagerCommon.getSiteId());
+            if(!SysParamTool.checkManageUsername(objectVo)){
+                return "1";
+            }
+            else {
+                return "0";
+            }
+        }else {
+            return "2";
+        }
     }
     //endregion your codes 3
 

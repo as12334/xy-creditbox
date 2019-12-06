@@ -70,6 +70,17 @@ public class VSiteUserVo extends BaseObjectVo<VSiteUser, VSiteUserSo, VSiteUserV
     }
 
 
+    //上级用户
+    private SysUserExtend parentUser;
+
+    public SysUserExtend getParentUser() {
+        return parentUser;
+    }
+
+    public void setParentUser(SysUserExtend parentUser) {
+        this.parentUser = parentUser;
+    }
+
     //endregion your codes 4
 
 }

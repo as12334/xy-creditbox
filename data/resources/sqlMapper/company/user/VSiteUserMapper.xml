@@ -105,7 +105,7 @@
 
     <!--查询上级的占成总和-->
     <select id="sumSuperStintOccupy" parameterType="so.wwb.creditbox.model.company.user.so.VSiteUserSo" resultType="int">
-        SELECT sum(r2.superior_occupy) from  (WITH RECURSIVE r AS (
+        SELECT sum(r2.user_rate_kc) from  (WITH RECURSIVE r AS (
         SELECT * FROM sys_user_extend WHERE id = #{id}
         union   ALL
         SELECT cur.* FROM sys_user_extend cur, r WHERE cur.id = r.owner_id
@@ -114,7 +114,7 @@
     </select>
     <!--查询上级和下级的占成总和-->
     <select id="sumSuperStintOccupyCount" parameterType="so.wwb.creditbox.model.company.user.so.VSiteUserSo" resultType="int">
-        SELECT sum(r2.superior_occupy)-(SELECT superior_occupy from sys_user_extend where hid =#{hid} ) from
+        SELECT sum(r2.user_rate_kc)-(SELECT user_rate_kc from sys_user_extend where hid =#{hid} ) from
         (WITH RECURSIVE r AS (
         SELECT * FROM sys_user_extend WHERE id = <include refid="extendSql"></include>
         union   ALL
@@ -123,7 +123,7 @@
         SELECT * FROM r ORDER BY id)r2;
     </select>
     <sql id="extendSql">
-        (SELECT id FROM sys_user_extend  WHERE hid like CONCAT('',#{hid},'%') order BY user_type,superior_occupy desc LIMIT 1)
+        (SELECT id FROM sys_user_extend  WHERE hid like CONCAT('',#{hid},'%') order BY user_type,user_rate_kc desc LIMIT 1)
     </sql>
     <!--//endregion your codes 1-->
 

@@ -38,8 +38,6 @@ public class AddSysUserExtendForm implements IForm {
     /*昵称*/
     private String result_userType;
 
-     /*退水設定*/
-    private String $water;
 
     /*限占單选*/
     private String $stintId;
@@ -65,8 +63,6 @@ public class AddSysUserExtendForm implements IForm {
 
 
 
-    /*最高可设置的占成数*/
-    private Double maxSuperiorOccupy;
 
 
 
@@ -121,21 +117,21 @@ public class AddSysUserExtendForm implements IForm {
         this.result_nickname = result_nickname;
     }
 
-    @NotBlank
+//    @NotBlank
+//    @Min(value = 0,message = "请输入数字0-100")
+//    @Max(value = 100 , message = "请输入数字0-100")
+//    public String get$water() {
+//        return $water;
+//    }
+//
+//    public void set$water(String $water) {
+//        this.$water = $water;
+//    }
+
+
     @Min(value = 0,message = "请输入数字0-100")
     @Max(value = 100 , message = "请输入数字0-100")
-    public String get$water() {
-        return $water;
-    }
-
-    public void set$water(String $water) {
-        this.$water = $water;
-    }
-
-
-    @Min(value = 0,message = "请输入数字0-100")
-    @Max(value = 100 , message = "请输入数字0-100")
-    @Compare(message = "已超过最大值",logic = CompareLogic.LE,anotherProperty = "maxSuperiorOccupy")
+//    @Compare(message = "已超过最大值",logic = CompareLogic.LE,anotherProperty = "maxSuperiorOccupy")
     public Double getResult_superiorOccupy() {
         return result_superiorOccupy;
     }
@@ -213,11 +209,4 @@ public class AddSysUserExtendForm implements IForm {
         this.result_userType = result_userType;
     }
 
-    public Double getMaxSuperiorOccupy() {
-        return maxSuperiorOccupy;
-    }
-
-    public void setMaxSuperiorOccupy(Double maxSuperiorOccupy) {
-        this.maxSuperiorOccupy = maxSuperiorOccupy;
-    }
 }

@@ -12,6 +12,7 @@ import so.wwb.creditbox.data.company.user.VSiteUserMapper;
 import so.wwb.creditbox.data.manager.user.SysUserExtendMapper;
 import so.wwb.creditbox.iservice.company.user.IVSiteUserService;
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
+import so.wwb.creditbox.model.company.user.so.VSiteUserSo;
 import so.wwb.creditbox.model.company.user.vo.VSiteUserListVo;
 import so.wwb.creditbox.model.company.user.vo.VSiteUserVo;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
@@ -37,7 +38,27 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
 
     @Override
     public VSiteUserVo searchLevelUser(VSiteUserVo objectVo) {
-        objectVo.setSuperUserList(mapper.searchLevelUser(objectVo.getSearch()));
+        VSiteUserSo search = objectVo.getSearch();
+        objectVo.setSuperUserList(mapper.searchLevelUser(search));
+        SysUserExtend parendUser = sysUserExtendMapper.get(search.getOwnerId());
+        Integer sumSuperStintOccupy;
+        //分公司的上级已用额度为0
+        if(search.getUserType().equals(UserTypeEnum.BRANCH.getCode())){
+            sumSuperStintOccupy = 0;
+        }
+        else if(objectVo.getSearch().getId() == null){
+            sumSuperStintOccupy = mapper.sumSuperStintOccupy(objectVo.getSearch());
+        }
+        else {
+           sumSuperStintOccupy = mapper.sumSuperStintOccupyCount(objectVo.getSearch());
+        }
+        if(parendUser.getStintOccupy() > (100 - sumSuperStintOccupy)){
+            parendUser.setSuperiorOccupy(parendUser.getStintOccupy());
+        }
+        else {
+            parendUser.setSuperiorOccupy(100 - sumSuperStintOccupy);
+        }
+        objectVo.setParentUser(parendUser);
         return objectVo;
     }
 
@@ -87,19 +108,19 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
         return Thid + hid;
     }
 
-    @Override
-    public SysUserExtendVo sumSuperStintOccupy(SysUserExtendVo objectVo) {
-        Integer sumSuperStintOccupy = mapper.sumSuperStintOccupy(objectVo.getSearch());
-        objectVo.setSumSuperStintOccupy(sumSuperStintOccupy);
-        return objectVo;
-    }
-
-    @Override
-    public SysUserExtendVo sumSuperStintOccupyCount(SysUserExtendVo objectVo) {
-        Integer sumSuperStintOccupy = mapper.sumSuperStintOccupyCount(objectVo.getSearch());
-        objectVo.setSumSuperStintOccupy(sumSuperStintOccupy);
-        return objectVo;
-    }
+//    @Override
+//    public SysUserExtendVo sumSuperStintOccupy(SysUserExtendVo objectVo) {
+//        Integer sumSuperStintOccupy = mapper.sumSuperStintOccupy(objectVo.getSearch());
+//        objectVo.setSumSuperStintOccupy(sumSuperStintOccupy);
+//        return objectVo;
+//    }
+//
+//    @Override
+//    public SysUserExtendVo sumSuperStintOccupyCount(SysUserExtendVo objectVo) {
+//        Integer sumSuperStintOccupy = mapper.sumSuperStintOccupyCount(objectVo.getSearch());
+//        objectVo.setSumSuperStintOccupy(sumSuperStintOccupy);
+//        return objectVo;
+//    }
 
     private String getKey() {
         String key = null;

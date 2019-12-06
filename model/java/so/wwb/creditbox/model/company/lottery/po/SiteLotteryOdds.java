@@ -1,6 +1,7 @@
 package so.wwb.creditbox.model.company.lottery.po;
 
 import org.soul.commons.support.Nonpersistent;
+import so.wwb.creditbox.model.enums.lottery.LotteryHandicapEnum;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 
 import org.soul.commons.bean.IEntity;
@@ -262,9 +263,9 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 
 	//获取公司的赔率
 	public Double getCOdd(SysUserExtend sessionUser) {
-		if(sessionUser.getHandicap() == 1){
+		if(sessionUser.getHandicap().equals(LotteryHandicapEnum.A.getCode())){
 			return parentOddA;
-		}else if(sessionUser.getHandicap() == 2){
+		}else if(sessionUser.getHandicap().equals(LotteryHandicapEnum.B.getCode())){
 			return parentOddA - parentOddB;
 		}else {
 			return parentOddA - parentOddC;
@@ -272,9 +273,9 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 	}
 	//获取分公司的赔率
 	public Double getBOdd(SysUserExtend sessionUser) {
-		if(sessionUser.getHandicap() == 1){
+		if(sessionUser.getHandicap().equals(LotteryHandicapEnum.A.getCode())){
 			return oddA;
-		}else if(sessionUser.getHandicap() == 2){
+		}else if(sessionUser.getHandicap().equals(LotteryHandicapEnum.B.getCode())){
 			return oddA - oddB;
 		}else {
 			return oddA - oddC;

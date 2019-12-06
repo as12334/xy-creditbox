@@ -10,7 +10,7 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-11-7 0:06:10
+ * @time 2019-12-6 21:47:27
  */
 //region your codes 1
 public class VSiteUser implements IEntity<Integer> {
@@ -254,7 +254,7 @@ public class VSiteUser implements IEntity<Integer> {
 	/**  */
 	private String ownerName;
 	/**  */
-	private Integer handicap;
+	private String handicap;
 	/**  */
 	private String ownerUserType;
 	/**  */
@@ -798,11 +798,11 @@ public class VSiteUser implements IEntity<Integer> {
 	public void setOwnerName(String value) {
 		this.ownerName = value;
 	}
-	public Integer getHandicap() {
+	public String getHandicap() {
 		return this.handicap;
 	}
 
-	public void setHandicap(Integer value) {
+	public void setHandicap(String value) {
 		this.handicap = value;
 	}
 	public String getOwnerUserType() {
