@@ -122,6 +122,7 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         sysUserExtendVo._setDataSourceId(Const.BOSS_DATASOURCE_ID);
         sysUserExtendVo.getSearch().setId(SessionManager.getSiteUserId());
         sysUserExtendVo = ServiceTool.sysUserExtendService().get(sysUserExtendVo);
+        sysUserExtendVo.getResult().setSuperiorOccupy(100 - sysUserExtendVo.getResult().getSuperiorOccupy());
         //查詢上級用戶 end
 
         objectVo.setParentUser(sysUserExtendVo.getResult());
