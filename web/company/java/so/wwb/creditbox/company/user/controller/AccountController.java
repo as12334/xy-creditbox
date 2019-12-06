@@ -1,18 +1,14 @@
 package so.wwb.creditbox.company.user.controller;
 
-import org.apache.xmlbeans.impl.xb.xmlconfig.Usertypeconfig;
 import org.soul.commons.enums.EnumTool;
 import org.soul.commons.init.context.Const;
-import org.soul.commons.lang.string.HidTool;
 import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.log.Log;
 import org.soul.commons.log.LogFactory;
 import org.soul.commons.net.IpTool;
 import org.soul.commons.net.ServletTool;
-import org.soul.model.gameapi.param.User;
 import org.soul.model.security.privilege.po.SysUserStatus;
 import org.soul.web.controller.BaseCrudController;
-import org.soul.web.session.SessionManagerBase;
 import org.soul.web.validation.form.annotation.FormModel;
 import org.soul.web.validation.form.js.JsRuleCreator;
 import org.springframework.ui.Model;
@@ -33,18 +29,15 @@ import so.wwb.creditbox.model.enums.base.SubSysCodeEnum;
 import so.wwb.creditbox.model.enums.lottery.*;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
-import so.wwb.creditbox.model.manager.user.so.SysUserExtendSo;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
-import so.wwb.creditbox.model.session.Session;
-import so.wwb.creditbox.utility.CommonTool;
 import so.wwb.creditbox.utility.DesTool;
 import so.wwb.creditbox.web.passport.captcha.GoogleAuthenticator;
 import so.wwb.creditbox.web.tools.SessionManagerCommon;
 import so.wwb.creditbox.web.tools.token.Token;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,9 +50,9 @@ import java.util.Map;
  */
 @Controller
 //region your codes 1
-@RequestMapping("/vSiteUser")
-public class VSiteUserController extends BaseCrudController<IVSiteUserService, VSiteUserListVo, VSiteUserVo, VSiteUserSearchForm, VSiteUserForm, VSiteUser, Integer> {
-    private static final Log LOG = LogFactory.getLog(VSiteUserController.class);
+@RequestMapping("/account")
+public class AccountController extends BaseCrudController<IVSiteUserService, VSiteUserListVo, VSiteUserVo, VSiteUserSearchForm, VSiteUserForm, VSiteUser, Integer> {
+    private static final Log LOG = LogFactory.getLog(AccountController.class);
 
 //endregion your codes 1
 
@@ -72,41 +65,87 @@ public class VSiteUserController extends BaseCrudController<IVSiteUserService, V
 
     //region your codes 3
 
-    @RequestMapping("/createUser/4")
+    @RequestMapping("/fgs_list")
     @Token(generate = true)
-    public String createUser4(VSiteUserVo objectVo, Model model) {
+    public String fgsList(VSiteUserListVo listVo,VSiteUserSearchForm form, BindingResult result, Model model, HttpServletRequest request, HttpServletResponse response) {
+        listVo.getSearch().setUserType(UserTypeEnum.BRANCH.getCode());
+        return super.list(listVo, form, result, model, request, response);
+    }
+    @RequestMapping("/gd_list")
+    @Token(generate = true)
+    public String gdList(VSiteUserListVo listVo,VSiteUserSearchForm form, BindingResult result, Model model, HttpServletRequest request, HttpServletResponse response) {
+        listVo.getSearch().setUserType(UserTypeEnum.SHAREHOLDER.getCode());
+        return super.list(listVo, form, result, model, request, response);
+    }
+    @RequestMapping("/zd_list")
+    @Token(generate = true)
+    public String zdList(VSiteUserListVo listVo,VSiteUserSearchForm form, BindingResult result, Model model, HttpServletRequest request, HttpServletResponse response) {
+        listVo.getSearch().setUserType(UserTypeEnum.DISTRIBUTOR.getCode());
+        return super.list(listVo, form, result, model, request, response);
+    }
+    @RequestMapping("/dl_list")
+    @Token(generate = true)
+    public String dlList(VSiteUserListVo listVo,VSiteUserSearchForm form, BindingResult result, Model model, HttpServletRequest request, HttpServletResponse response) {
+        listVo.getSearch().setUserType(UserTypeEnum.AGENT.getCode());
+        return super.list(listVo, form, result, model, request, response);
+    }
+    @RequestMapping("/hy_list")
+    @Token(generate = true)
+    public String hyList(VSiteUserListVo listVo,VSiteUserSearchForm form, BindingResult result, Model model, HttpServletRequest request, HttpServletResponse response) {
+        listVo.getSearch().setUserType(UserTypeEnum.PLAYER.getCode());
+        return super.list(listVo, form, result, model, request, response);
+    }
+    @RequestMapping("/child_list")
+    @Token(generate = true)
+    public String childList(VSiteUserListVo listVo,VSiteUserSearchForm form, BindingResult result, Model model, HttpServletRequest request, HttpServletResponse response) {
+//        listVo.getSearch().setUserType(UserTypeEnum..getCode());
+        return super.list(listVo, form, result, model, request, response);
+    }
+
+
+    @RequestMapping("/fgs_add")
+    @Token(generate = true)
+    public String fgsAdd(VSiteUserVo objectVo, Model model) {
         objectVo.getSearch().setUserType(UserTypeEnum.BRANCH.getCode());
         objectVo.getSearch().setOwnerUserType(UserTypeEnum.COMPANY.getCode());
         objectVo._setDataSourceId(Const.BOSS_DATASOURCE_ID);
         return createUser(objectVo,model);
     }
-    @RequestMapping("/createUser/5")
+    @RequestMapping("/gd_add")
     @Token(generate = true)
-    public String createUser5(VSiteUserVo objectVo, Model model) {
+    public String gdAdd(VSiteUserVo objectVo, Model model) {
         objectVo.getSearch().setUserType(UserTypeEnum.SHAREHOLDER.getCode());
         objectVo.getSearch().setOwnerUserType(UserTypeEnum.BRANCH.getCode());
 
         return createUser(objectVo,model);
     }
-    @RequestMapping("/createUser/6")
+    @RequestMapping("/zd_add")
     @Token(generate = true)
-    public String createUser6(VSiteUserVo objectVo, Model model) {
+    public String zdAdd(VSiteUserVo objectVo, Model model) {
         objectVo.getSearch().setUserType(UserTypeEnum.DISTRIBUTOR.getCode());
         objectVo.getSearch().setOwnerUserType(UserTypeEnum.SHAREHOLDER.getCode());
 
         return createUser(objectVo,model);
     }
-    @RequestMapping("/createUser/7")
+    @RequestMapping("/dl_add")
     @Token(generate = true)
-    public String createUser7(VSiteUserVo objectVo, Model model) {
+    public String dlAdd(VSiteUserVo objectVo, Model model) {
         objectVo.getSearch().setUserType(UserTypeEnum.AGENT.getCode());
         objectVo.getSearch().setOwnerUserType(UserTypeEnum.DISTRIBUTOR.getCode());
 
         return createUser(objectVo,model);
     }
-    @RequestMapping("/createUser/8")
+    @RequestMapping("/child_add")
     @Token(generate = true)
-    public String createUser8(VSiteUserVo objectVo, Model model) {
+    public String childAdd(VSiteUserVo objectVo, Model model) {
+        objectVo.getSearch().setUserType(UserTypeEnum.AGENT.getCode());
+        objectVo.getSearch().setOwnerUserType(UserTypeEnum.DISTRIBUTOR.getCode());
+
+        return createUser(objectVo,model);
+    }
+    @RequestMapping("/hy_add")
+    @Token(generate = true)
+    public String hyAdd(VSiteUserVo objectVo, Model model) {
         String thisUserType = SessionManager.getUser().getUserType();
         //如果不是代理新增会员
         if(!thisUserType.equals(UserTypeEnum.AGENT.getCode())){

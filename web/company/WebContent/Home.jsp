@@ -49,7 +49,7 @@
                 "L_XYFTSG": ["冠、亞軍 組合|Betimes_1.aspx", "三、四、伍、六名|Betimes_2.aspx", "七、八、九、十名|Betimes_3.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
                 "L_HAPPYCAR": ["冠、亞軍 組合|Betimes_1.aspx", "三、四、伍、六名|Betimes_2.aspx", "七、八、九、十名|Betimes_3.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"]
             },
-            "用戶管理": {"ut": ["總代理|${root}/account/zd_list.aspx", "代理|${root}/account/dl_list.aspx", "會員|${root}/account/hy_list.aspx", "子賬號|${root}/account/child_list.aspx"]},
+            "用戶管理": {"ut": ["分公司|${root}/account/fgs_list.html","股东|${root}/account/gd_list.html","總代理|${root}/account/zd_list.html", "代理|${root}/account/dl_list.html", "會員|${root}/account/hy_list.html", "子賬號|${root}/account/child_list.html"]},
             "個人管理": {"ut": ["信用資料|CreditInfo.aspx", "登陸日誌|ViewLog/LoginLog.aspx", "變更密碼|EditPwd.aspx|0", "自動補貨設定|/AutoLet/AutoLet_kc.aspx", "自動補貨變更記錄|/ViewLog/ViewAutoSaleLog.aspx"]},
             "報表查詢": {"ut": ["(新)報表查詢|ReportSearch/ReportNew.aspx", "報表查詢|ReportSearch/Report.aspx"]},
             "歷史開獎": {"ut": ["歷史開獎|${root}/LotteryPeriod/HistoryLottery.aspx"]},

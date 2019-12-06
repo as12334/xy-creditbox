@@ -2,6 +2,8 @@
 
 <script src="${resRoot}/js/sea.js?v=${rcVersion}"></script>
 <script src="${resRoot}/js/seajs-css.js?v=${rcVersion}"></script>
+<script src="${resRoot}/js/json2.js?v=${rcVersion}"></script>
+
 
 <!--[if IE 6]>
 <script src="Scripts/DD_belatedPNG_0.0.8a.js"></script>
