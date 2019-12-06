@@ -10,6 +10,4 @@
     var random = '${random}';
     var wsRoot='${wsRoot}';
     var rcVersion = '${rcVersion}';
-    var utcOffSet = <%=SessionManagerCommon.getTimeZone().getRawOffset()/60/1000%>;
-    var dateFormat={daySecond:'<%= CommonContext.getDateFormat().getDAY_SECOND() %>',day:'<%= CommonContext.getDateFormat().getDAY() %>',dayminute:'<%=CommonContext.getDateFormat().getDAY_MINUTE()%>'};
 </script>

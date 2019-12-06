@@ -1,76 +1,91 @@
+
 <%@ page contentType="text/html;charset=UTF-8" %>
-<html>
+<%@ include file="/include/include.inc.jsp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <%@ include file="/include/include.inc.jsp" %>
-    <%--<%@ include file="/include/include.head.jsp" %>--%>
 
-    <%@ include file="/include/include.js.jsp" %>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>用戶登錄</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="${resRoot}/images/favicon.ico" rel="shortcut icon">
-    <%--<link rel="stylesheet" type="text/css" href="${resRoot}/themes/skin/main.css?v=${rcVersion}"/>--%>
-    <link rel="stylesheet" type="text/css" href="${resRoot}/themes/skin/yellow/userlogin.css?v=${rcVersion}"/>
-
-    <%--<script type="text/javascript" src="/scripts/jquery.js"></script>--%>
-    <%--<script type="text/javascript" src="/scripts/globals.js"></script>--%>
-    <title>${siteName}</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+    <link href="favicon.ico" rel="shortcut icon">
+    <script>
+        var isDisplayCode =  false;
+        var jsver=20191126;
+        var myLayerIndex = '19841011';
+        var myLayerIndexArr = [];
+    </script>
+    <style>
+        .btnD{
+            background: #ccc!important;
+            color: #999!important;
+        }
+    </style>
 </head>
 
-<body >
+<body>
 
+<link href="${resRoot}/themes/login/default/userlogin.css" rel="stylesheet" type="text/css" />
 
+<%@ include file="/include/include.js.jsp" %>
 
 <div class="AL_box">
     <form id="login" method="post">
         <div class="AL_t01"></div>
-        <div class="AL_t02">
-            <ul>
-                <input type="hidden" name="siteCode" value="${siteCode}" class="form-control" >
-                <input hidden  data-type="text" type="text" value=""  name="username" tabindex="1" class="text" />
+        <div class="AL_t022">
+            <div class="AL_t02">
+                <ul>
+                    <input type="hidden" name="siteCode" value="${siteCode}" class="form-control" >
+                    <input hidden  data-type="text" type="text" value=""  name="username" tabindex="1" class="text" />
 
-
-
-                <li><input  data-type="text" type="text" value=""  name="name" tabindex="1" class="text" placeholder="請輸入您的用戶名" /></li>
-                <li><input  data-type="text" type="password" value="" tabindex="2" name="password" class="text" placeholder="請輸入您的密碼" /></li>
-                <%--<li style=""><input  data-type="text" type="text" id="pic_input" name="captcha"  tabindex="3" autocomplete="off" maxlength="4" class="w100 text" placeholder="請輸入驗證碼" /><span><img onclick="changeCode()" src="${root}/captcha/code.html" id="pic_code" style="height:32px;  width:100px; cursor:pointer;position:absolute; right:0px; top:0px;" title="" ></span></li>--%>
-            </ul>
+                    <li><input data-type="text" type="text" value="" id="loginName" name="name" tabindex="1" class="text" placeholder="請輸入您的用戶名" data-issubmit="1"></li>
+                    <li><input data-type="text" type="password" value="" tabindex="2" id="loginPwd" name="password" class="text" placeholder="請輸入您的密碼" data-issubmit="1"></li>
+                </ul>
+                <button id="login_btn" type="button" value="Login" class="loginBtn" onclick="doLogin()">登 錄</button>
+                <div class="clear"></div>
+            </div>
             <div class="clear"></div>
-        </div>
-        <div class="form-group" id="authentication-error-msg">
-            ${sessionScope.SK_Passport_Rs.propMessages["authentication"]}${sessionScope.SK_Passport_Rs.message}
         </div>
         <div class="AL_t03">
             <label>
-                <button type="button" class="loginBtn" id="login_btn" onclick="doLogin()">登 錄</button>
+
             </label>
-            <div class="copy">版權所有   2019  All  Rights  Reserved</div>
+            <div class="copy">版權所有   <span id="year"></span>  All  Rights  Reserved</div>
         </div>
     </form>
     <div class="clear"></div>
 </div>
-</body>
-<script>function doLogin(){
-
-    var password = $("[name='password']").val();
-    var name = $("[name='name']").val();
-    var siteCode = $("[name='siteCode']").val();
-    $("[name='username']").val(name+'@'+siteCode);
-    var username = $("[name='username']").val();
 
 
-    if(name=="" || username==""){
-        alert("用户名不能为空！");
-        return;
-    }
-
-
-    if(password==""){
-        alert("密码不能为空！");
-        return;
-    }
-
-    $("#login").submit();
-}
+<script>
+    window.onload = function () {
+        seajs.use('jquery');
+    };
 </script>
 
+<script>
+    function doLogin(){
+        var password = $("[name='password']").val();
+        var name = $("[name='name']").val();
+        var siteCode = $("[name='siteCode']").val();
+        $("[name='username']").val(name+'@'+siteCode);
+        var username = $("[name='username']").val();
+
+
+        if(name=="" || username==""){
+            alert("用户名不能为空！");
+            return;
+        }
+
+
+        if(password==""){
+            alert("密码不能为空！");
+            return;
+        }
+
+        $("#login").submit();
+    }
+</script>
+</body>
 </html>

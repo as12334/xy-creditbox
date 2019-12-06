@@ -1,142 +1,327 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="org.soul.commons.init.context.CommonContext" %><%--common js base--%>
+<%@ include file="/include/include.inc.jsp" %>
+
+
+<!DOCTYPE html>
 <html>
 <head>
-    <%@ include file="/include/include.inc.jsp" %>
-    <%--<%@ include file="/include/include.head.jsp" %>--%>
-
-    <%@ include file="/include/include.js.jsp" %>
-    <title>${siteName}</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <%--<link href="/images/favicon.ico" rel="shortcut icon">--%>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="Keywords" Content="">
+    <meta name="Description" Content="">
+    <title>聚發管理</title>
+    <meta name="keyword" content="">
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
     <link href="${resRoot}/images/favicon.ico" rel="shortcut icon">
 
-    <link rel="stylesheet" type="text/css" href="${resRoot}/themes/skin/main.css?v=${rcVersion}"/>
-    <link rel="stylesheet" type="text/css" href="${resRoot}/themes/jquery-ui-1.8.21.custom.css?v=${rcVersion}"/>
-    <link rel="stylesheet" type="text/css" href="${resRoot}/themes/number.css?v=${rcVersion}"/>
-    <link rel="stylesheet" type="text/css" href="${resRoot}/themes/globals.css?v=${rcVersion}"/>
 
+    <%@ include file="/include/include.head.jsp" %>
 
-    <title>${siteName}</title>
+    <%@ include file="/include/include.js.jsp" %>
+
+    <script language="javascript" type="text/javascript">
+        var nav = {
+            "即時注單": {
+                "L_SIX": ["特碼|Betimes_tmZX2.aspx", "正碼|Betimes_zm.aspx", "正碼特|Betimes_zmt1.aspx", "連碼|Betimes_lm.aspx", "不中|Betimes_bz.aspx", "正碼1-6|Betimes_zm1-6.aspx", "特碼生肖色波|Betimes_tmsxsb.aspx", "生肖尾數|Betimes_sxws.aspx", "半波|Betimes_bb.aspx", "六肖...連|Betimes_lxl.aspx", "龍虎-特碼攤子|Betimes_lhtmtz.aspx", "七碼五行|Betimes_qmwx.aspx", "帳單|../L_SIX/Bill.aspx|1"],
+                "L_KL10": ["第一球|Betimes_1.aspx", "第二球|Betimes_2.aspx", "第三球|Betimes_3.aspx", "第四球|Betimes_4.aspx", "第五球|Betimes_5.aspx", "第六球|Betimes_6.aspx", "第七球|Betimes_7.aspx", "第八球|Betimes_8.aspx", "總和、龍虎|Betimes_lh.aspx", "連碼|Betimes_lm.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_CQSC": ["總項盤口|Betimes_zx.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_PK10": ["冠、亞軍 組合|Betimes_1.aspx", "三、四、伍、六名|Betimes_2.aspx", "七、八、九、十名|Betimes_3.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_XYNC": ["第一球|Betimes_1.aspx", "第二球|Betimes_2.aspx", "第三球|Betimes_3.aspx", "第四球|Betimes_4.aspx", "第五球|Betimes_5.aspx", "第六球|Betimes_6.aspx", "第七球|Betimes_7.aspx", "第八球|Betimes_8.aspx", "總和、家禽野獸|Betimes_zh.aspx", "連碼|Betimes_lm.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_K3": ["總項盤口|Betimes_zx.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_KL8": ["總和、比數、五行|Betimes_zh.aspx", "正碼|Betimes_zm.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_K8SC": ["總項盤口|Betimes_zx.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_PCDD": ["總項盤口|Betimes_zx.aspx", "特碼包三|Betimes_lm.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_XYFT5": ["冠、亞軍 組合|Betimes_1.aspx", "三、四、伍、六名|Betimes_2.aspx", "七、八、九、十名|Betimes_3.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_PKBJL": ["總項盤口|Betimes_1.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_JSCAR": ["冠、亞軍 組合|Betimes_1.aspx", "三、四、伍、六名|Betimes_2.aspx", "七、八、九、十名|Betimes_3.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_SPEED5": ["總項盤口|Betimes_zx.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_JSCQSC": ["總項盤口|Betimes_zx.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_JSPK10": ["冠、亞軍 組合|Betimes_1.aspx", "三、四、伍、六名|Betimes_2.aspx", "七、八、九、十名|Betimes_3.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_JSSFC": ["第一球|Betimes_1.aspx", "第二球|Betimes_2.aspx", "第三球|Betimes_3.aspx", "第四球|Betimes_4.aspx", "第五球|Betimes_5.aspx", "第六球|Betimes_6.aspx", "第七球|Betimes_7.aspx", "第八球|Betimes_8.aspx", "總和、龍虎|Betimes_lh.aspx", "連碼|Betimes_lm.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_JSFT2": ["冠、亞軍 組合|Betimes_1.aspx", "三、四、伍、六名|Betimes_2.aspx", "七、八、九、十名|Betimes_3.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_CAR168": ["冠、亞軍 組合|Betimes_1.aspx", "三、四、伍、六名|Betimes_2.aspx", "七、八、九、十名|Betimes_3.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_SSC168": ["總項盤口|Betimes_zx.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_VRCAR": ["冠、亞軍 組合|Betimes_1.aspx", "三、四、伍、六名|Betimes_2.aspx", "七、八、九、十名|Betimes_3.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_VRSSC": ["總項盤口|Betimes_zx.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_XYFTOA": ["冠、亞軍 組合|Betimes_1.aspx", "三、四、伍、六名|Betimes_2.aspx", "七、八、九、十名|Betimes_3.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_XYFTSG": ["冠、亞軍 組合|Betimes_1.aspx", "三、四、伍、六名|Betimes_2.aspx", "七、八、九、十名|Betimes_3.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_HAPPYCAR": ["冠、亞軍 組合|Betimes_1.aspx", "三、四、伍、六名|Betimes_2.aspx", "七、八、九、十名|Betimes_3.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"]
+            },
+            "用戶管理": {"ut": ["總代理|${root}/account/zd_list.aspx", "代理|${root}/account/dl_list.aspx", "會員|${root}/account/hy_list.aspx", "子賬號|${root}/account/child_list.aspx"]},
+            "個人管理": {"ut": ["信用資料|CreditInfo.aspx", "登陸日誌|ViewLog/LoginLog.aspx", "變更密碼|EditPwd.aspx|0", "自動補貨設定|/AutoLet/AutoLet_kc.aspx", "自動補貨變更記錄|/ViewLog/ViewAutoSaleLog.aspx"]},
+            "報表查詢": {"ut": ["(新)報表查詢|ReportSearch/ReportNew.aspx", "報表查詢|ReportSearch/Report.aspx"]},
+            "歷史開獎": {"ut": ["歷史開獎|${root}/LotteryPeriod/HistoryLottery.aspx"]},
+            "站内消息": {"ut": ["站内消息|${root}/NewsManage/list.html"]},
+            "安全退出": {"ut": ["Quit.aspx"]}
+        }
+        var jsver = 20191126;
+        var isOpenUpper = "0";
+
+        var ua = navigator.userAgent;
+        var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
+            isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),
+            isAndroid = ua.match(/(Android)\s+([\d.]+)/),
+            isMobile = isIphone || isAndroid;
+
+    </script>
 </head>
-<body class="skinGreen">
-<div class="topBox widthAuto" id="topBox">
-    <div class="jpBox" id="scrollDiv">
-        <ul id="autoOddsList" style="margin-top: 0px;">
-            <li>『廣東快樂十分<span class="green">第2019090914期</span>第一球<span class="blue">01</span> 升<span
-                    class="red">0.01</span>』 13:38:11
-            </li>
-            <li>『廣東快樂十分<span class="green">第2019090914期</span>第一球<span class="blue">01</span> 降<span
-                    class="red">0.01</span>』 13:33:54
-            </li>
-            <li>『廣東快樂十分<span class="green">第2019090914期</span>第一球<span class="blue">01</span> 升<span
-                    class="red">0.01</span>』 13:38:10
-            </li>
+<body>
+<!--头部-->
+<div class="topBox widthAuto">
+    <div class="jpBox" id="scrollDiv" style="right: 35px;">
+        <ul id="jpWrap">
         </ul>
     </div>
+    <div id="soundSwitch2" title="降賠聲音開關" class="lbOn lbOff" style="position: absolute; right: 0px; top: 48px; "></div>
     <div class="top">
-        <div class="log-bg">
-            <span class="log-text">${siteName}</span>
-        </div>
-        <div class="on-line">
-            <span>在线:<b id="online">2</b></span>
-            <span id="myRoleName">總公司:admin</span>
-        </div>
-        <div class="skin-change" id="skinChange">
-            <table class="skinTb">
-                <tbody>
-                <tr>
-                    <td>
-                        <div id="skinWrap">
-                            <a href="javascript:;" class="skinBtn">換膚</a>
-                            <div id="skinBox" style="display: none;">
-                                <a class="Green active" data-skin="Green"
-                                   href="javascript:;"><em><i></i></em><span>綠色</span></a>
-                                <a class="Blue active" data-skin="Blue"
-                                   href="javascript:;"><em><i></i></em><span>蓝色</span></a>
-                                <a class="Violet" data-skin="Violet" href="javascript:;"><em><i></i></em><span>紫色</span></a>
-                                <a class="Yellow" data-skin="Yellow" href="javascript:;"><em><i></i></em><span>黄色</span></a>
-                            </div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="14%">
+                    <div class="logo"><img id="logoText" src="${resRoot}/themes/images/sysname.png">
+                        <div class="zi_logo" style="display:none;"></div>
+                    </div>
+                </td>
+                <td width="16%">
+                    <div class="userInfo">股東:jj0099
+
+                    </div>
+                </td>
+                <td width="4%">
+                    <div id="skinWrap">
+                        <a href="javascript:;" class="skinBtn">換膚</a>
+                        <div id="skinBox">
                         </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-        </div>
-        <div class="lb-on" id="voice"></div>
-        <div class="scroll">
-            <marquee onmouseover="this.setAttribute(&#39;scrollamount&#39;, 0, 0);"
-                     onmouseout="this.setAttribute(&#39;scrollamount&#39;, 2, 0);" direction="left" scrolldelay="4"
-                     scrollamount="2" behavior="scroll"><span id="autoNews">asdfasdfasdfasdfasdfasdfaewfasvad</span>
-            </marquee>
-        </div>
-        <div style="display: none; clear: left; visibility: visible;" id="sound">
-            播放声音
-        </div>
-
-
+                    </div>
+                </td>
+                <td width="64%">
+                    <div class="ggBox"></div>
+                </td>
+                <td width="2%">
+                    <div id="soundSwitch" title="開獎聲音開關" class="lbOn lbOff"></div>
+                </td>
+            </tr>
+        </table>
     </div>
     <div class="menuBox">
-        <!-- 下拉选项 -->
-        <div class="navBox" id="gameAll">
-            <i class="up"></i>
-            <b class="down"></b>
-            <span id="gameDefault" data-code="${lotterys[0].code}">${lotterys[0].name}</span>
-            <div class="navList" id="gameList">
+        <div class="navBox"><i class="up"></i><b class="down"></b><span id="menuText" data-id="0" data-url="L_KL10">廣東快樂十分</span>
+            <div class="navList">
                 <ul>
-                    <c:forEach items="${lotterys}" var="i" varStatus="status">
-                            <li><a href="javascript:void(0);" data-code="${i.code}">${i.name}</a></li>
-                    </c:forEach>
+                    <li><a data-id="0" data-url="L_KL10" href="javascript:void(0)">廣東快樂十分</a></li>
+                    <li><a data-id="1" data-url="L_CQSC" href="javascript:void(0)">重慶時時彩</a></li>
+                    <li><a data-id="2" data-url="L_PK10" href="javascript:void(0)">北京賽車(PK10)</a></li>
+                    <li><a data-id="6" data-url="L_K8SC" href="javascript:void(0)">幸運時時(3分鐘)</a></li>
+                    <li><a data-id="9" data-url="L_XYFT5" href="javascript:void(0)">幸運飛艇(5分鍾)</a></li>
+                    <li><a data-id="10" data-url="L_JSCAR" href="javascript:void(0)">極速賽車</a></li>
+                    <li><a data-id="11" data-url="L_SPEED5" href="javascript:void(0)">極速時時彩</a></li>
+                    <li><a data-id="12" data-url="L_JSPK10" href="javascript:void(0)">加拿大PK10(5分鐘)</a></li>
+                    <li><a data-id="13" data-url="L_JSCQSC" href="javascript:void(0)">加拿大時時(5分鐘)</a></li>
+                    <li><a data-id="22" data-url="L_HAPPYCAR" href="javascript:void(0)">幸運飛艇(3分鐘)</a></li>
                 </ul>
             </div>
         </div>
-        <!-- 1级导航栏 -->
         <div class="menu">
             <ul id="menuUl">
-                <%--<li data-action="immediate" class="on">即時注單</li>--%>
-                <%--<li data-action="1">用戶管理</li>--%>
-                <%--<li data-action="2">系統管理</li>--%>
-                <%--<li data-action="3">註單管理</li>--%>
-                <%--<li data-action="4">开奖管理</li>--%>
-                <%--<li data-action="6">個人管理</li>--%>
-                <%--<li data-action="5">報表查詢</li>--%>
-                <%--<li data-action="7" class="">歷史開獎</li>--%>
-                <%--<li data-action="8" class="">站内消息</li>--%>
-                <%--<li data-action="out">安全退出</li>--%>
+
             </ul>
         </div>
+
     </div>
-    <!-- 2级导航栏 -->
-    <div class="navListBox" id="navListBox">
-        <%--<a href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=1" class="onBtn">第一球</a><b>|</b>--%>
-        <%--<a href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=2">第二球</a><b>|</b><a--%>
-            <%--href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=3">第三球</a><b>|</b><a--%>
-            <%--href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=4">第四球</a><b>|</b><a--%>
-            <%--href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=5">第五球</a><b>|</b><a--%>
-            <%--href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=6">第六球</a><b>|</b><a--%>
-            <%--href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=7">第七球</a><b>|</b><a--%>
-            <%--href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=8">第八球</a><b>|</b><a--%>
-            <%--href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=9">正碼、總和</a><b>|</b><a--%>
-            <%--href="javascript:void(0);" data-action="gamedata&amp;gameIndex=2&amp;type=10">連碼</a></div>--%>
-</div>
-<div id="mainFrame">
-    <!--//region your codes 1-->
-
+    <div class="navListBox">
+    </div>
 </div>
 
+<div class="widthAuto">
+    <iframe id="mainIframe" name="mainIframe" src="" width="100%" height="512"
+            marginheight="0" marginwidth="0" frameborder="0" scrolling="no" class="BoxBg"
+            style="height: 798px;"></iframe>
+</div>
+<iframe id="connectionIframe" name="connectionIframe" src="ConnectionPage.aspx" width="100%" height="0" marginheight="0"
+        marginwidth="0" frameborder="0" scrolling="no"></iframe>
 
-<script type="text/javascript" src="${root}/message_<%=SessionManagerCommon.getLocale().toString()%>.js?v=${rcVersion}"></script>
-<script language="javascript" type="text/javascript">
-    window.top.language="zh-CN";
+<script>
+    var browserCode = '5606';//回传code ,浏览器不同用户
+    var ajaxErrorLogSwitch = 'true';//前端错误日志记录开关
+    var NewIsAdd = false;
+    var myLayerIndex = '19841011';
+    var myLayerIndexArr = [];
+    // 是否可以再次点击
+    var isClickAgin = true;
+
+    // 是否开封盘倒计时对象
+    var openTimer = null;
+    var openTimer2 = null;
+    var upWindowTime = null;
+    // 開獎接口
+    var upOpenPhaseTimer = null;
+    var zodiacData = [0, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 12]; //生肖
+    // 初始化倒计时
+    var timer = null;
+    var timer2 = null;
+
+    var isShowLM_B = '1'; //0不显示连码B，1显示连码B
+    var playids = '';
+    var isopt = '';
+    var issllowsale = '';
+    var online_type = 'gd';//zj才能點擊查看在綫明細
+    var usertype = '';//用户类别
+    var aAllowSaleUserName = {"saleuser": {}};
+    var negativesale = ''; // 是否可以负值走飞
+    var isLm = 0;
+    var isShortcut = 1;
+    var jeucode = '';//下注验证
+    var htmlData = {};
+    var pathName = ''; //缓存路径名称
+    var pathFolder = ''; //缓存文件夹名称
+    var shortcutData = {};
+    var playpage = '';
+    var myLid = ''; // 彩种id
+    var myPath = '';
+    // 请求赔率id
+    var oldId = 0;
+
+    var masterids = '2';
+
+    // 种类配置表 1: 六合彩  2：快彩
+    var masterArr = ['1', '2'];
+
+    var masterFirst = 0;
+
+    var isScroll = true;
+
+    // 声音开关
+    var soundSwitch = true;
+    var soundSwitch2 = true;
+
+    //connectionIframe框架的高度
+    var oConnectionIframeHeight = 20;
+
+    var saleMin_kc = 10;
+    var saleMin_six = 10;
+
+    var pkbjl_playeramount = '';//
+    var pkbjl_bankeramount = '';
+
+    // 皮肤设置
+    var skinData = {
+        "Green": "綠色", "Blue": "蓝色", "Violet": "紫色", "Yellow": "黄色"
+    }
+    var skinPath = 'Blue';
+    // 返回彩种配置
+    function returnSid(sid) {
+        if (sid == '100') {
+            return '1';
+        } else {
+            return '2';
+        }
+    }
+
+    function getDocHeight(doc) {
+        doc = doc || document;
+        var body = doc.body, html = doc.documentElement;
+        if (!body || !html) {
+            return;
+        }
+        var height = Math.max(body.scrollHeight, body.offsetHeight,
+            html.clientHeight, html.scrollHeight, html.offsetHeight);
+        return height;
+    }
+    function reHeight(id, h) {
+        var hei = h ? h : 0;
+        var ifrm = document.getElementById(id);
+        var doc = ifrm.contentDocument ? ifrm.contentDocument :
+            ifrm.contentWindow.document;
+        ifrm.style.visibility = 'hidden';
+        ifrm.style.height = getDocHeight(doc) + hei + "px"; // reset to minimal height ...
+        // IE opt. for bing/msn needs a bit added or scrollbar appears
+        // ifrm.style.height = getDocHeight( doc ) + 4 + hei + "px";
+        return getDocHeight(doc) + hei;
+    }
+    // iframeHeight
+    function setIframeHeight(b) {
+        setTimeout(function () {
+            var oIframe = $("#mainIframe");
+            var hei = 0;
+            var winHeight = $(window).height() - 100;
+            if (!b) {
+                hei = oIframe.contents().find('html body').height();
+            } else {
+                var h = oIframe.height();
+                hei = h + b;
+            }
+            ;
+
+            if (hei <= winHeight) {
+                hei = winHeight - oConnectionIframeHeight;
+            }
+            ;
+            oIframe.height(hei - 2);
+        }, 10);
+    };
+
+
+    var iframeCurUrl = '';
+    // dialog 是否刷新，跳转，关闭
+    // isReload 0（否） 1（是） 2（关闭并刷新父页面）
+    // isReplace '' 有值跳转
+    // isClose 0（否） 1（是）
+    function saveReload(isReload, isReplace, isClose) {
+        var d = dialog.get('iframeDialog');
+        if (isReload) {
+            if (isReload == 2) {
+                $('#mainIframe').attr('src', isReplace);
+            } else {
+                $('#mainIframe').attr('src', $('#mainIframe').attr('src').split('?')[0] + iframeCurUrl);
+            }
+        }
+        if (isReplace) {
+            $(d.iframeNode).attr('src', isReplace);
+        }
+        if (isClose) {
+            d.close().remove();
+        }
+    }
+
+    function setDialogBox(msg, okCallBack) {
+        if (typeof okCallBack == "function") {
+            dialog({
+                title: "提示",
+                content: msg,
+                fixed: true,
+                okValue: '確認',
+                ok: function () {
+                },
+                onclose: function () {
+                    okCallBack();
+                }
+            }).showModal();
+        } else {
+            dialog({
+                title: "提示",
+                content: msg,
+                fixed: true
+            }).showModal();
+        }
+    }
+
+    // 点击跳转
+    function kcClickMenu(src) {
+        $(".navListBox a[data-iframe='" + src + "']").click();
+    }
+
+    // 设置用户类别根据索引
+    function setUserType(i) {
+        $(".navListBox>a").removeClass('onBtn');
+        $(".navListBox>a").eq(i).addClass('onBtn');
+    }
+    var isNewBet = true;
+    window.onload = function () {
+        seajs.use('index', function () {
+        });
+    }
+
 </script>
-    <lb:validateRule/>
-<script type="text/javascript">
-    curl(['site/home/Top','lb/xy/TopPage'], function(Page,TopPage) {
-        page = new Page();
-        topPage = new TopPage();
-    });
-</script>
-<%--<script type="text/javascript" src="${resRoot}/js/home/Top.js"></script>--%>
 
 </body>
 </html>
