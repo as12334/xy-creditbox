@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--@elvariable id="command" type="so.wwb.creditbox.model.company.user.vo.VSiteUserListVo"--%>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -22,7 +24,7 @@
 
 
 
-<script>
+    <script>
         seajs.use(['pageLoad']);
         var curUrl = "?lid=0&amp;ml=&amp;state=0&amp;flag=0&amp;keyword=&amp;sortName=0&amp;sortType=0&amp;page=1&amp;uid=4ad98bd2-d849-4168-addd-cf7618422fc9&amp;ut=gd";
 
@@ -116,7 +118,7 @@
 
 
                 <td>&nbsp;</td>
-                <td width="120"><div class="btnIco"><a id="" href="${root}/vSiteUser/createUser/6.html"><div class="GSico">新增${views.page["UserTypeEnum.".concat(command.search.userType)]}</div></a></div></td>
+                <td width="120"><div class="btnIco"><a id="" href="${root}/account/gd_add.html"><div class="GSico">新增${views.page["UserTypeEnum.".concat(command.search.userType)]}</div></a></div></td>
             </tr>
         </table></td>
         <td class="topRightBg1"></td>
@@ -147,65 +149,68 @@
                 </tr>
 
                 <tbody class="list_hover">
-                <tr>
-                    <td>
-                        <img src="${resRoot}/images/USER_0.gif">
-                    </td>
-                    <td>jj0099</td>
-                    <td align="left">
-                        <div class="mytip" uid="6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" user-name="zdl001">
+                <c:forEach items="${command.result}" var="p">
+                    <tr>
+                        <td>
+                            <img src="${resRoot}/images/USER_0.gif">
+                        </td>
+                        <td>jj0099</td>
+                        <td align="left">
+                            <div class="mytip" uid="6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" user-name="zdl001">
 
-                            <label class="c8">(快):</label>0%
+                                <label class="c8">(快):</label>0%
 
-                        </div>
-                    </td>
-                    <td>zdl001</td>
-                    <td align="left">
+                            </div>
+                        </td>
+                        <td>zdl001</td>
+                        <td align="left">
 
-                        <label class="c8">(快):</label>...
+                            <label class="c8">(快):</label>...
 
 
-                    </td>
-                    <td>zdc</td>
-                    <td><a href="dl_list.aspx?lid=0&ml=&state=0&flag=0&keyword=&page=1&sortName=0&sortType=0&uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5&ut=zd" class="redLink">0</a></td>
-                    <td><a href="hy_list.aspx?lid=0&ml=&state=0&flag=0&keyword=&page=1&sortName=0&sortType=0&uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5&ut=zd" class="redLink">0</a></td>
-                    <td align="left">
+                        </td>
+                        <td>zdc</td>
+                        <td><a href="${root}/account/fgs_add.html?search.id=${p.id}" class="redLink">0</a></td>
+                        <td><a href="hy_list.aspx?lid=0&ml=&state=0&flag=0&keyword=&page=1&sortName=0&sortType=0&uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5&ut=zd" class="redLink">0</a></td>
+                        <td align="left">
 
-                        <label class="c8">(快):</label>0
+                            <label class="c8">(快):</label>0
 
-                    </td>
+                        </td>
 
-                    <td align="left">
+                        <td align="left">
 
-                        <label class="c8">(快):</label>0</td>
+                            <label class="c8">(快):</label>0</td>
 
-                    </td>
+                        </td>
 
-                    <td align="center">
+                        <td align="center">
 
-                        <label class="c8">(快):</label>不限
+                            <label class="c8">(快):</label>不限
 
-                    </td>
+                        </td>
 
-                    <td align="left" width="190">
+                        <td align="left" width="190">
 
-                        <label class="c8">(快):</label>信用
+                            <label class="c8">(快):</label>信用
 
-                    </td>
+                        </td>
 
-                    <td>19-11-21</td>
-                    <td>
+                        <td>19-11-21</td>
+                        <td>
 
-                        <label class="c8">(快):</label><img src="${resRoot}/images/img_1.gif" title="該帳號可以補貨">&nbsp;&nbsp;&nbsp;<a href="/AutoLet/AutoLet_Show_kc.aspx?uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5&mid=2&lid=0" flag="kc" sale="1" class="setFlyAway" title="查看自動補貨設定"><img src="${resRoot}/Images/v.gif" /></a>
+                            <label class="c8">(快):</label><img src="${resRoot}/images/img_1.gif" title="該帳號可以補貨">&nbsp;&nbsp;&nbsp;<a href="/AutoLet/AutoLet_Show_kc.aspx?uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5&mid=2&lid=0" flag="kc" sale="1" class="setFlyAway" title="查看自動補貨設定"><img src="${resRoot}/Images/v.gif" /></a>
 
-                    </td>
+                        </td>
 
-                    <td width="98" align="center"><div class="TSico"><a href="drawback.aspx?uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" class="redLink">退水</a></div>
-                        <div class="XGico"><a href="zd_edit.aspx?uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" class="redLink">修改</a></div>
-                        <div class="RZico"><a href="../ViewLog/ViewUserLoginInfo.aspx?uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" class="redLink editBtn">日誌</a></div>
-                        <div class="JLico"><a href="../ViewLog/LogUserChange.aspx?uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" class="redLink editBtn">記錄</a></div></td>
-                    <td align="center"><button type="button" name="Submit" uid="6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" status="0" data-name="zdl001" class="btn status">啟用</button></td>
-                </tr>
+                        <td width="98" align="center"><div class="TSico"><a href="drawback.aspx?uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" class="redLink">退水</a></div>
+                            <div class="XGico"><a href="${root}/account/gd_add.html?search.id=${p.id}" class="redLink">修改</a></div>
+                            <div class="RZico"><a href="../ViewLog/ViewUserLoginInfo.aspx?uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" class="redLink editBtn">日誌</a></div>
+                            <div class="JLico"><a href="../ViewLog/LogUserChange.aspx?uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" class="redLink editBtn">記錄</a></div></td>
+                        <td align="center"><button type="button" name="Submit" uid="6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" status="0" data-name="zdl001" class="btn status">啟用</button></td>
+                    </tr>
+                </c:forEach>
+
                 </tbody>
 
 

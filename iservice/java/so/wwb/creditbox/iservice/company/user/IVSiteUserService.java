@@ -19,12 +19,19 @@ public interface IVSiteUserService extends IBaseService<VSiteUserListVo, VSiteUs
 
     //region your codes 2
 
-    VSiteUserVo searchLevelUser(VSiteUserVo objectVo);
+    /**
+     * 查询成数使用情况
+     * @param objectVo
+     * @return
+     */
+    VSiteUserVo sumSuperStintOccupy(VSiteUserVo objectVo);
 
     SysUserExtendVo saveManagerUser(SysUserExtendVo objectVo);
 
 
     String getHid(String Thid);
+
+    VSiteUserVo searchSuperUser(VSiteUserVo objectVo);
 
 
 //    SysUserExtendVo sumSuperStintOccupy(SysUserExtendVo objectVo);

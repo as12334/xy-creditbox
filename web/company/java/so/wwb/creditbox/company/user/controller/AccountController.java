@@ -20,6 +20,7 @@ import so.wwb.creditbox.company.session.SessionManager;
 import so.wwb.creditbox.company.user.form.AddSysUserExtendForm;
 import so.wwb.creditbox.iservice.company.user.IVSiteUserService;
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
+import so.wwb.creditbox.model.company.user.so.VSiteUserSo;
 import so.wwb.creditbox.model.company.user.vo.VSiteUserListVo;
 import so.wwb.creditbox.model.company.user.vo.VSiteUserVo;
 import so.wwb.creditbox.company.user.form.VSiteUserSearchForm;
@@ -31,6 +32,7 @@ import so.wwb.creditbox.model.enums.lottery.*;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
+import so.wwb.creditbox.model.session.Session;
 import so.wwb.creditbox.utility.DesTool;
 import so.wwb.creditbox.web.passport.captcha.GoogleAuthenticator;
 import so.wwb.creditbox.web.tools.SessionManagerCommon;
@@ -128,8 +130,10 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         objectVo.setParentUser(sysUserExtendVo.getResult());
         objectVo._setDataSourceId(SessionManager.getSiteId());
         objectVo = this.getService().get(objectVo);
-
-
+        //如果是编辑要查询上级和下级的占用情况
+        if(objectVo.getSearch().getId() != null){
+            objectVo = this.getService().sumSuperStintOccupy(objectVo);
+        }
         objectVo.setValidateRule(JsRuleCreator.create(AddSysUserExtendForm.class, "result"));
 
         model.addAttribute("command", objectVo);
@@ -141,7 +145,12 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         objectVo.getSearch().setUserType(UserTypeEnum.SHAREHOLDER.getCode());
         objectVo.getSearch().setOwnerUserType(UserTypeEnum.BRANCH.getCode());
         createUser(objectVo,model);
-        return getViewBasePath() + "/GdEdit";
+        if(objectVo.isSuccess()){
+            return getViewBasePath() + "/edit/GdEdit";
+        }{
+            return getViewBasePath() + "/MessagePage";
+        }
+
     }
     @RequestMapping("/zd_add")
     @Token(generate = true)
@@ -192,10 +201,12 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
 
 
     public void createUser(VSiteUserVo objectVo, Model model) {
+        objectVo._setDataSourceId(SessionManager.getSiteId());
         objectVo = this.getService().get(objectVo);
         //查詢上級用戶  begin
         objectVo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
-        objectVo = this.getService().searchLevelUser(objectVo);
+        objectVo = this.getService().searchSuperUser(objectVo);
+        objectVo = this.getService().sumSuperStintOccupy(objectVo);
         //查詢上級用戶 end
 
         objectVo.setValidateRule(JsRuleCreator.create(AddSysUserExtendForm.class, "result"));
@@ -382,7 +393,7 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         if(UserTypeEnum.BRANCH.getCode().equals(objectVo.getSearch().getUserType())){
             objectVo._setDataSourceId(Const.BASE_DATASOURCE_ID);
         }
-        objectVo = this.getService().searchLevelUser(objectVo);
+//        objectVo = this.getService().searchLevelUser(objectVo);
         //查詢上級用戶 end
 
 

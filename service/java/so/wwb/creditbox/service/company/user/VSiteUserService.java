@@ -1,5 +1,6 @@
 package so.wwb.creditbox.service.company.user;
 
+import org.soul.commons.bean.BeanTool;
 import org.soul.commons.lang.string.RandomStringTool;
 import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.query.Criteria;
@@ -20,6 +21,7 @@ import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -37,28 +39,24 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
     private SysUserExtendMapper sysUserExtendMapper;
 
     @Override
-    public VSiteUserVo searchLevelUser(VSiteUserVo objectVo) {
-        VSiteUserSo search = objectVo.getSearch();
-        objectVo.setSuperUserList(mapper.searchLevelUser(search));
-        SysUserExtend parendUser = sysUserExtendMapper.get(search.getOwnerId());
+    public VSiteUserVo sumSuperStintOccupy(VSiteUserVo objectVo) {
+        SysUserExtend parentUser = objectVo.getParentUser();
         Integer sumSuperStintOccupy;
-        //分公司的上级已用额度为0
-        if(search.getUserType().equals(UserTypeEnum.BRANCH.getCode())){
-            sumSuperStintOccupy = 0;
-        }
-        else if(objectVo.getSearch().getId() == null){
-            sumSuperStintOccupy = mapper.sumSuperStintOccupy(objectVo.getSearch());
+        //新增用户只查询上级占成情况
+        if(objectVo.getSearch().getId() == null){
+            sumSuperStintOccupy = mapper.sumSuperStintOccupy(parentUser.getId());
         }
         else {
-           sumSuperStintOccupy = mapper.sumSuperStintOccupyCount(objectVo.getSearch());
+            //编辑用户要查询上级和下级占成情况
+           sumSuperStintOccupy = mapper.sumSuperStintOccupyCount(objectVo.getResult().getHid());
         }
-        if(parendUser.getStintOccupy() > (100 - sumSuperStintOccupy)){
-            parendUser.setSuperiorOccupy(parendUser.getStintOccupy());
+        if(parentUser.getStintOccupy() > (100 - sumSuperStintOccupy)){
+            parentUser.setSuperiorOccupy(parentUser.getStintOccupy());
         }
         else {
-            parendUser.setSuperiorOccupy(100 - sumSuperStintOccupy);
+            parentUser.setSuperiorOccupy(100 - sumSuperStintOccupy);
         }
-        objectVo.setParentUser(parendUser);
+        objectVo.setParentUser(parentUser);
         return objectVo;
     }
 
@@ -106,6 +104,29 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
             }
         }
         return Thid + hid;
+    }
+
+    @Override
+    public VSiteUserVo searchSuperUser(VSiteUserVo objectVo) {
+        VSiteUserSo search = objectVo.getSearch();
+        List<VSiteUser> parentUsers = mapper.searchLevelUser(search);
+        //不能跨级新增账户
+        if(parentUsers == null){
+            objectVo.setSuccess(false);
+            objectVo.setErrMsg("抱歉！您不能跨級新增帳戶！");
+            return objectVo;
+        }
+        objectVo.setSuperUserList(parentUsers);
+        SysUserExtend parendUser;
+        //如果是新增，上级就是列表的第一个
+        if(objectVo.getSearch().getId() == null){
+            parendUser = new SysUserExtend();
+            parendUser = BeanTool.copyProperties(parentUsers.get(0), parendUser);
+        }else {
+            parendUser = sysUserExtendMapper.get(search.getOwnerId());
+        }
+        objectVo.setParentUser(parendUser);
+        return objectVo;
     }
 
 //    @Override

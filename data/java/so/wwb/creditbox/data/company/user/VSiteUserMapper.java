@@ -27,9 +27,9 @@ public interface VSiteUserMapper extends IBaseQueryMapper<VSiteUser, Integer> {
     void doInitUserLotteryOdd(SysUserExtend user);
     void doInitUserLotteryRebate(SysUserExtend user);
 
-    Integer sumSuperStintOccupy(VSiteUserSo search);
+    Integer sumSuperStintOccupy(Integer search);
 
-    Integer sumSuperStintOccupyCount(VSiteUserSo search);
+    Integer sumSuperStintOccupyCount(String search);
     //endregion your codes 2
 
 }

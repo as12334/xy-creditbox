@@ -137,8 +137,8 @@
             marginheight="0" marginwidth="0" frameborder="0" scrolling="no" class="BoxBg"
             style="height: 798px;"></iframe>
 </div>
-<iframe id="connectionIframe" name="connectionIframe" src="ConnectionPage.aspx" width="100%" height="0" marginheight="0"
-        marginwidth="0" frameborder="0" scrolling="no"></iframe>
+<%--<iframe id="connectionIframe" name="connectionIframe" src="ConnectionPage.aspx" width="100%" height="0" marginheight="0"--%>
+        <%--marginwidth="0" frameborder="0" scrolling="no"></iframe>--%>
 
 <script>
     var browserCode = '5606';//回传code ,浏览器不同用户
