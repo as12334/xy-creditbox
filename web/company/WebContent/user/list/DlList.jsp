@@ -116,7 +116,7 @@
 
 
                 <td>&nbsp;</td>
-                <td width="120"><div class="btnIco"><a id="" href="${root}/vSiteUser/createUser/6.html"><div class="GSico">新增${views.page["UserTypeEnum.".concat(command.search.userType)]}</div></a></div></td>
+                <td width="120"><div class="btnIco"><a id="" href="${root}/account/dl_add.html"><div class="GSico">新增${views.page["UserTypeEnum.".concat(command.search.userType)]}</div></a></div></td>
             </tr>
         </table></td>
         <td class="topRightBg1"></td>

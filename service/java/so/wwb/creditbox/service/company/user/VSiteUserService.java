@@ -42,6 +42,7 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
     public VSiteUserVo sumSuperStintOccupy(VSiteUserVo objectVo) {
         SysUserExtend parentUser = objectVo.getParentUser();
         Integer sumSuperStintOccupy;
+        Integer minStintOccupy = 0;
         //新增用户只查询上级占成情况
         if(objectVo.getSearch().getId() == null){
             sumSuperStintOccupy = mapper.sumSuperStintOccupy(parentUser.getId());
@@ -49,14 +50,17 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
         else {
             //编辑用户要查询上级和下级占成情况
            sumSuperStintOccupy = mapper.sumSuperStintOccupyCount(objectVo.getResult().getHid());
+            minStintOccupy = mapper.minStintOccupy(objectVo.getResult().getId());
         }
-        if(parentUser.getStintOccupy() > (100 - sumSuperStintOccupy)){
+        if(parentUser.getStintOccupy() > 0 && (parentUser.getStintOccupy() < (100 - sumSuperStintOccupy))){
             parentUser.setSuperiorOccupy(parentUser.getStintOccupy());
         }
         else {
             parentUser.setSuperiorOccupy(100 - sumSuperStintOccupy);
         }
+        parentUser.setStintOccupy(minStintOccupy);
         objectVo.setParentUser(parentUser);
+
         return objectVo;
     }
 
@@ -111,7 +115,7 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
         VSiteUserSo search = objectVo.getSearch();
         List<VSiteUser> parentUsers = mapper.searchLevelUser(search);
         //不能跨级新增账户
-        if(parentUsers == null){
+        if(parentUsers.size() == 0){
             objectVo.setSuccess(false);
             objectVo.setErrMsg("抱歉！您不能跨級新增帳戶！");
             return objectVo;
@@ -123,7 +127,7 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
             parendUser = new SysUserExtend();
             parendUser = BeanTool.copyProperties(parentUsers.get(0), parendUser);
         }else {
-            parendUser = sysUserExtendMapper.get(search.getOwnerId());
+            parendUser = sysUserExtendMapper.get(objectVo.getResult().getOwnerId());
         }
         objectVo.setParentUser(parendUser);
         return objectVo;

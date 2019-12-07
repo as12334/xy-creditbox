@@ -20,7 +20,6 @@ import so.wwb.creditbox.company.session.SessionManager;
 import so.wwb.creditbox.company.user.form.AddSysUserExtendForm;
 import so.wwb.creditbox.iservice.company.user.IVSiteUserService;
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
-import so.wwb.creditbox.model.company.user.so.VSiteUserSo;
 import so.wwb.creditbox.model.company.user.vo.VSiteUserListVo;
 import so.wwb.creditbox.model.company.user.vo.VSiteUserVo;
 import so.wwb.creditbox.company.user.form.VSiteUserSearchForm;
@@ -32,7 +31,6 @@ import so.wwb.creditbox.model.enums.lottery.*;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
-import so.wwb.creditbox.model.session.Session;
 import so.wwb.creditbox.utility.DesTool;
 import so.wwb.creditbox.web.passport.captcha.GoogleAuthenticator;
 import so.wwb.creditbox.web.tools.SessionManagerCommon;
@@ -42,7 +40,6 @@ import so.wwb.creditbox.web.tools.token.Token;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.Map;
 
 
@@ -147,7 +144,8 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         createUser(objectVo,model);
         if(objectVo.isSuccess()){
             return getViewBasePath() + "/edit/GdEdit";
-        }{
+        }
+        else {
             return getViewBasePath() + "/MessagePage";
         }
 
@@ -158,15 +156,25 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         objectVo.getSearch().setUserType(UserTypeEnum.DISTRIBUTOR.getCode());
         objectVo.getSearch().setOwnerUserType(UserTypeEnum.SHAREHOLDER.getCode());
         createUser(objectVo,model);
-        return getViewBasePath() + "/ZdEdit";
+        if(objectVo.isSuccess()){
+            return getViewBasePath() + "/edit/ZdEdit";
+        }
+        else{
+            return getViewBasePath() + "/MessagePage";
+        }
     }
     @RequestMapping("/dl_add")
     @Token(generate = true)
     public String dlAdd(VSiteUserVo objectVo, Model model) {
         objectVo.getSearch().setUserType(UserTypeEnum.AGENT.getCode());
         objectVo.getSearch().setOwnerUserType(UserTypeEnum.DISTRIBUTOR.getCode());
-        createUser(objectVo,model);
-        return getViewBasePath() + "/DlEdit";
+        objectVo = createUser(objectVo,model);
+        if(objectVo.isSuccess()){
+            return getViewBasePath() + "/edit/DlEdit";
+        }
+        else{
+            return getViewBasePath() + "/MessagePage";
+        }
     }
     @RequestMapping("/child_add")
     @Token(generate = true)
@@ -200,18 +208,19 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
 
 
 
-    public void createUser(VSiteUserVo objectVo, Model model) {
+    public VSiteUserVo createUser(VSiteUserVo objectVo, Model model) {
         objectVo._setDataSourceId(SessionManager.getSiteId());
         objectVo = this.getService().get(objectVo);
         //查詢上級用戶  begin
         objectVo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
         objectVo = this.getService().searchSuperUser(objectVo);
-        objectVo = this.getService().sumSuperStintOccupy(objectVo);
-        //查詢上級用戶 end
-
-        objectVo.setValidateRule(JsRuleCreator.create(AddSysUserExtendForm.class, "result"));
-
+        if(objectVo.isSuccess()){
+            objectVo = this.getService().sumSuperStintOccupy(objectVo);
+            //查詢上級用戶 end
+            objectVo.setValidateRule(JsRuleCreator.create(AddSysUserExtendForm.class, "result"));
+        }
         model.addAttribute("command", objectVo);
+        return objectVo;
     }
 
     @RequestMapping("/persistUser")
@@ -219,7 +228,7 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
     @ResponseBody
     public String persistUser(SysUserExtendVo objectVo, Model model, HttpServletRequest request, @FormModel("result") @Valid AddSysUserExtendForm form, BindingResult result) {
         if(objectVo.getResult().getStintOccupy() == null){
-            objectVo.getResult().setStintOccupy(-1);
+            objectVo.getResult().setStintOccupy(0);
         }
         if (result.hasErrors()) {
             objectVo.setSuccess(false);

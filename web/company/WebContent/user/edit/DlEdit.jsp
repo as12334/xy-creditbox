@@ -26,7 +26,7 @@
         function changefgsuser(v) {
             var val = v;
 
-            location.href = "${root}/account/fgs_add.html" + v;
+            location.href = "${root}/account/dl_add.html" + v;
         }
         var kc_low_maxrate = ${command.result.stintOccupy};
     </script>
@@ -358,7 +358,7 @@
             <td class="bottomLeftBg"></td>
             <td class="bottomBoxBg" align="center">
                 <button type="button" name="backBtn" id="backBtn" class="btn"
-                        onclick="javascript:location.href= '${root}/account/gd_list.html?lid=0';"> 返回
+                        onclick="javascript:location.href= '${root}/account/dl_list.html?lid=0';"> 返回
                 </button>&nbsp;&nbsp;&nbsp;&nbsp;
 
                 <button type="button" name="btnSubmit" id="btnSubmit" class="btn"> 確定</button>

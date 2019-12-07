@@ -1,5 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--@elvariable id="command" type="so.wwb.creditbox.model.company.user.vo.VSiteUserVo"--%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -62,7 +63,7 @@
             <!-- 開始 -->
             <div class="tBox">
                 <div class="wrong">
-                    抱歉！您不能跨級新增帳戶！
+                    ${command.errMsg}
                 </div>
             </div>
             <!-- 結束 -->

@@ -171,9 +171,7 @@ public class AddSysUserExtendForm implements IForm {
         this.result_setOdds = result_setOdds;
     }
 
-
-    @Depends(property = {"result.userType"}, operator = {Operator.NE}, value = {"8"})
-    @NotBlank
+    @Depends(property = {"result.userType"}, operator = {Operator.EQ}, value = {"4"})
     public String getResult_general() {
         return result_general;
     }
@@ -181,8 +179,8 @@ public class AddSysUserExtendForm implements IForm {
     public void setResult_general(String result_general) {
         this.result_general = result_general;
     }
-    @Depends(property = {"result.userType"}, operator = {Operator.NE}, value = {"8"})
-    @NotBlank
+
+    @Depends(property = {"result.userType"}, operator = {Operator.EQ}, value = {"4"})
     public String getResult_breakpoint() {
         return result_breakpoint;
     }

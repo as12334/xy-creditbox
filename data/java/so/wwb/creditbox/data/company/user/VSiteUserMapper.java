@@ -30,6 +30,8 @@ public interface VSiteUserMapper extends IBaseQueryMapper<VSiteUser, Integer> {
     Integer sumSuperStintOccupy(Integer search);
 
     Integer sumSuperStintOccupyCount(String search);
+
+    Integer minStintOccupy(Integer id);
     //endregion your codes 2
 
 }

@@ -102,6 +102,11 @@
     <select id="searchLevelUser" resultType="so.wwb.creditbox.model.manager.user.po.SysUserExtend">
         SELECT  * from  sys_user_extend WHERE hid like CONCAT('',#{hid},'%')  AND user_type = #{ownerUserType}
     </select>
+    <!--查询下级最高的限制占成-->
+    <select id="minStintOccupy" parameterType="int" resultType="int">
+        SELECT COALESCE(MAX(stint_occupy),0) FROM v_site_user WHERE owner_id = #{id}
+    </select>
+
 
     <!--查询上级的占成总和-->
     <select id="sumSuperStintOccupy" parameterType="int" resultType="int">
