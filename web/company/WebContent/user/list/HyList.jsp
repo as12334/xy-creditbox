@@ -186,7 +186,7 @@
                         <%--</td>--%>
 
                         <td width="98" align="center"><div class="TSico"><a href="${root}/siteLotteryRebates/editRebate.html?search.id=${p.id}" class="redLink">退水</a></div>
-                            <div class="XGico"><a href="${root}/account/hy_add.html?search.id=${p.id}" class="redLink">修改</a></div>
+                            <div class="XGico"><a href="${root}/account/hy_add_du.html?search.id=${p.id}" class="redLink">修改</a></div>
                             <div class="RZico"><a href="${root}/log/ViewUserLoginInfo.html?search.id=${p.id}" class="redLink editBtn">日誌</a></div>
                             <div class="JLico"><a href="${root}/log/LogUserChange.html?search.id=${p.id}" class="redLink editBtn">記錄</a></div></td>
                         <td align="center"><button type="button" name="Submit" uid="6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" status="0" data-name="zdl001" class="btn status">啟用</button></td>

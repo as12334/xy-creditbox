@@ -646,9 +646,7 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
             strings.add(SysUserExtend.PROP_GENERAL);
             strings.add(SysUserExtend.PROP_SET_ODDS);
         }
-        if(objectVo.getResult().getUserType().equals(UserTypeEnum.PLAYER.getCode())){
-            strings.add(SysUserExtend.HANDICAP);
-        }else{
+        if(!objectVo.getResult().getUserType().equals(UserTypeEnum.PLAYER.getCode())){
             strings.add(SysUserExtend.PROP_MANUAL_AUTO_SHIPMENTS);
         }
         boolean b = mapper.updateOnly(objectVo.getResult(),  strings.toArray(new String[strings.size()]));

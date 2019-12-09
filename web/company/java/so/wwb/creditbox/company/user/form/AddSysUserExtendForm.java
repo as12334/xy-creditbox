@@ -190,7 +190,6 @@ public class AddSysUserExtendForm implements IForm {
     }
 
     @Depends(property = {"result.userType"}, operator = {Operator.NE}, value = {"8"})
-    @NotBlank
     public String getResult_manualAutoShipments() {
         return result_manualAutoShipments;
     }

@@ -110,6 +110,13 @@
     };
 </script>
 <form method="post" id="form">
+    <input hidden name="result.userType" value="${command.search.userType}">
+    <input hidden id="superStintOccupy" value="">
+    <input hidden name="result.id" value="${command.result.id}">
+    <input hidden name="result.ownerUserType" value="${command.search.ownerUserType}">
+    <input hidden name="result.ownerId" value="${command.parentUser.id}">
+
+
     <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
         <tr>
             <td class="topLeftBg1"></td>
@@ -148,37 +155,40 @@
                                     </th>
                                 </tr>
 
+                                <c:if test="${empty command.result.id}">
+                                    <tr>
+                                        <td align="right" class="tdbg1">直屬上級&nbsp;</td>
+                                        <td colspan="3" align="left">
+                                            <c:if test="${user.subsysCode == 'company' }">
+                                                <label class="topLabel"><input
+                                                        type="radio" ${command.parentUser.userType == '4'?'checked':''} name="rdoutype"
+                                                        value="4" onclick="checkedrdo('4');">
+                                                    <span>分公司</span>
+                                                </label>
+                                            </c:if>
+                                            <c:if test="${user.subsysCode == 'company' || user.subsysCode == 'branch' }">
+                                                <label class="topLabel"><input
+                                                        type="radio" ${command.parentUser.userType == '5'?'checked':''} name="rdoutype"
+                                                        value="5" onclick="checkedrdo('5');">
+                                                    <span>股东</span>
+                                                </label>
+                                            </c:if>
+                                            <c:if test="${user.subsysCode == 'company' || user.subsysCode == 'branch' || user.subsysCode == 'shareholder'}">
+                                                <label class="topLabel"><input
+                                                        type="radio" ${command.parentUser.userType == '6'?'checked':''} name="rdoutype"
+                                                        value="6" onclick="checkedrdo('6');">
+                                                    <span>總代</span>
+                                                </label>
+                                            </c:if>
+
+
+                                        </td>
+                                    </tr>
+                                </c:if>
+
+
                                 <tr>
-                                    <td align="right" class="tdbg1">直屬上級&nbsp;</td>
-                                    <td colspan="3" align="left">
-                                        <c:if test="${user.subsysCode == 'company' }">
-                                            <label class="topLabel"><input
-                                                    type="radio" ${command.parentUser.userType == '4'?'checked':''} name="rdoutype"
-                                                    value="4" onclick="checkedrdo('4');">
-                                                <span>分公司</span>
-                                            </label>
-                                        </c:if>
-                                        <c:if test="${user.subsysCode == 'company' || user.subsysCode == 'branch' }">
-                                            <label class="topLabel"><input
-                                                    type="radio" ${command.parentUser.userType == '5'?'checked':''} name="rdoutype"
-                                                    value="5" onclick="checkedrdo('5');">
-                                                <span>股东</span>
-                                            </label>
-                                        </c:if>
-                                        <c:if test="${user.subsysCode == 'company' || user.subsysCode == 'branch' || user.subsysCode == 'shareholder'}">
-                                            <label class="topLabel"><input
-                                                    type="radio" ${command.parentUser.userType == '6'?'checked':''} name="rdoutype"
-                                                    value="6" onclick="checkedrdo('6');">
-                                                <span>總代</span>
-                                            </label>
-                                        </c:if>
-
-
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td align="right" class="tdbg1">上級${views.page["UserTypeEnum.".concat(command.search.ownerUserType)]}&nbsp;</td>
+                                    <td align="right" class="tdbg1">上級${views.page["UserTypeEnum.".concat(command.parentUser.userType)]}&nbsp;</td>
                                     <td align="left" width="150">
                                         <c:choose>
                                         <c:when test="${empty command.result.id}">
@@ -429,7 +439,7 @@
             <td class="bottomLeftBg"></td>
             <td class="bottomBoxBg" align="center">
                 <button type="button" name="backBtn" id="backBtn" class="btn"
-                        onclick="javascript:location.href='/account/hy_list.html?lid=0';"> 返回
+                        onclick="javascript:location.href='${root}/account/hy_list.html?lid=0';"> 返回
                 </button>&nbsp;&nbsp;&nbsp;&nbsp;
                 <button type="button" name="btnSubmit" id="btnSubmit" class="btn">確定</button>
                 <input type="hidden" id="hdnadd" name="hdnadd" value="hdnadd"/><input type="hidden" id="uid" name="uid"

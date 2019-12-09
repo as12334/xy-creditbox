@@ -8,7 +8,7 @@ import org.soul.commons.support.Nonpersistent;
 import org.soul.model.security.privilege.po.SysUser;
 import so.wwb.creditbox.model.common.Const;
 import so.wwb.creditbox.model.common.HidTool;
-import so.wwb.creditbox.model.enums.lottery.SetOddsEnum;
+import so.wwb.creditbox.model.enums.lottery.*;
 
 
 /**
@@ -138,28 +138,28 @@ public class SysUserExtend extends SysUser {
 		this.stintOccupy = value;
 	}
 	public String getBreakpoint() {
-		return this.breakpoint;
+		return this.breakpoint == null? BreakpointEnum.ZERO.getCode():this.breakpoint;
 	}
 
 	public void setBreakpoint(String value) {
 		this.breakpoint = value;
 	}
 	public String getManualAutoShipments() {
-		return this.manualAutoShipments;
+		return this.manualAutoShipments == null ? ManualAutoShipmentsEnum.OFF.getCode():this.manualAutoShipments;
 	}
 
 	public void setManualAutoShipments(String value) {
 		this.manualAutoShipments = value;
 	}
 	public String getModeSelection() {
-		return this.modeSelection;
+		return this.modeSelection == null ? ModeSelectionEnum.CREDIT.getCode():this.modeSelection;
 	}
 
 	public void setModeSelection(String value) {
 		this.modeSelection = value;
 	}
 	public String getGeneral() {
-		return this.general;
+		return this.general == null ? GeneralEnum.OFF.getCode():this.general;
 	}
 
 	public void setGeneral(String value) {
@@ -206,7 +206,7 @@ public class SysUserExtend extends SysUser {
 	}
 
 	public String getStintOccupySwitch() {
-		return stintOccupySwitch;
+		return stintOccupySwitch == null ? StintOccupySwitchEnum.OFF.getCode():stintOccupySwitch;
 	}
 
 	public void setStintOccupySwitch(String stintOccupySwitch) {
