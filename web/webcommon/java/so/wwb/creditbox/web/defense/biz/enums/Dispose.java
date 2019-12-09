@@ -1,7 +1,7 @@
 package so.wwb.creditbox.web.defense.biz.enums;
 
 import org.soul.commons.enums.EnumTool;
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 import org.soul.commons.lang.string.StringTool;
 
 public enum Dispose implements ICodeEnum {

@@ -1,6 +1,6 @@
 package so.wwb.creditbox.model.enums.oauth;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 public enum ClientStatusEnum implements ICodeEnum {
     ENABLE("0", "可用"),

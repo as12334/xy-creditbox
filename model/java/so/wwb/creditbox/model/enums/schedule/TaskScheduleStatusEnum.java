@@ -1,6 +1,6 @@
 package so.wwb.creditbox.model.enums.schedule;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 public enum TaskScheduleStatusEnum implements ICodeEnum {
     ENABLE("1", "启用"),

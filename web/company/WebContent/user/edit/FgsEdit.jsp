@@ -28,7 +28,7 @@
 
             location.href = "${root}/account/fgs_add.html" + v;
         }
-        var kc_low_maxrate = ${command.result.stintOccupy};
+        var kc_low_maxrate = ${command.result.stintOccupy}+"";
     </script>
 </head>
 <body>

@@ -1,7 +1,7 @@
 package so.wwb.creditbox.model.enums.lottery;
 
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 public enum LotteryOriginEnum implements ICodeEnum {
     HAND("0", "手动"),

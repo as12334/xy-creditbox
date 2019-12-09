@@ -26,9 +26,15 @@
         function changefgsuser(v) {
             var val = v;
 
-            location.href = "${root}/account/dl_add.html?search.ownerId=" + v;
+            location.href = "${root}/account/hy_add_du.html";
         }
-        var kc_low_maxrate = ${command.result.stintOccupy}+"";
+
+
+        function checkedrdo(v) {
+            location.href = "${root}/account/hy_add_du.html?rdoutype=" +v;
+        }
+
+        var kc_low_maxrate = ${command.result.stintOccupy};
     </script>
 </head>
 <body>
@@ -51,7 +57,7 @@
                         <td width="26" align="center">
                             <div class="topArr"></div>
                         </td>
-                        <td><b>新增代理</b></td>
+                        <td><b>新增總代理</b></td>
                         <td width="100">&nbsp;</td>
                         <td width="140" align="right">
                             <div class="btnIco">
@@ -80,13 +86,35 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <td align="right" class="tdbg1">上級總代&nbsp;</td>
+                                    <td align="right" class="tdbg1">直屬上級&nbsp;</td>
+                                    <td colspan="3" align="left">
+                                        <c:if test="${user.userType < '5' }">
+                                            <label class="topLabel"><input type="radio" ${command.rdoutype == '4'?'checked':''} name="rdoutype" value="4" onclick="checkedrdo('4');">
+                                                <span>分公司</span>
+                                            </label>
+                                        </c:if>
+                                        <c:if test="${user.userType < '6' }">
+                                            <label class="topLabel"><input type="radio" ${command.rdoutype == '5'?'checked':''} name="rdoutype" value="5" onclick="checkedrdo('5');">
+                                                <span>股东</span>
+                                            </label>
+                                        </c:if>
+                                        <c:if test="${user.userType < '7' }">
+                                            <label class="topLabel"><input type="radio" ${command.rdoutype == '6'?'checked':''} name="rdoutype" value="6" onclick="checkedrdo('6');">
+                                                <span>總代</span>
+                                            </label>
+                                        </c:if>
+
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" class="tdbg1">上級股東&nbsp;</td>
                                     <td align="left" width="150">
                                         <c:choose>
                                             <c:when test="${empty command.result.id}">
                                                 &nbsp;<select id="sltupuser" name="result.ownerId" onchange="changefgsuser(this.value);">
                                                 <c:forEach items="${command.superUserList}" var="result">
-                                                <option value="${result.id}" data-credit="${result.credits}" ${result.id == command.parentUser.id ? 'selected':''}>${fn:substringBefore(result.username,'@')}</option>
+                                                <option value="${result.id}" data-credit="${result.credits}">${fn:substringBefore(result.username,'@')}</option>
                                                 </c:forEach>
                                             </c:when>
                                             <c:otherwise>
@@ -103,7 +131,7 @@
 
                                 </tr>
                                 <tr>
-                                    <td align="right" width="140" class="tdbg1">代理帳號&nbsp;</td>
+                                    <td align="right" width="140" class="tdbg1">總代帳號&nbsp;</td>
                                     <td colspan="3" align="left">
                                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                             <tr>
@@ -136,7 +164,7 @@
                                 </tr>
                                 <tr>
                                     <td align="right" width="140" class="tdbg1">
-                                        代理名稱&nbsp;
+                                        總代名稱&nbsp;
                                     </td>
                                     <td colspan="3" align="left">
                                         &nbsp;<input type="text" value="${command.result.nickname}" name="result.nickname" id="userNicker" class="text w130">
@@ -166,7 +194,8 @@
 
                     <tr id="kc" class="tabBox tabBoxOn" style="display: table-row;">
                         <td><table class="t_list" border="0" cellspacing="0" cellpadding="0">
-                            <tbody><tr>
+                            <tbody>
+                            <tr>
                                 <td align="right" width="140" class="tdbg1"> <span id="isCash_kc_01">(快彩)信用額度</span>&nbsp;</td>
                                 <td align="left">&nbsp;<input type="text" data-max="${command.parentUser.credits}" value="${command.result.credits}" name="result.credits" id="userCredit_kc" class="text w130 zfNumber toRMB">
                                     <span class="toRMBspan"></span>
@@ -179,13 +208,71 @@
 
 
                             <tr>
-                                <td align="right" width="140" class="tdbg1"> (快彩)總代占成&nbsp;</td>
+                                <td align="right" width="140" class="tdbg1"> (快彩)股東占成&nbsp;</td>
                                 <td align="left">&nbsp;<input type="text" data-max="${command.parentUser.superiorOccupy}" value="${command.result.superiorOccupy}" name="result.superiorOccupy" id="userRate_kc" class="text zfNumber">
                                     % 　最高可設占成
                                     <label id="userMaxRate_kc">${command.parentUser.superiorOccupy}%</label>
                                 </td>
                             </tr>
 
+
+                            <%--<tr>--%>
+                                <%--<td align="right" width="140" class="tdbg1"> (快彩)剩餘成數:&nbsp;</td>--%>
+                                <%--<td align="left">--%>
+                                    <%--<table border="0" cellspacing="0" cellpadding="0">--%>
+                                        <%--<tr>--%>
+
+                                            <%--<td width="60"><label class="topLabel">--%>
+                                                <%--<input type="radio" name="result.breakpoint"--%>
+                                                       <%--value="1" ${command.result.breakpoint != '2'?'checked':''} />--%>
+                                                <%--<span>--%>
+										<%--總監--%>
+									<%--</span>--%>
+                                            <%--</label></td>--%>
+                                            <%--<td width="80"><label class="topLabel">--%>
+                                                <%--<input type="radio" name="result.breakpoint"--%>
+                                                       <%--value="2" ${command.result.breakpoint == '2'?'checked':''}/>--%>
+                                                <%--<span>--%>
+										<%--分公司--%>
+									<%--</span>--%>
+                                            <%--</label></td>--%>
+                                        <%--</tr>--%>
+                                    <%--</table>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+
+
+                            <%--<tr>--%>
+                                <%--<td align="right" width="140" class="tdbg1"> (快彩)總賬報表:&nbsp;</td>--%>
+                                <%--<td align="left">--%>
+                                    <%--<table border="0" cellspacing="0" cellpadding="0">--%>
+                                        <%--<tr>--%>
+
+                                            <%--<td width="100"><label class="topLabel">--%>
+                                                <%--<input type="radio" name="result.general"--%>
+                                                       <%--value="1" ${command.result.general == '1'?'checked':''} />--%>
+                                                <%--<span>--%>
+										<%--總賬(非明细)--%>
+									<%--</span>--%>
+                                            <%--</label></td>--%>
+                                            <%--<td width="120"><label class="topLabel">--%>
+                                                <%--<input type="radio" name="result.general"--%>
+                                                       <%--value="2" ${command.result.general == '2'?'checked':''}/>--%>
+                                                <%--<span>--%>
+										<%--總賬(包括明細)--%>
+									<%--</span>--%>
+                                            <%--</label></td>--%>
+                                            <%--<td width="120"><label class="topLabel">--%>
+                                                <%--<input type="radio" name="result.general"--%>
+                                                       <%--value="0" ${command.result.general == '0' || empty command.result.general?'checked':''}/>--%>
+                                                <%--<span>--%>
+										<%--關閉--%>
+									<%--</span>--%>
+                                            <%--</label></td>--%>
+                                        <%--</tr>--%>
+                                    <%--</table>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
                             <tr>
                                 <td align="right" width="140" class="tdbg1"> (快彩)下綫占成上限&nbsp;</td>
                                 <td align="left"><label class="topLabel"><input type="radio"  name="result.stintOccupySwitch" value="0" ${command.result.stintOccupySwitch !=1 ?"checked":""}>
@@ -248,8 +335,6 @@
                                 </td>
                             </tr>
 
-
-
                             <tr>
                                 <td align="right" width="140" class="tdbg1"> (快彩)信用&nbsp;</td>
                                 <td align="left">
@@ -276,7 +361,7 @@
             <td class="bottomLeftBg"></td>
             <td class="bottomBoxBg" align="center">
                 <button type="button" name="backBtn" id="backBtn" class="btn"
-                        onclick="javascript:location.href= '${root}/account/dl_list.html?lid=0';"> 返回
+                        onclick="javascript:location.href= '${root}/account/zd_list.html?lid=0';"> 返回
                 </button>&nbsp;&nbsp;&nbsp;&nbsp;
 
                 <button type="button" name="btnSubmit" id="btnSubmit" class="btn"> 確定</button>

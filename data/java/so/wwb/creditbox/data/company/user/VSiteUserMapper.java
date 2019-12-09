@@ -22,7 +22,7 @@ public interface VSiteUserMapper extends IBaseQueryMapper<VSiteUser, Integer> {
 //endregion your codes 1
 
     //region your codes 2
-    List<VSiteUser> searchLevelUser(VSiteUserSo search);
+    List<SysUserExtend> searchLevelUser(VSiteUserSo search);
 
     void doInitUserLotteryOdd(SysUserExtend user);
     void doInitUserLotteryRebate(SysUserExtend user);

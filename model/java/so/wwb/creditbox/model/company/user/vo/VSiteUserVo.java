@@ -22,19 +22,23 @@ public class VSiteUserVo extends BaseObjectVo<VSiteUser, VSiteUserSo, VSiteUserV
 
     //region your codes 5
     private static final long serialVersionUID = 6694474193966734089L;
-    private List<VSiteUser> superUserList;
+    private List<SysUserExtend> superUserList;
 
-    public void setSuperUserList(List<VSiteUser> superUserList) {
+    public void setSuperUserList(List<SysUserExtend> superUserList) {
         this.superUserList = superUserList;
     }
 
-    public List<VSiteUser> getSuperUserList() {
+    public List<SysUserExtend> getSuperUserList() {
         return superUserList;
     }
 
 
     //上级和下级占成最高限制
     private  Integer maxSuperiorOccupyCount;
+
+    //新增直属会员的上级类型
+    private String rdoutype;
+
     //endregion your codes 5
 
     /**
@@ -80,6 +84,15 @@ public class VSiteUserVo extends BaseObjectVo<VSiteUser, VSiteUserSo, VSiteUserV
     public void setParentUser(SysUserExtend parentUser) {
         this.parentUser = parentUser;
     }
+
+    public String getRdoutype() {
+        return rdoutype;
+    }
+
+    public void setRdoutype(String rdoutype) {
+        this.rdoutype = rdoutype;
+    }
+
 
     //endregion your codes 4
 

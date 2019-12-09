@@ -1,6 +1,6 @@
 package so.wwb.creditbox.model.enums.sys;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 /**
  * 系统用户类型枚举

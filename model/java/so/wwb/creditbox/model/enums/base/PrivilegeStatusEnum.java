@@ -1,6 +1,6 @@
 package so.wwb.creditbox.model.enums.base;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 /**
  * Created by cj on 15-7-22 上午8:53.

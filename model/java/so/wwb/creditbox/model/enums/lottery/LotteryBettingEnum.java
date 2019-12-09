@@ -1,6 +1,6 @@
 package so.wwb.creditbox.model.enums.lottery;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 import org.soul.commons.lang.string.StringTool;
 
 import java.util.HashMap;

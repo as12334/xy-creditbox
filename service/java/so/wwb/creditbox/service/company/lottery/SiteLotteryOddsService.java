@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.soul.commons.collections.ListTool;
 import org.soul.commons.enums.EnumTool;
-import org.soul.commons.lang.string.HidTool;
 import org.soul.commons.log.Log;
 import org.soul.commons.log.LogFactory;
 import org.soul.commons.query.Criteria;

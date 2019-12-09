@@ -1,6 +1,6 @@
 package so.wwb.creditbox.model.enums.message;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 public enum SystemMessageSendObjectEnum implements ICodeEnum{
     TO_BOSS("1", "发送BOSS"),

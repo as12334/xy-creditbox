@@ -1,6 +1,6 @@
 package so.wwb.creditbox.model.enums.site;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 public enum SiteConfineIpTypeEnum implements ICodeEnum {
     SITE_DENY("1","限制访问游戏中心"),

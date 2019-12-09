@@ -1,6 +1,6 @@
 package so.wwb.creditbox.model.common;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 /**
  * @author jeremy

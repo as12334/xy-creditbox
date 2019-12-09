@@ -1,4 +1,4 @@
-package so.wwb.creditbox.web.tools;
+package so.wwb.creditbox.model.common;
 
 import org.soul.commons.log.Log;
 import org.soul.commons.log.LogFactory;
@@ -14,7 +14,6 @@ import so.wwb.creditbox.model.enums.user.UserTypeEnum;
  */
 public class HidTool {
 
-    private static final Log LOG = LogFactory.getLog(org.soul.commons.lang.string.HidTool.class);
 
     public static final Integer FLAG = 8;
     private HidTool() {

@@ -4,7 +4,12 @@ import org.soul.iservice.support.IBaseService;
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
 import so.wwb.creditbox.model.company.user.vo.VSiteUserListVo;
 import so.wwb.creditbox.model.company.user.vo.VSiteUserVo;
+import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -32,6 +37,14 @@ public interface IVSiteUserService extends IBaseService<VSiteUserListVo, VSiteUs
     String getHid(String Thid);
 
     VSiteUserVo searchSuperUser(VSiteUserVo objectVo);
+
+
+    /**
+     * 查询所有下级的管理用户
+     * @param objectVo
+     * @return
+     */
+    Map<String, List<SysUserExtend>> searchAllManagerList(VSiteUserVo objectVo);
 
 
 //    SysUserExtendVo sumSuperStintOccupy(SysUserExtendVo objectVo);

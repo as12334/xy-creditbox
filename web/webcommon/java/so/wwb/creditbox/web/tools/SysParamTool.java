@@ -6,7 +6,7 @@ import org.soul.commons.collections.CollectionTool;
 import org.soul.commons.collections.MapTool;
 import org.soul.commons.data.json.JsonTool;
 import org.soul.commons.enums.EnumTool;
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 import org.soul.commons.enums.YesNot;
 import org.soul.commons.lang.ArrayTool;
 import org.soul.commons.lang.ClassTool;

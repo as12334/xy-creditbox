@@ -52,32 +52,11 @@
         <td class="topBoxBg1"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tm2">
             <tr>
                 <td width="26" align="center"><div class="topArr"></div></td>
-                <td width="80" align="left"><b>${views.page["UserTypeEnum.".concat(command.search.userType)]}管理</b></td>
+                <td width="80" align="left"><b>會員管理</b></td>
 
-                <td width="450" align="left">
-                    <table style="display:none;">
-                        <tr>
-                            <td width="90" align="left"><label class="topLabel">
-                                <input name="rbnLottery" id="rbnLottery" type="radio" value="" checked onclick="changelottery(this.value)" >
-                                <span>
-                                    全部顯示
-                                </span>
-                            </label></td>
-                            <td width="160" align="left"><label class="topLabel">
-                                <input type="radio"  name="rbnLottery" id="rbnLottery" value="six"   onclick="changelottery(this.value)">
-                                <span>
-                                    只顯示<b class="red">香港⑥合彩</b>
-                                </span>
-                            </label>
-                            </td>
-                            <td width="260" align="left"><label class="topLabel">
-                                <input type="radio"  name="rbnLottery" id="rbnLottery" value="kc"   onclick="changelottery(this.value)">
-                                <span>
-                                    只顯示<b class="red">快彩</b>
-                                </span>
-                            </label></td>
-                        </tr>
-                    </table>
+                <td width="200" align="left"  >
+
+
                 </td>
 
                 <td>
@@ -99,6 +78,15 @@
                                     <option value="1" >凍結</option>
                                     <option value="2" >停用</option>
                                 </select></td>
+                                <td width="50" align="right"><select name="sltzsutype" id="sltzsutype" onchange="changetype(this.value)">
+                                    <option value="" selected>所有會員</option>
+
+                                    <option value="gd" >屬股東</option>
+
+                                    <option value="zd" >屬總代理</option>
+
+                                </select>
+                                </td>
                                 <td width="50" align="right">搜索：</td>
                                 <td width="50"><select name="userFlag" id="userFlag">
                                     <option value="0" selected>帳號</option>
@@ -112,11 +100,15 @@
                     </form>
                 </td>
 
+                <td align="right">
+                    所屬會員總餘額：
+                    <span class="blue">(快):0</span>
+                </td>
 
-
-
-                <td>&nbsp;</td>
-                <td width="120"><div class="btnIco"><a id="" href="${root}/account/hy_add.html"><div class="GSico">新增${views.page["UserTypeEnum.".concat(command.search.userType)]}</div></a></div></td>
+                <td>
+                    <div class="btnIco" style="display:;  "><a  href="hy_add_du.html"><div class="GSico">新增直屬會員</div></a></div>
+                </td>
+                <td width="107"><div class="btnIco"><a  href="hy_add.html"><div class="GSico">新增普通會員</div></a></div></td>
             </tr>
         </table></td>
         <td class="topRightBg1"></td>
@@ -139,7 +131,6 @@
                     <th>盤口</th>
                     <th>信用/現金</th>
                     <th>新增日期</th>
-                    <th>補貨</th>
                     <th width="98">功能</th>
                     <th width="60">狀態</th>
                 </tr>
@@ -187,12 +178,12 @@
                         </td>
 
                         <td>19-11-21</td>
-                        <td>
-                            <label class="c8">(快):</label>
-                            <img src="${resRoot}/images/${p.manualAutoShipments == 1?"img_1.gif":"img_0.gif"}" title="該帳號可以補貨">&nbsp;&nbsp;&nbsp;
-                            <a href="/AutoLet/AutoLet_Show_kc.aspx?uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5&mid=2&lid=0" flag="kc" sale="1" class="setFlyAway" title="查看自動補貨設定"><img src="${resRoot}/Images/v.gif" /></a>
+                        <%--<td>--%>
+                            <%--<label class="c8">(快):</label>--%>
+                            <%--<img src="${resRoot}/images/${p.manualAutoShipments == 1?"img_1.gif":"img_0.gif"}" title="該帳號可以補貨">&nbsp;&nbsp;&nbsp;--%>
+                            <%--<a href="/AutoLet/AutoLet_Show_kc.aspx?uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5&mid=2&lid=0" flag="kc" sale="1" class="setFlyAway" title="查看自動補貨設定"><img src="${resRoot}/Images/v.gif" /></a>--%>
 
-                        </td>
+                        <%--</td>--%>
 
                         <td width="98" align="center"><div class="TSico"><a href="${root}/siteLotteryRebates/editRebate.html?search.id=${p.id}" class="redLink">退水</a></div>
                             <div class="XGico"><a href="${root}/account/hy_add.html?search.id=${p.id}" class="redLink">修改</a></div>

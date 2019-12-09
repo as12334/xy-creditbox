@@ -2,7 +2,7 @@ package so.wwb.creditbox.web.tools;
 
 import org.soul.commons.collections.CollectionTool;
 import org.soul.commons.enums.EnumTool;
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 import org.soul.commons.lang.ArrayTool;
 import org.soul.commons.lang.ClassTool;
 import org.soul.commons.lang.string.StringTool;

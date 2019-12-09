@@ -1,6 +1,6 @@
 package so.wwb.creditbox.model.enums.site;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 public enum SiteStatusEnum implements ICodeEnum {
     NORMAL("1","正常"),

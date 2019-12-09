@@ -10,7 +10,7 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-12-9 15:54:43
+ * @time 2019-12-9 21:33:12
  */
 //region your codes 1
 public class VSiteUser implements IEntity<Integer> {
@@ -360,6 +360,7 @@ public class VSiteUser implements IEntity<Integer> {
 	public void setSubsysCode(String value) {
 		this.subsysCode = value;
 	}
+	@org.soul.model.common.Sortable
 	public String getUserType() {
 		return this.userType;
 	}

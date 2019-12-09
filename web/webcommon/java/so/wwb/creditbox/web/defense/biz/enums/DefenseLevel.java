@@ -1,6 +1,6 @@
 package so.wwb.creditbox.web.defense.biz.enums;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 public enum DefenseLevel implements ICodeEnum {
     SESSION("0","SESSION"),

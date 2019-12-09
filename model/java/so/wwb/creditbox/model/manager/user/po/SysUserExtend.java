@@ -3,11 +3,11 @@ package so.wwb.creditbox.model.manager.user.po;
 import org.apache.xmlbeans.UserType;
 import org.hibernate.validator.constraints.NotBlank;
 import org.soul.commons.bean.IEntity;
-import org.soul.commons.lang.string.HidTool;
 import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.support.Nonpersistent;
 import org.soul.model.security.privilege.po.SysUser;
 import so.wwb.creditbox.model.common.Const;
+import so.wwb.creditbox.model.common.HidTool;
 import so.wwb.creditbox.model.enums.lottery.SetOddsEnum;
 
 
@@ -58,7 +58,7 @@ public class SysUserExtend extends SysUser {
 	/**  */
 	private String updateName;
 	/** 限制占成开关 */
-	private Integer stintOccupySwitch;
+	private String stintOccupySwitch;
 
 	/** 限制占成 */
 	private Integer stintOccupy;
@@ -205,11 +205,11 @@ public class SysUserExtend extends SysUser {
 		this.ownerUserType = ownerUserType;
 	}
 
-	public Integer getStintOccupySwitch() {
+	public String getStintOccupySwitch() {
 		return stintOccupySwitch;
 	}
 
-	public void setStintOccupySwitch(Integer stintOccupySwitch) {
+	public void setStintOccupySwitch(String stintOccupySwitch) {
 		this.stintOccupySwitch = stintOccupySwitch;
 	}
 

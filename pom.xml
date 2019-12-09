@@ -22,7 +22,7 @@
 
     <properties>
         <creditbox.version>1.0.1-SNAPSHOT</creditbox.version>
-        <soul.version>1.0.9.0-SNAPSHOT</soul.version>
+        <soul.version>1.0.9.5-SNAPSHOT</soul.version>
         <project.build.no>0001</project.build.no>
         <project.build.ver>1.0.0</project.build.ver>
         <project.build.name>${project.artifactId}</project.build.name>

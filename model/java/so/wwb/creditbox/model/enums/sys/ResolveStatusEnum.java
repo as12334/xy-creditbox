@@ -1,6 +1,6 @@
 package so.wwb.creditbox.model.enums.sys;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 /**
  * 域名绑定状态枚举:1 待绑定，2绑定中，3待解绑，4解绑中，5完成，6失败

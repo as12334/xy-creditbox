@@ -1,6 +1,6 @@
 package so.wwb.creditbox.model.enums.schedule;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 import so.wwb.creditbox.model.enums.base.IChildEnum;
 
 public enum TaskSchedulerEnum implements ICodeEnum ,IChildEnum{

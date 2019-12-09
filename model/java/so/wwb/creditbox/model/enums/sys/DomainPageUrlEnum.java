@@ -1,6 +1,7 @@
 package so.wwb.creditbox.model.enums.sys;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
+
 public enum DomainPageUrlEnum implements ICodeEnum {
     BOSS("/manager/passport/login.html", "manager page"),//后台
     COMPANIES("/companies/passport/login.html", "manager page"),//运营商后台

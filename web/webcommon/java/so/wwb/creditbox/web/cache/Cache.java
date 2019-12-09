@@ -28,7 +28,7 @@ import so.wwb.creditbox.model.enums.base.BossParamEnum;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryOdds;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
 import so.wwb.creditbox.model.manager.sys.po.VSysSiteDomain;
-import so.wwb.creditbox.web.tools.HidTool;
+import so.wwb.creditbox.model.common.HidTool;
 
 import java.io.Serializable;
 import java.text.MessageFormat;

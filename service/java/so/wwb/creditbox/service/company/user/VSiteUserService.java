@@ -1,10 +1,12 @@
 package so.wwb.creditbox.service.company.user;
 
 import org.soul.commons.bean.BeanTool;
+import org.soul.commons.collections.CollectionTool;
 import org.soul.commons.lang.string.RandomStringTool;
 import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.query.Criteria;
 import org.soul.commons.query.enums.Operator;
+import org.soul.commons.query.sort.Order;
 import org.soul.service.support.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,8 +22,7 @@ import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 /**
@@ -113,7 +114,7 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
     @Override
     public VSiteUserVo searchSuperUser(VSiteUserVo objectVo) {
         VSiteUserSo search = objectVo.getSearch();
-        List<VSiteUser> parentUsers = mapper.searchLevelUser(search);
+        List<SysUserExtend> parentUsers = mapper.searchLevelUser(search);
         //不能跨级新增账户
         if(parentUsers.size() == 0){
             objectVo.setSuccess(false);
@@ -124,13 +125,37 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
         SysUserExtend parendUser;
         //如果是新增，上级就是列表的第一个
         if(objectVo.getSearch().getId() == null){
-            parendUser = new SysUserExtend();
-            parendUser = BeanTool.copyProperties(parentUsers.get(0), parendUser);
+            if(objectVo.getSearch().getOwnerId() == null){
+                parendUser = parentUsers.get(0);
+            }
+            else {
+                parendUser = sysUserExtendMapper.get(objectVo.getSearch().getOwnerId());
+            }
+
         }else {
             parendUser = sysUserExtendMapper.get(objectVo.getResult().getOwnerId());
         }
         objectVo.setParentUser(parendUser);
         return objectVo;
+    }
+
+    @Override
+    public Map<String, List<SysUserExtend>> searchAllManagerList(VSiteUserVo objectVo) {
+        String[] userTypeArray = {UserTypeEnum.BRANCH.getCode(),UserTypeEnum.SHAREHOLDER.getCode(),UserTypeEnum.DISTRIBUTOR.getCode()};
+        VSiteUserSo search = objectVo.getSearch();
+        Criteria criteria = Criteria.add(VSiteUser.PROP_HID, Operator.LIKE_S, search.getHid())
+                .addAnd(VSiteUser.PROP_USER_TYPE, Operator.IN,userTypeArray);
+        List<SysUserExtend> list = sysUserExtendMapper.search(criteria, Order.asc(VSiteUser.PROP_USER_TYPE));
+
+        Map<String, List<SysUserExtend>> map = new LinkedHashMap<>();
+        for (SysUserExtend vSiteUser : list) {
+            if(map.get(vSiteUser.getUserType()) == null){
+                ArrayList<SysUserExtend> vSiteUsers = new ArrayList<>();
+                map.put(vSiteUser.getUserType(),vSiteUsers);
+            }
+            map.get(vSiteUser.getUserType()).add(vSiteUser);
+        }
+        return map;
     }
 
 //    @Override

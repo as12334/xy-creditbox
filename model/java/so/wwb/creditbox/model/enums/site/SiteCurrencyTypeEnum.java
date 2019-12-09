@@ -1,6 +1,6 @@
 package so.wwb.creditbox.model.enums.site;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 public enum SiteCurrencyTypeEnum implements ICodeEnum {
 		CNY("CNY","人民币");

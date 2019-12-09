@@ -24,6 +24,7 @@ import so.wwb.creditbox.context.LotteryCommonContext;
 import so.wwb.creditbox.context.LotteryContextParam;
 import so.wwb.creditbox.iservice.company.user.IVSiteUserService;
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
+import so.wwb.creditbox.model.company.user.so.VSiteUserSo;
 import so.wwb.creditbox.model.company.user.vo.VSiteUserListVo;
 import so.wwb.creditbox.model.company.user.vo.VSiteUserVo;
 import so.wwb.creditbox.company.user.form.VSiteUserSearchForm;
@@ -35,6 +36,7 @@ import so.wwb.creditbox.model.enums.lottery.*;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
+import so.wwb.creditbox.model.session.Session;
 import so.wwb.creditbox.utility.DesTool;
 import so.wwb.creditbox.web.passport.captcha.GoogleAuthenticator;
 import so.wwb.creditbox.web.tools.SessionManagerCommon;
@@ -44,6 +46,8 @@ import so.wwb.creditbox.web.tools.token.Token;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 
@@ -188,26 +192,86 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         createUser(objectVo,model);
         return getViewBasePath() + "/ChildEdit";
     }
-    @RequestMapping("/hy_add")
+    @RequestMapping("/hy_add_du")
     @Token(generate = true)
     public String hyAdd(VSiteUserVo objectVo, Model model) {
-        String thisUserType = SessionManager.getUser().getUserType();
-        //如果不是代理新增会员
-        if(!thisUserType.equals(UserTypeEnum.AGENT.getCode())){
-            //第一次加载新增会员页面，默认本用户类型
-            if(StringTool.isBlank(objectVo.getSearch().getOwnerUserType())){
-                //如果是公司类型，默认分公司类型
-                if(thisUserType.equals(UserTypeEnum.COMPANY.getCode())){
-                    objectVo.getSearch().setOwnerUserType(UserTypeEnum.BRANCH.getCode());
-                }
-                else {
-                    objectVo.getSearch().setOwnerUserType(thisUserType);
-                }
+        VSiteUserSo search = objectVo.getSearch();
+        search.setUserType(UserTypeEnum.PLAYER.getCode());
+        if(objectVo.getRdoutype() == null){
+            SubSysCodeEnum subSysCodeEnum = EnumTool.enumOf(SubSysCodeEnum.class, SessionManager.getSubsysCode());
+            switch (subSysCodeEnum){
+                case COMPANY:search.setOwnerUserType(UserTypeEnum.BRANCH.getCode());
+                    break;
+                case BRANCH:search.setOwnerUserType(UserTypeEnum.SHAREHOLDER.getCode());
+                    break;
+                case SHAREHOLDER:search.setOwnerUserType(UserTypeEnum.DISTRIBUTOR.getCode());
+                    break;
+                case DISTRIBUTOR:search.setOwnerUserType(UserTypeEnum.AGENT.getCode());
+                    break;
             }
         }
-        objectVo.getSearch().setUserType(UserTypeEnum.PLAYER.getCode());
+        else {
+            UserTypeEnum userTypeEnum = EnumTool.enumOf(UserTypeEnum.class, objectVo.getRdoutype());
+            search.setOwnerUserType(userTypeEnum.getCode());
+        }
+
         createUser(objectVo,model);
-        return getViewBasePath() + "/HyEdit";
+//        SysUserExtend parentUser;
+//        search.setHid(SessionManager.getSysUserExtend().getHid());
+//
+//        objectVo._setDataSourceId(SessionManager.getSiteId());
+//        Map<String, List<SysUserExtend>> stringListMap = this.getService().searchAllManagerList(objectVo);
+//
+//        if(StringTool.isBlank(objectVo.getRdoutype())){
+//            if(search.getOwnerId() != null){
+//                search.setId(search.getOwnerId());
+//                SysUserExtendVo sysUserExtendVo = new SysUserExtendVo();
+//                sysUserExtendVo.setDataSourceId(SessionManager.getSiteId());
+//                sysUserExtendVo.getSearch().setId(search.getOwnerId());
+//                sysUserExtendVo = ServiceTool.sysUserExtendService().get(sysUserExtendVo);
+//                parentUser = sysUserExtendVo.getResult();
+//
+//                objectVo.setParentUser(sysUserExtendVo.getResult());
+//                objectVo.setRdoutype(parentUser.getUserType());
+//                objectVo.setSuperUserList(stringListMap.get(parentUser.getUserType()));
+//                objectVo.setParentUser(parentUser);
+//            }
+//            else{
+//                for (String s : stringListMap.keySet()) {
+//                    List<SysUserExtend> vSiteUsers = stringListMap.get(s);
+//                    objectVo.setRdoutype(s);
+//                    objectVo.setSuperUserList(vSiteUsers);
+//                    objectVo.setParentUser(vSiteUsers.get(0));
+//                    break;
+//                }
+//            }
+//
+//        }
+//        else {
+//            List<SysUserExtend> sysUserExtends = stringListMap.get(objectVo.getRdoutype());
+//            objectVo.setSuperUserList(sysUserExtends);
+//            if(search.getOwnerId() != null){
+//                search.setId(search.getOwnerId());
+//                objectVo = this.getService().get(objectVo);
+//                SysUserExtendVo sysUserExtendVo = new SysUserExtendVo();
+//                sysUserExtendVo.getSearch().setId(search.getOwnerId());
+//                sysUserExtendVo = ServiceTool.sysUserExtendService().get(sysUserExtendVo);
+//                objectVo.setParentUser(sysUserExtendVo.getResult());
+//            }
+//            else if(sysUserExtends != null && sysUserExtends.size() > 0){
+//
+//                objectVo.setParentUser(sysUserExtends.get(0));
+//                createUser(objectVo,model);
+//            }else{
+//                objectVo.setErrMsg("抱歉！您不能跨級新增帳戶！");
+//                model.addAttribute("command",objectVo);
+//                return getViewBasePath() + "/MessagePage";
+//            }
+//
+//        }
+//        objectVo = this.getService().sumSuperStintOccupy(objectVo);
+//        model.addAttribute("command",objectVo);
+        return getViewBasePath() + "/edit/HyDuEdit";
     }
 
 
@@ -218,9 +282,10 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         //查詢上級用戶  begin
         objectVo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
         objectVo = this.getService().searchSuperUser(objectVo);
+        //查詢上級用戶 end
         if(objectVo.isSuccess()){
             objectVo = this.getService().sumSuperStintOccupy(objectVo);
-            //查詢上級用戶 end
+
             objectVo.setValidateRule(JsRuleCreator.create(AddSysUserExtendForm.class, "result"));
         }
         model.addAttribute("command", objectVo);

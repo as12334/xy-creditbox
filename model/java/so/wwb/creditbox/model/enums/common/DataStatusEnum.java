@@ -1,6 +1,6 @@
 package so.wwb.creditbox.model.enums.common;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 /**
  * 数据状态

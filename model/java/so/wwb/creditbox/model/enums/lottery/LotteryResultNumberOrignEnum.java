@@ -1,6 +1,6 @@
 package so.wwb.creditbox.model.enums.lottery;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 /**
  * Create by diego on 2018-02-12

@@ -1,7 +1,7 @@
 package so.wwb.creditbox.model.enums.base;
 
 import org.soul.commons.enums.EnumTool;
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 public enum SubSysCodeEnum implements ICodeEnum {
     BOSS("boss", "总控"),

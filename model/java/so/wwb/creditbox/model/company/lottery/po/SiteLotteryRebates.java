@@ -1,10 +1,10 @@
 package so.wwb.creditbox.model.company.lottery.po;
 
-import org.soul.commons.lang.string.HidTool;
 import org.soul.commons.support.Nonpersistent;
 
 import org.soul.commons.bean.IEntity;
 import org.soul.model.common.Sortable;
+import so.wwb.creditbox.model.common.HidTool;
 
 
 /**

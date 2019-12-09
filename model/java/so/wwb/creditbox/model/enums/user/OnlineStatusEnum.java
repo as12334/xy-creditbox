@@ -1,6 +1,6 @@
 package so.wwb.creditbox.model.enums.user;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 public enum OnlineStatusEnum implements ICodeEnum{
     ONLINE("1", "在线"),

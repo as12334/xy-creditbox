@@ -1,6 +1,6 @@
 package so.wwb.creditbox.model.enums.lottery;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 public enum LotteryHashRecordStatusEnum implements ICodeEnum {
     PROCESS("process", "处理中"),

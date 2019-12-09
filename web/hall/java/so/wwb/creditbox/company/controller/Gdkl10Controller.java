@@ -17,7 +17,7 @@ import so.wwb.creditbox.model.hall.HandlerForm;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
 import so.wwb.creditbox.model.manager.lottery.vo.LotteryResultVo;
 import so.wwb.creditbox.web.cache.Cache;
-import so.wwb.creditbox.web.tools.HidTool;
+import so.wwb.creditbox.model.common.HidTool;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

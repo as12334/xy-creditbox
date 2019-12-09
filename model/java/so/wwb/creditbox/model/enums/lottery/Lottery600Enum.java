@@ -1,6 +1,6 @@
 package so.wwb.creditbox.model.enums.lottery;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 public enum Lottery600Enum implements ICodeEnum {
     CQSSC("1","cqssc" ,"重庆时时彩"),

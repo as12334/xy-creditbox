@@ -1,6 +1,6 @@
 package so.wwb.creditbox.model.enums.site;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 public enum SiteLanguageEnum implements ICodeEnum {
 		ZH_CN("zh_CN","中文简体"),

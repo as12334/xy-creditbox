@@ -1,7 +1,7 @@
 package so.wwb.creditbox.web.defense.biz.enums;
 
 import org.soul.commons.enums.EnumTool;
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 public enum DefenseAction implements ICodeEnum {
     PLAYER_REGISTER("player_register","防御:玩家注册"),

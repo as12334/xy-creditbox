@@ -1,6 +1,6 @@
 package so.wwb.creditbox.common.export.core.conf;
 
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 /**
  * ExportTypeEnum

@@ -26,9 +26,9 @@
         function changefgsuser(v) {
             var val = v;
 
-            location.href = "${root}/account/fgs_add.html" + v;
+            location.href = "${root}/account/gd_add.html?search.ownerId=" + v;
+            var kc_low_maxrate = ${command.result.stintOccupy}+"";
         }
-        var kc_low_maxrate = ${command.result.stintOccupy};
     </script>
 </head>
 <body>
@@ -86,7 +86,7 @@
                                             <c:when test="${empty command.result.id}">
                                                 &nbsp;<select id="sltupuser" name="result.ownerId" onchange="changefgsuser(this.value);">
                                                 <c:forEach items="${command.superUserList}" var="result">
-                                                <option value="${result.id}" data-credit="${result.credits}">${fn:substringBefore(result.username,'@')}</option>
+                                                <option value="${result.id}" data-credit="${result.credits}" ${result.id == command.parentUser.id ? 'selected':''}>${fn:substringBefore(result.username,'@')}</option>
                                                 </c:forEach>
                                             </c:when>
                                             <c:otherwise>

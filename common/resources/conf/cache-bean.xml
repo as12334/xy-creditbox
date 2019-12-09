@@ -186,7 +186,7 @@
 		<property name="dubboVersionApp" value="${service.dubbo.application.name}"/>
 		<property name="dataProviderMethod" value="load"/>
 		<property name="cacheLoadStrategy" ref="FIRST_TIME"/>
-		<property name="cacheProviderType" ref="siteJedisPorxy"/>
+		<property name="cacheProviderType" ref="jedisProxy"/>
 		<property name="expire" value="3600"/>
 		<property name="methodArgs">
 			<list>

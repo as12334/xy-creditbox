@@ -1,5 +1,5 @@
 package so.wwb.creditbox.model.enums.lottery;
-import org.soul.commons.enums.ICodeEnum;
+import org.soul.commons.ienums.ICodeEnum;
 
 /**
  * 彩票赔率bet_num枚举
