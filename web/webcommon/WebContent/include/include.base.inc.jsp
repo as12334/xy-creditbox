@@ -10,6 +10,7 @@
 <%@page trimDirectiveWhitespaces="true" %>
 <%@ page import="so.wwb.creditbox.web.tools.SysParamTool" %>
 <%@ page import="so.wwb.creditbox.web.route.ManageRoute" %>
+<%@ page import="so.wwb.creditbox.context.LotteryCommonContext" %>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -28,6 +29,7 @@
 <c:set var="timeZone" value="<%= SessionManagerCommon.getTimeZone() %>"/>
 <c:set var="dateQPicker" value="<%=DateQuickPicker.getInstance() %>"/>
 <c:set var="user" value="<%= SessionManagerCommon.getSysUserExtend() %>"/>
+<c:set var="siteUser" value="<%= LotteryCommonContext.get().getDomainUserName() %>"/>
 
 <c:set var="rcVersion" value="<%= Cache.getRcVersion() %>"/>
 <c:set var="domain" value="<%= request.getServerName() %>"/>

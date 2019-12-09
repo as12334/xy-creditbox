@@ -51,7 +51,7 @@
                         <td width="26" align="center">
                             <div class="topArr"></div>
                         </td>
-                        <td><b>新增股东</b></td>
+                        <td><b>新增代理</b></td>
                         <td width="100">&nbsp;</td>
                         <td width="140" align="right">
                             <div class="btnIco">
@@ -80,7 +80,7 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <td align="right" class="tdbg1">上級分公司&nbsp;</td>
+                                    <td align="right" class="tdbg1">上級總代&nbsp;</td>
                                     <td align="left" width="150">
                                         <c:choose>
                                             <c:when test="${empty command.result.id}">
@@ -103,7 +103,7 @@
 
                                 </tr>
                                 <tr>
-                                    <td align="right" width="140" class="tdbg1">分公司帳號&nbsp;</td>
+                                    <td align="right" width="140" class="tdbg1">代理帳號&nbsp;</td>
                                     <td colspan="3" align="left">
                                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                             <tr>

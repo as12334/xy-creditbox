@@ -116,7 +116,7 @@
 
 
                 <td>&nbsp;</td>
-                <td width="120"><div class="btnIco"><a id="" href="${root}/vSiteUser/createUser/6.html"><div class="GSico">新增${views.page["UserTypeEnum.".concat(command.search.userType)]}</div></a></div></td>
+                <td width="120"><div class="btnIco"><a id="" href="${root}/account/zd_add.html"><div class="GSico">新增${views.page["UserTypeEnum.".concat(command.search.userType)]}</div></a></div></td>
             </tr>
         </table></td>
         <td class="topRightBg1"></td>
@@ -147,65 +147,66 @@
                 </tr>
 
                 <tbody class="list_hover">
-                <tr>
-                    <td>
-                        <img src="${resRoot}/images/USER_0.gif">
-                    </td>
-                    <td>jj0099</td>
-                    <td align="left">
-                        <div class="mytip" uid="6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" user-name="zdl001">
+                <c:forEach items="${command.result}" var="p">
+                    <tr>
+                        <td>
+                            <img src="${resRoot}/images/USER_0.gif">
+                        </td>
+                        <td>${fn:substringBefore(p.ownerName,'@')}</td>
+                        <td align="left">
+                            <div class="mytip" uid="6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" user-name="zdl001">
 
-                            <label class="c8">(快):</label>0%
+                                <label class="c8">(快):</label>${p.superiorOccupy}%
 
-                        </div>
-                    </td>
-                    <td>zdl001</td>
-                    <td align="left">
+                            </div>
+                        </td>
+                        <td>${fn:substringBefore(p.username,'@')}</td>
+                        <td align="left">
 
-                        <label class="c8">(快):</label>...
+                            <label class="c8">(快):</label>${p.stintOccupy > 0 ?p.stintOccupy:'...'}
+                        </td>
+                        <td>zdc</td>
+                        <td><a href="${root}/account/fgs_add.html?search.id=${p.id}" class="redLink">0</a></td>
+                        <td><a href="hy_list.aspx?lid=0&ml=&state=0&flag=0&keyword=&page=1&sortName=0&sortType=0&uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5&ut=zd" class="redLink">0</a></td>
+                        <td align="left">
 
+                            <label class="c8">(快):</label>${p.credits}
 
-                    </td>
-                    <td>zdc</td>
-                    <td><a href="dl_list.aspx?lid=0&ml=&state=0&flag=0&keyword=&page=1&sortName=0&sortType=0&uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5&ut=zd" class="redLink">0</a></td>
-                    <td><a href="hy_list.aspx?lid=0&ml=&state=0&flag=0&keyword=&page=1&sortName=0&sortType=0&uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5&ut=zd" class="redLink">0</a></td>
-                    <td align="left">
+                        </td>
 
-                        <label class="c8">(快):</label>0
+                        <td align="left">
 
-                    </td>
+                            <label class="c8">(快):</label>0</td>
 
-                    <td align="left">
+                        </td>
 
-                        <label class="c8">(快):</label>0</td>
+                        <td align="center">
 
-                    </td>
+                            <label class="c8">(快):</label>${p.handicap}
 
-                    <td align="center">
+                        </td>
 
-                        <label class="c8">(快):</label>不限
+                        <td align="left" width="190">
 
-                    </td>
+                            <label class="c8">(快):</label>信用
 
-                    <td align="left" width="190">
+                        </td>
 
-                        <label class="c8">(快):</label>信用
+                        <td>19-11-21</td>
+                        <td>
+                            <label class="c8">(快):</label>
+                            <img src="${resRoot}/images/${p.manualAutoShipments == 1?"img_1.gif":"img_0.gif"}" title="該帳號可以補貨">&nbsp;&nbsp;&nbsp;
+                            <a href="/AutoLet/AutoLet_Show_kc.aspx?uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5&mid=2&lid=0" flag="kc" sale="1" class="setFlyAway" title="查看自動補貨設定"><img src="${resRoot}/Images/v.gif" /></a>
 
-                    </td>
+                        </td>
 
-                    <td>19-11-21</td>
-                    <td>
-
-                        <label class="c8">(快):</label><img src="${resRoot}/images/img_1.gif" title="該帳號可以補貨">&nbsp;&nbsp;&nbsp;<a href="/AutoLet/AutoLet_Show_kc.aspx?uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5&mid=2&lid=0" flag="kc" sale="1" class="setFlyAway" title="查看自動補貨設定"><img src="${resRoot}/Images/v.gif" /></a>
-
-                    </td>
-
-                    <td width="98" align="center"><div class="TSico"><a href="drawback.aspx?uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" class="redLink">退水</a></div>
-                        <div class="XGico"><a href="zd_edit.aspx?uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" class="redLink">修改</a></div>
-                        <div class="RZico"><a href="../ViewLog/ViewUserLoginInfo.aspx?uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" class="redLink editBtn">日誌</a></div>
-                        <div class="JLico"><a href="../ViewLog/LogUserChange.aspx?uid=6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" class="redLink editBtn">記錄</a></div></td>
-                    <td align="center"><button type="button" name="Submit" uid="6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" status="0" data-name="zdl001" class="btn status">啟用</button></td>
-                </tr>
+                        <td width="98" align="center"><div class="TSico"><a href="${root}/siteLotteryRebates/editRebate.html?search.id=${p.id}" class="redLink">退水</a></div>
+                            <div class="XGico"><a href="${root}/account/fgs_add.html?search.id=${p.id}" class="redLink">修改</a></div>
+                            <div class="RZico"><a href="${root}/log/ViewUserLoginInfo.html?search.id=${p.id}" class="redLink editBtn">日誌</a></div>
+                            <div class="JLico"><a href="${root}/log/LogUserChange.html?search.id=${p.id}" class="redLink editBtn">記錄</a></div></td>
+                        <td align="center"><button type="button" name="Submit" uid="6cc0d7a9-e749-4cdf-bdce-04aeb31f02d5" status="0" data-name="zdl001" class="btn status">啟用</button></td>
+                    </tr>
+                </c:forEach>
                 </tbody>
 
 

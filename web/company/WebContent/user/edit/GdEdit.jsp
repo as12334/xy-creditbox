@@ -51,7 +51,7 @@
                         <td width="26" align="center">
                             <div class="topArr"></div>
                         </td>
-                        <td><b>新增股东</b></td>
+                        <td><b>新增股東</b></td>
                         <td width="100">&nbsp;</td>
                         <td width="140" align="right">
                             <div class="btnIco">

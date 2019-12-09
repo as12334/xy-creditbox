@@ -1,7 +1,9 @@
 package so.wwb.creditbox.company.user.controller;
 
 import org.soul.commons.enums.EnumTool;
+import org.soul.commons.init.context.CommonContext;
 import org.soul.commons.init.context.Const;
+import org.soul.commons.init.context.ContextParam;
 import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.log.Log;
 import org.soul.commons.log.LogFactory;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import so.wwb.creditbox.common.dubbo.ServiceTool;
 import so.wwb.creditbox.company.session.SessionManager;
 import so.wwb.creditbox.company.user.form.AddSysUserExtendForm;
+import so.wwb.creditbox.context.LotteryCommonContext;
+import so.wwb.creditbox.context.LotteryContextParam;
 import so.wwb.creditbox.iservice.company.user.IVSiteUserService;
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
 import so.wwb.creditbox.model.company.user.vo.VSiteUserListVo;
@@ -220,6 +224,7 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
             objectVo.setValidateRule(JsRuleCreator.create(AddSysUserExtendForm.class, "result"));
         }
         model.addAttribute("command", objectVo);
+        LotteryCommonContext.get().getDomainUserName();
         return objectVo;
     }
 
