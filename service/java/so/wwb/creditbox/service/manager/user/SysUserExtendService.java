@@ -638,7 +638,9 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
         strings.add(SysUserExtend.PROP_CREDITS);
         strings.add(SysUserExtend.PROP_SUPERIOR_OCCUPY);
         strings.add(SysUserExtend.PROP_STINT_OCCUPY);
+        strings.add(SysUserExtend.PROP_STINT_OCCUPY_SWITCH);
         strings.add(SysUserExtend.PROP_STATUS);
+        strings.add(SysUserExtend.HANDICAP);
 
         if(objectVo.getResult().getUserType().equals(UserTypeEnum.BRANCH.getCode())){
             strings.add(SysUserExtend.PROP_GENERAL);

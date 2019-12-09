@@ -177,7 +177,7 @@
 										</span>
                                     </label>
                                     <span id="lowmaxrate_six_wrap"></span>
-                                    <span id="min_xz_downRate_six" style="display:none;">${command.parentUser.stintOccupy}</span>
+                                    <span id="min_xz_downRate_six" style="display:none;">${command.result.stintOccupy}</span>
                                 </td>
                             </tr>
 
@@ -318,12 +318,12 @@
                             </tr>
                             <tr>
                                 <td align="right" width="140" class="tdbg1"> (快彩)下綫占成上限&nbsp;</td>
-                                <td align="left"><label class="topLabel"><input type="radio"  name="allowmaxrate_kc" value="0" ${empty command.result.stintOccupy || command.result.stintOccupy==-1?"checked":""}>
+                                <td align="left"><label class="topLabel"><input type="radio"  name="result.stintOccupySwitch" value="0" ${command.result.stintOccupySwitch !='1' ?"checked":""}>
                                     <span>
 											占餘成數下綫任占
 										</span>
                                 </label>
-                                    <label class="topLabel"><input type="radio"  name="allowmaxrate_kc" value="1" ${command.result.stintOccupy > -1?"checked":""}>
+                                    <label class="topLabel"><input type="radio"  name="result.stintOccupySwitch" value="1" ${command.result.stintOccupySwitch == '1'?"checked":""}>
                                         <span>
 											限製下綫可占成數
 										</span>
@@ -404,18 +404,18 @@
                                 </td>
                             </tr>
 
-                            <%--<tr>--%>
-                                <%--<td align="right" width="140" class="tdbg1"> (快彩)信用&nbsp;</td>--%>
-                                <%--<td align="left">--%>
+                            <tr>
+                                <td align="right" width="140" class="tdbg1"> (快彩)信用&nbsp;</td>
+                                <td align="left">
 
-                                    <%--<label class="topLabel"><input type="radio" name="isCash_kc" id="isCash_kc" value="0" checked="checked" disabled="">--%>
-                                        <%--<span>--%>
-										<%--信用--%>
-									<%--</span>--%>
-                                    <%--</label>--%>
+                                    <label class="topLabel"><input type="radio" name="isCash_kc" id="isCash_kc" value="0" checked="checked" disabled="">
+                                        <span>
+										信用
+									</span>
+                                    </label>
 
-                                <%--</td>--%>
-                            <%--</tr>--%>
+                                </td>
+                            </tr>
 
                             </tbody></table></td>
                     </tr>

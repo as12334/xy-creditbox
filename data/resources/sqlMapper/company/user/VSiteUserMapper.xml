@@ -79,6 +79,7 @@
         <result column="set_odds" property="setOdds"/>
         <result column="owner_name" property="ownerName"/>
         <result column="handicap" property="handicap"/>
+        <result column="stint_occupy_switch" property="stintOccupySwitch"/>
         <result column="owner_user_type" property="ownerUserType"/>
         <result column="child_num" property="childNum"/>
     </resultMap>

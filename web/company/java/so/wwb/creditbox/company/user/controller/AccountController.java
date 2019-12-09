@@ -145,7 +145,7 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
     public String gdAdd(VSiteUserVo objectVo, Model model) {
         objectVo.getSearch().setUserType(UserTypeEnum.SHAREHOLDER.getCode());
         objectVo.getSearch().setOwnerUserType(UserTypeEnum.BRANCH.getCode());
-        createUser(objectVo,model);
+        objectVo = createUser(objectVo,model);
         if(objectVo.isSuccess()){
             return getViewBasePath() + "/edit/GdEdit";
         }
@@ -159,7 +159,7 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
     public String zdAdd(VSiteUserVo objectVo, Model model) {
         objectVo.getSearch().setUserType(UserTypeEnum.DISTRIBUTOR.getCode());
         objectVo.getSearch().setOwnerUserType(UserTypeEnum.SHAREHOLDER.getCode());
-        createUser(objectVo,model);
+        objectVo = createUser(objectVo,model);
         if(objectVo.isSuccess()){
             return getViewBasePath() + "/edit/ZdEdit";
         }

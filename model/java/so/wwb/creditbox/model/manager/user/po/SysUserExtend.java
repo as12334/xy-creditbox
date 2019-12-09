@@ -8,6 +8,7 @@ import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.support.Nonpersistent;
 import org.soul.model.security.privilege.po.SysUser;
 import so.wwb.creditbox.model.common.Const;
+import so.wwb.creditbox.model.enums.lottery.SetOddsEnum;
 
 
 /**
@@ -32,6 +33,7 @@ public class SysUserExtend extends SysUser {
 	public static final String PROP_CREDITS = "credits";
 	public static final String PROP_UPDATE_NAME = "updateName";
 	public static final String PROP_STINT_OCCUPY = "stintOccupy";
+	public static final String PROP_STINT_OCCUPY_SWITCH = "stintOccupySwitch";
 	public static final String PROP_BREAKPOINT = "breakpoint";
 	public static final String PROP_MANUAL_AUTO_SHIPMENTS = "manualAutoShipments";
 	public static final String PROP_MODE_SELECTION = "modeSelection";
@@ -55,6 +57,9 @@ public class SysUserExtend extends SysUser {
 	private Double credits;
 	/**  */
 	private String updateName;
+	/** 限制占成开关 */
+	private Integer stintOccupySwitch;
+
 	/** 限制占成 */
 	private Integer stintOccupy;
 	/** 1占余归总监、2占余归分公司 */
@@ -168,7 +173,7 @@ public class SysUserExtend extends SysUser {
 		this.testAccount = value;
 	}
 	public String getSetOdds() {
-		return this.setOdds;
+		return this.setOdds==null? SetOddsEnum.OFF.getCode():this.setOdds;
 	}
 
 	public void setSetOdds(String value) {
@@ -199,6 +204,15 @@ public class SysUserExtend extends SysUser {
 	public void setOwnerUserType(String ownerUserType) {
 		this.ownerUserType = ownerUserType;
 	}
+
+	public Integer getStintOccupySwitch() {
+		return stintOccupySwitch;
+	}
+
+	public void setStintOccupySwitch(Integer stintOccupySwitch) {
+		this.stintOccupySwitch = stintOccupySwitch;
+	}
+
 
 	//endregion
 

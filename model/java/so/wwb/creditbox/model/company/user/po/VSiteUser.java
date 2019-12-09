@@ -10,7 +10,7 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-12-6 21:47:27
+ * @time 2019-12-9 15:54:43
  */
 //region your codes 1
 public class VSiteUser implements IEntity<Integer> {
@@ -97,6 +97,7 @@ public class VSiteUser implements IEntity<Integer> {
 	public static final String PROP_SET_ODDS = "setOdds";
 	public static final String PROP_OWNER_NAME = "ownerName";
 	public static final String PROP_HANDICAP = "handicap";
+	public static final String PROP_STINT_OCCUPY_SWITCH = "stintOccupySwitch";
 	public static final String PROP_OWNER_USER_TYPE = "ownerUserType";
 	public static final String PROP_CHILD_NUM = "childNum";
 	//endregion
@@ -255,6 +256,8 @@ public class VSiteUser implements IEntity<Integer> {
 	private String ownerName;
 	/**  */
 	private String handicap;
+	/**  */
+	private String stintOccupySwitch;
 	/**  */
 	private String ownerUserType;
 	/**  */
@@ -804,6 +807,13 @@ public class VSiteUser implements IEntity<Integer> {
 
 	public void setHandicap(String value) {
 		this.handicap = value;
+	}
+	public String getStintOccupySwitch() {
+		return this.stintOccupySwitch;
+	}
+
+	public void setStintOccupySwitch(String value) {
+		this.stintOccupySwitch = value;
 	}
 	public String getOwnerUserType() {
 		return this.ownerUserType;

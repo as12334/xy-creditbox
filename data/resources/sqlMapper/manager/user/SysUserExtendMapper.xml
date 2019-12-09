@@ -9,6 +9,7 @@
         <result column="credits" property="credits"/>
         <result column="update_name" property="updateName"/>
         <result column="stint_occupy" property="stintOccupy"/>
+        <result column="stint_occupy_switch" property="stintOccupySwitch"/>
         <result column="breakpoint" property="breakpoint"/>
         <result column="manual_auto_shipments" property="manualAutoShipments"/>
         <result column="mode_selection" property="modeSelection"/>

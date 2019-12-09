@@ -161,8 +161,8 @@ public class AddSysUserExtendForm implements IForm {
     public void setResult_stintOccupy(Double result_stintOccupy) {
         this.result_stintOccupy = result_stintOccupy;
     }
-    @Depends(property = {"result.userType"}, operator = {Operator.NE}, value = {"8"})
-    @NotBlank
+
+    @Depends(property = {"result.userType"}, operator = {Operator.EQ}, value = {"4"})
     public String getResult_setOdds() {
         return result_setOdds;
     }

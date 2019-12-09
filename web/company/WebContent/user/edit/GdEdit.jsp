@@ -103,7 +103,7 @@
 
                                 </tr>
                                 <tr>
-                                    <td align="right" width="140" class="tdbg1">分公司帳號&nbsp;</td>
+                                    <td align="right" width="140" class="tdbg1">股東帳號&nbsp;</td>
                                     <td colspan="3" align="left">
                                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                             <tr>
@@ -136,7 +136,7 @@
                                 </tr>
                                 <tr>
                                     <td align="right" width="140" class="tdbg1">
-                                        分公司名稱&nbsp;
+                                        股東名稱&nbsp;
                                     </td>
                                     <td colspan="3" align="left">
                                         &nbsp;<input type="text" value="${command.result.nickname}" name="result.nickname" id="userNicker" class="text w130">
@@ -179,84 +179,25 @@
 
 
                             <tr>
-                                <td align="right" width="140" class="tdbg1"> (快彩)總監占成&nbsp;</td>
+                                <td align="right" width="140" class="tdbg1"> (快彩)分公司占成&nbsp;</td>
                                 <td align="left">&nbsp;<input type="text" data-max="${command.parentUser.superiorOccupy}" value="${command.result.superiorOccupy}" name="result.superiorOccupy" id="userRate_kc" class="text zfNumber">
                                     % 　最高可設占成
                                     <label id="userMaxRate_kc">${command.parentUser.superiorOccupy}%</label>
                                 </td>
                             </tr>
-
-
-                            <%--<tr>--%>
-                                <%--<td align="right" width="140" class="tdbg1"> (快彩)剩餘成數:&nbsp;</td>--%>
-                                <%--<td align="left">--%>
-                                    <%--<table border="0" cellspacing="0" cellpadding="0">--%>
-                                        <%--<tr>--%>
-
-                                            <%--<td width="60"><label class="topLabel">--%>
-                                                <%--<input type="radio" name="result.breakpoint"--%>
-                                                       <%--value="1" ${command.result.breakpoint != '2'?'checked':''} />--%>
-                                                <%--<span>--%>
-										<%--總監--%>
-									<%--</span>--%>
-                                            <%--</label></td>--%>
-                                            <%--<td width="80"><label class="topLabel">--%>
-                                                <%--<input type="radio" name="result.breakpoint"--%>
-                                                       <%--value="2" ${command.result.breakpoint == '2'?'checked':''}/>--%>
-                                                <%--<span>--%>
-										<%--分公司--%>
-									<%--</span>--%>
-                                            <%--</label></td>--%>
-                                        <%--</tr>--%>
-                                    <%--</table>--%>
-                                <%--</td>--%>
-                            <%--</tr>--%>
-
-
-                            <%--<tr>--%>
-                                <%--<td align="right" width="140" class="tdbg1"> (快彩)總賬報表:&nbsp;</td>--%>
-                                <%--<td align="left">--%>
-                                    <%--<table border="0" cellspacing="0" cellpadding="0">--%>
-                                        <%--<tr>--%>
-
-                                            <%--<td width="100"><label class="topLabel">--%>
-                                                <%--<input type="radio" name="result.general"--%>
-                                                       <%--value="1" ${command.result.general == '1'?'checked':''} />--%>
-                                                <%--<span>--%>
-										<%--總賬(非明细)--%>
-									<%--</span>--%>
-                                            <%--</label></td>--%>
-                                            <%--<td width="120"><label class="topLabel">--%>
-                                                <%--<input type="radio" name="result.general"--%>
-                                                       <%--value="2" ${command.result.general == '2'?'checked':''}/>--%>
-                                                <%--<span>--%>
-										<%--總賬(包括明細)--%>
-									<%--</span>--%>
-                                            <%--</label></td>--%>
-                                            <%--<td width="120"><label class="topLabel">--%>
-                                                <%--<input type="radio" name="result.general"--%>
-                                                       <%--value="0" ${command.result.general == '0' || empty command.result.general?'checked':''}/>--%>
-                                                <%--<span>--%>
-										<%--關閉--%>
-									<%--</span>--%>
-                                            <%--</label></td>--%>
-                                        <%--</tr>--%>
-                                    <%--</table>--%>
-                                <%--</td>--%>
-                            <%--</tr>--%>
                             <tr>
                                 <td align="right" width="140" class="tdbg1"> (快彩)下綫占成上限&nbsp;</td>
-                                <td align="left"><label class="topLabel"><input type="radio"  name="allowmaxrate_kc" value="0" ${empty command.result.stintOccupy || command.result.stintOccupy==-1?"checked":""}>
+                                <td align="left"><label class="topLabel"><input type="radio"  name="result.stintOccupySwitch" value="0" ${command.result.stintOccupySwitch !=1 ?"checked":""}>
                                     <span>
 											占餘成數下綫任占
 										</span>
                                 </label>
-                                    <label class="topLabel"><input type="radio"  name="allowmaxrate_kc" value="1" ${command.result.stintOccupy > -1?"checked":""}>
+                                    <label class="topLabel"><input type="radio"  name="result.stintOccupySwitch" value="1" ${command.result.stintOccupySwitch == 1?"checked":""}>
                                         <span>
 											限製下綫可占成數
 										</span>
                                     </label>
-                                        <span id="lowmaxrate_kc_wrap"></span>
+                                    <span id="lowmaxrate_kc_wrap"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -307,43 +248,19 @@
                             </tr>
 
 
-                            <tr>
-                                <td align="right" width="140" class="tdbg1"> (快彩)操盘:&nbsp;</td>
-                                <td align="left">
-                                    <table border="0" cellspacing="0" cellpadding="0">
-                                        <tr>
 
-                                            <td width="60"><label class="topLabel">
-                                                <input type="radio" name="result.setOdds"
-                                                       value="1" ${command.result.setOdds == '1'?"checked":""} />
-                                                <span>
-										啟用
+                            <tr>
+                                <td align="right" width="140" class="tdbg1"> (快彩)信用&nbsp;</td>
+                                <td align="left">
+
+                                    <label class="topLabel"><input type="radio" name="isCash_kc" id="isCash_kc" value="0" checked="checked" disabled="">
+                                        <span>
+										信用
 									</span>
-                                            </label></td>
-                                            <td width="80"><label class="topLabel">
-                                                <input type="radio" name="result.setOdds"
-                                                       value="0" ${empty command.result.setOdds || command.result.setOdds==0?"checked":""} />
-                                                <span>
-										禁用
-									</span>
-                                            </label></td>
-                                        </tr>
-                                    </table>
+                                    </label>
+
                                 </td>
                             </tr>
-
-                            <%--<tr>--%>
-                                <%--<td align="right" width="140" class="tdbg1"> (快彩)信用&nbsp;</td>--%>
-                                <%--<td align="left">--%>
-
-                                    <%--<label class="topLabel"><input type="radio" name="isCash_kc" id="isCash_kc" value="0" checked="checked" disabled="">--%>
-                                        <%--<span>--%>
-										<%--信用--%>
-									<%--</span>--%>
-                                    <%--</label>--%>
-
-                                <%--</td>--%>
-                            <%--</tr>--%>
 
                             </tbody></table></td>
                     </tr>
