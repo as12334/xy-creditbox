@@ -194,7 +194,7 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
     }
     @RequestMapping("/hy_add_du")
     @Token(generate = true)
-    public String hyAdd(VSiteUserVo objectVo, Model model) {
+    public String hyAddDu(VSiteUserVo objectVo, Model model) {
         VSiteUserSo search = objectVo.getSearch();
         search.setUserType(UserTypeEnum.PLAYER.getCode());
         if(objectVo.getRdoutype() == null){
@@ -216,65 +216,18 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         }
 
         createUser(objectVo,model);
-//        SysUserExtend parentUser;
-//        search.setHid(SessionManager.getSysUserExtend().getHid());
-//
-//        objectVo._setDataSourceId(SessionManager.getSiteId());
-//        Map<String, List<SysUserExtend>> stringListMap = this.getService().searchAllManagerList(objectVo);
-//
-//        if(StringTool.isBlank(objectVo.getRdoutype())){
-//            if(search.getOwnerId() != null){
-//                search.setId(search.getOwnerId());
-//                SysUserExtendVo sysUserExtendVo = new SysUserExtendVo();
-//                sysUserExtendVo.setDataSourceId(SessionManager.getSiteId());
-//                sysUserExtendVo.getSearch().setId(search.getOwnerId());
-//                sysUserExtendVo = ServiceTool.sysUserExtendService().get(sysUserExtendVo);
-//                parentUser = sysUserExtendVo.getResult();
-//
-//                objectVo.setParentUser(sysUserExtendVo.getResult());
-//                objectVo.setRdoutype(parentUser.getUserType());
-//                objectVo.setSuperUserList(stringListMap.get(parentUser.getUserType()));
-//                objectVo.setParentUser(parentUser);
-//            }
-//            else{
-//                for (String s : stringListMap.keySet()) {
-//                    List<SysUserExtend> vSiteUsers = stringListMap.get(s);
-//                    objectVo.setRdoutype(s);
-//                    objectVo.setSuperUserList(vSiteUsers);
-//                    objectVo.setParentUser(vSiteUsers.get(0));
-//                    break;
-//                }
-//            }
-//
-//        }
-//        else {
-//            List<SysUserExtend> sysUserExtends = stringListMap.get(objectVo.getRdoutype());
-//            objectVo.setSuperUserList(sysUserExtends);
-//            if(search.getOwnerId() != null){
-//                search.setId(search.getOwnerId());
-//                objectVo = this.getService().get(objectVo);
-//                SysUserExtendVo sysUserExtendVo = new SysUserExtendVo();
-//                sysUserExtendVo.getSearch().setId(search.getOwnerId());
-//                sysUserExtendVo = ServiceTool.sysUserExtendService().get(sysUserExtendVo);
-//                objectVo.setParentUser(sysUserExtendVo.getResult());
-//            }
-//            else if(sysUserExtends != null && sysUserExtends.size() > 0){
-//
-//                objectVo.setParentUser(sysUserExtends.get(0));
-//                createUser(objectVo,model);
-//            }else{
-//                objectVo.setErrMsg("抱歉！您不能跨級新增帳戶！");
-//                model.addAttribute("command",objectVo);
-//                return getViewBasePath() + "/MessagePage";
-//            }
-//
-//        }
-//        objectVo = this.getService().sumSuperStintOccupy(objectVo);
-//        model.addAttribute("command",objectVo);
         return getViewBasePath() + "/edit/HyDuEdit";
     }
 
-
+    @RequestMapping("/hy_add")
+    @Token(generate = true)
+    public String hyAdd(VSiteUserVo objectVo, Model model) {
+        VSiteUserSo search = objectVo.getSearch();
+        search.setUserType(UserTypeEnum.PLAYER.getCode());
+        search.setOwnerUserType(UserTypeEnum.AGENT.getCode());
+        createUser(objectVo,model);
+        return getViewBasePath() + "/edit/HyDuEdit";
+    }
 
     public VSiteUserVo createUser(VSiteUserVo objectVo, Model model) {
         objectVo._setDataSourceId(SessionManager.getSiteId());

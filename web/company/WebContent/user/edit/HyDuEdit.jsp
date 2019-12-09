@@ -155,7 +155,7 @@
                                     </th>
                                 </tr>
 
-                                <c:if test="${empty command.result.id}">
+                                <c:if test="${empty command.result.id && command.parentUser.subsysCode != 'agent'}">
                                     <tr>
                                         <td align="right" class="tdbg1">直屬上級&nbsp;</td>
                                         <td colspan="3" align="left">
