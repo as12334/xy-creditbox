@@ -206,7 +206,7 @@
 
                         </td>
 
-                        <td width="98" align="center"><div class="TSico"><a href="${root}/siteLotteryRebates/editRebate.html?search.id=${p.id}" class="redLink">退水</a></div>
+                        <td width="98" align="center"><div class="TSico"><a href="${root}/siteLotteryRebates/editRebates.html?search.hid=${p.hid}" class="redLink">退水</a></div>
                             <div class="XGico"><a href="${root}/account/fgs_add.html?search.id=${p.id}" class="redLink">修改</a></div>
                             <div class="RZico"><a href="${root}/log/ViewUserLoginInfo.html?search.id=${p.id}" class="redLink editBtn">日誌</a></div>
                             <div class="JLico"><a href="${root}/log/LogUserChange.html?search.id=${p.id}" class="redLink editBtn">記錄</a></div></td>

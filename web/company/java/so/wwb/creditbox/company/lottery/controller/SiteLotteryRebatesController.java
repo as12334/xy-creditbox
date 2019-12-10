@@ -53,7 +53,7 @@ public class SiteLotteryRebatesController extends BaseCrudController<ISiteLotter
     public String editRebates(SiteLotteryRebatesVo vo, Model model , HttpServletRequest request, HttpServletResponse response) {
         vo._setDataSourceId(SessionManagerBase.getSiteId());
         vo.getSearch().setSiteId(SessionManagerBase.getSiteId());
-        vo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
+//        vo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
         vo = this.getService().initRebatesData(vo);
         vo.setValidateRule(JsRuleCreator.create(SiteLotteryRebatesForm.class));
         model.addAttribute("command",vo);

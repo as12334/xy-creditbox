@@ -19,7 +19,7 @@ public interface SiteLotteryRebatesMapper extends IBaseMapper<SiteLotteryRebates
 //endregion your codes 1
 
     //region your codes 2
-    SiteLotteryRebates getRebateBetSortLine(String code, Integer siteId, String hid, String s);
+    SiteLotteryRebates getRebateBetSortLine(String code, Integer siteId, String hid, String s,String parentHid);
 
     Integer saveSiteLotteryRebates(SiteLotteryRebatesVo siteLotteryRebatesVo);
 
