@@ -658,6 +658,10 @@
     </style>
 </head>
 <body>
+
+
+<input name="search.hid" value="${command.search.hid}" type="hidden"/>
+
 <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
     <tr>
         <td class="topLeftBg1"></td>
@@ -808,20 +812,16 @@
                                                     <tbody class="list_hover">
                                                     <tr>
                                                         <td class="tdbg1">
-                                                            <label class="lBg1"></label>${map1.key}</td>
-                                                        <td style="">
-
-                                                            <input type="text"  class="text plNumber w80" id="${map1.value.code}_a_81" name="${map1.value.code}_a_81" data-val="0.85" value="0.85" data-max="${map1.value.parendRebate.rebateA}" /></td>
-                                                        <td style="">
-
-                                                            <input type="text"  class="text plNumber w80" id="${map1.value.code}_b_81" name="${map1.value.code}_b_81" data-val="3.85" value="3.85" data-max=${map1.value.parendRebate.rebateA} /></td>
-                                                        <td style="">
-
-                                                            <input type="text"  class="text plNumber w80" id="${map1.value.code}_c_81" name="${map1.value.code}_c_81" data-val="2.85" value="2.85" data-max=${map1.value.parendRebate.rebateA} /></td>
-                                                        <td><input type="text" class="text onlyNum w80" id="${map1.value.code}_max_amount_81" name="${map1.value.code}_max_amount_81" data-val="10000" value="10000" data-max=${map1.value.parendRebate.maxBet} /></td>
-                                                        <td><input type="text" class="text onlyNum w80" id="${map1.value.code}_phase_amount_81" name="${map1.value.code}_phase_amount_81" data-val="20000" value="20000" data-max=${map1.value.parendRebate.maxExpectBet} /></td>
-
-                                                        <td><input type="text" class="text onlyNum w80" id="${map1.value.code}_single_min_amount_81" name="${map1.value.code}_single_min_amount_81" data-val="2" value="2" data-max=${map1.value.parendRebate.minBet} /></td>
+                                                            <label class="lBg1"></label>${map1.key}
+                                                            <span hidden name="code" >${map1.value.code}</span>
+                                                            <span hidden name="betSort" >${map1.value.betSort}</span>
+                                                        </td>
+                                                        <td style=""><input type="text"  class="text plNumber w80" id="${map1.value.code}_a_81" name="${map1.value.code}_a_81" data-val="${map1.value.rebateA}" value="${map1.value.rebateA}" data-max="${map1.value.parendRebate.rebateA}" /></td>
+                                                        <td style=""><input type="text"  class="text plNumber w80" id="${map1.value.code}_b_81" name="${map1.value.code}_b_81" data-val="${map1.value.rebateB}" value="${map1.value.rebateB}" data-max=${map1.value.parendRebate.rebateB} /></td>
+                                                        <td style=""><input type="text"  class="text plNumber w80" id="${map1.value.code}_c_81" name="${map1.value.code}_c_81" data-val="${map1.value.rebateC}" value="${map1.value.rebateC}" data-max=${map1.value.parendRebate.rebateC} /></td>
+                                                        <td><input type="text" class="text onlyNum w80" id="${map1.value.code}_max_amount_81" name="${map1.value.code}_max_amount_81" data-val="${map1.value.maxBet}" value="${map1.value.maxBet}" data-max=${map1.value.parendRebate.maxBet} /></td>
+                                                        <td><input type="text" class="text onlyNum w80" id="${map1.value.code}_phase_amount_81" name="${map1.value.code}_phase_amount_81" data-val="${map1.value.maxExpectBet}" value="${map1.value.maxExpectBet}" data-max=${map1.value.parendRebate.maxExpectBet} /></td>
+                                                        <td><input type="text" class="text onlyNum w80" id="${map1.value.code}_single_min_amount_81" name="${map1.value.code}_single_min_amount_81" data-val="${map1.value.minBet}" value="${map1.value.minBet}" data-max=${map1.value.parendRebate.minBet} /></td>
 
                                                     </tr>
                                                     </tbody>
@@ -853,21 +853,16 @@
                                                     <tbody class="list_hover">
                                                     <tr>
                                                         <td class="tdbg1">
-                                                            <label class="lBg1"></label>${map1.key}</td>
-                                                        <td style="">
-
-                                                            <input type="text"  class="text plNumber w80" id="${map1.value.code}_a_81" name="${map1.value.code}_a_81" data-val="0.85" value="0.85" data-max="${map1.value.parendRebate.rebateA}" /></td>
-                                                        <td style="">
-
-                                                            <input type="text"  class="text plNumber w80" id="${map1.value.code}_b_81" name="${map1.value.code}_b_81" data-val="3.85" value="3.85" data-max=${map1.value.parendRebate.rebateA} /></td>
-                                                        <td style="">
-
-                                                            <input type="text"  class="text plNumber w80" id="${map1.value.code}_c_81" name="${map1.value.code}_c_81" data-val="2.85" value="2.85" data-max=${map1.value.parendRebate.rebateA} /></td>
-                                                        <td><input type="text" class="text onlyNum w80" id="${map1.value.code}_max_amount_81" name="${map1.value.code}_max_amount_81" data-val="10000" value="10000" data-max=${map1.value.parendRebate.maxBet} /></td>
-                                                        <td><input type="text" class="text onlyNum w80" id="${map1.value.code}_phase_amount_81" name="${map1.value.code}_phase_amount_81" data-val="20000" value="20000" data-max=${map1.value.parendRebate.maxExpectBet} /></td>
-
-                                                        <td><input type="text" class="text onlyNum w80" id="${map1.value.code}_single_min_amount_81" name="${map1.value.code}_single_min_amount_81" data-val="2" value="2" data-max=${map1.value.parendRebate.minBet} /></td>
-
+                                                            <label class="lBg1"></label>${map1.key}
+                                                            <span hidden name="code" >${map1.value.code}</span>
+                                                            <span hidden name="betSort" >${map1.value.betSort}</span>
+                                                        </td>
+                                                        <td style=""><input type="text"  class="text plNumber w80" id="${map1.value.code}_a_81" name="${map1.value.code}_a_81" data-val="${map1.value.rebateA}" value="${map1.value.rebateA}" data-max="${map1.value.parendRebate.rebateA}" /></td>
+                                                        <td style=""><input type="text"  class="text plNumber w80" id="${map1.value.code}_b_81" name="${map1.value.code}_b_81" data-val="${map1.value.rebateB}" value="${map1.value.rebateB}" data-max=${map1.value.parendRebate.rebateB} /></td>
+                                                        <td style=""><input type="text"  class="text plNumber w80" id="${map1.value.code}_c_81" name="${map1.value.code}_c_81" data-val="${map1.value.rebateC}" value="${map1.value.rebateC}" data-max=${map1.value.parendRebate.rebateC} /></td>
+                                                        <td><input type="text" class="text onlyNum w80" id="${map1.value.code}_max_amount_81" name="${map1.value.code}_max_amount_81" data-val="${map1.value.maxBet}" value="${map1.value.maxBet}" data-max=${map1.value.parendRebate.maxBet} /></td>
+                                                        <td><input type="text" class="text onlyNum w80" id="${map1.value.code}_phase_amount_81" name="${map1.value.code}_phase_amount_81" data-val="${map1.value.maxExpectBet}" value="${map1.value.maxExpectBet}" data-max=${map1.value.parendRebate.maxExpectBet} /></td>
+                                                        <td><input type="text" class="text onlyNum w80" id="${map1.value.code}_single_min_amount_81" name="${map1.value.code}_single_min_amount_81" data-val="${map1.value.minBet}" value="${map1.value.minBet}" data-max=${map1.value.parendRebate.minBet} /></td>
                                                     </tr>
                                                 </tbody>
                                                 </c:forEach>
@@ -890,7 +885,7 @@
     </tr>
     <tr>
         <td class="bottomLeftBg"></td>
-        <td class="bottomBoxBg" align="center"><button type="button" name="backBtn" id="backBtn" class="btn" onclick="javascript:location.href='/account/zd_list.aspx?lid=0';"> 返回 </button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" name="Submit" id="drawbackBtn" class="btn">保存</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <td class="bottomBoxBg" align="center"><button type="button" name="backBtn" id="backBtn" class="btn" onclick="javascript:history.go(-1)"> 返回 </button>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" name="Submit" id="drawbackBtn" class="btn">保存</button>&nbsp;&nbsp;&nbsp;&nbsp;
 
             <input type="hidden" id="hdnSubmit" name="hdnSubmit" value="hdnsubmit" /><input type="hidden" id="uid" name="uid" value="95a1f34f-e689-4cb1-a791-29e62561268a" />
             <input type="hidden" name="isAdd" id="isAdd" value=""  />

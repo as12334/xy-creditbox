@@ -67,8 +67,8 @@ public class SiteLotteryRebatesController extends BaseCrudController<ISiteLotter
 
         siteLotteryRebatesVo._setDataSourceId(SessionManagerBase.getSiteId());
         siteLotteryRebatesVo.getSearch().setSiteId(LotteryCommonContext.get().getSiteId());
-        siteLotteryRebatesVo.getSearch().setHid(LotteryCommonContext.get().getDomainUserHid());
         siteLotteryRebatesVo = this.getService().saveSiteLotteryOdds(siteLotteryRebatesVo);
+        siteLotteryRebatesVo.setOkMsg("快彩：已經成功修改設置(注:如開盤中退水未能修改)!");
         return getVoMessage(siteLotteryRebatesVo);
 
     }

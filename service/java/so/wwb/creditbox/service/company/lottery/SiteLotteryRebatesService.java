@@ -131,12 +131,15 @@ public class SiteLotteryRebatesService extends BaseService<SiteLotteryRebatesMap
                     hashMap.put("總和龍虎",mapper.getRebateBetSortLine(lotteryEnum.getCode(),so.getSiteId(),so.getHid(),"80_307",so.getParentHid()));
 
 
-                    hashMap.put("任選二",mapper.getRebateBetSortLine(lotteryEnum.getCode(),so.getSiteId(),so.getHid(),"72_1",so.getParentHid()));
-                    hashMap.put("選二連組",mapper.getRebateBetSortLine(lotteryEnum.getCode(),so.getSiteId(),so.getHid(),"74_1",so.getParentHid()));
-                    hashMap.put("任選三",mapper.getRebateBetSortLine(lotteryEnum.getCode(),so.getSiteId(),so.getHid(),"75_1",so.getParentHid()));
-                    hashMap.put("選三前組",mapper.getRebateBetSortLine(lotteryEnum.getCode(),so.getSiteId(),so.getHid(),"77_1",so.getParentHid()));
-                    hashMap.put("任選四",mapper.getRebateBetSortLine(lotteryEnum.getCode(),so.getSiteId(),so.getHid(),"78_1",so.getParentHid()));
-                    hashMap.put("任選五",mapper.getRebateBetSortLine(lotteryEnum.getCode(),so.getSiteId(),so.getHid(),"79_1",so.getParentHid()));
+                    hashMap.put("任選二",mapper.getRebateBetSortLine(lotteryEnum.getCode(),so.getSiteId(),so.getHid(),"72_329",so.getParentHid()));
+                    hashMap.put("選二連組",mapper.getRebateBetSortLine(lotteryEnum.getCode(),so.getSiteId(),so.getHid(),"74_331",so.getParentHid()));
+                    hashMap.put("任選三",mapper.getRebateBetSortLine(lotteryEnum.getCode(),so.getSiteId(),so.getHid(),"75_1181",so.getParentHid()));
+                    hashMap.put("選三前組",mapper.getRebateBetSortLine(lotteryEnum.getCode(),so.getSiteId(),so.getHid(),"77_1201",so.getParentHid()));
+                    hashMap.put("任選四",mapper.getRebateBetSortLine(lotteryEnum.getCode(),so.getSiteId(),so.getHid(),"78_1202",so.getParentHid()));
+                    hashMap.put("任選五",mapper.getRebateBetSortLine(lotteryEnum.getCode(),so.getSiteId(),so.getHid(),"79_1203",so.getParentHid()));
+
+
+
 
 //                hashMap.put("選二連直",mapper.getRebateBetSortLine(lotteryEnum.getCode(),so.getSiteId(),so.getHid(),"80_307"));
 //                hashMap.put("選三前直",mapper.getRebateBetSortLine(lotteryEnum.getCode(),so.getSiteId(),so.getHid(),"80_307"));
@@ -176,6 +179,7 @@ public class SiteLotteryRebatesService extends BaseService<SiteLotteryRebatesMap
                 String s = map.get(betSort);
                 String[] split = s.split(",");
                 siteLotteryRebatesVo.setBetSorts(ListTool.newArrayList(split));
+                search.setHid(siteLotteryRebatesVo.getSearch().getHid());
                 search.setCode(code);
                 search.setBetCode(betSort);
                 search.setMinBet(minBet);

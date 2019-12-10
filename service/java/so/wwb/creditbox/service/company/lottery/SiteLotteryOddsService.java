@@ -129,12 +129,12 @@ public class SiteLotteryOddsService extends BaseService<SiteLotteryOddsMapper, S
                 hashMap.put("總和龍虎",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"80_307"));
 
 
-                hashMap.put("任選二",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"72_1"));
-                hashMap.put("選二連組",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"74_1"));
-                hashMap.put("任選三",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"75_1"));
-                hashMap.put("選三前組",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"77_1"));
-                hashMap.put("任選四",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"78_1"));
-                hashMap.put("任選五",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"79_1"));
+                hashMap.put("任選二",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"72_329"));
+                hashMap.put("選二連組",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"74_331"));
+                hashMap.put("任選三",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"75_1181"));
+                hashMap.put("選三前組",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"77_1201"));
+                hashMap.put("任選四",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"78_1202"));
+                hashMap.put("任選五",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"79_1203"));
 
 //                hashMap.put("選二連直",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"80_307"));
 //                hashMap.put("選三前直",mapper.getOddBetSortLine(so.getCode(),so.getSiteId(),so.getHid(),"80_307"));
