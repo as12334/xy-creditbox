@@ -215,8 +215,13 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
             search.setOwnerUserType(userTypeEnum.getCode());
         }
 
-        createUser(objectVo,model);
-        return getViewBasePath() + "/edit/HyDuEdit";
+        objectVo = createUser(objectVo,model);
+        if(objectVo.isSuccess()){
+            return getViewBasePath() + "/edit/HyDuEdit";
+        }
+        else{
+            return getViewBasePath() + "/MessagePage";
+        }
     }
 
     @RequestMapping("/hy_add")
@@ -225,8 +230,14 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         VSiteUserSo search = objectVo.getSearch();
         search.setUserType(UserTypeEnum.PLAYER.getCode());
         search.setOwnerUserType(UserTypeEnum.AGENT.getCode());
-        createUser(objectVo,model);
-        return getViewBasePath() + "/edit/HyDuEdit";
+
+        objectVo = createUser(objectVo,model);
+        if(objectVo.isSuccess()){
+            return getViewBasePath() + "/edit/HyDuEdit";
+        }
+        else{
+            return getViewBasePath() + "/MessagePage";
+        }
     }
 
     public VSiteUserVo createUser(VSiteUserVo objectVo, Model model) {
@@ -369,70 +380,6 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         objectVo.setDataSourceId(SessionManager.getSiteId());
     }
 
-//    /**
-//     * 獲取上級信息
-//     * @param vo
-//     * @return
-//     */
-//    @RequestMapping("/getSubInfo")
-//    @ResponseBody
-//    private Map getSubInfo(VSiteUser vo){
-//        Integer maxSuperiorOccupy;
-//        Map map = new HashMap<>();
-//        if(UserTypeEnum.SHAREHOLDER.getCode().equals(vo.getSearch().getUserType())
-//                || UserTypeEnum.DISTRIBUTOR.getCode().equals(vo.getSearch().getUserType())
-//                || UserTypeEnum.AGENT.getCode().equals(vo.getSearch().getUserType())
-//                || UserTypeEnum.PLAYER.getCode().equals(vo.getSearch().getUserType())){
-//            vo._setDataSourceId(SessionManagerCommon.getSiteId());
-//            if(vo.getSearch().getId() == null){
-//                vo.getSearch().setId(vo.getSearch().getOwnerId());
-//                //获取上级使用成数
-//                vo = this.getService().sumSuperStintOccupy(vo);
-//            }
-//            else {
-//                //获取上下级已使用成数
-//                vo = ServiceTool.sysUserExtendService().get(vo);
-//                vo.getSearch().setHid(vo.getResult().getHid());
-//                vo = this.getService().sumSuperStintOccupyCount(vo);
-//            }
-//            maxSuperiorOccupy = vo.getSumSuperStintOccupy();
-//        }else{
-//            vo._setDataSourceId(Const.BOSS_DATASOURCE_ID);
-//            maxSuperiorOccupy = 0;
-//        }
-//
-//        //获取上级信息 start
-//        vo.getSearch().setId(vo.getSearch().getOwnerId());
-//        vo = ServiceTool.sysUserExtendService().get(vo);
-//        map.put("shareCredits",vo.getResult().getCredits());
-//        map.put("superiorOccupy",vo.getResult().getStintOccupy());
-//        //获取上级信息 end
-//        map.put("maxSuperiorOccupy",maxSuperiorOccupy);
-//        return map;
-//    }
-
-
-    @RequestMapping("/createPlay")
-    @Token(generate = true)
-    public String createPlay(VSiteUserVo objectVo, Model model) {
-
-
-
-
-        //查詢上級用戶  begin
-        objectVo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
-        //如果是查詢分公司的上級，要查詢管理庫
-        if(UserTypeEnum.BRANCH.getCode().equals(objectVo.getSearch().getUserType())){
-            objectVo._setDataSourceId(Const.BASE_DATASOURCE_ID);
-        }
-//        objectVo = this.getService().searchLevelUser(objectVo);
-        //查詢上級用戶 end
-
-
-        objectVo.setValidateRule(JsRuleCreator.create(AddSysUserExtendForm.class, "result"));
-        model.addAttribute("command", objectVo);
-        return getViewBasePath() + "/playEdit";
-    }
 
     @RequestMapping("/existNameAjax")
     @ResponseBody
