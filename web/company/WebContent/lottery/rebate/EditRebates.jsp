@@ -742,7 +742,7 @@
                                         <td><input type="text" name="tm_max_amount" id="tm_max_amount" class="text zk onlyNum w80" value="10000"  /></td>
                                         <td><input type="text" name="tm_phase_amount" id="tm_phase_amount" class="text zk onlyNum w80" value="20000"  /></td>
                                         <td><input type="text" name="tm_single_min_amount" id="tm_single_min_amount" class="text zk onlyNum w80" value="2"  /></td>
-                                        <td><label class="lBg1"></label><button type="button" name="btnTM" id="btnTM" class="btn">修改</button></td>
+                                        <td><label class="lBg1"></label><button type="button" name="btnTM" id="btnTM" class="btn" data-class="lBg1">修改</button></td>
                                     </tr>
                                     </tbody>
                                     <tbody class="list_hover">
@@ -760,7 +760,7 @@
                                         <td><input type="text" name="lmp_max_amount" id="lmp_max_amount" class="text zk onlyNum w80" value="10000" /></td>
                                         <td><input type="text" name="lmp_phase_amount" id="lmp_phase_amount" class="text zk onlyNum w80" value="30000" /></td>
                                         <td><input type="text" name="lmp_single_min_amount" id="lmp_single_min_amount" class="text zk onlyNum w80" value="2"  /></td>
-                                        <td><label class="lBg2"></label><button type="button" name="btnLMP" id="btnLMP" class="btn">修改</button></td>
+                                        <td><label class="lBg2"></label><button type="button" name="btnLMP" id="btnLMP" class="btn" data-class="lBg2">修改</button></td>
                                     </tr>
                                     </tbody>
                                     <tbody class="list_hover">
@@ -780,7 +780,7 @@
 
                                         <td><input type="text" name="lm_single_min_amount" id="lm_single_min_amount" class="text zk onlyNum w80" value="2"  /></td>
 
-                                        <td><label class="lBg3"></label><button type="button" name="btnLM" id="btnLM" class="btn">修改</button></td>
+                                        <td><label class="lBg3"></label><button type="button" name="btnLM" id="btnLM" class="btn" data-class="lBg3">修改</button></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -812,7 +812,7 @@
                                                     <tbody class="list_hover">
                                                     <tr>
                                                         <td class="tdbg1">
-                                                            <label class="lBg1"></label>${map1.key}
+                                                            <label class="${map1.value.pageType == 'd'?'lBg1':map1.value.pageType == 'lmp'?'lBg2':'lBg3'}"></label>${map1.key}
                                                             <span hidden name="code" >${map1.value.code}</span>
                                                             <span hidden name="betSort" >${map1.value.betSort}</span>
                                                         </td>
@@ -853,7 +853,7 @@
                                                     <tbody class="list_hover">
                                                     <tr>
                                                         <td class="tdbg1">
-                                                            <label class="lBg1"></label>${map1.key}
+                                                            <label class="${map1.value.pageType == 'd'?'lBg1':map1.value.pageType == 'lmp'?'lBg2':'lBg3'}"></label>${map1.key}
                                                             <span hidden name="code" >${map1.value.code}</span>
                                                             <span hidden name="betSort" >${map1.value.betSort}</span>
                                                         </td>
@@ -909,15 +909,35 @@
             }
 
             // 快彩
-            $("#btnLM").click(function () {
-                selectLM();
+//            $("#btnLM").click(function () {
+//                selectLM();
+//            });
+            $("#btnTM,#btnLM,#btnLMP").click(function () {
+                $(".text").removeClass('textOn');
+                var cla = $(this).attr('data-class');
+                var val0 = $(this).parent().parent().find('input').eq(0).val();
+                var val1 = $(this).parent().parent().find('input').eq(1).val();
+                var val2 = $(this).parent().parent().find('input').eq(2).val();
+                var val3 = $(this).parent().parent().find('input').eq(3).val();
+                var val4 = $(this).parent().parent().find('input').eq(4).val();
+                var val5 = $(this).parent().parent().find('input').eq(5).val();
+
+                $('.'+cla).parent().parent().find('input').eq(0)
+
+                $('.tm3 .'+cla).each(function () {
+                    $(this).parent().parent().find('input').addClass("textOn");
+                    $(this).parent().parent().find('input').eq(0).val(val0);
+                    $(this).parent().parent().find('input').eq(1).val(val1);
+                    $(this).parent().parent().find('input').eq(2).val(val2);
+                    $(this).parent().parent().find('input').eq(3).val(val3);
+                    $(this).parent().parent().find('input').eq(4).val(val4);
+                    $(this).parent().parent().find('input').eq(5).val(val5);
+                });
+//                selectTM();
             });
-            $("#btnTM").click(function () {
-                selectTM();
-            });
-            $("#btnLMP").click(function () {
-                selectLMP();
-            });
+//            $("#btnLMP").click(function () {
+//                selectLMP();
+//            });
 
             // 封装方法
             function setDrawBackInput (spl, type, lottery) {
