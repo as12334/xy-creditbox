@@ -25,7 +25,7 @@
         var nav = {
             "即時注單": {
                 "L_SIX": ["特碼|Betimes_tmZX2.aspx", "正碼|Betimes_zm.aspx", "正碼特|Betimes_zmt1.aspx", "連碼|Betimes_lm.aspx", "不中|Betimes_bz.aspx", "正碼1-6|Betimes_zm1-6.aspx", "特碼生肖色波|Betimes_tmsxsb.aspx", "生肖尾數|Betimes_sxws.aspx", "半波|Betimes_bb.aspx", "六肖...連|Betimes_lxl.aspx", "龍虎-特碼攤子|Betimes_lhtmtz.aspx", "七碼五行|Betimes_qmwx.aspx", "帳單|../L_SIX/Bill.aspx|1"],
-                "L_KL10": ["第一球|Betimes_1.aspx", "第二球|Betimes_2.aspx", "第三球|Betimes_3.aspx", "第四球|Betimes_4.aspx", "第五球|Betimes_5.aspx", "第六球|Betimes_6.aspx", "第七球|Betimes_7.aspx", "第八球|Betimes_8.aspx", "總和、龍虎|Betimes_lh.aspx", "連碼|Betimes_lm.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "gdkl10": ["第一球|Betimes_1.html", "第二球|Betimes_2.aspx", "第三球|Betimes_3.aspx", "第四球|Betimes_4.aspx", "第五球|Betimes_5.aspx", "第六球|Betimes_6.aspx", "第七球|Betimes_7.aspx", "第八球|Betimes_8.aspx", "總和、龍虎|Betimes_lh.aspx", "連碼|Betimes_lm.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
                 "L_CQSC": ["總項盤口|Betimes_zx.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
                 "L_PK10": ["冠、亞軍 組合|Betimes_1.aspx", "三、四、伍、六名|Betimes_2.aspx", "七、八、九、十名|Betimes_3.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
                 "L_XYNC": ["第一球|Betimes_1.aspx", "第二球|Betimes_2.aspx", "第三球|Betimes_3.aspx", "第四球|Betimes_4.aspx", "第五球|Betimes_5.aspx", "第六球|Betimes_6.aspx", "第七球|Betimes_7.aspx", "第八球|Betimes_8.aspx", "總和、家禽野獸|Betimes_zh.aspx", "連碼|Betimes_lm.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
@@ -108,7 +108,7 @@
         <div class="navBox"><i class="up"></i><b class="down"></b><span id="menuText" data-id="0" data-url="L_KL10">廣東快樂十分</span>
             <div class="navList">
                 <ul>
-                    <li><a data-id="0" data-url="L_KL10" href="javascript:void(0)">廣東快樂十分</a></li>
+                    <li><a data-id="0" data-url="gdkl10" href="javascript:void(0)">廣東快樂十分</a></li>
                     <li><a data-id="1" data-url="L_CQSC" href="javascript:void(0)">重慶時時彩</a></li>
                     <li><a data-id="2" data-url="L_PK10" href="javascript:void(0)">北京賽車(PK10)</a></li>
                     <li><a data-id="6" data-url="L_K8SC" href="javascript:void(0)">幸運時時(3分鐘)</a></li>
