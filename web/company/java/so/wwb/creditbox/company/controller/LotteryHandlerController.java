@@ -18,6 +18,7 @@ import so.wwb.creditbox.model.bean.WebJson;
 import so.wwb.creditbox.model.common.HidTool;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
+import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsListVo;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.hall.HandlerForm;
 import so.wwb.creditbox.model.hall.LotteryErrorCode;
@@ -94,33 +95,8 @@ public class LotteryHandlerController extends BaseLotteryController{
 
 
 
-        //下單
-        if("put_money".equals(form.getAction())){
 
-            return JsonTool.toJson(super.saveBetOrder(request,code, form));
-
-        }
-        else if("get_openball".equals(form.getAction())){
-            HashMap<String, String> phaseinfoMap = new HashMap<>();
-            phaseinfoMap.put("intervaltime","5分鐘");
-            phaseinfoMap.put("begintime","13:04");
-            phaseinfoMap.put("endtime","04:04");
-            phaseinfoMap.put("sold","104");
-            phaseinfoMap.put("surplus","76");
-
-            HashMap<String, Object> dataMap = new HashMap<>();
-            dataMap.put("phaseinfo",phaseinfoMap);
-            dataMap.put("type","get_openball");
-            dataMap.put("draw_phase", openResults.get(0).getExpect());
-            dataMap.put("draw_result", openResults.get(0).getOpenCode().split(","));
-
-            webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
-            webJson.setTipinfo("");
-            webJson.setData(dataMap);
-            return JsonTool.toJson(webJson);
-        }
-
-        else if("get_oddsinfo".equals(form.getAction())){
+        if("get_oddsinfo".equals(form.getAction())){
 
             //封盘的时候禁止下注
             Boolean isOpen = false;
@@ -154,6 +130,11 @@ public class LotteryHandlerController extends BaseLotteryController{
             webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
             webJson.setTipinfo("");
 
+            dataMap.put("upopenphase",openResults.get(0).getExpect());
+            dataMap.put("upopennumber",openResults.get(0).getOpenCode());
+
+
+
             //赔率 start
             Map<String, Object> playOddsMap = new LinkedHashMap<>();
             String[] split = form.getPlayid().split(",");
@@ -161,263 +142,211 @@ public class LotteryHandlerController extends BaseLotteryController{
                 Map<String, SiteLotteryOdds> siteLotteryOdds = Cache.getSiteLotteryOdds(HidTool.getBranchHid(sessionUser.getHid()), lotteryEnum.getCode());
                 Map<String, SiteLotteryRebates> siteLotteryRebates = Cache.getSiteLotteryRebates(HidTool.getBranchHid(sessionUser.getHid()), lotteryEnum.getCode());
                 SiteLotteryOdds Odd = siteLotteryOdds.get(s);
-                SiteLotteryRebates rebates = siteLotteryRebates.get(s);
                 Map<String, Object> oddsMap = new LinkedHashMap<>();
                 oddsMap.put("pl",isOpen?Odd.getOddA()+"":"-");
                 oddsMap.put("plx","");
-                oddsMap.put("min_amount",rebates.getMinBet()+"");
-                oddsMap.put("max_amount",rebates.getMaxBet()+"");
-                //超出派彩額度
-                oddsMap.put("top_amount","10000000");
-                //下注金額不能大於單期額度
-                oddsMap.put("dq_max_amount",rebates.getMaxExpectBet()+"");
-                oddsMap.put("dh_max_amount","100000");
-
-                playOddsMap.put(s,oddsMap);
+                oddsMap.put("maxpl",Odd.getCOdd(sessionUser)+"");
+                oddsMap.put("minpl",Odd.getMinOdd()+"");
+                oddsMap.put("is_open",Odd.getOddClose());
+                playOddsMap.put(s.split("_")[1],oddsMap);
             }
             dataMap.put("play_odds",playOddsMap);
+            dataMap.put("szsz_amount","");
+            dataMap.put("szsz_amount_count","");
+
+            dataMap.put("abovevalid","");
+            dataMap.put("maxidvalid","0");
+            dataMap.put("cleardata","0");
             //赔率 end
             webJson.setData(dataMap);
+
             return JsonTool.toJson(webJson);
         }
-        else if("get_ranklist".equals(form.getAction())){
+        else if("get_clyl".equals(form.getAction())){
 
-
-            List<Object> jqkj = new ArrayList<>();
-            for (LotteryResult lotteryResult : openResults) {
-                HashMap<Object, Object> map = new HashMap<>();
-                map.put("phase",lotteryResult.getExpect());
-                map.put("play_open_date",DateTool.formatDate(lotteryResult.getOpenTime(),SessionManagerBase.getTimeZone(),DateTool.yyyy_MM_dd_HH_mm_ss));
-                map.put("draw_num",lotteryResult.getOpenCode().split(","));
-                map.put("total",lotteryResult.getResultList());
-                jqkj.add(map);
-            }
-            Map<String, Object> oddsMap = new LinkedHashMap<>();
-            oddsMap.put("type","get_ranklist");
-            oddsMap.put("playpage",form.getPlaypage());
-            oddsMap.put("jqkj",jqkj);
-            webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
-            webJson.setData(oddsMap);
-            return JsonTool.toJson(webJson);
-//            return "{" +
-//                    "  \"success\": 200," +
-//                    "  \"data\": {" +
-//                    "    \"type\": \"get_ranklist\"," +
-//                    "    \"playpage\": \"xyft_lmp\"," +
-//                    "    \"jqkj\": [" +
-//                    "      {" +
-//                    "        \"phase\": \"20191124170\"," +
-//                    "        \"play_open_date\": \"2019/11/25 3:14:00\"," +
-//                    "        \"draw_num\": [" +
-//                    "          \"09\"," +
-//                    "          \"06\"," +
-//                    "          \"08\"," +
-//                    "          \"07\"," +
-//                    "          \"04\"," +
-//                    "          \"02\"," +
-//                    "          \"05\"," +
-//                    "          \"03\"," +
-//                    "          \"10\"," +
-//                    "          \"01\"" +
-//                    "        ]," +
-//                    "        \"total\": [" +
-//                    "          \"15\"," +
-//                    "          \"<span class=\\\"red\\\">大</span>\"," +
-//                    "          \"<span class=\\\"blue\\\">單</span>\"," +
-//                    "          \"<span class=\\\"blue\\\">龍</span>\"," +
-//                    "          \"<span class=\\\"red\\\">虎</span>\"," +
-//                    "          \"<span class=\\\"blue\\\">龍</span>\"," +
-//                    "          \"<span class=\\\"blue\\\">龍</span>\"," +
-//                    "          \"<span class=\\\"blue\\\">龍</span>\"" +
-//                    "        ]" +
-//                    "      }," +
-//                    "      {" +
-//                    "        \"phase\": \"20191124169\"," +
-//                    "        \"play_open_date\": \"2019/11/25 3:09:00\"," +
-//                    "        \"draw_num\": [" +
-//                    "          \"09\"," +
-//                    "          \"08\"," +
-//                    "          \"01\"," +
-//                    "          \"03\"," +
-//                    "          \"04\"," +
-//                    "          \"05\"," +
-//                    "          \"10\"," +
-//                    "          \"06\"," +
-//                    "          \"07\"," +
-//                    "          \"02\"" +
-//                    "        ]," +
-//                    "        \"total\": [" +
-//                    "          \"17\"," +
-//                    "          \"<span class=\\\"red\\\">大</span>\"," +
-//                    "          \"<span class=\\\"blue\\\">單</span>\"," +
-//                    "          \"<span class=\\\"blue\\\">龍</span>\"," +
-//                    "          \"<span class=\\\"blue\\\">龍</span>\"," +
-//                    "          \"<span class=\\\"red\\\">虎</span>\"," +
-//                    "          \"<span class=\\\"red\\\">虎</span>\"," +
-//                    "          \"<span class=\\\"red\\\">虎</span>\"" +
-//                    "        ]" +
-//                    "      }," +
-//                    "      {" +
-//                    "        \"phase\": \"20191124168\"," +
-//                    "        \"play_open_date\": \"2019/11/25 3:04:00\"," +
-//                    "        \"draw_num\": [" +
-//                    "          \"01\"," +
-//                    "          \"03\"," +
-//                    "          \"07\"," +
-//                    "          \"05\"," +
-//                    "          \"04\"," +
-//                    "          \"06\"," +
-//                    "          \"10\"," +
-//                    "          \"02\"," +
-//                    "          \"08\"," +
-//                    "          \"09\"" +
-//                    "        ]," +
-//                    "        \"total\": [" +
-//                    "          \"4\"," +
-//                    "          \"<span class=\\\"blue\\\">小</span>\"," +
-//                    "          \"<span class=\\\"red\\\">雙</span>\"," +
-//                    "          \"<span class=\\\"red\\\">虎</span>\"," +
-//                    "          \"<span class=\\\"red\\\">虎</span>\"," +
-//                    "          \"<span class=\\\"blue\\\">龍</span>\"," +
-//                    "          \"<span class=\\\"red\\\">虎</span>\"," +
-//                    "          \"<span class=\\\"red\\\">虎</span>\"" +
-//                    "        ]" +
-//                    "      }," +
-//                    "      {" +
-//                    "        \"phase\": \"20191124167\"," +
-//                    "        \"play_open_date\": \"2019/11/25 2:59:00\"," +
-//                    "        \"draw_num\": [" +
-//                    "          \"05\"," +
-//                    "          \"08\"," +
-//                    "          \"09\"," +
-//                    "          \"01\"," +
-//                    "          \"02\"," +
-//                    "          \"06\"," +
-//                    "          \"03\"," +
-//                    "          \"10\"," +
-//                    "          \"07\"," +
-//                    "          \"04\"" +
-//                    "        ]," +
-//                    "        \"total\": [" +
-//                    "          \"13\"," +
-//                    "          \"<span class=\\\"red\\\">大</span>\"," +
-//                    "          \"<span class=\\\"blue\\\">單</span>\"," +
-//                    "          \"<span class=\\\"blue\\\">龍</span>\"," +
-//                    "          \"<span class=\\\"blue\\\">龍</span>\"," +
-//                    "          \"<span class=\\\"red\\\">虎</span>\"," +
-//                    "          \"<span class=\\\"red\\\">虎</span>\"," +
-//                    "          \"<span class=\\\"red\\\">虎</span>\"" +
-//                    "        ]" +
-//                    "      }," +
-//                    "      {" +
-//                    "        \"phase\": \"20191124166\"," +
-//                    "        \"play_open_date\": \"2019/11/25 2:54:00\"," +
-//                    "        \"draw_num\": [" +
-//                    "          \"02\"," +
-//                    "          \"09\"," +
-//                    "          \"08\"," +
-//                    "          \"03\"," +
-//                    "          \"06\"," +
-//                    "          \"01\"," +
-//                    "          \"05\"," +
-//                    "          \"07\"," +
-//                    "          \"04\"," +
-//                    "          \"10\"" +
-//                    "        ]," +
-//                    "        \"total\": [" +
-//                    "          \"11\"," +
-//                    "          \"<span class=\\\"blue\\\">小</span>\"," +
-//                    "          \"<span class=\\\"blue\\\">單</span>\"," +
-//                    "          \"<span class=\\\"red\\\">虎</span>\"," +
-//                    "          \"<span class=\\\"blue\\\">龍</span>\"," +
-//                    "          \"<span class=\\\"blue\\\">龍</span>\"," +
-//                    "          \"<span class=\\\"red\\\">虎</span>\"," +
-//                    "          \"<span class=\\\"blue\\\">龍</span>\"" +
-//                    "        ]" +
-//                    "      }" +
-//                    "    ]," +
-//                    "    \"lmcl\": [" +
-//                    "      {" +
-//                    "        \"cl_name\": \"第四名 - 單\"," +
-//                    "        \"cl_num\": \"5\"" +
-//                    "      }," +
-//                    "      {" +
-//                    "        \"cl_name\": \"第五名 - 雙\"," +
-//                    "        \"cl_num\": \"5\"" +
-//                    "      }," +
-//                    "      {" +
-//                    "        \"cl_name\": \"冠軍 - 單\"," +
-//                    "        \"cl_num\": \"4\"" +
-//                    "      }," +
-//                    "      {" +
-//                    "        \"cl_name\": \"第五名 - 小\"," +
-//                    "        \"cl_num\": \"4\"" +
-//                    "      }," +
-//                    "      {" +
-//                    "        \"cl_name\": \"第九名 - 大\"," +
-//                    "        \"cl_num\": \"4\"" +
-//                    "      }," +
-//                    "      {" +
-//                    "        \"cl_name\": \"冠軍 - 龍\"," +
-//                    "        \"cl_num\": \"2\"" +
-//                    "      }," +
-//                    "      {" +
-//                    "        \"cl_name\": \"冠軍 - 大\"," +
-//                    "        \"cl_num\": \"2\"" +
-//                    "      }," +
-//                    "      {" +
-//                    "        \"cl_name\": \"亞軍 - 雙\"," +
-//                    "        \"cl_num\": \"2\"" +
-//                    "      }," +
-//                    "      {" +
-//                    "        \"cl_name\": \"亞軍 - 大\"," +
-//                    "        \"cl_num\": \"2\"" +
-//                    "      }," +
-//                    "      {" +
-//                    "        \"cl_name\": \"第六名 - 小\"," +
-//                    "        \"cl_num\": \"2\"" +
-//                    "      }," +
-//                    "      {" +
-//                    "        \"cl_name\": \"第十名 - 小\"," +
-//                    "        \"cl_num\": \"2\"" +
-//                    "      }," +
-//                    "      {" +
-//                    "        \"cl_name\": \"冠亞軍和 - 大\"," +
-//                    "        \"cl_num\": \"2\"" +
-//                    "      }," +
-//                    "      {" +
-//                    "        \"cl_name\": \"冠亞軍和 - 單\"," +
-//                    "        \"cl_num\": \"2\"" +
-//                    "      }" +
-//                    "    ]," +
-//                    "    \"cql\": {" +
-//                    "      \"title\": [" +
-//                    "        \"冠、亞軍和\"," +
-//                    "        \"冠、亞軍和 大小\"," +
-//                    "        \"冠、亞軍和 單雙\"" +
-//                    "      ]," +
-//                    "      \"content\": [" +
-//                    "        \"16,1|15,1|8,1|7,1|9,2|17,1|8,1|4,1|3,1|7,1|5,1|11,1|8,1|12,1|8,1|6,1|7,2|10,1|16,1|15,1|11,1|13,1|4,1|17,1|15,1\"," +
-//                    "        \"小,4|大,3|小,4|大,2|小,4|大,1|小,7|大,1|小,5|大,2|小,1|大,1|小,1|大,2\"," +
-//                    "        \"單,1|雙,2|單,2|雙,3|單,3|雙,1|單,1|雙,1|單,4|雙,2|單,4|雙,4|單,2|雙,2|單,3|雙,1|單,2\"" +
-//                    "      ]" +
-//                    "    }" +
-//                    "  }," +
-//                    "  \"tipinfo\": \"\"" +
-//                    "}";
-        }
-        else if("get_putinfo".equals(form.getAction())){
-            return "{" +
-                    "  \"success\": 200," +
-                    "  \"data\": {" +
-                    "    \"type\": \"get_putinfo\"" +
-                    "  }," +
-                    "  \"tipinfo\": \"\"" +
+            return "{\n" +
+                    "  \"success\": 200,\n" +
+                    "  \"data\": {\n" +
+                    "    \"type\": \"get_clyl\",\n" +
+                    "    \"dropball\": [\n" +
+                    "      {\n" +
+                    "        \"Key\": \"01\",\n" +
+                    "        \"Value\": \"6\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"02\",\n" +
+                    "        \"Value\": \"0\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"03\",\n" +
+                    "        \"Value\": \"0\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"04\",\n" +
+                    "        \"Value\": \"3\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"05\",\n" +
+                    "        \"Value\": \"2\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"06\",\n" +
+                    "        \"Value\": \"4\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"07\",\n" +
+                    "        \"Value\": \"0\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"08\",\n" +
+                    "        \"Value\": \"1\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"09\",\n" +
+                    "        \"Value\": \"0\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"10\",\n" +
+                    "        \"Value\": \"0\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"11\",\n" +
+                    "        \"Value\": \"0\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"12\",\n" +
+                    "        \"Value\": \"6\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"13\",\n" +
+                    "        \"Value\": \"0\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"14\",\n" +
+                    "        \"Value\": \"0\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"15\",\n" +
+                    "        \"Value\": \"1\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"16\",\n" +
+                    "        \"Value\": \"3\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"17\",\n" +
+                    "        \"Value\": \"1\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"18\",\n" +
+                    "        \"Value\": \"1\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"19\",\n" +
+                    "        \"Value\": \"2\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"Key\": \"20\",\n" +
+                    "        \"Value\": \"2\"\n" +
+                    "      }\n" +
+                    "    ],\n" +
+                    "    \"lmcl\": [\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"虎\",\n" +
+                    "        \"cl_num\": \"6\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"第6球 - 小\",\n" +
+                    "        \"cl_num\": \"5\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"第4球 - 單\",\n" +
+                    "        \"cl_num\": \"4\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"第5球 - 尾小\",\n" +
+                    "        \"cl_num\": \"4\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"第7球 - 大\",\n" +
+                    "        \"cl_num\": \"4\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"第7球 - 合雙\",\n" +
+                    "        \"cl_num\": \"3\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"第7球 - 尾小\",\n" +
+                    "        \"cl_num\": \"3\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"第8球 - 大\",\n" +
+                    "        \"cl_num\": \"3\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"第1球 - 合雙\",\n" +
+                    "        \"cl_num\": \"2\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"第2球 - 單\",\n" +
+                    "        \"cl_num\": \"2\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"第3球 - 合雙\",\n" +
+                    "        \"cl_num\": \"2\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"第3球 - 尾小\",\n" +
+                    "        \"cl_num\": \"2\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"第5球 - 合單\",\n" +
+                    "        \"cl_num\": \"2\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"第5球 - 雙\",\n" +
+                    "        \"cl_num\": \"2\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"第5球 - 小\",\n" +
+                    "        \"cl_num\": \"2\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"第6球 - 尾大\",\n" +
+                    "        \"cl_num\": \"2\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"第7球 - 單\",\n" +
+                    "        \"cl_num\": \"2\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"第8球 - 合單\",\n" +
+                    "        \"cl_num\": \"2\"\n" +
+                    "      },\n" +
+                    "      {\n" +
+                    "        \"cl_name\": \"第8球 - 雙\",\n" +
+                    "        \"cl_num\": \"2\"\n" +
+                    "      }\n" +
+                    "    ]\n" +
+                    "  },\n" +
+                    "  \"tipinfo\": \"\"\n" +
                     "}";
         }
-
-
-        return "";
+        else if("get_opennumber".equals(form.getAction())){
+            return "{\n" +
+                    "  \"success\": 200,\n" +
+                    "  \"data\": {\n" +
+                    "    \"type\": \"get_opennumber\",\n" +
+                    "    \"opennumber\": {\n" +
+                    "      \"profit\": \"0\",\n" +
+                    "      \"upopenphase\": \"2019121319\",\n" +
+                    "      \"upopennumber\": \"02,07,11,03,10,09,13,14\"\n" +
+                    "    }\n" +
+                    "  },\n" +
+                    "  \"tipinfo\": \"\"\n" +
+                    "}";
+        }
+        return null;
 
     }
     /**
