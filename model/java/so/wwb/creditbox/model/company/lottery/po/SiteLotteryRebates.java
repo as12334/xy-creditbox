@@ -1,17 +1,17 @@
 package so.wwb.creditbox.model.company.lottery.po;
 
 import org.soul.commons.support.Nonpersistent;
+import so.wwb.creditbox.model.common.HidTool;
 
 import org.soul.commons.bean.IEntity;
 import org.soul.model.common.Sortable;
-import so.wwb.creditbox.model.common.HidTool;
 
 
 /**
  * 实体
  *
  * @author block
- * @time 2019-12-1 21:26:58
+ * @time 2019-12-13 16:27:30
  */
 //region your codes 1
 public class SiteLotteryRebates implements IEntity<Integer> {
@@ -88,7 +88,7 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 	/** 是否开启，1开启、0关闭 */
 	private String postMoneyClose;
 	/**  */
-	private Boolean oddClose;
+	private String oddClose;
 	//endregion
 
 	
@@ -243,11 +243,11 @@ public class SiteLotteryRebates implements IEntity<Integer> {
 	public void setPostMoneyClose(String value) {
 		this.postMoneyClose = value;
 	}
-	public Boolean getOddClose() {
+	public String getOddClose() {
 		return this.oddClose;
 	}
 
-	public void setOddClose(Boolean value) {
+	public void setOddClose(String value) {
 		this.oddClose = value;
 	}
 	//endregion

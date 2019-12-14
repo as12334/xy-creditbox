@@ -12,7 +12,7 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-12-1 21:26:07
+ * @time 2019-12-13 16:27:08
  */
 //region your codes 1
 public class SiteLotteryOdds implements IEntity<Integer> {
@@ -80,7 +80,7 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 	/**  */
 	private Double maxOdd;
 	/**  */
-	private Boolean oddClose;
+	private String oddClose;
 	//endregion
 
 	
@@ -214,11 +214,11 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 	public void setMaxOdd(Double value) {
 		this.maxOdd = value;
 	}
-	public Boolean getOddClose() {
+	public String getOddClose() {
 		return this.oddClose;
 	}
 
-	public void setOddClose(Boolean value) {
+	public void setOddClose(String value) {
 		this.oddClose = value;
 	}
 	//endregion

@@ -140,7 +140,6 @@ public class LotteryHandlerController extends BaseLotteryController{
             String[] split = form.getPlayid().split(",");
             for (String s : split) {
                 Map<String, SiteLotteryOdds> siteLotteryOdds = Cache.getSiteLotteryOdds(HidTool.getBranchHid(sessionUser.getHid()), lotteryEnum.getCode());
-                Map<String, SiteLotteryRebates> siteLotteryRebates = Cache.getSiteLotteryRebates(HidTool.getBranchHid(sessionUser.getHid()), lotteryEnum.getCode());
                 SiteLotteryOdds Odd = siteLotteryOdds.get(s);
                 Map<String, Object> oddsMap = new LinkedHashMap<>();
                 oddsMap.put("pl",isOpen?Odd.getOddA()+"":"-");

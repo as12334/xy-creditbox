@@ -9,7 +9,7 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-12-1 20:04:38
+ * @time 2019-12-13 16:26:38
  */
 //region your codes 1
 public class LotteryRebates implements IEntity<Integer> {
@@ -80,7 +80,7 @@ public class LotteryRebates implements IEntity<Integer> {
 	/** 是否开启，1开启、0关闭 */
 	private String postMoneyClose;
 	/**  */
-	private Boolean oddClose;
+	private String oddClose;
 	//endregion
 
 	
@@ -221,11 +221,11 @@ public class LotteryRebates implements IEntity<Integer> {
 	public void setPostMoneyClose(String value) {
 		this.postMoneyClose = value;
 	}
-	public Boolean getOddClose() {
+	public String getOddClose() {
 		return this.oddClose;
 	}
 
-	public void setOddClose(Boolean value) {
+	public void setOddClose(String value) {
 		this.oddClose = value;
 	}
 	//endregion
