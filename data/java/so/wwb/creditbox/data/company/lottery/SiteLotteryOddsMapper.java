@@ -25,6 +25,8 @@ public interface SiteLotteryOddsMapper extends IBaseMapper<SiteLotteryOdds, Inte
     Integer saveSiteLotteryOdds(SiteLotteryOddsVo search);
 
     List<SiteLotteryOdds> getBranchOdds(SiteLotteryOddsSo search);
+
+    List<SiteLotteryOdds> searchSortType(SiteLotteryOddsSo search);
     //endregion your codes 2
 
 }

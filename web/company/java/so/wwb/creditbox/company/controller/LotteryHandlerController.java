@@ -1,5 +1,6 @@
 package so.wwb.creditbox.company.controller;
 
+import org.apache.poi.ss.formula.functions.Odd;
 import org.soul.commons.data.json.JsonTool;
 import org.soul.commons.enums.EnumTool;
 import org.soul.commons.lang.DateTool;
@@ -16,10 +17,14 @@ import so.wwb.creditbox.model.base.CacheBase;
 import so.wwb.creditbox.model.bean.HttpCodeEnum;
 import so.wwb.creditbox.model.bean.WebJson;
 import so.wwb.creditbox.model.common.HidTool;
+import so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
+import so.wwb.creditbox.model.company.lottery.vo.LotteryBetOrderListVo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsListVo;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
+import so.wwb.creditbox.model.enums.lottery.LotteryOrderStatusEnum;
+import so.wwb.creditbox.model.enums.lottery.LotteryStatusEnum;
 import so.wwb.creditbox.model.hall.HandlerForm;
 import so.wwb.creditbox.model.hall.LotteryErrorCode;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
@@ -134,24 +139,48 @@ public class LotteryHandlerController extends BaseLotteryController{
             dataMap.put("upopennumber",openResults.get(0).getOpenCode());
 
 
+//            SiteLotteryOddsListVo siteLotteryOddsListVo = new SiteLotteryOddsListVo();
+//            siteLotteryOddsListVo._setDataSourceId(SessionManager.getSiteId());
+//            siteLotteryOddsListVo.getSearch().setHid(HidTool.getBranchHid(sessionUser.getHid()));
+//            siteLotteryOddsListVo.getSearch().setCode(lotteryEnum.getCode());
+//            siteLotteryOddsListVo.getSearch().setSortTypes(form.getPlayid().split(","));
+//            siteLotteryOddsListVo = ServiceTool.siteLotteryOddsService().searchSortType(siteLotteryOddsListVo);
 
             //赔率 start
-            Map<String, Object> playOddsMap = new LinkedHashMap<>();
+            Map<Object, Object> playOddsMap = new LinkedHashMap<>();
+            LinkedHashMap<Object, Object> szszMap = new LinkedHashMap<>();
+            LinkedHashMap<Object, Object> szszCountMap = new LinkedHashMap<>();
             String[] split = form.getPlayid().split(",");
             for (String s : split) {
                 Map<String, SiteLotteryOdds> siteLotteryOdds = Cache.getSiteLotteryOdds(HidTool.getBranchHid(sessionUser.getHid()), lotteryEnum.getCode());
                 SiteLotteryOdds Odd = siteLotteryOdds.get(s);
-                Map<String, Object> oddsMap = new LinkedHashMap<>();
+                Map<Object, Object> oddsMap = new LinkedHashMap<>();
                 oddsMap.put("pl",isOpen?Odd.getOddA()+"":"-");
                 oddsMap.put("plx","");
                 oddsMap.put("maxpl",Odd.getCOdd(sessionUser)+"");
                 oddsMap.put("minpl",Odd.getMinOdd()+"");
                 oddsMap.put("is_open",Odd.getOddClose());
-                playOddsMap.put(s.split("_")[1],oddsMap);
+                playOddsMap.put(Odd.getSort(),oddsMap);
+
+                //实占需占
+                szszMap.put(Odd.getSort(),"0,0,0,0,0");
             }
+
+
             dataMap.put("play_odds",playOddsMap);
-            dataMap.put("szsz_amount","");
-            dataMap.put("szsz_amount_count","");
+            dataMap.put("szsz_amount",szszMap);
+
+
+            LotteryBetOrderListVo lotteryBetOrderListVo = new LotteryBetOrderListVo();
+            lotteryBetOrderListVo.getSearch().setExpect(lotteryResult.getExpect());
+            lotteryBetOrderListVo.getSearch().setStatus(LotteryOrderStatusEnum.PENDING.getCode());
+            lotteryBetOrderListVo.getSearch().setCode(lotteryEnum.getCode());
+            lotteryBetOrderListVo = ServiceTool.lotteryBetOrderService().sumSortType(lotteryBetOrderListVo);
+
+            for(LotteryBetOrder order:lotteryBetOrderListVo.getResult()){
+                szszCountMap.put(order.getSortType(),order.getBetAmount()+"");
+            }
+            dataMap.put("szsz_amount_count",szszCountMap);
 
             dataMap.put("abovevalid","");
             dataMap.put("maxidvalid","0");

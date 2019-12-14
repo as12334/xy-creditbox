@@ -58,6 +58,28 @@
 
     </select>
 
+
+
+
+    <!--查询用户所有菜单-->
+    <select id="searchSortType" resultMap="TABLE:site_lottery_odds">
+        SELECT
+        s1.*,
+        s2.odd_a  as  "parentOddA",
+        s2.odd_b  as  "parentOddB",
+        s2.odd_c  as  "parentOddC"
+        FROM
+        (SELECT * FROM site_lottery_odds WHERE hid = #{hid} AND code = #{code} AND sort_type in
+        <foreach collection="sortTypes" item="item" index="index"  open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+        )  s1
+        LEFT JOIN site_lottery_odds s2 ON SUBSTRING (s1.hid, 0, 25) = s2.hid
+        AND s1.code = s2.code
+        AND s1.bet_sort = s2.bet_sort
+
+    </select>
+
     <!--//endregion your codes 1-->
 
 </mapper>

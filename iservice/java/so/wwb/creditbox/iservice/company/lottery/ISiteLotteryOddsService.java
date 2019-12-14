@@ -25,6 +25,8 @@ public interface ISiteLotteryOddsService extends IBaseService<SiteLotteryOddsLis
     SiteLotteryOddsVo initOddsData(SiteLotteryOddsVo vo);
 
     SiteLotteryOddsVo saveSiteLotteryOdds(SiteLotteryOddsVo siteLotteryOddsVo);
+
+    SiteLotteryOddsListVo searchSortType(SiteLotteryOddsListVo siteLotteryOddsListVo);
     //endregion your codes 2
 
 }

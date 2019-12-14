@@ -18,6 +18,15 @@ public class SiteLotteryOddsSo extends SiteLotteryOdds {
 	//endregion your codes 3
 
 	//region your codes 2
+	private String[] sortTypes;
+
+	public String[] getSortTypes() {
+		return sortTypes;
+	}
+
+	public void setSortTypes(String[] sortTypes) {
+		this.sortTypes = sortTypes;
+	}
 
 	//endregion your codes 2
 }

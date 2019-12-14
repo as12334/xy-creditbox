@@ -46,10 +46,23 @@
         <result column="branch_id" property="branchId"/>
         <result column="company_id" property="companyId"/>
         <result column="owner_user_type" property="ownerUserType"/>
+        <result column="sort_type" property="sortType"/>
     </resultMap>
 
     <!--//region your codes 1-->
-
+    <select id="sumSortType" resultMap="TABLE:lottery_bet_order">
+        SELECT
+            sort_type,
+            sum(bet_amount) bet_amount
+        FROM
+            lottery_bet_order
+        WHERE
+            expect = #{expect}
+        AND status = #{status}
+        AND code = #{code}
+        GROUP BY
+          sort_type;
+    </select>
     <!--//endregion your codes 1-->
 
 </mapper>

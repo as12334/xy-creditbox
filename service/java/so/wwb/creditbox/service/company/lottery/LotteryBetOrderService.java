@@ -27,6 +27,12 @@ public class LotteryBetOrderService extends BaseService<LotteryBetOrderMapper, L
         mapper.batchInsert(vo.getEntities());
         return vo;
     }
+
+    @Override
+    public LotteryBetOrderListVo sumSortType(LotteryBetOrderListVo lotteryBetOrderListVo) {
+        lotteryBetOrderListVo.setResult(mapper.sumSortType(lotteryBetOrderListVo.getSearch()));
+        return lotteryBetOrderListVo;
+    }
     //endregion your codes 2
 
 }

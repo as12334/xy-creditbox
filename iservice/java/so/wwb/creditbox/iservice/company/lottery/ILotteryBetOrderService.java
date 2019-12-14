@@ -19,6 +19,8 @@ public interface ILotteryBetOrderService extends IBaseService<LotteryBetOrderLis
 
     //region your codes 2
     LotteryBetOrderVo saveBetOrder(LotteryBetOrderVo vo);
+
+    LotteryBetOrderListVo sumSortType(LotteryBetOrderListVo lotteryBetOrderListVo);
     //endregion your codes 2
 
 }

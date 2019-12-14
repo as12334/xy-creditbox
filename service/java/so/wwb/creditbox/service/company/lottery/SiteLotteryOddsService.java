@@ -183,6 +183,13 @@ public class SiteLotteryOddsService extends BaseService<SiteLotteryOddsMapper, S
         return siteLotteryOddsVo;
     }
 
+    @Override
+    public SiteLotteryOddsListVo searchSortType(SiteLotteryOddsListVo siteLotteryOddsListVo) {
+        List<SiteLotteryOdds> lotteryOdds = mapper.searchSortType(siteLotteryOddsListVo.getSearch());
+        siteLotteryOddsListVo.setResult(lotteryOdds);
+        return siteLotteryOddsListVo;
+    }
+
     //endregion your codes 2
 
 }

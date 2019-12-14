@@ -2,6 +2,9 @@ package so.wwb.creditbox.data.company.lottery;
 
 import so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder;
 import org.soul.data.rdb.mybatis.IBaseMapper;
+import so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo;
+
+import java.util.List;
 
 
 /**
@@ -12,10 +15,11 @@ import org.soul.data.rdb.mybatis.IBaseMapper;
  */
 //region your codes 1
 public interface LotteryBetOrderMapper extends IBaseMapper<LotteryBetOrder, Integer> {
+
 //endregion your codes 1
 
     //region your codes 2
-
+    List<LotteryBetOrder> sumSortType(LotteryBetOrderSo search);
     //endregion your codes 2
 
 }
