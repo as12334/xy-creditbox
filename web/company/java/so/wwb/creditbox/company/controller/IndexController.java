@@ -2,6 +2,7 @@ package so.wwb.creditbox.company.controller;
 
 import org.soul.commons.data.json.JsonTool;
 import org.soul.commons.enums.EnumTool;
+import org.soul.commons.lang.DateTool;
 import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.tree.TreeNode;
 import org.soul.model.security.privilege.po.VSysUserResource;
@@ -12,14 +13,18 @@ import org.soul.web.controller.BaseIndexController;
 import org.soul.web.security.privilege.controller.SysResourceController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import so.wwb.creditbox.common.dubbo.ServiceTool;
 import so.wwb.creditbox.company.init.ConfigManager;
 import so.wwb.creditbox.company.session.SessionManager;
+import so.wwb.creditbox.model.base.CacheBase;
 import so.wwb.creditbox.model.enums.base.Module;
+import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryListVo;
+import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
 import so.wwb.creditbox.model.manager.sys.po.VSysSiteManage;
 import so.wwb.creditbox.model.manager.sys.vo.VSysSiteManageListVo;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
@@ -84,7 +89,17 @@ public class IndexController extends BaseIndexController {
         return INDEX_URI;
     }
 
+    @RequestMapping(value = "/{code}/noopen")
+    protected String noopen(@PathVariable String code, HttpServletRequest request, HttpServletResponse response, Model model) {
+        LotteryEnum lotteryEnum = EnumTool.enumOf(LotteryEnum.class, code);
+        LotteryResult lotteryResult = getHandicapOpen(lotteryEnum.getCode());
+        lotteryResult.setOpeningTime(DateTool.addMinutes(lotteryResult.getCloseTime(),-20));
+        lotteryResult.setCloseTime(new Date());
 
+
+        model.addAttribute("command",lotteryResult);
+        return "Noopen";
+    }
     /**
      * 获取所有菜單
      * @return
@@ -103,7 +118,22 @@ public class IndexController extends BaseIndexController {
         List<TreeNode<VSysUserResource>> menuNodeList = ServiceTool.sysResourceService().getAllMenus(o);
         return JsonTool.toJson(menuNodeList);
     }
-
+    /**
+     * 获取彩票当前盘口信息(开奖)
+     */
+    public LotteryResult getHandicapOpen(String code) {
+        List<LotteryResult> lotteryResultList = CacheBase.getLotteryResult(code);
+        Date curDate = new Date();
+        for (LotteryResult lotteryResult : lotteryResultList) {
+            if (curDate.getTime() <= lotteryResult.getOpenTime().getTime()) {
+                Long leftTime = DateTool.secondsBetween(lotteryResult.getCloseTime(), curDate);
+                lotteryResult.setLeftTime(leftTime);
+                lotteryResult.setLeftOpenTime(DateTool.secondsBetween(lotteryResult.getOpeningTime(), curDate));
+                return lotteryResult;
+            }
+        }
+        return null;
+    }
 
     @RequestMapping(value = "/siteInfo")
     protected String siteInfo(HttpServletRequest request, HttpServletResponse response, Model model) {

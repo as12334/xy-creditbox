@@ -124,10 +124,18 @@ public class LotteryHandlerController extends BaseLotteryController{
             }
             else {
                 dataMap.put("openning","n");
-                Long l = DateTool.secondsBetween(lotteryResult.getOpenTime(),new Date() );
+                Long l = DateTool.minutesBetween(lotteryResult.getOpenTime(),new Date() );
                 dataMap.put("stop_time","00:"+l/60+":"+l%60);
             }
-            dataMap.put("isopen","1");
+            if (DateTool.minutesBetween(lotteryResult.getOpenTime(),new Date())> 20 ) {
+                dataMap.put("isopen","0");
+                lotteryResult.setCloseTime(new Date());
+                lotteryResult.setOpeningTime(DateTool.addMinutes(lotteryResult.getOpenTime(),-20));
+            }
+            else {
+                dataMap.put("isopen","1");
+            }
+
             dataMap.put("nn",lotteryResult.getExpect());
             dataMap.put("p_id",lotteryResult.getId());
             //TODO 今日输赢
