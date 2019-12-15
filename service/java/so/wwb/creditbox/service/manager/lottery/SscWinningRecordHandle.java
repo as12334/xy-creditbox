@@ -30,6 +30,7 @@ public class SscWinningRecordHandle extends AbstractWinningRecordHandle implemen
         oneDigitalBettingList.add(LotteryBettingEnum.RANK_FIVE.getCode());
 
         //大小，单双
+        oneDigitalPlayList.add(LotteryPlayEnum.DIGITAL.getCode());
         oneDigitalPlayList.add(LotteryPlayEnum.BIG_SMALL.getCode());
         oneDigitalPlayList.add(LotteryPlayEnum.SINGLE_DOUBLE.getCode());
 
@@ -99,6 +100,11 @@ public class SscWinningRecordHandle extends AbstractWinningRecordHandle implemen
 
         String winningNum;
         LotteryWinningRecord lotteryWinningRecord;
+
+        winningNum = totalSum + "";
+        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SUM, LotteryBettingEnum.SUM, winningNum);
+        lotteryWinningRecordList.add(lotteryWinningRecord);
+
         winningNum = generateTotalBigSmallNum(totalSum);
         lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SUM_BIG_SMALL, LotteryBettingEnum.SUM_BIG_SMALL, winningNum);
         lotteryWinningRecordList.add(lotteryWinningRecord);
@@ -113,9 +119,6 @@ public class SscWinningRecordHandle extends AbstractWinningRecordHandle implemen
         lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SUM_DRAGON_TIGER_TIE, LotteryBettingEnum.SUM_DRAGON_TIGER_TIE, winningNum);
         lotteryWinningRecordList.add(lotteryWinningRecord);
 
-        winningNum = totalSum + "";
-        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SUM, LotteryBettingEnum.SUM, winningNum);
-        lotteryWinningRecordList.add(lotteryWinningRecord);
 
         return lotteryWinningRecordList;
     }

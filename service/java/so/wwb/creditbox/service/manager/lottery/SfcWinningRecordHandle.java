@@ -114,6 +114,11 @@ public class SfcWinningRecordHandle extends AbstractWinningRecordHandle implemen
 
         String winningNum;
         LotteryWinningRecord lotteryWinningRecord;
+
+        winningNum = totalSum +"";
+        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SUM, LotteryBettingEnum.SUM, winningNum);
+        lotteryWinningRecordList.add(lotteryWinningRecord);
+
         winningNum = generateTotalBigSmallNum(totalSum);
         lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SUM_BIG_SMALL, LotteryBettingEnum.SUM_BIG_SMALL, winningNum);
         lotteryWinningRecordList.add(lotteryWinningRecord);
@@ -132,9 +137,6 @@ public class SfcWinningRecordHandle extends AbstractWinningRecordHandle implemen
         lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SUM_DRAGON_TIGER_TIE, LotteryBettingEnum.SUM_DRAGON_TIGER_TIE, winningNum);
         lotteryWinningRecordList.add(lotteryWinningRecord);
 
-        winningNum = totalSum +"";
-        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SUM, LotteryBettingEnum.SUM, winningNum);
-        lotteryWinningRecordList.add(lotteryWinningRecord);
 
 
 

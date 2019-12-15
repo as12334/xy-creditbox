@@ -168,18 +168,27 @@ public class LotteryResultPayoutService implements ILotteryResultPayoutService {
                     result.add(map);
 
                     if(record.getType().equals(LotteryTypeEnum.SFC.getCode())){
-                        if(record.getBetCode() == LotteryBettingEnum.SUM.getCode()){
+                        if(record.getBetCode() == LotteryBettingEnum.SUM_BIG_SMALL.getCode()
+                                || record.getBetCode() == LotteryBettingEnum.SUM_SINGLE_DOUBLE.getCode()
+                                || record.getBetCode() == LotteryBettingEnum.SUM_MANTISSA_BIG_SMALL.getCode()
+                                || record.getBetCode() == LotteryBettingEnum.SUM_DRAGON_TIGER_TIE.getCode()
+                                || record.getBetCode() == LotteryBettingEnum.SUM.getCode()){
                             lotteryResultExtends.add(insert(record));
                         }
                     }
                     else if(record.getType().equals(LotteryTypeEnum.PK10.getCode())){
                         if(record.getBetCode().equals(LotteryBettingEnum.RANK_ONE_TWO_SUM.getCode())
+                                || record.getPlayCode().equals(LotteryPlayEnum.RANK_ONE_TWO_SUM_BIG_SMALL.getCode())
+                                || record.getPlayCode().equals(LotteryPlayEnum.RANK_ONE_TWO_SUM_SINGLE_DOUBLE.getCode())
                                 || record.getPlayCode().equals(LotteryPlayEnum.DRAGON_TIGER_TIE.getCode())){
                             lotteryResultExtends.add(insert(record));
                         }
                     }
                     else if(record.getType().equals(LotteryTypeEnum.SSC.getCode())){
-                        if(record.getBetCode().equals(LotteryBettingEnum.ONE_COMBINATION.getCode())
+                        if(record.getBetCode().equals(LotteryBettingEnum.ONE_FIRST_THREE.getCode())
+                                || record.getBetCode().equals(LotteryBettingEnum.ONE_IN_THREE.getCode())
+                                || record.getBetCode().equals(LotteryBettingEnum.ONE_AFTER_THREE.getCode())
+                                || record.getBetCode().equals(LotteryBettingEnum.SUM.getCode())
                                 ||record.getBetCode().equals(LotteryBettingEnum.SUM_DRAGON_TIGER_TIE.getCode())){
                             lotteryResultExtends.add(insert(record));
                         }
