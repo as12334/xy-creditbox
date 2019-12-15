@@ -168,19 +168,19 @@ public class LotteryResultPayoutService implements ILotteryResultPayoutService {
                     result.add(map);
 
                     if(record.getType().equals(LotteryTypeEnum.SFC.getCode())){
-                        if(record.getBetCode() == LotteryBettingEnum.SFC_SUM8.getCode()){
+                        if(record.getBetCode() == LotteryBettingEnum.SUM.getCode()){
                             lotteryResultExtends.add(insert(record));
                         }
                     }
                     else if(record.getType().equals(LotteryTypeEnum.PK10.getCode())){
-                        if(record.getBetCode().equals(LotteryBettingEnum.CHAMPION_UP_SUM.getCode())
-                                || record.getPlayCode().equals(LotteryPlayEnum.PK10_DRAGON_TIGER.getCode())){
+                        if(record.getBetCode().equals(LotteryBettingEnum.RANK_ONE_TWO_SUM.getCode())
+                                || record.getPlayCode().equals(LotteryPlayEnum.DRAGON_TIGER_TIE.getCode())){
                             lotteryResultExtends.add(insert(record));
                         }
                     }
                     else if(record.getType().equals(LotteryTypeEnum.SSC.getCode())){
-                        if(record.getBetCode().equals(LotteryBettingEnum.SSC_ONE_COMBINATION.getCode())
-                                ||record.getBetCode().equals(LotteryBettingEnum.SSC_SUM_DRAGON_TIGER.getCode())){
+                        if(record.getBetCode().equals(LotteryBettingEnum.ONE_COMBINATION.getCode())
+                                ||record.getBetCode().equals(LotteryBettingEnum.SUM_DRAGON_TIGER_TIE.getCode())){
                             lotteryResultExtends.add(insert(record));
                         }
                     }

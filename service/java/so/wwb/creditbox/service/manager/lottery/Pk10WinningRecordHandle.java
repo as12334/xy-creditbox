@@ -20,49 +20,26 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
 
     private static List<String> oneDigitalPlayList = new ArrayList<>(5);
 
-    private static List<String> championUpSumPlayList = new ArrayList<>(3);
 
     static {
         //投注玩法：百十个
-        oneDigitalBettingList.add(LotteryBettingEnum.CHAMPION.getCode());
-        oneDigitalBettingList.add(LotteryBettingEnum.RUNNER_UP.getCode());
-        oneDigitalBettingList.add(LotteryBettingEnum.THIRD_RUNNER.getCode());
-        oneDigitalBettingList.add(LotteryBettingEnum.FOURTH_RUNNER.getCode());
-        oneDigitalBettingList.add(LotteryBettingEnum.FIFTH_RUNNER.getCode());
-        oneDigitalBettingList.add(LotteryBettingEnum.SIXTH_RUNNER.getCode());
-        oneDigitalBettingList.add(LotteryBettingEnum.SEVENTH_RUNNER.getCode());
-        oneDigitalBettingList.add(LotteryBettingEnum.EIGHTH_RUNNER.getCode());
-        oneDigitalBettingList.add(LotteryBettingEnum.NINTH_RUNNER.getCode());
-        oneDigitalBettingList.add(LotteryBettingEnum.TENTH_RUNNER.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.RANK_ONE.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.RANK_TWO.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.RANK_THREE.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.RANK_FOUR.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.RANK_FIVE.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.RANK_SIX.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.RANK_SEVEN.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.RANK_EIGHT.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.RANK_NINE.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.RANK_TEN.getCode());
         //百十个对应的彩种玩法
-        oneDigitalPlayList.add(LotteryPlayEnum.PK10_DIGITAL.getCode());
-        oneDigitalPlayList.add(LotteryPlayEnum.PK10_BIG_SMALL.getCode());
-        oneDigitalPlayList.add(LotteryPlayEnum.PK10_SINGLE_DOUBLE.getCode());
-        oneDigitalPlayList.add(LotteryPlayEnum.PK10_DRAGON_TIGER.getCode());
+        oneDigitalPlayList.add(LotteryPlayEnum.DIGITAL.getCode());
+        oneDigitalPlayList.add(LotteryPlayEnum.BIG_SMALL.getCode());
+        oneDigitalPlayList.add(LotteryPlayEnum.SINGLE_DOUBLE.getCode());
+        oneDigitalPlayList.add(LotteryPlayEnum.DRAGON_TIGER_TIE.getCode());
 
 
-        //冠亚和
-
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_3.getCode());
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_4.getCode());
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_5.getCode());
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_6.getCode());
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_7.getCode());
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_8.getCode());
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_9.getCode());
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_10.getCode());
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_11.getCode());
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_12.getCode());
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_13.getCode());
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_14.getCode());
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_15.getCode());
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_16.getCode());
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_17.getCode());
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_18.getCode());
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SUM_19.getCode());
-
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_BIG_SMALL.getCode());
-        championUpSumPlayList.add(LotteryPlayEnum.CHAMPION_UP_SINGLE_DOUBLE.getCode());
 
     }
 
@@ -92,16 +69,16 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
                 LotteryPlayEnum lotteryPlayEnum = EnumTool.enumOf(LotteryPlayEnum.class, playCode);
                 String winningNum = null;
                 switch (lotteryPlayEnum) {
-                    case PK10_DIGITAL:
+                    case DIGITAL:
                         winningNum = openCodes[i];
                         break;
-                    case PK10_BIG_SMALL:
+                    case BIG_SMALL:
                         winningNum = generateBigSmallNum(openCodes[i]);
                         break;
-                    case PK10_SINGLE_DOUBLE:
+                    case SINGLE_DOUBLE:
                         winningNum = generateSingleDoubleNum(Integer.valueOf(openCodes[i]));
                         break;
-                    case PK10_DRAGON_TIGER:
+                    case DRAGON_TIGER_TIE:
                         if(i<5){
                             winningNum = generateDragonTigerTie(Integer.valueOf(openCodes[i]), Integer.valueOf(openCodes[9 - i]));
                         }
@@ -121,115 +98,104 @@ public class Pk10WinningRecordHandle extends AbstractWinningRecordHandle impleme
         List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
         String[] openCodes = StringTool.split(lotteryResult.getOpenCode(), ",");
         Integer championUpSum = generateChampionUpSum(openCodes);
-        for (String playCode : championUpSumPlayList) {
-            LotteryPlayEnum lotteryPlayEnum = EnumTool.enumOf(LotteryPlayEnum.class, playCode);
-            String winningNum = null;
-            switch (lotteryPlayEnum) {
-                case CHAMPION_UP_SUM_3:
-                    if (championUpSum == 3) {
-                        winningNum = championUpSum + "";
-                    }
-                    break;
-                case CHAMPION_UP_SUM_4:
-                    if (championUpSum == 4) {
-                        winningNum = championUpSum + "";
-                    }
-                    break;
-                case CHAMPION_UP_SUM_5:
-                    if (championUpSum == 5) {
-                        winningNum = championUpSum + "";
-                    }
-                    break;
-                case CHAMPION_UP_SUM_6:
-                    if (championUpSum == 6) {
-                        winningNum = championUpSum + "";
-                    }
-                    break;
-                case CHAMPION_UP_SUM_7:
-                    if (championUpSum == 7) {
-                        winningNum = championUpSum + "";
-                    }
-                    break;
-                case CHAMPION_UP_SUM_8:
-                    if (championUpSum == 8) {
-                        winningNum = championUpSum + "";
-                    }
-                    break;
-                case CHAMPION_UP_SUM_9:
-                    if (championUpSum == 9) {
-                        winningNum = championUpSum + "";
-                    }
-                    break;
-                case CHAMPION_UP_SUM_10:
-                    if (championUpSum == 10) {
-                        winningNum = championUpSum + "";
-                    }
-                    break;
-                case CHAMPION_UP_SUM_11:
-                    if (championUpSum == 11) {
-                        winningNum = championUpSum + "";
-                    }
-                    break;
-                case CHAMPION_UP_SUM_12:
-                    if (championUpSum == 12) {
-                        winningNum = championUpSum + "";
-                    }
-                    break;
-                case CHAMPION_UP_SUM_13:
-                    if (championUpSum == 13) {
-                        winningNum = championUpSum + "";
-                    }
-                    break;
-                case CHAMPION_UP_SUM_14:
-                    if (championUpSum == 14) {
-                        winningNum = championUpSum + "";
-                    }
-                    break;
-                case CHAMPION_UP_SUM_15:
-                    if (championUpSum == 15) {
-                        winningNum = championUpSum + "";
-                    }
-                    break;
-                case CHAMPION_UP_SUM_16:
-                    if (championUpSum == 16) {
-                        winningNum = championUpSum + "";
-                    }
-                    break;
-                case CHAMPION_UP_SUM_17:
-                    if (championUpSum == 17) {
-                        winningNum = championUpSum + "";
-                    }
-                    break;
-                case CHAMPION_UP_SUM_18:
-                    if (championUpSum == 18) {
-                        winningNum = championUpSum + "";
-                    }
-                    break;
-                case CHAMPION_UP_SUM_19:
-                    if (championUpSum == 19) {
-                        winningNum = championUpSum + "";
-                    }
-                    break;
-                case CHAMPION_UP_BIG_SMALL:
-                    winningNum = generateChampionUpSumBigSmall(lotteryResult.getCode(), championUpSum);
-                    break;
-                case CHAMPION_UP_SINGLE_DOUBLE:
-                    winningNum = generateChampionUpSumSingleDouble(lotteryResult.getCode(), championUpSum);
-                    break;
-                default:
-                    break;
-            }
-            LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult, lotteryPlayEnum, LotteryBettingEnum.CHAMPION_UP_SUM, winningNum);
-            if (lotteryWinningRecord != null) {
-                log.info("彩票开奖.PK10.{0},生成中奖记录:{1}", playCode, lotteryWinningRecord.toString());
-                lotteryWinningRecordList.add(lotteryWinningRecord);
-            }
+
+
+        String winningNum;
+        LotteryWinningRecord lotteryWinningRecord;
+        if (championUpSum == 3) {
+            winningNum = championUpSum + "";
+            lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.CHAMPION_UP_SUM_3, LotteryBettingEnum.RANK_ONE_TWO_SUM, winningNum);
+            lotteryWinningRecordList.add(lotteryWinningRecord);
         }
+        else if(championUpSum == 4){
+            winningNum = championUpSum + "";
+            lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.CHAMPION_UP_SUM_4, LotteryBettingEnum.RANK_ONE_TWO_SUM, winningNum);
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+        }
+        else if(championUpSum == 5){
+            winningNum = championUpSum + "";
+            lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.CHAMPION_UP_SUM_5, LotteryBettingEnum.RANK_ONE_TWO_SUM, winningNum);
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+        }
+        else if(championUpSum == 6){
+            winningNum = championUpSum + "";
+            lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.CHAMPION_UP_SUM_6, LotteryBettingEnum.RANK_ONE_TWO_SUM, winningNum);
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+        }
+        else if(championUpSum == 7){
+            winningNum = championUpSum + "";
+            lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.CHAMPION_UP_SUM_7, LotteryBettingEnum.RANK_ONE_TWO_SUM, winningNum);
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+        }
+        else if(championUpSum == 8){
+            winningNum = championUpSum + "";
+            lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.CHAMPION_UP_SUM_8, LotteryBettingEnum.RANK_ONE_TWO_SUM, winningNum);
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+        }
+        else if(championUpSum == 9){
+            winningNum = championUpSum + "";
+            lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.CHAMPION_UP_SUM_9, LotteryBettingEnum.RANK_ONE_TWO_SUM, winningNum);
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+        }
+        else if(championUpSum == 10){
+            winningNum = championUpSum + "";
+            lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.CHAMPION_UP_SUM_10, LotteryBettingEnum.RANK_ONE_TWO_SUM, winningNum);
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+        }
+        else if(championUpSum == 11){
+            winningNum = championUpSum + "";
+            lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.CHAMPION_UP_SUM_11, LotteryBettingEnum.RANK_ONE_TWO_SUM, winningNum);
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+        }
+        else if(championUpSum == 12){
+            winningNum = championUpSum + "";
+            lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.CHAMPION_UP_SUM_12, LotteryBettingEnum.RANK_ONE_TWO_SUM, winningNum);
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+        }
+        else if(championUpSum == 13){
+            winningNum = championUpSum + "";
+            lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.CHAMPION_UP_SUM_13, LotteryBettingEnum.RANK_ONE_TWO_SUM, winningNum);
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+        }
+        else if(championUpSum == 14){
+            winningNum = championUpSum + "";
+            lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.CHAMPION_UP_SUM_14, LotteryBettingEnum.RANK_ONE_TWO_SUM, winningNum);
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+        }
+        else if(championUpSum == 15){
+            winningNum = championUpSum + "";
+            lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.CHAMPION_UP_SUM_15, LotteryBettingEnum.RANK_ONE_TWO_SUM, winningNum);
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+        }
+        else if(championUpSum == 16){
+            winningNum = championUpSum + "";
+            lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.CHAMPION_UP_SUM_16, LotteryBettingEnum.RANK_ONE_TWO_SUM, winningNum);
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+        }
+        else if(championUpSum == 17){
+            winningNum = championUpSum + "";
+            lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.CHAMPION_UP_SUM_17, LotteryBettingEnum.RANK_ONE_TWO_SUM, winningNum);
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+        }
+        else if(championUpSum == 18){
+            winningNum = championUpSum + "";
+            lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.CHAMPION_UP_SUM_18, LotteryBettingEnum.RANK_ONE_TWO_SUM, winningNum);
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+        }
+        else if(championUpSum == 19){
+            winningNum = championUpSum + "";
+            lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.CHAMPION_UP_SUM_19, LotteryBettingEnum.RANK_ONE_TWO_SUM, winningNum);
+            lotteryWinningRecordList.add(lotteryWinningRecord);
+        }
+        winningNum = generateChampionUpSumBigSmall(lotteryResult.getCode(), championUpSum);
+        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.RANK_ONE_TWO_SUM_BIG_SMALL, LotteryBettingEnum.RANK_ONE_TWO_SUM_BIG_SMALL, winningNum);
+        lotteryWinningRecordList.add(lotteryWinningRecord);
+
+        winningNum = generateChampionUpSumSingleDouble(lotteryResult.getCode(), championUpSum);
+        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.RANK_ONE_TWO_SUM_SINGLE_DOUBLE, LotteryBettingEnum.RANK_ONE_TWO_SUM_SINGLE_DOUBLE, winningNum);
+        lotteryWinningRecordList.add(lotteryWinningRecord);
         return lotteryWinningRecordList;
     }
-
-
-
 
     private Integer generateChampionUpSum(String[] openCodes) {
         Integer championUpSum = Integer.valueOf(openCodes[0]) + Integer.valueOf(openCodes[1]);

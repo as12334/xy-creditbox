@@ -17,35 +17,21 @@ import java.util.*;
 public class SscWinningRecordHandle extends AbstractWinningRecordHandle implements IWinningRecordHandle {
     private static List<String> oneDigitalBettingList = new ArrayList<>(5);
     private static List<String> oneDigitalPlayList = new ArrayList<>(5);
-    private static List<String> fiveSumPlayList = new ArrayList<>(2);
-    private static List<String> oneCombinationBettingList = new ArrayList<>(4);
 
 
 
 
     static {
         //一字定位的投注玩法：万千百十个
-        oneDigitalBettingList.add(LotteryBettingEnum.SSC_ONE.getCode());
-        oneDigitalBettingList.add(LotteryBettingEnum.SSC_TWO.getCode());
-        oneDigitalBettingList.add(LotteryBettingEnum.SSC_THREE.getCode());
-        oneDigitalBettingList.add(LotteryBettingEnum.SSC_FOUR.getCode());
-        oneDigitalBettingList.add(LotteryBettingEnum.SSC_FIVE.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.RANK_ONE.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.RANK_TWO.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.RANK_THREE.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.RANK_FOUR.getCode());
+        oneDigitalBettingList.add(LotteryBettingEnum.RANK_FIVE.getCode());
 
         //大小，单双
-        oneDigitalPlayList.add(LotteryPlayEnum.SSC_BIG_SMALL.getCode());
-        oneDigitalPlayList.add(LotteryPlayEnum.SSC_SINGLE_DOUBLE.getCode());
-
-        //總和、龍虎
-        fiveSumPlayList.add(LotteryPlayEnum.SSC_SUM8.getCode());
-        fiveSumPlayList.add(LotteryPlayEnum.SSC_SUM_BIG_SMALL.getCode());
-        fiveSumPlayList.add(LotteryPlayEnum.SSC_SUM_SINGLE_DOUBLE.getCode());
-        fiveSumPlayList.add(LotteryPlayEnum.SSC_DRAGON_TIGER_TIE.getCode());
-
-
-        //一字组合
-        oneCombinationBettingList.add(LotteryPlayEnum.SSC_ONE_FIRST_THREE.getCode());
-        oneCombinationBettingList.add(LotteryPlayEnum.SSC_ONE_IN_THREE.getCode());
-        oneCombinationBettingList.add(LotteryPlayEnum.SSC_ONE_AFTER_THREE.getCode());
+        oneDigitalPlayList.add(LotteryPlayEnum.BIG_SMALL.getCode());
+        oneDigitalPlayList.add(LotteryPlayEnum.SINGLE_DOUBLE.getCode());
 
 
 
@@ -78,13 +64,13 @@ public class SscWinningRecordHandle extends AbstractWinningRecordHandle implemen
                 LotteryPlayEnum lotteryPlayEnum = EnumTool.enumOf(LotteryPlayEnum.class, playCode);
                 String winningNum = null;
                 switch (lotteryPlayEnum) {
-                    case SSC_DIGITAL:
+                    case DIGITAL:
                         winningNum = openCodes[i];
                         break;
-                    case SSC_BIG_SMALL:
+                    case BIG_SMALL:
                         winningNum = generateBigSmallNum(openCodes[i]);
                         break;
-                    case SSC_SINGLE_DOUBLE:
+                    case SINGLE_DOUBLE:
                         winningNum = generateSingleDoubleNum(Integer.valueOf(openCodes[i]));
                         break;
                     default:
@@ -109,28 +95,28 @@ public class SscWinningRecordHandle extends AbstractWinningRecordHandle implemen
     private List<LotteryWinningRecord> createFive(LotteryResult lotteryResult) {
         List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
         String[] openCodes = StringTool.split(lotteryResult.getOpenCode(), ",");
-        Integer fiveSum = generateTotalSum(openCodes);
-        for (String playCode : fiveSumPlayList) {
-            String winningNum = null;
-            LotteryPlayEnum lotteryPlayEnum = EnumTool.enumOf(LotteryPlayEnum.class, playCode);
-            if (LotteryPlayEnum.SSC_SUM_BIG_SMALL.equals(lotteryPlayEnum)) {
-                winningNum = generateTotalBigSmallNum(fiveSum);
-            }
-            else if (LotteryPlayEnum.SSC_SUM_SINGLE_DOUBLE.equals(lotteryPlayEnum)) {
-                winningNum = generateTotalSingleDoubleNum(fiveSum);
-            }
-            else if (LotteryPlayEnum.SSC_DRAGON_TIGER_TIE.equals(lotteryPlayEnum)) {
-                winningNum = generateDragonTigerTie(Integer.valueOf(openCodes[0]), Integer.valueOf(openCodes[4]));
-            }
-            else if (LotteryPlayEnum.SSC_SUM8.equals(lotteryPlayEnum)) {
-                winningNum = fiveSum+"";
-            }
-            LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult, lotteryPlayEnum, LotteryBettingEnum.SSC_SUM_DRAGON_TIGER, winningNum);
-            if (lotteryWinningRecord != null) {
-                log.info("彩票开奖.时时彩.{0},生成中奖记录:{1}", playCode, lotteryWinningRecord.toString());
-                lotteryWinningRecordList.add(lotteryWinningRecord);
-            }
-        }
+        Integer totalSum = generateTotalSum(openCodes);
+
+        String winningNum;
+        LotteryWinningRecord lotteryWinningRecord;
+        winningNum = generateTotalBigSmallNum(totalSum);
+        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SUM_BIG_SMALL, LotteryBettingEnum.SUM_BIG_SMALL, winningNum);
+        lotteryWinningRecordList.add(lotteryWinningRecord);
+
+
+        winningNum = generateTotalSingleDoubleNum(totalSum);
+        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SUM_SINGLE_DOUBLE, LotteryBettingEnum.SUM_SINGLE_DOUBLE, winningNum);
+        lotteryWinningRecordList.add(lotteryWinningRecord);
+
+
+        winningNum = generateDragonTigerTie(Integer.valueOf(openCodes[0]), Integer.valueOf(openCodes[4]));
+        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SUM_DRAGON_TIGER_TIE, LotteryBettingEnum.SUM_DRAGON_TIGER_TIE, winningNum);
+        lotteryWinningRecordList.add(lotteryWinningRecord);
+
+        winningNum = totalSum + "";
+        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.SUM, LotteryBettingEnum.SUM, winningNum);
+        lotteryWinningRecordList.add(lotteryWinningRecord);
+
         return lotteryWinningRecordList;
     }
 
@@ -144,26 +130,23 @@ public class SscWinningRecordHandle extends AbstractWinningRecordHandle implemen
     private List<LotteryWinningRecord> createOneCombination(LotteryResult lotteryResult) {
         List<LotteryWinningRecord> lotteryWinningRecordList = new ArrayList<>();
         String[] openCodes = StringTool.split(lotteryResult.getOpenCode(), ",");
-        for (String playCode : oneCombinationBettingList) {
-            LotteryPlayEnum lotteryPlayEnum = EnumTool.enumOf(LotteryPlayEnum.class, playCode);
-            String winningNumSet = null;
-            switch (lotteryPlayEnum) {
-                case SSC_ONE_FIRST_THREE:
-                    winningNumSet = generateTeshuWinnum(openCodes[0], openCodes[1], openCodes[2]);
-                    break;
-                case SSC_ONE_IN_THREE:
-                    winningNumSet = generateTeshuWinnum(openCodes[1], openCodes[2], openCodes[3]);
-                    break;
-                case SSC_ONE_AFTER_THREE:
-                    winningNumSet = generateTeshuWinnum(openCodes[2], openCodes[3], openCodes[4]);
-                    break;
-            }
-            LotteryWinningRecord lotteryWinningRecord = createWinningRecord(lotteryResult, lotteryPlayEnum, LotteryBettingEnum.SSC_ONE_COMBINATION, winningNumSet);
-            if (lotteryWinningRecord != null) {
-                log.info("彩票开奖.时时彩.{0},生成中奖记录:{1}", playCode, lotteryWinningRecord.toString());
-                lotteryWinningRecordList.add(lotteryWinningRecord);
-            }
-        }
+
+        String winningNum;
+        LotteryWinningRecord lotteryWinningRecord;
+        winningNum = generateTeshuWinnum(openCodes[0], openCodes[1], openCodes[2]);
+        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.ONE_FIRST_THREE, LotteryBettingEnum.ONE_FIRST_THREE, winningNum);
+        lotteryWinningRecordList.add(lotteryWinningRecord);
+
+        winningNum = generateTeshuWinnum(openCodes[1], openCodes[2], openCodes[3]);
+        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.ONE_IN_THREE, LotteryBettingEnum.ONE_IN_THREE, winningNum);
+        lotteryWinningRecordList.add(lotteryWinningRecord);
+
+
+        winningNum = generateTeshuWinnum(openCodes[2], openCodes[3], openCodes[4]);
+        lotteryWinningRecord = createWinningRecord(lotteryResult, LotteryPlayEnum.ONE_AFTER_THREE, LotteryBettingEnum.ONE_AFTER_THREE, winningNum);
+        lotteryWinningRecordList.add(lotteryWinningRecord);
+
+
         return lotteryWinningRecordList;
     }
     @Override
