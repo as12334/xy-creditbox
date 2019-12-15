@@ -175,10 +175,10 @@ public class LotteryHandlerController extends BaseLotteryController{
             lotteryBetOrderListVo.getSearch().setExpect(lotteryResult.getExpect());
             lotteryBetOrderListVo.getSearch().setStatus(LotteryOrderStatusEnum.PENDING.getCode());
             lotteryBetOrderListVo.getSearch().setCode(lotteryEnum.getCode());
-            lotteryBetOrderListVo = ServiceTool.lotteryBetOrderService().sumSortType(lotteryBetOrderListVo);
+            lotteryBetOrderListVo = ServiceTool.lotteryBetOrderService().sumBetCode(lotteryBetOrderListVo);
 
             for(LotteryBetOrder order:lotteryBetOrderListVo.getResult()){
-                szszCountMap.put(order.getSortType(),order.getBetAmount()+"");
+                szszCountMap.put(order.getBetCode(),order.getBetAmount()+"");
             }
             dataMap.put("szsz_amount_count",szszCountMap);
 

@@ -1147,7 +1147,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_1.aspx" class="black kcmx">
                                         第一球總：
-                                        <b class="green" data-amountcount="81">
+                                        <b class="green" data-amountcount="rank_one">
                                             0
                                         </b>
                                     </a>
@@ -1157,7 +1157,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_2.aspx" class="black kcmx">
                                         第二球總：
-                                        <b class="green" data-amountcount="86">
+                                        <b class="green" data-amountcount="rank_two">
                                             0
                                         </b>
                                     </a>
@@ -1167,7 +1167,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_3.aspx" class="black kcmx">
                                         第三球總：
-                                        <b class="green" data-amountcount="91">
+                                        <b class="green" data-amountcount="rank_three">
                                             0
                                         </b>
                                     </a>
@@ -1177,7 +1177,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_4.aspx" class="black kcmx">
                                         第四球總：
-                                        <b class="green" data-amountcount="96">
+                                        <b class="green" data-amountcount="rank_four">
                                             0
                                         </b>
                                     </a>
@@ -1187,7 +1187,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_5.aspx" class="black kcmx">
                                         第五球總：
-                                        <b class="green" data-amountcount="101">
+                                        <b class="green" data-amountcount="rank_five">
                                             0
                                         </b>
                                     </a>
@@ -1197,7 +1197,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_6.aspx" class="black kcmx">
                                         第六球總：
-                                        <b class="green" data-amountcount="106">
+                                        <b class="green" data-amountcount="rank_six">
                                             0
                                         </b>
                                     </a>
@@ -1207,7 +1207,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_7.aspx" class="black kcmx">
                                         第七球總：
-                                        <b class="green" data-amountcount="111">
+                                        <b class="green" data-amountcount="rank_seven">
                                             0
                                         </b>
                                     </a>
@@ -1217,7 +1217,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_8.aspx" class="black kcmx">
                                         第八球總：
-                                        <b class="green" data-amountcount="116">
+                                        <b class="green" data-amountcount="rank_eight">
                                             0
                                         </b>
                                     </a>
@@ -1227,7 +1227,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_lh.aspx" class="black kcmx">
                                         總和大小：
-                                        <b class="green" data-amountcount="1011">
+                                        <b class="green" data-amountcount="sum_big_small">
                                             0
                                         </b>
                                     </a>
@@ -1237,7 +1237,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_lh.aspx" class="black kcmx">
                                         總和單雙：
-                                        <b class="green" data-amountcount="1012">
+                                        <b class="green" data-amountcount="sum_single_double">
                                             0
                                         </b>
                                     </a>
@@ -1247,7 +1247,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_lh.aspx" class="black kcmx">
                                         總尾大小：
-                                        <b class="green" data-amountcount="1013">
+                                        <b class="green" data-amountcount="sum_mantissa_big_small">
                                             0
                                         </b>
                                     </a>
@@ -1257,7 +1257,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_lh.aspx" class="black kcmx">
                                         龍　　虎：
-                                        <b class="green" data-amountcount="80">
+                                        <b class="green" data-amountcount="sum_dragon_tiger_tie">
                                             0
                                         </b>
                                     </a>
@@ -1267,7 +1267,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_lm.aspx" class="black kcmx">
                                         任&nbsp;&nbsp;選&nbsp;&nbsp;二：
-                                        <b class="green" data-amountcount="72">
+                                        <b class="green" data-amountcount="continuous_code_renxuan_2">
                                             0
                                         </b>
                                     </a>
@@ -1277,7 +1277,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_lm.aspx" class="black kcmx">
                                         選二連直：
-                                        <b class="green" data-amountcount="73">
+                                        <b class="green" data-amountcount="continuous_code_lianzhi_2">
                                             0
                                         </b>
                                     </a>
@@ -1287,7 +1287,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_lm.aspx" class="black kcmx">
                                         選二連組：
-                                        <b class="green" data-amountcount="74">
+                                        <b class="green" data-amountcount="continuous_code_lianzu_2">
                                             0
                                         </b>
                                     </a>
@@ -1297,7 +1297,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_lm.aspx" class="black kcmx">
                                         任&nbsp;&nbsp;選&nbsp;&nbsp;三：
-                                        <b class="green" data-amountcount="75">
+                                        <b class="green" data-amountcount="continuous_code_renxuan_3">
                                             0
                                         </b>
                                     </a>
@@ -1307,7 +1307,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_lm.aspx" class="black kcmx">
                                         選三前直：
-                                        <b class="green" data-amountcount="76">
+                                        <b class="green" data-amountcount="continuous_code_qinazhi_3">
                                             0
                                         </b>
                                     </a>
@@ -1317,7 +1317,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_lm.aspx" class="black kcmx">
                                         選三前組：
-                                        <b class="green" data-amountcount="77">
+                                        <b class="green" data-amountcount="continuous_code_qianzu_3">
                                             0
                                         </b>
                                     </a>
@@ -1327,7 +1327,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_lm.aspx" class="black kcmx">
                                         任&nbsp;&nbsp;選&nbsp;&nbsp;四：
-                                        <b class="green" data-amountcount="78">
+                                        <b class="green" data-amountcount="continuous_code_renxuan_4">
                                             0
                                         </b>
                                     </a>
@@ -1337,7 +1337,7 @@
                                 <td class="tdbg5">
                                     <a href="javascript:;" data-page="Betimes_lm.aspx" class="black kcmx">
                                         任&nbsp;&nbsp;選&nbsp;&nbsp;五：
-                                        <b class="green" data-amountcount="79">
+                                        <b class="green" data-amountcount="continuous_code_renxuan_5">
                                             0
                                         </b>
                                     </a>

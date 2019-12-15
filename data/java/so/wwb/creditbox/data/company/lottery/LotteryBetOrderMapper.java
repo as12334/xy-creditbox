@@ -19,7 +19,7 @@ public interface LotteryBetOrderMapper extends IBaseMapper<LotteryBetOrder, Inte
 //endregion your codes 1
 
     //region your codes 2
-    List<LotteryBetOrder> sumSortType(LotteryBetOrderSo search);
+    List<LotteryBetOrder> sumBetCode(LotteryBetOrderSo search);
     //endregion your codes 2
 
 }

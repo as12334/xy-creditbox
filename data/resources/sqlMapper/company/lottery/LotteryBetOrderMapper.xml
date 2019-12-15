@@ -50,9 +50,9 @@
     </resultMap>
 
     <!--//region your codes 1-->
-    <select id="sumSortType" resultMap="TABLE:lottery_bet_order">
+    <select id="sumBetCode" resultMap="TABLE:lottery_bet_order">
         SELECT
-            sort_type,
+            bet_code,
             sum(bet_amount) bet_amount
         FROM
             lottery_bet_order
@@ -61,7 +61,7 @@
         AND status = #{status}
         AND code = #{code}
         GROUP BY
-          sort_type;
+          bet_code;
     </select>
     <!--//endregion your codes 1-->
 
