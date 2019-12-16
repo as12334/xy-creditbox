@@ -5,6 +5,7 @@ import org.soul.commons.collections.CollectionTool;
 import org.soul.commons.collections.MapTool;
 import org.soul.commons.data.json.JsonTool;
 import org.soul.commons.enums.EnumTool;
+import org.soul.commons.lang.DateQuickPickerTool;
 import org.soul.commons.lang.DateTool;
 import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.log.Log;
@@ -20,8 +21,10 @@ import so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder;
 import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
+import so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo;
 import so.wwb.creditbox.model.company.lottery.vo.LotteryBetOrderVo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo;
+import so.wwb.creditbox.model.company.user.po.VSiteUser;
 import so.wwb.creditbox.model.enums.base.StatusEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryOrderStatusEnum;
@@ -34,6 +37,7 @@ import so.wwb.creditbox.model.manager.lottery.bean.ErrorCode;
 import so.wwb.creditbox.model.manager.lottery.po.Lottery;
 import so.wwb.creditbox.model.manager.lottery.po.LotteryResult;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
+import so.wwb.creditbox.model.manager.user.so.SysUserExtendSo;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
 import so.wwb.creditbox.web.cache.Cache;
 import so.wwb.creditbox.model.common.HidTool;
@@ -295,19 +299,31 @@ public class BaseLotteryController {
      * 校验API余额
      */
     private boolean checkOrder(List<ErrorCode.Error> errors, ErrorCode errorCode, HandlerForm form, HttpServletRequest request) {
-        SysUserExtend sessionUser = SessionManagerCommon.getSysUserExtend();
-        Double credits = sessionUser.getCredits();
-        SysUserExtendVo sysUserExtendVo = new SysUserExtendVo();
         //已使用的额度（盈利为负数）
-        sysUserExtendVo.setDataSourceId(SessionManagerCommon.getSiteId());
-        sysUserExtendVo.getSearch().setId(sessionUser.getId());
-        Double usedCredit = ServiceTool.sysUserExtendService().getUsedCredit(sysUserExtendVo);
-        double balance = credits - usedCredit - form.getTotalMoney();
+        VSiteUser usedCredit = getvSiteUserCreditInfo();
+        double balance = usedCredit.getCredits() - usedCredit.getUsableCredit() - form.getTotalMoney();
         if (balance < 0) {
             errors.add(errorCode.new Error(errorCode.CODE_101, errorCode.MSG_101, errorCode.ICON_5));
             return true;
         }
         return false;
+    }
+
+    /**
+     * 查询用户的额度使用情况
+     * @return
+     */
+    protected VSiteUser getvSiteUserCreditInfo() {
+        SysUserExtend sessionUser = SessionManagerCommon.getSysUserExtend();
+
+        LotteryBetOrderVo lotteryBetOrderVo = new LotteryBetOrderVo();
+        LotteryBetOrderSo search = lotteryBetOrderVo.getSearch();
+        Date day = DateQuickPickerTool.getInstance().getDay(TimeZone.getTimeZone("GMT+8"));
+        search.setQueryStartDate(DateTool.addMinutes(day,-(17*60)-30));
+        search.setQueryEndDate(DateTool.addMinutes(day,6*60+30));
+        lotteryBetOrderVo.getSearch().setUserId(sessionUser.getId());
+        VSiteUser vSiteUser = ServiceTool.lotteryBetOrderService().usableCredit(lotteryBetOrderVo);
+        return vSiteUser;
     }
     /**
      * 处理注單赔率，水位，所有的上级ID
