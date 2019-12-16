@@ -6,6 +6,8 @@ package so.wwb.creditbox.data.manager.user;
 import org.apache.ibatis.annotations.Param;
 import org.soul.data.rdb.mybatis.IBaseMapper;
 import org.soul.model.security.privilege.po.SysUserRole;
+import so.wwb.creditbox.model.company.user.po.VSiteUser;
+import so.wwb.creditbox.model.company.user.so.VSiteUserSo;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.so.SysUserExtendSo;
 
@@ -94,7 +96,6 @@ public interface SysUserExtendMapper extends IBaseMapper<SysUserExtend, Integer>
 
     List<Map<String,Object>> queryOwnerIdList(SysUserExtendSo so);
 
-    Double getUsedCredit(Integer id);
 
 
     //endregion your codes 2

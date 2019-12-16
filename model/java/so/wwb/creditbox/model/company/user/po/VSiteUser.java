@@ -3,6 +3,7 @@ package so.wwb.creditbox.model.company.user.po;
 import org.soul.commons.lang.string.StringTool;
 
 import org.soul.commons.bean.IEntity;
+import org.soul.commons.support.Nonpersistent;
 import org.soul.model.common.Sortable;
 
 
@@ -834,6 +835,28 @@ public class VSiteUser implements IEntity<Integer> {
 
 	//region your codes 2
 
-	//endregion your codes 2
+	//已使用额度
+	private Double usableCredit;
+
+	//今日输赢
+	private Double toDayProfit;
+	@Nonpersistent
+	public Double getUsableCredit() {
+		return usableCredit;
+	}
+
+	public void setUsableCredit(Double usableCredit) {
+		this.usableCredit = usableCredit;
+	}
+	@Nonpersistent
+	public Double getToDayProfit() {
+		return toDayProfit;
+	}
+
+	public void setToDayProfit(Double toDayProfit) {
+		this.toDayProfit = toDayProfit;
+	}
+
+//endregion your codes 2
 
 }

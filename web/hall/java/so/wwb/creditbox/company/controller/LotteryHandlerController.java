@@ -18,6 +18,8 @@ import so.wwb.creditbox.model.bean.HttpCodeEnum;
 import so.wwb.creditbox.model.bean.WebJson;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
+import so.wwb.creditbox.model.company.user.po.VSiteUser;
+import so.wwb.creditbox.model.company.user.vo.VSiteUserListVo;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.hall.HandlerForm;
 import so.wwb.creditbox.model.hall.LotteryErrorCode;
@@ -123,16 +125,15 @@ public class LotteryHandlerController extends BaseLotteryController{
         }
 
         else if("get_oddsinfo".equals(form.getAction())){
-
+            VSiteUser usedCredit = getvSiteUserCreditInfo();
             //封盘的时候禁止下注
             Boolean isOpen = false;
 
             Map<String, Object> dataMap = new LinkedHashMap<>();
             dataMap.put("type","get_oddsinfo");
             dataMap.put("playpage", form.getPlaypage());
-            dataMap.put("credit","111");
-            //todo 已用额度后面添加
-            dataMap.put("usable_credit",100000);
+            dataMap.put("credit",usedCredit.getCredits());
+            dataMap.put("usable_credit",usedCredit.getCredits() - usedCredit.getUsableCredit());
             LotteryResult lotteryResult = getHandicapOpen(lotteryEnum.getCode());
             //开奖时间
             dataMap.put("drawopen_time",DateTool.formatDate(lotteryResult.getOpenTime(),SessionManagerBase.getTimeZone(),DateTool.HH_mm_ss));
@@ -152,7 +153,7 @@ public class LotteryHandlerController extends BaseLotteryController{
             dataMap.put("nn",lotteryResult.getExpect());
             dataMap.put("p_id",lotteryResult.getId());
             //TODO 今日输赢
-            dataMap.put("profit","0");
+            dataMap.put("profit",usedCredit.getToDayProfit());
             webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
             webJson.setTipinfo("");
 
@@ -438,4 +439,5 @@ public class LotteryHandlerController extends BaseLotteryController{
         }
         return null;
     }
+
 }

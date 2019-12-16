@@ -4,6 +4,7 @@ import org.soul.commons.bean.Pair;
 import org.soul.iservice.support.IBaseService;
 import org.soul.model.passport.vo.PassportVo;
 import org.soul.model.security.privilege.vo.SysUserStatusVo;
+import so.wwb.creditbox.model.company.user.po.VSiteUser;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendListVo;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
@@ -139,7 +140,6 @@ public interface ISysUserExtendService extends IBaseService<SysUserExtendListVo,
 
     List<SysUserExtend> findOwner(SysUserExtendVo sysUserExtendVo);
 
-    Double getUsedCredit(SysUserExtendVo sysUserExtendVo);
 
 //
 //    boolean insertSysUserExtend(SysUserExtend userExtend);

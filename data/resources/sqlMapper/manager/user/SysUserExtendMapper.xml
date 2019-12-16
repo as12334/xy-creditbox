@@ -114,15 +114,6 @@
     </select>
 
 
-
-    <select id="getUsedCredit" parameterType="int" resultType="double">
-        SELECT
-            COALESCE (SUM (bet_amount - b_payout - rebate8),0.0)
-        FROM
-            lottery_bet_order
-        WHERE
-            user_id = #{id}
-</select>
     <!--<select id="queryOnlinePlayer" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultMap="TABLE:sys_user_extend">-->
         <!--SELECT su.*,uw.balance  FROM sys_user_extend su left JOIN user_assets uw on su.id=uw.id WHERE online_status = '1'-->
         <!--<if test="username != null">-->

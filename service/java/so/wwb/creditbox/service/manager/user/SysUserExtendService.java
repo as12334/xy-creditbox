@@ -28,6 +28,7 @@ import so.wwb.creditbox.iservice.manager.user.ISysUserExtendService;
 //import so.wwb.lotterybox.iservice.company.setting.IUserParamService;
 //import so.wwb.lotterybox.iservice.company.user.IUserAssetsService;
 //import so.wwb.lotterybox.iservice.company.user.IUserPlayerService;
+import so.wwb.creditbox.model.company.user.po.VSiteUser;
 import so.wwb.creditbox.model.enums.base.SubSysCodeEnum;
 import so.wwb.creditbox.model.enums.notice.ContactWayType;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
@@ -657,11 +658,6 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
     @Override
     public List<SysUserExtend> findOwner(SysUserExtendVo sysUserExtendVo) {
         return mapper.findOwner(sysUserExtendVo.getSearch().getId());
-    }
-
-    @Override
-    public Double getUsedCredit(SysUserExtendVo sysUserExtendVo) {
-        return mapper.getUsedCredit(sysUserExtendVo.getSearch().getId());
     }
 
 
