@@ -97,11 +97,10 @@ public class LotteryHandlerController extends BaseLotteryController{
         List<LotteryResult> openResults = ServiceTool.lotteryResultService().queryFiveRecentOpenResult(lotteryResultVo);
         //最近五期期的已开奖结果 end
 
+        if("operate_adds".equals(form.getAction())){
 
-
-
-
-        if("get_oddsinfo".equals(form.getAction())){
+        }
+        else if("get_oddsinfo".equals(form.getAction())){
 
             //封盘的时候禁止下注
             Boolean isOpen = false;
@@ -369,18 +368,21 @@ public class LotteryHandlerController extends BaseLotteryController{
                     "}";
         }
         else if("get_opennumber".equals(form.getAction())){
-            return "{\n" +
-                    "  \"success\": 200,\n" +
-                    "  \"data\": {\n" +
-                    "    \"type\": \"get_opennumber\",\n" +
-                    "    \"opennumber\": {\n" +
-                    "      \"profit\": \"0\",\n" +
-                    "      \"upopenphase\": \"2019121319\",\n" +
-                    "      \"upopennumber\": \"02,07,11,03,10,09,13,14\"\n" +
-                    "    }\n" +
-                    "  },\n" +
-                    "  \"tipinfo\": \"\"\n" +
-                    "}";
+            webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
+            Map<String, Object> dataMap = new LinkedHashMap<>();
+            Map<String, Object> opennumberMap = new LinkedHashMap<>();
+            opennumberMap.put("profit","111");
+            opennumberMap.put("upopenphase",openResults.get(0).getExpect());
+            opennumberMap.put("upopennumber",openResults.get(0).getOpenCode());
+            dataMap.put("type","get_opennumber");
+            dataMap.put("opennumber",opennumberMap);
+
+
+
+            webJson.setData(dataMap);
+            webJson.setTipinfo("");
+
+            return JsonTool.toJson(webJson);
         }
         return null;
 

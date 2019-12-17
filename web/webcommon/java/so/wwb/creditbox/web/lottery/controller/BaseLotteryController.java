@@ -318,9 +318,10 @@ public class BaseLotteryController {
 
         LotteryBetOrderVo lotteryBetOrderVo = new LotteryBetOrderVo();
         LotteryBetOrderSo search = lotteryBetOrderVo.getSearch();
-        Date day = DateQuickPickerTool.getInstance().getDay(TimeZone.getTimeZone("GMT+8"));
-        search.setQueryStartDate(DateTool.addMinutes(day,-(17*60)-30));
-        search.setQueryEndDate(DateTool.addMinutes(day,6*60+30));
+        Date day = DateQuickPickerTool.getInstance().getDay(TimeZone.getTimeZone("GMT+2"));
+        search.setQueryStartDate(day);
+        search.setQueryEndDate(DateTool.addDays(day,1));
+
         lotteryBetOrderVo.getSearch().setUserId(sessionUser.getId());
         VSiteUser vSiteUser = ServiceTool.lotteryBetOrderService().usableCredit(lotteryBetOrderVo);
         return vSiteUser;

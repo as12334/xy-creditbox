@@ -41,6 +41,10 @@ public class HandlerForm implements Serializable {
     // 投注总额
     private double totalMoney;
 
+    private String optype;
+    //修改赔率值
+    private Double wtvalue;
+
     private List<LotteryBetOrder> betOrderList;
 
     public String getAction() {

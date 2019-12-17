@@ -5,16 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import so.wwb.creditbox.common.dubbo.ServiceTool;
 import so.wwb.creditbox.company.session.SessionManager;
 import so.wwb.creditbox.model.bean.HttpCodeEnum;
 import so.wwb.creditbox.model.bean.WebJson;
-import so.wwb.creditbox.model.common.HttpCode;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo;
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
-import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
-import so.wwb.creditbox.web.cache.Cache;
 import so.wwb.creditbox.web.lottery.controller.BaseLotteryController;
 
 import javax.servlet.http.HttpServletRequest;
