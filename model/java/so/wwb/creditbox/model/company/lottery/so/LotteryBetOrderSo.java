@@ -22,7 +22,10 @@ public class LotteryBetOrderSo extends LotteryBetOrder {
 	//region your codes 2
 	private Date queryStartDate;
 	private Date queryEndDate;
-
+	//根据登录的userType 查询相应字段
+	private String occupyColumn;
+	private String rebateColumn;
+	private String[] sortTypes;
 	public Date getQueryStartDate() {
 		return queryStartDate;
 	}
@@ -39,5 +42,32 @@ public class LotteryBetOrderSo extends LotteryBetOrder {
 		this.queryEndDate = queryEndDate;
 	}
 
+
+
+
+	public String[] getSortTypes() {
+		return sortTypes;
+	}
+
+	public void setSortTypes(String[] sortTypes) {
+		this.sortTypes = sortTypes;
+	}
+
+
+	public String getOccupyColumn() {
+		return occupyColumn;
+	}
+
+	public void setOccupyColumn(String occupyColumn) {
+		this.occupyColumn = occupyColumn;
+	}
+
+	public String getRebateColumn() {
+		return rebateColumn;
+	}
+
+	public void setRebateColumn(String rebateColumn) {
+		this.rebateColumn = rebateColumn;
+	}
 	//endregion your codes 2
 }

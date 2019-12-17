@@ -2,9 +2,12 @@ package so.wwb.creditbox.iservice.company.lottery;
 
 import org.soul.iservice.support.IBaseService;
 import so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder;
+import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.company.lottery.vo.LotteryBetOrderListVo;
 import so.wwb.creditbox.model.company.lottery.vo.LotteryBetOrderVo;
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
+
+import java.util.List;
 
 
 /**
@@ -29,6 +32,8 @@ public interface ILotteryBetOrderService extends IBaseService<LotteryBetOrderLis
      * @return
      */
     VSiteUser usableCredit(LotteryBetOrderVo lotteryBetOrderVo);
+
+    List<SiteLotteryOdds> searchOddsInfo(LotteryBetOrderListVo lotteryBetOrderListVo);
     //endregion your codes 2
 
 }

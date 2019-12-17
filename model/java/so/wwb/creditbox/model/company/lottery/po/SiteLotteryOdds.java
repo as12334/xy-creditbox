@@ -1,5 +1,6 @@
 package so.wwb.creditbox.model.company.lottery.po;
 
+import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.support.Nonpersistent;
 import so.wwb.creditbox.model.enums.lottery.LotteryHandicapEnum;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
@@ -236,6 +237,9 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 	/**  */
 	private Double parentOddC;
 
+
+	private String szszAmount;
+
 	@Nonpersistent
 	public Double getParentOddA() {
 		return parentOddA;
@@ -282,6 +286,14 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 		}
 	}
 
+	@Nonpersistent
+	public String getSzszAmount() {
+		return StringTool.isBlank(szszAmount)?"0,0,0,0,0":szszAmount;
+	}
+
+	public void setSzszAmount(String szszAmount) {
+		this.szszAmount = szszAmount;
+	}
 
 	//endregion your codes 2
 

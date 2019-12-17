@@ -9,7 +9,7 @@ import org.soul.model.common.Sortable;
  * 投注记录表实体
  *
  * @author block
- * @time 2019-12-14 14:58:08
+ * @time 2019-12-18 2:01:34
  */
 //region your codes 1
 public class LotteryBetOrder implements IEntity<Integer> {
@@ -64,6 +64,7 @@ public class LotteryBetOrder implements IEntity<Integer> {
 	public static final String PROP_COMPANY_ID = "companyId";
 	public static final String PROP_OWNER_USER_TYPE = "ownerUserType";
 	public static final String PROP_SORT_TYPE = "sortType";
+	public static final String PROP_SORT = "sort";
 	//endregion
 	
 	
@@ -156,6 +157,8 @@ public class LotteryBetOrder implements IEntity<Integer> {
 	private String ownerUserType;
 	/**  */
 	private String sortType;
+	/**  */
+	private Integer sort;
 	//endregion
 
 	
@@ -477,6 +480,13 @@ public class LotteryBetOrder implements IEntity<Integer> {
 
 	public void setSortType(String value) {
 		this.sortType = value;
+	}
+	public Integer getSort() {
+		return this.sort;
+	}
+
+	public void setSort(Integer value) {
+		this.sort = value;
 	}
 	//endregion
 

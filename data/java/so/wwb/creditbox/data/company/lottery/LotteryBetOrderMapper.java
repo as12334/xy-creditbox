@@ -2,6 +2,7 @@ package so.wwb.creditbox.data.company.lottery;
 
 import so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder;
 import org.soul.data.rdb.mybatis.IBaseMapper;
+import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public interface LotteryBetOrderMapper extends IBaseMapper<LotteryBetOrder, Inte
 
     //region your codes 2
     List<LotteryBetOrder> sumBetCode(LotteryBetOrderSo search);
+
+    List<SiteLotteryOdds> searchOddsInfo(LotteryBetOrderSo search);
     //endregion your codes 2
 
 }

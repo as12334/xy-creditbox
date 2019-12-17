@@ -27,14 +27,14 @@
         <result column="status" property="status"/>
         <result column="terminal" property="terminal"/>
         <result column="memo" property="memo"/>
-        <result column="rebate8" property="rebate8"/>
+        <result column="${rebateColumn}" property="${rebateColumn}"/>
         <result column="rebate7" property="rebate7"/>
         <result column="rebate6" property="rebate6"/>
         <result column="rebate5" property="rebate5"/>
         <result column="rebate4" property="rebate4"/>
         <result column="rebate3" property="rebate3"/>
         <result column="rebate2" property="rebate2"/>
-        <result column="occupy7" property="occupy7"/>
+        <result column="${occupyColumn}" property="${occupyColumn}"/>
         <result column="occupy6" property="occupy6"/>
         <result column="occupy5" property="occupy5"/>
         <result column="occupy4" property="occupy4"/>
@@ -47,6 +47,7 @@
         <result column="company_id" property="companyId"/>
         <result column="owner_user_type" property="ownerUserType"/>
         <result column="sort_type" property="sortType"/>
+        <result column="sort" property="sort"/>
     </resultMap>
 
     <!--//region your codes 1-->
@@ -63,6 +64,43 @@
         GROUP BY
           bet_code;
     </select>
+
+    <!--查询用户所有菜单-->
+    <select id="searchOddsInfo" resultType="so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds">
+        SELECT
+        slo.*, szxz.szsz_amount
+        FROM
+        (
+        SELECT
+        *
+        FROM
+        site_lottery_odds
+
+        WHERE hid LIKE CONCAT('',#{hid},'%')
+        AND code = #{code}
+        AND sort_type in
+        <foreach collection="sortTypes" item="item" index="index" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+        ) slo
+        LEFT JOIN (
+        SELECT
+        sort,
+        concat (
+        COALESCE(COUNT(sort),0) || ',' || COALESCE(SUM(bet_amount * ${occupyColumn}),0) || ',' || COALESCE(SUM(bet_amount * ${occupyColumn} * b_odd1),0) || ',' || COALESCE(SUM(${occupyColumn} * ${rebateColumn}),0)
+        ) AS szsz_amount
+        FROM
+        lottery_bet_order
+        WHERE
+        status = '1'
+        AND code = #{code}
+        AND expect = #{expect}
+        GROUP BY
+        sort
+        ) szxz
+        ON slo.sort = szxz.sort
+    </select>
+
     <!--//endregion your codes 1-->
 
 </mapper>

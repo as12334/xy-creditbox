@@ -20,8 +20,11 @@ import so.wwb.creditbox.model.common.HidTool;
 import so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryRebates;
+import so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo;
+import so.wwb.creditbox.model.company.lottery.so.SiteLotteryOddsSo;
 import so.wwb.creditbox.model.company.lottery.vo.LotteryBetOrderListVo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsListVo;
+import so.wwb.creditbox.model.enums.base.SubSysCodeEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryOrderStatusEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryStatusEnum;
@@ -127,7 +130,7 @@ public class LotteryHandlerController extends BaseLotteryController{
                 dataMap.put("stop_time","00:"+l/60+":"+l%60);
             }
             if (DateTool.minutesBetween(lotteryResult.getOpenTime(),new Date())> 20 ) {
-                dataMap.put("isopen","0");
+                dataMap.put("isopen","1");
                 lotteryResult.setCloseTime(new Date());
                 lotteryResult.setOpeningTime(DateTool.addMinutes(lotteryResult.getOpenTime(),-20));
             }
@@ -146,39 +149,59 @@ public class LotteryHandlerController extends BaseLotteryController{
             dataMap.put("upopennumber",openResults.get(0).getOpenCode());
 
 
-//            SiteLotteryOddsListVo siteLotteryOddsListVo = new SiteLotteryOddsListVo();
-//            siteLotteryOddsListVo._setDataSourceId(SessionManager.getSiteId());
-//            siteLotteryOddsListVo.getSearch().setHid(HidTool.getBranchHid(sessionUser.getHid()));
-//            siteLotteryOddsListVo.getSearch().setCode(lotteryEnum.getCode());
-//            siteLotteryOddsListVo.getSearch().setSortTypes(form.getPlayid().split(","));
-//            siteLotteryOddsListVo = ServiceTool.siteLotteryOddsService().searchSortType(siteLotteryOddsListVo);
 
+            LotteryBetOrderListVo lotteryBetOrderListVo = new LotteryBetOrderListVo();
+            lotteryBetOrderListVo._setDataSourceId(SessionManager.getSiteId());
+            LotteryBetOrderSo search = lotteryBetOrderListVo.getSearch();
+            search.setHid(HidTool.getBranchHid(sessionUser.getHid()));
+            search.setCode(lotteryEnum.getCode());
+            search.setExpect(lotteryResult.getExpect());
+            search.setSortTypes(form.getPlayid().split(","));
+            int i = Integer.parseInt(sessionUser.getUserType().substring(0, 1));
+            search.setOccupyColumn("occupy"+i);
+            search.setRebateColumn("rebate"+(i+1));
+
+            List<SiteLotteryOdds> lotteryOdds = ServiceTool.lotteryBetOrderService().searchOddsInfo(lotteryBetOrderListVo);
             //赔率 start
             Map<Object, Object> playOddsMap = new LinkedHashMap<>();
             LinkedHashMap<Object, Object> szszMap = new LinkedHashMap<>();
             LinkedHashMap<Object, Object> szszCountMap = new LinkedHashMap<>();
             String[] split = form.getPlayid().split(",");
-            for (String s : split) {
-                Map<String, SiteLotteryOdds> siteLotteryOdds = Cache.getSiteLotteryOdds(HidTool.getBranchHid(sessionUser.getHid()), lotteryEnum.getCode());
-                SiteLotteryOdds Odd = siteLotteryOdds.get(s);
+            for (SiteLotteryOdds odd : lotteryOdds) {
                 Map<Object, Object> oddsMap = new LinkedHashMap<>();
-                oddsMap.put("pl",isOpen?Odd.getOddA()+"":"-");
+                oddsMap.put("pl",isOpen?odd.getOddA()+"":"-");
                 oddsMap.put("plx","");
-                oddsMap.put("maxpl",Odd.getCOdd(sessionUser)+"");
-                oddsMap.put("minpl",Odd.getMinOdd()+"");
-                oddsMap.put("is_open",Odd.getOddClose());
-                playOddsMap.put(Odd.getSort(),oddsMap);
+                //如果是公司用户，最大
+                if(sessionUser.getSubsysCode().equals(SubSysCodeEnum.COMPANY.getCode())){
+                    oddsMap.put("maxpl",odd.getMaxOdd()+"");
+                }
+                else {
+                    oddsMap.put("maxpl",odd.getCOdd(sessionUser)+"");
+                }
+
+                oddsMap.put("minpl",odd.getMinOdd()+"");
+                oddsMap.put("is_open",odd.getOddClose());
+                playOddsMap.put(odd.getSort(),oddsMap);
 
                 //实占需占
-                szszMap.put(Odd.getSort(),"0,0,0,0,0");
+                szszMap.put(odd.getSort(),odd.getSzszAmount()+"");
             }
 
+//            // 注数
+//            'AmountNumber': 0,
+//            // 注额
+//            'AmountValue': 0,
+//            // 盈亏
+//            'WinValue': 0,
+//            // 退水
+//            'RecValue': 0,
+//            // 补货
+//            'RepValue': 0
 
             dataMap.put("play_odds",playOddsMap);
             dataMap.put("szsz_amount",szszMap);
 
 
-            LotteryBetOrderListVo lotteryBetOrderListVo = new LotteryBetOrderListVo();
             lotteryBetOrderListVo.getSearch().setExpect(lotteryResult.getExpect());
             lotteryBetOrderListVo.getSearch().setStatus(LotteryOrderStatusEnum.PENDING.getCode());
             lotteryBetOrderListVo.getSearch().setCode(lotteryEnum.getCode());

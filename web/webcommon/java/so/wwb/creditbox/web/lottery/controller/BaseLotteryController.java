@@ -185,6 +185,7 @@ public class BaseLotteryController {
                     lotteryBetOrder.setCodd1(lotteryOdd.getCOdd(sessionUser));
                     lotteryBetOrder.setBodd1(lotteryOdd.getBOdd(sessionUser));
                     lotteryBetOrder.setBetName(lotteryOdd.getBetName());
+                    lotteryBetOrder.setSort(lotteryOdd.getSort());
                     lotteryBetOrder.setSortType(lotteryOdd.getSortType());
                     lotteryBetOrder.setBetCode(lotteryOdd.getBetCode());
                     lotteryBetOrder.setPlayCode(lotteryOdd.getPlayCode());

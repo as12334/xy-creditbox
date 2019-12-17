@@ -10,12 +10,14 @@ import so.wwb.creditbox.data.company.lottery.LotteryBetOrderMapper;
 import so.wwb.creditbox.data.company.user.VSiteUserMapper;
 import so.wwb.creditbox.iservice.company.lottery.ILotteryBetOrderService;
 import so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder;
+import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo;
 import so.wwb.creditbox.model.company.lottery.vo.LotteryBetOrderListVo;
 import so.wwb.creditbox.model.company.lottery.vo.LotteryBetOrderVo;
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
 import so.wwb.creditbox.model.enums.lottery.LotteryOrderStatusEnum;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -67,6 +69,11 @@ public class LotteryBetOrderService extends BaseService<LotteryBetOrderMapper, L
         double v = sum1.doubleValue() - sum2.doubleValue() -sum3.doubleValue();
         vSiteUser.setUsableCredit(v);
         return vSiteUser;
+    }
+
+    @Override
+    public List<SiteLotteryOdds> searchOddsInfo(LotteryBetOrderListVo lotteryBetOrderListVo) {
+        return mapper.searchOddsInfo(lotteryBetOrderListVo.getSearch());
     }
     //endregion your codes 2
 
