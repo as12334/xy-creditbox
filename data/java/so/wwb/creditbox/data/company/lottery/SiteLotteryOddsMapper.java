@@ -1,5 +1,6 @@
 package so.wwb.creditbox.data.company.lottery;
 
+import org.apache.ibatis.annotations.Param;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import org.soul.data.rdb.mybatis.IBaseMapper;
 import so.wwb.creditbox.model.company.lottery.so.SiteLotteryOddsSo;
@@ -25,6 +26,8 @@ public interface SiteLotteryOddsMapper extends IBaseMapper<SiteLotteryOdds, Inte
     Integer saveSiteLotteryOdds(SiteLotteryOddsVo search);
 
     List<SiteLotteryOdds> getBranchOdds(SiteLotteryOddsSo search);
+
+    Integer usedSql(@Param("format")String  format);
 
     //endregion your codes 2
 

@@ -24,8 +24,10 @@ import so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo;
 import so.wwb.creditbox.model.company.lottery.so.SiteLotteryOddsSo;
 import so.wwb.creditbox.model.company.lottery.vo.LotteryBetOrderListVo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsListVo;
+import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo;
 import so.wwb.creditbox.model.enums.base.SubSysCodeEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
+import so.wwb.creditbox.model.enums.lottery.LotteryOpTypeEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryOrderStatusEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryStatusEnum;
 import so.wwb.creditbox.model.hall.HandlerForm;
@@ -47,27 +49,17 @@ public class LotteryHandlerController extends BaseLotteryController{
     private static final String INDEX_CONTENT_URI = "index.include/content";
 
 
-    Integer generateTotalSum(String[] openCodes) {
-        Integer totalSum = 0;
-        for (String openCode : openCodes) {
-            totalSum += Integer.valueOf(openCode);
-        }
-        return totalSum;
-    }
 
     @RequestMapping(value = "/{code}/handler/handler")
     @ResponseBody
     protected String handler(@PathVariable String code, HandlerForm form, HttpServletRequest request, HttpServletResponse response, Model model ) {
-
-
-
+        form.setSessionUser(SessionManager.getSysUserExtend());
 
 
 
 
         WebJson webJson = new WebJson();
         LotteryErrorCode errorCode = new LotteryErrorCode();
-        SysUserExtend sessionUser = SessionManager.getSysUserExtend();
         LotteryEnum lotteryEnum = EnumTool.enumOf(LotteryEnum.class, code);
         if(lotteryEnum == null){
             webJson.setSuccess(HttpCodeEnum.ERROR.getCode());
@@ -100,7 +92,22 @@ public class LotteryHandlerController extends BaseLotteryController{
         List<LotteryResult> openResults = ServiceTool.lotteryResultService().queryFiveRecentOpenResult(lotteryResultVo);
         //最近五期期的已开奖结果 end
 
+        //赔率变更
         if("operate_adds".equals(form.getAction())){
+            if(form.getOddOpTypeEnum() != null){
+
+                SiteLotteryOddsVo siteLotteryOddsVo = new SiteLotteryOddsVo();
+                siteLotteryOddsVo._setDataSourceId(SessionManager.getSiteId());
+                siteLotteryOddsVo.setForm(form);
+                webJson = ServiceTool.siteLotteryOddsService().opOdds(siteLotteryOddsVo);
+
+
+
+                return JsonTool.toJson(webJson);
+            }
+            else {
+             //参数无效
+            }
 
         }
         else if("get_oddsinfo".equals(form.getAction())){
@@ -153,11 +160,11 @@ public class LotteryHandlerController extends BaseLotteryController{
             LotteryBetOrderListVo lotteryBetOrderListVo = new LotteryBetOrderListVo();
             lotteryBetOrderListVo._setDataSourceId(SessionManager.getSiteId());
             LotteryBetOrderSo search = lotteryBetOrderListVo.getSearch();
-            search.setHid(HidTool.getBranchHid(sessionUser.getHid()));
+            search.setHid(HidTool.getBranchHid(form.getSessionUser().getHid()));
             search.setCode(lotteryEnum.getCode());
             search.setExpect(lotteryResult.getExpect());
             search.setSortTypes(form.getPlayid().split(","));
-            int i = Integer.parseInt(sessionUser.getUserType().substring(0, 1));
+            int i = Integer.parseInt(form.getSessionUser().getUserType().substring(0, 1));
             search.setOccupyColumn("occupy"+i);
             search.setRebateColumn("rebate"+(i+1));
 
@@ -172,11 +179,11 @@ public class LotteryHandlerController extends BaseLotteryController{
                 oddsMap.put("pl",isOpen?odd.getOddA()+"":"-");
                 oddsMap.put("plx","");
                 //如果是公司用户，最大
-                if(sessionUser.getSubsysCode().equals(SubSysCodeEnum.COMPANY.getCode())){
+                if(form.getSessionUser().getSubsysCode().equals(SubSysCodeEnum.COMPANY.getCode())){
                     oddsMap.put("maxpl",odd.getMaxOdd()+"");
                 }
                 else {
-                    oddsMap.put("maxpl",odd.getCOdd(sessionUser)+"");
+                    oddsMap.put("maxpl",odd.getCOdd(form.getSessionUser())+"");
                 }
 
                 oddsMap.put("minpl",odd.getMinOdd()+"");

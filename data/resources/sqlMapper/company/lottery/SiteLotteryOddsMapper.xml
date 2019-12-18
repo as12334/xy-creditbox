@@ -59,6 +59,9 @@
     </select>
 
 
+    <update id="usedSql" parameterType="string">
+        ${format}
+    </update>
 
     <!--//endregion your codes 1-->
 

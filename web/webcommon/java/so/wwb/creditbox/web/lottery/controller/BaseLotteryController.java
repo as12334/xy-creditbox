@@ -102,7 +102,7 @@ public class BaseLotteryController {
                 return webJson;
             }
 
-            if (StringTool.isNotBlank(form.getOddsid())) {
+            if (form.getOddsid() != null) {
                 SysUserExtend sessionUser = SessionManagerCommon.getSysUserExtend();
                 //反水和限额
                 Map<String, SiteLotteryRebates> siteLotteryRebatesMap = Cache.getSiteLotteryRebates(HidTool.getBranchHid(sessionUser.getHid()), code);

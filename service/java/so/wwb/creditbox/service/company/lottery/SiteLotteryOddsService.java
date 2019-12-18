@@ -10,18 +10,28 @@ import org.soul.commons.query.Criteria;
 import org.soul.commons.query.enums.Operator;
 import org.soul.service.support.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.request.FacesRequestAttributes;
+import so.wwb.creditbox.data.company.lottery.LotteryBetOrderMapper;
 import so.wwb.creditbox.data.company.lottery.SiteLotteryMapper;
 import so.wwb.creditbox.data.company.lottery.SiteLotteryOddsMapper;
 import so.wwb.creditbox.iservice.company.lottery.ISiteLotteryOddsService;
+import so.wwb.creditbox.model.bean.HttpCodeEnum;
+import so.wwb.creditbox.model.bean.WebJson;
+import so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder;
 import so.wwb.creditbox.model.constants.cache.CacheKey;
+import so.wwb.creditbox.model.enums.base.SubSysCodeEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
+import so.wwb.creditbox.model.enums.lottery.LotteryOpTypeEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryStatusEnum;
 import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.company.lottery.so.SiteLotteryOddsSo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsListVo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo;
+import so.wwb.creditbox.model.hall.HandlerForm;
+import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -181,6 +191,73 @@ public class SiteLotteryOddsService extends BaseService<SiteLotteryOddsMapper, S
             siteLotteryOddsVo.setSuccess(false);
         }
         return siteLotteryOddsVo;
+    }
+
+    @Override
+    public WebJson opOdds(SiteLotteryOddsVo siteLotteryOddsVo) {
+        WebJson webJson = new WebJson();
+        HandlerForm form = siteLotteryOddsVo.getForm();
+        SysUserExtend sessionUser = form.getSessionUser();
+
+        StringBuffer sql = new StringBuffer();
+        //加减赔率
+        if(form.getOddOpTypeEnum() == LotteryOpTypeEnum.PLUS || form.getOddOpTypeEnum() == LotteryOpTypeEnum.REDUCE){
+            if(sessionUser.getSubsysCode().equals(SubSysCodeEnum.COMPANY.getCode())){
+                sql.append("UPDATE site_lottery_odds ");
+                sql.append("SET odd_a = odd_a + {0},");
+                sql.append("odd_b = odd_b + {0},");
+                sql.append("odd_c = odd_c + {0} ");
+                sql.append("WHERE ");
+                sql.append("hid = ''{1}'' ");
+                sql.append("AND code = ''{2}'' ");
+                sql.append("AND sort in ({3}) ");
+                sql.append("AND odd_a + {0} >= min_odd ");
+                sql.append("AND odd_b + {0} >= min_odd ");
+                sql.append("AND odd_c + {0} >= min_odd ");
+                sql.append("AND odd_a + {0} <= max_odd ");
+                sql.append("AND odd_b + {0} <= max_odd ");
+                sql.append("AND odd_c + {0} <= max_odd ");
+                String format = MessageFormat.format(sql.toString(), form.getWtvalue(),sessionUser.getHid(), form.getCode(),form.getInSql());
+                //减赔率
+                if(form.getOddOpTypeEnum() == LotteryOpTypeEnum.REDUCE){
+                    format = MessageFormat.format(sql.toString(), -form.getWtvalue(),sessionUser.getHid(), form.getCode(),form.getInSql());
+                }
+                Integer count = mapper.usedSql(format);
+
+                webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
+                Map<String, Object> dataMap = new LinkedHashMap<>();
+
+                List<SiteLotteryOdds> lotteryOddsList = mapper.search(Criteria.add(SiteLotteryOdds.PROP_HID, Operator.EQ, sessionUser.getHid()).addAnd(SiteLotteryOdds.PROP_CODE, Operator.EQ, form.getCode()).addAnd(SiteLotteryOdds.PROP_SORT, Operator.IN, form.getOddsid()));
+                Map<Object, Object> playOddsMap = new LinkedHashMap<>();
+                for (SiteLotteryOdds odd : lotteryOddsList) {
+                    Map<Object, Object> oddsMap = new LinkedHashMap<>();
+                    oddsMap.put("pl",odd.getOddA());
+                    oddsMap.put("plx","");
+                    //如果是公司用户，最大
+                    if(form.getSessionUser().getSubsysCode().equals(SubSysCodeEnum.COMPANY.getCode())){
+                        oddsMap.put("maxpl",odd.getMaxOdd()+"");
+                    }
+                    else {
+                        oddsMap.put("maxpl",odd.getCOdd(form.getSessionUser())+"");
+                    }
+
+                    oddsMap.put("minpl",odd.getMinOdd()+"");
+                    oddsMap.put("is_open",odd.getOddClose());
+                    playOddsMap.put(odd.getSort(),oddsMap);
+                }
+                dataMap.put("play_odds",playOddsMap);
+                webJson.setData(dataMap);
+                webJson.setTipinfo("");
+            }
+            else if(sessionUser.getSubsysCode().equals(SubSysCodeEnum.BRANCH.getCode())){
+
+            }
+        }
+        else if(form.getOddOpTypeEnum() == LotteryOpTypeEnum.opDigita){
+
+        }
+
+        return webJson;
     }
 
     //endregion your codes 2

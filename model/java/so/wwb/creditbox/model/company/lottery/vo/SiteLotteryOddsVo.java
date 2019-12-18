@@ -7,6 +7,8 @@ import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.company.lottery.po.SiteLottery;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.company.lottery.so.SiteLotteryOddsSo;
+import so.wwb.creditbox.model.hall.HandlerForm;
+import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -30,6 +32,8 @@ public class SiteLotteryOddsVo extends BaseObjectVo<SiteLotteryOdds, SiteLottery
     private  List<SiteLottery> siteLotteryList;
     //赔率设置集合
     private Map<String,SiteLotteryOdds> oddsMap;
+
+    private HandlerForm form;
 
 
 
@@ -148,6 +152,13 @@ public class SiteLotteryOddsVo extends BaseObjectVo<SiteLotteryOdds, SiteLottery
     }
 
 
+    public HandlerForm getForm() {
+        return form;
+    }
+
+    public void setForm(HandlerForm form) {
+        this.form = form;
+    }
 
     private String lotteryOddsJson;
 

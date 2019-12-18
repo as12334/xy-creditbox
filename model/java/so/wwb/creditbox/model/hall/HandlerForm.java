@@ -1,6 +1,9 @@
 package so.wwb.creditbox.model.hall;
 
+import org.soul.commons.enums.EnumTool;
 import so.wwb.creditbox.model.company.lottery.po.LotteryBetOrder;
+import so.wwb.creditbox.model.enums.lottery.LotteryOpTypeEnum;
+import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,6 +14,8 @@ import java.util.List;
 public class HandlerForm implements Serializable {
 
     private static final long serialVersionUID = -1883103354558368531L;
+
+    private String code;
     /**
      * 页面请求
      */
@@ -28,7 +33,7 @@ public class HandlerForm implements Serializable {
 
     private Integer phaseid;
     //下注玩法
-    private String  oddsid;
+    private Integer[]  oddsid;
     //赔率
     private String uPI_P;
     //金额
@@ -44,6 +49,8 @@ public class HandlerForm implements Serializable {
     private String optype;
     //修改赔率值
     private Double wtvalue;
+
+    private SysUserExtend sessionUser;
 
     private List<LotteryBetOrder> betOrderList;
 
@@ -79,14 +86,21 @@ public class HandlerForm implements Serializable {
         this.phaseid = phaseid;
     }
 
-    public String getOddsid() {
+    public Integer[] getOddsid() {
         return oddsid;
     }
 
-    public void setOddsid(String oddsid) {
+    public void setOddsid(Integer[] oddsid) {
         this.oddsid = oddsid;
     }
 
+    public String getInSql(){
+        StringBuilder inConditions = new StringBuilder();
+        for (Integer i : oddsid) {
+            inConditions.append(i).append(",");
+        }
+        return inConditions.subSequence(0, inConditions.length() - 1).toString();
+    }
     public String getuPI_P() {
         return uPI_P;
     }
@@ -136,7 +150,7 @@ public class HandlerForm implements Serializable {
     }
 
     public String[] getBetSortArray() {
-        return oddsid.split(",");
+        return null;
     }
 
     public String[] getMoneyArray() {
@@ -147,5 +161,38 @@ public class HandlerForm implements Serializable {
         return uPI_P.split(",");
     }
 
+    public String getOptype() {
+        return optype;
+    }
 
+    public void setOptype(String optype) {
+        this.optype = optype;
+    }
+
+    public Double getWtvalue() {
+        return wtvalue;
+    }
+
+    public void setWtvalue(Double wtvalue) {
+        this.wtvalue = wtvalue;
+    }
+    public LotteryOpTypeEnum getOddOpTypeEnum(){
+        return EnumTool.enumOf(LotteryOpTypeEnum.class, optype);
+    }
+
+    public SysUserExtend getSessionUser() {
+        return sessionUser;
+    }
+
+    public void setSessionUser(SysUserExtend sessionUser) {
+        this.sessionUser = sessionUser;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 }

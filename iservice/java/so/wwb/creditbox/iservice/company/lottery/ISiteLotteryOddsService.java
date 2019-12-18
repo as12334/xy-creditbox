@@ -1,6 +1,7 @@
 package so.wwb.creditbox.iservice.company.lottery;
 
 import org.soul.iservice.support.IBaseService;
+import so.wwb.creditbox.model.bean.WebJson;
 import so.wwb.creditbox.model.company.lottery.po.SiteLotteryOdds;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsListVo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo;
@@ -25,6 +26,8 @@ public interface ISiteLotteryOddsService extends IBaseService<SiteLotteryOddsLis
     SiteLotteryOddsVo initOddsData(SiteLotteryOddsVo vo);
 
     SiteLotteryOddsVo saveSiteLotteryOdds(SiteLotteryOddsVo siteLotteryOddsVo);
+
+    WebJson opOdds(SiteLotteryOddsVo siteLotteryOddsVo);
 
     //endregion your codes 2
 
