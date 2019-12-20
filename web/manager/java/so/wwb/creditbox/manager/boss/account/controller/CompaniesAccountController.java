@@ -100,15 +100,15 @@ public class CompaniesAccountController extends BaseAccountController {
         objectVo.getResult().setUserType(UserTypeEnum.COMPANIES.getCode());
         objectVo.getResult().setSubsysCode(SubSysCodeEnum.COMPANIES.getCode());
         objectVo.getResult().setCreateUser(operator.getId());
-        objectVo.getResult().setSuperiorOccupy(0);
-        objectVo.getResult().setStintOccupy(0);
-        objectVo.getResult().setCredits(0.0);
-        objectVo.getResult().setBreakpoint(BreakpointEnum.ZERO.getCode());
-        objectVo.getResult().setGeneral(GeneralEnum.ALL.getCode());
-        objectVo.getResult().setManualAutoShipments(ManualAutoShipmentsEnum.OFF.getCode());
-        objectVo.getResult().setModeSelection(ModeSelectionEnum.CREDIT.getCode());
-        objectVo.getResult().setSetOdds(SetOddsEnum.OFF.getCode());
-        objectVo.getResult().setTestAccount(TestAccountEnum.NO.getCode());
+//        objectVo.getResult().setSuperiorOccupy(0);
+//        objectVo.getResult().setStintOccupy(0);
+//        objectVo.getResult().setCredits(0.0);
+//        objectVo.getResult().setBreakpoint(BreakpointEnum.ZERO.getCode());
+//        objectVo.getResult().setGeneral(GeneralEnum.ALL.getCode());
+//        objectVo.getResult().setManualAutoShipments(ManualAutoShipmentsEnum.OFF.getCode());
+//        objectVo.getResult().setModeSelection(ModeSelectionEnum.CREDIT.getCode());
+//        objectVo.getResult().setSetOdds(SetOddsEnum.OFF.getCode());
+//        objectVo.getResult().setTestAccount(TestAccountEnum.NO.getCode());
 
         if (StringTool.equals(UserTypeEnum.BOSS.getCode(), operator.getUserType())) {
             objectVo.getResult().setOwnerId(operator.getId());

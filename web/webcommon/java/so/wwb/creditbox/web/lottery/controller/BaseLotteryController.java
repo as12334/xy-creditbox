@@ -65,223 +65,223 @@ public class BaseLotteryController {
      * @param form
      * @return
      */
-    protected WebJson saveBetOrder(HttpServletRequest request, String code, HandlerForm form) {
-        ErrorCode errorCode = new ErrorCode();
-        List<ErrorCode.Error> errors = new ArrayList<>();
-        WebJson webJson = new WebJson();
-        webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
-
-
-        try {
-            //当前开奖结果
-            LotteryResult handicap = getHandicap(code);
-            //是否封盘
-            if(handicap.getLeftTime()<0){
-                webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
-                webJson.setTipinfo("该期已封盘！");
-                return webJson;
-            }
-
-
-
-            LOG.info("下注表單:site:{0},username:{1},code:{2},handlerForm:{3}", SessionManagerCommon.getSiteId(), SessionManagerCommon.getUser().getUsername(), code, JsonTool.toJson(form));
-            Lottery lottery = Cache.getLottery(code);
-            if (lottery == null || !StringTool.equals(LotteryStatusEnum.NORMAL.getCode(), lottery.getStatus())) {
-                errors.add(errorCode.new Error(errorCode.CODE_111, errorCode.MSG_DISABLE, errorCode.ICON_5));
-                webJson.setSuccess(HttpCodeEnum.ERROR.getCode());
-                webJson.setTipinfo(errorCode.MSG_DISABLE);
-                return webJson;
-            }
-            Map<String, SiteLottery> siteLotteryMap = Cache.getSiteLottery(SessionManagerCommon.getSiteId());
-            SiteLottery siteLottery = siteLotteryMap.get(code);
-
-            if (siteLottery == null || !StringTool.equals(LotteryStatusEnum.NORMAL.getCode(), siteLottery.getStatus())) {
-                errors.add(errorCode.new Error(errorCode.CODE_111, errorCode.MSG_DISABLE, errorCode.ICON_5));
-                webJson.setSuccess(HttpCodeEnum.ERROR.getCode());
-                webJson.setTipinfo(errorCode.MSG_DISABLE);
-                return webJson;
-            }
-
-            if (form.getOddsid() != null) {
-                SysUserExtend sessionUser = SessionManagerCommon.getSysUserExtend();
-                //反水和限额
-                Map<String, SiteLotteryRebates> siteLotteryRebatesMap = Cache.getSiteLotteryRebates(HidTool.getBranchHid(sessionUser.getHid()), code);
-                //赔率缓存
-                Map<String, SiteLotteryOdds> siteLotteryOdds = Cache.getBranchSiteLotteryOdds(sessionUser.getHid(), code);
-
-
-                List<Integer> indexList = new ArrayList<>();
-                List<Double> newPlList = new ArrayList<>();
-
-
-
-                //验证赔率是否变动 start
-                boolean oddChange=false;
-                for (int i=0;i<form.getBetSortArray().length;i++) {
-                    //下注项
-                    String betSort = form.getBetSortArray()[i];
-                    //赔率
-                    Double odd = Double.valueOf(form.getOddArray()[i]);
-                    SiteLotteryOdds lotteryOdd = siteLotteryOdds.get(betSort);
-                    //验证赔率是否变动
-                    if(odd.compareTo(lotteryOdd.getBOdd(sessionUser)) != 0){
-                        oddChange = true;
-                        indexList.add(i);
-                        newPlList.add(lotteryOdd.getBOdd(sessionUser));
-                    }
-                }
-                if(oddChange){
-                    webJson.setSuccess(HttpCodeEnum.ODD_CHENGE.getCode());
-                    webJson.setTipinfo("赔率变动！");
-                    HashMap<String, Object> phaseinfoMap = new HashMap<>();
-                    phaseinfoMap.put("index",indexList);
-                    phaseinfoMap.put("newpl",newPlList);
-                    webJson.setData(phaseinfoMap);
-                    return webJson;
-                }
-                //验证赔率是否变动 end
-
-
-                //限额校验 start
-                List<LotteryBetOrder> orders = new ArrayList<>();
-                for (int i=0;i<form.getBetSortArray().length;i++) {
-                    //下注项
-                    String betSort = form.getBetSortArray()[i];
-                    //赔率
-                    Double odd = Double.valueOf(form.getOddArray()[i]);
-                    //下注接
-                    Double money = Double.valueOf(form.getMoneyArray()[i]);
-
-
-                    SiteLotteryRebates rebates = siteLotteryRebatesMap.get(betSort);
-                    SiteLotteryOdds lotteryOdd = siteLotteryOdds.get(betSort);
-
-                    if(money < rebates.getMinBet() || money > rebates.getMaxBet()){
-                        webJson.setSuccess(HttpCodeEnum.ERROR.getCode());
-                        webJson.setTipinfo(errorCode.MSG_113);
-                        return webJson;
-                    }
-                    //todo  單期校验未处理
-
-
-                    //初始化赔率，返水，限额
-                    SysUserExtendVo sysUserExtendVo = new SysUserExtendVo();
-                    sysUserExtendVo.getSearch().setId(sessionUser.getId());
-                    sysUserExtendVo.setDataSourceId(sessionUser.getSiteId());
-                    List<SysUserExtend> users = ServiceTool.sysUserExtendService().findOwner(sysUserExtendVo);
-
-
-
-
-
-                    LotteryBetOrder lotteryBetOrder = new LotteryBetOrder();
-                    lotteryBetOrder.setHid(sessionUser.getHid());
-                    lotteryBetOrder.setUserId(sessionUser.getId());
-                    lotteryBetOrder.setUsername(sessionUser.getUsername());
-                    lotteryBetOrder.setStatus(LotteryOrderStatusEnum.PENDING.getCode());
-                    lotteryBetOrder.setHandicap(sessionUser.getHandicap());
-                    lotteryBetOrder.setExpect(handicap.getExpect());
-                    lotteryBetOrder.setCode(code);
-                    lotteryBetOrder.setCodd1(lotteryOdd.getCOdd(sessionUser));
-                    lotteryBetOrder.setBodd1(lotteryOdd.getBOdd(sessionUser));
-                    lotteryBetOrder.setBetName(lotteryOdd.getBetName());
-                    lotteryBetOrder.setSort(lotteryOdd.getSort());
-                    lotteryBetOrder.setSortType(lotteryOdd.getSortType());
-                    lotteryBetOrder.setBetCode(lotteryOdd.getBetCode());
-                    lotteryBetOrder.setPlayCode(lotteryOdd.getPlayCode());
-                    lotteryBetOrder.setBetNum(lotteryOdd.getBetNum());
-                    lotteryBetOrder.setBetAmount(money);
-                    lotteryBetOrder.setBodd1(odd);
-                    lotteryBetOrder.setBetTime(new Date());
-                    lotteryBetOrder.setBetSort(betSort);
-                    lotteryBetOrder.setOwnerUserType(sessionUser.getOwnerUserType());
-
-                    for (SysUserExtend user : users) {
-                        UserTypeEnum anEnum = EnumTool.enumOf(UserTypeEnum.class, user.getUserType());
-                        rebates = siteLotteryRebatesMap.get(betSort);
-
-                        switch (anEnum){
-                            case PLAYER:
-                                lotteryBetOrder.setRebate8((rebates.getRebateA()/100)* money);
-                                lotteryBetOrder.setOccupy7(user.getSuperiorOccupy()/100.0);
-                                break;
-                            case AGENT:
-                                lotteryBetOrder.setRebate7((rebates.getRebateA()/100)* money);
-                                lotteryBetOrder.setOccupy6(user.getSuperiorOccupy()/100.0);
-                                lotteryBetOrder.setAgentId(user.getId());
-                                break;
-                            case DISTRIBUTOR:
-                                lotteryBetOrder.setRebate6((rebates.getRebateA()/100)* money);
-                                lotteryBetOrder.setOccupy5(user.getSuperiorOccupy()/100.0);
-                                lotteryBetOrder.setDistributorId(user.getId());
-                                break;
-                            case SHAREHOLDER:
-                                lotteryBetOrder.setRebate5((rebates.getRebateA()/100)* money);
-                                lotteryBetOrder.setOccupy4(user.getSuperiorOccupy()/100.0);
-                                lotteryBetOrder.setShareholderId(user.getId());
-                                break;
-                            case BRANCH:
-                                lotteryBetOrder.setRebate4((rebates.getRebateA()/100)* money);
-                                lotteryBetOrder.setOccupy3(user.getSuperiorOccupy()/100.0);
-                                lotteryBetOrder.setBranchId(user.getId());
-                                break;
-                            case COMPANY:
-                                lotteryBetOrder.setRebate3((rebates.getRebateA()/100)* money);
-                                lotteryBetOrder.setOccupy2(lotteryBetOrder.getOccupy7());
-                                lotteryBetOrder.setCompanyId(LotteryCommonContext.get().getDomainUserId());
-                                break;
-                        }
-                    }
-                    orders.add(lotteryBetOrder);
-
-                }
-                //限额校验 end
-                form.setBetOrderList(orders);
-
-                
-
-
-//                //校验参数（例如期数、赔率）
-                if (checkParam(code,   errorCode, form)) {
-                    webJson.setSuccess(HttpCodeEnum.ERROR.getCode());
-                    webJson.setTipinfo(HttpCodeEnum.ERROR.getTrans());
-                    return webJson;
-                }
-                // 校验余额
-                if (checkOrder(errors, errorCode, form, request)) {
-                    webJson.setSuccess(HttpCodeEnum.ERROR.getCode());
-                    webJson.setTipinfo(HttpCodeEnum.ERROR.getTrans());
-                    return webJson;
-                }
-
-                LotteryBetOrderVo vo = new LotteryBetOrderVo();
-//                initBetVo(request, bean, user, vo);
-
-                vo.setEntities(form.getBetOrderList());
-                vo = ServiceTool.lotteryBetOrderService().saveBetOrder(vo);
-                webJson.setTipinfo("下單成功！");
-
-            }else {
-                LOG.error("注單接口出错:bean:{0}", JsonTool.toJson(form));
-                webJson.setTipinfo("非法下注！");
-            }
-
-
-        } catch (Exception e) {
-            LOG.error(e, "保存注單异常！");
-            webJson.setSuccess(HttpCodeEnum.ERROR.getCode());
-            webJson.setTipinfo("保存注單异常");
-            return webJson;
-        }
-
-
-
-
-
-
-        return webJson;
-
-    }
+//    protected WebJson saveBetOrder(HttpServletRequest request, String code, HandlerForm form) {
+//        ErrorCode errorCode = new ErrorCode();
+//        List<ErrorCode.Error> errors = new ArrayList<>();
+//        WebJson webJson = new WebJson();
+//        webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
+//
+//
+//        try {
+//            //当前开奖结果
+//            LotteryResult handicap = getHandicap(code);
+//            //是否封盘
+//            if(handicap.getLeftTime()<0){
+//                webJson.setSuccess(HttpCodeEnum.SUCCESS.getCode());
+//                webJson.setTipinfo("该期已封盘！");
+//                return webJson;
+//            }
+//
+//
+//
+//            LOG.info("下注表單:site:{0},username:{1},code:{2},handlerForm:{3}", SessionManagerCommon.getSiteId(), SessionManagerCommon.getUser().getUsername(), code, JsonTool.toJson(form));
+//            Lottery lottery = Cache.getLottery(code);
+//            if (lottery == null || !StringTool.equals(LotteryStatusEnum.NORMAL.getCode(), lottery.getStatus())) {
+//                errors.add(errorCode.new Error(errorCode.CODE_111, errorCode.MSG_DISABLE, errorCode.ICON_5));
+//                webJson.setSuccess(HttpCodeEnum.ERROR.getCode());
+//                webJson.setTipinfo(errorCode.MSG_DISABLE);
+//                return webJson;
+//            }
+//            Map<String, SiteLottery> siteLotteryMap = Cache.getSiteLottery(SessionManagerCommon.getSiteId());
+//            SiteLottery siteLottery = siteLotteryMap.get(code);
+//
+//            if (siteLottery == null || !StringTool.equals(LotteryStatusEnum.NORMAL.getCode(), siteLottery.getStatus())) {
+//                errors.add(errorCode.new Error(errorCode.CODE_111, errorCode.MSG_DISABLE, errorCode.ICON_5));
+//                webJson.setSuccess(HttpCodeEnum.ERROR.getCode());
+//                webJson.setTipinfo(errorCode.MSG_DISABLE);
+//                return webJson;
+//            }
+//
+//            if (form.getOddsid() != null) {
+//                SysUserExtend sessionUser = SessionManagerCommon.getSysUserExtend();
+//                //反水和限额
+//                Map<String, SiteLotteryRebates> siteLotteryRebatesMap = Cache.getSiteLotteryRebates(HidTool.getBranchHid(sessionUser.getSalt()), code);
+//                //赔率缓存
+//                Map<String, SiteLotteryOdds> siteLotteryOdds = Cache.getBranchSiteLotteryOdds(sessionUser.getKcKind(), code);
+//
+//
+//                List<Integer> indexList = new ArrayList<>();
+//                List<Double> newPlList = new ArrayList<>();
+//
+//
+//
+//                //验证赔率是否变动 start
+//                boolean oddChange=false;
+//                for (int i=0;i<form.getBetSortArray().length;i++) {
+//                    //下注项
+//                    String betSort = form.getBetSortArray()[i];
+//                    //赔率
+//                    Double odd = Double.valueOf(form.getOddArray()[i]);
+//                    SiteLotteryOdds lotteryOdd = siteLotteryOdds.get(betSort);
+//                    //验证赔率是否变动
+//                    if(odd.compareTo(lotteryOdd.getBOdd(sessionUser)) != 0){
+//                        oddChange = true;
+//                        indexList.add(i);
+//                        newPlList.add(lotteryOdd.getBOdd(sessionUser));
+//                    }
+//                }
+//                if(oddChange){
+//                    webJson.setSuccess(HttpCodeEnum.ODD_CHENGE.getCode());
+//                    webJson.setTipinfo("赔率变动！");
+//                    HashMap<String, Object> phaseinfoMap = new HashMap<>();
+//                    phaseinfoMap.put("index",indexList);
+//                    phaseinfoMap.put("newpl",newPlList);
+//                    webJson.setData(phaseinfoMap);
+//                    return webJson;
+//                }
+//                //验证赔率是否变动 end
+//
+//
+//                //限额校验 start
+//                List<LotteryBetOrder> orders = new ArrayList<>();
+//                for (int i=0;i<form.getBetSortArray().length;i++) {
+//                    //下注项
+//                    String betSort = form.getBetSortArray()[i];
+//                    //赔率
+//                    Double odd = Double.valueOf(form.getOddArray()[i]);
+//                    //下注接
+//                    Double money = Double.valueOf(form.getMoneyArray()[i]);
+//
+//
+//                    SiteLotteryRebates rebates = siteLotteryRebatesMap.get(betSort);
+//                    SiteLotteryOdds lotteryOdd = siteLotteryOdds.get(betSort);
+//
+//                    if(money < rebates.getMinBet() || money > rebates.getMaxBet()){
+//                        webJson.setSuccess(HttpCodeEnum.ERROR.getCode());
+//                        webJson.setTipinfo(errorCode.MSG_113);
+//                        return webJson;
+//                    }
+//                    //todo  單期校验未处理
+//
+//
+//                    //初始化赔率，返水，限额
+//                    SysUserExtendVo sysUserExtendVo = new SysUserExtendVo();
+//                    sysUserExtendVo.getSearch().setId(sessionUser.getId());
+//                    sysUserExtendVo.setDataSourceId(sessionUser.getSiteId());
+//                    List<SysUserExtend> users = ServiceTool.sysUserExtendService().findOwner(sysUserExtendVo);
+//
+//
+//
+//
+//
+//                    LotteryBetOrder lotteryBetOrder = new LotteryBetOrder();
+//                    lotteryBetOrder.setHid(sessionUser.getHid());
+//                    lotteryBetOrder.setUserId(sessionUser.getId());
+//                    lotteryBetOrder.setUsername(sessionUser.getUsername());
+//                    lotteryBetOrder.setStatus(LotteryOrderStatusEnum.PENDING.getCode());
+//                    lotteryBetOrder.setHandicap(sessionUser.getHandicap());
+//                    lotteryBetOrder.setExpect(handicap.getExpect());
+//                    lotteryBetOrder.setCode(code);
+//                    lotteryBetOrder.setCodd1(lotteryOdd.getCOdd(sessionUser));
+//                    lotteryBetOrder.setBodd1(lotteryOdd.getBOdd(sessionUser));
+//                    lotteryBetOrder.setBetName(lotteryOdd.getBetName());
+//                    lotteryBetOrder.setSort(lotteryOdd.getSort());
+//                    lotteryBetOrder.setSortType(lotteryOdd.getSortType());
+//                    lotteryBetOrder.setBetCode(lotteryOdd.getBetCode());
+//                    lotteryBetOrder.setPlayCode(lotteryOdd.getPlayCode());
+//                    lotteryBetOrder.setBetNum(lotteryOdd.getBetNum());
+//                    lotteryBetOrder.setBetAmount(money);
+//                    lotteryBetOrder.setBodd1(odd);
+//                    lotteryBetOrder.setBetTime(new Date());
+//                    lotteryBetOrder.setBetSort(betSort);
+//                    lotteryBetOrder.setOwnerUserType(sessionUser.getOwnerUserType());
+//
+//                    for (SysUserExtend user : users) {
+//                        UserTypeEnum anEnum = EnumTool.enumOf(UserTypeEnum.class, user.getUserType());
+//                        rebates = siteLotteryRebatesMap.get(betSort);
+//
+//                        switch (anEnum){
+//                            case PLAYER:
+//                                lotteryBetOrder.setRebate8((rebates.getRebateA()/100)* money);
+//                                lotteryBetOrder.setOccupy7(user.getSuperiorOccupy()/100.0);
+//                                break;
+//                            case AGENT:
+//                                lotteryBetOrder.setRebate7((rebates.getRebateA()/100)* money);
+//                                lotteryBetOrder.setOccupy6(user.getSuperiorOccupy()/100.0);
+//                                lotteryBetOrder.setAgentId(user.getId());
+//                                break;
+//                            case DISTRIBUTOR:
+//                                lotteryBetOrder.setRebate6((rebates.getRebateA()/100)* money);
+//                                lotteryBetOrder.setOccupy5(user.getSuperiorOccupy()/100.0);
+//                                lotteryBetOrder.setDistributorId(user.getId());
+//                                break;
+//                            case SHAREHOLDER:
+//                                lotteryBetOrder.setRebate5((rebates.getRebateA()/100)* money);
+//                                lotteryBetOrder.setOccupy4(user.getSuperiorOccupy()/100.0);
+//                                lotteryBetOrder.setShareholderId(user.getId());
+//                                break;
+//                            case BRANCH:
+//                                lotteryBetOrder.setRebate4((rebates.getRebateA()/100)* money);
+//                                lotteryBetOrder.setOccupy3(user.getSuperiorOccupy()/100.0);
+//                                lotteryBetOrder.setBranchId(user.getId());
+//                                break;
+//                            case COMPANY:
+//                                lotteryBetOrder.setRebate3((rebates.getRebateA()/100)* money);
+//                                lotteryBetOrder.setOccupy2(lotteryBetOrder.getOccupy7());
+//                                lotteryBetOrder.setCompanyId(LotteryCommonContext.get().getDomainUserId());
+//                                break;
+//                        }
+//                    }
+//                    orders.add(lotteryBetOrder);
+//
+//                }
+//                //限额校验 end
+//                form.setBetOrderList(orders);
+//
+//
+//
+//
+////                //校验参数（例如期数、赔率）
+//                if (checkParam(code,   errorCode, form)) {
+//                    webJson.setSuccess(HttpCodeEnum.ERROR.getCode());
+//                    webJson.setTipinfo(HttpCodeEnum.ERROR.getTrans());
+//                    return webJson;
+//                }
+//                // 校验余额
+//                if (checkOrder(errors, errorCode, form, request)) {
+//                    webJson.setSuccess(HttpCodeEnum.ERROR.getCode());
+//                    webJson.setTipinfo(HttpCodeEnum.ERROR.getTrans());
+//                    return webJson;
+//                }
+//
+//                LotteryBetOrderVo vo = new LotteryBetOrderVo();
+////                initBetVo(request, bean, user, vo);
+//
+//                vo.setEntities(form.getBetOrderList());
+//                vo = ServiceTool.lotteryBetOrderService().saveBetOrder(vo);
+//                webJson.setTipinfo("下單成功！");
+//
+//            }else {
+//                LOG.error("注單接口出错:bean:{0}", JsonTool.toJson(form));
+//                webJson.setTipinfo("非法下注！");
+//            }
+//
+//
+//        } catch (Exception e) {
+//            LOG.error(e, "保存注單异常！");
+//            webJson.setSuccess(HttpCodeEnum.ERROR.getCode());
+//            webJson.setTipinfo("保存注單异常");
+//            return webJson;
+//        }
+//
+//
+//
+//
+//
+//
+//        return webJson;
+//
+//    }
 
 //    /**
 //     * 初始化注單数据
@@ -417,35 +417,35 @@ public class BaseLotteryController {
      * @param bean
      * @return
      */
-    private boolean checkParam(String code ,  ErrorCode errorCode, HandlerForm bean) {
-        List<LotteryBetOrder> betOrders = bean.getBetOrderList();
-        boolean hasErrors = false;
-        if (CollectionTool.isEmpty(betOrders)) {
-            return true;
-        }
-        Map<String, SiteLotteryOdds> oddMap = Cache.getBranchSiteLotteryOdds(SessionManagerCommon.getSysUserExtend().getHid(), code);
-        double totalMoney = 0d;
-        for (LotteryBetOrder betOrder : betOrders) {
-            //检验彩种
-            if (!code.equals(betOrder.getCode())) {
-                LOG.info("彩票投注检验参数：彩种不对值");
-                hasErrors = true;
-                break;
-            }
-
-            //检验期数
-            if (StringTool.isBlank(betOrder.getExpect())) {
-                LOG.info("彩票投注检验参数：期数为空");
-                hasErrors = true;
-                break;
-            }
-
-            totalMoney = totalMoney + betOrder.getBetAmount();
-            betOrder.setMemo(null);
-        }
-        bean.setTotalMoney(totalMoney);
-        return hasErrors;
-    }
+//    private boolean checkParam(String code ,  ErrorCode errorCode, HandlerForm bean) {
+//        List<LotteryBetOrder> betOrders = bean.getBetOrderList();
+//        boolean hasErrors = false;
+//        if (CollectionTool.isEmpty(betOrders)) {
+//            return true;
+//        }
+//        Map<String, SiteLotteryOdds> oddMap = Cache.getBranchSiteLotteryOdds(SessionManagerCommon.getSysUserExtend().getHid(), code);
+//        double totalMoney = 0d;
+//        for (LotteryBetOrder betOrder : betOrders) {
+//            //检验彩种
+//            if (!code.equals(betOrder.getCode())) {
+//                LOG.info("彩票投注检验参数：彩种不对值");
+//                hasErrors = true;
+//                break;
+//            }
+//
+//            //检验期数
+//            if (StringTool.isBlank(betOrder.getExpect())) {
+//                LOG.info("彩票投注检验参数：期数为空");
+//                hasErrors = true;
+//                break;
+//            }
+//
+//            totalMoney = totalMoney + betOrder.getBetAmount();
+//            betOrder.setMemo(null);
+//        }
+//        bean.setTotalMoney(totalMoney);
+//        return hasErrors;
+//    }
 
 
     /**

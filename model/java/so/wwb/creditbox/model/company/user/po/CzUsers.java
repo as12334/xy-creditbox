@@ -1,41 +1,34 @@
-package so.wwb.creditbox.model.manager.user.po;
-
-import org.apache.xmlbeans.UserType;
-import org.hibernate.validator.constraints.NotBlank;
-import org.soul.commons.lang.string.StringTool;
-import org.soul.commons.support.Nonpersistent;
-import org.soul.model.security.privilege.po.SysUser;
-import so.wwb.creditbox.model.common.Const;
-import so.wwb.creditbox.model.common.HidTool;
-import so.wwb.creditbox.model.enums.lottery.*;
+package so.wwb.creditbox.model.company.user.po;
 
 import org.soul.commons.bean.IEntity;
 import org.soul.model.common.Sortable;
 
 
 /**
- * 用户扩展表实体
+ * 实体
  *
  * @author block
- * @time 2019-12-20 16:32:47
+ * @time 2019-12-19 23:19:54
  */
 //region your codes 1
-public class SysUserExtend extends SysUser {
+public class CzUsers implements IEntity<Integer> {
 //endregion your codes 1
 
 	//region your codes 3
-	private static final long serialVersionUID = 8789285198108194273L;
+	private static final long serialVersionUID = 161568816284276815L;
 	//endregion your codes 3
 
 	//region property name constants
-	public static final String PROP_KEY = "key";
+	public static final String PROP_ID = "id";
 	public static final String PROP_UID = "uid";
+	public static final String PROP_UNAME = "uname";
 	public static final String PROP_SALT = "salt";
+	public static final String PROP_UNICKER = "unicker";
 	public static final String PROP_USKIN = "uskin";
 	public static final String PROP_SUP_NAME = "supName";
-	public static final String PROP_ADD_DATE = "addDate";
 	public static final String PROP_UTYPE = "utype";
 	public static final String PROP_SU_TYPE = "suType";
+	public static final String PROP_ADD_DATE = "addDate";
 	public static final String PROP_SIX_RATE = "sixRate";
 	public static final String PROP_SIX_CREDIT = "sixCredit";
 	public static final String PROP_SIX_USABLE_CREDIT = "sixUsableCredit";
@@ -65,22 +58,26 @@ public class SysUserExtend extends SysUser {
 	
 	
 	//region properties
-	/** 钥匙 */
-	private String key;
+	/**  */
+	private Integer id;
 	/**  */
 	private String uid;
 	/**  */
+	private String uname;
+	/**  */
 	private String salt;
+	/**  */
+	private String unicker;
 	/**  */
 	private String uskin;
 	/**  */
 	private String supName;
 	/**  */
-	private java.util.Date addDate;
-	/**  */
 	private String utype;
 	/**  */
 	private String suType;
+	/**  */
+	private java.util.Date addDate;
 	/**  */
 	private Integer sixRate;
 	/**  */
@@ -135,15 +132,22 @@ public class SysUserExtend extends SysUser {
 
 	
 	//region constuctors
-	public SysUserExtend(){
+	public CzUsers(){
 	}
 
-	public String getKey() {
-		return this.key;
+	public CzUsers(Integer id){
+		this.id = id;
+	}
+	//endregion
+
+
+	//region getters and setters
+	public Integer getId() {
+		return this.id;
 	}
 
-	public void setKey(String value) {
-		this.key = value;
+	public void setId(Integer value) {
+		this.id = value;
 	}
 	public String getUid() {
 		return this.uid;
@@ -152,12 +156,26 @@ public class SysUserExtend extends SysUser {
 	public void setUid(String value) {
 		this.uid = value;
 	}
+	public String getUname() {
+		return this.uname;
+	}
+
+	public void setUname(String value) {
+		this.uname = value;
+	}
 	public String getSalt() {
 		return this.salt;
 	}
 
 	public void setSalt(String value) {
 		this.salt = value;
+	}
+	public String getUnicker() {
+		return this.unicker;
+	}
+
+	public void setUnicker(String value) {
+		this.unicker = value;
 	}
 	public String getUskin() {
 		return this.uskin;
@@ -173,13 +191,6 @@ public class SysUserExtend extends SysUser {
 	public void setSupName(String value) {
 		this.supName = value;
 	}
-	public java.util.Date getAddDate() {
-		return this.addDate;
-	}
-
-	public void setAddDate(java.util.Date value) {
-		this.addDate = value;
-	}
 	public String getUtype() {
 		return this.utype;
 	}
@@ -193,6 +204,13 @@ public class SysUserExtend extends SysUser {
 
 	public void setSuType(String value) {
 		this.suType = value;
+	}
+	public java.util.Date getAddDate() {
+		return this.addDate;
+	}
+
+	public void setAddDate(java.util.Date value) {
+		this.addDate = value;
 	}
 	public Integer getSixRate() {
 		return this.sixRate;
@@ -372,6 +390,7 @@ public class SysUserExtend extends SysUser {
 	//endregion
 
 	//region your codes 2
+
 	//endregion your codes 2
 
 }

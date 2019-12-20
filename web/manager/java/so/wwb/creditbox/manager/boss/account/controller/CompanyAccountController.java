@@ -107,13 +107,13 @@ public class CompanyAccountController extends BaseAccountController {
 
 
 
-        objectVo.getResult().setSuperiorOccupy(0);
-        objectVo.getResult().setStintOccupy(100);
-        objectVo.getResult().setBreakpoint(BreakpointEnum.ZERO.getCode());
-        objectVo.getResult().setGeneral(GeneralEnum.ALL.getCode());
-        objectVo.getResult().setModeSelection(ModeSelectionEnum.CREDIT.getCode());
-        objectVo.getResult().setSetOdds(SetOddsEnum.OFF.getCode());
-        objectVo.getResult().setTestAccount(TestAccountEnum.NO.getCode());
+//        objectVo.getResult().setSuperiorOccupy(0);
+//        objectVo.getResult().setStintOccupy(100);
+//        objectVo.getResult().setBreakpoint(BreakpointEnum.ZERO.getCode());
+//        objectVo.getResult().setGeneral(GeneralEnum.ALL.getCode());
+//        objectVo.getResult().setModeSelection(ModeSelectionEnum.CREDIT.getCode());
+//        objectVo.getResult().setSetOdds(SetOddsEnum.OFF.getCode());
+//        objectVo.getResult().setTestAccount(TestAccountEnum.NO.getCode());
         return getVoMessage(baseAddAccount(objectVo, form, result, request));
     }
 

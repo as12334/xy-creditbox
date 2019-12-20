@@ -37,10 +37,10 @@ public class Gdkl10Controller {
     @RequestMapping(value = "handler")
     @ResponseBody
     protected String handler(HandlerForm form, HttpServletRequest request, HttpServletResponse response, Model model ) {
-        Cache.refreshSiteLotteryOdds(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()),LotteryEnum.BJPK10.getCode());
-        Cache.refreshSiteLotteryRebates(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()),LotteryEnum.BJPK10.getCode());
-        Map<String, SiteLotteryOdds> oddsMap = Cache.getSiteLotteryOdds(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()), LotteryEnum.BJPK10.getCode());
-        Map<String, SiteLotteryRebates> rebatesMap = Cache.getSiteLotteryRebates(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()), LotteryEnum.BJPK10.getCode());
+//        Cache.refreshSiteLotteryOdds(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()),LotteryEnum.BJPK10.getCode());
+//        Cache.refreshSiteLotteryRebates(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()),LotteryEnum.BJPK10.getCode());
+//        Map<String, SiteLotteryOdds> oddsMap = Cache.getSiteLotteryOdds(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()), LotteryEnum.BJPK10.getCode());
+//        Map<String, SiteLotteryRebates> rebatesMap = Cache.getSiteLotteryRebates(HidTool.getBranchHid(SessionManager.getSysUserExtend().getHid()), LotteryEnum.BJPK10.getCode());
 
         List<LotteryResult> lotteryResult = Cache.getLotteryResult(LotteryEnum.XYFT.getCode());
         List<LotteryResult> results = ServiceTool.lotteryResultService().queryRecentResult(new LotteryResultVo());

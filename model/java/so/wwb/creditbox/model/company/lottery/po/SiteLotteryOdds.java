@@ -266,25 +266,25 @@ public class SiteLotteryOdds implements IEntity<Integer> {
 	}
 
 	//获取公司的赔率
-	public Double getCOdd(SysUserExtend sessionUser) {
-		if(sessionUser.getHandicap().equals(LotteryHandicapEnum.A.getCode())){
-			return parentOddA;
-		}else if(sessionUser.getHandicap().equals(LotteryHandicapEnum.B.getCode())){
-			return parentOddA - parentOddB;
-		}else {
-			return parentOddA - parentOddC;
-		}
-	}
-	//获取分公司的赔率
-	public Double getBOdd(SysUserExtend sessionUser) {
-		if(sessionUser.getHandicap().equals(LotteryHandicapEnum.A.getCode())){
-			return oddA;
-		}else if(sessionUser.getHandicap().equals(LotteryHandicapEnum.B.getCode())){
-			return oddA - oddB;
-		}else {
-			return oddA - oddC;
-		}
-	}
+//	public Double getCOdd(SysUserExtend sessionUser) {
+//		if(sessionUser.getHandicap().equals(LotteryHandicapEnum.A.getCode())){
+//			return parentOddA;
+//		}else if(sessionUser.getHandicap().equals(LotteryHandicapEnum.B.getCode())){
+//			return parentOddA - parentOddB;
+//		}else {
+//			return parentOddA - parentOddC;
+//		}
+//	}
+//	//获取分公司的赔率
+//	public Double getBOdd(SysUserExtend sessionUser) {
+//		if(sessionUser.getHandicap().equals(LotteryHandicapEnum.A.getCode())){
+//			return oddA;
+//		}else if(sessionUser.getHandicap().equals(LotteryHandicapEnum.B.getCode())){
+//			return oddA - oddB;
+//		}else {
+//			return oddA - oddC;
+//		}
+//	}
 
 	@Nonpersistent
 	public String getSzszAmount() {

@@ -4,23 +4,39 @@
 
     <resultMap id="TABLE:sys_user_extend" type="so.wwb.creditbox.model.manager.user.po.SysUserExtend" extends="TABLE:sys_user">
         <result column="key" property="key"/>
-        <result column="superior_occupy" property="superiorOccupy"/>
-        <result column="hid" property="hid"/>
-        <result column="credits" property="credits"/>
-        <result column="update_name" property="updateName"/>
-        <result column="stint_occupy" property="stintOccupy"/>
-        <result column="stint_occupy_switch" property="stintOccupySwitch"/>
-        <result column="breakpoint" property="breakpoint"/>
-        <result column="manual_auto_shipments" property="manualAutoShipments"/>
-        <result column="mode_selection" property="modeSelection"/>
-        <result column="general" property="general"/>
-        <result column="test_account" property="testAccount"/>
-        <result column="set_odds" property="setOdds"/>
-        <result column="owner_name" property="ownerName"/>
-        <result column="handicap" property="handicap"/>
-        <result column="owner_user_type" property="ownerUserType"/>
+        <result column="u_id" property="uid"/>
+        <result column="salt" property="salt"/>
+        <result column="u_skin" property="uskin"/>
+        <result column="sup_name" property="supName"/>
+        <result column="add_date" property="addDate"/>
+        <result column="u_type" property="utype"/>
+        <result column="su_type" property="suType"/>
+        <result column="six_rate" property="sixRate"/>
+        <result column="six_credit" property="sixCredit"/>
+        <result column="six_usable_credit" property="sixUsableCredit"/>
+        <result column="six_kind" property="sixKind"/>
+        <result column="a_state" property="astate"/>
+        <result column="allow_sale" property="allowSale"/>
+        <result column="allow_view_report" property="allowViewReport"/>
+        <result column="six_allow_maxrate" property="sixAllowMaxrate"/>
+        <result column="six_low_maxrate" property="sixLowMaxrate"/>
+        <result column="six_rate_owner" property="sixRateOwner"/>
+        <result column="six_iscash" property="sixIscash"/>
+        <result column="allow_opt" property="allowOpt"/>
+        <result column="is_changed" property="isChanged"/>
+        <result column="kc_rate" property="kcRate"/>
+        <result column="kc_credit" property="kcCredit"/>
+        <result column="kc_usable_credit" property="kcUsableCredit"/>
+        <result column="kc_kind" property="kcKind"/>
+        <result column="kc_allow_sale" property="kcAllowSale"/>
+        <result column="kc_allow_maxrate" property="kcAllowMaxrate"/>
+        <result column="kc_low_maxrate" property="kcLowMaxrate"/>
+        <result column="kc_rate_owner" property="kcRateOwner"/>
+        <result column="kc_crash_payment" property="kcCrashPayment"/>
+        <result column="kc_iscash" property="kcIscash"/>
+        <result column="six_op_odds" property="sixOpOdds"/>
+        <result column="kc_op_odds" property="kcOpOdds"/>
     </resultMap>
-
     <resultMap id="TABLE:sys_user" type="org.soul.model.security.privilege.po.SysUser">
         <id column="id" property="id"/>
         <result column="username" property="username"/>
@@ -240,5 +256,5 @@
         SELECT * FROM f_init_site_lottery_rebate(#{siteId},#{hid});
     </select>
 
-
+    <!--//region your codes 1-->
 </mapper>

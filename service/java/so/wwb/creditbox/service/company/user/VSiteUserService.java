@@ -53,13 +53,13 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
            sumSuperStintOccupy = mapper.sumSuperStintOccupyCount(objectVo.getResult().getHid());
             minStintOccupy = mapper.minStintOccupy(objectVo.getResult().getId());
         }
-        if(parentUser.getStintOccupy() > 0 && (parentUser.getStintOccupy() < (100 - sumSuperStintOccupy))){
-            parentUser.setSuperiorOccupy(parentUser.getStintOccupy());
-        }
-        else {
-            parentUser.setSuperiorOccupy(100 - sumSuperStintOccupy);
-        }
-        parentUser.setStintOccupy(minStintOccupy);
+//        if(parentUser.getStintOccupy() > 0 && (parentUser.getStintOccupy() < (100 - sumSuperStintOccupy))){
+//            parentUser.setSuperiorOccupy(parentUser.getStintOccupy());
+//        }
+//        else {
+//            parentUser.setSuperiorOccupy(100 - sumSuperStintOccupy);
+//        }
+//        parentUser.setStintOccupy(minStintOccupy);
         objectVo.setParentUser(parentUser);
 
         return objectVo;
@@ -103,10 +103,10 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
         boolean flag = true;
         while (flag) {
             hid = StringTool.upperCase(RandomStringTool.random(8, true, true));
-            long count = sysUserExtendMapper.count(Criteria.add(SysUserExtend.PROP_HID, Operator.EQ, Thid + hid));
-            if (count == 0) {
-                flag = false;
-            }
+//            long count = sysUserExtendMapper.count(Criteria.add(SysUserExtend.PROP_HID, Operator.EQ, Thid + hid));
+//            if (count == 0) {
+//                flag = false;
+//            }
         }
         return Thid + hid;
     }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.creditbox.data.company.user.CzUsersMapper">
+
+    <resultMap id="TABLE:cz_users" type="so.wwb.creditbox.model.company.user.po.CzUsers">
+        <id column="id" property="id"/>
+        <result column="u_id" property="uid"/>
+        <result column="u_name" property="uname"/>
+        <result column="salt" property="salt"/>
+        <result column="u_nicker" property="unicker"/>
+        <result column="u_skin" property="uskin"/>
+        <result column="sup_name" property="supName"/>
+        <result column="u_type" property="utype"/>
+        <result column="su_type" property="suType"/>
+        <result column="add_date" property="addDate"/>
+        <result column="six_rate" property="sixRate"/>
+        <result column="six_credit" property="sixCredit"/>
+        <result column="six_usable_credit" property="sixUsableCredit"/>
+        <result column="six_kind" property="sixKind"/>
+        <result column="a_state" property="astate"/>
+        <result column="allow_sale" property="allowSale"/>
+        <result column="allow_view_report" property="allowViewReport"/>
+        <result column="six_allow_maxrate" property="sixAllowMaxrate"/>
+        <result column="six_low_maxrate" property="sixLowMaxrate"/>
+        <result column="six_rate_owner" property="sixRateOwner"/>
+        <result column="six_iscash" property="sixIscash"/>
+        <result column="allow_opt" property="allowOpt"/>
+        <result column="is_changed" property="isChanged"/>
+        <result column="kc_rate" property="kcRate"/>
+        <result column="kc_credit" property="kcCredit"/>
+        <result column="kc_usable_credit" property="kcUsableCredit"/>
+        <result column="kc_kind" property="kcKind"/>
+        <result column="kc_allow_sale" property="kcAllowSale"/>
+        <result column="kc_allow_maxrate" property="kcAllowMaxrate"/>
+        <result column="kc_low_maxrate" property="kcLowMaxrate"/>
+        <result column="kc_rate_owner" property="kcRateOwner"/>
+        <result column="kc_crash_payment" property="kcCrashPayment"/>
+        <result column="kc_iscash" property="kcIscash"/>
+        <result column="six_op_odds" property="sixOpOdds"/>
+        <result column="kc_op_odds" property="kcOpOdds"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+
+    <!--//endregion your codes 1-->
+
+</mapper>

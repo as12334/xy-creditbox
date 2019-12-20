@@ -511,13 +511,13 @@ public class BaseAccountController extends NoMappingCrudController<ISysUserExten
 //        objectVo.getResult().setOwnerName(owner.getUsername());
 //        objectVo.getResult().setOwnerCode(owner.getCode());
 
-        objectVo.getResult().setHid(ServiceTool.vSiteUserService().getHid(owner.getHid()));
+//        objectVo.getResult().setHid(ServiceTool.vSiteUserService().getHid(owner.getHid()));
         //创建股东和商户主账号时，没有站点ID, 其他账户取上级站点ID
         if (!StringTool.equals(UserTypeEnum.COMPANIES.getCode(), createUserType)
                 && !StringTool.equals(UserTypeEnum.COMPANY.getCode(), createUserType)) {
             objectVo.getResult().setSiteId(owner.getSiteId());
         }
-        objectVo.getResult().setOwnerName(owner.getUsername());
+//        objectVo.getResult().setOwnerName(owner.getUsername());
         objectVo.getResult().setDefaultCurrency(owner.getDefaultCurrency());
         objectVo.getResult().setDefaultTimezone(owner.getDefaultTimezone());
         objectVo.getResult().setDefaultLocale(owner.getDefaultLocale());

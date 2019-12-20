@@ -63,7 +63,7 @@ public class SiteLotteryOddsController extends BaseCrudController<ISiteLotteryOd
     public String editOdds(@PathVariable("code") String code,SiteLotteryOddsVo vo, Model model , HttpServletRequest request, HttpServletResponse response) {
         vo.getSearch().setCode(code);
         vo.getSearch().setSiteId(SessionManagerBase.getSiteId());
-        vo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
+//        vo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
         vo._setDataSourceId(SessionManagerBase.getSiteId());
         vo = this.getService().initOddsData(vo);
         vo.setValidateRule(JsRuleCreator.create(SiteLotteryOddsForm.class));

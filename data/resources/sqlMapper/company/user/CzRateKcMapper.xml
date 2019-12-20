@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.creditbox.data.company.user.CzRateKcMapper">
+
+    <resultMap id="TABLE:cz_rate_kc" type="so.wwb.creditbox.model.company.user.po.CzRateKc">
+        <id column="id" property="id"/>
+        <result column="u_name" property="uname"/>
+        <result column="u_type" property="utype"/>
+        <result column="dl_name" property="dlName"/>
+        <result column="zd_name" property="zdName"/>
+        <result column="gd_name" property="gdName"/>
+        <result column="fgs_name" property="fgsName"/>
+        <result column="dl_rate" property="dlRate"/>
+        <result column="zd_rate" property="zdRate"/>
+        <result column="gd_rate" property="gdRate"/>
+        <result column="fgs_rate" property="fgsRate"/>
+        <result column="zj_rate" property="zjRate"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+
+    <!--//endregion your codes 1-->
+
+</mapper>

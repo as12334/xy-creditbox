@@ -160,7 +160,7 @@ public class LotteryHandlerController extends BaseLotteryController{
             LotteryBetOrderListVo lotteryBetOrderListVo = new LotteryBetOrderListVo();
             lotteryBetOrderListVo._setDataSourceId(SessionManager.getSiteId());
             LotteryBetOrderSo search = lotteryBetOrderListVo.getSearch();
-            search.setHid(HidTool.getBranchHid(form.getSessionUser().getHid()));
+//            search.setHid(HidTool.getBranchHid(form.getSessionUser().getHid()));
             search.setCode(lotteryEnum.getCode());
             search.setExpect(lotteryResult.getExpect());
             search.setSortTypes(form.getPlayid().split(","));
@@ -183,7 +183,7 @@ public class LotteryHandlerController extends BaseLotteryController{
                     oddsMap.put("maxpl",odd.getMaxOdd()+"");
                 }
                 else {
-                    oddsMap.put("maxpl",odd.getCOdd(form.getSessionUser())+"");
+//                    oddsMap.put("maxpl",odd.getCOdd(form.getSessionUser())+"");
                 }
 
                 oddsMap.put("minpl",odd.getMinOdd()+"");

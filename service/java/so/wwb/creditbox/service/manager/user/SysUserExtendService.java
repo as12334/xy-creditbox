@@ -212,7 +212,7 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
     public Map<String, SysUserExtend> load() {
         List<SysUserExtend> list = mapper.search(Criteria.add(SysUserExtend.PROP_STATUS, Operator.EQ, SysUserStatus.NORMAL.getCode()),
                 Order.asc(SysUserExtend.PROP_ID));
-        return CollectionTool.toEntityMap(list, SysUserExtend.PROP_HID, String.class);
+        return CollectionTool.toEntityMap(list, SysUserExtend.PROP_UID, String.class);
     }
 
     @Override
@@ -384,16 +384,16 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
             return userExtendVo;
         }
         user.setUpdateUser(operator.getId());
-        user.setUpdateName(operator.getUsername());
+//        user.setUpdateName(operator.getUsername());
         user.setUpdateTime(new Date());
         user.setNickname(userExtendVo.getResult().getNickname());
         user.setRealName(userExtendVo.getResult().getRealName());
         user.setSex(userExtendVo.getResult().getSex());
         user.setBirthday(userExtendVo.getResult().getBirthday());
-        boolean isSuccess = this.mapper.updateOnly(user, SysUserExtend.PROP_REAL_NAME,
-                SysUserExtend.PROP_NICKNAME, SysUserExtend.PROP_BIRTHDAY, SysUserExtend.PROP_SEX,
-                SysUserExtend.PROP_UPDATE_TIME, SysUserExtend.PROP_UPDATE_USER, SysUserExtend.PROP_UPDATE_NAME ,SysUserExtend.PROP_MANUAL_AUTO_SHIPMENTS);
-        if (isSuccess) {
+//        boolean isSuccess = this.mapper.updateOnly(user, SysUserExtend.PROP_REAL_NAME,
+//                SysUserExtend.PROP_NICKNAME, SysUserExtend.PROP_BIRTHDAY, SysUserExtend.PROP_SEX,
+//                SysUserExtend.PROP_UPDATE_TIME, SysUserExtend.PROP_UPDATE_USER, SysUserExtend.PROP_UPDATE_NAME ,SysUserExtend.PROP_MANUAL_AUTO_SHIPMENTS);
+        if (false) {
             //子账号删除旧的角色，再保存角色
             user = this.mapper.get(user.getId());
             String userType = user.getUserType();
@@ -636,20 +636,20 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
         List<String> strings = new ArrayList<>();
         strings.add(SysUserExtend.PROP_NICKNAME);
         strings.add(SysUserExtend.PROP_PASSWORD);
-        strings.add(SysUserExtend.PROP_CREDITS);
-        strings.add(SysUserExtend.PROP_SUPERIOR_OCCUPY);
-        strings.add(SysUserExtend.PROP_STINT_OCCUPY);
-        strings.add(SysUserExtend.PROP_STINT_OCCUPY_SWITCH);
-        strings.add(SysUserExtend.PROP_STATUS);
-        strings.add(SysUserExtend.HANDICAP);
-
-        if(objectVo.getResult().getUserType().equals(UserTypeEnum.BRANCH.getCode())){
-            strings.add(SysUserExtend.PROP_GENERAL);
-            strings.add(SysUserExtend.PROP_SET_ODDS);
-        }
-        if(!objectVo.getResult().getUserType().equals(UserTypeEnum.PLAYER.getCode())){
-            strings.add(SysUserExtend.PROP_MANUAL_AUTO_SHIPMENTS);
-        }
+//        strings.add(SysUserExtend.PROP_CREDITS);
+//        strings.add(SysUserExtend.PROP_SUPERIOR_OCCUPY);
+//        strings.add(SysUserExtend.PROP_STINT_OCCUPY);
+//        strings.add(SysUserExtend.PROP_STINT_OCCUPY_SWITCH);
+//        strings.add(SysUserExtend.PROP_STATUS);
+//        strings.add(SysUserExtend.HANDICAP);
+//
+//        if(objectVo.getResult().getUserType().equals(UserTypeEnum.BRANCH.getCode())){
+//            strings.add(SysUserExtend.PROP_GENERAL);
+//            strings.add(SysUserExtend.PROP_SET_ODDS);
+//        }
+//        if(!objectVo.getResult().getUserType().equals(UserTypeEnum.PLAYER.getCode())){
+//            strings.add(SysUserExtend.PROP_MANUAL_AUTO_SHIPMENTS);
+//        }
         boolean b = mapper.updateOnly(objectVo.getResult(),  strings.toArray(new String[strings.size()]));
         objectVo.setSuccess(b);
         return objectVo;

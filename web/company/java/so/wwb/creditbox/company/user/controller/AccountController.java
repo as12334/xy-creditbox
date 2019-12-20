@@ -129,7 +129,7 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         sysUserExtendVo._setDataSourceId(Const.BOSS_DATASOURCE_ID);
         sysUserExtendVo.getSearch().setId(SessionManager.getSiteUserId());
         sysUserExtendVo = ServiceTool.sysUserExtendService().get(sysUserExtendVo);
-        sysUserExtendVo.getResult().setSuperiorOccupy(100 - sysUserExtendVo.getResult().getSuperiorOccupy());
+//        sysUserExtendVo.getResult().setSuperiorOccupy(100 - sysUserExtendVo.getResult().getSuperiorOccupy());
         //查詢上級用戶 end
 
         objectVo.setParentUser(sysUserExtendVo.getResult());
@@ -244,7 +244,7 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         objectVo._setDataSourceId(SessionManager.getSiteId());
         objectVo = this.getService().get(objectVo);
         //查詢上級用戶  begin
-        objectVo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
+//        objectVo.getSearch().setHid(SessionManager.getSysUserExtend().getHid());
         objectVo = this.getService().searchSuperUser(objectVo);
         //查詢上級用戶 end
         if(objectVo.isSuccess()){
@@ -261,9 +261,9 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
     @Token(generate = true)
     @ResponseBody
     public String persistUser(SysUserExtendVo objectVo, Model model, HttpServletRequest request, @FormModel("result") @Valid AddSysUserExtendForm form, BindingResult result) {
-        if(objectVo.getResult().getStintOccupy() == null){
-            objectVo.getResult().setStintOccupy(0);
-        }
+//        if(objectVo.getResult().getStintOccupy() == null){
+//            objectVo.getResult().setStintOccupy(0);
+//        }
         if (result.hasErrors()) {
             objectVo.setSuccess(false);
             LOG.error("参数错误，保存失败");
@@ -335,12 +335,12 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         if(UserTypeEnum.SHAREHOLDER.getCode().equals(objectVo.getResult().getUserType())
                 ||UserTypeEnum.DISTRIBUTOR.getCode().equals(objectVo.getResult().getUserType())
                 ||UserTypeEnum.AGENT.getCode().equals(objectVo.getResult().getUserType())){
-            objectVo.getResult().setBreakpoint(BreakpointEnum.ZERO.getCode());
-            objectVo.getResult().setGeneral(GeneralEnum.OFF.getCode());
+//            objectVo.getResult().setBreakpoint(BreakpointEnum.ZERO.getCode());
+//            objectVo.getResult().setGeneral(GeneralEnum.OFF.getCode());
         }
         objectVo.getResult().setCreateUser(SessionManager.getSysUserExtend().getId());
-        objectVo.getResult().setModeSelection(ModeSelectionEnum.CREDIT.getCode());
-        objectVo.getResult().setTestAccount(TestAccountEnum.NO.getCode());
+//        objectVo.getResult().setModeSelection(ModeSelectionEnum.CREDIT.getCode());
+//        objectVo.getResult().setTestAccount(TestAccountEnum.NO.getCode());
         String createUserType = objectVo.getResult().getUserType();
 
 
@@ -353,9 +353,9 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
             ownerVo.setDataSourceId(SessionManager.getSiteId());
         }
         SysUserExtend owner = ServiceTool.sysUserExtendService().get(ownerVo).getResult();
-        objectVo.getResult().setHid(this.getService().getHid(owner.getHid()));
+//        objectVo.getResult().setHid(this.getService().getHid(owner.getHid()));
         //查詢上級 end
-        objectVo.getResult().setOwnerName(owner.getUsername());
+//        objectVo.getResult().setOwnerName(owner.getUsername());
         objectVo.getResult().setSiteId(owner.getSiteId());
         objectVo.getResult().setDefaultCurrency(owner.getDefaultCurrency());
         objectVo.getResult().setDefaultTimezone(owner.getDefaultTimezone());

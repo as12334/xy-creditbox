@@ -121,6 +121,12 @@
 
     <dubbo:service ref="lotteryResultExtendService" interface="so.wwb.creditbox.iservice.manager.lottery.ILotteryResultExtendService"/>
 
+    <dubbo:service ref="czUsersService" interface="so.wwb.creditbox.iservice.company.user.ICzUsersService"/>
+
+    <dubbo:service ref="czRateSixService" interface="so.wwb.creditbox.iservice.company.user.ICzRateSixService"/>
+
+    <dubbo:service ref="czRateKcService" interface="so.wwb.creditbox.iservice.company.user.ICzRateKcService"/>
+
 <!--//endregion your codes 1-->
 
 </beans>

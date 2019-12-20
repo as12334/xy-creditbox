@@ -164,7 +164,7 @@ public class VSysSiteManageController extends BaseCrudController<IVSysSiteManage
         sysUserExtendvo = ServiceTool.sysUserExtendService().get(sysUserExtendvo);
         if(sysUserExtendvo.getResult()!=null){
             objectVo.setSubCode(sysUserExtendvo.getResult().getSubsysCode());
-            objectVo.getResult().setHid(sysUserExtendvo.getResult().getHid());
+//            objectVo.getResult().setHid(sysUserExtendvo.getResult().getHid());
         }
         SysSiteVo sysSiteVo = new SysSiteVo();
         SysSite sysSite = new SysSite();

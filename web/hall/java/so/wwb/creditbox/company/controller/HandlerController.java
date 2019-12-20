@@ -83,7 +83,7 @@ public class HandlerController extends BaseLotteryController{
 
         VSiteUser vSiteUser = getvSiteUserCreditInfo();
         HashMap<Object, Object> gameMap = new HashMap<>();
-        gameMap.put("kind",SessionManager.getSysUserExtend().getHandicap());
+//        gameMap.put("kind",SessionManager.getSysUserExtend().getHandicap());
         gameMap.put("name","快彩");
         gameMap.put("credit",vSiteUser.getCredits());
         gameMap.put("usable_credit",vSiteUser.getCredits() - vSiteUser.getUsableCredit());
