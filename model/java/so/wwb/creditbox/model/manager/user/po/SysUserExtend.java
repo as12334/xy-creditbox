@@ -61,8 +61,11 @@ public class SysUserExtend extends SysUser {
 	public static final String PROP_KC_ISCASH = "kcIscash";
 	public static final String PROP_SIX_OP_ODDS = "sixOpOdds";
 	public static final String PROP_KC_OP_ODDS = "kcOpOdds";
+	public static final String PROP_KC_ISAUTO_BACK = "kcIsautoBack";
+	public static final String PROP_SIX_ISAUTO_BACK = "sixIsautoBack";
 	//endregion
-	
+
+
 	
 	//region properties
 	/** 钥匙 */
@@ -131,6 +134,10 @@ public class SysUserExtend extends SysUser {
 	private Integer sixOpOdds;
 	/**  */
 	private Integer kcOpOdds;
+	/**  */
+	private Integer kcIsautoBack;
+	/**  */
+	private Integer sixIsautoBack;
 	//endregion
 
 	
@@ -369,6 +376,23 @@ public class SysUserExtend extends SysUser {
 	public void setKcOpOdds(Integer value) {
 		this.kcOpOdds = value;
 	}
+
+	public Integer getKcIsautoBack() {
+		return kcIsautoBack;
+	}
+
+	public void setKcIsautoBack(Integer kcIsautoBack) {
+		this.kcIsautoBack = kcIsautoBack;
+	}
+
+	public Integer getSixIsautoBack() {
+		return sixIsautoBack;
+	}
+
+	public void setSixIsautoBack(Integer sixIsautoBack) {
+		this.sixIsautoBack = sixIsautoBack;
+	}
+
 	//endregion
 
 	//region your codes 2

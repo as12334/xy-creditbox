@@ -36,6 +36,8 @@
         <result column="kc_iscash" property="kcIscash"/>
         <result column="six_op_odds" property="sixOpOdds"/>
         <result column="kc_op_odds" property="kcOpOdds"/>
+        <result column="kc_isauto_back" property="kcIsautoBack"/>
+        <result column="six_isauto_back" property="sixIsautoBack"/>
     </resultMap>
     <resultMap id="TABLE:sys_user" type="org.soul.model.security.privilege.po.SysUser">
         <id column="id" property="id"/>

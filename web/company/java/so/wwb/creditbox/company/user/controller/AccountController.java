@@ -23,6 +23,7 @@ import so.wwb.creditbox.company.user.form.AddSysUserExtendForm;
 import so.wwb.creditbox.context.LotteryCommonContext;
 import so.wwb.creditbox.context.LotteryContextParam;
 import so.wwb.creditbox.iservice.company.user.IVSiteUserService;
+import so.wwb.creditbox.model.company.user.po.CzRateKc;
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
 import so.wwb.creditbox.model.company.user.so.VSiteUserSo;
 import so.wwb.creditbox.model.company.user.vo.VSiteUserListVo;
@@ -46,6 +47,7 @@ import so.wwb.creditbox.web.tools.token.Token;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -275,6 +277,8 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
             objectVo.getResult().setSubsysCode(subSysCode);
             initAccount(objectVo,request);
             objectVo = this.getService().saveManagerUser(objectVo);
+
+
             objectVo.setDataSourceId(Const.BASE_DATASOURCE_ID);
         }
         else{
@@ -325,10 +329,12 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         }
         return subSysCode;
     }
-    /**
-     * 初始化注册参数
-     * PS: userType、subsysCode、ownerId、createUser 数据请在入口进行处理
-     */
+
+
+        /**
+         * 初始化注册参数
+         * PS: userType、subsysCode、ownerId、createUser 数据请在入口进行处理
+         */
     private void initAccount(SysUserExtendVo objectVo, HttpServletRequest request) {
 
         //剩餘占成和報表查詢權限，只有一下角色有
@@ -376,6 +382,40 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         objectVo.getResult().setRegisterIpDictCode(SessionManagerCommon.getIpDictCode());
         objectVo.getResult().setStatus(SysUserStatus.NORMAL.getCode());
         objectVo.getResult().setBuiltIn(false);
+        objectVo.getResult().setUskin(SkinEnum.BLUE.getCode());
+        objectVo.getResult().setSupName(SessionManager.getUserName());
+        objectVo.getResult().setUtype(UTypeEnum.ZJ.getCode());
+        objectVo.getResult().setSuType(UTypeEnum.ZGS.getCode());
+        objectVo.getResult().setAddDate(new Date());
+        objectVo.getResult().setSixRate(0);
+        objectVo.getResult().setSixCredit(0.0);
+        objectVo.getResult().setSixUsableCredit(0.0);
+        objectVo.getResult().setSixKind(KindEnum.DEFAULT.getCode());
+        objectVo.getResult().setAstate(1);
+        objectVo.getResult().setAllowSale(Integer.parseInt(AllowSaleEnum.YES.getCode()));
+        objectVo.getResult().setAllowViewReport(Integer.parseInt(AllowViewReportEnum.YES.getCode()));
+        objectVo.getResult().setSixAllowMaxrate(0);
+        objectVo.getResult().setSixLowMaxrate(0);
+        objectVo.getResult().setSixRateOwner(0);
+        objectVo.getResult().setSixIscash(Integer.parseInt(CashEnum.NO.getCode()));
+        objectVo.getResult().setAllowOpt(1);
+        objectVo.getResult().setIsChanged(0);
+        objectVo.getResult().setKcRate(0);
+        objectVo.getResult().setKcCredit(9999999.0);
+        objectVo.getResult().setKcUsableCredit(99999999.0);
+        objectVo.getResult().setKcKind(KindEnum.DEFAULT.getCode());
+        objectVo.getResult().setKcAllowSale(Integer.parseInt(AllowSaleEnum.YES.getCode()));
+        objectVo.getResult().setKcAllowMaxrate(0);
+        objectVo.getResult().setKcRateOwner(0);
+        objectVo.getResult().setKcCrashPayment(0);
+        objectVo.getResult().setKcIscash(Integer.parseInt(CashEnum.NO.getCode()));
+        objectVo.getResult().setKcOpOdds(Integer.parseInt(OpOddEnum.YES.getCode()));
+        objectVo.getResult().setSixOpOdds(Integer.parseInt(OpOddEnum.YES.getCode()));
+        objectVo.getResult().setKcIsautoBack(0);
+        objectVo.getResult().setSixIsautoBack(0);
+
+
+
         //保存公司以下角色都要切換數據源
         objectVo.setDataSourceId(SessionManager.getSiteId());
     }

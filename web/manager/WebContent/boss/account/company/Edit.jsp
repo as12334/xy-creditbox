@@ -1,4 +1,4 @@
-<%--@elvariable id="command" type="so.wwb.lotterybox.model.manager.user.vo.SysUserExtendVo"--%>
+<%--@elvariable id="command" type="so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo"--%>
 <%--@elvariable id="roles" type="java.util.List<java.util.Map<java.lang.String,java.lang.Object>>"--%>
 <%--@elvariable id="site" type="so.wwb.lotterybox.model.manager.sys.po.SysSite"--%>
 <%@page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
@@ -70,18 +70,18 @@
                 <div class="form-group clearfix">
                     <label class="col-xs-3 al-right line-hi34" for="result.credits"><span class="co-red m-r-sm">*</span>信用额：</label>
                     <div class="col-xs-9">
-                        <input id="result.credits" name="result.credits" class="form-control m-b-xs" type="text" value="${r.credits}" aria-required="true" aria-invalid="true"/>
+                        <input id="result.credits" name="result.credits" class="form-control m-b-xs" type="text" value="${r.kcCredit}" aria-required="true" aria-invalid="true"/>
                     </div>
                 </div>
 
-                <div class="form-group clearfix">
-                    <label class="col-xs-3 al-right line-hi34" ><span class="co-red m-r-sm">*</span>补货设定：</label>
-                    <div class="col-xs-9">
-                        <input type="radio" name="result.manualAutoShipments" ${r.manualAutoShipments == "1"?"checked":""} value="1">启用</input>
-                        <input type="radio" name="result.manualAutoShipments" ${r.manualAutoShipments != "1"?"checked":""} value="0">禁用</input>
-                            <%--<input id="result.manualAutoShipments" name="result.credits" class="form-control m-b-xs" type="text" value="${r.credits}" aria-required="true" aria-invalid="true"/>--%>
-                    </div>
-                </div>
+                <%--<div class="form-group clearfix">--%>
+                    <%--<label class="col-xs-3 al-right line-hi34" ><span class="co-red m-r-sm">*</span>补货设定：</label>--%>
+                    <%--<div class="col-xs-9">--%>
+                        <%--<input type="radio" name="result.manualAutoShipments" ${r.manualAutoShipments == "1"?"checked":""} value="1">启用</input>--%>
+                        <%--<input type="radio" name="result.manualAutoShipments" ${r.manualAutoShipments != "1"?"checked":""} value="0">禁用</input>--%>
+                            <%--&lt;%&ndash;<input id="result.manualAutoShipments" name="result.credits" class="form-control m-b-xs" type="text" value="${r.credits}" aria-required="true" aria-invalid="true"/>&ndash;%&gt;--%>
+                    <%--</div>--%>
+                <%--</div>--%>
                 <c:if test="${empty r.id}">
                     <div class="form-group clearfix">
                         <label class="col-xs-3 al-right line-hi34" for="result.password"><span class="co-red m-r-sm">*</span>登录密码：</label>

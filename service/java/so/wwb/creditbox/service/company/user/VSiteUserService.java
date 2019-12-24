@@ -75,15 +75,23 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
         user.setPermissionPwd(AuthTool.md5SysUserPermission(user.getPermissionPwd(), user.getUsername()));//安全密码加密
         boolean isSuccess = sysUserExtendMapper.insert(user);
 
-        //只有分公司並且開啟了賠率設置 才能新增賠率
-        if(objectVo.getResult().getUserType().equals(UserTypeEnum.BRANCH.getCode())){
-            mapper.doInitUserLotteryOdd(objectVo.getResult());
-        }
-        //只有新增主賬號才有返水設置
-        if(objectVo.getResult().getUserType().length()==1){
-            mapper.doInitUserLotteryRebate(objectVo.getResult());
 
-        }
+
+
+
+//
+//
+//
+//
+//        //只有分公司並且開啟了賠率設置 才能新增賠率
+//        if(objectVo.getResult().getUserType().equals(UserTypeEnum.BRANCH.getCode())){
+//            mapper.doInitUserLotteryOdd(objectVo.getResult());
+//        }
+//        //只有新增主賬號才有返水設置
+//        if(objectVo.getResult().getUserType().length()==1){
+//            mapper.doInitUserLotteryRebate(objectVo.getResult());
+//
+//        }
 
         if (!isSuccess) {
             objectVo.setSuccess(false);

@@ -30,10 +30,7 @@ import so.wwb.creditbox.web.tools.token.Token;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 商户账号
@@ -107,13 +104,38 @@ public class CompanyAccountController extends BaseAccountController {
 
 
 
-//        objectVo.getResult().setSuperiorOccupy(0);
-//        objectVo.getResult().setStintOccupy(100);
-//        objectVo.getResult().setBreakpoint(BreakpointEnum.ZERO.getCode());
-//        objectVo.getResult().setGeneral(GeneralEnum.ALL.getCode());
-//        objectVo.getResult().setModeSelection(ModeSelectionEnum.CREDIT.getCode());
-//        objectVo.getResult().setSetOdds(SetOddsEnum.OFF.getCode());
-//        objectVo.getResult().setTestAccount(TestAccountEnum.NO.getCode());
+        objectVo.getResult().setBuiltIn(false);
+        objectVo.getResult().setUskin(SkinEnum.BLUE.getCode());
+        objectVo.getResult().setSupName(SessionManager.getUserName());
+        objectVo.getResult().setUtype(UTypeEnum.ZJ.getCode());
+        objectVo.getResult().setSuType(UTypeEnum.ZGS.getCode());
+        objectVo.getResult().setAddDate(new Date());
+        objectVo.getResult().setSixRate(0);
+        objectVo.getResult().setSixCredit(0.0);
+        objectVo.getResult().setSixUsableCredit(0.0);
+        objectVo.getResult().setSixKind(KindEnum.DEFAULT.getCode());
+        objectVo.getResult().setAstate(1);
+        objectVo.getResult().setAllowSale(Integer.parseInt(AllowSaleEnum.YES.getCode()));
+        objectVo.getResult().setAllowViewReport(Integer.parseInt(AllowViewReportEnum.YES.getCode()));
+        objectVo.getResult().setSixAllowMaxrate(0);
+        objectVo.getResult().setSixLowMaxrate(0);
+        objectVo.getResult().setSixRateOwner(0);
+        objectVo.getResult().setSixIscash(Integer.parseInt(CashEnum.NO.getCode()));
+        objectVo.getResult().setAllowOpt(1);
+        objectVo.getResult().setIsChanged(0);
+        objectVo.getResult().setKcRate(0);
+        objectVo.getResult().setKcCredit(9999999.0);
+        objectVo.getResult().setKcUsableCredit(99999999.0);
+        objectVo.getResult().setKcKind(KindEnum.DEFAULT.getCode());
+        objectVo.getResult().setKcAllowSale(Integer.parseInt(AllowSaleEnum.YES.getCode()));
+        objectVo.getResult().setKcAllowMaxrate(0);
+        objectVo.getResult().setKcRateOwner(0);
+        objectVo.getResult().setKcCrashPayment(0);
+        objectVo.getResult().setKcIscash(Integer.parseInt(CashEnum.NO.getCode()));
+        objectVo.getResult().setKcOpOdds(Integer.parseInt(OpOddEnum.YES.getCode()));
+        objectVo.getResult().setSixOpOdds(Integer.parseInt(OpOddEnum.YES.getCode()));
+        objectVo.getResult().setKcIsautoBack(0);
+        objectVo.getResult().setSixIsautoBack(0);
         return getVoMessage(baseAddAccount(objectVo, form, result, request));
     }
 

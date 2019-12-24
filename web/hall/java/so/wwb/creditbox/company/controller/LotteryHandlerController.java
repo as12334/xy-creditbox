@@ -101,8 +101,8 @@ public class LotteryHandlerController extends BaseLotteryController{
         //下單
         if("put_money".equals(form.getAction())){
 
-            return JsonTool.toJson(super.saveBetOrder(request,code, form));
-
+//            return JsonTool.toJson(super.saveBetOrder(request,code, form));
+return null;
         }
         else if("get_openball".equals(form.getAction())){
             HashMap<String, String> phaseinfoMap = new HashMap<>();
@@ -161,8 +161,8 @@ public class LotteryHandlerController extends BaseLotteryController{
             Map<String, Object> playOddsMap = new LinkedHashMap<>();
             String[] split = form.getPlayid().split(",");
             for (String s : split) {
-                Map<String, SiteLotteryOdds> siteLotteryOdds = Cache.getSiteLotteryOdds(HidTool.getBranchHid(sessionUser.getHid()), lotteryEnum.getCode());
-                Map<String, SiteLotteryRebates> siteLotteryRebates = Cache.getSiteLotteryRebates(HidTool.getBranchHid(sessionUser.getHid()), lotteryEnum.getCode());
+                Map<String, SiteLotteryOdds> siteLotteryOdds = Cache.getSiteLotteryOdds(HidTool.getBranchHid(sessionUser.getKey()), lotteryEnum.getCode());
+                Map<String, SiteLotteryRebates> siteLotteryRebates = Cache.getSiteLotteryRebates(HidTool.getBranchHid(sessionUser.getKey()), lotteryEnum.getCode());
                 SiteLotteryOdds Odd = siteLotteryOdds.get(s);
                 SiteLotteryRebates rebates = siteLotteryRebates.get(s);
                 Map<String, Object> oddsMap = new LinkedHashMap<>();
