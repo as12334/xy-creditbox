@@ -59,7 +59,8 @@ public class VSysSiteManageService extends BaseService<VSysSiteManageMapper, VSy
         siteBasic.setSysSite(sysSite);
         //运行站点赔率函数
         if(SubSysCodeEnum.COMPANY == EnumTool.enumOf(SubSysCodeEnum.class,siteBasic.getSubCode())) {
-            mapper.doInitSiteData(siteBasic.getResult());
+            //todo 暫時不執行函數
+//            mapper.doInitSiteData(siteBasic.getResult());
         }
         return siteBasic;
     }
