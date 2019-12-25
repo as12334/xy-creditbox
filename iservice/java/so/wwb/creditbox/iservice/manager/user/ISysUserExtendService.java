@@ -4,6 +4,7 @@ import org.soul.commons.bean.Pair;
 import org.soul.iservice.support.IBaseService;
 import org.soul.model.passport.vo.PassportVo;
 import org.soul.model.security.privilege.vo.SysUserStatusVo;
+import so.wwb.creditbox.model.bean.WebJson;
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendListVo;
@@ -37,7 +38,7 @@ public interface ISysUserExtendService extends IBaseService<SysUserExtendListVo,
 //     */
     SysUserStatusVo getStatus(PassportVo passportVo);
 //
-////    WebJson checkStatus(SysUserExtendVo extendVo, WebJson webJson);
+    WebJson checkSuperStatus(SysUserExtendVo extendVo, WebJson webJson);
 //
     /**
      * 加载所有用户作缓存.

@@ -54,7 +54,8 @@
 				/index/language.html = ip
 				/index/language/change.html = ip
 				/forgetPassword/** = ip
-				/app/** = ip
+				/passport/ResetPasswd.html = ip
+				/passport/updatePwd.html = ip
 				/captcha/*.html = ip,captcha
 				/passport/login.html = ip,subsys,login
 				/** = ip,kickout,authc,autho

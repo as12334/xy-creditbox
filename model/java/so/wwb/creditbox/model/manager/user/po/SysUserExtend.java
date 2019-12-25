@@ -7,10 +7,13 @@ import org.soul.commons.support.Nonpersistent;
 import org.soul.model.security.privilege.po.SysUser;
 import so.wwb.creditbox.model.common.Const;
 import so.wwb.creditbox.model.common.HidTool;
+import so.wwb.creditbox.model.company.user.po.CzUsersChild;
 import so.wwb.creditbox.model.enums.lottery.*;
 
 import org.soul.commons.bean.IEntity;
 import org.soul.model.common.Sortable;
+
+import java.util.Date;
 
 
 /**
@@ -63,6 +66,8 @@ public class SysUserExtend extends SysUser {
 	public static final String PROP_KC_OP_ODDS = "kcOpOdds";
 	public static final String PROP_KC_ISAUTO_BACK = "kcIsautoBack";
 	public static final String PROP_SIX_ISAUTO_BACK = "sixIsautoBack";
+	public static final String PROP_LAST_CHANGED_DATE = "lastChangedDate";
+
 	//endregion
 
 
@@ -109,7 +114,7 @@ public class SysUserExtend extends SysUser {
 	/**  */
 	private Integer allowOpt;
 	/**  */
-	private Integer isChanged;
+	private String isChanged;
 	/**  */
 	private Integer kcRate;
 	/**  */
@@ -138,6 +143,8 @@ public class SysUserExtend extends SysUser {
 	private Integer kcIsautoBack;
 	/**  */
 	private Integer sixIsautoBack;
+
+	private java.util.Date lastChangedDate;
 	//endregion
 
 	
@@ -285,11 +292,11 @@ public class SysUserExtend extends SysUser {
 	public void setAllowOpt(Integer value) {
 		this.allowOpt = value;
 	}
-	public Integer getIsChanged() {
+	public String getIsChanged() {
 		return this.isChanged;
 	}
 
-	public void setIsChanged(Integer value) {
+	public void setIsChanged(String value) {
 		this.isChanged = value;
 	}
 	public Integer getKcRate() {
@@ -393,9 +400,26 @@ public class SysUserExtend extends SysUser {
 		this.sixIsautoBack = sixIsautoBack;
 	}
 
+	public Date getLastChangedDate() {
+		return lastChangedDate;
+	}
+
+	public void setLastChangedDate(Date lastChangedDate) {
+		this.lastChangedDate = lastChangedDate;
+	}
+
 	//endregion
 
 	//region your codes 2
+	private CzUsersChild sessionUserChild;
+
+	public CzUsersChild getSessionUserChild() {
+		return sessionUserChild;
+	}
+
+	public void setSessionUserChild(CzUsersChild sessionUserChild) {
+		this.sessionUserChild = sessionUserChild;
+	}
 	//endregion your codes 2
 
 }

@@ -12,6 +12,7 @@ public enum HttpCodeEnum {
     NO_LOGIN(300,"未登錄"),
     ERROR_OTHER(400,"其他错误單独处理"),
     ERROR(500,"内部错误"),
+    PSD_CHANGE(550,"重置密碼"),
     ODD_CHENGE(610,"赔率变动"),
 //    error(700,""),
 //    error(800,""),

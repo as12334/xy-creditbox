@@ -2,6 +2,7 @@ package so.wwb.creditbox.service.manager.user;
 
 import org.soul.commons.bean.Pair;
 import org.soul.commons.collections.CollectionTool;
+import org.soul.commons.enums.EnumTool;
 import org.soul.commons.enums.YesNot;
 import org.soul.commons.lang.string.RandomStringTool;
 import org.soul.commons.lang.string.StringTool;
@@ -28,6 +29,8 @@ import so.wwb.creditbox.iservice.manager.user.ISysUserExtendService;
 //import so.wwb.lotterybox.iservice.company.setting.IUserParamService;
 //import so.wwb.lotterybox.iservice.company.user.IUserAssetsService;
 //import so.wwb.lotterybox.iservice.company.user.IUserPlayerService;
+import so.wwb.creditbox.model.bean.HttpCodeEnum;
+import so.wwb.creditbox.model.bean.WebJson;
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
 import so.wwb.creditbox.model.enums.base.SubSysCodeEnum;
 import so.wwb.creditbox.model.enums.notice.ContactWayType;
@@ -127,34 +130,29 @@ public class SysUserExtendService extends BaseService<SysUserExtendMapper, SysUs
         }
         return getRecursiveUserStatus(passportVo);
     }
-//
-//    @Override
-//    public WebJson checkStatus(SysUserExtendVo extendVo, WebJson webJson) {
-//        SysUserExtend userExtend = extendVo.getResult();
-//        PassportVo vo = new PassportVo();
-//        vo.getSearch().setId(userExtend.getId());
-//        vo._setSiteUserId(contextParam().getSiteUserId());
-//        vo._setDataSourceId(contextParam().getSiteId());
-//        SysUserStatusVo statusVo = this.getStatus(vo);
-//        switch (statusVo.getStatus()) {
-//            case INACTIVE:
-//                webJson.setCodeEnum(CodeEnum.ACCOUNT_INACTIVE);
-//                break;
-//            case LOCKED:
-//                webJson.setCodeEnum(CodeEnum.ACCOUNT_LOCKED);
-//                break;
-//            case DISABLED:
-//                webJson.setCodeEnum(CodeEnum.ACCOUNT_DISABLED);
-//                break;
-//            case AUDIT_FAIL:
-//                webJson.setCodeEnum(CodeEnum.ACCOUNT_AUDIT_FAIL);
-//            default:
-//                webJson.setError(0);
-//                break;
-//        }
-//        return webJson;
-//    }
-//
+
+    @Override
+    public WebJson checkSuperStatus(SysUserExtendVo extendVo, WebJson webJson) {
+        SysUserExtend userExtend = extendVo.getResult();
+        List<SysUserExtend> owner = mapper.findOwner(userExtend.getId());
+
+
+        for (int i=0;i< owner.size();i++) {
+            SysUserStatus sysUserStatus = EnumTool.enumOf(SysUserStatus.class, owner.get(i).getStatus());
+            if(sysUserStatus != SysUserStatus.NORMAL){
+                if(i == owner.size()){
+                    webJson.setSuccess(HttpCodeEnum.ERROR_OTHER.getCode());
+                    webJson.setTipinfo("您的主帳號已被停用,请与管理员联系!");
+                    return webJson;
+                }
+                webJson.setSuccess(HttpCodeEnum.ERROR_OTHER.getCode());
+                webJson.setTipinfo("您的上級帳號已被停用,请与管理员联系!");
+                return webJson;
+            }
+        }
+        return webJson;
+    }
+
     private SysUserStatus getSysUserStatus(String parentStatus) {
         return SysUserStatus.enumOf(parentStatus);
     }

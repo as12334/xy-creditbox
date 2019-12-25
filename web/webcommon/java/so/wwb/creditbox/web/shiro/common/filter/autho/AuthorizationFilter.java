@@ -18,6 +18,7 @@ import org.soul.model.security.privilege.vo.SysResourceVo;
 import org.soul.model.session.SessionKey;
 import org.soul.web.init.BaseCtxLoaderListener;
 import so.wwb.creditbox.common.dubbo.ServiceTool;
+import so.wwb.creditbox.model.enums.base.SubSysCodeEnum;
 import so.wwb.creditbox.web.tools.SessionManagerCommon;
 
 import javax.servlet.ServletRequest;
@@ -82,6 +83,10 @@ public class AuthorizationFilter extends org.apache.shiro.web.filter.authz.Autho
         }
         if (patternPermissionMapping == null) {
             getPatternPermissionMapping(userPermissionMapping);
+        }
+        if( sysUser.getSubsysCode().equals(SubSysCodeEnum.COMPANY.getCode())){
+            //如果是公司用戶不查詢權限
+            return true;
         }
         boolean isPermitted= isPermitted(userPermissionMapping, request, subject);
         if(!isPermitted && ServletTool.isAjaxRequest(request)){

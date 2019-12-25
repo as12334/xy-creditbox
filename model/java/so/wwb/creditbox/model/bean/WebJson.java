@@ -1,6 +1,8 @@
 package so.wwb.creditbox.model.bean;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by block on 2019/11/25.
@@ -8,7 +10,7 @@ import java.io.Serializable;
 public class WebJson implements Serializable {
 
     private int success;
-    private Object data;
+    private Map data;
     private String tipinfo;
 
     public int getSuccess() {
@@ -19,11 +21,14 @@ public class WebJson implements Serializable {
         this.success = success;
     }
 
-    public Object getData() {
+    public Map getData() {
+        if (data == null){
+            data = new HashMap<>();
+        }
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(Map data) {
         this.data = data;
     }
 
@@ -33,5 +38,9 @@ public class WebJson implements Serializable {
 
     public void setTipinfo(String tipinfo) {
         this.tipinfo = tipinfo;
+    }
+
+    public boolean getIsSuccess() {
+        return success == 200;
     }
 }

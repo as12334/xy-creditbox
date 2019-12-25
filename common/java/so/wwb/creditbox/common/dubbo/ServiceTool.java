@@ -31,7 +31,7 @@ import org.soul.commons.dubbo.DubboTool;
  * 远程服务实例获取工具类
  *
  * @author block
- * @time 2019-12-19 23:20:50
+ * @time 2019-12-24 23:36:49
  */
 public class ServiceTool {
 
@@ -339,15 +339,7 @@ public static ISysUserRoleService sysUserRoleService() {
         return getService(so.wwb.creditbox.iservice.manager.lottery.ILotteryResultExtendService.class);
     }
     
-    /**
-     * 返回远程服务实例
-     *
-     * @return 远程服务实例
-     */
-    public static so.wwb.creditbox.iservice.company.user.ICzUsersService czUsersService() {
-        return getService(so.wwb.creditbox.iservice.company.user.ICzUsersService.class);
-    }
-    
+
     /**
      * 返回远程服务实例
      *
@@ -364,6 +356,15 @@ public static ISysUserRoleService sysUserRoleService() {
      */
     public static so.wwb.creditbox.iservice.company.user.ICzRateKcService czRateKcService() {
         return getService(so.wwb.creditbox.iservice.company.user.ICzRateKcService.class);
+    }
+    
+    /**
+     * 返回远程服务实例
+     *
+     * @return 远程服务实例
+     */
+    public static so.wwb.creditbox.iservice.company.user.ICzUsersChildService czUsersChildService() {
+        return getService(so.wwb.creditbox.iservice.company.user.ICzUsersChildService.class);
     }
     
 //endregion your codes 1

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="so.wwb.creditbox.data.company.user.CzUsersChildMapper">
+
+    <resultMap id="TABLE:cz_users_child" type="so.wwb.creditbox.model.company.user.po.CzUsersChild">
+        <id column="id" property="id"/>
+        <result column="u_id" property="uid"/>
+        <result column="u_name" property="uname"/>
+        <result column="u_psw" property="upsw"/>
+        <result column="salt" property="salt"/>
+        <result column="u_nicker" property="unicker"/>
+        <result column="u_skin" property="uskin"/>
+        <result column="parent_u_name" property="parentUname"/>
+        <result column="add_date" property="addDate"/>
+        <result column="status" property="status"/>
+        <result column="is_changed" property="isChanged"/>
+        <result column="last_changed_date" property="lastChangedDate"/>
+        <result column="retry_times" property="retryTimes"/>
+        <result column="permissions_name" property="permissionsName"/>
+    </resultMap>
+
+    <!--//region your codes 1-->
+
+    <!--//endregion your codes 1-->
+
+</mapper>

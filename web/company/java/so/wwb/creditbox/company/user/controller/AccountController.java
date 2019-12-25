@@ -399,7 +399,7 @@ public class AccountController extends BaseCrudController<IVSiteUserService, VSi
         objectVo.getResult().setSixRateOwner(0);
         objectVo.getResult().setSixIscash(Integer.parseInt(CashEnum.NO.getCode()));
         objectVo.getResult().setAllowOpt(1);
-        objectVo.getResult().setIsChanged(0);
+        objectVo.getResult().setIsChanged("");
         objectVo.getResult().setKcRate(0);
         objectVo.getResult().setKcCredit(9999999.0);
         objectVo.getResult().setKcUsableCredit(99999999.0);

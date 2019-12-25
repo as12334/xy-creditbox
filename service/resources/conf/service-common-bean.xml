@@ -94,11 +94,11 @@
 
     <bean id="lotteryResultExtendService" class="so.wwb.creditbox.service.manager.lottery.LotteryResultExtendService"/>
 
-    <bean id="czUsersService" class="so.wwb.creditbox.service.company.user.CzUsersService"/>
-
     <bean id="czRateSixService" class="so.wwb.creditbox.service.company.user.CzRateSixService"/>
 
     <bean id="czRateKcService" class="so.wwb.creditbox.service.company.user.CzRateKcService"/>
+
+    <bean id="czUsersChildService" class="so.wwb.creditbox.service.company.user.CzUsersChildService"/>
 
 <!--//endregion your codes 1-->
 

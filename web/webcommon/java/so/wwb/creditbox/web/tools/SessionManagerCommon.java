@@ -26,6 +26,7 @@ import org.springframework.beans.BeanUtils;
 import redis.clients.util.SafeEncoder;
 import so.wwb.creditbox.common.dubbo.ServiceTool;
 import so.wwb.creditbox.model.base.ParamTool;
+import so.wwb.creditbox.model.company.user.po.CzUsersChild;
 import so.wwb.creditbox.model.constants.common.Const;
 import so.wwb.creditbox.model.constants.common.SessionKey;
 import so.wwb.creditbox.model.enums.base.PrivilegeStatusEnum;
@@ -72,6 +73,13 @@ public class SessionManagerCommon extends SessionManagerBase {
     //游戏中心-消息-追问提交时间
     private static final String S_ADVISORY_MESSAGE_TIME = "S_ADVISORY_MESSAGE_TIME";
 
+
+    //驗證碼開關
+    private static final String S_LOTTERY_SESSION_IMG_CODE_DISPLAY = "lottery_session_img_code_display";
+
+    //驗證碼數字
+    private static final String S_LOTTERY_SESSION_IMG_CODE = "lottery_session_img_code";
+
     /**
      * 站点未结算账單调用函数间隔时间
      *
@@ -84,6 +92,25 @@ public class SessionManagerCommon extends SessionManagerBase {
 
     public static void resetStatSiteOrderDistributeDelay() {
         setAttribute(S_STAT_SITE_ORDER_DISTRIBUTE_DELAY_TIME, System.currentTimeMillis());
+    }
+
+
+    public static void setLotterySessionImgCodeDisplay(Integer val) {
+        setAttribute(S_LOTTERY_SESSION_IMG_CODE_DISPLAY, val);
+    }
+
+    public static Integer getLotterySessionImgCodeDisplay() {
+        return (Integer) getAttribute(S_LOTTERY_SESSION_IMG_CODE_DISPLAY);
+    }
+
+
+
+    public static void setLotterySessionImgCode(String val) {
+        setAttribute(S_LOTTERY_SESSION_IMG_CODE, val);
+    }
+
+    public static String getLotterySessionImgCode() {
+        return (String) getAttribute(S_LOTTERY_SESSION_IMG_CODE);
     }
 
     /**
@@ -478,6 +505,9 @@ public class SessionManagerCommon extends SessionManagerBase {
             }
         }
     }
+
+
+
 
     /**
      * @return
