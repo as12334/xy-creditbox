@@ -90,6 +90,7 @@ public class HallLoginFilter extends HandleLogin {
 
         WebJson result = new WebJson();
         result.setSuccess(HttpCodeEnum.SUCCESS.getCode());
+        result.setTipinfo("登錄成功！");
 
 
 
@@ -109,7 +110,7 @@ public class HallLoginFilter extends HandleLogin {
         }
         if(result.getIsSuccess()){
             //查詢用戶   先查詢主庫
-            getUserExtend(username);
+            result = getUserExtend(result,username);
         }
 
 
@@ -289,7 +290,7 @@ public class HallLoginFilter extends HandleLogin {
     /**
      * 查询玩家信息
      */
-    SysUserExtend getUserExtend(String username) {
+    WebJson getUserExtend(WebJson webJson,String username) {
         SysUserExtendVo extendVo = new SysUserExtendVo();
         extendVo.getSearch().setUsername(username);
         extendVo._setDataSourceId(Const.BOSS_DATASOURCE_ID);
@@ -317,9 +318,14 @@ public class HallLoginFilter extends HandleLogin {
             }
 
         }
+        if (sysUserExtend == null){
+            webJson.setSuccess(HttpCodeEnum.ERROR_OTHER.getCode());
+            webJson.setTipinfo("用户名错误!");
+            return webJson;
+        }
         sysUserExtend.setSessionUserChild(czUsersChild);
         SessionManagerCommon.setUser(sysUserExtend);
-        return null;
+        return webJson;
     }
 
     /** 校验密码 */
