@@ -1,11 +1,13 @@
 package so.wwb.creditbox.model.manager.user.po;
 
+import org.soul.web.support.IForm;
+
 import java.io.Serializable;
 
 /**
  * Created by block on 2019/12/26.
  */
-public class UserBean implements Serializable{
+public class UserBean implements IForm{
     private static final long serialVersionUID = 4549559093550682153L;
 
     private  String userName;
@@ -16,6 +18,20 @@ public class UserBean implements Serializable{
     private  String userRate_six;
     private  String userAllowSale_six;
     private  String userRateOwner_six;
+
+    private String utype;
+
+    //经营彩票类型：六合彩，快彩
+    private  String lotteryType;
+
+    private String sltupuser;
+
+    private  String txtlimithy;
+
+    private  String sltlimithy;
+    private  String rdoutype;
+
+
     /**
      * 下綫占成
      */
@@ -44,6 +60,8 @@ public class UserBean implements Serializable{
     private  String op_kc;
 
 
+
+
     public String getUserPassword() {
         return userPassword;
     }
@@ -68,6 +86,14 @@ public class UserBean implements Serializable{
         this.userReport = userReport;
     }
 
+    public String getLotteryType() {
+        return lotteryType;
+    }
+
+    public void setLotteryType(String lotteryType) {
+        this.lotteryType = lotteryType;
+    }
+
     public String getUserCredit_six() {
         return userCredit_six;
     }
@@ -78,6 +104,22 @@ public class UserBean implements Serializable{
 
     public String getUserRate_six() {
         return userRate_six;
+    }
+
+    public String getSltlimithy() {
+        return sltlimithy;
+    }
+
+    public void setSltlimithy(String sltlimithy) {
+        this.sltlimithy = sltlimithy;
+    }
+
+    public String getRdoutype() {
+        return rdoutype;
+    }
+
+    public void setRdoutype(String rdoutype) {
+        this.rdoutype = rdoutype;
     }
 
     public void setUserRate_six(String userRate_six) {
@@ -102,6 +144,14 @@ public class UserBean implements Serializable{
 
     public String getUserKind_six() {
         return userKind_six;
+    }
+
+    public String getTxtlimithy() {
+        return txtlimithy;
+    }
+
+    public void setTxtlimithy(String txtlimithy) {
+        this.txtlimithy = txtlimithy;
     }
 
     public void setUserKind_six(String userKind_six) {
@@ -218,5 +268,21 @@ public class UserBean implements Serializable{
 
     public void setLowmaxrate_kc(String lowmaxrate_kc) {
         this.lowmaxrate_kc = lowmaxrate_kc;
+    }
+
+    public String getSltupuser() {
+        return sltupuser;
+    }
+
+    public void setSltupuser(String sltupuser) {
+        this.sltupuser = sltupuser;
+    }
+
+    public String getUtype() {
+        return utype;
+    }
+
+    public void setUtype(String utype) {
+        this.utype = utype;
     }
 }

@@ -100,7 +100,8 @@ public class AccountController extends MemberPageBase {
 
     @RequestMapping("/fgs_add")
     @Token(generate = true)
-    public String fgsAdd(UserBean bean,VSiteUserVo objectVo,SysUserExtendVo sysUserExtendVo, Model model, HttpServletResponse response) throws IOException {
+    public String fgsAdd(UserBean bean,BindingResult result,VSiteUserVo objectVo,SysUserExtendVo sysUserExtendVo, Model model, HttpServletResponse response) throws IOException {
+
         SysUserExtend sysUserExtend = SessionManagerCommon.getSysUserExtend();
         //如果不是總監
         if(!sysUserExtend.getUtype().equals(UTypeEnum.ZJ.getCode())){
@@ -112,7 +113,10 @@ public class AccountController extends MemberPageBase {
     @RequestMapping("/persistUser")
     @Token(generate = true)
     @ResponseBody
-    public String persistUser(SysUserExtendVo objectVo, Model model, UserBean bean, HttpServletRequest request, @FormModel("result") @Valid AddSysUserExtendForm form, BindingResult result) {
+    public String persistUser(SysUserExtendVo objectVo, Model model,@FormModel("") @Valid UserBean bean, BindingResult result, HttpServletRequest request) {
+        if(result.hasErrors()){
+            return "";
+        }
         UserReportEnum userReportEnum = EnumTool.enumOf(UserReportEnum.class, bean.getUserReport());
         SysUserExtend sessionUser = SessionManagerCommon.getSysUserExtend();
         if(userReportEnum == null){
@@ -120,7 +124,7 @@ public class AccountController extends MemberPageBase {
         }
 
 
-        if(super.ValidParamByUserAdd(bean,UTypeEnum.FGS.getCode(),"","","1")){
+//        if(super.ValidParamByUserAdd(bean,UTypeEnum.FGS.getCode(),"","","1")){
 
             SysUserExtend sysUserExtend = defaultAccount(bean, request);
 
@@ -180,7 +184,7 @@ public class AccountController extends MemberPageBase {
             sysUserExtendVo.setCzRateKc(czRateKc);
             sysUserExtendVo.setCzRateSix(czRateSix);
 
-        }
+//        }
         return "保存成功！";
     }
     @RequestMapping("/existNameAjax")

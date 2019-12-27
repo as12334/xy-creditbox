@@ -38,7 +38,7 @@
             <td class="topBoxBg1"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="tm2">
                 <tr>
                     <td width="26" align="center"><div class="topArr"></div></td>
-                    <td><b>新增總代理</b></td>
+                    <td><b>新增分公司</b></td>
                     <td width="100">&nbsp;</td>
                     <td width="140" align="right"><div class="btnIco"><div onclick="javascript:history.go(-1)"><div class="Reico" style="cursor:pointer;">返回</div></div></div></td>
                 </tr>
@@ -298,20 +298,20 @@
 
 
                             <tr>
-                                <td align="right" width="140" class="tdbg1"> (快彩)userReport&nbsp;</td>
+                                <td align="right" width="140" class="tdbg1"> (快彩)開放公司報表&nbsp;</td>
                                 <td align="left"><table border="0" cellspacing="0" cellpadding="0">
                                     <tr>
 
                                         <td width="60"><label class="topLabel">
                                             <input type="radio" name="userReport" id="userReport" value="1" checked=checked  />
                                             <span>
-										啟用
+										顯示
 									</span>
                                         </label></td>
                                         <td width="60"><label class="topLabel">
                                             <input type="radio"  name="userReport" id="userReport" value="0"  />
                                             <span>
-										禁用
+										禁看
 									</span>
                                         </label></td>
                                     </tr>
@@ -321,20 +321,20 @@
 
 
                             <tr>
-                                <td align="right" width="140" class="tdbg1"> (快彩)userRateOwner_kc&nbsp;</td>
+                                <td align="right" width="140" class="tdbg1"> (快彩)占餘成數歸&nbsp;</td>
                                 <td align="left"><table border="0" cellspacing="0" cellpadding="0">
                                     <tr>
 
                                         <td width="60"><label class="topLabel">
                                             <input type="radio" name="userRateOwner_kc" id="userRateOwner_kc" value="1" checked=checked  />
                                             <span>
-										啟用
+										總監
 									</span>
                                         </label></td>
-                                        <td width="60"><label class="topLabel">
+                                        <td width="150"><label class="topLabel">
                                             <input type="radio"  name="userRateOwner_kc" id="userRateOwner_kc" value="0"  />
                                             <span>
-										禁用
+										分公司
 									</span>
                                         </label></td>
                                     </tr>
