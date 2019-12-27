@@ -1,6 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--@elvariable id="command" type="so.wwb.creditbox.model.company.user.vo.VSiteUserVo"--%>
+<%--@elvariable id="command" type="so.wwb.creditbox.model.common.MessagePageBean"--%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -63,7 +63,7 @@
             <!-- 開始 -->
             <div class="tBox">
                 <div class="wrong">
-                    ${command.errMsg}
+                    ${command.msgText}
                 </div>
             </div>
             <!-- 結束 -->

@@ -39,6 +39,7 @@
         <result column="kc_isauto_back" property="kcIsautoBack"/>
         <result column="six_isauto_back" property="sixIsautoBack"/>
         <result column="last_changed_date" property="lastChangedDate"/>
+        <result column="hid" property="hid"/>
 
     </resultMap>
     <resultMap id="TABLE:sys_user" type="org.soul.model.security.privilege.po.SysUser">

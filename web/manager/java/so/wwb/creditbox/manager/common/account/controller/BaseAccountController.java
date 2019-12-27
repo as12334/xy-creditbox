@@ -508,10 +508,7 @@ public class BaseAccountController extends NoMappingCrudController<ISysUserExten
         ownerVo.getSearch().setId(objectVo.getResult().getOwnerId());
         SysUserExtend owner = ServiceTool.sysUserExtendService().get(ownerVo).getResult();
 
-//        objectVo.getResult().setOwnerName(owner.getUsername());
-//        objectVo.getResult().setOwnerCode(owner.getCode());
-
-//        objectVo.getResult().setHid(ServiceTool.vSiteUserService().getHid(owner.getHid()));
+        objectVo.getResult().setHid(ServiceTool.vSiteUserService().getHid(owner.getHid()));
         //创建股东和商户主账号时，没有站点ID, 其他账户取上级站点ID
         if (!StringTool.equals(UserTypeEnum.COMPANIES.getCode(), createUserType)
                 && !StringTool.equals(UserTypeEnum.COMPANY.getCode(), createUserType)) {

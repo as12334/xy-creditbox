@@ -25,7 +25,6 @@ import so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo;
 import so.wwb.creditbox.model.company.lottery.vo.LotteryBetOrderVo;
 import so.wwb.creditbox.model.company.lottery.vo.SiteLotteryOddsVo;
 import so.wwb.creditbox.model.company.user.po.VSiteUser;
-import so.wwb.creditbox.model.enums.base.StatusEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryOrderStatusEnum;
 import so.wwb.creditbox.model.enums.lottery.LotteryPlayEnum;
@@ -302,7 +301,7 @@ public class BaseLotteryController {
     private boolean checkOrder(List<ErrorCode.Error> errors, ErrorCode errorCode, HandlerForm form, HttpServletRequest request) {
         //已使用的额度（盈利为负数）
         VSiteUser usedCredit = getvSiteUserCreditInfo();
-        double balance = usedCredit.getCredits() - usedCredit.getUsableCredit() - form.getTotalMoney();
+        double balance = usedCredit.getKcCredit() - usedCredit.getUsableCredit() - form.getTotalMoney();
         if (balance < 0) {
             errors.add(errorCode.new Error(errorCode.CODE_101, errorCode.MSG_101, errorCode.ICON_5));
             return true;

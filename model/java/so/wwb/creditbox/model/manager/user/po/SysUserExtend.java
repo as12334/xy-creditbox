@@ -66,12 +66,15 @@ public class SysUserExtend extends SysUser {
 	public static final String PROP_KC_ISAUTO_BACK = "kcIsautoBack";
 	public static final String PROP_SIX_ISAUTO_BACK = "sixIsautoBack";
 	public static final String PROP_LAST_CHANGED_DATE = "lastChangedDate";
+	public static final String PROP_HID = "hid";
 	//endregion
 	
 	
 	//region properties
 	/** 钥匙 */
 	private String key;
+	/** 角色串 */
+	private String hid;
 	/** 用户唯一串 */
 	private String uid;
 	/** 密码加密盐 */
@@ -180,6 +183,14 @@ public class SysUserExtend extends SysUser {
 	}
 	public String getSupName() {
 		return this.supName;
+	}
+
+	public String getHid() {
+		return hid;
+	}
+
+	public void setHid(String hid) {
+		this.hid = hid;
 	}
 
 	public void setSupName(String value) {

@@ -15,9 +15,7 @@ import so.wwb.creditbox.manager.common.account.form.SysUserExtendSearchForm;
 import so.wwb.creditbox.manager.common.account.form.SysUserExtendUpdateForm;
 import so.wwb.creditbox.manager.session.SessionManager;
 import so.wwb.creditbox.model.annotations.Audit;
-import so.wwb.creditbox.model.enums.base.Module;
-import so.wwb.creditbox.model.enums.base.ModuleType;
-import so.wwb.creditbox.model.enums.base.SubSysCodeEnum;
+import so.wwb.creditbox.model.enums.base.*;
 import so.wwb.creditbox.model.enums.lottery.*;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendListVo;
@@ -57,7 +55,7 @@ public class CompanyAccountController extends BaseAccountController {
         List<String> list =new ArrayList<>();
         list.add(SubSysCodeEnum.BRANCH.getCode());
         //所有商户下对应的总代人数
-//        model.addAttribute("ownerIds", querySubCount(companyList, list));
+        model.addAttribute("ownerIds", querySubCount(companyList, list));
         //拥有站点的股东主账号列表
         model.addAttribute("companies", queryAccountListAsSiteByType(listVo, UserTypeEnum.COMPANIES.getCode()));
         if (ServletTool.isAjaxSoulRequest(request)) {
@@ -116,27 +114,27 @@ public class CompanyAccountController extends BaseAccountController {
         objectVo.getResult().setSixUsableCredit(0.0);
         objectVo.getResult().setSixKind(KindEnum.DEFAULT.getCode());
         objectVo.getResult().setAstate(1);
-        objectVo.getResult().setAllowSale(Integer.parseInt(AllowSaleEnum.YES.getCode()));
-        objectVo.getResult().setAllowViewReport(Integer.parseInt(AllowViewReportEnum.YES.getCode()));
-        objectVo.getResult().setSixAllowMaxrate(0);
+        objectVo.getResult().setSixAllowSale(AllowSaleEnum.YES.getCode());
+        objectVo.getResult().setAllowViewReport(AllowViewReportEnum.YES.getCode());
+        objectVo.getResult().setSixAllowMaxrate(AllowMaxrateEnum.CLOSE.getCode());
         objectVo.getResult().setSixLowMaxrate(0);
-        objectVo.getResult().setSixRateOwner(0);
-        objectVo.getResult().setSixIscash(Integer.parseInt(CashEnum.NO.getCode()));
+        objectVo.getResult().setSixRateOwner(RateOwnerEnum.FGS.getCode());
+        objectVo.getResult().setSixIscash(CashEnum.NO.getCode());
         objectVo.getResult().setAllowOpt(1);
         objectVo.getResult().setIsChanged("");
         objectVo.getResult().setKcRate(0);
         objectVo.getResult().setKcCredit(9999999.0);
         objectVo.getResult().setKcUsableCredit(99999999.0);
         objectVo.getResult().setKcKind(KindEnum.DEFAULT.getCode());
-        objectVo.getResult().setKcAllowSale(Integer.parseInt(AllowSaleEnum.YES.getCode()));
-        objectVo.getResult().setKcAllowMaxrate(0);
-        objectVo.getResult().setKcRateOwner(0);
+        objectVo.getResult().setKcAllowSale(AllowSaleEnum.YES.getCode());
+        objectVo.getResult().setKcAllowMaxrate(AllowMaxrateEnum.CLOSE.getCode());
+        objectVo.getResult().setKcRateOwner(RateOwnerEnum.FGS.getCode());
         objectVo.getResult().setKcCrashPayment(0);
-        objectVo.getResult().setKcIscash(Integer.parseInt(CashEnum.NO.getCode()));
-        objectVo.getResult().setKcOpOdds(Integer.parseInt(OpOddEnum.YES.getCode()));
-        objectVo.getResult().setSixOpOdds(Integer.parseInt(OpOddEnum.YES.getCode()));
-        objectVo.getResult().setKcIsautoBack(0);
-        objectVo.getResult().setSixIsautoBack(0);
+        objectVo.getResult().setKcIscash(CashEnum.NO.getCode());
+        objectVo.getResult().setKcOpOdds(OpOddEnum.YES.getCode());
+        objectVo.getResult().setSixOpOdds(OpOddEnum.YES.getCode());
+        objectVo.getResult().setKcIsautoBack(IsautoBackEnum.AUTO.getCode());
+        objectVo.getResult().setSixIsautoBack(IsautoBackEnum.AUTO.getCode());
         return getVoMessage(baseAddAccount(objectVo, form, result, request));
     }
 

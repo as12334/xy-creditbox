@@ -1,9 +1,9 @@
 package so.wwb.creditbox.model.company.user.po;
 
 import org.soul.commons.lang.string.StringTool;
+import org.soul.commons.support.Nonpersistent;
 
 import org.soul.commons.bean.IEntity;
-import org.soul.commons.support.Nonpersistent;
 import org.soul.model.common.Sortable;
 
 
@@ -11,7 +11,7 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-12-9 21:33:12
+ * @time 2019-12-27 20:24:56
  */
 //region your codes 1
 public class VSiteUser implements IEntity<Integer> {
@@ -85,184 +85,241 @@ public class VSiteUser implements IEntity<Integer> {
 	public static final String PROP_AUTHENTICATION_KEY = "authenticationKey";
 	public static final String PROP_SITE_ID = "siteId";
 	public static final String PROP_KEY = "key";
-	public static final String PROP_SUPERIOR_OCCUPY = "superiorOccupy";
-	public static final String PROP_HID = "hid";
-	public static final String PROP_CREDITS = "credits";
-	public static final String PROP_UPDATE_NAME = "updateName";
-	public static final String PROP_STINT_OCCUPY = "stintOccupy";
-	public static final String PROP_BREAKPOINT = "breakpoint";
-	public static final String PROP_MANUAL_AUTO_SHIPMENTS = "manualAutoShipments";
-	public static final String PROP_MODE_SELECTION = "modeSelection";
-	public static final String PROP_GENERAL = "general";
-	public static final String PROP_TEST_ACCOUNT = "testAccount";
-	public static final String PROP_SET_ODDS = "setOdds";
-	public static final String PROP_OWNER_NAME = "ownerName";
-	public static final String PROP_HANDICAP = "handicap";
-	public static final String PROP_STINT_OCCUPY_SWITCH = "stintOccupySwitch";
-	public static final String PROP_OWNER_USER_TYPE = "ownerUserType";
-	public static final String PROP_CHILD_NUM = "childNum";
+	public static final String PROP_UID = "uid";
+	public static final String PROP_SALT = "salt";
+	public static final String PROP_USKIN = "uskin";
+	public static final String PROP_SUP_NAME = "supName";
+	public static final String PROP_ADD_DATE = "addDate";
+	public static final String PROP_UTYPE = "utype";
+	public static final String PROP_SU_TYPE = "suType";
+	public static final String PROP_SIX_RATE = "sixRate";
+	public static final String PROP_SIX_CREDIT = "sixCredit";
+	public static final String PROP_SIX_USABLE_CREDIT = "sixUsableCredit";
+	public static final String PROP_SIX_KIND = "sixKind";
+	public static final String PROP_ASTATE = "astate";
+	public static final String PROP_SIX_ALLOW_SALE = "sixAllowSale";
+	public static final String PROP_ALLOW_VIEW_REPORT = "allowViewReport";
+	public static final String PROP_SIX_ALLOW_MAXRATE = "sixAllowMaxrate";
+	public static final String PROP_SIX_LOW_MAXRATE = "sixLowMaxrate";
+	public static final String PROP_SIX_RATE_OWNER = "sixRateOwner";
+	public static final String PROP_SIX_ISCASH = "sixIscash";
+	public static final String PROP_ALLOW_OPT = "allowOpt";
+	public static final String PROP_IS_CHANGED = "isChanged";
+	public static final String PROP_KC_RATE = "kcRate";
+	public static final String PROP_KC_CREDIT = "kcCredit";
+	public static final String PROP_KC_USABLE_CREDIT = "kcUsableCredit";
+	public static final String PROP_KC_KIND = "kcKind";
+	public static final String PROP_KC_ALLOW_SALE = "kcAllowSale";
+	public static final String PROP_KC_ALLOW_MAXRATE = "kcAllowMaxrate";
+	public static final String PROP_KC_LOW_MAXRATE = "kcLowMaxrate";
+	public static final String PROP_KC_RATE_OWNER = "kcRateOwner";
+	public static final String PROP_KC_CRASH_PAYMENT = "kcCrashPayment";
+	public static final String PROP_KC_ISCASH = "kcIscash";
+	public static final String PROP_SIX_OP_ODDS = "sixOpOdds";
+	public static final String PROP_KC_OP_ODDS = "kcOpOdds";
+	public static final String PROP_KC_ISAUTO_BACK = "kcIsautoBack";
+	public static final String PROP_SIX_ISAUTO_BACK = "sixIsautoBack";
+	public static final String PROP_LAST_CHANGED_DATE = "lastChangedDate";
 	//endregion
 	
 	
 	//region properties
-	/**  */
+	/** 主键 */
 	private Integer id;
-	/**  */
+	/** 账号 */
 	private String username;
-	/**  */
+	/** 用户密码 */
 	private String password;
-	/**  */
+	/** 部门 id */
 	private Integer deptId;
-	/**  */
+	/** 状态,枚举:SysUserStatus,[1, 正常],[2, 停用],[3, 冻结(不记录表)],[4, 未激活/未审核],[5,审核失败] */
 	private String status;
-	/**  */
+	/** 创建用户id */
 	private Integer createUser;
-	/**  */
+	/** 创建时间 */
 	private java.util.Date createTime;
-	/**  */
+	/** 更新用户id */
 	private Integer updateUser;
-	/**  */
+	/** 更新时间 */
 	private java.util.Date updateTime;
-	/**  */
+	/** 默认本地化信息：两位小写语言代码_两位大写国家代码 */
 	private String defaultLocale;
-	/**  */
+	/** 默认时区 */
 	private String defaultTimezone;
-	/**  */
+	/** 系统编号：boss-总控，shareholder-股东，merchant-商户，agent-代理，pcenter-玩家 */
 	private String subsysCode;
-	/**  */
+	/** 用户类型：22-代理商，221-代理商子账号，23-玩家 */
 	private String userType;
-	/**  */
+	/** 是否系统内置 */
 	private Boolean builtIn;
-	/**  */
+	/** 所有者id */
 	private Integer ownerId;
-	/**  */
+	/** 冻结类型(1:自动冻结 2:手动冻结) */
 	private String freezeType;
-	/**  */
+	/** 冻结开始时间 */
 	private java.util.Date freezeStartTime;
-	/**  */
+	/** 冻结结束时间,当前时间在冻结结束区间内,状态为:冻结,3000年默认为:永久冻结 */
 	private java.util.Date freezeEndTime;
-	/**  */
+	/** 冻结原因i18代码,关联表:v_site_user_freeze_reason */
 	private String freezeCode;
-	/**  */
+	/** 本次登录时间 */
 	private java.util.Date loginTime;
-	/**  */
+	/** 本次登录IP */
 	private Long loginIp;
-	/**  */
+	/** 最后活跃时间 */
 	private java.util.Date lastActiveTime;
-	/**  */
+	/** 本次使用线路 */
 	private String useLine;
-	/**  */
+	/** 上次登录时间 */
 	private java.util.Date lastLoginTime;
-	/**  */
+	/** 上次登录IP */
 	private Long lastLoginIp;
-	/**  */
+	/** 累计在线时长 */
 	private Long totalOnlineTime;
-	/**  */
+	/** 昵称 */
 	private String nickname;
-	/**  */
+	/** 真实姓名 */
 	private String realName;
-	/**  */
+	/** 生日 */
 	private java.util.Date birthday;
-	/**  */
+	/** 性别，字典类型sex(common模块) */
 	private String sex;
-	/**  */
+	/** 星座 */
 	private String constellation;
-	/**  */
+	/** 国家，字典类型country(common模块) */
 	private String country;
-	/**  */
+	/** 民族，字典类型nation(common模块) */
 	private String nation;
-	/**  */
+	/** 注册ip */
 	private Long registerIp;
-	/**  */
+	/** 头像地址 */
 	private String avatarUrl;
-	/**  */
+	/** 权限密码 */
 	private String permissionPwd;
-	/**  */
+	/** 身份证号 */
 	private String idcard;
-	/**  */
+	/** 默认币种代码，字典类型currency(common模块) */
 	private String defaultCurrency;
-	/**  */
+	/** 注册网站地址 */
 	private String registerSite;
-	/**  */
+	/** 省/地区，字典类型province(common模块) */
 	private String region;
-	/**  */
+	/** 城市 */
 	private String city;
-	/**  */
+	/** 备注 */
 	private String memo;
-	/**  */
+	/** 密码级别:高 30, 中,20 低,10 */
 	private String passwordLevel;
-	/**  */
+	/** 登录IP地区字典代码 */
 	private String loginIpDictCode;
-	/**  */
+	/** 上次登录IP地区字典代码 */
 	private String lastLoginIpDictCode;
-	/**  */
+	/** 注册IP地区字典代码 */
 	private String registerIpDictCode;
-	/**  */
+	/** 登录错误次数 */
 	private Integer loginErrorTimes;
-	/**  */
+	/** 账号冻结标题 */
 	private String freezeTitle;
-	/**  */
+	/** 账号冻结内容 */
 	private String freezeContent;
-	/**  */
+	/** 上次退出时间 */
 	private java.util.Date lastLogoutTime;
-	/**  */
+	/** 冻结操作人id */
 	private Integer freezeUser;
-	/**  */
+	/** 停用操作人id */
 	private Integer disabledUser;
-	/**  */
+	/** 停用时间 */
 	private java.util.Date disabledTime;
-	/**  */
+	/** 冻结操作时间 */
 	private java.util.Date freezeTime;
 	/**  */
 	private String accountFreezeRemark;
-	/**  */
+	/** 安全密码冻结开始时间 */
 	private java.util.Date secpwdFreezeStartTime;
-	/**  */
+	/** 安全密码冻结结束时间 */
 	private java.util.Date secpwdFreezeEndTime;
-	/**  */
+	/** 安全密码输错次数 */
 	private Integer secpwdErrorTimes;
-	/**  */
+	/** 用户的session_key,online_session_id将被删除 */
 	private String sessionKey;
-	/**  */
+	/** 登录终端：1-PC，2-MOBILE */
 	private String terminal;
-	/**  */
+	/** 动态密码 */
 	private String authenticationKey;
 	/**  */
 	private Integer siteId;
-	/**  */
+	/** 钥匙 */
 	private String key;
+	/** 用户唯一串 */
+	private String uid;
+	/** 密码加密盐 */
+	private String salt;
+	/** 皮肤 SkinEnum */
+	private String uskin;
+	/** 上级用户名 */
+	private String supName;
+	/** 用户新增时间 */
+	private java.util.Date addDate;
+	/** 用户类型 UtypeEnum */
+	private String utype;
+	/** 上级用户类型 UtypeEnum */
+	private String suType;
+	/** ⑥合彩占成 */
+	private Integer sixRate;
+	/** ⑥合彩信用额度 */
+	private Double sixCredit;
+	/** ⑥合彩可用额度 */
+	private Double sixUsableCredit;
+	/** ⑥合彩盘口 */
+	private String sixKind;
 	/**  */
-	private Integer superiorOccupy;
+	private Integer astate;
+	/** ⑥合彩補貨功能 */
+	private String sixAllowSale;
+	/** 開放公司報錶功能 1:開放 0:禁看 */
+	private String allowViewReport;
+	/** ⑥合彩下線占成上限功能 1:限製下綫可占成數 0:占餘成數下綫任占 */
+	private String sixAllowMaxrate;
+	/** ⑥合彩限製下綫可占成數 */
+	private Integer sixLowMaxrate;
+	/** ⑥合彩占餘成數歸 1:總監 0:分公司 */
+	private String sixRateOwner;
+	/** 1:现金 0:信用 */
+	private String sixIscash;
 	/**  */
-	private String hid;
+	private Integer allowOpt;
+	/** 0:新密碼首次登錄,需重置密碼 1:不需要重置 */
+	private String isChanged;
+	/** 快彩占成 */
+	private Integer kcRate;
+	/** 快彩信用额度 */
+	private Double kcCredit;
+	/** 快彩可用额度 */
+	private Double kcUsableCredit;
+	/** 快彩盘口 */
+	private String kcKind;
+	/** 快彩補貨功能 */
+	private String kcAllowSale;
+	/** 快彩下線占成上限功能 1:限製下綫可占成數 0:占餘成數下綫任占 */
+	private String kcAllowMaxrate;
+	/** 快彩限製下綫可占成數 */
+	private Integer kcLowMaxrate;
+	/** 快彩占餘成數歸 1:總監 0:分公司 */
+	private String kcRateOwner;
 	/**  */
-	private Double credits;
-	/**  */
-	private String updateName;
-	/**  */
-	private Integer stintOccupy;
-	/**  */
-	private String breakpoint;
-	/**  */
-	private String manualAutoShipments;
-	/**  */
-	private String modeSelection;
-	/**  */
-	private String general;
-	/**  */
-	private String testAccount;
-	/**  */
-	private String setOdds;
-	/**  */
-	private String ownerName;
-	/**  */
-	private String handicap;
-	/**  */
-	private String stintOccupySwitch;
-	/**  */
-	private String ownerUserType;
-	/**  */
-	private Long childNum;
+	private Integer kcCrashPayment;
+	/** 1:现金 0:信用 */
+	private String kcIscash;
+	/** ⑥合彩操盤 */
+	private String sixOpOdds;
+	/** 快彩操盤 */
+	private String kcOpOdds;
+	/** 快彩會員現金自動回收 */
+	private String kcIsautoBack;
+	/** ⑥合彩會員現金自動回收 */
+	private String sixIsautoBack;
+	/** 密码最后修改时间 */
+	private java.util.Date lastChangedDate;
 	//endregion
 
 	
@@ -719,117 +776,250 @@ public class VSiteUser implements IEntity<Integer> {
 	public void setKey(String value) {
 		this.key = value;
 	}
-	public Integer getSuperiorOccupy() {
-		return this.superiorOccupy;
+	public String getUid() {
+		return this.uid;
 	}
 
-	public void setSuperiorOccupy(Integer value) {
-		this.superiorOccupy = value;
+	public void setUid(String value) {
+		this.uid = value;
 	}
-	public String getHid() {
-		return this.hid;
-	}
-
-	public void setHid(String value) {
-		this.hid = value;
-	}
-	public Double getCredits() {
-		return this.credits;
+	public String getSalt() {
+		return this.salt;
 	}
 
-	public void setCredits(Double value) {
-		this.credits = value;
+	public void setSalt(String value) {
+		this.salt = value;
 	}
-	public String getUpdateName() {
-		return this.updateName;
-	}
-
-	public void setUpdateName(String value) {
-		this.updateName = value;
-	}
-	public Integer getStintOccupy() {
-		return this.stintOccupy;
+	public String getUskin() {
+		return this.uskin;
 	}
 
-	public void setStintOccupy(Integer value) {
-		this.stintOccupy = value;
+	public void setUskin(String value) {
+		this.uskin = value;
 	}
-	public String getBreakpoint() {
-		return this.breakpoint;
-	}
-
-	public void setBreakpoint(String value) {
-		this.breakpoint = value;
-	}
-	public String getManualAutoShipments() {
-		return this.manualAutoShipments;
+	public String getSupName() {
+		return this.supName;
 	}
 
-	public void setManualAutoShipments(String value) {
-		this.manualAutoShipments = value;
+	public void setSupName(String value) {
+		this.supName = value;
 	}
-	public String getModeSelection() {
-		return this.modeSelection;
-	}
-
-	public void setModeSelection(String value) {
-		this.modeSelection = value;
-	}
-	public String getGeneral() {
-		return this.general;
+	public java.util.Date getAddDate() {
+		return this.addDate;
 	}
 
-	public void setGeneral(String value) {
-		this.general = value;
+	public void setAddDate(java.util.Date value) {
+		this.addDate = value;
 	}
-	public String getTestAccount() {
-		return this.testAccount;
-	}
-
-	public void setTestAccount(String value) {
-		this.testAccount = value;
-	}
-	public String getSetOdds() {
-		return this.setOdds;
+	public String getUtype() {
+		return this.utype;
 	}
 
-	public void setSetOdds(String value) {
-		this.setOdds = value;
+	public void setUtype(String value) {
+		this.utype = value;
 	}
-	public String getOwnerName() {
-		return this.ownerName;
-	}
-
-	public void setOwnerName(String value) {
-		this.ownerName = value;
-	}
-	public String getHandicap() {
-		return this.handicap;
+	public String getSuType() {
+		return this.suType;
 	}
 
-	public void setHandicap(String value) {
-		this.handicap = value;
+	public void setSuType(String value) {
+		this.suType = value;
 	}
-	public String getStintOccupySwitch() {
-		return this.stintOccupySwitch;
-	}
-
-	public void setStintOccupySwitch(String value) {
-		this.stintOccupySwitch = value;
-	}
-	public String getOwnerUserType() {
-		return this.ownerUserType;
+	public Integer getSixRate() {
+		return this.sixRate;
 	}
 
-	public void setOwnerUserType(String value) {
-		this.ownerUserType = value;
+	public void setSixRate(Integer value) {
+		this.sixRate = value;
 	}
-	public Long getChildNum() {
-		return this.childNum;
+	public Double getSixCredit() {
+		return this.sixCredit;
 	}
 
-	public void setChildNum(Long value) {
-		this.childNum = value;
+	public void setSixCredit(Double value) {
+		this.sixCredit = value;
+	}
+	public Double getSixUsableCredit() {
+		return this.sixUsableCredit;
+	}
+
+	public void setSixUsableCredit(Double value) {
+		this.sixUsableCredit = value;
+	}
+	public String getSixKind() {
+		return this.sixKind;
+	}
+
+	public void setSixKind(String value) {
+		this.sixKind = value;
+	}
+	public Integer getAstate() {
+		return this.astate;
+	}
+
+	public void setAstate(Integer value) {
+		this.astate = value;
+	}
+	public String getSixAllowSale() {
+		return this.sixAllowSale;
+	}
+
+	public void setSixAllowSale(String value) {
+		this.sixAllowSale = value;
+	}
+	public String getAllowViewReport() {
+		return this.allowViewReport;
+	}
+
+	public void setAllowViewReport(String value) {
+		this.allowViewReport = value;
+	}
+	public String getSixAllowMaxrate() {
+		return this.sixAllowMaxrate;
+	}
+
+	public void setSixAllowMaxrate(String value) {
+		this.sixAllowMaxrate = value;
+	}
+	public Integer getSixLowMaxrate() {
+		return this.sixLowMaxrate;
+	}
+
+	public void setSixLowMaxrate(Integer value) {
+		this.sixLowMaxrate = value;
+	}
+	public String getSixRateOwner() {
+		return this.sixRateOwner;
+	}
+
+	public void setSixRateOwner(String value) {
+		this.sixRateOwner = value;
+	}
+	public String getSixIscash() {
+		return this.sixIscash;
+	}
+
+	public void setSixIscash(String value) {
+		this.sixIscash = value;
+	}
+	public Integer getAllowOpt() {
+		return this.allowOpt;
+	}
+
+	public void setAllowOpt(Integer value) {
+		this.allowOpt = value;
+	}
+	public String getIsChanged() {
+		return this.isChanged;
+	}
+
+	public void setIsChanged(String value) {
+		this.isChanged = value;
+	}
+	public Integer getKcRate() {
+		return this.kcRate;
+	}
+
+	public void setKcRate(Integer value) {
+		this.kcRate = value;
+	}
+	public Double getKcCredit() {
+		return this.kcCredit;
+	}
+
+	public void setKcCredit(Double value) {
+		this.kcCredit = value;
+	}
+	public Double getKcUsableCredit() {
+		return this.kcUsableCredit;
+	}
+
+	public void setKcUsableCredit(Double value) {
+		this.kcUsableCredit = value;
+	}
+	public String getKcKind() {
+		return this.kcKind;
+	}
+
+	public void setKcKind(String value) {
+		this.kcKind = value;
+	}
+	public String getKcAllowSale() {
+		return this.kcAllowSale;
+	}
+
+	public void setKcAllowSale(String value) {
+		this.kcAllowSale = value;
+	}
+	public String getKcAllowMaxrate() {
+		return this.kcAllowMaxrate;
+	}
+
+	public void setKcAllowMaxrate(String value) {
+		this.kcAllowMaxrate = value;
+	}
+	public Integer getKcLowMaxrate() {
+		return this.kcLowMaxrate;
+	}
+
+	public void setKcLowMaxrate(Integer value) {
+		this.kcLowMaxrate = value;
+	}
+	public String getKcRateOwner() {
+		return this.kcRateOwner;
+	}
+
+	public void setKcRateOwner(String value) {
+		this.kcRateOwner = value;
+	}
+	public Integer getKcCrashPayment() {
+		return this.kcCrashPayment;
+	}
+
+	public void setKcCrashPayment(Integer value) {
+		this.kcCrashPayment = value;
+	}
+	public String getKcIscash() {
+		return this.kcIscash;
+	}
+
+	public void setKcIscash(String value) {
+		this.kcIscash = value;
+	}
+	public String getSixOpOdds() {
+		return this.sixOpOdds;
+	}
+
+	public void setSixOpOdds(String value) {
+		this.sixOpOdds = value;
+	}
+	public String getKcOpOdds() {
+		return this.kcOpOdds;
+	}
+
+	public void setKcOpOdds(String value) {
+		this.kcOpOdds = value;
+	}
+	public String getKcIsautoBack() {
+		return this.kcIsautoBack;
+	}
+
+	public void setKcIsautoBack(String value) {
+		this.kcIsautoBack = value;
+	}
+	public String getSixIsautoBack() {
+		return this.sixIsautoBack;
+	}
+
+	public void setSixIsautoBack(String value) {
+		this.sixIsautoBack = value;
+	}
+	public java.util.Date getLastChangedDate() {
+		return this.lastChangedDate;
+	}
+
+	public void setLastChangedDate(java.util.Date value) {
+		this.lastChangedDate = value;
 	}
 	//endregion
 

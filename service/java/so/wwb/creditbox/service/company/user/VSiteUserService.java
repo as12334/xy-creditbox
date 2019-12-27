@@ -50,7 +50,7 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
         }
         else {
             //编辑用户要查询上级和下级占成情况
-           sumSuperStintOccupy = mapper.sumSuperStintOccupyCount(objectVo.getResult().getHid());
+//           sumSuperStintOccupy = mapper.sumSuperStintOccupyCount(objectVo.getResult().getHid());
             minStintOccupy = mapper.minStintOccupy(objectVo.getResult().getId());
         }
 //        if(parentUser.getStintOccupy() > 0 && (parentUser.getStintOccupy() < (100 - sumSuperStintOccupy))){
@@ -111,10 +111,10 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
         boolean flag = true;
         while (flag) {
             hid = StringTool.upperCase(RandomStringTool.random(8, true, true));
-//            long count = sysUserExtendMapper.count(Criteria.add(SysUserExtend.PROP_HID, Operator.EQ, Thid + hid));
-//            if (count == 0) {
-//                flag = false;
-//            }
+            long count = sysUserExtendMapper.count(Criteria.add(SysUserExtend.PROP_HID, Operator.EQ, Thid + hid));
+            if (count == 0) {
+                flag = false;
+            }
         }
         return Thid + hid;
     }
@@ -151,8 +151,7 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
     public Map<String, List<SysUserExtend>> searchAllManagerList(VSiteUserVo objectVo) {
         String[] userTypeArray = {UserTypeEnum.BRANCH.getCode(),UserTypeEnum.SHAREHOLDER.getCode(),UserTypeEnum.DISTRIBUTOR.getCode()};
         VSiteUserSo search = objectVo.getSearch();
-        Criteria criteria = Criteria.add(VSiteUser.PROP_HID, Operator.LIKE_S, search.getHid())
-                .addAnd(VSiteUser.PROP_USER_TYPE, Operator.IN,userTypeArray);
+        Criteria criteria = Criteria.add(VSiteUser.PROP_USER_TYPE, Operator.IN,userTypeArray);
         List<SysUserExtend> list = sysUserExtendMapper.search(criteria, Order.asc(VSiteUser.PROP_USER_TYPE));
 
         Map<String, List<SysUserExtend>> map = new LinkedHashMap<>();

@@ -89,9 +89,12 @@ public class AccountController extends MemberPageBase {
         SysUserExtend sysUserExtend = SessionManagerCommon.getSysUserExtend();
         //如果不是總監
         if(!sysUserExtend.getUtype().equals(UTypeEnum.ZJ.getCode())){
-            return "../MessagePage.html?code=u100035&url=&issuccess=1&isback=0";
+            response.sendRedirect( "../MessagePage.html?code=u100035&url=&issuccess=1&isback=0");
         }
         super.Permission_Aspx_ZJ("po_2_1",response);
+
+
+
         listVo.getSearch().setUserType(UserTypeEnum.BRANCH.getCode());
 //        super.list(listVo, form, result, model, request, response);
         return getViewBasePath() + "/list/FgsList";
@@ -128,7 +131,7 @@ public class AccountController extends MemberPageBase {
 
             SysUserExtend sysUserExtend = defaultAccount(bean, request);
 
-
+        sysUserExtend.setHid(sessionUser.getHid());
             sysUserExtend.setUtype("fgs");
             sysUserExtend.setSuType("zj");
             sysUserExtend.setSixAllowMaxrate(AllowMaxrateEnum.CLOSE.getCode());

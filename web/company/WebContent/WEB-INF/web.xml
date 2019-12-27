@@ -182,32 +182,6 @@
     </filter-mapping>
     <!--domain filter end -->
 
-    <!--多语言资源过滤-->
-    <filter>
-        <filter-name>messageFilter</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-        <async-supported>true</async-supported>
-    </filter>
-    <filter-mapping>
-        <filter-name>messageFilter</filter-name>
-        <url-pattern>/message_en_US.js</url-pattern>
-        <url-pattern>/message_zh_CN.js</url-pattern>
-        <url-pattern>/message_zh_TW.js</url-pattern>
-    </filter-mapping>
-
-    <filter>
-        <filter-name>accessFilter</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-        <async-supported>true</async-supported>
-    </filter>
-    <filter-mapping>
-        <filter-name>accessFilter</filter-name>
-        <url-pattern>*.html</url-pattern>
-        <url-pattern>/message_en_US.js</url-pattern>
-        <url-pattern>/message_zh_CN.js</url-pattern>
-        <url-pattern>/message_zh_TW.js</url-pattern>
-    </filter-mapping>
-
     <!--illegal character filer start-->
     <filter>
         <filter-name>illegalCharacterFilter</filter-name>
@@ -260,9 +234,31 @@
         <url-pattern>*.html</url-pattern>
     </filter-mapping>
 
+    <filter>
+        <filter-name>accessFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <async-supported>true</async-supported>
+    </filter>
+    <filter-mapping>
+        <filter-name>accessFilter</filter-name>
+        <url-pattern>*.html</url-pattern>
+        <url-pattern>/message_en_US.js</url-pattern>
+        <url-pattern>/message_zh_CN.js</url-pattern>
+        <url-pattern>/message_zh_TW.js</url-pattern>
+    </filter-mapping>
 
-
-
+    <!--多语言资源过滤-->
+    <filter>
+        <filter-name>messageFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <async-supported>true</async-supported>
+    </filter>
+    <filter-mapping>
+        <filter-name>messageFilter</filter-name>
+        <url-pattern>/message_en_US.js</url-pattern>
+        <url-pattern>/message_zh_CN.js</url-pattern>
+        <url-pattern>/message_zh_TW.js</url-pattern>
+    </filter-mapping>
 
     <!--user online time start-->
     <filter>

@@ -110,22 +110,6 @@ public class DomainFilter implements Filter {
                 response.sendRedirect(strUrl);
                 return;
             }
-
-            String strPath = MessageFormat.format("{0}://{1}:{2}{3}", CommonTool.getHttp(request), strServerName, CommonTool.getPort(request), strContextPath);
-            if (!strPath.endsWith("/")) strPath = strPath + "/";
-            if (strPath.equals(strRequestURL.toString())) {
-                strPath = MessageFormat.format("{0}://{1}:{2}{3}", CommonTool.getHttp(request), strServerName, CommonTool.getPort(request), DomainPageUrlEnum.COMPANY.getCode());
-                response.sendRedirect(strPath);
-                return;
-            }
-        } else if (SubSysCodeEnum.HALL.getCode().equals(sysSiteDomain.getDomainSubsysCode())) {
-            String strPath = MessageFormat.format("{0}://{1}:{2}{3}", CommonTool.getHttp(request), strServerName, CommonTool.getPort(request), strContextPath);
-            if (!strPath.endsWith("/")) strPath = strPath + "/";
-            if (strPath.equals(strRequestURL.toString())) {
-                strPath = MessageFormat.format("{0}://{1}:{2}{3}", CommonTool.getHttp(request), strServerName, CommonTool.getPort(request), DomainPageUrlEnum.HALL.getCode());
-                response.sendRedirect(strPath);
-                return;
-            }
         }
 
         if (SubSysCodeEnum.BOSS.equals(LotteryCommonContext.get().getSubSysCodeEnum())) {
