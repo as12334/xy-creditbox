@@ -1,5 +1,6 @@
 package so.wwb.creditbox.model.company.user.po;
 
+
 import org.soul.commons.bean.IEntity;
 import org.soul.model.common.Sortable;
 
@@ -8,7 +9,7 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-12-19 23:20:50
+ * @time 2019-12-27 2:17:06
  */
 //region your codes 1
 public class CzRateKc implements IEntity<Integer> {
@@ -31,6 +32,7 @@ public class CzRateKc implements IEntity<Integer> {
 	public static final String PROP_GD_RATE = "gdRate";
 	public static final String PROP_FGS_RATE = "fgsRate";
 	public static final String PROP_ZJ_RATE = "zjRate";
+	public static final String PROP_UID = "uid";
 	//endregion
 	
 	
@@ -59,6 +61,8 @@ public class CzRateKc implements IEntity<Integer> {
 	private Integer fgsRate;
 	/**  */
 	private Integer zjRate;
+	/**  */
+	private String uid;
 	//endregion
 
 	
@@ -156,6 +160,13 @@ public class CzRateKc implements IEntity<Integer> {
 
 	public void setZjRate(Integer value) {
 		this.zjRate = value;
+	}
+	public String getUid() {
+		return this.uid;
+	}
+
+	public void setUid(String value) {
+		this.uid = value;
 	}
 	//endregion
 

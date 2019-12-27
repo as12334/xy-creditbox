@@ -9,18 +9,17 @@ import so.wwb.creditbox.model.common.Const;
 import so.wwb.creditbox.model.common.HidTool;
 import so.wwb.creditbox.model.company.user.po.CzUsersChild;
 import so.wwb.creditbox.model.enums.lottery.*;
+import java.util.Date;
 
 import org.soul.commons.bean.IEntity;
 import org.soul.model.common.Sortable;
-
-import java.util.Date;
 
 
 /**
  * 用户扩展表实体
  *
  * @author block
- * @time 2019-12-20 16:32:47
+ * @time 2019-12-26 23:58:23
  */
 //region your codes 1
 public class SysUserExtend extends SysUser {
@@ -44,7 +43,7 @@ public class SysUserExtend extends SysUser {
 	public static final String PROP_SIX_USABLE_CREDIT = "sixUsableCredit";
 	public static final String PROP_SIX_KIND = "sixKind";
 	public static final String PROP_ASTATE = "astate";
-	public static final String PROP_ALLOW_SALE = "allowSale";
+	public static final String PROP_SIX_ALLOW_SALE = "sixAllowSale";
 	public static final String PROP_ALLOW_VIEW_REPORT = "allowViewReport";
 	public static final String PROP_SIX_ALLOW_MAXRATE = "sixAllowMaxrate";
 	public static final String PROP_SIX_LOW_MAXRATE = "sixLowMaxrate";
@@ -67,91 +66,90 @@ public class SysUserExtend extends SysUser {
 	public static final String PROP_KC_ISAUTO_BACK = "kcIsautoBack";
 	public static final String PROP_SIX_ISAUTO_BACK = "sixIsautoBack";
 	public static final String PROP_LAST_CHANGED_DATE = "lastChangedDate";
-
 	//endregion
-
-
+	
 	
 	//region properties
 	/** 钥匙 */
 	private String key;
-	/**  */
+	/** 用户唯一串 */
 	private String uid;
-	/**  */
+	/** 密码加密盐 */
 	private String salt;
-	/**  */
+	/** 皮肤 SkinEnum */
 	private String uskin;
-	/**  */
+	/** 上级用户名 */
 	private String supName;
-	/**  */
+	/** 用户新增时间 */
 	private java.util.Date addDate;
-	/**  */
+	/** 用户类型 UtypeEnum */
 	private String utype;
-	/**  */
+	/** 上级用户类型 UtypeEnum */
 	private String suType;
-	/**  */
+	/** ⑥合彩占成 */
 	private Integer sixRate;
-	/**  */
+	/** ⑥合彩信用额度 */
 	private Double sixCredit;
-	/**  */
+	/** ⑥合彩可用额度 */
 	private Double sixUsableCredit;
-	/**  */
+	/** ⑥合彩盘口 */
 	private String sixKind;
 	/**  */
 	private Integer astate;
-	/**  */
-	private Integer allowSale;
-	/**  */
-	private Integer allowViewReport;
-	/**  */
-	private Integer sixAllowMaxrate;
-	/**  */
+	/** ⑥合彩補貨功能 */
+	private String sixAllowSale;
+	/** 開放公司報錶功能 1:開放 0:禁看 */
+	private String allowViewReport;
+	/** ⑥合彩下線占成上限功能 1:限製下綫可占成數 0:占餘成數下綫任占 */
+	private String sixAllowMaxrate;
+	/** ⑥合彩限製下綫可占成數 */
 	private Integer sixLowMaxrate;
-	/**  */
-	private Integer sixRateOwner;
-	/**  */
-	private Integer sixIscash;
+	/** ⑥合彩占餘成數歸 1:總監 0:分公司 */
+	private String sixRateOwner;
+	/** 1:现金 0:信用 */
+	private String sixIscash;
 	/**  */
 	private Integer allowOpt;
-	/**  */
+	/** 0:新密碼首次登錄,需重置密碼 1:不需要重置 */
 	private String isChanged;
-	/**  */
+	/** 快彩占成 */
 	private Integer kcRate;
-	/**  */
+	/** 快彩信用额度 */
 	private Double kcCredit;
-	/**  */
+	/** 快彩可用额度 */
 	private Double kcUsableCredit;
-	/**  */
+	/** 快彩盘口 */
 	private String kcKind;
-	/**  */
-	private Integer kcAllowSale;
-	/**  */
-	private Integer kcAllowMaxrate;
-	/**  */
+	/** 快彩補貨功能 */
+	private String kcAllowSale;
+	/** 快彩下線占成上限功能 1:限製下綫可占成數 0:占餘成數下綫任占 */
+	private String kcAllowMaxrate;
+	/** 快彩限製下綫可占成數 */
 	private Integer kcLowMaxrate;
-	/**  */
-	private Integer kcRateOwner;
+	/** 快彩占餘成數歸 1:總監 0:分公司 */
+	private String kcRateOwner;
 	/**  */
 	private Integer kcCrashPayment;
-	/**  */
-	private Integer kcIscash;
-	/**  */
-	private Integer sixOpOdds;
-	/**  */
-	private Integer kcOpOdds;
-	/**  */
-	private Integer kcIsautoBack;
-	/**  */
-	private Integer sixIsautoBack;
-
+	/** 1:现金 0:信用 */
+	private String kcIscash;
+	/** ⑥合彩操盤 */
+	private String sixOpOdds;
+	/** 快彩操盤 */
+	private String kcOpOdds;
+	/** 快彩會員現金自動回收 */
+	private String kcIsautoBack;
+	/** ⑥合彩會員現金自動回收 */
+	private String sixIsautoBack;
+	/** 密码最后修改时间 */
 	private java.util.Date lastChangedDate;
 	//endregion
 
 	
 	//region constuctors
-	public SysUserExtend(){
-	}
+	//endregion
 
+
+	//region getters and setters
 	public String getKey() {
 		return this.key;
 	}
@@ -243,25 +241,25 @@ public class SysUserExtend extends SysUser {
 	public void setAstate(Integer value) {
 		this.astate = value;
 	}
-	public Integer getAllowSale() {
-		return this.allowSale;
+	public String getSixAllowSale() {
+		return this.sixAllowSale;
 	}
 
-	public void setAllowSale(Integer value) {
-		this.allowSale = value;
+	public void setSixAllowSale(String value) {
+		this.sixAllowSale = value;
 	}
-	public Integer getAllowViewReport() {
+	public String getAllowViewReport() {
 		return this.allowViewReport;
 	}
 
-	public void setAllowViewReport(Integer value) {
+	public void setAllowViewReport(String value) {
 		this.allowViewReport = value;
 	}
-	public Integer getSixAllowMaxrate() {
+	public String getSixAllowMaxrate() {
 		return this.sixAllowMaxrate;
 	}
 
-	public void setSixAllowMaxrate(Integer value) {
+	public void setSixAllowMaxrate(String value) {
 		this.sixAllowMaxrate = value;
 	}
 	public Integer getSixLowMaxrate() {
@@ -271,18 +269,18 @@ public class SysUserExtend extends SysUser {
 	public void setSixLowMaxrate(Integer value) {
 		this.sixLowMaxrate = value;
 	}
-	public Integer getSixRateOwner() {
+	public String getSixRateOwner() {
 		return this.sixRateOwner;
 	}
 
-	public void setSixRateOwner(Integer value) {
+	public void setSixRateOwner(String value) {
 		this.sixRateOwner = value;
 	}
-	public Integer getSixIscash() {
+	public String getSixIscash() {
 		return this.sixIscash;
 	}
 
-	public void setSixIscash(Integer value) {
+	public void setSixIscash(String value) {
 		this.sixIscash = value;
 	}
 	public Integer getAllowOpt() {
@@ -327,18 +325,18 @@ public class SysUserExtend extends SysUser {
 	public void setKcKind(String value) {
 		this.kcKind = value;
 	}
-	public Integer getKcAllowSale() {
+	public String getKcAllowSale() {
 		return this.kcAllowSale;
 	}
 
-	public void setKcAllowSale(Integer value) {
+	public void setKcAllowSale(String value) {
 		this.kcAllowSale = value;
 	}
-	public Integer getKcAllowMaxrate() {
+	public String getKcAllowMaxrate() {
 		return this.kcAllowMaxrate;
 	}
 
-	public void setKcAllowMaxrate(Integer value) {
+	public void setKcAllowMaxrate(String value) {
 		this.kcAllowMaxrate = value;
 	}
 	public Integer getKcLowMaxrate() {
@@ -348,11 +346,11 @@ public class SysUserExtend extends SysUser {
 	public void setKcLowMaxrate(Integer value) {
 		this.kcLowMaxrate = value;
 	}
-	public Integer getKcRateOwner() {
+	public String getKcRateOwner() {
 		return this.kcRateOwner;
 	}
 
-	public void setKcRateOwner(Integer value) {
+	public void setKcRateOwner(String value) {
 		this.kcRateOwner = value;
 	}
 	public Integer getKcCrashPayment() {
@@ -362,52 +360,48 @@ public class SysUserExtend extends SysUser {
 	public void setKcCrashPayment(Integer value) {
 		this.kcCrashPayment = value;
 	}
-	public Integer getKcIscash() {
+	public String getKcIscash() {
 		return this.kcIscash;
 	}
 
-	public void setKcIscash(Integer value) {
+	public void setKcIscash(String value) {
 		this.kcIscash = value;
 	}
-	public Integer getSixOpOdds() {
+	public String getSixOpOdds() {
 		return this.sixOpOdds;
 	}
 
-	public void setSixOpOdds(Integer value) {
+	public void setSixOpOdds(String value) {
 		this.sixOpOdds = value;
 	}
-	public Integer getKcOpOdds() {
+	public String getKcOpOdds() {
 		return this.kcOpOdds;
 	}
 
-	public void setKcOpOdds(Integer value) {
+	public void setKcOpOdds(String value) {
 		this.kcOpOdds = value;
 	}
-
-	public Integer getKcIsautoBack() {
-		return kcIsautoBack;
+	public String getKcIsautoBack() {
+		return this.kcIsautoBack;
 	}
 
-	public void setKcIsautoBack(Integer kcIsautoBack) {
-		this.kcIsautoBack = kcIsautoBack;
+	public void setKcIsautoBack(String value) {
+		this.kcIsautoBack = value;
+	}
+	public String getSixIsautoBack() {
+		return this.sixIsautoBack;
 	}
 
-	public Integer getSixIsautoBack() {
-		return sixIsautoBack;
+	public void setSixIsautoBack(String value) {
+		this.sixIsautoBack = value;
+	}
+	public java.util.Date getLastChangedDate() {
+		return this.lastChangedDate;
 	}
 
-	public void setSixIsautoBack(Integer sixIsautoBack) {
-		this.sixIsautoBack = sixIsautoBack;
+	public void setLastChangedDate(java.util.Date value) {
+		this.lastChangedDate = value;
 	}
-
-	public Date getLastChangedDate() {
-		return lastChangedDate;
-	}
-
-	public void setLastChangedDate(Date lastChangedDate) {
-		this.lastChangedDate = lastChangedDate;
-	}
-
 	//endregion
 
 	//region your codes 2

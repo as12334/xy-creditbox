@@ -15,6 +15,7 @@
         <result column="gd_rate" property="gdRate"/>
         <result column="fgs_rate" property="fgsRate"/>
         <result column="zj_rate" property="zjRate"/>
+        <result column="u_id" property="uid"/>
     </resultMap>
 
     <!--//region your codes 1-->

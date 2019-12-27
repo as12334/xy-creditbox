@@ -15,6 +15,7 @@ public class ParamTool extends ParamToolBase {
     private static final Log LOG = LogFactory.getLog(ParamTool.class);
     private static final Integer BOSS_SITE_ID = 0;
 
+
     /**
      * 是否开启:访问管理中心IP限制开关
      */

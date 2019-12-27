@@ -8,8 +8,9 @@ import org.soul.commons.ienums.ICodeEnum;
  * @author marz
  * @time 2018-2-13
  */
-public enum LotteryHandicapEnum implements ICodeEnum {
+public enum UserKindEnum implements ICodeEnum {
 
+    ZERO("0", ""),
     A("A", "A盘口"),
     B("B", "B盘口"),
     C("C", "C盘口");
@@ -17,7 +18,7 @@ public enum LotteryHandicapEnum implements ICodeEnum {
     private String code;
     private String trans;
 
-    LotteryHandicapEnum(String code, String trans) {
+    UserKindEnum(String code, String trans) {
         this.code = code;
         this.trans = trans;
     }

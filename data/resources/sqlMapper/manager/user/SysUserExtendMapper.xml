@@ -16,7 +16,7 @@
         <result column="six_usable_credit" property="sixUsableCredit"/>
         <result column="six_kind" property="sixKind"/>
         <result column="a_state" property="astate"/>
-        <result column="allow_sale" property="allowSale"/>
+        <result column="six_allow_sale" property="sixAllowSale"/>
         <result column="allow_view_report" property="allowViewReport"/>
         <result column="six_allow_maxrate" property="sixAllowMaxrate"/>
         <result column="six_low_maxrate" property="sixLowMaxrate"/>
@@ -106,14 +106,6 @@
         <result column="authentication_key" property="authenticationKey"/>
     </resultMap>
     <!--//region your codes 1-->
-    <resultMap id="sysUserRM" type="org.soul.model.security.privilege.po.SysUser" extends="TABLE:sys_user">
-        <collection property="roles" ofType="org.soul.model.security.privilege.po.SysRole" column="user_id"
-                    resultMap="org.soul.data.mapper.security.privilege.SysRoleMapper.TABLE:SYS_ROLE"/>
-    </resultMap>
-
-
-
-
     <sql id="Base_Column_List">
         id, username, password, dept_id, status, create_user, create_time, update_user, update_time, subsys_code, user_type,built_in,
         default_locale, default_timezone,site_id,owner_id
@@ -135,23 +127,23 @@
 
 
     <!--<select id="queryOnlinePlayer" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultMap="TABLE:sys_user_extend">-->
-        <!--SELECT su.*,uw.balance  FROM sys_user_extend su left JOIN user_assets uw on su.id=uw.id WHERE online_status = '1'-->
-        <!--<if test="username != null">-->
-            <!--and username =#{username}-->
-        <!--</if>-->
+    <!--SELECT su.*,uw.balance  FROM sys_user_extend su left JOIN user_assets uw on su.id=uw.id WHERE online_status = '1'-->
+    <!--<if test="username != null">-->
+    <!--and username =#{username}-->
+    <!--</if>-->
     <!--</select>-->
 
     <!--<select id="queryAllPlayer" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultMap="TABLE:sys_user_extend">-->
-        <!--SELECT su.*,uw.balance  FROM sys_user_extend su left JOIN user_assets uw on su.id=uw.id WHERE 1=1-->
-        <!--<if test="username != null">-->
-            <!--and username =#{username}-->
-        <!--</if>-->
-        <!--<if test="createTimeBegin != null">-->
-            <!--AND create_time &gt;= #{createTimeBegin}-->
-        <!--</if>-->
-        <!--<if test="createTimeEnd != null">-->
-            <!--AND create_time &lt; #{createTimeEnd}-->
-        <!--</if>-->
+    <!--SELECT su.*,uw.balance  FROM sys_user_extend su left JOIN user_assets uw on su.id=uw.id WHERE 1=1-->
+    <!--<if test="username != null">-->
+    <!--and username =#{username}-->
+    <!--</if>-->
+    <!--<if test="createTimeBegin != null">-->
+    <!--AND create_time &gt;= #{createTimeBegin}-->
+    <!--</if>-->
+    <!--<if test="createTimeEnd != null">-->
+    <!--AND create_time &lt; #{createTimeEnd}-->
+    <!--</if>-->
     <!--</select>-->
 
     <update id="incLoginErrorTimes">
@@ -173,7 +165,7 @@
 
     <!--系统账号-->
     <select id="countUserName" parameterType="string" resultType="long">
-      SELECT COUNT(1)::bigint FROM sys_user_extend WHERE username LIKE #{username}
+        SELECT COUNT(1)::bigint FROM sys_user_extend WHERE username LIKE #{username}
     </select>
     <!--玩家账号-->
     <select id="countPlayerName" parameterType="so.wwb.creditbox.model.manager.user.so.SysUserExtendSo" resultType="long">
@@ -185,7 +177,7 @@
     </select>
 
     <!--<select id="queryPlayerByRecharge" parameterType="so.wwb.creditbox.model.company.lottery.so.LotteryBetOrderSo" resultMap="TABLE:sys_user_extend">-->
-        <!--SELECT su.*,uw.balance  FROM sys_user_extend su left JOIN user_assets uw on su.id=uw.id WHERE su.id = #{id}-->
+    <!--SELECT su.*,uw.balance  FROM sys_user_extend su left JOIN user_assets uw on su.id=uw.id WHERE su.id = #{id}-->
     <!--</select>-->
 
     <!--根据玩家账号查询玩家信息(忽略大小写) PS:只查询正式账号 -->
@@ -207,43 +199,43 @@
     <!--仅查询正式账号-->
     <select id="queryUserByRankId" parameterType="so.wwb.creditbox.model.manager.user.so.SysUserExtendSo" resultMap="TABLE:sys_user_extend">
         SELECT ue.id, ue.username
-          FROM sys_user_extend ue, user_player up
-         WHERE ue."id" = up."id"
-           AND ue.status = '1'
-           AND up.mode = '1'
-           AND up.rank_id = #{rankId}
+        FROM sys_user_extend ue, user_player up
+        WHERE ue."id" = up."id"
+        AND ue.status = '1'
+        AND up.mode = '1'
+        AND up.rank_id = #{rankId}
     </select>
 
     <!--<select id="findByUserplayListVo" parameterType="so.wwb.creditbox.model.company.user.so.UserPlayerSo" resultMap="TABLE:sys_user_extend">-->
-        <!--SELECT *-->
-        <!--FROM sys_user_extend-->
-        <!--WHERE id IN-->
-        <!--<foreach collection="ids" item="item" index="index" open="(" separator="," close=")" >-->
-            <!--#{item}-->
-        <!--</foreach>-->
+    <!--SELECT *-->
+    <!--FROM sys_user_extend-->
+    <!--WHERE id IN-->
+    <!--<foreach collection="ids" item="item" index="index" open="(" separator="," close=")" >-->
+    <!--#{item}-->
+    <!--</foreach>-->
     <!--</select>-->
 
     <!--<select id="queryAddPlayer" parameterType="so.wwb.creditbox.model.company.user.so.UserPlayerSo" resultType="map">-->
-        <!--SELECT COUNT(*)::bigint, to_char((create_time + (#{id}||' hour')::INTERVAL), 'YYYY-MM-DD') as tdate from sys_user_extend-->
-        <!--where  create_time &gt;= #{createTimeBegin} and-->
-        <!--create_time &lt; #{createTimeEnd}-->
-        <!--group by tdate order by tdate desc;-->
+    <!--SELECT COUNT(*)::bigint, to_char((create_time + (#{id}||' hour')::INTERVAL), 'YYYY-MM-DD') as tdate from sys_user_extend-->
+    <!--where  create_time &gt;= #{createTimeBegin} and-->
+    <!--create_time &lt; #{createTimeEnd}-->
+    <!--group by tdate order by tdate desc;-->
     <!--</select>-->
 
     <!--<select id="queryAddPlayerAndDeposit" parameterType="so.wwb.creditbox.model.company.user.so.UserPlayerSo" resultType="map">-->
-        <!--SELECT COUNT(1)::bigint, to_char((su.create_time + (#{id}||' hour')::INTERVAL), 'YYYY-MM-DD') as tdate-->
-        <!--from sys_user_extend su-->
-        <!--LEFT JOIN user_assets ua on su.id = ua.id-->
-        <!--where ua.deposit_count > 0 and su.create_time &gt;= #{createTimeBegin} and-->
-        <!--su.create_time &lt; #{createTimeEnd}-->
-        <!--group by tdate order by tdate desc;-->
+    <!--SELECT COUNT(1)::bigint, to_char((su.create_time + (#{id}||' hour')::INTERVAL), 'YYYY-MM-DD') as tdate-->
+    <!--from sys_user_extend su-->
+    <!--LEFT JOIN user_assets ua on su.id = ua.id-->
+    <!--where ua.deposit_count > 0 and su.create_time &gt;= #{createTimeBegin} and-->
+    <!--su.create_time &lt; #{createTimeEnd}-->
+    <!--group by tdate order by tdate desc;-->
     <!--</select>-->
 
 
     <select id="queryOwnerIdList" parameterType="so.wwb.creditbox.model.manager.user.so.SysUserExtendSo" resultType="map">
-       SELECT    count(*), owner_id FROM sys_user_extend
-       WHERE  owner_id in <foreach collection="owner_ids" item="owner_id" index="index" open="(" separator="," close=")" > #{owner_id} </foreach>
-       and subsys_code = #{subsysCode}  GROUP BY   owner_id
+        SELECT    count(*), owner_id FROM sys_user_extend
+        WHERE  owner_id in <foreach collection="owner_ids" item="owner_id" index="index" open="(" separator="," close=")" > #{owner_id} </foreach>
+        and subsys_code = #{subsysCode}  GROUP BY   owner_id
     </select>
 
 
@@ -260,5 +252,6 @@
         SELECT * FROM f_init_site_lottery_rebate(#{siteId},#{hid});
     </select>
 
-    <!--//region your codes 1-->
+    <!--//endregion your codes 1-->
+
 </mapper>

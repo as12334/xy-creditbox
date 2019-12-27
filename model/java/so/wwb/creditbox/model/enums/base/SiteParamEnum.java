@@ -4,7 +4,11 @@ import org.soul.commons.param.IParamEnum;
 import org.soul.commons.support.IModule;
 
 public enum SiteParamEnum implements IParamEnum {
-//    SETTING_VISIT(Module.MASTER_SETTING, "visit", ""),//是否开启允许访问管理中心的IP
+
+    SETTING_SITE_LOTTERY_TYPE(Module.MASTER_SETTING, "site_lottery_type", "type"),//站点的彩种类型，1:six 2:kc
+
+
+    //    SETTING_VISIT(Module.MASTER_SETTING, "visit", ""),//是否开启允许访问管理中心的IP
     SETTING_VISIT_MANAGER_STATUS(Module.MASTER_SETTING, "visit", "visit.manager"),//是否开启允许访问管理中心(后台)的IP
     SETTING_VISIT_MANAGER_STATUS_PROMPT(Module.MASTER_SETTING, "visit", "visit.manager.prompt"),//是否开启允许访问管理中心的IP,是否需要显示提示语
     SETTING_VISIT_PLAY_STATUS(Module.MASTER_SETTING, "visit", "visit.play"),//是否开启允许访问站点(前端)的IP

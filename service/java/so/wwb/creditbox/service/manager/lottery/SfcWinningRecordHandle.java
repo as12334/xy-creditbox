@@ -13,6 +13,7 @@ import so.wwb.creditbox.service.company.handler.WinningRecordHandleVo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by shook on 17-8-15.
@@ -216,7 +217,8 @@ public class SfcWinningRecordHandle extends AbstractWinningRecordHandle implemen
     }
 
     public static void main(String[] args) {
-        System.out.println(19%4);
+
+        System.out.println(UUID.randomUUID().toString());
     }
     /**
      * 东南西北

@@ -25,7 +25,7 @@
         var nav = {
             "即時注單": {
                 "L_SIX": ["特碼|Betimes_tmZX2.aspx", "正碼|Betimes_zm.aspx", "正碼特|Betimes_zmt1.aspx", "連碼|Betimes_lm.aspx", "不中|Betimes_bz.aspx", "正碼1-6|Betimes_zm1-6.aspx", "特碼生肖色波|Betimes_tmsxsb.aspx", "生肖尾數|Betimes_sxws.aspx", "半波|Betimes_bb.aspx", "六肖...連|Betimes_lxl.aspx", "龍虎-特碼攤子|Betimes_lhtmtz.aspx", "七碼五行|Betimes_qmwx.aspx", "帳單|../L_SIX/Bill.aspx|1"],
-                "gdkl10": ["第一球|Betimes_1.html", "第二球|Betimes_2.aspx", "第三球|Betimes_3.aspx", "第四球|Betimes_4.aspx", "第五球|Betimes_5.aspx", "第六球|Betimes_6.aspx", "第七球|Betimes_7.aspx", "第八球|Betimes_8.aspx", "總和、龍虎|Betimes_lh.aspx", "連碼|Betimes_lm.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
+                "L_KL10": ["第一球|Betimes_1.aspx", "第二球|Betimes_2.aspx", "第三球|Betimes_3.aspx", "第四球|Betimes_4.aspx", "第五球|Betimes_5.aspx", "第六球|Betimes_6.aspx", "第七球|Betimes_7.aspx", "第八球|Betimes_8.aspx", "總和、龍虎|Betimes_lh.aspx", "連碼|Betimes_lm.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
                 "L_CQSC": ["總項盤口|Betimes_zx.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
                 "L_PK10": ["冠、亞軍 組合|Betimes_1.aspx", "三、四、伍、六名|Betimes_2.aspx", "七、八、九、十名|Betimes_3.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
                 "L_XYNC": ["第一球|Betimes_1.aspx", "第二球|Betimes_2.aspx", "第三球|Betimes_3.aspx", "第四球|Betimes_4.aspx", "第五球|Betimes_5.aspx", "第六球|Betimes_6.aspx", "第七球|Betimes_7.aspx", "第八球|Betimes_8.aspx", "總和、家禽野獸|Betimes_zh.aspx", "連碼|Betimes_lm.aspx", "帳單|../Bill_kc.aspx|1", "備份|../BillBackup_kc.aspx|1"],
@@ -52,8 +52,8 @@
             "用戶管理": {"ut": ["分公司|${root}/account/fgs_list.html","股东|${root}/account/gd_list.html","總代理|${root}/account/zd_list.html", "代理|${root}/account/dl_list.html", "會員|${root}/account/hy_list.html", "子賬號|${root}/account/child_list.html"]},
             "個人管理": {"ut": ["信用資料|CreditInfo.aspx", "登陸日誌|ViewLog/LoginLog.aspx", "變更密碼|EditPwd.aspx|0", "自動補貨設定|/AutoLet/AutoLet_kc.aspx", "自動補貨變更記錄|/ViewLog/ViewAutoSaleLog.aspx"]},
             "報表查詢": {"ut": ["(新)報表查詢|ReportSearch/ReportNew.aspx", "報表查詢|ReportSearch/Report.aspx"]},
-            "歷史開獎": {"ut": ["歷史開獎|${root}/LotteryPeriod/HistoryLottery.aspx"]},
-            "站内消息": {"ut": ["站内消息|${root}/NewsManage/list.html"]},
+            "歷史開獎": {"ut": ["歷史開獎|/LotteryPeriod/HistoryLottery.aspx"]},
+            "站内消息": {"ut": ["站内消息|/NewsManage/NewsList.aspx"]},
             "安全退出": {"ut": ["Quit.aspx"]}
         }
         var jsver = 20191126;
@@ -105,19 +105,20 @@
         </table>
     </div>
     <div class="menuBox">
-        <div class="navBox"><i class="up"></i><b class="down"></b><span id="menuText" data-id="0" data-url="L_KL10">廣東快樂十分</span>
+        <div class="navBox"><i class="up"></i><b class="down"></b><span id="menuText" data-id="22"
+                                                                        data-url="L_HAPPYCAR">幸運飛艇(3分鐘)</span>
             <div class="navList">
                 <ul>
-                    <li><a data-id="0" data-url="gdkl10" href="javascript:void(0)">廣東快樂十分</a></li>
-                    <li><a data-id="1" data-url="L_CQSC" href="javascript:void(0)">重慶時時彩</a></li>
-                    <li><a data-id="2" data-url="L_PK10" href="javascript:void(0)">北京賽車(PK10)</a></li>
+                    <li><a data-id="22" data-url="L_HAPPYCAR" href="javascript:void(0)">幸運飛艇(3分鐘)</a></li>
                     <li><a data-id="6" data-url="L_K8SC" href="javascript:void(0)">幸運時時(3分鐘)</a></li>
-                    <li><a data-id="9" data-url="L_XYFT5" href="javascript:void(0)">幸運飛艇(5分鍾)</a></li>
-                    <li><a data-id="10" data-url="L_JSCAR" href="javascript:void(0)">極速賽車</a></li>
-                    <li><a data-id="11" data-url="L_SPEED5" href="javascript:void(0)">極速時時彩</a></li>
                     <li><a data-id="12" data-url="L_JSPK10" href="javascript:void(0)">加拿大PK10(5分鐘)</a></li>
                     <li><a data-id="13" data-url="L_JSCQSC" href="javascript:void(0)">加拿大時時(5分鐘)</a></li>
-                    <li><a data-id="22" data-url="L_HAPPYCAR" href="javascript:void(0)">幸運飛艇(3分鐘)</a></li>
+                    <li><a data-id="10" data-url="L_JSCAR" href="javascript:void(0)">極速賽車</a></li>
+                    <li><a data-id="11" data-url="L_SPEED5" href="javascript:void(0)">極速時時彩</a></li>
+                    <li><a data-id="9" data-url="L_XYFT5" href="javascript:void(0)">幸運飛艇(5分鍾)</a></li>
+                    <li><a data-id="1" data-url="L_CQSC" href="javascript:void(0)">重慶時時彩</a></li>
+                    <li><a data-id="0" data-url="L_KL10" href="javascript:void(0)">廣東快樂十分</a></li>
+                    <li><a data-id="2" data-url="L_PK10" href="javascript:void(0)">北京賽車(PK10)</a></li>
                 </ul>
             </div>
         </div>
@@ -133,15 +134,14 @@
 </div>
 
 <div class="widthAuto">
-    <iframe id="mainIframe" name="mainIframe" src="" width="100%" height="512"
-            marginheight="0" marginwidth="0" frameborder="0" scrolling="no" class="BoxBg"
-            style="height: 798px;"></iframe>
+    <iframe id="mainIframe" name="mainIframe" src="" width="100%" height="512" marginheight="0" marginwidth="0"
+            frameborder="0" scrolling="no" class="BoxBg"></iframe>
 </div>
 <%--<iframe id="connectionIframe" name="connectionIframe" src="ConnectionPage.aspx" width="100%" height="0" marginheight="0"--%>
         <%--marginwidth="0" frameborder="0" scrolling="no"></iframe>--%>
 
 <script>
-    var browserCode = '5606';//回传code ,浏览器不同用户
+    var browserCode = '5241';//回传code ,浏览器不同用户
     var ajaxErrorLogSwitch = 'true';//前端错误日志记录开关
     var NewIsAdd = false;
     var myLayerIndex = '19841011';

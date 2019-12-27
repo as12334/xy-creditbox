@@ -2,11 +2,8 @@ package so.wwb.creditbox.model.company.lottery.po;
 
 import org.soul.commons.lang.string.StringTool;
 import org.soul.commons.support.Nonpersistent;
-import so.wwb.creditbox.model.enums.lottery.LotteryHandicapEnum;
-import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 
 import org.soul.commons.bean.IEntity;
-import org.soul.model.common.Sortable;
 
 
 /**

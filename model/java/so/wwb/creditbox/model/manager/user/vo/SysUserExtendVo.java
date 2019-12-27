@@ -6,6 +6,8 @@ import org.soul.commons.query.enums.Operator;
 import org.soul.model.common.AbstractQuery;
 import org.soul.model.common.BaseObjectVo;
 import org.soul.model.msg.notice.po.NoticeContactWay;
+import so.wwb.creditbox.model.company.user.po.CzRateKc;
+import so.wwb.creditbox.model.company.user.po.CzRateSix;
 import so.wwb.creditbox.model.manager.sys.po.SysSite;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.so.SysUserExtendSo;
@@ -56,6 +58,11 @@ public class SysUserExtendVo extends BaseObjectVo<SysUserExtend, SysUserExtendSo
 
     //上级占成最高限制
     private  Integer maxSuperiorOccupy;
+
+    private CzRateKc czRateKc;
+
+    private CzRateSix czRateSix;
+
 
     /** API token */
 //    private String token;
@@ -232,6 +239,23 @@ public class SysUserExtendVo extends BaseObjectVo<SysUserExtend, SysUserExtendSo
     public void setMaxSuperiorOccupy(Integer maxSuperiorOccupy) {
         this.maxSuperiorOccupy = maxSuperiorOccupy;
     }
-//endregion your codes 4
+
+    public CzRateKc getCzRateKc() {
+        return czRateKc;
+    }
+
+    public void setCzRateKc(CzRateKc czRateKc) {
+        this.czRateKc = czRateKc;
+    }
+
+    public CzRateSix getCzRateSix() {
+        return czRateSix;
+    }
+
+    public void setCzRateSix(CzRateSix czRateSix) {
+        this.czRateSix = czRateSix;
+    }
+
+    //endregion your codes 4
 
 }
