@@ -165,6 +165,13 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
         return map;
     }
 
+    @Override
+    public VSiteUserListVo searchList(VSiteUserListVo listVo) {
+        List<VSiteUser> lists = mapper.searchList(listVo);
+        listVo.setResult(lists);
+        return listVo;
+    }
+
 
 //    @Override
 //    public SysUserExtendVo sumSuperStintOccupy(SysUserExtendVo objectVo) {

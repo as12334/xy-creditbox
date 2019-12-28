@@ -11,7 +11,7 @@ import org.soul.model.common.Sortable;
  * 实体
  *
  * @author block
- * @time 2019-12-27 20:24:56
+ * @time 2019-12-27 22:20:55
  */
 //region your codes 1
 public class VSiteUser implements IEntity<Integer> {
@@ -120,206 +120,209 @@ public class VSiteUser implements IEntity<Integer> {
 	public static final String PROP_KC_ISAUTO_BACK = "kcIsautoBack";
 	public static final String PROP_SIX_ISAUTO_BACK = "sixIsautoBack";
 	public static final String PROP_LAST_CHANGED_DATE = "lastChangedDate";
+	public static final String PROP_HID = "hid";
 	//endregion
 	
 	
 	//region properties
-	/** 主键 */
+	/**  */
 	private Integer id;
-	/** 账号 */
+	/**  */
 	private String username;
-	/** 用户密码 */
+	/**  */
 	private String password;
-	/** 部门 id */
+	/**  */
 	private Integer deptId;
-	/** 状态,枚举:SysUserStatus,[1, 正常],[2, 停用],[3, 冻结(不记录表)],[4, 未激活/未审核],[5,审核失败] */
+	/**  */
 	private String status;
-	/** 创建用户id */
+	/**  */
 	private Integer createUser;
-	/** 创建时间 */
+	/**  */
 	private java.util.Date createTime;
-	/** 更新用户id */
+	/**  */
 	private Integer updateUser;
-	/** 更新时间 */
+	/**  */
 	private java.util.Date updateTime;
-	/** 默认本地化信息：两位小写语言代码_两位大写国家代码 */
+	/**  */
 	private String defaultLocale;
-	/** 默认时区 */
+	/**  */
 	private String defaultTimezone;
-	/** 系统编号：boss-总控，shareholder-股东，merchant-商户，agent-代理，pcenter-玩家 */
+	/**  */
 	private String subsysCode;
-	/** 用户类型：22-代理商，221-代理商子账号，23-玩家 */
+	/**  */
 	private String userType;
-	/** 是否系统内置 */
+	/**  */
 	private Boolean builtIn;
-	/** 所有者id */
+	/**  */
 	private Integer ownerId;
-	/** 冻结类型(1:自动冻结 2:手动冻结) */
+	/**  */
 	private String freezeType;
-	/** 冻结开始时间 */
+	/**  */
 	private java.util.Date freezeStartTime;
-	/** 冻结结束时间,当前时间在冻结结束区间内,状态为:冻结,3000年默认为:永久冻结 */
+	/**  */
 	private java.util.Date freezeEndTime;
-	/** 冻结原因i18代码,关联表:v_site_user_freeze_reason */
+	/**  */
 	private String freezeCode;
-	/** 本次登录时间 */
+	/**  */
 	private java.util.Date loginTime;
-	/** 本次登录IP */
+	/**  */
 	private Long loginIp;
-	/** 最后活跃时间 */
+	/**  */
 	private java.util.Date lastActiveTime;
-	/** 本次使用线路 */
+	/**  */
 	private String useLine;
-	/** 上次登录时间 */
+	/**  */
 	private java.util.Date lastLoginTime;
-	/** 上次登录IP */
+	/**  */
 	private Long lastLoginIp;
-	/** 累计在线时长 */
+	/**  */
 	private Long totalOnlineTime;
-	/** 昵称 */
+	/**  */
 	private String nickname;
-	/** 真实姓名 */
+	/**  */
 	private String realName;
-	/** 生日 */
+	/**  */
 	private java.util.Date birthday;
-	/** 性别，字典类型sex(common模块) */
+	/**  */
 	private String sex;
-	/** 星座 */
+	/**  */
 	private String constellation;
-	/** 国家，字典类型country(common模块) */
+	/**  */
 	private String country;
-	/** 民族，字典类型nation(common模块) */
+	/**  */
 	private String nation;
-	/** 注册ip */
+	/**  */
 	private Long registerIp;
-	/** 头像地址 */
+	/**  */
 	private String avatarUrl;
-	/** 权限密码 */
+	/**  */
 	private String permissionPwd;
-	/** 身份证号 */
+	/**  */
 	private String idcard;
-	/** 默认币种代码，字典类型currency(common模块) */
+	/**  */
 	private String defaultCurrency;
-	/** 注册网站地址 */
+	/**  */
 	private String registerSite;
-	/** 省/地区，字典类型province(common模块) */
+	/**  */
 	private String region;
-	/** 城市 */
+	/**  */
 	private String city;
-	/** 备注 */
+	/**  */
 	private String memo;
-	/** 密码级别:高 30, 中,20 低,10 */
+	/**  */
 	private String passwordLevel;
-	/** 登录IP地区字典代码 */
+	/**  */
 	private String loginIpDictCode;
-	/** 上次登录IP地区字典代码 */
+	/**  */
 	private String lastLoginIpDictCode;
-	/** 注册IP地区字典代码 */
+	/**  */
 	private String registerIpDictCode;
-	/** 登录错误次数 */
+	/**  */
 	private Integer loginErrorTimes;
-	/** 账号冻结标题 */
+	/**  */
 	private String freezeTitle;
-	/** 账号冻结内容 */
+	/**  */
 	private String freezeContent;
-	/** 上次退出时间 */
+	/**  */
 	private java.util.Date lastLogoutTime;
-	/** 冻结操作人id */
+	/**  */
 	private Integer freezeUser;
-	/** 停用操作人id */
+	/**  */
 	private Integer disabledUser;
-	/** 停用时间 */
+	/**  */
 	private java.util.Date disabledTime;
-	/** 冻结操作时间 */
+	/**  */
 	private java.util.Date freezeTime;
 	/**  */
 	private String accountFreezeRemark;
-	/** 安全密码冻结开始时间 */
+	/**  */
 	private java.util.Date secpwdFreezeStartTime;
-	/** 安全密码冻结结束时间 */
+	/**  */
 	private java.util.Date secpwdFreezeEndTime;
-	/** 安全密码输错次数 */
+	/**  */
 	private Integer secpwdErrorTimes;
-	/** 用户的session_key,online_session_id将被删除 */
+	/**  */
 	private String sessionKey;
-	/** 登录终端：1-PC，2-MOBILE */
+	/**  */
 	private String terminal;
-	/** 动态密码 */
+	/**  */
 	private String authenticationKey;
 	/**  */
 	private Integer siteId;
-	/** 钥匙 */
+	/**  */
 	private String key;
-	/** 用户唯一串 */
+	/**  */
 	private String uid;
-	/** 密码加密盐 */
+	/**  */
 	private String salt;
-	/** 皮肤 SkinEnum */
+	/**  */
 	private String uskin;
-	/** 上级用户名 */
+	/**  */
 	private String supName;
-	/** 用户新增时间 */
+	/**  */
 	private java.util.Date addDate;
-	/** 用户类型 UtypeEnum */
+	/**  */
 	private String utype;
-	/** 上级用户类型 UtypeEnum */
+	/**  */
 	private String suType;
-	/** ⑥合彩占成 */
+	/**  */
 	private Integer sixRate;
-	/** ⑥合彩信用额度 */
+	/**  */
 	private Double sixCredit;
-	/** ⑥合彩可用额度 */
+	/**  */
 	private Double sixUsableCredit;
-	/** ⑥合彩盘口 */
+	/**  */
 	private String sixKind;
 	/**  */
 	private Integer astate;
-	/** ⑥合彩補貨功能 */
+	/**  */
 	private String sixAllowSale;
-	/** 開放公司報錶功能 1:開放 0:禁看 */
+	/**  */
 	private String allowViewReport;
-	/** ⑥合彩下線占成上限功能 1:限製下綫可占成數 0:占餘成數下綫任占 */
+	/**  */
 	private String sixAllowMaxrate;
-	/** ⑥合彩限製下綫可占成數 */
+	/**  */
 	private Integer sixLowMaxrate;
-	/** ⑥合彩占餘成數歸 1:總監 0:分公司 */
+	/**  */
 	private String sixRateOwner;
-	/** 1:现金 0:信用 */
+	/**  */
 	private String sixIscash;
 	/**  */
 	private Integer allowOpt;
-	/** 0:新密碼首次登錄,需重置密碼 1:不需要重置 */
+	/**  */
 	private String isChanged;
-	/** 快彩占成 */
+	/**  */
 	private Integer kcRate;
-	/** 快彩信用额度 */
+	/**  */
 	private Double kcCredit;
-	/** 快彩可用额度 */
+	/**  */
 	private Double kcUsableCredit;
-	/** 快彩盘口 */
+	/**  */
 	private String kcKind;
-	/** 快彩補貨功能 */
+	/**  */
 	private String kcAllowSale;
-	/** 快彩下線占成上限功能 1:限製下綫可占成數 0:占餘成數下綫任占 */
+	/**  */
 	private String kcAllowMaxrate;
-	/** 快彩限製下綫可占成數 */
+	/**  */
 	private Integer kcLowMaxrate;
-	/** 快彩占餘成數歸 1:總監 0:分公司 */
+	/**  */
 	private String kcRateOwner;
 	/**  */
 	private Integer kcCrashPayment;
-	/** 1:现金 0:信用 */
+	/**  */
 	private String kcIscash;
-	/** ⑥合彩操盤 */
+	/**  */
 	private String sixOpOdds;
-	/** 快彩操盤 */
+	/**  */
 	private String kcOpOdds;
-	/** 快彩會員現金自動回收 */
+	/**  */
 	private String kcIsautoBack;
-	/** ⑥合彩會員現金自動回收 */
+	/**  */
 	private String sixIsautoBack;
-	/** 密码最后修改时间 */
+	/**  */
 	private java.util.Date lastChangedDate;
+	/**  */
+	private String hid;
 	//endregion
 
 	
@@ -1021,6 +1024,13 @@ public class VSiteUser implements IEntity<Integer> {
 	public void setLastChangedDate(java.util.Date value) {
 		this.lastChangedDate = value;
 	}
+	public String getHid() {
+		return this.hid;
+	}
+
+	public void setHid(String value) {
+		this.hid = value;
+	}
 	//endregion
 
 	//region your codes 2
@@ -1030,6 +1040,12 @@ public class VSiteUser implements IEntity<Integer> {
 
 	//今日输赢
 	private Double toDayProfit;
+
+	private Integer fgsCount;
+	private Integer gdCount;
+	private Integer zdCount;
+	private Integer dlCount;
+	private Integer hyCount;
 	@Nonpersistent
 	public Double getUsableCredit() {
 		return usableCredit;
@@ -1045,6 +1061,47 @@ public class VSiteUser implements IEntity<Integer> {
 
 	public void setToDayProfit(Double toDayProfit) {
 		this.toDayProfit = toDayProfit;
+	}
+
+	@Nonpersistent
+	public Integer getFgsCount() {
+		return fgsCount;
+	}
+
+	public void setFgsCount(Integer fgsCount) {
+		this.fgsCount = fgsCount;
+	}
+	@Nonpersistent
+	public Integer getGdCount() {
+		return gdCount;
+	}
+
+	public void setGdCount(Integer gdCount) {
+		this.gdCount = gdCount;
+	}
+	@Nonpersistent
+	public Integer getZdCount() {
+		return zdCount;
+	}
+
+	public void setZdCount(Integer zdCount) {
+		this.zdCount = zdCount;
+	}
+	@Nonpersistent
+	public Integer getDlCount() {
+		return dlCount;
+	}
+
+	public void setDlCount(Integer dlCount) {
+		this.dlCount = dlCount;
+	}
+	@Nonpersistent
+	public Integer getHyCount() {
+		return hyCount;
+	}
+
+	public void setHyCount(Integer hyCount) {
+		this.hyCount = hyCount;
 	}
 
 //endregion your codes 2

@@ -418,6 +418,9 @@ public class SysUserExtend extends SysUser {
 	//region your codes 2
 	private CzUsersChild sessionUserChild;
 
+
+
+
 	public CzUsersChild getSessionUserChild() {
 		return sessionUserChild;
 	}
@@ -425,6 +428,8 @@ public class SysUserExtend extends SysUser {
 	public void setSessionUserChild(CzUsersChild sessionUserChild) {
 		this.sessionUserChild = sessionUserChild;
 	}
+
+
 	//endregion your codes 2
 
 }

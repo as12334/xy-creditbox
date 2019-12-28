@@ -46,6 +46,7 @@ public interface IVSiteUserService extends IBaseService<VSiteUserListVo, VSiteUs
      */
     Map<String, List<SysUserExtend>> searchAllManagerList(VSiteUserVo objectVo);
 
+    VSiteUserListVo searchList(VSiteUserListVo listVo);
 
 
 //    SysUserExtendVo sumSuperStintOccupy(SysUserExtendVo objectVo);

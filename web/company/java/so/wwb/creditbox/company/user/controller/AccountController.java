@@ -93,7 +93,10 @@ public class AccountController extends MemberPageBase {
         }
         super.Permission_Aspx_ZJ("po_2_1",response);
 
-
+        listVo.getSearch().setHid(sysUserExtend.getHid());
+        listVo.getSearch().setUtype(UTypeEnum.FGS.getCode());
+        listVo._setDataSourceId(LotteryCommonContext.get().getSiteId());
+        listVo = ServiceTool.vSiteUserService().searchList(listVo);
 
         listVo.getSearch().setUserType(UserTypeEnum.BRANCH.getCode());
 //        super.list(listVo, form, result, model, request, response);
@@ -131,7 +134,7 @@ public class AccountController extends MemberPageBase {
 
             SysUserExtend sysUserExtend = defaultAccount(bean, request);
 
-        sysUserExtend.setHid(sessionUser.getHid());
+        sysUserExtend.setHid(ServiceTool.vSiteUserService().getHid(sessionUser.getHid()));
             sysUserExtend.setUtype("fgs");
             sysUserExtend.setSuType("zj");
             sysUserExtend.setSixAllowMaxrate(AllowMaxrateEnum.CLOSE.getCode());

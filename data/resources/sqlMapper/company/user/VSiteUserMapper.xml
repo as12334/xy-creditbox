@@ -101,6 +101,7 @@
         <result column="kc_isauto_back" property="kcIsautoBack"/>
         <result column="six_isauto_back" property="sixIsautoBack"/>
         <result column="last_changed_date" property="lastChangedDate"/>
+        <result column="hid" property="hid"/>
     </resultMap>
 
     <!--//region your codes 1-->
@@ -150,6 +151,34 @@
     <sql id="extendSql">
         (SELECT id FROM sys_user_extend  WHERE hid like CONCAT('',#{hid},'%') order BY user_type desc,superior_occupy desc LIMIT 1)
     </sql>
+
+
+    <select id="searchList" parameterType="so.wwb.creditbox.model.company.user.vo.VSiteUserListVo" resultMap="TABLE:v_site_user">
+        SELECT
+            (SELECT count(1) FROM v_site_user WHERE hid LIKE CONCAT('',#{search.hid},'%') and u_type='fgs') fgsCount,
+            (SELECT count(1) FROM v_site_user WHERE hid LIKE CONCAT('',#{search.hid},'%') and u_type='gd') gdCount,
+            (SELECT count(1) FROM v_site_user WHERE hid LIKE CONCAT('',#{search.hid},'%') and u_type='zd') zdCount,
+            (SELECT count(1) FROM v_site_user WHERE hid LIKE CONCAT('',#{search.hid},'%') and u_type='dl') dlCount,
+            (SELECT count(1) FROM v_site_user WHERE hid LIKE CONCAT('',#{search.hid},'%') and u_type='hy') hyCount,
+            *
+        FROM
+          v_site_user
+          WHERE
+          1=1
+        <if test="search.utype != null and search.utype != ''">
+            AND u_type = #{search.utype}
+        </if>
+        <if test="search.hid != null and search.hid != ''">
+            AND hid LIKE CONCAT('',#{search.hid},'%')
+        </if>
+        ORDER BY id DESC
+        <if test="paging.pageSize>0 ">
+            LIMIT #{paging.pageSize}
+            OFFSET (#{paging.pageNumber} - 1) * #{paging.pageSize}
+        </if>
+          ;
+
+    </select>
     <!--//endregion your codes 1-->
 
 </mapper>
