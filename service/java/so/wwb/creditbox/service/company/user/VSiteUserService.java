@@ -18,6 +18,7 @@ import so.wwb.creditbox.model.company.user.po.VSiteUser;
 import so.wwb.creditbox.model.company.user.so.VSiteUserSo;
 import so.wwb.creditbox.model.company.user.vo.VSiteUserListVo;
 import so.wwb.creditbox.model.company.user.vo.VSiteUserVo;
+import so.wwb.creditbox.model.enums.base.AllowMaxrateEnum;
 import so.wwb.creditbox.model.enums.user.UserTypeEnum;
 import so.wwb.creditbox.model.manager.user.po.SysUserExtend;
 import so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo;
@@ -42,24 +43,25 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
     @Override
     public VSiteUserVo sumSuperStintOccupy(VSiteUserVo objectVo) {
         SysUserExtend parentUser = objectVo.getParentUser();
-        Integer sumSuperStintOccupy;
-        Integer minStintOccupy = 0;
+        Integer sumSuperKcRate;
+        //限制占成
+        Integer minKcLowMaxrate = 0;
         //新增用户只查询上级占成情况
         if(objectVo.getSearch().getId() == null){
-            sumSuperStintOccupy = mapper.sumSuperStintOccupy(parentUser.getId());
+            sumSuperKcRate = mapper.sumSuperKcRate(parentUser.getId());
         }
         else {
             //编辑用户要查询上级和下级占成情况
-//           sumSuperStintOccupy = mapper.sumSuperStintOccupyCount(objectVo.getResult().getHid());
-            minStintOccupy = mapper.minStintOccupy(objectVo.getResult().getId());
+           sumSuperKcRate = mapper.sumSuperKcRateCount(objectVo.getResult().getHid());
+            minKcLowMaxrate = mapper.minKcLowMaxrate(objectVo.getResult().getId());
         }
-//        if(parentUser.getStintOccupy() > 0 && (parentUser.getStintOccupy() < (100 - sumSuperStintOccupy))){
-//            parentUser.setSuperiorOccupy(parentUser.getStintOccupy());
-//        }
-//        else {
-//            parentUser.setSuperiorOccupy(100 - sumSuperStintOccupy);
-//        }
-//        parentUser.setStintOccupy(minStintOccupy);
+        if(parentUser.getKcAllowMaxrate().equals(AllowMaxrateEnum.OPEN.getCode())){
+            parentUser.setKcRate(parentUser.getKcLowMaxrate());
+        }
+        else {
+            parentUser.setKcRate(100 - (sumSuperKcRate == null?0:sumSuperKcRate));
+        }
+        parentUser.setKcLowMaxrate(minKcLowMaxrate);
         objectVo.setParentUser(parentUser);
 
         return objectVo;
@@ -170,6 +172,25 @@ public class VSiteUserService extends BaseService<VSiteUserMapper, VSiteUserList
         List<VSiteUser> lists = mapper.searchList(listVo);
         listVo.setResult(lists);
         return listVo;
+    }
+
+    @Override
+    public VSiteUserVo getUid(VSiteUserVo objectVo) {
+        objectVo.setResult(mapper.getUid(objectVo.getSearch()));
+        return objectVo;
+    }
+
+    @Transactional
+    @Override
+    public VSiteUserVo updateManagerUser(VSiteUserVo objectVo) {
+        SysUserExtend sysUserExtend = new SysUserExtend();
+        sysUserExtend = BeanTool.copyProperties(objectVo.getResult(), sysUserExtend);
+        boolean b = sysUserExtendMapper.updateOnly(sysUserExtend, objectVo.getProperties());
+        if (b) {
+            Integer i = sysUserExtendMapper.updateSql(objectVo.getRateKcSql());
+            i = sysUserExtendMapper.updateSql(objectVo.getRateSixSql());
+        }
+        return objectVo;
     }
 
 

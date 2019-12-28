@@ -253,6 +253,10 @@
         SELECT * FROM f_init_site_lottery_rebate(#{siteId},#{hid});
     </select>
 
+
+    <update id="updateSql" parameterType="string">
+        ${updateSql}
+    </update>
     <!--//endregion your codes 1-->
 
 </mapper>

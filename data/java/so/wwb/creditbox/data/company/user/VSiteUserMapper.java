@@ -28,13 +28,15 @@ public interface VSiteUserMapper extends IBaseQueryMapper<VSiteUser, Integer> {
     void doInitUserLotteryOdd(SysUserExtend user);
     void doInitUserLotteryRebate(SysUserExtend user);
 
-    Integer sumSuperStintOccupy(Integer search);
+    Integer sumSuperKcRate(Integer search);
 
-    Integer sumSuperStintOccupyCount(String search);
+    Integer sumSuperKcRateCount(String search);
 
-    Integer minStintOccupy(Integer id);
+    Integer minKcLowMaxrate(Integer id);
 
     List<VSiteUser> searchList(VSiteUserListVo listVo);
+
+    VSiteUser getUid(VSiteUserSo so);
 
 
     //endregion your codes 2

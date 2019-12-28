@@ -1041,6 +1041,8 @@ public class VSiteUser implements IEntity<Integer> {
 	//今日输赢
 	private Double toDayProfit;
 
+
+	private VSiteUser parentUser;
 	private Integer fgsCount;
 	private Integer gdCount;
 	private Integer zdCount;
@@ -1104,6 +1106,16 @@ public class VSiteUser implements IEntity<Integer> {
 		this.hyCount = hyCount;
 	}
 
-//endregion your codes 2
+	@Nonpersistent
+	public VSiteUser getParentUser() {
+		return parentUser;
+	}
+
+	public void setParentUser(VSiteUser parentUser) {
+		this.parentUser = parentUser;
+	}
+
+
+	//endregion your codes 2
 
 }

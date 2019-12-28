@@ -39,6 +39,9 @@ public class VSiteUserVo extends BaseObjectVo<VSiteUser, VSiteUserSo, VSiteUserV
     //新增直属会员的上级类型
     private String rdoutype;
 
+    private String rateKcSql;
+    private String rateSixSql;
+
     //endregion your codes 5
 
     /**
@@ -91,6 +94,22 @@ public class VSiteUserVo extends BaseObjectVo<VSiteUser, VSiteUserSo, VSiteUserV
 
     public void setRdoutype(String rdoutype) {
         this.rdoutype = rdoutype;
+    }
+
+    public String getRateKcSql() {
+        return rateKcSql;
+    }
+
+    public void setRateKcSql(String rateKcSql) {
+        this.rateKcSql = rateKcSql;
+    }
+
+    public String getRateSixSql() {
+        return rateSixSql;
+    }
+
+    public void setRateSixSql(String rateSixSql) {
+        this.rateSixSql = rateSixSql;
     }
 
 

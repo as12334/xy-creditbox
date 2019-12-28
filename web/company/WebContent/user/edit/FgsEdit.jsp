@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--@elvariable id="command" type="so.wwb.creditbox.model.manager.user.vo.SysUserExtendVo"--%>
+<%--@elvariable id="command" type="so.wwb.creditbox.model.company.user.vo.VSiteUserVo"--%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -28,10 +28,13 @@
 
             location.href = "zd_add.html?uid=${user.uid}&sltuid=" + v;
         }
+        var kc_low_maxrate = ${command.result.kcLowMaxrate}+"";
     </script>
 </head>
 <body>
 <form method="post" id="form">
+    <input type="hidden" name="uid" value="${command.result.uid}"/>
+    <input type="hidden" name="utype" value="${command.result.utype}"/>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
         <tr>
             <td class="topLeftBg1"></td>
@@ -76,7 +79,15 @@
                                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                             <tr>
                                                 <td>
-                                                    &nbsp;<input type="text" name="userName" id="userName" class="text w130" /><div class="userTips">（帳號必須包含字母和數字，除開頭和結尾外可以用‘_’）</div>
+                                                    <c:choose>
+                                                        <c:when test="${empty command.result.id}">
+                                                            &nbsp;<input type="text" value="" name="result.username" id="userName" class="text w130"/>
+                                                            <div class="userTips">（帳號必須包含字母和數字，除開頭和結尾外可以用‘_’）</div>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            &nbsp;${fn:substringBefore(command.result.username,'@')}
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </td>
                                             </tr>
                                         </table>
@@ -87,7 +98,9 @@
                                         密 碼&nbsp;
                                     </td>
                                     <td colspan="3" align="left">
-                                        &nbsp;<input type="text" name="userPassword" id="userPassword" class="text w130"><span class="passwordStrength"><span>弱</span><span>中</span><span>强</span></span><span class="passwordTip">8-20位,且必需包含字母和数字！</span>
+                                        &nbsp;<input type="text" name="userPassword" id="userPassword" class="text w130" data-empty="${empty command.result.id ? "":"true"}">
+                                        <span class="passwordStrength"><span>弱</span><span>中</span><span>强</span></span>
+                                        <span class="passwordTip">8-20位,且必需包含字母和数字！</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -95,7 +108,7 @@
                                         分公司名稱&nbsp;
                                     </td>
                                     <td colspan="3" align="left">
-                                        &nbsp;<input type="text" name="userNicker" id="userNicker" class="text w130">
+                                        &nbsp;<input type="text" name="userNicker" id="userNicker" value="${command.result.nickname}" class="text w130">
                                     </td>
                                 </tr>
                                 <tr style='display:none;'>
@@ -259,16 +272,16 @@
                         <td><table  class="t_list" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td align="right" width="140" class="tdbg1"> <span id="isCash_kc_01">(快彩)信用額度</span>&nbsp;</td>
-                                <td align="left">&nbsp;<input type="text" data-max="${user.kcCredit}" name="userCredit_kc" id="userCredit_kc" class="text w130 zfNumber toRMB" /><span class="toRMBspan"></span>
+                                <td align="left">&nbsp;<input type="text" data-max="${command.parentUser.kcCredit}" value="${command.result.kcCredit}" name="userCredit_kc" id="userCredit_kc" class="text w130 zfNumber toRMB" /><span class="toRMBspan"></span>
                                     上級餘額:
-                                    <label id="userCredit_kc_1">${user.kcCredit}</label>
+                                    <label id="userCredit_kc_1">${command.parentUser.kcCredit}</label>
                                 </td>
                             </tr>
                             <tr>
                                 <td align="right" width="140" class="tdbg1"> (快彩)總監占成&nbsp;</td>
-                                <td align="left">&nbsp;<input type="text" data-max="100" name="userRate_kc" id="userRate_kc" class="text zfNumber" />
+                                <td align="left">&nbsp;<input type="text" data-max="${command.parentUser.kcRate}" value="${command.result.kcRate}" name="userRate_kc" id="userRate_kc" class="text zfNumber" />
                                     % 　最高可設占成
-                                    <label id="userMaxRate_kc">100%</label>
+                                    <label id="userMaxRate_kc">${command.parentUser.kcRate}%</label>
                                 </td>
                             </tr>
                             <tr>
@@ -277,13 +290,13 @@
                                     <tr>
 
                                         <td width="60"><label class="topLabel">
-                                            <input type="radio" name="userAllowSale_kc" id="userAllowSale_kc" value="1" checked=checked  />
+                                            <input type="radio" name="userAllowSale_kc" id="userAllowSale_kc" value="1" ${command.result.kcAllowMaxrate != '0'?'checked':''}  />
                                             <span>
 										啟用
 									</span>
                                         </label></td>
                                         <td width="60"><label class="topLabel">
-                                            <input type="radio"  name="userAllowSale_kc" id="userAllowSale_kc" value="0"  />
+                                            <input type="radio"  name="userAllowSale_kc" id="userAllowSale_kc" value="0" ${command.result.kcAllowMaxrate == '0'?'checked':''}  />
                                             <span>
 										禁用
 									</span>
@@ -303,13 +316,13 @@
                                     <tr>
 
                                         <td width="60"><label class="topLabel">
-                                            <input type="radio" name="userReport" id="userReport" value="1" checked=checked  />
+                                            <input type="radio" name="userReport" id="userReport" value="1" ${command.result.allowViewReport != '0'?'checked':''}  />
                                             <span>
 										顯示
 									</span>
                                         </label></td>
                                         <td width="60"><label class="topLabel">
-                                            <input type="radio"  name="userReport" id="userReport" value="0"  />
+                                            <input type="radio"  name="userReport" id="userReport" value="0" ${command.result.allowViewReport == '0'?'checked':''} />
                                             <span>
 										禁看
 									</span>
@@ -326,13 +339,13 @@
                                     <tr>
 
                                         <td width="60"><label class="topLabel">
-                                            <input type="radio" name="userRateOwner_kc" id="userRateOwner_kc" value="1" checked=checked  />
+                                            <input type="radio" name="userRateOwner_kc" id="userRateOwner_kc" value="1" ${command.result.kcRateOwner != '0'?'checked':''}  />
                                             <span>
 										總監
 									</span>
                                         </label></td>
                                         <td width="150"><label class="topLabel">
-                                            <input type="radio"  name="userRateOwner_kc" id="userRateOwner_kc" value="0"  />
+                                            <input type="radio"  name="userRateOwner_kc" id="userRateOwner_kc" value="0" ${command.result.kcRateOwner == '0'?'checked':''} />
                                             <span>
 										分公司
 									</span>
@@ -351,22 +364,22 @@
                             <tr>
                                 <td align="right" width="140" class="tdbg1"> (快彩)盤口&nbsp;</td>
                                 <td align="left">
-                                    <label class="topLabel"><input type="radio" name="userKind_kc"  id="userKind_kc" value="0"  checked="checked" />
+                                    <label class="topLabel"><input type="radio" name="userKind_kc"  id="userKind_kc" value="0"  ${empty command.result.kcKind || command.result.kcKind == '0' ? 'checked':''} />
                                         <span>
 							不限
 						</span>
                                     </label>
-                                    <label class="topLabel"><input type="radio" name="userKind_kc"  id="userKind_kc" value="A" />
+                                    <label class="topLabel"><input type="radio" name="userKind_kc"  id="userKind_kc" value="A"  ${command.result.kcKind == 'A' ? 'checked':''}/>
                                         <span>
 							A盤
 						</span>
                                     </label>
-                                    <label class="topLabel"><input type="radio" name="userKind_kc"  id="userKind_kc" value="B" />
+                                    <label class="topLabel"><input type="radio" name="userKind_kc"  id="userKind_kc" value="B" ${command.result.kcKind == 'B' ? 'checked':''}/>
                                         <span>
 							B盤
 						</span>
                                     </label>
-                                    <label class="topLabel"><input type="radio" name="userKind_kc"  id="userKind_kc" value="C" />
+                                    <label class="topLabel"><input type="radio" name="userKind_kc"  id="userKind_kc" value="C" ${command.result.kcKind == 'C' ? 'checked':''}/>
                                         <span>
 							C盤
 						</span>
@@ -381,13 +394,13 @@
                                     <tr>
 
                                         <td width="60"><label class="topLabel">
-                                            <input type="radio" name="op_kc" id="op_kc" value="1" checked=checked  />
+                                            <input type="radio" name="op_kc" id="op_kc" value="1" ${command.result.kcOpOdds != '0'?'checked':''}  />
                                             <span>
 										啟用
 									</span>
                                         </label></td>
                                         <td width="60"><label class="topLabel">
-                                            <input type="radio"  name="op_kc" id="op_kc" value="0"  />
+                                            <input type="radio"  name="op_kc" id="op_kc" value="0" ${command.result.kcOpOdds == '0'?'checked':''} />
                                             <span>
 										禁用
 									</span>

@@ -13,6 +13,7 @@ public class UserBean implements IForm{
     private  String userName;
     private  String userPassword;
     private  String userNicker;
+    private  String userState;
     private  String userReport;
     private  String userCredit_six;
     private  String userRate_six;
@@ -60,7 +61,13 @@ public class UserBean implements IForm{
     private  String op_kc;
 
 
+    public String getUserState() {
+        return userState;
+    }
 
+    public void setUserState(String userState) {
+        this.userState = userState;
+    }
 
     public String getUserPassword() {
         return userPassword;

@@ -81,13 +81,13 @@ public class UserBeanForm implements IForm {
     private  String $isCash_six;
     private  String $op_kc;
 
-    @Depends(property = "result.id", operator = Operator.IS_NULL, value = "")
+    @Depends(property = "uid", operator = Operator.IS_NULL, value = "")
     @Pattern(message = "请输入4-16个字符(由英文字母,下划线“-”,数字或任意组合而成)", regexp = "^[a-z0-9A-Z][a-z0-9A-Z_]{0,12}$")
     @Remote(checkClass = CheckToolController.class, checkMethod = "checkUsername", type = "input",additionalProperties = {"result.username","result.userType"}, message = "此“賬號”已經有人使用！請重新填寫！")
     public String get$userName() {
         return $userName;
     }
-    @Depends(property = "result.id", operator = Operator.IS_NULL, value = "")
+    @Depends(property = "uid", operator = Operator.IS_NULL, value = "")
     @Pattern(regexp = RegexConst.LOGIN_PWD, message = "请输入6-16个符号（由大小写英文字母、数字或特殊符号组成）")
     public String get$userPassword() {
         return $userPassword;

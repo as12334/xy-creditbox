@@ -6,6 +6,7 @@ import org.soul.commons.support.IModule;
 public enum SiteParamEnum implements IParamEnum {
 
     SETTING_SITE_LOTTERY_TYPE(Module.MASTER_SETTING, "site_lottery_type", "type"),//站点的彩种类型，1:six 2:kc
+    SETTING_OP_FGS_ODD_WT(Module.MASTER_SETTING, "site_op_fgs_odd", "wt"),//站点是否开启分公司微调，1:开启 0:关闭
 
 
     //    SETTING_VISIT(Module.MASTER_SETTING, "visit", ""),//是否开启允许访问管理中心的IP

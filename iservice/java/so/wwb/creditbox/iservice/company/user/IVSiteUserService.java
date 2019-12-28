@@ -48,6 +48,10 @@ public interface IVSiteUserService extends IBaseService<VSiteUserListVo, VSiteUs
 
     VSiteUserListVo searchList(VSiteUserListVo listVo);
 
+    VSiteUserVo getUid(VSiteUserVo objectVo);
+
+    VSiteUserVo updateManagerUser(VSiteUserVo objectVo);
+
 
 //    SysUserExtendVo sumSuperStintOccupy(SysUserExtendVo objectVo);
 //

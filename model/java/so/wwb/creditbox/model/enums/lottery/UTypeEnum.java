@@ -15,7 +15,8 @@ public enum UTypeEnum implements ICodeEnum {
     GD("gd", "股东"),
     ZD("zd", "总代"),
     DL("dl", "代理"),
-    HY("hy", "会员"),;
+    HY("hy", "会员"),
+    CHILD("child", "子账号"),;
 
     private String code;
     private String trans;

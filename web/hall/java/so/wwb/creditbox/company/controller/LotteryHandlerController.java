@@ -132,8 +132,8 @@ return null;
             Map<String, Object> dataMap = new LinkedHashMap<>();
             dataMap.put("type","get_oddsinfo");
             dataMap.put("playpage", form.getPlaypage());
-            dataMap.put("credit",usedCredit.getCredits());
-            dataMap.put("usable_credit",usedCredit.getCredits() - usedCredit.getUsableCredit());
+            dataMap.put("credit",usedCredit.getKcCredit());
+            dataMap.put("usable_credit",usedCredit.getKcCredit() - usedCredit.getUsableCredit());
             LotteryResult lotteryResult = getHandicapOpen(lotteryEnum.getCode());
             //开奖时间
             dataMap.put("drawopen_time",DateTool.formatDate(lotteryResult.getOpenTime(),SessionManagerBase.getTimeZone(),DateTool.HH_mm_ss));

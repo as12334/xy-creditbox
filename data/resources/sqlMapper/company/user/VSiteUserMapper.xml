@@ -124,60 +124,74 @@
         SELECT  * from  sys_user_extend WHERE hid like CONCAT('',#{hid},'%')  AND user_type = #{ownerUserType}
     </select>
     <!--查询下级最高的限制占成-->
-    <select id="minStintOccupy" parameterType="int" resultType="int">
-        SELECT COALESCE(MAX(stint_occupy),0) FROM v_site_user WHERE owner_id = #{id}
+    <select id="minKcLowMaxrate" parameterType="int" resultType="int">
+        SELECT COALESCE(MAX(kc_low_maxrate),0) FROM v_site_user WHERE owner_id = #{id}
     </select>
 
 
     <!--查询上级的占成总和-->
-    <select id="sumSuperStintOccupy" parameterType="int" resultType="int">
-        SELECT sum(r2.superior_occupy) from  (WITH RECURSIVE r AS (
-        SELECT * FROM sys_user_extend WHERE id = #{id}
+    <select id="sumSuperKcRate" parameterType="int" resultType="int">
+        SELECT sum(r2.kc_rate) from  (WITH RECURSIVE r AS (
+        SELECT * FROM v_site_user WHERE id = #{id}
         union   ALL
-        SELECT cur.* FROM sys_user_extend cur, r WHERE cur.id = r.owner_id
+        SELECT cur.* FROM v_site_user cur, r WHERE cur.id = r.owner_id
         )
         SELECT * FROM r ORDER BY id)r2;
     </select>
     <!--查询上级和下级的占成总和-->
-    <select id="sumSuperStintOccupyCount" parameterType="string" resultType="int">
-        SELECT sum(r2.superior_occupy)-(SELECT superior_occupy from sys_user_extend where hid =#{hid} ) from
+    <select id="sumSuperKcRateCount" parameterType="string" resultType="int">
+        SELECT sum(r2.kc_rate)-(SELECT kc_rate from v_site_user where hid =#{hid} ) from
         (WITH RECURSIVE r AS (
-        SELECT * FROM sys_user_extend WHERE id = <include refid="extendSql"></include>
+        SELECT * FROM v_site_user WHERE id = <include refid="extendSql"></include>
         union   ALL
-        SELECT cur.* FROM sys_user_extend cur, r WHERE cur.id = r.owner_id
+        SELECT cur.* FROM v_site_user cur, r WHERE cur.id = r.owner_id
         )
         SELECT * FROM r ORDER BY id)r2;
     </select>
     <sql id="extendSql">
-        (SELECT id FROM sys_user_extend  WHERE hid like CONCAT('',#{hid},'%') order BY user_type desc,superior_occupy desc LIMIT 1)
+        (SELECT id FROM v_site_user  WHERE hid like CONCAT('',#{hid},'%') order BY user_type desc,kc_rate desc LIMIT 1)
     </sql>
 
 
     <select id="searchList" parameterType="so.wwb.creditbox.model.company.user.vo.VSiteUserListVo" resultMap="TABLE:v_site_user">
         SELECT
+        s1.*,
+        s2.username AS "parentUser.username",
+        s2.six_rate AS "parentUser.sixRate",
+        s2.kc_rate AS "parentUser.kcRate"
+        FROM
+        (
+            SELECT
             (SELECT count(1) FROM v_site_user WHERE hid LIKE CONCAT('',#{search.hid},'%') and u_type='fgs') fgsCount,
             (SELECT count(1) FROM v_site_user WHERE hid LIKE CONCAT('',#{search.hid},'%') and u_type='gd') gdCount,
             (SELECT count(1) FROM v_site_user WHERE hid LIKE CONCAT('',#{search.hid},'%') and u_type='zd') zdCount,
             (SELECT count(1) FROM v_site_user WHERE hid LIKE CONCAT('',#{search.hid},'%') and u_type='dl') dlCount,
             (SELECT count(1) FROM v_site_user WHERE hid LIKE CONCAT('',#{search.hid},'%') and u_type='hy') hyCount,
             *
-        FROM
-          v_site_user
-          WHERE
-          1=1
-        <if test="search.utype != null and search.utype != ''">
-            AND u_type = #{search.utype}
-        </if>
-        <if test="search.hid != null and search.hid != ''">
-            AND hid LIKE CONCAT('',#{search.hid},'%')
-        </if>
-        ORDER BY id DESC
-        <if test="paging.pageSize>0 ">
-            LIMIT #{paging.pageSize}
-            OFFSET (#{paging.pageNumber} - 1) * #{paging.pageSize}
-        </if>
-          ;
+            FROM
+            v_site_user
+            WHERE
+            1=1
+            <if test="search.utype != null and search.utype != ''">
+                AND u_type = #{search.utype}
+            </if>
+            <if test="search.hid != null and search.hid != ''">
+                AND hid LIKE CONCAT('',#{search.hid},'%')
+            </if>
+            ORDER BY id DESC
+            <if test="paging.pageSize>0 ">
+                LIMIT #{paging.pageSize}
+                OFFSET (#{paging.pageNumber} - 1) * #{paging.pageSize}
+            </if>
+        )s1 LEFT JOIN v_site_user s2
+        ON s1.sup_name = s2.username
 
+
+
+    </select>
+
+    <select id="getUid" parameterType="so.wwb.creditbox.model.company.user.so.VSiteUserSo" resultMap="TABLE:v_site_user">
+        SELECT * FROM v_site_user WHERE  u_id = #{uid} AND u_type = #{utype}
     </select>
     <!--//endregion your codes 1-->
 
