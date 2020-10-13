@@ -34,7 +34,7 @@
         <repository.nexus.distribution.url>http://${nexus.ip}:8081/nexus/content/repositories/thirdparty</repository.nexus.distribution.url>
 
         <powermock.version>1.6.5</powermock.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <jstl.version>1.1.2</jstl.version>
         <jsp.api.version>2.2.1-b03</jsp.api.version>
         <jxls.version>1.0.6</jxls.version>
